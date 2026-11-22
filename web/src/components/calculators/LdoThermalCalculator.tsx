@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, CheckCircle2, Flame, RotateCcw, Thermometer } from 'lucide-react';
+import { trackEvent } from '@/lib/analytics';
 
 export interface LdoPreset {
   opn: string;
@@ -63,7 +64,7 @@ export function LdoThermalCalculator({
   const [vinMaxLimit, setVinMaxLimit] = useState<number>(base.vinMax);
   const [ioutRatedLimit, setIoutRatedLimit] = useState<number>(base.ioutMaxMa);
 
-  const applyPreset = (p: LdoPreset) => {
+  const applyPreset = (p: LdoPreset, source: 'preset' | 'reset' = 'preset') => {
     setSelectedOpn(p.opn);
     setVinStr(String(defaultVinFor(p)));
     setVoutStr(String(p.vout));
@@ -76,6 +77,10 @@ export function LdoThermalCalculator({
     setVinMinLimit(p.vinMin);
     setVinMaxLimit(p.vinMax);
     setIoutRatedLimit(p.ioutMaxMa);
+    trackEvent(source === 'reset' ? 'calculator_reset' : 'calculator_preset_select', {
+      calculator: 'ldo_thermal',
+      opn: p.opn,
+    });
   };
 
   const results = useMemo(() => {
@@ -206,7 +211,7 @@ export function LdoThermalCalculator({
           </span>
           <button
             type="button"
-            onClick={() => applyPreset(base)}
+            onClick={() => applyPreset(base, 'reset')}
             className="inline-flex items-center gap-1 rounded border border-slate-600 bg-slate-800 px-2 py-1 text-[11px] font-medium text-slate-200 hover:bg-slate-700 cursor-pointer"
           >
             <RotateCcw className="h-3 w-3" aria-hidden="true" />
@@ -240,7 +245,18 @@ export function LdoThermalCalculator({
 
       <div className="p-4 sm:p-5 space-y-5">
         {/* Inputs Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div
+          className="grid grid-cols-2 sm:grid-cols-4 gap-3"
+          onBlur={(e) => {
+            if (e.target instanceof HTMLInputElement) {
+              trackEvent('calculator_interact', {
+                calculator: 'ldo_thermal',
+                opn: selectedOpn,
+                status: results.status,
+              });
+            }
+          }}
+        >
           <label className="block">
             <span className="block text-[11px] font-semibold text-slate-700 mb-1">
               Input Voltage Vin (V)

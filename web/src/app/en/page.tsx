@@ -6,7 +6,9 @@ import {
   ArrowRight,
   BookOpen,
   Cpu,
+  FileSpreadsheet,
   Layers,
+  Lock,
   ShieldCheck,
   Thermometer,
   Zap,
@@ -99,8 +101,27 @@ export default function EnHomePage() {
             Stop Guessing Drop-In Replacements. Verify Every Pin &amp; Thermal Margin.
           </h1>
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-            Deterministic SVG pinout diagrams, side-by-side pin-diff matrices, and pre-filled engineering calculators sourced strictly from official manufacturer PDFs with page-level citations.
+            Deterministic SVG pinout diagrams, side-by-side pin-diff matrices, zero-upload BOM CSV
+            risk auditing, and pre-filled engineering calculators sourced strictly from official
+            manufacturer PDFs with page-level citations.
           </p>
+
+          <div className="pt-2 flex flex-wrap items-center gap-3">
+            <Link
+              href="/en/tools/bom-checker"
+              className="inline-flex items-center gap-2 rounded-md bg-emerald-500 px-4 py-2.5 text-xs sm:text-sm font-bold text-slate-950 hover:bg-emerald-400 transition-colors"
+            >
+              <FileSpreadsheet className="h-4 w-4" aria-hidden="true" />
+              Launch Zero-Upload BOM Checker
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+            <Link
+              href="/en/catalog"
+              className="inline-flex items-center gap-1.5 rounded-md border border-slate-600 bg-slate-800/80 px-4 py-2.5 text-xs sm:text-sm font-semibold text-slate-100 hover:border-slate-400 hover:bg-slate-800 transition-colors"
+            >
+              Browse Parametric Catalog
+            </Link>
+          </div>
         </div>
 
         {/* Metrics Strip */}
@@ -116,8 +137,8 @@ export default function EnHomePage() {
             </div>
           </div>
           <div className="rounded-md bg-slate-800/70 border border-slate-700/80 px-3.5 py-2.5">
-            <div className="text-[11px] text-slate-400">Interactive Calculators</div>
-            <div className="font-mono text-xl font-bold tabular-nums text-sky-300">3</div>
+            <div className="text-[11px] text-slate-400">Interactive Tools &amp; BOM Checker</div>
+            <div className="font-mono text-xl font-bold tabular-nums text-sky-300">4</div>
           </div>
           <div className="rounded-md bg-slate-800/70 border border-slate-700/80 px-3.5 py-2.5">
             <div className="text-[11px] text-slate-400">Distributor Scraping</div>
@@ -262,13 +283,41 @@ export default function EnHomePage() {
         </div>
       </section>
 
-      {/* Interactive Engineering Calculators */}
-      <section id="tools" aria-label="Interactive Engineering Calculators" className="space-y-3 scroll-mt-20">
-        <div className="flex items-center gap-2">
-          <Cpu className="h-5 w-5 text-slate-800" aria-hidden="true" />
-          <h2 className="text-lg font-bold text-slate-950">Interactive Browser Engineering Calculators</h2>
+      {/* Interactive Engineering Tools & Calculators */}
+      <section id="tools" aria-label="Interactive Engineering Tools and Calculators" className="space-y-3 scroll-mt-20">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <Cpu className="h-5 w-5 text-slate-800" aria-hidden="true" />
+            <h2 className="text-lg font-bold text-slate-950">
+              Interactive Browser Engineering Tools &amp; Calculators
+            </h2>
+          </div>
+          <span className="inline-flex items-center gap-1 rounded border border-emerald-200 bg-emerald-50 px-2 py-0.5 font-mono text-[11px] font-semibold text-emerald-900">
+            <Lock className="h-3 w-3" aria-hidden="true" />
+            100% Client-Side Execution
+          </span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <Link
+            href="/en/tools/bom-checker"
+            className="group rounded-lg border-2 border-emerald-500/80 bg-emerald-50/40 p-5 hover:border-emerald-700 hover:bg-white transition-colors"
+          >
+            <div className="flex items-center justify-between gap-2">
+              <span className="font-mono text-[11px] font-bold uppercase text-emerald-800">
+                Featured · BOM Audit
+              </span>
+              <span className="rounded bg-emerald-700 px-1.5 py-0.5 font-mono text-[9px] font-bold uppercase text-white">
+                Zero-Upload
+              </span>
+            </div>
+            <h3 className="mt-1.5 text-sm font-bold text-slate-950 group-hover:text-emerald-800">
+              Client-Side BOM CSV Alternative &amp; EOL Risk Checker
+            </h3>
+            <p className="mt-1.5 text-xs text-slate-700 leading-relaxed">
+              Audit KiCad, Altium, PADS &amp; EasyEDA BOM CSVs in browser memory for EOL parts, ESR/pinout traps, and drop-in alternatives.
+            </p>
+          </Link>
+
           <Link
             href="/en/tools/ldo-thermal-calculator"
             className="group rounded-lg border border-slate-300 bg-white p-5 hover:border-emerald-600 transition-colors"

@@ -100,6 +100,11 @@ export default function OpampCalculatorPage() {
           <h2 className="text-sm font-bold text-slate-950">Related Tools &amp; Field Guides</h2>
           <ul className="space-y-2 text-xs">
             <li>
+              <Link href="/en/tools/bom-checker" className="font-semibold text-emerald-700 hover:underline">
+                Audit Full BOM: Zero-Upload BOM CSV Alternative &amp; EOL Checker →
+              </Link>
+            </li>
+            <li>
               <Link href="/en/guides/rail-to-rail-opamp-phase-reversal-slew" className="font-semibold text-sky-700 hover:underline">
                 Read Guide: Rail-to-Rail Op-Amp Phase Reversal &amp; Slew Traps →
               </Link>

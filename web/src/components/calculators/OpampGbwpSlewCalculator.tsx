@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState } from 'react';
 import { Activity, AlertTriangle, CheckCircle2, Flame, Info, RotateCcw } from 'lucide-react';
+import { trackEvent } from '@/lib/analytics';
 
 export interface OpampPreset {
   opn: string;
@@ -46,7 +47,7 @@ export function OpampGbwpSlewCalculator({
   const [gbwpStr, setGbwpStr] = useState<string>(String(base.gbwpMhz ?? 1.0));
   const [srStr, setSrStr] = useState<string>(String(base.slewRateVus ?? 0.5));
 
-  const applyPreset = (p: OpampPreset) => {
+  const applyPreset = (p: OpampPreset, source: 'preset' | 'reset' = 'preset') => {
     setSelectedOpn(p.opn);
     setDeviceKind(p.deviceKind);
     setPropDelayNs(p.propDelayNs);
@@ -55,6 +56,11 @@ export function OpampGbwpSlewCalculator({
     setVPeakStr(String(Math.min(1.5, Number((p.vsMax * 0.25).toFixed(1)) || 1.0)));
     setGbwpStr(String(p.gbwpMhz ?? 1.0));
     setSrStr(String(p.slewRateVus ?? 0.5));
+    trackEvent(source === 'reset' ? 'calculator_reset' : 'calculator_preset_select', {
+      calculator: 'opamp_gbwp',
+      opn: p.opn,
+      device_kind: p.deviceKind,
+    });
   };
 
   const results = useMemo(() => {
@@ -138,7 +144,7 @@ export function OpampGbwpSlewCalculator({
           </span>
           <button
             type="button"
-            onClick={() => applyPreset(base)}
+            onClick={() => applyPreset(base, 'reset')}
             className="inline-flex items-center gap-1 rounded border border-slate-600 bg-slate-800 px-2 py-1 text-[11px] font-medium text-slate-200 hover:bg-slate-700 cursor-pointer"
           >
             <RotateCcw className="h-3 w-3" aria-hidden="true" />
@@ -192,7 +198,19 @@ export function OpampGbwpSlewCalculator({
         )}
 
         {/* Inputs */}
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+        <div
+          className="grid grid-cols-2 sm:grid-cols-5 gap-3"
+          onBlur={(e) => {
+            if (e.target instanceof HTMLInputElement) {
+              trackEvent('calculator_interact', {
+                calculator: 'opamp_gbwp',
+                opn: selectedOpn,
+                device_kind: deviceKind,
+                status: results.status,
+              });
+            }
+          }}
+        >
           <label className="block">
             <span className="block text-[11px] font-semibold text-slate-700 mb-1">
               Closed-Loop Gain Acl (V/V)

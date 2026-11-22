@@ -41,9 +41,17 @@ export function SiteFooter({
           {/* Column 2: Engineering Tools */}
           <div>
             <h2 className="font-mono text-xs font-bold uppercase tracking-wider text-white mb-3">
-              Engineering Calculators
+              Engineering Tools &amp; Calculators
             </h2>
             <ul className="space-y-2">
+              <li>
+                <Link
+                  href="/en/tools/bom-checker"
+                  className="font-semibold text-emerald-300 hover:text-white transition-colors"
+                >
+                  Zero-Upload BOM Checker (CSV)
+                </Link>
+              </li>
               <li>
                 <Link href="/en/catalog" className="hover:text-white transition-colors">
                   Parametric OPN Catalog

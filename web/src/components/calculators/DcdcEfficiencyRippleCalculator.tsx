@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, CheckCircle2, Flame, RotateCcw, Zap } from 'lucide-react';
+import { trackEvent } from '@/lib/analytics';
 
 export interface DcdcPreset {
   opn: string;
@@ -74,7 +75,7 @@ export function DcdcEfficiencyRippleCalculator({
   const [ratedStr, setRatedStr] = useState<string>(String(base.ratedCurrentMa));
   const [isSwitchLimit, setIsSwitchLimit] = useState<boolean>(base.isSwitchLimit);
 
-  const applyPreset = (p: DcdcPreset) => {
+  const applyPreset = (p: DcdcPreset, source: 'preset' | 'reset' = 'preset') => {
     setSelectedOpn(p.opn);
     setTopology(p.topology);
     setVinStr(String(defaultVinFor(p)));
@@ -85,6 +86,11 @@ export function DcdcEfficiencyRippleCalculator({
     setEffStr(String(p.efficiencyPct));
     setRatedStr(String(p.ratedCurrentMa));
     setIsSwitchLimit(p.isSwitchLimit);
+    trackEvent(source === 'reset' ? 'calculator_reset' : 'calculator_preset_select', {
+      calculator: 'dcdc_ripple',
+      opn: p.opn,
+      topology: p.topology,
+    });
   };
 
   const results = useMemo(() => {
@@ -235,7 +241,7 @@ export function DcdcEfficiencyRippleCalculator({
           </span>
           <button
             type="button"
-            onClick={() => applyPreset(base)}
+            onClick={() => applyPreset(base, 'reset')}
             className="inline-flex items-center gap-1 rounded border border-slate-600 bg-slate-800 px-2 py-1 text-[11px] font-medium text-slate-200 hover:bg-slate-700 cursor-pointer"
           >
             <RotateCcw className="h-3 w-3" aria-hidden="true" />
@@ -274,7 +280,14 @@ export function DcdcEfficiencyRippleCalculator({
             <button
               key={topo}
               type="button"
-              onClick={() => setTopology(topo)}
+              onClick={() => {
+                setTopology(topo);
+                trackEvent('calculator_interact', {
+                  calculator: 'dcdc_ripple',
+                  opn: selectedOpn,
+                  topology: topo,
+                });
+              }}
               className={`rounded-md border px-3 py-1 text-xs font-mono font-bold uppercase cursor-pointer transition-colors ${
                 topology === topo
                   ? 'border-slate-900 bg-slate-900 text-white'
@@ -288,7 +301,14 @@ export function DcdcEfficiencyRippleCalculator({
             <input
               type="checkbox"
               checked={isSwitchLimit}
-              onChange={(e) => setIsSwitchLimit(e.target.checked)}
+              onChange={(e) => {
+                setIsSwitchLimit(e.target.checked);
+                trackEvent('calculator_interact', {
+                  calculator: 'dcdc_ripple',
+                  opn: selectedOpn,
+                  is_switch_limit: e.target.checked,
+                });
+              }}
               className="rounded border-slate-300"
             />
             Rated current is Peak Switch Limit (Isw)
@@ -296,7 +316,19 @@ export function DcdcEfficiencyRippleCalculator({
         </div>
 
         {/* Inputs */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div
+          className="grid grid-cols-2 sm:grid-cols-4 gap-3"
+          onBlur={(e) => {
+            if (e.target instanceof HTMLInputElement) {
+              trackEvent('calculator_interact', {
+                calculator: 'dcdc_ripple',
+                opn: selectedOpn,
+                topology,
+                status: results.status,
+              });
+            }
+          }}
+        >
           <label className="block">
             <span className="block text-[11px] font-semibold text-slate-700 mb-1">Vin (V)</span>
             <input

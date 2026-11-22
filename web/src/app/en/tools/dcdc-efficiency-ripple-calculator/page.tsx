@@ -106,6 +106,11 @@ export default function DcdcCalculatorPage() {
           <h2 className="text-sm font-bold text-slate-950">Related Tools &amp; Field Guides</h2>
           <ul className="space-y-2 text-xs">
             <li>
+              <Link href="/en/tools/bom-checker" className="font-semibold text-emerald-700 hover:underline">
+                Audit Full BOM: Zero-Upload BOM CSV Alternative &amp; EOL Checker →
+              </Link>
+            </li>
+            <li>
               <Link href="/en/guides/boost-buck-layout-inductor-selection" className="font-semibold text-sky-700 hover:underline">
                 Read Guide: Boost &amp; Buck Layout &amp; Inductor Selection →
               </Link>

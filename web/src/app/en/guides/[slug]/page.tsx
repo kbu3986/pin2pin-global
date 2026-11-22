@@ -19,6 +19,7 @@ import {
 } from '@/lib/data-loader';
 import { DisclaimerStrip } from '@/components/DisclaimerStrip';
 import { LabGearAffiliate } from '@/components/LabGearAffiliate';
+import { AdSenseSlot } from '@/components/AdSenseSlot';
 import { JsonLd } from '@/components/JsonLd';
 import {
   buildBreadcrumbJsonLd,
@@ -291,6 +292,11 @@ export default async function GuideDetailPage({
       )}
 
       <LabGearAffiliate siteConfig={siteConfig} category={labCategory} />
+
+      <AdSenseSlot
+        publisherId={siteConfig.monetization.adsense_publisher_id}
+        enabled={siteConfig.monetization.adsense_enabled}
+      />
     </div>
   );
 }
