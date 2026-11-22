@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pin2Pin Global — 병욱님 원클릭 런치패드</title>
+  <style>
+    :root { --bg: #f8fafc; --card: #ffffff; --ink: #0f172a; --muted: #475569; --border: #e2e8f0; --accent: #0284c7; --ok: #059669; --warn: #d97706; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.55; }
+    header { background: #0f172a; color: #fff; padding: 28px 24px; }
+    header .wrap, main { max-width: 980px; margin: 0 auto; }
+    header h1 { margin: 0 0 6px; font-size: 24px; }
+    header p { margin: 0; color: #cbd5e1; font-size: 14px; }
+    main { padding: 24px; display: grid; gap: 18px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; box-shadow: 0 1px 2px rgba(15,23,42,.04); }
+    .step-badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: #e0f2fe; color: #0369a1; margin-bottom: 8px; }
+    .step-badge.ok { background: #d1fae5; color: #047857; }
+    .step-badge.warn { background: #fef3c7; color: #b45309; }
+    h2 { margin: 0 0 8px; font-size: 18px; }
+    p.desc { margin: 0 0 14px; color: var(--muted); font-size: 14px; }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    a.btn, button.btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 15px; border-radius: 8px; font-size: 13px; font-weight: 600; text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: .15s; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #0369a1; }
+    .btn-ok { background: var(--ok); color: #fff; }
+    .btn-ok:hover { background: #047857; }
+    .btn-ghost { background: #f1f5f9; color: var(--ink); border-color: #cbd5e1; }
+    .btn-ghost:hover { background: #e2e8f0; }
+    .mono { font-family: Consolas, Menlo, monospace; font-size: 12px; background: #f1f5f9; padding: 3px 7px; border-radius: 5px; }
+    .post-box { border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin-top: 12px; background: #f8fafc; }
+    .post-box h3 { margin: 0 0 6px; font-size: 15px; }
+    .post-meta { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+    textarea { width: 100%; min-height: 92px; font-family: Consolas, monospace; font-size: 12px; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; background: #fff; color: #1e293b; margin-top: 8px; }
+    .toast { position: fixed; bottom: 20px; right: 20px; background: #0f172a; color: #fff; padding: 10px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .2s; }
+    .toast.show { opacity: 1; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Pin2Pin Global — 병욱님 원클릭 수익화 &amp; 런치패드</h1>
+      <p>라이브 현황: 검증 OPN 65종 · 1:1 비교 130쌍 · 총 278개 EN 페이지 · Zero-Upload BOM Checker · AdSense / Amazon US / Coupang KR 연동 완료</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <span class="step-badge ok">STEP 1 · 필수 (30초)</span>
+      <h2>Antigravity 자동화 대시보드에서 2개 스케줄 토글 ON</h2>
+      <p class="desc">채팅창의 <strong>Open Automations Dashboard</strong> 링크를 눌러 아래 두 항목을 활성화하면 매일 새벽 스스로 확장되고 12시간마다 자가 치유됩니다.</p>
+      <ul>
+        <li><span class="mono">Pin2Pin Global 일일 데이터시트 확장 공장 (02:30 KST)</span> — 매일 6–8종 Vision 파싱·7대 QA 통과 시 무중단 재배포</li>
+        <li><span class="mono">Pin2Pin Global 12시간 헬스체크·자가치유 (09:15/21:15 KST)</span> — PDF 리비전 변동·CDN 200·GitHub 오류 제보 자동 패치</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <span class="step-badge">STEP 2 · 검색 색인 &amp; 애드센스 확인 (1분)</span>
+      <h2>Google Search Console 사이트맵 직접 제출 &amp; AdSense 상태 확인</h2>
+      <p class="desc">루트 <span class="mono">kbu3986.github.io/sitemap-index.xml</span>과 <span class="mono">ads.txt</span>는 이미 자동 연동 완료했습니다. GSC에서 하위 사이트맵을 1회 직접 추가하면 색인 속도가 훨씬 빨라집니다.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" target="_blank" href="https://search.google.com/search-console/sitemaps?resource_id=https%3A%2F%2Fkbu3986.github.io%2F">Google Search Console 사이트맵 열기 →</a>
+        <button class="btn btn-ghost" onclick="copyText('pin2pin-global/sitemap.xml', '사이트맵 경로 복사 완료!')">제출 경로 복사: pin2pin-global/sitemap.xml</button>
+        <a class="btn btn-ok" target="_blank" href="https://www.google.com/adsense/new/u/0/pub-8587506565277191/sites/list">Google AdSense 사이트 상태 확인 →</a>
+        <a class="btn btn-ghost" target="_blank" href="https://analytics.google.com/">GA4 속성 확인 (선택) →</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <span class="step-badge warn">STEP 3 · 초기 트래픽 점화 (권장: 채널당 3–5일 간격 분산 게시)</span>
+      <h2>글로벌·국내 엔지니어 커뮤니티 1클릭 포스팅 버튼</h2>
+      <p class="desc">아래 버튼을 누르면 제목·URL이 미리 채워진 글쓰기 화면이 열립니다. 본문은 옆의 <strong>본문 복사</strong> 버튼을 눌러 바로 붙여넣으시면 됩니다. (스팸 방지를 위해 같은 날 동시 게시하지 말고 1개씩 순차 게시하세요.)</p>
+
+      <div class="post-box">
+        <h3>1순위 (오늘 추천): Hacker News — Show HN</h3>
+        <div class="post-meta">최적 시간: 화–목 22:00–00:30 KST (미 동부 오전) · 링크 제출 후 2분 내 첫 댓글로 아래 Maker Comment 붙여넣기</div>
+        <div class="btn-row">
+          <a class="btn btn-primary" target="_blank" href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fkbu3986.github.io%2Fpin2pin-global%2Fen%2Ftools%2Fbom-checker%2F&t=Show%20HN%3A%20Pin2Pin%20Global%20%E2%80%93%20Vision-verified%20IC%20pinout%20diffs%20and%20local%20BOM%20checker">Show HN 제출 창 바로 열기 →</a>
+          <button class="btn btn-ghost" onclick="copyEl('hn-body', 'Show HN 첫 댓글 복사 완료!')">Maker 첫 댓글 복사</button>
+        </div>
+        <textarea id="hn-body" readonly>Hi HN, I built Pin2Pin Global to solve a recurring hardware engineering pain point: distributor parametric search makes components look interchangeable by family name, even when a single ordering-code suffix flips power pins, shorts a thermal tab, or shifts VREF by +34%.
+
+Live site (65 verified OPNs, 130 pin-diff comparisons, 278 static pages): https://kbu3986.github.io/pin2pin-global/en/
+Zero-upload BOM checker: https://kbu3986.github.io/pin2pin-global/en/tools/bom-checker/
+Verification methodology: https://kbu3986.github.io/pin2pin-global/en/methodology/
+Repo (open schema, pipeline, and verified JSONs): https://github.com/kbu3986/pin2pin-global
+
+A few technical design decisions:
+1. Dual-Path PDF verification (text + 300 DPI PNG Vision) instead of text-only parsing. Every part goes through text/table chunking AND direct visual inspection of 300 DPI PNG renders of pinout/thermal/rating pages, plus a deterministic physics validator (V_abs >= V_rec, pin-count parity, strict unit normalization). Real catches include a full-page OBSOLETE watermark on CAT6219-330TD-GT3, TI TPS79333DBVR Table 4-1 pinout typo (OUT=6 vs Figure 4-1 OUT=5), TI NE5532DR Rev K (Dec 2025) rating reduction to +/-18 V & 5 V/us, SOT-23-3 SA vs SR power-pin reversal (AP7313), and SOT-223 thermal tab nets (AMS1117 Tab=VOUT vs LM2937/AP7361C Tab=GND).
+2. Strict Family 1:N OPN schema — every /part/ and /vs/ page is locked to one exact orderable part number and JEDEC package.
+3. Zero distributor scraping, zero server BOM uploads — all datasheets come strictly from official manufacturer domains, and the BOM CSV checker runs 100% in browser memory (KiCad/Altium/PADS/EasyEDA CSVs; zero bytes leave your machine).
+4. Conservative labeling — everything is marked "Candidate Drop-In (Verify Datasheet Before Production)" and excluded from medical/automotive/aerospace safety-critical use.
+
+Would love critical feedback from EEs and firmware engineers — especially any edge cases or part families (MOSFETs, ESD, RS-485/CAN) you want prioritized next.</textarea>
+      </div>
+
+      <div class="post-box">
+        <h3>2순위 (D+5 추천): Reddit — r/PrintedCircuitBoard</h3>
+        <div class="post-meta">제목이 자동 입력된 Submit 창이 열립니다. 아래 본문을 복사해 Markdown 모드로 붙여넣으세요.</div>
+        <div class="btn-row">
+          <a class="btn btn-primary" target="_blank" href="https://www.reddit.com/r/PrintedCircuitBoard/submit?type=TEXT&title=Quick%20reference%20for%20PCB%20reviews%3A%203%20conflicting%20SOT-23-3%20LDO%20pinouts%2C%20SOT-223%20thermal%20tab%20shorts%2C%20and%20a%20free%20local%20BOM%20trap%20checker">r/PrintedCircuitBoard 글쓰기 열기 →</a>
+          <button class="btn btn-ghost" onclick="copyEl('reddit-pcb-body', 'r/PrintedCircuitBoard 본문 복사 완료!')">본문 복사</button>
+        </div>
+        <textarea id="reddit-pcb-body" readonly>After reviewing too many Rev-A boards where a last-minute BOM substitution fried a 3.3 V rail on first power-up, I compiled a datasheet-verified reference matrix directly from official manufacturer PDFs (TI, Diodes Inc., onsemi, AMS) by checking both text tables and 300 DPI renders of every Top-View pinout drawing.
+
+Here are three pinout traps that keep showing up in PCB reviews:
+
+1. SOT-23-3 has NO standard LDO pinout (3 conflicting groups):
+- Group A (1=IN, 2=OUT, 3=GND): AP7333-33SAG-7, AP7313-33SAG-7
+- Group B (1=GND, 2=OUT, 3=IN): AP7313-33SRG-7, AP2210N-3.3TRG1
+- Group C (1=OUT, 2=IN, 3=GND): LM3480IM3-3.3/NOPB
+Notice AP7313-33SAG-7 vs AP7313-33SRG-7 — a single letter inside the exact same datasheet reverses VIN and GND.
+
+2. SOT-223-3 thermal tab is NOT always Ground:
+- 1117 family (AMS1117-3.3, LM1117IMPX-3.3/NOPB, AZ1117CH-3.3TRG1, NCP1117ST33T3G, TLV1117-33IDCYR): 1=GND/ADJ, 2=VOUT, 3=VIN, Tab = VOUT (+3.3 V).
+- 2937 / AP-E style (LM2937IMP-3.3/NOPB, AP7361C-33E-13): 1=VIN, 2=GND, 3=VOUT, Tab = GND (0 V).
+
+3. 6-pin Buck pinout & EN abs max cliff:
+- TPS54302DDCR, TPS563201DDCR, and AP62200WU-7 share 1=GND, 2=SW, 3=VIN, 4=FB, 5=EN, 6=BOOT, while AP63203WU-7 in the same TSOT26 package scrambles pins to 1=FB, 2=EN, 3=VIN, 4=GND, 5=SW, 6=BST.
+- Among the 3 pin-identical bucks, VREF spans 0.596 V / 0.768 V / 0.800 V (+34% overvoltage if divider resistors aren't recalculated) and EN abs max drops from 19 V (TPS563201) to 7.0 V (TPS54302).
+
+I packaged 65 verified LDO, DC-DC, and Op-Amp/Comparator OPNs into a free static reference site with side-by-side SVG pin-diff views and a 100% client-side BOM CSV checker (zero bytes leave your browser; works with KiCad/Altium/PADS/EasyEDA exports):
+
+- Full SOT-23-3 & SOT-223 field guide: https://kbu3986.github.io/pin2pin-global/en/guides/sot23-3-ldo-pinout-traps/
+- Example 1:1 Pin-Diff (AP7313 SA vs SR): https://kbu3986.github.io/pin2pin-global/en/vs/ap7313-33sag-7-vs-ap7313-33srg-7/
+- Zero-Upload Client-Side BOM Checker: https://kbu3986.github.io/pin2pin-global/en/tools/bom-checker/
+
+(Standard engineering disclaimer: all comparisons are Candidate Drop-Ins — verify against the latest official manufacturer datasheet before production; not approved for medical/automotive/aerospace safety-critical systems.)</textarea>
+      </div>
+
+      <div class="post-box">
+        <h3>3순위 (D+10 추천): GeekNews (Show GN) &amp; 국내 HW 커뮤니티</h3>
+        <div class="post-meta">한국어 실무 요약 투고 — 링크와 제목·본문을 1클릭 복사 후 붙여넣기</div>
+        <div class="btn-row">
+          <a class="btn btn-primary" target="_blank" href="https://news.hada.io/write">GeekNews 글쓰기 열기 →</a>
+          <button class="btn btn-ghost" onclick="copyText('Show GN: 데이터시트 300 DPI 비전 검증 기반 반도체 핀호환 비교 DB &amp; 로컬 BOM 체커 (Pin2Pin Global)', 'GeekNews 제목 복사 완료!')">제목 복사</button>
+          <button class="btn btn-ghost" onclick="copyEl('gn-body', 'GeekNews 본문 복사 완료!')">본문 복사</button>
+        </div>
+        <textarea id="gn-body" readonly>URL: https://kbu3986.github.io/pin2pin-global/en/tools/bom-checker/
+
+- 전자부품 대체품(Cross-Reference) 검토 시 텍스트 파싱만으로는 PDF 벡터 핀아웃 도면과 열 밀림 오류가 생겨, 제조사 공식 PDF(TI, Diodes, onsemi, AMS)를 텍스트 추출 + 300 DPI PNG 비전 판독(Dual-Path)과 물리법칙 검증 스크립트로 이중 검증한 65종(130쌍 1:1 비교, 총 278페이지) 오픈 DB를 구축했습니다.
+- 단일 패밀리명이 아닌 정확한 주문코드(OPN) 1:1 단위로 핀맵 SVG 비교(/vs/), LDO 열마진(Tj)·DC-DC 리플·Op-Amp GBWP 계산기, 7편의 실무 함정 가이드를 제공합니다.
+- 기업 BOM 기밀 유출 우려를 없애기 위해 정적 빌드 인덱스를 브라우저로 내려받아 100% 클라이언트 메모리(Zero-Upload)에서 KiCad/Altium/PADS/EasyEDA BOM CSV의 단종(EOL)·ESR·핀반전 리스크를 진단하고 면책 문구가 포함된 감사 CSV를 즉시 다운로드할 수 있습니다.
+- 오픈 스키마 및 검증 리포트: https://github.com/kbu3986/pin2pin-global</textarea>
+      </div>
+    </section>
+
+    <section class="card">
+      <span class="step-badge">STEP 4 · 라이브 확인 &amp; 독립 커스텀 도메인 (선택, 연 ~15달러)</span>
+      <h2>핵심 라이브 페이지 점검 &amp; 커스텀 도메인 확장</h2>
+      <p class="desc">트래픽과 색인이 붙기 시작하면 독립 도메인(<span class="mono">pin2pin.dev</span> 등)을 연결해 B2B 권위와 애드센스 단가를 극대화할 수 있습니다. 도메인 구매 후 <span class="mono">.\scripts\deploy-gh-pages.ps1 -BasePath "" -SiteUrl "https://pin2pin.dev"</span> 한 줄로 즉시 전환됩니다.</p>
+      <div class="btn-row">
+        <a class="btn btn-ok" target="_blank" href="https://kbu3986.github.io/pin2pin-global/en/">라이브 메인 허브 →</a>
+        <a class="btn btn-primary" target="_blank" href="https://kbu3986.github.io/pin2pin-global/en/tools/bom-checker/">Zero-Upload BOM Checker →</a>
+        <a class="btn btn-ghost" target="_blank" href="https://kbu3986.github.io/pin2pin-global/en/vs/ap7313-33sag-7-vs-ap7313-33srg-7/">SOT-23-3 핀반전 Diff →</a>
+        <a class="btn btn-ghost" target="_blank" href="https://github.com/kbu3986/pin2pin-global">GitHub 저장소 →</a>
+        <a class="btn btn-ghost" target="_blank" href="https://domains.cloudflare.com/">Cloudflare 도메인 검색 →</a>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast">복사 완료!</div>
+  <script>
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2200);
+    }
+    function copyText(text, msg) {
+      navigator.clipboard.writeText(text).then(() => showToast(msg));
+    }
+    function copyEl(id, msg) {
+      const el = document.getElementById(id);
+      navigator.clipboard.writeText(el.value).then(() => showToast(msg));
+    }
+  </script>
+</body>
+</html>

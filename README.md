@@ -1,42 +1,55 @@
-# Pin2Pin Global — 반도체·전자부품 데이터시트 전수 파싱 & 대체품 비교 DB
+# Pin2Pin Global — Datasheet-Verified Semiconductor Pinout & Cross-Reference DB
 
-> **프로젝트 코드**: `pin2pin-global` (Project A)  
-> **목표**: 20배 Ultra 요금제의 대규모 추론 토큰을 **공식 PDF 데이터시트 전수 파싱 + 적대적 전기 스펙 교차검증 + 핀호환 대체품(Cross-Reference) 산출**에 투입하여, 일반 AI 업자가 절대 모방할 수 없는 고단가 B2B 엔지니어링 pSEO 및 BOM 진단 수익화 플랫폼 구축
+[![Live Site](https://img.shields.io/badge/Live-278%20Verified%20EN%20Pages-059669?style=flat-square)](https://kbu3986.github.io/pin2pin-global/en/)
+[![Zero-Upload BOM Checker](https://img.shields.io/badge/Tool-Zero--Upload%20BOM%20Checker-0284c7?style=flat-square)](https://kbu3986.github.io/pin2pin-global/en/tools/bom-checker/)
+[![Verified OPNs](https://img.shields.io/badge/Verified%20OPNs-65%20Parts%20%7C%20130%20Pin%20Diffs-0f172a?style=flat-square)](https://kbu3986.github.io/pin2pin-global/en/catalog/)
+[![QA Gate](https://img.shields.io/badge/Stage%205%20QA-7%2F7%20Gates%20PASS-16a34a?style=flat-square)](https://kbu3986.github.io/pin2pin-global/en/methodology/)
+
+**Pin2Pin Global** is an open, datasheet-verified semiconductor cross-reference and pin-compatibility engineering database built to prevent Rev-A PCB power shorts, ESR oscillation, VREF overvoltage, and EOL substitution failures.
+
+- **Live Engineering Workbench**: [https://kbu3986.github.io/pin2pin-global/en/](https://kbu3986.github.io/pin2pin-global/en/)
+- **Zero-Upload Client-Side BOM Checker**: [https://kbu3986.github.io/pin2pin-global/en/tools/bom-checker/](https://kbu3986.github.io/pin2pin-global/en/tools/bom-checker/) *(100% browser memory — zero bytes leave your machine)*
+- **Dual-Path Verification Methodology**: [https://kbu3986.github.io/pin2pin-global/en/methodology/](https://kbu3986.github.io/pin2pin-global/en/methodology/)
+- **Report a Datasheet / Pinout Discrepancy**: [Open a GitHub Audit Issue](https://github.com/kbu3986/pin2pin-global/issues/new)
 
 ---
 
-## 1. 프로젝트 개요 및 핵심 해자
+## Why Pin2Pin Global Exists
 
-1. **초고토큰 진입장벽** – 반도체 부품 1종당 수십–수백 페이지 분량의 공식 PDF 데이터시트를 멀티에이전트가 통째로 정독하고 검증하므로, 저비용 단일 프롬프트로 만든 저품질 사이트와 차원이 다른 데이터 정확도를 확보한다.
-2. **최상급 B2B 광고 단가** – 전자부품·반도체·전원회로 키워드는 영미권 및 유럽·일본 기준 구글 애드센스 클릭 단가(CPC)가 일반 생활 정보 대비 5–20배 수준으로 높다.
-3. **현업 HW 엔지니어 검수 우위** – 일반 AI 마케터는 절대최대정격(Absolute Maximum Ratings), 핀아웃(Pinout) 방향, 열저항($\theta_{JA}$), 패키지 공차의 할루시네이션을 식별하지 못하지만, 병욱님의 현업 전자회로·전원·아날로그·RF 설계 역량으로 검증 룰과 프롬프트를 정밀 통제할 수 있다.
+Distributor parametric filters group parts by generic family name, hiding critical package-level hazards:
+
+| Real Trap Caught by 300 DPI Vision | Example OPN Comparison | Failure Mode Prevented |
+| :--- | :--- | :--- |
+| **SOT-23-3 single-letter pin reversal** | [AP7313-33SAG-7 vs AP7313-33SRG-7](https://kbu3986.github.io/pin2pin-global/en/vs/ap7313-33sag-7-vs-ap7313-33srg-7/) | Reverses `VIN` and `GND` inside the same datasheet |
+| **SOT-223 thermal tab potential short** | [AMS1117-3.3 vs LM2937IMP-3.3/NOPB](https://kbu3986.github.io/pin2pin-global/en/vs/ams1117-3-3-vs-lm2937imp-3-3-nopb/) | `Tab = VOUT (+3.3 V)` vs `Tab = GND (0 V)` direct rail short |
+| **6-pin Buck `VREF` & `EN` cliff** | [TPS54302DDCR vs TPS563201DDCR](https://kbu3986.github.io/pin2pin-global/en/vs/tps54302ddcr-vs-tps563201ddcr/) | Identical pinout, but `0.596 V` vs `0.768 V` `VREF` and `7 V` vs `19 V` `EN` abs max |
+| **Op-Amp vs Open-Collector Comparator** | [LM358DR vs LM393DR](https://kbu3986.github.io/pin2pin-global/en/vs/lm358dr-vs-lm393dr/) | Identical SOIC-8 pinout; missing pull-up & MHz linear instability |
+| **Datasheet revision & watermark drift** | [NE5532DR](https://kbu3986.github.io/pin2pin-global/en/part/ne5532dr/) · [CAT6219-330TD-GT3](https://kbu3986.github.io/pin2pin-global/en/part/cat6219-330td-gt3/) | TI Rev K ±18 V / 5 V/µs derating; full-page EOL watermark caught via Vision |
 
 ---
 
-## 2. 디렉토리 구조 (초기 기획 단계)
+## Architecture & Verification Guardrails
 
-```text
-pin2pin-global/
-├── README.md                          # 프로젝트 요약 및 실행 로드맵
-├── docs/
-│   ├── 01-MASTER-PLAN.md              # 마스터 기획서 (비전, 해자, 리스크 관리)
-│   ├── 02-TOKEN-BURN-PIPELINE.md      # 멀티에이전트 고토큰 파싱·검증 파이프라인
-│   ├── 03-DATA-SCHEMA-AND-SEED.md     # 부품 JSON 스키마 및 1차 500종 시드 목록 전략
-│   ├── 04-MONETIZATION-AND-SEO.md     # 3단 수익화 깔때기 및 구글 스팸 방어 SEO 설계
-│   └── 05-RISK-AND-KPI-AUDIT.md       # 기획 교차감사, 리스크 방어, 수익 시뮬레이션 및 Day 1–7 체크리스트
-├── data/                              # (Phase 1 생성) 원본 PDF 메타, Golden JSON DB
-├── pipeline/                          # (Phase 1 생성) 멀티에이전트 파싱·검증 스크립트
-└── web/                               # (Phase 2 생성) Next.js SSG + 인터랙티브 계산기·핀맵 뷰어
+1. **Dual-Path Official PDF Pipeline (`pipeline/stage0_pdf_ingest.py`)** – Official manufacturer PDFs only (zero DigiKey/Mouser/LCSC scraping). Combines `[PAGE N]` text/table extraction with 300 DPI PNG visual verification of pinout, thermal, and absolute-maximum rating pages. Unreadable scans are quarantined as `UNSUPPORTED_SCAN`.
+2. **2-Tier Strict OPN Schema (`schemas/part-schema.v2.mjs`)** – Every record maps 1:1 to a single orderable part number and JEDEC package (`Family 1:N OPN`) with mandatory `pinout_view`, `exposed_pad.net`, `tj_max_c`, `theta_ja_c_per_w`, and page citations.
+3. **Deterministic Physics & QA Gates (`stage2_physics_verifier.mjs`, `stage3_xref_engine.mjs`, `stage5_qa_gate.mjs`)** – Enforces `V_abs >= V_rec`, package pin-count parity, alphabetical `a < b` comparison normalization, zero broken internal links (10,349+ checked), and mandatory engineering disclaimers.
+4. **Interactive Bench Tools** – Zero-Upload BOM CSV Checker, LDO Junction Temperature ($T_J$) Calculator, DC-DC Efficiency & Inductor Ripple Calculator, and Op-Amp GBWP / Slew-Rate Checker.
+
+---
+
+## Local Commands
+
+```bash
+npm run verify:schema   # Stage 2: Zod v2 + deterministic physics checks on all Golden Parts
+npm run sync:manifest   # Sync pilot-manifest.json & backlog status from verified parts
+npm run build:xref      # Stage 3: Regenerate all alt hubs & alphabetical vs comparisons
+npm run web:build       # Next.js 15 static export (web/out) + sitemap.xml / robots.txt
+npm run qa:gate         # Stage 5: Run all 7 automated static HTML & SEO QA gates
+npm run health:check    # Verify live official PDF links, revision drift, CDN 200 OK & open issues
 ```
 
 ---
 
-## 3. 4단계 실행 로드맵
+## Engineering Disclaimer
 
-| 단계 | 기간(목표) | 핵심 산출물 | 토큰 투입 규모 |
-| :--- | :--- | :--- | :--- |
-| **Phase 0 (완료)** | Day 1 | 프로젝트 폴더 구성 및 4대 상세 기획서 완성 | 기획 설계 |
-| **Phase 1 (파이프라인 구축)** | 1주차 | PDF 파싱 + 3중 적대적 검증 에이전트 + Golden JSON 50종 파일럿 | 약 1,500만 토큰 |
-| **Phase 2 (웹·SVG·계산기 빌드)** | 2주차 | Next.js SSG, 자동 핀맵 SVG 렌더러, 열설계($T_J$)·대체 호환성 계산기, 200페이지 파일럿 배포 | 약 3,000만 토큰 |
-| **Phase 3 (대량 시드 확장)** | 3–4주차 | 핵심 부품 500–1,000종 + 1:1 비교(vs) 및 대체품(alt) 5,000페이지 다국어(EN/KO/JA/DE) Drip-Feed 확장 | 약 2억–3억 토큰 |
-| **Phase 4 (수익화 고도화)** | 2개월차+ | 애드센스·제휴(AliExpress/Amazon/DigiKey·Mouser 파트너십) + BOM CSV 일괄 대체품 진단 Micro-SaaS 런칭 | 지속 운영 루프 |
+All cross-reference recommendations are strictly **Engineering Reference Only (`Candidate Drop-In — Verify Datasheet Before Production`)**. Always verify pinout, thermal derating, and absolute maximum ratings against the latest official manufacturer datasheet prior to PCB layout or production. Not approved for medical (IEC 60601), automotive (AEC-Q100), aerospace, or life-support safety-critical systems.
