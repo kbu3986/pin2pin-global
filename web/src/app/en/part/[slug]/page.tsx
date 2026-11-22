@@ -25,6 +25,7 @@ import { DisclaimerStrip } from '@/components/DisclaimerStrip';
 import { ErrorReportButton } from '@/components/ErrorReportButton';
 import { DistributorLinks } from '@/components/DistributorLinks';
 import { LabGearAffiliate } from '@/components/LabGearAffiliate';
+import { AdSenseSlot } from '@/components/AdSenseSlot';
 import { JsonLd } from '@/components/JsonLd';
 import { LdoThermalCalculator } from '@/components/calculators/LdoThermalCalculator';
 import { DcdcEfficiencyRippleCalculator } from '@/components/calculators/DcdcEfficiencyRippleCalculator';
@@ -42,6 +43,7 @@ import {
   fmtNum,
   fmtPage,
   getCompatibilityStyle,
+  subTopologyLabel,
 } from '@/lib/format';
 
 export const dynamicParams = false;
@@ -270,6 +272,9 @@ export default async function PartDetailPage({
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded bg-slate-900 px-2 py-0.5 font-mono text-[11px] font-bold uppercase text-white">
               {categoryLabel(part.category)}
+            </span>
+            <span className="rounded border border-slate-300 bg-slate-100 px-2 py-0.5 font-mono text-[11px] font-semibold text-slate-700">
+              {subTopologyLabel(part.sub_topology)}
             </span>
             <span className="rounded border border-slate-300 bg-white px-2 py-0.5 font-mono text-[11px] font-semibold text-slate-800">
               {part.package.code} ({part.package.mfg_package_code})
@@ -671,6 +676,11 @@ export default async function PartDetailPage({
           datasheetRef={`${part.datasheet.pdf_url} (${part.datasheet.revision})`}
         />
       </section>
+
+      <AdSenseSlot
+        publisherId={siteConfig.monetization.adsense_publisher_id}
+        enabled={siteConfig.monetization.adsense_enabled}
+      />
     </div>
   );
 }

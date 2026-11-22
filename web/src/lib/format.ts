@@ -93,6 +93,36 @@ export function categoryShortLabel(category: PartCategory): string {
   }
 }
 
+export function subTopologyLabel(subTopology: string | null | undefined): string {
+  switch (subTopology) {
+    case 'fixed-ldo':
+      return 'Fixed LDO';
+    case 'adj-ldo':
+      return 'Adjustable LDO';
+    case 'buck':
+      return 'Step-Down (Buck)';
+    case 'boost':
+      return 'Step-Up (Boost)';
+    case 'buck-boost':
+      return 'Buck-Boost';
+    case 'opamp-single':
+      return 'Single Op-Amp';
+    case 'opamp-dual':
+      return 'Dual Op-Amp';
+    case 'comparator-single':
+      return 'Single Comparator';
+    case 'comparator-dual':
+      return 'Dual Comparator';
+    default:
+      if (!subTopology) return 'Analog / Power IC';
+      return subTopology
+        .split('-')
+        .filter(Boolean)
+        .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
+        .join(' ');
+  }
+}
+
 export function getCompatibilityStyle(level: CompatibilityLevel): {
   shortLabel: string;
   tierCode: string;

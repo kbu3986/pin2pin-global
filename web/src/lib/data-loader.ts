@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import type {
   AltHubV2,
+  BomIndexPart,
   CatalogPartRow,
   EngineeringGuide,
   GoldenPartV2,
@@ -303,6 +304,63 @@ export function getCatalogRows(): CatalogPartRow[] {
           ? `Comp · tpd ${p.specs.prop_delay_ns ? fmtNum(p.specs.prop_delay_ns.value, 0) + 'ns' : '—'}`
           : `${p.specs.gbwp_mhz ? fmtNum(p.specs.gbwp_mhz.value, 2) + ' MHz' : '—'} · ${p.specs.slew_rate_v_per_us ? fmtNum(p.specs.slew_rate_v_per_us.value, 2) + ' V/µs' : '—'}`,
       has_alt_page: altSlugSet.has(p.slug),
+    };
+  });
+}
+
+export function getBomIndexParts(): BomIndexPart[] {
+  const parts = getAllParts();
+  const altByTarget = new Map<string, AltHubV2>();
+  for (const alt of getAllAltHubs()) {
+    altByTarget.set(alt.target_slug, alt);
+  }
+  const existingVsSet = new Set(getAllVsComparisons().map((v) => v.slug));
+
+  return parts.map((p) => {
+    const altHub = altByTarget.get(p.slug) ?? null;
+    const alts = (altHub?.candidates ?? []).slice(0, 2).map((c) => {
+      let vsSlug: string | null = null;
+      if (c.vs_slug && existingVsSet.has(c.vs_slug)) {
+        vsSlug = c.vs_slug;
+      } else {
+        const canonicalPair = [p.slug, c.alt_slug].sort().join('-vs-');
+        if (existingVsSet.has(canonicalPair)) {
+          vsSlug = canonicalPair;
+        }
+      }
+      return {
+        opn: c.alt_opn,
+        slug: c.alt_slug,
+        pkg: c.package_code,
+        lvl: c.compatibility_level,
+        vs: vsSlug,
+      };
+    });
+
+    const crit = p.design_gotchas
+      .filter((g) => g.severity === 'CRITICAL')
+      .map((g) => g.title)
+      .slice(0, 3);
+
+    const warn = p.design_gotchas
+      .filter((g) => g.severity === 'WARNING')
+      .map((g) => g.title)
+      .slice(0, 1);
+
+    return {
+      opn: p.opn,
+      slug: p.slug,
+      fam: p.family,
+      mfg: p.manufacturer,
+      cat: p.category,
+      sub: p.sub_topology,
+      pkg: p.package.code,
+      life: p.lifecycle_status,
+      ceramic: p.category === 'ldo' ? p.specs.ceramic_cap_stable : null,
+      hasAlt: Boolean(altHub),
+      crit,
+      warn,
+      alts,
     };
   });
 }

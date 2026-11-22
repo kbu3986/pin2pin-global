@@ -34,6 +34,12 @@ export function SiteHeader({ siteConfig }: { siteConfig: SiteConfig }) {
               Catalog
             </Link>
             <Link
+              href="/en/tools/bom-checker"
+              className="inline-flex items-center gap-1.5 rounded-md border border-emerald-500/40 bg-emerald-500/15 px-2.5 py-1.5 text-emerald-200 font-semibold hover:bg-emerald-500/25 hover:text-white transition-colors"
+            >
+              BOM Checker
+            </Link>
+            <Link
               href="/en/tools/ldo-thermal-calculator"
               className="rounded-md px-2.5 py-1.5 text-slate-200 hover:bg-slate-800 hover:text-white transition-colors"
             >
@@ -47,7 +53,7 @@ export function SiteHeader({ siteConfig }: { siteConfig: SiteConfig }) {
             </Link>
             <Link
               href="/en/methodology"
-              className="rounded-md px-2.5 py-1.5 text-slate-200 hover:bg-slate-800 hover:text-white transition-colors"
+              className="hidden lg:inline-flex rounded-md px-2.5 py-1.5 text-slate-200 hover:bg-slate-800 hover:text-white transition-colors"
             >
               Methodology
             </Link>

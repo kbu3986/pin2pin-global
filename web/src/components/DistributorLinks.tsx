@@ -1,6 +1,7 @@
 import { ExternalLink, ShieldCheck } from 'lucide-react';
 import type { SiteConfig } from '@/types/schema';
 import { buildDistributorUrl } from '@/lib/format';
+import { TrackedOutboundLink } from '@/components/TrackedOutboundLink';
 
 export function DistributorLinks({
   siteConfig,
@@ -13,9 +14,24 @@ export function DistributorLinks({
 }) {
   const { digikey, mouser, lcsc } = siteConfig.distributor_search_deeplinks;
   const links = [
-    { name: 'DigiKey Search', url: buildDistributorUrl(digikey, opn), accent: 'hover:border-red-400 hover:bg-red-50/40' },
-    { name: 'Mouser Search', url: buildDistributorUrl(mouser, opn), accent: 'hover:border-sky-400 hover:bg-sky-50/40' },
-    { name: 'LCSC Search', url: buildDistributorUrl(lcsc, opn), accent: 'hover:border-indigo-400 hover:bg-indigo-50/40' },
+    {
+      id: 'digikey',
+      name: 'DigiKey Search',
+      url: buildDistributorUrl(digikey, opn),
+      accent: 'hover:border-red-400 hover:bg-red-50/40',
+    },
+    {
+      id: 'mouser',
+      name: 'Mouser Search',
+      url: buildDistributorUrl(mouser, opn),
+      accent: 'hover:border-sky-400 hover:bg-sky-50/40',
+    },
+    {
+      id: 'lcsc',
+      name: 'LCSC Search',
+      url: buildDistributorUrl(lcsc, opn),
+      accent: 'hover:border-indigo-400 hover:bg-indigo-50/40',
+    },
   ];
 
   return (
@@ -34,16 +50,20 @@ export function DistributorLinks({
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
         {links.map((item) => (
-          <a
-            key={item.name}
+          <TrackedOutboundLink
+            key={item.id}
             href={item.url}
-            target="_blank"
+            eventName="distributor_click"
+            eventParams={{
+              distributor: item.id,
+              opn,
+            }}
             rel="nofollow noopener noreferrer"
             className={`flex items-center justify-between rounded-md border border-slate-300 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-800 transition-colors ${item.accent}`}
           >
             <span>{item.name}</span>
             <ExternalLink className="h-3.5 w-3.5 text-slate-500" aria-hidden="true" />
-          </a>
+          </TrackedOutboundLink>
         ))}
       </div>
     </div>

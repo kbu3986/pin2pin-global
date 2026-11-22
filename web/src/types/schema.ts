@@ -444,3 +444,27 @@ export interface CatalogPartRow {
   highlight_metric: string;
   has_alt_page: boolean;
 }
+
+export interface BomIndexAlt {
+  opn: string;
+  slug: string;
+  pkg: PackageCode;
+  lvl: CompatibilityLevel;
+  vs: string | null;
+}
+
+export interface BomIndexPart {
+  opn: string;
+  slug: string;
+  fam: string;
+  mfg: string;
+  cat: PartCategory;
+  sub: string;
+  pkg: PackageCode;
+  life: 'Active' | 'NRND' | 'EOL' | 'Unknown';
+  ceramic: boolean | null;
+  hasAlt: boolean;
+  crit: string[];
+  warn: string[];
+  alts: BomIndexAlt[];
+}

@@ -23,6 +23,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const adsenseClient = siteConfig.monetization.adsense_publisher_id?.trim() ?? '';
+  const adsenseEnabled = Boolean(siteConfig.monetization.adsense_enabled && adsenseClient);
+  const ga4Id = (
+    process.env.NEXT_PUBLIC_GA4_ID ||
+    siteConfig.monetization.ga4_measurement_id ||
+    ''
+  ).trim();
+
   return (
     <html lang="en">
       <head>
@@ -32,6 +40,26 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
+        {adsenseEnabled && (
+          <script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(adsenseClient)}`}
+            crossOrigin="anonymous"
+          />
+        )}
+        {ga4Id && (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(ga4Id)}`}
+            />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config',${JSON.stringify(ga4Id)},{anonymize_ip:true});`,
+              }}
+            />
+          </>
+        )}
       </head>
       <body className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
         {children}

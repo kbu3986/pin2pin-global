@@ -21,6 +21,7 @@ import { DisclaimerStrip } from '@/components/DisclaimerStrip';
 import { ErrorReportButton } from '@/components/ErrorReportButton';
 import { DistributorLinks } from '@/components/DistributorLinks';
 import { LabGearAffiliate } from '@/components/LabGearAffiliate';
+import { AdSenseSlot } from '@/components/AdSenseSlot';
 import { JsonLd } from '@/components/JsonLd';
 import {
   buildBreadcrumbJsonLd,
@@ -498,6 +499,11 @@ export default async function VsComparisonPage({
       </div>
 
       <LabGearAffiliate siteConfig={siteConfig} category={vs.category} />
+
+      <AdSenseSlot
+        publisherId={siteConfig.monetization.adsense_publisher_id}
+        enabled={siteConfig.monetization.adsense_enabled}
+      />
     </div>
   );
 }
