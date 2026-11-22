@@ -3,7 +3,9 @@
   "tagline": "Datasheet-Verified Semiconductor Pinout & Cross-Reference Engineering DB",
   "site_url": "https://pin2pin.dev",
   "default_locale": "en",
-  "supported_locales": ["en"],
+  "supported_locales": [
+    "en"
+  ],
   "contact_email": "engineering@pin2pin.dev",
   "error_report_issue_url": "https://github.com/kbu3986/pin2pin-global/issues/new",
   "monetization": {
@@ -32,21 +34,21 @@
         "title": "0603 & 0805 MLCC Ceramic Capacitor SMD Sample Book (X7R / C0G)",
         "reason": "Essential for validating LDO output capacitance and ESR stability margins on the bench.",
         "amazon_search_url": "https://www.amazon.com/s?k=0603+0805+SMD+ceramic+capacitor+sample+book+X7R&tag=kbu3986-20",
-        "coupang_search_url": "https://link.coupang.com/re/AFFSDP?lptag=AF2200875&subid=pin2pin-kr&pageKey=0&itemId=0&url=https%3A%2F%2Fwww.coupang.com%2Fnp%2Fsearch%3Fq%3DSMD%2B%EC%BB%A4%ED%8C%A8%EC%8B%9C%ED%84%B0%2B%EC%83%98%ED%94%8C%EB%B6%81",
+        "coupang_search_url": "https://link.coupang.com/a/iTc4FoEwNM",
         "price_band": "$25–$45"
       },
       {
         "title": "Micro-Amp Benchtop / Handheld True-RMS Multimeter (uA Range)",
         "reason": "Verify real quiescent current (Iq) and shutdown leakage against datasheet claims.",
         "amazon_search_url": "https://www.amazon.com/s?k=true+rms+multimeter+microamp+uA+electronics&tag=kbu3986-20",
-        "coupang_search_url": "https://link.coupang.com/re/AFFSDP?lptag=AF2200875&subid=pin2pin-kr&pageKey=0&itemId=0&url=https%3A%2F%2Fwww.coupang.com%2Fnp%2Fsearch%3Fq%3D%EB%94%94%EC%A7%80%ED%84%B8%2B%EB%A9%80%ED%8B%B0%EB%AF%B8%ED%84%B0%2BTrue%2BRMS",
+        "coupang_search_url": "https://link.coupang.com/a/iTc4JE6E5k",
         "price_band": "$50–$180"
       },
       {
         "title": "SOT-23 / SOT-223 Breakout PCB Adapter Kit & Hot Air Rework Station",
         "reason": "Rapid bench prototyping and safe drop-in replacement validation before spinning a PCB.",
         "amazon_search_url": "https://www.amazon.com/s?k=SOT-23+SOT-223+breakout+adapter+kit&tag=kbu3986-20",
-        "coupang_search_url": "https://link.coupang.com/re/AFFSDP?lptag=AF2200875&subid=pin2pin-kr&pageKey=0&itemId=0&url=https%3A%2F%2Fwww.coupang.com%2Fnp%2Fsearch%3Fq%3D%EC%97%B4%ED%92%8D%EA%B8%B0%2B%EB%82%A9%EB%95%9C%2B%EB%A6%AC%EC%9B%8C%ED%81%AC%2B%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%85%98",
+        "coupang_search_url": "https://link.coupang.com/a/iTc4Op01W8",
         "price_band": "$15–$90"
       }
     ],
@@ -55,21 +57,21 @@
         "title": "100 MHz Digital Storage Oscilloscope (2–4 Channel, Low-Noise Probe)",
         "reason": "Inspect switch-node ringing, inductor ripple current, and load-transient overshoot.",
         "amazon_search_url": "https://www.amazon.com/s?k=100MHz+digital+oscilloscope+4+channel&tag=kbu3986-20",
-        "coupang_search_url": "https://link.coupang.com/re/AFFSDP?lptag=AF2200875&subid=pin2pin-kr&pageKey=0&itemId=0&url=https%3A%2F%2Fwww.coupang.com%2Fnp%2Fsearch%3Fq%3D%EB%94%94%EC%A7%80%ED%84%B8%2B%EC%98%A4%EC%8B%A4%EB%A1%9C%EC%8A%A4%EC%BD%94%ED%94%84%2B100MHz",
+        "coupang_search_url": "https://link.coupang.com/a/iTc4SIzemW",
         "price_band": "$250–$450"
       },
       {
         "title": "Shielded SMD Power Inductor Sample Kit (1 uH to 100 uH)",
         "reason": "Tune switching converter efficiency and saturation current headroom on prototypes.",
         "amazon_search_url": "https://www.amazon.com/s?k=shielded+SMD+power+inductor+sample+kit&tag=kbu3986-20",
-        "coupang_search_url": "https://link.coupang.com/re/AFFSDP?lptag=AF2200875&subid=pin2pin-kr&pageKey=0&itemId=0&url=https%3A%2F%2Fwww.coupang.com%2Fnp%2Fsearch%3Fq%3DSMD%2B%ED%8C%8C%EC%9B%8C%2B%EC%9D%B8%EB%8D%95%ED%84%B0%2B%ED%82%A4%ED%8A%B8",
+        "coupang_search_url": "https://link.coupang.com/a/iTc4XbQYs8",
         "price_band": "$25–$55"
       },
       {
         "title": "Programmable DC Electronic Load (Constant Current / Transient Step)",
         "reason": "Measure real DC-DC converter efficiency curve and thermal rise under full load.",
         "amazon_search_url": "https://www.amazon.com/s?k=programmable+DC+electronic+load+tester&tag=kbu3986-20",
-        "coupang_search_url": "https://link.coupang.com/re/AFFSDP?lptag=AF2200875&subid=pin2pin-kr&pageKey=0&itemId=0&url=https%3A%2F%2Fwww.coupang.com%2Fnp%2Fsearch%3Fq%3DDC%2B%EC%A0%84%EC%9E%90%EB%B6%80%ED%95%98%EA%B8%B0",
+        "coupang_search_url": "https://link.coupang.com/a/iTc41yEiyG",
         "price_band": "$120–$260"
       }
     ],
@@ -78,21 +80,21 @@
         "title": "1% Precision 0603 Thin-Film Resistor Sample Book (Gain & Divider Network)",
         "reason": "Minimize gain error and CMRR degradation when evaluating precision op-amp swaps.",
         "amazon_search_url": "https://www.amazon.com/s?k=0603+1%25+SMD+resistor+sample+book&tag=kbu3986-20",
-        "coupang_search_url": "https://link.coupang.com/re/AFFSDP?lptag=AF2200875&subid=pin2pin-kr&pageKey=0&itemId=0&url=https%3A%2F%2Fwww.coupang.com%2Fnp%2Fsearch%3Fq%3DSMD%2B%EC%A0%80%ED%95%AD%2B%EC%83%98%ED%94%8C%EB%B6%81%2B1%25",
+        "coupang_search_url": "https://link.coupang.com/a/iTc456enAG",
         "price_band": "$20–$40"
       },
       {
         "title": "Dual-Channel Function / Arbitrary Waveform Generator (25–60 MHz)",
         "reason": "Verify op-amp slew rate, GBWP roll-off, and comparator propagation delay on the bench.",
         "amazon_search_url": "https://www.amazon.com/s?k=dual+channel+DDS+function+signal+generator&tag=kbu3986-20",
-        "coupang_search_url": "https://link.coupang.com/re/AFFSDP?lptag=AF2200875&subid=pin2pin-kr&pageKey=0&itemId=0&url=https%3A%2F%2Fwww.coupang.com%2Fnp%2Fsearch%3Fq%3D%ED%95%A8%EC%88%98%EB%B0%9C%EC%83%9D%EA%B8%B0%2BDDS",
+        "coupang_search_url": "https://link.coupang.com/a/iTc5azzYnk",
         "price_band": "$90–$220"
       },
       {
         "title": "SOIC-8 & SOT-23-5 DIP Prototype Adapter Board Pack",
         "reason": "Swap single and dual rail-to-rail op-amps quickly on breadboard or evaluation fixtures.",
         "amazon_search_url": "https://www.amazon.com/s?k=SOIC-8+SOT-23-5+DIP+adapter+board+kit&tag=kbu3986-20",
-        "coupang_search_url": "https://link.coupang.com/re/AFFSDP?lptag=AF2200875&subid=pin2pin-kr&pageKey=0&itemId=0&url=https%3A%2F%2Fwww.coupang.com%2Fnp%2Fsearch%3Fq%3DSOP8%2BSOT23%2B%EB%B3%80%ED%99%98%EA%B8%B0%ED%8C%90",
+        "coupang_search_url": "https://link.coupang.com/a/iTc5e5KU2e",
         "price_band": "$12–$25"
       }
     ]
