@@ -50,7 +50,7 @@ export async function generateMetadata({
     title: `${vs.part_a_opn} vs ${vs.part_b_opn} — Pinout Diff & Compatibility Comparison`,
     description: `${vs.part_a_opn} vs ${vs.part_b_opn}: ${vs.compatibility_badge}. Side-by-side SVG pinout diff, parameter winner matrix, and swap risks verified from official datasheets.`,
     alternates: {
-      canonical: `${siteConfig.site_url}/en/vs/${vs.slug}`,
+      canonical: `${siteConfig.site_url}/en/vs/${vs.slug}/`,
     },
   };
 }

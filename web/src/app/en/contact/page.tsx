@@ -9,7 +9,7 @@ export function generateMetadata(): Metadata {
     title: doc.title,
     description: doc.description,
     alternates: {
-      canonical: `${siteConfig.site_url}/en/contact`,
+      canonical: `${siteConfig.site_url}/en/contact/`,
     },
   };
 }

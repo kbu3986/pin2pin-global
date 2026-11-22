@@ -3,6 +3,9 @@ import Link from 'next/link';
 import { getSiteConfig } from '@/lib/data-loader';
 
 const siteConfig = getSiteConfig();
+const rawBasePath = (process.env.NEXT_PUBLIC_BASE_PATH || '').trim().replace(/\/+$/, '');
+const basePath = rawBasePath && rawBasePath !== '/' ? (rawBasePath.startsWith('/') ? rawBasePath : `/${rawBasePath}`) : '';
+const redirectTarget = `${basePath}/en/`;
 
 export const metadata: Metadata = {
   title: `${siteConfig.site_name} — Redirecting to English Workbench`,
@@ -11,17 +14,17 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: `${siteConfig.site_url}/en`,
+    canonical: `${siteConfig.site_url}/en/`,
   },
 };
 
 export default function RootRedirectPage() {
   return (
     <main className="min-h-screen flex items-center justify-center bg-slate-950 text-slate-100 p-6">
-      <meta httpEquiv="refresh" content="0;url=/en" />
+      <meta httpEquiv="refresh" content={`0;url=${redirectTarget}`} />
       <script
         dangerouslySetInnerHTML={{
-          __html: `window.location.replace('/en');`,
+          __html: `window.location.replace(${JSON.stringify(redirectTarget)});`,
         }}
       />
       <div className="max-w-md rounded-lg border border-slate-800 bg-slate-900 p-6 text-center space-y-4">

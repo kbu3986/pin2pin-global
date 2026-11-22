@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   description:
     'Verify operational amplifier closed-loop -3 dB bandwidth (GBWP/Acl), required sine-wave slew rate (2π·f·Vpeak), and full-power bandwidth (FPBW) with datasheet OPN presets.',
   alternates: {
-    canonical: `${siteConfig.site_url}/en/tools/opamp-gbwp-slewrate-checker`,
+    canonical: `${siteConfig.site_url}/en/tools/opamp-gbwp-slewrate-checker/`,
   },
 };
 

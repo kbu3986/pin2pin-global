@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   description:
     'OPN-exact IC pinout diagrams, side-by-side compatibility diff tables, and interactive LDO, DC-DC, and Op-Amp engineering calculators verified from official manufacturer PDFs.',
   alternates: {
-    canonical: `${siteConfig.site_url}/en`,
+    canonical: `${siteConfig.site_url}/en/`,
   },
 };
 

@@ -68,18 +68,28 @@ function resolveRouteToHtmlFile(outDir, routePath) {
   return null;
 }
 
-function resolveInternalHref(outDir, rawHref) {
+function stripBasePath(pathname, basePath) {
+  if (!basePath) return pathname;
+  if (pathname === basePath) return '/';
+  if (pathname.startsWith(`${basePath}/`)) {
+    return pathname.slice(basePath.length);
+  }
+  return pathname;
+}
+
+function resolveInternalHref(outDir, rawHref, basePath = '') {
   const stripped = rawHref.split('#')[0].split('?')[0];
-  if (!stripped || !stripped.startsWith('/en')) return { checked: false, ok: true };
+  const localPath = stripBasePath(stripped, basePath);
+  if (!localPath || !localPath.startsWith('/en')) return { checked: false, ok: true };
 
   // Direct file match (e.g. static asset under /en/...)
-  const cleanRel = stripped.replace(/^\/+/, '');
+  const cleanRel = localPath.replace(/^\/+/, '');
   const directPath = path.join(outDir, cleanRel);
   if (fs.existsSync(directPath) && fs.statSync(directPath).isFile()) {
     return { checked: true, ok: true, target: directPath };
   }
 
-  const htmlFile = resolveRouteToHtmlFile(outDir, stripped);
+  const htmlFile = resolveRouteToHtmlFile(outDir, localPath);
   return { checked: true, ok: Boolean(htmlFile), target: htmlFile };
 }
 
@@ -247,13 +257,14 @@ function countPartSpecRows(visibleHtml) {
   };
 }
 
-function extractInternalHrefs(visibleHtml) {
+function extractInternalHrefs(visibleHtml, basePath = '') {
   const hrefs = [];
   const hrefRegex = /\bhref\s*=\s*["']([^"']+)["']/gi;
+  const enPrefix = `${basePath}/en`;
   let m;
   while ((m = hrefRegex.exec(visibleHtml)) !== null) {
     const href = decodeBasicEntities(m[1].trim());
-    if (href.startsWith('/en')) {
+    if (href.startsWith(enPrefix) || href.startsWith('/en')) {
       hrefs.push(href);
     }
   }
@@ -265,19 +276,19 @@ function buildExpectedCanonicalUrls(manifest, siteUrl) {
   const urls = [];
 
   for (const part of manifest.parts || []) {
-    urls.push(`${base}/en/part/${part.slug}`);
+    urls.push(`${base}/en/part/${part.slug}/`);
   }
   for (const part of manifest.parts || []) {
-    urls.push(`${base}/en/alt/${part.slug}-alternatives`);
+    urls.push(`${base}/en/alt/${part.slug}-alternatives/`);
   }
   for (const pair of manifest.vs_pairs || []) {
-    urls.push(`${base}/en/vs/${pair.slug}`);
+    urls.push(`${base}/en/vs/${pair.slug}/`);
   }
   const staticRoutes = manifest.static_routes || {};
   for (const group of ['hubs', 'tools', 'guides', 'trust_pages']) {
     for (const route of staticRoutes[group] || []) {
-      const normalized = route.startsWith('/') ? route : `/${route}`;
-      urls.push(`${base}${normalized}`);
+      const clean = route.replace(/^\/+|\/+$/g, '');
+      urls.push(`${base}/${clean}/`);
     }
   }
 
@@ -318,6 +329,17 @@ export function runQaGate({
     const siteCfg = JSON.parse(fs.readFileSync(siteConfigPath, 'utf8'));
     if (siteCfg.site_url) siteUrl = siteCfg.site_url;
   }
+  if (process.env.NEXT_PUBLIC_SITE_URL && process.env.NEXT_PUBLIC_SITE_URL.trim()) {
+    siteUrl = process.env.NEXT_PUBLIC_SITE_URL.trim();
+  }
+  siteUrl = siteUrl.replace(/\/+$/, '');
+  const rawBasePath = (process.env.NEXT_PUBLIC_BASE_PATH || '').trim().replace(/\/+$/, '');
+  const basePath =
+    rawBasePath && rawBasePath !== '/'
+      ? rawBasePath.startsWith('/')
+        ? rawBasePath
+        : `/${rawBasePath}`
+      : new URL(siteUrl).pathname.replace(/\/+$/, '');
 
   const expectedUrls = buildExpectedCanonicalUrls(manifest, siteUrl);
   const expectedSet = new Set(expectedUrls);
@@ -392,7 +414,7 @@ export function runQaGate({
       continue;
     }
 
-    const routePath = parsedUrl.pathname;
+    const routePath = stripBasePath(parsedUrl.pathname, basePath);
     if (routePath.startsWith('/en/vs/')) {
       vsSlugsToCheck.add(routePath.replace(/^\/en\/vs\//, '').replace(/\/+$/, ''));
     }
@@ -463,10 +485,10 @@ export function runQaGate({
     }
 
     // Gate 5: Internal /en/... href integrity
-    const internalHrefs = extractInternalHrefs(visibleHtml);
+    const internalHrefs = extractInternalHrefs(visibleHtml, basePath);
     for (const href of internalHrefs) {
       gates.gate5_internal_links.links_checked++;
-      const resolved = resolveInternalHref(outDir, href);
+      const resolved = resolveInternalHref(outDir, href, basePath);
       if (resolved.checked && !resolved.ok) {
         const entry = `${routePath} -> ${href}`;
         gates.gate5_internal_links.broken.push(entry);

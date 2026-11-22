@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   description:
     'Interactive switching converter calculator for Buck, Boost, and 4-switch Buck-Boost duty cycle, inductor ripple ΔIL, peak switch current Ipeak vs rated limits, and minimum inductance.',
   alternates: {
-    canonical: `${siteConfig.site_url}/en/tools/dcdc-efficiency-ripple-calculator`,
+    canonical: `${siteConfig.site_url}/en/tools/dcdc-efficiency-ripple-calculator/`,
   },
 };
 

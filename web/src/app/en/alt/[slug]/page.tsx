@@ -43,7 +43,7 @@ export async function generateMetadata({
     title: `${alt.target_opn} Alternatives, Equivalents & Pin-Compatible Replacements`,
     description: `Ranked candidate drop-in and functional replacements for ${alt.target_opn} with pinout compatibility tiers, key engineering tradeoffs, and 1:1 pin-diff links.`,
     alternates: {
-      canonical: `${siteConfig.site_url}/en/alt/${alt.slug}`,
+      canonical: `${siteConfig.site_url}/en/alt/${alt.slug}/`,
     },
   };
 }

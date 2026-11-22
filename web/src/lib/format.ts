@@ -166,6 +166,12 @@ export function buildDistributorUrl(template: string, opn: string): string {
   return template.replace('{OPN}', encodeURIComponent(opn));
 }
 
+function joinCanonical(siteUrl: string, routePath: string): string {
+  const base = siteUrl.replace(/\/+$/, '');
+  const clean = routePath.replace(/^\/+|\/+$/g, '');
+  return clean ? `${base}/${clean}/` : `${base}/`;
+}
+
 export function buildBreadcrumbJsonLd(
   siteUrl: string,
   items: Array<{ name: string; path: string }>,
@@ -177,7 +183,7 @@ export function buildBreadcrumbJsonLd(
       '@type': 'ListItem',
       position: idx + 1,
       name: item.name,
-      item: `${siteUrl.replace(/\/+$/, '')}${item.path}`,
+      item: joinCanonical(siteUrl, item.path),
     })),
   };
 }
@@ -192,7 +198,7 @@ export function buildTechArticleJsonLd(opts: {
   datePublished?: string;
   about?: string;
 }): Record<string, unknown> {
-  const canonical = `${opts.siteUrl.replace(/\/+$/, '')}${opts.path}`;
+  const canonical = joinCanonical(opts.siteUrl, opts.path);
   return {
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
@@ -228,7 +234,7 @@ export function buildDatasetJsonLd(opts: {
   keywords: string[];
   dateModified: string;
 }): Record<string, unknown> {
-  const canonical = `${opts.siteUrl.replace(/\/+$/, '')}${opts.path}`;
+  const canonical = joinCanonical(opts.siteUrl, opts.path);
   return {
     '@context': 'https://schema.org',
     '@type': 'Dataset',
@@ -253,7 +259,7 @@ export function buildSoftwareAppJsonLd(opts: {
   name: string;
   description: string;
 }): Record<string, unknown> {
-  const canonical = `${opts.siteUrl.replace(/\/+$/, '')}${opts.path}`;
+  const canonical = joinCanonical(opts.siteUrl, opts.path);
   return {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',

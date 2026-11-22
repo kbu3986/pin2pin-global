@@ -47,7 +47,7 @@ export async function generateMetadata({
     title: guide.title,
     description: guide.summary,
     alternates: {
-      canonical: `${siteConfig.site_url}/en/guides/${guide.slug}`,
+      canonical: `${siteConfig.site_url}/en/guides/${guide.slug}/`,
     },
   };
 }

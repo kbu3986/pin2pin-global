@@ -68,9 +68,14 @@ let warnedMockTrust = false;
 
 export function getSiteConfig(): SiteConfig {
   if (!cachedSiteConfig) {
-    cachedSiteConfig = readJsonFile<SiteConfig>(
+    const raw = readJsonFile<SiteConfig>(
       path.join(REPO_ROOT, 'config', 'site-config.json'),
     );
+    const envSiteUrl = (process.env.NEXT_PUBLIC_SITE_URL || '').trim().replace(/\/+$/, '');
+    cachedSiteConfig = {
+      ...raw,
+      site_url: envSiteUrl || raw.site_url.replace(/\/+$/, ''),
+    };
   }
   return cachedSiteConfig;
 }

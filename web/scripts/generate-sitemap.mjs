@@ -13,14 +13,18 @@ const publicDir = path.join(webRoot, 'public');
 
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 const siteConfig = JSON.parse(fs.readFileSync(siteConfigPath, 'utf8'));
-const baseUrl = String(siteConfig.site_url || 'https://pin2pin.dev').replace(/\/+$/, '');
+const envSiteUrl = (process.env.NEXT_PUBLIC_SITE_URL || '').trim();
+const baseUrl = String(envSiteUrl || siteConfig.site_url || 'https://pin2pin.dev').replace(/\/+$/, '');
+const rawBasePath = (process.env.NEXT_PUBLIC_BASE_PATH || '').trim().replace(/\/+$/, '');
+const basePath = rawBasePath && rawBasePath !== '/' ? (rawBasePath.startsWith('/') ? rawBasePath : `/${rawBasePath}`) : '';
 const today = new Date().toISOString().slice(0, 10);
 
 const urlEntries = [];
 const seen = new Set();
 
 function pushRoute(routePath, priority, changefreq) {
-  const normalized = routePath.startsWith('/') ? routePath : `/${routePath}`;
+  const clean = routePath.replace(/^\/+|\/+$/g, '');
+  const normalized = `/${clean}/`;
   if (seen.has(normalized)) {
     throw new Error(`Duplicate route detected while building sitemap: ${normalized}`);
   }
@@ -106,8 +110,8 @@ const xmlLines = [
 
 const robotsTxt = [
   'User-agent: *',
-  'Allow: /en',
-  'Disallow: /_next/',
+  `Allow: ${basePath}/en/`,
+  `Disallow: ${basePath}/_next/`,
   '',
   `Sitemap: ${baseUrl}/sitemap.xml`,
   '',
@@ -116,7 +120,8 @@ const robotsTxt = [
 fs.mkdirSync(publicDir, { recursive: true });
 fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), xmlLines.join('\n'), 'utf8');
 fs.writeFileSync(path.join(publicDir, 'robots.txt'), robotsTxt, 'utf8');
+fs.writeFileSync(path.join(publicDir, '.nojekyll'), '', 'utf8');
 
 console.log(
-  `[Pin2Pin] Generated sitemap.xml (${urlEntries.length} canonical EN URLs) and robots.txt in web/public/`,
+  `[Pin2Pin] Generated sitemap.xml (${urlEntries.length} canonical EN URLs at ${baseUrl}), robots.txt, and .nojekyll in web/public/`,
 );

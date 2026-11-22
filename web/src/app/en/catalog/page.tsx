@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description:
     'Filter datasheet-verified LDO regulators, DC-DC boost/buck converters, and Op-Amps/Comparators by package, manufacturer, ceramic-cap stability, Iq, and rated current.',
   alternates: {
-    canonical: `${siteConfig.site_url}/en/catalog`,
+    canonical: `${siteConfig.site_url}/en/catalog/`,
   },
 };
 

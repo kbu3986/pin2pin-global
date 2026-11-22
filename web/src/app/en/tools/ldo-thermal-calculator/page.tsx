@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   description:
     'Calculate LDO linear regulator power dissipation Pd, junction temperature Tj, thermal margin below Tj,max, dropout headroom, and max Iout at ambient Ta with official datasheet presets.',
   alternates: {
-    canonical: `${siteConfig.site_url}/en/tools/ldo-thermal-calculator`,
+    canonical: `${siteConfig.site_url}/en/tools/ldo-thermal-calculator/`,
   },
 };
 
