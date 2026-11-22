@@ -1,0 +1,221 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "NE5532DR",
+  "slug": "ne5532dr",
+  "family": "NE5532",
+  "manufacturer": "Texas Instruments",
+  "category": "opamp",
+  "sub_topology": "opamp-dual",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": 0,
+    "ta_max_c": 70,
+    "grade_label": "Commercial (0°C to 70°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/ne5532.pdf",
+    "product_page_url": "https://www.ti.com/product/NE5532",
+    "source_domain": "www.ti.com",
+    "revision": "SLOS075K (Rev. December 2025)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 23
+  },
+  "package": {
+    "code": "SOIC-8",
+    "mfg_package_code": "D",
+    "pin_count": 8,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE"
+    },
+    "theta_ja_c_per_w": {
+      "value": 97,
+      "page": 3,
+      "condition": "D (SOIC-8) package, JESD 51-7",
+      "table_ref": "Section 5.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": null,
+    "tj_max_c": {
+      "value": 150,
+      "page": 3,
+      "condition": "Operating virtual-junction temperature, max",
+      "table_ref": "Section 5.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "1OUT",
+        "role": "OUT_A",
+        "description": "Output, channel 1 (labeled 1OUT in Fig 4-1 and OUT1 in Pin Functions table)"
+      },
+      {
+        "pin": 2,
+        "name": "1IN-",
+        "role": "IN_NEG_A",
+        "description": "Inverting input, channel 1"
+      },
+      {
+        "pin": 3,
+        "name": "1IN+",
+        "role": "IN_POS_A",
+        "description": "Noninverting input, channel 1"
+      },
+      {
+        "pin": 4,
+        "name": "VCC-",
+        "role": "VEE",
+        "description": "Negative power supply"
+      },
+      {
+        "pin": 5,
+        "name": "2IN+",
+        "role": "IN_POS_B",
+        "description": "Noninverting input, channel 2"
+      },
+      {
+        "pin": 6,
+        "name": "2IN-",
+        "role": "IN_NEG_B",
+        "description": "Inverting input, channel 2"
+      },
+      {
+        "pin": 7,
+        "name": "2OUT",
+        "role": "OUT_B",
+        "description": "Output, channel 2"
+      },
+      {
+        "pin": 8,
+        "name": "VCC+",
+        "role": "VCC",
+        "description": "Positive power supply"
+      }
+    ],
+    "pinout_source_page": 2,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "device_kind": "opamp",
+    "channels": 2,
+    "vs_abs_max_v": {
+      "value": 36,
+      "page": 3,
+      "condition": "VCC+ = +18 V max, VCC- = -18 V min (36 V total rail-to-rail; revised down from ±22 V / 44 V in Rev K)",
+      "table_ref": "Section 5.1 Absolute Maximum Ratings"
+    },
+    "vs_min_v": {
+      "value": 10,
+      "page": 3,
+      "condition": "Recommended operating minimum (VCC+ = +5 V, VCC- = -5 V; ±5 V dual or 10 V total)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "vs_max_v": {
+      "value": 30,
+      "page": 3,
+      "condition": "Recommended operating maximum (VCC+ = +15 V, VCC- = -15 V; ±15 V dual or 30 V total)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "gbwp_mhz": {
+      "value": 12,
+      "page": 4,
+      "condition": "VCC± = ±15 V, TA = 25°C (revised from 10 MHz to 12 MHz typ in Rev K)",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "slew_rate_v_per_us": {
+      "value": 5,
+      "page": 4,
+      "condition": "VCC± = ±15 V, unity gain, TA = 25°C (revised from 9 V/µs to 5 V/µs typ in Rev K)",
+      "table_ref": "Section 5.6 Operating Characteristics"
+    },
+    "prop_delay_ns": null,
+    "vos_max_mv": {
+      "value": 4,
+      "page": 4,
+      "condition": "VCC± = ±15 V, VO = 0 V, TA = 25°C (0.5 mV typ; 5 mV max over 0°C to 70°C)",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "ib_typ_pa": {
+      "value": 200000,
+      "page": 4,
+      "condition": "VCC± = ±15 V, TA = 25°C (200 nA typ, 800 nA max at 25°C; 1000 nA max over 0°C to 70°C; bipolar NPN inputs)",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "iq_per_ch_typ_ua": {
+      "value": 3000,
+      "page": 4,
+      "condition": "VCC± = ±15 V, VO = 0 V, no load, TA = 25°C (derived from 6 mA typ / 16 mA max total ICC for both channels / 2; revised from 8 mA total in Rev K)",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "rail_to_rail_in": false,
+    "rail_to_rail_out": false,
+    "output_type": "push-pull",
+    "cmrr_typ_db": {
+      "value": 100,
+      "page": 4,
+      "condition": "VCC± = ±15 V, VIC = VICR min, TA = 25°C (70 dB min)",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "input_noise_nv_rt_hz": {
+      "value": 5,
+      "page": 4,
+      "condition": "VCC± = ±15 V, f = 1 kHz, TA = 25°C (8 nV/√Hz at f = 30 Hz; bipolar current noise 0.7 pA/√Hz at 1 kHz)",
+      "table_ref": "Section 5.6 Operating Characteristics"
+    },
+    "iout_short_ma": {
+      "value": 38,
+      "page": 4,
+      "condition": "VCC± = ±15 V, TA = 25°C (38 mA typ; drives 600 Ω audio loads)",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    }
+  },
+  "design_gotchas": [
+    {
+      "title": "Internal Back-to-Back Input Clamp Diodes Conduct Above ~0.6 V Differential Input",
+      "severity": "CRITICAL",
+      "detail": "Per Section 5.1 Footnote (4), NE5532DR integrates anti-parallel input protection diodes across IN+ and IN-. Any differential input voltage exceeding ~0.6 V draws heavy current (abs max ±10 mA) unless externally limited by series resistors. Never drop NE5532DR into comparator, peak-detector, or slew-overdriven circuits designed for FET-input TL072IDR or OPA2134UA.",
+      "page": 3
+    },
+    {
+      "title": "Rev K (Dec 2025) Spec Changes: ±18 V Abs Max (Down from ±22 V) & 5 V/µs Slew Rate (Down from 9 V/µs)",
+      "severity": "CRITICAL",
+      "detail": "TI Revision K updated NE5532DR absolute maximum supply from ±22 V (44 V) down to ±18 V (36 V), slew rate from 9 V/µs down to 5 V/µs, total ICC from 8 mA to 6 mA, and GBW from 10 MHz to 12 MHz (even though legacy prose in Sections 6.3 and 7.2 still mentions old figures). Audit legacy ±18 V–±20 V pro-audio rails and high-slew stages accordingly.",
+      "page": 11
+    },
+    {
+      "title": "High Bipolar Input Bias (200 nA Typ) & Current Noise (0.7 pA/√Hz) Degrade High-Z Sources",
+      "severity": "WARNING",
+      "detail": "Although NE5532DR achieves an ultra-low 5 nV/√Hz voltage noise floor, its 200 nA typ (1000 nA max) bias current, 30 kΩ min input resistance, and 0.7 pA/√Hz (2.7 pA/√Hz at 30 Hz) current noise make it noisier and less accurate than FET-input OPA2134UA (5 pA) or TL072IDR (65 pA) when source impedances exceed ~10 kΩ.",
+      "page": 4
+    },
+    {
+      "title": "Commercial 0°C to 70°C Temp Grade, 10 V Min Supply & Non-Rail-to-Rail Headroom",
+      "severity": "WARNING",
+      "detail": "NE5532DR is rated only 0°C to 70°C (use SA5532DR for -40°C to +85°C), requires at least ±5 V (10 V total) supply, and needs 2–3 V input/output headroom (±12 V min VICR on ±15 V). It cannot operate on 3.3 V or 5 V single-supply rails and dissipates 180 mW typ (480 mW max) quiescent power at ±15 V.",
+      "page": 3
+    }
+  ],
+  "typical_use_cases": [
+    "Pro-audio mixing consoles, microphone preamplifiers, and low-impedance (600 Ω) balanced line drivers",
+    "Active studio equalizers, RIAA phono stages, and low-noise DAC I/V analog filters on ±12 V/±15 V rails",
+    "AV receivers, broadcast video/audio distribution amplifiers, and low-source-impedance sensor buffers",
+    "Cost-effective 5 nV/√Hz bipolar alternative to OPA2134UA where low source impedance (<5 kΩ) permits"
+  ],
+  "engineering_summary": "The Texas Instruments NE5532DR is a classic dual low-noise bipolar operational amplifier in an 8-pin SOIC (D) package specified for ±5 V to ±15 V (10 V to 30 V) operation over 0°C to 70°C. Featuring 5 nV/√Hz voltage noise at 1 kHz, 12 MHz GBWP, 100 dB CMRR, and 38 mA short-circuit drive capable of driving 600 Ω loads, it remains an audio benchmark on the standard dual SOIC-8 pinout. Designers must respect TI Rev K's updated ±18 V (36 V) absolute maximum supply and 5 V/µs slew rate, internal ±0.6 V differential input clamp diodes, 200 nA bipolar bias current, and 3 mA/ch (6 mA total) quiescent current.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [2, 3, 4, 11],
+    "audit_notes": [
+      "Verified NE5532x SOIC-8 (D) Top View pinout on 300 DPI PNG page 2 (Figure 4-1 & Pin Functions table; Pin 1 labeled 1OUT in diagram and OUT1 in table).",
+      "Verified Rev K (Dec 2025) specifications on pages 3, 4, and 11 PNGs: ±18 V (36 V total) Abs Max, ±5 V to ±15 V (10 V–30 V) operating, 0°C–70°C NE5532 commercial temp grade, D RθJA = 97 °C/W, B1 = 12 MHz, SR = 5 V/µs, Vn = 5 nV/√Hz at 1 kHz.",
+      "Converted IIB = 200 nA -> 200000 pA and normalized total dual-channel ICC = 6 mA typ (16 mA max) -> iq_per_ch_typ_ua = 3000 µA/ch; verified NE5532DR Active Production status (vs obsolete NE5532D tube)."
+    ]
+  }
+}

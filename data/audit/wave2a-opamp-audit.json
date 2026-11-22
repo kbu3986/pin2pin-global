@@ -1,0 +1,159 @@
+{
+  "audit_version": "2.0.0",
+  "wave": "2A",
+  "batch": "wave2a-opamp",
+  "verified_at": "2026-11-22",
+  "owner": "wave2a-opamp",
+  "summary": {
+    "total_parts": 5,
+    "stage2_passed": 5,
+    "stage2_failed": 0,
+    "dual_path_vision_verified": 5,
+    "official_domain_only": true,
+    "domains_used": ["www.ti.com"]
+  },
+  "sot23_5_pinout_trap_matrix": {
+    "comparison_summary": "Wave 2A introduces TWO critical SOT-23-5 (DBV) cross-reference hazards against the Pilot single op-amps (TLV9001IDBVR, TLV9061IDBVR, OPA333AIDBVR): (1) LMV321IDBVR uses the permuted LMV321/SC-70 SOT-23-5 pinout (1=1IN+, 2=GND, 3=1IN-, 4=OUT, 5=VCC+), swapping pins 1, 3, and 4 relative to TLV9001IDBVR/TLV9061IDBVR/OPA333AIDBVR (1=OUT, 2=V-, 3=IN+, 4=IN-, 5=V+)—making direct replacement a hard pinout mismatch (must use TI 'U' suffix variants like TLV9001UIDBVR); (2) TLV3201AIDBVR shares the exact same SOT-23-5 pinout as TLV9001IDBVR/TLV9061IDBVR/OPA333AIDBVR (1=OUT, 2=GND, 3=IN+, 4=IN-, 5=VCC), creating a single-channel SOT-23-5 equivalent of the classic SOIC-8 LM358 vs LM393 op-amp/comparator confusion trap!",
+    "parts": [
+      {
+        "opn": "LMV321IDBVR",
+        "slug": "lmv321idbvr",
+        "sub_topology": "opamp-single",
+        "package": "SOT-23-5 (DBV)",
+        "pinout_page": 3,
+        "pin_1": "1IN+",
+        "pin_2": "GND",
+        "pin_3": "1IN-",
+        "pin_4": "OUT",
+        "pin_5": "VCC+",
+        "matches_ti_standard_dbv_opamps": false,
+        "key_trap": "Permuted pins 1/3/4 vs TLV9001IDBVR/TLV9061IDBVR/OPA333AIDBVR/TLV3201AIDBVR; zero supply headroom above 5.5 V (abs max = 5.5 V); non-RRI upper input limit (VCC+ - 1.0 V)."
+      },
+      {
+        "opn": "TLV3201AIDBVR",
+        "slug": "tlv3201aidbvr",
+        "sub_topology": "comparator-single",
+        "package": "SOT-23-5 (DBV)",
+        "pinout_page": 3,
+        "pin_1": "OUT",
+        "pin_2": "GND",
+        "pin_3": "IN+",
+        "pin_4": "IN-",
+        "pin_5": "VCC",
+        "matches_ti_standard_dbv_opamps": true,
+        "output_type": "push-pull",
+        "prop_delay_ns": 43,
+        "key_trap": "Pin-identical in SOT-23-5 to linear op-amps TLV9001IDBVR/TLV9061IDBVR/OPA333AIDBVR, but is an uncompensated 43 ns push-pull comparator (oscillates in linear negative feedback); push-pull output must NOT be wired-AND or pulled up to another rail; incompatible with LMV321IDBVR pinout."
+      }
+    ]
+  },
+  "soic8_dual_opamp_traps": [
+    {
+      "opn": "NE5532DR",
+      "trap": "TI Rev K (December 2025, SLOS075K) reduced NE5532DR Abs Max supply from ±22 V (44 V) down to ±18 V (36 V), reduced typical slew rate from 9 V/µs down to 5 V/µs, reduced total ICC from 8 mA to 6 mA (3 mA/ch), raised GBW from 10 MHz to 12 MHz, and lowered HBM ESD from 2000 V to 1000 V—while legacy prose in Sections 6.3 and 7.2 still cites older numbers. Also features anti-parallel input clamp diodes conducting above ~0.6 V differential (abs max ±10 mA) and Commercial 0°C–70°C rating (vs SA5532DR -40°C–85°C)."
+    },
+    {
+      "opn": "TLV9062IDR",
+      "trap": "Strict 6.0 V abs max supply (destructive in 12 V/24 V LM358 or ±15 V TL072/NE5532 SOIC-8 boards), 9x higher Iq (538 µA/ch typ; ~1.08 mA total) than TLV9002IDR, and 10 MHz bandwidth requiring tight 0.1 µF decoupling and RISO for CL > 100 pF."
+    },
+    {
+      "opn": "OPA2333AIDR",
+      "trap": "Weak ±5 mA short-circuit drive, 2 kΩ open-loop output impedance, 350 kHz GBWP, and 0.16 V/µs slew rate despite sharing the exact SOIC-8 pinout with fast/high-drive TLV9002IDR, TLV9062IDR, and LMV358IDR. Also has ±70 pA chopper bias pulses and ±1 mA abs max signal input current."
+    }
+  ],
+  "unit_and_normalization_checks": [
+    "All input bias currents strictly normalized to pA: TLV9062IDR = 0.5 pA, OPA2333AIDR = 70 pA, LMV321IDBVR = 15000 pA (15 nA), NE5532DR = 200000 pA (200 nA), TLV3201AIDBVR = 1 pA.",
+    "All quiescent currents strictly normalized per channel (iq_per_ch_typ_ua): TLV9062IDR = 538 µA/ch (per-amp table), OPA2333AIDR = 17 µA/ch (per-amp table), LMV321IDBVR = 130 µA/ch (single-ch LMV321I at 5 V), NE5532DR = 3000 µA/ch (derived from 6 mA typ total dual ICC / 2), TLV3201AIDBVR = 40 µA/ch (single comparator at 5 V).",
+    "OPA2333AIDR converted cleanly: VOS max 10 µV -> 0.01 mV, GBWP 350 kHz -> 0.35 MHz; RθJA = 124.0 °C/W read from OPA2333 Section 6.5 (not single OPA333 Section 6.4 = 140.1 °C/W).",
+    "TLV3201AIDBVR verified as active push-pull CMOS comparator (output_type='push-pull') with VIO-TLV3201 = 3 mV max (distinct from TLV3202 5 mV) and tPD = 43 ns typ L-to-H (42 ns H-to-L) at VCC = 5 V, 100 mV overdrive, CL = 15 pF (47/45 ns at 20 mV OD, 50 ns max at 25°C, 40 ns headline)."
+  ],
+  "parts": [
+    {
+      "opn": "TLV9062IDR",
+      "slug": "tlv9062idr",
+      "manufacturer": "Texas Instruments",
+      "device_kind": "opamp",
+      "sub_topology": "opamp-dual",
+      "channels": 2,
+      "package": "SOIC-8 (D)",
+      "datasheet_revision": "SBOS839N (Rev. July 2026)",
+      "page_count": 99,
+      "pinout_summary": "1:OUT1, 2:IN1-, 3:IN1+, 4:V-, 5:IN2+, 6:IN2-, 7:OUT2, 8:V+",
+      "vision_pages_checked": [6, 10, 11, 13, 14],
+      "ib_typ_pa": 0.5,
+      "iq_per_ch_typ_ua": 538,
+      "confidence_score": 0.99,
+      "stage2_status": "PASS"
+    },
+    {
+      "opn": "OPA2333AIDR",
+      "slug": "opa2333aidr",
+      "manufacturer": "Texas Instruments",
+      "device_kind": "opamp",
+      "sub_topology": "opamp-dual",
+      "channels": 2,
+      "package": "SOIC-8 (D)",
+      "datasheet_revision": "SBOS351E (Rev. December 2015)",
+      "page_count": 49,
+      "pinout_summary": "1:OUT A, 2:-IN A, 3:+IN A, 4:V-, 5:+IN B, 6:-IN B, 7:OUT B, 8:V+",
+      "vision_pages_checked": [4, 5, 6, 7],
+      "ib_typ_pa": 70,
+      "iq_per_ch_typ_ua": 17,
+      "confidence_score": 0.99,
+      "stage2_status": "PASS"
+    },
+    {
+      "opn": "LMV321IDBVR",
+      "slug": "lmv321idbvr",
+      "manufacturer": "Texas Instruments",
+      "device_kind": "opamp",
+      "sub_topology": "opamp-single",
+      "channels": 1,
+      "package": "SOT-23-5 (DBV)",
+      "datasheet_revision": "SLOS263Y (Rev. August 2023)",
+      "page_count": 53,
+      "pinout_summary": "1:1IN+, 2:GND, 3:1IN-, 4:OUT, 5:VCC+",
+      "vision_pages_checked": [3, 5, 6, 7],
+      "ib_typ_pa": 15000,
+      "iq_per_ch_typ_ua": 130,
+      "confidence_score": 0.99,
+      "stage2_status": "PASS"
+    },
+    {
+      "opn": "NE5532DR",
+      "slug": "ne5532dr",
+      "manufacturer": "Texas Instruments",
+      "device_kind": "opamp",
+      "sub_topology": "opamp-dual",
+      "channels": 2,
+      "package": "SOIC-8 (D)",
+      "datasheet_revision": "SLOS075K (Rev. December 2025)",
+      "page_count": 23,
+      "pinout_summary": "1:1OUT, 2:1IN-, 3:1IN+, 4:VCC-, 5:2IN+, 6:2IN-, 7:2OUT, 8:VCC+",
+      "vision_pages_checked": [2, 3, 4, 11],
+      "ib_typ_pa": 200000,
+      "iq_per_ch_typ_ua": 3000,
+      "confidence_score": 0.99,
+      "stage2_status": "PASS"
+    },
+    {
+      "opn": "TLV3201AIDBVR",
+      "slug": "tlv3201aidbvr",
+      "manufacturer": "Texas Instruments",
+      "device_kind": "comparator",
+      "sub_topology": "comparator-single",
+      "channels": 1,
+      "package": "SOT-23-5 (DBV)",
+      "datasheet_revision": "SBOS561C (Rev. May 2024)",
+      "page_count": 40,
+      "pinout_summary": "1:OUT, 2:GND, 3:IN+, 4:IN-, 5:VCC",
+      "vision_pages_checked": [3, 4, 5, 6],
+      "ib_typ_pa": 1,
+      "iq_per_ch_typ_ua": 40,
+      "output_type": "push-pull",
+      "prop_delay_ns": 43,
+      "confidence_score": 0.99,
+      "stage2_status": "PASS"
+    }
+  ]
+}
