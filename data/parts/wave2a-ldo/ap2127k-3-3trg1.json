@@ -1,0 +1,228 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "AP2127K-3.3TRG1",
+  "slug": "ap2127k-3-3trg1",
+  "family": "AP2127",
+  "manufacturer": "Diodes Incorporated",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 85,
+    "grade_label": "Industrial (-40°C to +85°C TA)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.diodes.com/assets/Datasheets/AP2127.pdf",
+    "product_page_url": "https://www.diodes.com/part/view/AP2127",
+    "source_domain": "www.diodes.com",
+    "revision": "DS36478 Rev. 7 - 2 (December 2017)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 24
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "K (SOT-23-5)",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "5-pin SOT-23-5 ('K') package has no exposed thermal pad (p.3 Pin Descriptions table shows no PAD on SOT-23-5)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 250,
+      "page": 4,
+      "condition": "SOT-23-5 junction-to-ambient thermal resistance (least copper size, PD(MAX) = 0.4 W at TA = +25°C, p.13; vs 180 °C/W SOT-23, 100 °C/W SOT-89)",
+      "table_ref": "Absolute Maximum Ratings"
+    },
+    "theta_jc_c_per_w": {
+      "value": 150,
+      "page": 5,
+      "condition": "SOT-23-5 junction-to-case thermal resistance",
+      "table_ref": "Electrical Characteristics"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 4,
+      "condition": "Absolute maximum junction temperature +150°C (continuous operating TJ <= +125°C per p.13; OTSD +165°C typ, 30°C hysteresis)",
+      "table_ref": "Absolute Maximum Ratings"
+    },
+    "pd_max_mw": {
+      "value": 400,
+      "page": 13,
+      "condition": "Maximum power dissipation for SOT-23-5 (least copper size) at TA = +25°C keeping TJ <= +125°C: (125 - 25) / 250 = 0.4 W",
+      "table_ref": "Application Notes — Thermal Consideration"
+    },
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Power supply input voltage (2.5 V to 6.0 V operating, 6.5 V abs max); decouple with >= 1 uF ceramic capacitor."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Ground reference pin."
+      },
+      {
+        "pin": 3,
+        "name": "Shutdown",
+        "role": "EN",
+        "description": "Active-low Shutdown / Active-high Enable (overline Shutdown on p.1/p.3: >= 1.5 V ON, <= 0.5 V OFF, 3 MOhm pulldown; abs max -0.3 V to VIN + 0.3 V)."
+      },
+      {
+        "pin": 4,
+        "name": "NC/ADJ",
+        "role": "NC",
+        "description": "No internal connection on fixed 3.3 V AP2127K-3.3TRG1 (feedback divider ADJ input on AP2127K-ADJTRG1 only)."
+      },
+      {
+        "pin": 5,
+        "name": "VOUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output with internal 60 Ohm auto-discharge MOSFET when disabled; requires >= 1 uF ceramic cap."
+      }
+    ],
+    "pinout_source_page": 1,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 6.5,
+      "page": 4,
+      "condition": "Absolute maximum input voltage VIN (Shutdown/VCE limited to -0.3 V to VIN + 0.3 V)",
+      "table_ref": "Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 2.5,
+      "page": 4,
+      "condition": "Recommended operating VIN minimum across family (maintain VIN >= 3.3 V + VDROP for 3.3 V regulation)",
+      "table_ref": "Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 6,
+      "page": 4,
+      "condition": "Recommended operating VIN maximum",
+      "table_ref": "Recommended Operating Conditions"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 14,
+      "condition": "Fixed 3.3 V SOT-23-5 ordering option AP2127K-3.3TRG1 (top marking ID 'GET')",
+      "table_ref": "Ordering Information"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 2,
+      "page": 5,
+      "condition": "±2% (98% to 102% of nominal VOUT) at VIN = VOUT + 1 V, 1 mA <= IOUT <= 300 mA, TA = +25°C",
+      "table_ref": "Electrical Characteristics"
+    },
+    "iout_max_ma": {
+      "value": 300,
+      "page": 5,
+      "condition": "Guaranteed minimum continuous output current 300 mA (400 mA typ at VIN - VOUT = 1 V; abs max 450 mA, p.4)",
+      "table_ref": "Electrical Characteristics"
+    },
+    "iq_typ_ua": {
+      "value": 60,
+      "page": 5,
+      "condition": "60 uA typ / 90 uA max at VIN = VOUT + 1 V, IOUT = 0 mA",
+      "table_ref": "Electrical Characteristics"
+    },
+    "ishdn_typ_ua": {
+      "value": 0.1,
+      "page": 5,
+      "condition": "0.1 uA typ / 1.0 uA max at VIN = VOUT + 1 V, VSHUTDOWN in off mode",
+      "table_ref": "Electrical Characteristics"
+    },
+    "dropout_typ_mv": {
+      "value": 170,
+      "page": 5,
+      "condition": "170 mV typ / 300 mV max at VOUT = 3.3 V, IOUT = 300 mA",
+      "table_ref": "Electrical Characteristics"
+    },
+    "psrr_db": {
+      "value": 68,
+      "page": 5,
+      "condition": "AP2127-1.0V to 4.2V, f = 100 Hz and f = 1 kHz, Ripple 1 Vp-p, VIN = VOUT + 1 V (54 dB at 10 kHz)",
+      "table_ref": "Electrical Characteristics"
+    },
+    "output_noise_uvrms": {
+      "value": 60,
+      "page": 5,
+      "condition": "TA = +25°C, 10 Hz <= f <= 100 kHz, VOUT = 0.8 V",
+      "table_ref": "Electrical Characteristics"
+    },
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 1,
+      "page": 12,
+      "condition": "1 uF or higher X7R/X5R MLCC recommended at full temperature range (verify ESR margin against p.11 plots)",
+      "table_ref": "Application Notes — Output Capacitor"
+    },
+    "esr_min_ohm": null,
+    "esr_max_ohm": null,
+    "en_active_high": true,
+    "reverse_current_protection": null
+  },
+  "design_gotchas": [
+    {
+      "title": "High 250 °C/W SOT-23-5 θJA Caps Continuous Power at 400 mW (25°C) — Derate From 5 V",
+      "severity": "CRITICAL",
+      "detail": "Page 4 specifies θJA = 250 °C/W for SOT-23-5 and Page 13 calculates PD(MAX) = 0.4 W at TA = 25°C (TJ <= 125°C). Dropping 5.0 V to 3.3 V at full 300 mA dissipates 0.51 W — driving TJ to 152.5°C even at room temperature! Limit continuous load from 5 V to <= 235 mA at 25°C (<= 94 mA at 85°C), or supply from a 3.7–4.2 V Li-Ion/buck rail.",
+      "page": 13
+    },
+    {
+      "title": "Overline 'Shutdown' Pin Trap (Active-High Enable) & VCE <= VIN + 0.3 V Sequencing",
+      "severity": "WARNING",
+      "detail": "Plain-text extraction drops the overbar on Pin 3 (overline Shutdown on p.1 & p.3), which actually means active-low shutdown / active-high enable (VIH >= 1.5 V ON, VIL <= 0.5 V OFF, 3 MOhm internal pulldown, 60 Ohm auto-discharge). Page 4 also restricts VCE abs max to -0.3 V to VIN + 0.3 V — do not drive Pin 3 high before VIN ramps up, and check 1.5 V VIH margin with 1.8 V logic.",
+      "page": 4
+    },
+    {
+      "title": "50 mA Short-Circuit Limit & Page 11 ESR Plot vs Low-ESR MLCC Text Discrepancy",
+      "severity": "WARNING",
+      "detail": "Short-circuit current folds back to ~50 mA (p.5, p.13), which can prevent startup into pre-biased or heavy constant-current loads. Additionally, while Pages 1 and 12 explicitly claim low-ESR 1 uF X7R/X5R ceramic stability, the Page 11 ESR stability plots draw a black 'Min' line at ~0.25 Ohm (1 uF) and 0.1 Ohm (4.7 uF) — validate load-transient phase margin on bench when using ultra-low-ESR MLCCs.",
+      "page": 11
+    },
+    {
+      "title": "85°C Ambient Ceiling & Pin 4 NC Compatibility Against BYP/NR-Pin SOT-23-5 LDOs",
+      "severity": "INFO",
+      "detail": "Operating ambient range is -40°C to +85°C (p.4, p.14), narrower than +125°C TJ TI equivalents like TLV702 or TPS7A20. Pin 4 is NC on AP2127K-3.3TRG1 (ADJ only on AP2127K-ADJTRG1), so an existing bypass cap on a legacy BYP/NR footprint is harmless, though verify Pin 4 is not routed to a feedback divider.",
+      "page": 14
+    }
+  ],
+  "typical_use_cases": [
+    "5 V-to-3.3 V or Li-Ion-to-3.3 V datacom, motherboard, and notebook sub-rails up to 300 mA (thermally derated)",
+    "Cost-optimized general-purpose 3.3 V CMOS LDO needing fast 50 us soft-start and 60 Ohm active output discharge",
+    "Audio, codec, and analog sensor bias rails leveraging 68 dB PSRR (100 Hz/1 kHz) and 60 uVRMS noise",
+    "Candidate second-source for Pin-4-NC SOT-23-5 footprints (AP2112K, TLV702, TLV733P) when <= 300 mA and <= 85°C TA"
+  ],
+  "engineering_summary": "The Diodes Incorporated AP2127K-3.3TRG1 is a 300 mA fixed 3.3 V (±2% at 25°C) high-speed CMOS LDO in a 5-pin SOT-23-5 ('K') package (1=VIN, 2=GND, 3=overline-Shutdown [active-high EN with 3 MOhm pulldown], 4=NC, 5=VOUT with 60 Ohm auto-discharge). Operating from 2.5 V to 6.0 V (6.5 V abs max, -40°C to +85°C TA), it features 170 mV typical / 300 mV max dropout at 300 mA, 60 uA IQ, 0.1 uA standby current, 68 dB PSRR (1 kHz), 60 uVRMS noise, 50 us soft-start, and 1 uF MLCC compatibility. Designers must derate load current thermally (θJA = 250 °C/W, PD(MAX) = 400 mW at 25°C), keep VEN <= VIN + 0.3 V, and check bench transient ringing against the Page 11 ESR plot.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [
+      1,
+      3,
+      4,
+      5,
+      11,
+      14
+    ],
+    "audit_notes": [
+      "300 DPI PNG Vision verified pages 1 & 3 SOT-23-5 Top View pinout (1=VIN, 2=GND, 3=overline-Shutdown [active-high EN], 4=NC/ADJ, 5=VOUT; no exposed pad) — catching the overbar omitted by text extraction.",
+      "300 DPI PNG Vision verified page 4 Abs Max (VIN=6.5V, VCE=-0.3..VIN+0.3V, IOUT=450mA, TJ=+150C, SOT-23-5 θJA=250 C/W) and Rec Op (VIN=2.5..6V, TA=-40..+85C).",
+      "300 DPI PNG Vision verified page 5 Electrical Characteristics (±2% VOUT, IOUT(MAX)=300mA min / 400mA typ, VDROP=170mV typ / 300mV max @3.3V 300mA, IQ=60uA typ / 90uA max, ISTD=0.1uA typ, PSRR=68dB @100Hz/1kHz, VNOISE=60uVRMS, VIH>=1.5V, VIL<=0.5V, RDS(ON)=60Ohm, RPD=3MOhm, SOT-23-5 θJC=150 C/W).",
+      "300 DPI PNG Vision verified page 11 ESR stability plots (flagging Min ESR line at ~0.25 Ohm [1uF] / 0.1 Ohm [4.7uF] vs p.1/p.12 MLCC text) and page 14 Ordering Info confirming AP2127K-3.3TRG1 = SOT-23-5, Marking ID 'GET'."
+    ]
+  }
+}

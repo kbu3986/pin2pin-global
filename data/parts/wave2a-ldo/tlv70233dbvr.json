@@ -1,0 +1,225 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TLV70233DBVR",
+  "slug": "tlv70233dbvr",
+  "family": "TLV702",
+  "manufacturer": "Texas Instruments",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to +125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tlv702.pdf",
+    "product_page_url": "https://www.ti.com/product/TLV702",
+    "source_domain": "www.ti.com",
+    "revision": "SLVSAG6D (September 2010 – Revised July 2019)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 37
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "DBV (SOT-23-5)",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "5-pin DBV SOT-23 package has no exposed thermal pad (RθJC(bot) = N/A, p.4)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 249.2,
+      "page": 4,
+      "condition": "DBV (SOT-23, 5 pins) JEDEC junction-to-ambient thermal resistance (DSE WSON-6 is 321.3 °C/W)",
+      "table_ref": "6.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 136.4,
+      "page": 4,
+      "condition": "DBV (SOT-23, 5 pins) junction-to-case(top) thermal resistance RθJC(top)",
+      "table_ref": "6.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 4,
+      "condition": "Absolute maximum operating virtual junction temperature TJ (-55°C to +150°C; recommended continuous TJ -40°C to +125°C, p.5)",
+      "table_ref": "6.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "IN",
+        "role": "VIN",
+        "description": "Input supply pin (2.0 V to 5.5 V operating, 6.0 V abs max); recommend 1 uF ceramic decoupling capacitor to GND."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Ground reference pin."
+      },
+      {
+        "pin": 3,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high enable pin (>= 0.9 V ON, <= 0.4 V shutdown); abs max min(VIN + 0.3 V, 6.0 V) — never drive above VIN + 0.3 V."
+      },
+      {
+        "pin": 4,
+        "name": "NC",
+        "role": "NC",
+        "description": "No internal connection; datasheet permits tying to GND for thermal dissipation (verify before swapping to BYP/NR-pin LDOs)."
+      },
+      {
+        "pin": 5,
+        "name": "OUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output (non-P TLV70233DBVR has NO active discharge); recommend 1 uF ceramic cap (>= 0.1 uF effective, ESR < 200 mOhm)."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 6,
+      "page": 4,
+      "condition": "Absolute maximum IN and OUT voltage (-0.3 V to 6 V; EN limited to min(VIN + 0.3 V, 6.0 V) per Note 3)",
+      "table_ref": "6.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 2,
+      "page": 4,
+      "condition": "Recommended operating VIN minimum across family (maintain VIN >= 3.3 V + VDO for 3.3 V regulation)",
+      "table_ref": "6.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 5.5,
+      "page": 4,
+      "condition": "Recommended operating VIN maximum",
+      "table_ref": "6.3 Recommended Operating Conditions"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 22,
+      "condition": "Fixed 3.3 V standard non-discharge ordering option in DBV SOT-23-5 (top marking 'QVD')",
+      "table_ref": "Package Option Addendum"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 2,
+      "page": 5,
+      "condition": "±2% max DC output accuracy over -40°C <= TJ <= +125°C (0.5% typ at TJ = 25°C, IOUT = 10 mA)",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "iout_max_ma": {
+      "value": 300,
+      "page": 4,
+      "condition": "Recommended continuous output current (current limit 320 mA min / 500 mA typ / 860 mA max, p.5)",
+      "table_ref": "6.3 Recommended Operating Conditions"
+    },
+    "iq_typ_ua": {
+      "value": 35,
+      "page": 5,
+      "condition": "35 uA typ / 55 uA max at IOUT = 0 mA (rises to 370 uA typ at IOUT = 300 mA, VIN = VOUT + 0.5 V)",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "ishdn_typ_ua": {
+      "value": 1,
+      "page": 5,
+      "condition": "1 uA typ / 2 uA max at VEN <= 0.4 V, 2 V <= VIN <= 4.5 V, TJ = -40°C to +85°C (400 nA typ at VIN = 2 V)",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "dropout_typ_mv": {
+      "value": 260,
+      "page": 5,
+      "condition": "260 mV typ / 375 mV max at IOUT = 300 mA, VIN = 0.98 * VOUT(nom), VOUT(nom) >= 2.35 V (p.1 headlines 220 mV at 2.8 V)",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "psrr_db": {
+      "value": 68,
+      "page": 5,
+      "condition": "f = 1 kHz, VIN = 2.3 V, VOUT = 1.8 V, IOUT = 10 mA",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "output_noise_uvrms": {
+      "value": 48,
+      "page": 5,
+      "condition": "BW = 100 Hz to 100 kHz, VIN = 2.3 V, VOUT = 1.8 V, IOUT = 10 mA",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 1,
+      "page": 13,
+      "condition": "1 uF nominal X5R/X7R ceramic recommended to guarantee >= 0.1 uF effective capacitance after DC bias and temp derating",
+      "table_ref": "8.2.2.1 Input and Output Capacitor Requirements"
+    },
+    "esr_min_ohm": null,
+    "esr_max_ohm": {
+      "value": 0.2,
+      "page": 13,
+      "condition": "Maximum output capacitor ESR must be < 200 mOhm (0.2 Ohm) for stability and PSRR",
+      "table_ref": "8.2.2.1 Input and Output Capacitor Requirements"
+    },
+    "en_active_high": true,
+    "reverse_current_protection": false
+  },
+  "design_gotchas": [
+    {
+      "title": "EN Sequencing Limit (VEN <= VIN + 0.3 V) & Unlimited PMOS Reverse-Current Body Diode",
+      "severity": "CRITICAL",
+      "detail": "Footnote 3 on Page 4 caps EN absolute maximum voltage at min(VIN + 0.3 V, 6.0 V), meaning an always-on host GPIO cannot drive EN high before VIN powers up (unlike TPS7A02/TPS7A20/TLV755P). Section 7.3.1 (p.11) also warns that the PMOS pass transistor body diode conducts unlimited reverse current if VOUT > VIN; externally limit reverse current to <= 5% of rated IOUT (15 mA).",
+      "page": 4
+    },
+    {
+      "title": "High 249.2 °C/W SOT-23-5 RθJA Prevents Sustained 300 mA From 5 V Input",
+      "severity": "CRITICAL",
+      "detail": "At VIN = 5.0 V to VOUT = 3.3 V and full 300 mA load, power dissipation is 0.51 W. With DBV RθJA = 249.2 °C/W (p.4), ΔT reaches 127.1 °C — exceeding the 125 °C continuous TJ limit even at 25 °C ambient. Restrict 5 V-to-3.3 V continuous load to ~200 mA at 25 °C (or ~90 mA at 85 °C) unless using Li-Ion 3.7–4.2 V input or enhanced PCB copper. Note also Table 6.5 dropout is 260 mV typ / 375 mV max vs 220 mV headlined on Page 1.",
+      "page": 4
+    },
+    {
+      "title": "No Internal Active Output Discharge on TLV70233DBVR (Requires 'P' Suffix TLV70233PDBVR)",
+      "severity": "WARNING",
+      "detail": "Unlike TLV70233PDBVR (top marking 'SLH'), the non-P TLV70233DBVR (top marking 'QVD') omits the 120 Ohm active pulldown MOSFET (p.3, p.5, p.11). When EN goes low under light load, VOUT decays slowly through leakage alone, which can upset MCU brownout/POR sequencing if replacing an active-discharge LDO such as AP2127K or TPS7A05P.",
+      "page": 5
+    },
+    {
+      "title": "Pin 4 NC Thermal Grounding Conflicts With BYP/NR LDOs & 0.1 uF Effective Cap Floor",
+      "severity": "INFO",
+      "detail": "Page 3 allows tying Pin 4 (NC) to GND for thermal relief, but doing so prevents later drop-in substitution of Pin-4 BYP/NR LDOs (e.g., TPS793 legacy chip, LP2985, AP2210K). Also Section 8.2.2.1 (p.13) cautions that a nominal 0.1 uF ceramic cap does NOT guarantee stability after DC-bias derating; use >= 1 uF X5R/X7R with ESR < 200 mOhm.",
+      "page": 13
+    }
+  ],
+  "typical_use_cases": [
+    "Single-cell Li-Ion (3.6 V–4.2 V) to 3.3 V power rails for BLE/ZigBee/Wi-Fi modules up to 300 mA",
+    "Compact handheld and wearable sub-rails benefiting from 0.1 uF minimum effective output capacitance",
+    "Low-noise 3.3 V sensor and RF front-end supplies leveraging 68 dB PSRR (1 kHz) and 48 uVRMS noise",
+    "Candidate drop-in second source on standard 5-pin SOT-23-5 (1=IN, 2=GND, 3=EN, 4=NC, 5=OUT) boards"
+  ],
+  "engineering_summary": "The Texas Instruments TLV70233DBVR is a 300 mA fixed 3.3 V (±2% over -40°C to +125°C) low-IQ PMOS LDO in a 5-pin DBV SOT-23-5 package (1=IN, 2=GND, 3=EN active high, 4=NC, 5=OUT). Operating from 2.0 V to 5.5 V (6.0 V abs max), it delivers 35 uA no-load IQ (370 uA at 300 mA), 260 mV typical / 375 mV max dropout at 300 mA, 68 dB PSRR at 1 kHz, 48 uVRMS output noise, and stability down to 0.1 uF effective ceramic capacitance (1 uF nominal recommended, ESR < 200 mOhm). Key design constraints include its 249.2 °C/W DBV RθJA, VEN <= VIN + 0.3 V sequencing rule, lack of reverse-current blocking, and absence of active output discharge on this non-P OPN.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [
+      3,
+      4,
+      5
+    ],
+    "audit_notes": [
+      "300 DPI PNG Vision verified page 3 DBV 5-pin SOT-23 Top View pinout (1=IN, 2=GND, 3=EN, 4=NC, 5=OUT; no exposed pad) and confirmed 120 Ohm discharge is TLV702P only.",
+      "300 DPI PNG Vision verified page 4 Abs Max (VIN=6V, VEN=min(VIN+0.3V, 6V), TJ=-55..150C), Rec Op (VIN=2..5.5V, IOUT=300mA), and DBV Thermal Info (RθJA=249.2 C/W, RθJC(top)=136.4 C/W).",
+      "300 DPI PNG Vision verified page 5 Electrical Characteristics (±2% VOUT accuracy, VDO=260mV typ / 375mV max @300mA vs 220mV headline p.1, IGND=35uA @0mA / 370uA @300mA, ISHDN=1uA typ @2..4.5V / 400nA @2V, PSRR=68dB @1kHz, Vn=48uVRMS, VEN(HI)>=0.9V).",
+      "Path A confirmed 1 uF nominal / 0.1 uF effective cap and <200 mOhm ESR ceiling (p.13), PMOS reverse-current body diode warning (p.11), and Active OPN TLV70233DBVR marking 'QVD' (p.22)."
+    ]
+  }
+}
