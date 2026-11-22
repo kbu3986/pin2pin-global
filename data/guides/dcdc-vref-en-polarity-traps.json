@@ -1,0 +1,229 @@
+{
+  "slug": "dcdc-vref-en-polarity-traps",
+  "title": "DC-DC Converter Pinout, VREF, and Enable Polarity Traps: Surviving 6-Pin Buck and Boost Swaps",
+  "subtitle": "Datasheet-verified field guide to SOT-23-6 buck VREF overvoltage hazards, 7 V enable ceilings, 5-pin HV boost Cf traps, inverted fixed-boost FB strapping, and LM2596 active-low ON/OFF logic.",
+  "category": "dcdc",
+  "reading_time_min": 9,
+  "published_at": "2026-11-22",
+  "updated_at": "2026-11-22",
+  "author_role": "Senior Power Electronics & Hardware Reliability Engineer",
+  "summary": "Identical 5-pin and 6-pin switching regulator packages hide destructive traps: SOT-23-6 VREF shifts can jump 3.3 V rails to 4.43 V, 12 V EN ties blow 7 V-capped pins, and internal pulldowns lock rails off. This field guide maps Vision-verified DC-DC pinout, feedback, and enable-polarity traps.",
+  "key_takeaways": [
+    "TPS54302DDCR, TPS563201DDCR, and AP62200WU-7 share 1=GND, 2=SW, 3=VIN, 4=FB, 5=EN, 6=BOOT; AP63203WU-7 scrambles pins to 1=FB, 2=EN, 3=VIN, 4=GND, 5=SW, 6=BST (fixed 3.3 V).",
+    "VREF shifts (0.596 V vs 0.768 V vs 0.800 V) cause up to +34.2% overvoltage; EN abs max drops to 7.0 V (TPS54302) and 8.0 V (AP62200) vs 19 V with 1.5 MOhm pulldown on TPS563201.",
+    "SOT-23-5 HV boosts (TPS61040DBVR, LM27313XMF/NOPB, LM2733XMF/NOPB) share pins and ~1.23 V VREF, yet TPS61040 caps VIN at 6.0 V and LM27313/LM2733 oscillate without Cf.",
+    "Fixed 3.3 V boosts invert FB strapping—TPS61221DCKR ties FB to VOUT (no disconnect) while TPS610994DRVR ties FB to GND (true disconnect, >= 400 us EN pulse)—and LM2596SX-5.0/NOPB uses ACTIVE-LOW ON/OFF."
+  ],
+  "related_parts": [
+    "tps54302ddcr",
+    "tps563201ddcr",
+    "ap62200wu-7",
+    "ap63203wu-7",
+    "tps61040dbvr",
+    "lm27313xmf-nopb",
+    "lm2733xmf-nopb",
+    "tps61221dckr",
+    "tps610994drvr",
+    "tps613221adbvr",
+    "lm2596sx-5-0-nopb"
+  ],
+  "related_vs": [
+    "tps54302ddcr-vs-tps563201ddcr",
+    "ap62200wu-7-vs-tps54302ddcr",
+    "ap63203wu-7-vs-tps54302ddcr",
+    "ap62200wu-7-vs-ap63203wu-7",
+    "lm27313xmf-nopb-vs-tps61040dbvr",
+    "lm27313xmf-nopb-vs-lm2733xmf-nopb",
+    "tps610994drvr-vs-tps61221dckr",
+    "lm2596sx-5-0-nopb-vs-tps54302ddcr"
+  ],
+  "sections": [
+    {
+      "heading": "1. The 6-Pin Buck Illusion: Pinout Scrambles, +34% VREF Overvoltage, and 7 V EN Ceilings",
+      "body": [
+        "Six-pin synchronous bucks in SOT-23-6 (TI DDC) and TSOT-23-6 (Diodes TSOT26 / WU) pack 2 A–3 A converters into a 2.9 mm footprint—hiding four deadly traps: pinout swaps, VREF shifts, EN breakdown voltage, and floating-EN polarity.",
+        "Vision verification of official 300 DPI Top-View drawings confirms that TPS54302DDCR (SLVSDG6C, p.3), TPS563201DDCR (SLVSD90B, p.3), and AP62200WU-7 (DS41957, p.1) share 1=GND, 2=SW, 3=VIN, 4=FB/VFB, 5=EN, 6=BOOT/VBST/BST. Yet Diodes' own AP63203WU-7 (DS41326, p.1) in the identical TSOT26 body scrambles four pins to 1=FB, 2=EN, 3=VIN, 4=GND, 5=SW, 6=BST—shorting SW, GND, EN, and FB immediately on cross-population. Even inside one datasheet, AP62200Z6 (SOT-563) reverses Pins 1/3 and 4/6 relative to AP62200WU-7.",
+        "Among the three pin-identical bucks, VREF shifts trigger destructive overvoltage via VOUT = VREF * (1 + R1 / R2). A 3.30 V rail set for TPS54302DDCR (0.596 V typ, p.5; ratio 5.537) jumps +28.9% to 4.25 V with TPS563201DDCR (0.768 V CCM / 0.774 V Eco-mode, p.6) and +34.2% to 4.43 V with AP62200WU-7 (0.800 V typ, p.5; AP62200T is 0.763 V)—destroying 3.6 V abs-max MCUs and Flash. AP63203WU-7 is fixed 3.3 V (3.27–3.33 V at 25 °C, p.5) with Pin 1 FB tied to VOUT.",
+        "Enable-pin limits fail asymmetrically. TPS54302DDCR handles 28 V VIN (30 V abs max) yet caps Pin 5 EN at 5.5 V rec / 7.0 V abs max (p.4), floating high to auto-enable (SOIC-8 TPS54331DR similarly caps EN at 6.0 V abs max, p.4). AP62200WU-7 handles 18 V VIN (20 V DC / 22 V 400 ms) yet caps EN at 8.0 V abs max and floats ON (p.4). Conversely, TPS563201DDCR caps VIN at 17 V (19 V abs max—unsafe on 24 V buses) but rates EN to 19 V with an internal 1.5 MOhm pulldown (p.6): tying EN to 12 V VIN runs TPS563201 yet blows TPS54302/AP62200, while floating EN starts TPS54302/AP62200 yet locks TPS563201 OFF.",
+        "Audit passives across switching speeds: TPS54302DDCR runs 400 kHz with FSS (6.8–10 uH, ~44 uF Cout, p.18); TPS563201DDCR runs 580 kHz D-CAP2 (2.2–3.3 uH, 20–68 uF Cout bounds, p.15); AP62200WU-7 runs 750 kHz COT at 2 A (3.3–4.7 uH) and requires upsizing Cbst to 330 nF for VOUT > 3 V (p.18); AP63203WU-7 runs 1.1 MHz (3.9 uH, 22 uA PFM Iq, 32 V VIN, 2 A max, p.5,13)."
+      ],
+      "callout": {
+        "type": "CRITICAL",
+        "title": "Asymmetric 12 V EN Breakdown & +34% VREF Overvoltage",
+        "text": "Never assume Candidate Drop-In compatibility across TPS54302DDCR, TPS563201DDCR, and AP62200WU-7. Direct 12 V EN ties blow TPS54302 (7.0 V abs max) and AP62200 (8.0 V abs max), and unadjusted dividers push 3.3 V rails to 4.25 V or 4.43 V."
+      },
+      "table": {
+        "headers": [
+          "OPN (Pkg)",
+          "Pinout (1..6)",
+          "VIN / Abs",
+          "EN Abs / Float",
+          "VREF / VOUT",
+          "fsw / L / Iout"
+        ],
+        "rows": [
+          [
+            "TPS54302DDCR (DDC)",
+            "GND SW VIN FB EN BOOT",
+            "28V / 30V",
+            "7V; Float=ON",
+            "0.596V adj",
+            "400kHz / 6.8–10uH / 3A"
+          ],
+          [
+            "TPS563201DDCR (DDC)",
+            "GND SW VIN VFB EN VBST",
+            "17V / 19V",
+            "19V; 1.5M PD",
+            "0.768V adj",
+            "580kHz / 2.2–3.3uH / 3A"
+          ],
+          [
+            "AP62200WU-7 (TSOT26)",
+            "GND SW VIN FB EN BST",
+            "18V / 20V",
+            "8V; Float=ON",
+            "0.800V adj",
+            "750kHz / 3.3–4.7uH / 2A"
+          ],
+          [
+            "AP63203WU-7 (TSOT26)",
+            "FB EN VIN GND SW BST",
+            "32V / 35V",
+            "35V; Float=ON",
+            "Fixed 3.3V",
+            "1.1MHz / 3.9uH / 2A"
+          ]
+        ]
+      }
+    },
+    {
+      "heading": "2. 5-Pin SOT-23-5 HV Boost Traps: VIN Ceilings, Mandatory Cf, and 75x Iq Jumps",
+      "body": [
+        "Three SOT-23-5 (DBV) non-synchronous high-voltage boosts—TPS61040DBVR (SLVS413L, p.3), LM27313XMF/NOPB (SNVS487E, p.3), and LM2733XMF/NOPB (SNVS209G, p.3)—share Top-View pinout 1=SW, 2=GND, 3=FB, 4=EN/SHDN, 5=VIN and ~1.23 V VREF (1.233 V on TPS61040 p.5; 1.230 V on LM27313 p.5 and LM2733 p.4). Four cliffs block blind swaps.",
+        "First, check VIN and SW ceilings. TPS61040DBVR caps VIN at 6.0 V rec / 7.0 V abs max (p.4), whereas LM27313 and LM2733 accept 2.7–14.0 V (14.5 V abs max, p.3–4)—putting TPS61040 on a 12 V rail destroys it instantly. On Pin 1 (SW), TPS61040 (350 mA min / 400 mA typ Isw) and LM27313 (800 mA min / 1.25 A typ at D <= 50%) cap at 30 V abs max (28 V VOUT), while LM2733X raises SW to 40 V (~38 V VOUT, >= 40 V Schottky like MBR0540, p.13) and 1.0 A min / 1.5 A typ Isw (derates above 50% duty cycle, p.15).",
+        "Second, LM27313 (p.11) and LM2733 (p.13) REQUIRE a feedforward capacitor Cf across upper resistor R1 (~8 kHz zero via Cf = 1 / (2 * pi * R1 * fz)) for loop stability; swapping from PFM TPS61040 without Cf causes oscillation.",
+        "Third, Iq jumps sharply: PFM TPS61040 draws 28 uA non-switching (up to 1 MHz, p.5), whereas fixed-1.6 MHz PWM LM27313 and LM2733X draw 400 uA non-switching and 2.1 mA active switching (3.0 mA max, p.4–5)—a 14x–75x battery penalty. Distinguish LM2733X (S52A, 1.6 MHz, 87% min Dmax, 210 °C/W vs 166.3 °C/W on LM27313, p.4) from LM2733Y (S52B, 600 kHz, 93% min Dmax, 1.1 mA SW Iq). Never float EN/SHDN (abs max VIN + 0.3 V; ON >= 1.5 V, OFF <= 0.50 V on LM27313/LM2733), and expect Schottky pass-through in shutdown."
+      ],
+      "callout": {
+        "type": "WARNING",
+        "title": "Mandatory Feedforward Capacitor Cf on LM27313 & LM2733",
+        "text": "LM27313XMF/NOPB and LM2733XMF/NOPB require Cf across R1 (~8 kHz zero) to prevent oscillation. Reserve a 0402 Cf footprint on any SOT-23-5 boost board multi-sourced with TPS61040DBVR."
+      },
+      "table": {
+        "headers": [
+          "SOT-23-5 OPN",
+          "VIN / SW Abs",
+          "Isw Min/Typ",
+          "Mode & fsw",
+          "Iq (NS / SW)",
+          "Stability & RthetaJA"
+        ],
+        "rows": [
+          [
+            "TPS61040DBVR",
+            "6V (7V) / 30V",
+            "350 / 400mA",
+            "PFM <=1MHz",
+            "28uA / var",
+            "Opt. CFF; 205.2 °C/W"
+          ],
+          [
+            "LM27313XMF/NOPB",
+            "14V (14.5V) / 30V",
+            "800 / 1250mA",
+            "1.6MHz PWM",
+            "400uA / 2.1mA",
+            "Mand. Cf; 166.3 °C/W"
+          ],
+          [
+            "LM2733XMF/NOPB",
+            "14V (14.5V) / 40V",
+            "1000 / 1500mA",
+            "1.6MHz PWM",
+            "400uA / 2.1mA",
+            "Mand. Cf + 40V diode; 210 °C/W"
+          ]
+        ]
+      }
+    },
+    {
+      "heading": "3. Ultra-Low-Iq Fixed 3.3 V Boosts: Opposite FB Strapping and Shutdown Pass-Through",
+      "body": [
+        "Fixed 3.3 V synchronous boosts eliminate feedback dividers—yet invert FB strapping between TI families. On TPS61221DCKR (SC-70-6 DCK, SLVS776B p.3: 1=VIN, 2=FB, 3=GND, 4=VOUT, 5=L, 6=EN), Pin 2 FB MUST tie directly to VOUT (Pin 4). On TPS610994DRVR (WSON-6 DRV, GND PowerPAD, SLVSD88M p.3: 1=GND, 2=VOUT, 3=FB, 4=EN, 5=SW, 6=VIN), Pin 3 FB MUST tie directly to GND—reversing this wire breaks regulation immediately.",
+        "Shutdown isolation diverges across all three ultra-low-Iq 3.3 V boosts. TPS613221ADBVR (SOT-23-5 DBV, 6.5 uA Iq, 0.75–1.2 A Isw, 0.9 V startup, SLVSDY5E p.3) has NO EN pin (Pins 3/5 NC, always on; 3-pin DBZ non-A vs A siblings swap SW/GND). TPS61221DCKR (5.5 uA Iq, 0.7 V startup, 231.2 °C/W) adds active-high EN (no float) but lacks true disconnect (p.12): at EN = 0, battery current leaks through the PFET body diode to VOUT ≈ VIN - Vf, and guaranteed Isw drops to 200 mA min over temp (p.4).",
+        "TPS610994DRVR cuts Iq to 1.0 uA total (0.6 uA VOUT + 0.4 uA VIN, p.5), raises Isw to 0.8–1.0 A in 71.7 °C/W WSON-6, and adds true load disconnect plus down-mode regulation when VIN > 3.3 V (>= 10 uF effective / 20 uF nom Cout, p.4). Watch Sec. 7.3.1 (p.12): toggling EN high-low-high faster than 400 us corrupts EEPROM trim reload—always enforce a >= 400 us EN low pulse."
+      ],
+      "callout": {
+        "type": "CRITICAL",
+        "title": "Opposite FB Wiring (VOUT vs GND) & Mandatory >= 400 us EN Pulse",
+        "text": "Wire FB to VOUT on fixed 3.3 V TPS61221DCKR (no shutdown disconnect), but wire FB to GND on TPS610994DRVR (true disconnect) and hold EN low >= 400 us on every ON-OFF-ON toggle."
+      },
+      "table": {
+        "headers": [
+          "Fixed 3.3 V Boost",
+          "Pkg / EP",
+          "FB Strap",
+          "EN / Disconnect",
+          "Iq / Isw Min-Typ",
+          "Key Constraint"
+        ],
+        "rows": [
+          [
+            "TPS61221DCKR",
+            "SC-70-6 / NONE",
+            "Pin 2 -> VOUT",
+            "Act-H / NO disc.",
+            "5.5uA / 200–400mA",
+            "Body-diode leak; 231.2 °C/W"
+          ],
+          [
+            "TPS610994DRVR",
+            "WSON-6 / GND",
+            "Pin 3 -> GND",
+            "Act-H / TRUE disc.",
+            "1.0uA / 800–1000mA",
+            "EN low >=400us; >=10uF Cout"
+          ],
+          [
+            "TPS613221ADBVR",
+            "SOT-23-5 / NONE",
+            "Internal",
+            "None (Always ON)",
+            "6.5uA / 750–1200mA",
+            "DBZ A-suffix swaps SW/GND"
+          ]
+        ]
+      }
+    },
+    {
+      "heading": "4. The LM2596SX-5.0/NOPB Active-Low ON/OFF Polarity and Electrolytic ESR Trap",
+      "body": [
+        "Migrating 24 V–40 V boards built on LM2596SX-5.0/NOPB (TO-263-5 KTT, SNVS124G p.4: 1=VIN, 2=Output/SW, 3=Ground + Metal Tab, 4=Feedback, 5=ON/OFF) to modern synchronous bucks exposes inverted enable polarity. Unlike active-high peers, Pin 5 (ON/OFF) is ACTIVE-LOW (en_active_high = false): pulling Pin 5 below 1.3 V (GND or open) enables 5.0 V output, while > 1.3 V (up to 25 V abs max, p.5) forces 80 uA standby. Driving Pin 5 directly with an active-high 3.3 V MCU GPIO inverts boot and sleep states.",
+        "Three physical constraints govern migrations. LM2596SX-5.0/NOPB tolerates 7.0–40.0 V continuous input (45 V abs max, p.5–6), surviving 36–40 V rails beyond TPS54302DDCR (28 V) or AP63203WU-7 (32 V). Its bipolar switch (VSAT = 1.16 V typ / 1.5 V max at 3 A) plus external Schottky caps efficiency near 80% (p.6) with 5 mA Iq (p.7), dissipating ~2.5–3.5 W (requiring heavy GND-tab copper: 50 °C/W at 0.5 sq-in down to 20–30 °C/W, p.5). Its 150 kHz loop requires 33–47 uH inductors (p.25) and 82–820 uF finite-ESR electrolytic (or 10–470 uF solid tantalum; Table 9-3: 220–330 uF, p.24) capacitors—pure MLCCs trigger input ringing (p.26) or oscillation."
+      ],
+      "callout": {
+        "type": "WARNING",
+        "title": "Invert Supervisor Logic When Migrating LM2596 Boards",
+        "text": "LM2596SX-5.0/NOPB enables below 1.3 V and shuts down above 1.3 V. Add or remove an enable inverter when migrating between LM2596 and active-high bucks (TPS54302DDCR, AP63203WU-7)."
+      }
+    },
+    {
+      "heading": "5. Six-Point Pre-Swap DC-DC Control & Pinout Audit Checklist",
+      "body": [
+        "Run these six checks against official manufacturer PDFs before approving any DC-DC ECO:",
+        "1. Lock OPN Pinout & Suffix: Separate TPS54302/TPS563201/AP62200 from AP63203, TSOT26 from SOT563 (AP62200Z6), DBV from DBZ-A (TPS61322), and verify GND exposed pads (TPS610994, LM2596).",
+        "2. Recalculate R1/R2 for Exact VREF: Check VOUT_new = VREF_new * (1 + R1 / R2) across 0.596 V, 0.768 V, 0.800 V, and 1.230 V references—or direct VOUT sense on fixed parts.",
+        "3. Audit Enable Polarity, Ceiling & Float State: Check active-high vs active-low (LM2596), EN abs max (7.0 V TPS54302, 8.0 V AP62200, 6.0 V TPS54331, VIN + 0.3 V SOT-23-5 boosts), floating default (pull-up vs 1.5 MOhm pulldown vs no float), and >= 400 us TPS610994 reset pulse.",
+        "4. Check Fixed-Boost FB & Disconnect: Confirm FB -> VOUT (TPS61221) vs FB -> GND (TPS610994) and body-diode shutdown leakage.",
+        "5. Verify Compensation, Bootstrap & ESR: Confirm Cf on LM27313/LM2733, 330 nF Cbst on AP62200 (> 3 V), 20–68 uF Cout on TPS563201, >= 10 uF on TPS610994, and finite-ESR electrolytics on LM2596.",
+        "6. Current-Limited Bring-Up: Ramp VIN unloaded at ~100 mA bench limit, verify VOUT, EN toggle, and SW overshoot, and pre-check ripple and Isw margins in Pin2Pin Global's DC-DC Efficiency & Inductor Ripple Calculator."
+      ],
+      "callout": {
+        "type": "TIP",
+        "title": "Future-Proof PCBs With Reserve EN Divider & 0402 Cf Pads",
+        "text": "Place a VIN-to-EN divider (VEN near 3.3–5.0 V at max VIN) on SOT-23-6 buck footprints so both 7 V-capped parts and 1.5 MOhm pulldown parts start safely, and leave a DNP 0402 Cf pad across R1 on SOT-23-5 boosts."
+      }
+    }
+  ]
+}

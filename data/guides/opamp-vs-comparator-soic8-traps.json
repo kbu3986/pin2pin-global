@@ -1,0 +1,216 @@
+{
+  "slug": "opamp-vs-comparator-soic8-traps",
+  "title": "Op-Amp vs Comparator SOIC-8 & SOT-23-5 Swap Traps: Why LM358, LM393, JFET, and RRIO Parts Fail",
+  "subtitle": "Datasheet-verified failure mechanics for identical-pinout SOIC-8 swaps (LM358DR/LMV358IDR vs LM393DR), JFET/Audio/RRIO matrices, and SOT-23-5 single op-amp suffix reversals.",
+  "category": "opamp",
+  "reading_time_min": 9,
+  "published_at": "2026-11-22",
+  "updated_at": "2026-11-22",
+  "author_role": "Senior Analog & Mixed-Signal Verification Engineer",
+  "summary": "Every dual SOIC-8 op-amp and comparator in our catalog shares the exact same 8-pin footprint—turning careless BOM swaps into floating outputs, uncompensated oscillation, thermal runaway, or instant overvoltage. This guide maps LM358/LMV358 vs LM393 traps, JFET/Audio/RRIO swap cliffs, and SOT-23-5 suffix reversals.",
+  "key_takeaways": [
+    "LM358DR, LMV358IDR, and LM393DR share identical SOIC-8 pins (1=OUT_A, 2=IN-_A, 3=IN+_A, 4=V-/GND, 5=IN+_B, 6=IN-_B, 7=OUT_B, 8=V+/VCC), yet swapping them triggers floating outputs, oscillation, slow saturation recovery, or GPIO overvoltage.",
+    "Pin-identical SOIC-8 supply ceilings span 5.5 V zero-margin abs max (LMV358IDR) to 13 V (MC33202DR2G), 32 V (LM358DR), 36 V zero-margin (OPA2134UA), and 42 V (TL072IDR Rev W).",
+    "Upgrading TL072IDR (1.4 mA/ch) to OPA2134UA (4 mA/ch) at ±15 V burns 240–300 mW idle (38–48 °C self-heating in 160 °C/W SOIC-8), while non-H TL072IDR reels mix legacy SFAB and modern RFB silicon.",
+    "SOT-23-5 single op-amps TLV9001IDBVR, TLV9061IDBVR, and OPA333AIDBVR share TI DBV pins (1=OUT, 2=V-, 3=IN+, 4=IN-, 5=V+), span 30x bandwidth and 10x drive, and face Pin 1/3/4 swaps on TLV9001UIDBVR and SC70-5 variants."
+  ],
+  "related_parts": [
+    "lm358dr",
+    "lmv358idr",
+    "lm393dr",
+    "tl072idr",
+    "opa2134ua",
+    "tlv9002idr",
+    "mc33202dr2g",
+    "tlv9001idbvr",
+    "tlv9061idbvr",
+    "opa333aidbvr"
+  ],
+  "related_vs": [
+    "lm358dr-vs-lm393dr",
+    "lm393dr-vs-lmv358idr",
+    "lm358dr-vs-lmv358idr",
+    "lm358dr-vs-tlv9002idr",
+    "mc33202dr2g-vs-tlv9002idr",
+    "opa2134ua-vs-tl072idr",
+    "tlv9001idbvr-vs-tlv9061idbvr",
+    "opa333aidbvr-vs-tlv9001idbvr",
+    "opa333aidbvr-vs-tlv9061idbvr"
+  ],
+  "sections": [
+    {
+      "heading": "1. Why LM358DR/LMV358IDR and LM393DR Fail Despite Identical SOIC-8 Pinouts",
+      "body": [
+        "300 DPI Vision checks on TI's SOIC-8 (D) Top-View diagrams confirm that dual op-amps LM358DR (SLOS068AB, p.3) and LMV358IDR (SLOS263Y, p.3) and dual comparator LM393DR (SLCS005AH, p.3) share every lead: 1=OUT_A, 2=IN-_A, 3=IN+_A, 4=V-/GND, 5=IN+_B, 6=IN-_B, 7=OUT_B, 8=V+/VCC. Four electrical mechanisms make swapping them catastrophic.",
+        "First, open-collector pull-up omission breaks logic-high states. LM358DR and LMV358IDR drive push-pull outputs sourcing/sinking ±40 mA short-circuit current (p.10, p.7). LM393DR Pins 1 and 7 are open-collector NPN transistors that ONLY sink current (IOL >= 6 mA at VOL = 1.5 V, 20 mA abs max, p.17). Installing LM393DR on an op-amp board leaves high outputs floating; even with a pull-up resistor, rise time is limited by R_pullup * C_load.",
+        "Second, omitting dominant-pole Miller compensation provokes linear oscillation. Compensated op-amps enforce a 90° dominant-pole rolloff for unity-gain negative feedback. LM393DR omits Miller compensation to maximize open-loop switching gain—wrapping negative feedback around LM393 pushes phase lag past 180° before unity gain, creating a multi-MHz relaxation oscillator.",
+        "Third, using an op-amp as a comparator fails on saturation recovery, speed, and level shifting. LM393DR switches in 1.3 us (1300 ns) at 5 mV overdrive and 300 ns for TTL steps (p.10). Driven rail-to-rail, LM358DR (0.3 V/us slew, 0.7 MHz GBWP, p.10) takes >30 us across 12 V plus sluggish BJT saturation recovery and Class-B crossover artifacts (weak 12 uA min sink at 200 mV). Worse, LM393's open-collector safely level-shifts a 12 V sensor to a 3.3 V MCU GPIO via a 3.3 V pull-up, whereas push-pull LM358DR slams ~10.5 V into the 3.3 V pin—and back-to-back input clamp diodes on op-amps like MC33202DR2G (p.3) short large differential comparator overdrive.",
+        "Fourth, audit common-mode ceilings and negative inversion. All three sense to 0 V, yet stop below V+: LM358DR clips above (V+) - 1.5 V at 25 °C / (V+) - 2.0 V over 0–70 °C (output max (V+) - 1.5 V, p.10); LMV358IDR offers rail-to-rail output yet caps inputs at (VCC+) - 1.0 V (0–4.0 V at 5 V, p.7) with a zero-margin 5.5 V abs max ceiling (p.5); LM393DR specifies 0 V to VCC - 2.0 V over temp (only one input must stay in-range, p.8), yet pulling EITHER input below -0.3 V forward-biases a substrate diode that can invert output logic."
+      ],
+      "callout": {
+        "type": "CRITICAL",
+        "title": "Zero Cross-Substitution Between Op-Amps and Comparators",
+        "text": "Pin2Pin Global blocks Candidate Drop-In status whenever device_kind or output_type differs. LM358DR/LMV358IDR (push-pull op-amps) and LM393DR (open-collector comparator) are strictly non-interchangeable despite identical SOIC-8 pins."
+      },
+      "table": {
+        "headers": [
+          "SOIC-8 OPN",
+          "Kind / Output",
+          "Vs Rec / Abs",
+          "CM Ceiling",
+          "GBW/SR or tpd",
+          "Iq/ch & Hazard"
+        ],
+        "rows": [
+          [
+            "LM358DR",
+            "OpAmp / Push-Pull",
+            "3–30V / 32V",
+            "0 to V+-2.0V",
+            "0.7MHz / 0.3V/us",
+            "350uA; slow comp, Class-B"
+          ],
+          [
+            "LMV358IDR",
+            "OpAmp / RRO P-P",
+            "2.7–5.5V / 5.5V",
+            "0 to VCC+-1.0V",
+            "1.0MHz / 1.0V/us",
+            "105uA; 5.5V zero-margin abs"
+          ],
+          [
+            "LM393DR",
+            "Comp / Open-Col",
+            "2–30V / 36V",
+            "0 to VCC-2.0V",
+            "1300ns (300ns TTL)",
+            "225uA; pull-up, FB oscillates"
+          ]
+        ]
+      }
+    },
+    {
+      "heading": "2. Dual SOIC-8 JFET, Audio, and RRIO Swap Matrix (TL072IDR, OPA2134UA, TLV9002IDR, MC33202DR2G)",
+      "body": [
+        "Four additional SOIC-8 dual op-amps share that exact pinout across drastically different supply rails, noise floors, and bias currents. Blind swaps trigger supply breakdown, self-heating, or DC errors.",
+        "Start with low-voltage CMOS: TLV9002IDR (SBOS833R, p.14) runs 1.8–5.5 V (7 V abs max, -40 to 125 °C) with true RRIO, 1 MHz GBWP, 2 V/us slew, ±1.6 mV max Vos, 5 pA Ib, 60 uA/ch Iq, and 500 pF capacitive stability via 1200 Ohm open-loop Ro (p.17)—ideal for 3.3 V/5 V LM358/LMV358 upgrades, yet instantly destroyed on 9–15 V boards. Watch its RRIO crossover near (V+) - 1.4 V (CMRR steps from 95 dB typ to 77 dB typ / 63 dB min, p.17) and 207.9 °C/W RthetaJA (p.15).",
+        "For 9–12 V single-supply RRIO plus stiff 600 Ohm drive, onsemi MC33202DR2G (Rev. 19, CASE 751) spans 1.8–12 V (13 V abs max, -40 to 105 °C, p.1,3) with 2.2 MHz GBWP, 1 V/us slew, 20 nV/rtHz noise, and ±80 mA typ Isc (p.4). Three limits apply: its bipolar input draws 80 nA typ (200 nA max) AND reverses bias polarity near VEE + 0.8 V (p.9 Fig. 6), causing offset jumps across high-ohm dividers; back-to-back input clamp diodes forbid comparator duty (p.3); and heavy 12 V loads press its 658 mW SOIC-8 cap at 25 °C (RthetaJA = 190 °C/W, p.5 Fig. 2).",
+        "On split ±12 V/±15 V rails, TL072IDR (SLOS080W Rev W) and OPA2134UA (SBOS058B) dominate—with key hazards. Per Rev W Sec. 9.1.1 (p.34), non-H TL072IDR reels ship mixed legacy SFAB (10–30 V, 3 MHz, 18 nV/rtHz, negative-rail phase reversal) and modern RFB silicon (4.5–40 V, 42 V abs max, 5.25 MHz, 37 nV/rtHz at 1 kHz, ±10 mA ESD rail clamps, (VCC-) + 4 V min CM, p.10–16); specify TL072H for deterministic modern silicon. Upgrading to phase-inversion-free OPA2134UA cuts noise to 8 nV/rtHz (0.00008% THD+N, 8 MHz, 20 V/us, 5 pA Ib, p.7), but imposes two hard walls: (1) 4 mA/ch Iq (8–10 mA dual) dissipates 240–300 mW idle at ±15 V, heating the 160 °C/W SOIC-8 die 38–48 °C above ambient before load (p.6,8); (2) 36 V (±18 V) is BOTH recommended and abs max (zero surge margin vs 42 V on TL072IDR, p.5), with non-RRIO inputs ((V-) + 2.5 V to (V+) - 3.5 V, p.7) and MSL-3 168-hour floor life (p.23)."
+      ],
+      "callout": {
+        "type": "WARNING",
+        "title": "OPA2134UA 240–300 mW Idle Heating & Mixed-Die TL072IDR Reels",
+        "text": "Replacing TL072IDR (1.4 mA/ch, 42 V abs max) with OPA2134UA (4 mA/ch, 36 V abs max) adds 38–48 °C idle rise at ±15 V and removes voltage margin above ±18 V. Audit thermal budget and MSL-3 handling before swapping."
+      },
+      "table": {
+        "headers": [
+          "SOIC-8 OPN",
+          "Vs Rec/Abs",
+          "RRIO / Ib",
+          "GBW / SR / Noise",
+          "Iq/ch / RthetaJA",
+          "Primary Caveat"
+        ],
+        "rows": [
+          [
+            "TLV9002IDR",
+            "1.8–5.5/7V",
+            "RRIO / 5pA",
+            "1MHz / 2V/us / 30nV",
+            "60uA / 207.9°C/W",
+            "5.5V max; CMRR @ V+-1.4V"
+          ],
+          [
+            "MC33202DR2G",
+            "1.8–12/13V",
+            "RRIO / 80nA",
+            "2.2MHz / 1V/us / 20nV",
+            "900uA / 190°C/W",
+            "Ib flips VEE+0.8V; clamps"
+          ],
+          [
+            "TL072IDR",
+            "4.5–40/42V",
+            "No / 65pA",
+            "5.25MHz / 20V/us / 37nV",
+            "1.4mA / 147.8°C/W",
+            "Mixed SFAB/RFB; V-+4V CM"
+          ],
+          [
+            "OPA2134UA",
+            "5–36/36V",
+            "No / 5pA",
+            "8MHz / 20V/us / 8nV",
+            "4.0mA / 160°C/W",
+            "240–300mW idle; 36V abs"
+          ]
+        ]
+      }
+    },
+    {
+      "heading": "3. SOT-23-5 Single Op-Amp Verification: U-Suffix Pinout Swaps & 30x Speed Cliffs",
+      "body": [
+        "Single-channel SOT-23-5 (TI DBV) op-amps add a pinout hazard absent from dual SOIC-8 layouts. Vision checks confirm TLV9001IDBVR (SBOS833R, p.7 Fig. 6-1), TLV9061IDBVR (SBOS839N, p.5 Fig. 5-1), and OPA333AIDBVR (SBOS351E, p.3) all share TI's standard DBV Top-View mapping: 1=OUT, 2=V-, 3=IN+, 4=IN-, 5=V+.",
+        "However, ALL THREE datasheets also define a permuted 5-pin layout swapping Pins 1, 3, and 4 to 1=IN+, 2=V-, 3=IN-, 4=OUT, 5=V+. On TLV9061 (p.5 Fig. 5-2) and OPA333 (p.3), that swapped mapping applies to SC70-5 (DCK: TLV9061IDCKR, OPA333AIDCKR). Worse, TLV9001 ships BOTH pinouts inside the EXACT SAME SOT-23-5 DBV package via one letter 'U'—TLV9001UIDBVR (p.7 Fig. 6-2, LMV321/MCP6001 style)! Populating TLV9001UIDBVR onto a TLV9001IDBVR footprint shorts OUT directly to IN+.",
+        "Even across matching DBV pins, these 1.8–5.5 V RRIO siblings span 30x bandwidth, 32x Iq, and 10x drive extremes. OPA333AIDBVR is a zero-drift chopper specialist—10 uV max Vos (2 uV typ, 0.05 uV/°C), 17 uA Iq, 130 dB crossover-free CMRR (p.7)—yet caps at 0.35 MHz GBWP, 0.16 V/us slew, ±5 mA short-circuit drive (2 kOhm Ro), ±1 mA signal input abs max (p.5), and injects ±70 pA typ (±200 pA max) pulsed chopper bias requiring balanced < 10 kOhm source impedances. TLV9001IDBVR (1 MHz, 2 V/us, 60 uA Iq, 5 pA Ib, ±40 mA Isc, 7 V abs max) handles general 500 pF ADC buffering. TLV9061IDBVR leaps to 10 MHz GBWP, 6.5 V/us slew, 0.5 pA Ib, 16 nV/rtHz at 1 kHz (10 nV/rtHz at 10 kHz), and ±50 mA Isc (p.13–14)—costing 538 uA Iq (9x TLV9001, 31.6x OPA333), a tighter 6.0 V abs max (p.10), plus mandatory 0.1 uF bypass and R_iso above 100 pF loads (p.2)."
+      ],
+      "callout": {
+        "type": "CRITICAL",
+        "title": "Single-Letter 'U' Suffix Scrambles SOT-23-5 Pins (TLV9001IDBVR vs TLV9001UIDBVR)",
+        "text": "TLV9001IDBVR (1=OUT, 3=IN+, 4=IN-) matches TLV9061IDBVR and OPA333AIDBVR, whereas TLV9001UIDBVR (same DBV body!) and SC70-5 DCK variants swap Pins 1/3/4 to 1=IN+, 3=IN-, 4=OUT. Always lock complete OPNs in BOMs."
+      },
+      "table": {
+        "headers": [
+          "DBV OPN",
+          "Vs Abs / RthetaJA",
+          "GBW / SR",
+          "Vos / Ib Typ",
+          "Iq / Isc",
+          "Pinout & Analog Trap"
+        ],
+        "rows": [
+          [
+            "OPA333AIDBVR",
+            "7V / 220.8°C/W",
+            "0.35MHz / 0.16V/us",
+            "10uV / ±70pA",
+            "17uA / ±5mA",
+            "DCK swaps 1/3/4; chopper, 5mA"
+          ],
+          [
+            "TLV9001IDBVR",
+            "7V / 232.9°C/W",
+            "1.0MHz / 2.0V/us",
+            "1.6mV / 5pA",
+            "60uA / ±40mA",
+            "TLV9001UIDBVR (DBV) swaps 1/3/4"
+          ],
+          [
+            "TLV9061IDBVR",
+            "6V / 221.7°C/W",
+            "10MHz / 6.5V/us",
+            "1.6mV / 0.5pA",
+            "538uA / ±50mA",
+            "DCK swaps 1/3/4; 6V abs, >100pF"
+          ]
+        ]
+      }
+    },
+    {
+      "heading": "4. Five-Step Pre-Swap Bench & ECO Audit Checklist",
+      "body": [
+        "Verify these five gates against official PDFs before signing off any SOIC-8 or SOT-23-5 analog substitution:",
+        "1. Lock Device Kind, Output Stage & Suffix: Never mix push-pull op-amps (LM358DR/LMV358IDR) with open-collector comparators (LM393DR), and separate DBV standard from DBV 'U' and SC70-5 DCK pinouts.",
+        "2. Check Supply Abs Max & CM Headroom: Isolate 5.5 V CMOS parts (LMV358IDR 5.5 V abs, TLV9061 6.0 V, TLV9001/9002/OPA333 7.0 V) from 12 V (MC33202DR2G) and 30–40 V rails (LM358DR, LM393DR, OPA2134UA 36 V zero-margin, TL072IDR 42 V).",
+        "3. Audit Input Bias & Source Impedance: Swapping 0.5–65 pA CMOS/JFET inputs for 15–80 nA BJT parts (MC33202 flips polarity at VEE + 0.8 V) or 70 pA pulsed chopper inputs (OPA333) across >100 kOhm dividers causes mV DC errors.",
+        "4. Check Thermal Rise & Capacitive Stability: Verify idle + load dissipation against RthetaJA (OPA2134UA 240–300 mW at ±15 V; LMV358/TLV9002 207.9 °C/W; MC33202 658 mW max), and add 22–100 Ohm R_iso when jumping from 1 MHz to 10 MHz (TLV9061IDBVR) into >100 pF loads.",
+        "5. Pre-Check Slew & Step Response: Run Pin2Pin Global's Op-Amp GBWP & Slew-Rate Checker, then verify a 100 mVpp bench step (<15% overshoot ensures >50° phase margin)."
+      ],
+      "callout": {
+        "type": "TIP",
+        "title": "Protect Comparator Inputs & Match Pull-Up Rails",
+        "text": "Tie LM393DR pull-up resistors to downstream MCU I/O voltage (not high VCC) and add 1–10 kOhm input series resistors to keep negative transients safely above -0.3 V."
+      }
+    }
+  ]
+}
