@@ -1,0 +1,208 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "NCP500SN33T1G",
+  "slug": "ncp500sn33t1g",
+  "family": "NCP500",
+  "manufacturer": "onsemi",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 85,
+    "grade_label": "Industrial (-40°C to +85°C TA, TJ(max) = +125°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.onsemi.com/pdf/datasheet/ncp500-d.pdf",
+    "product_page_url": "https://www.onsemi.com/products/power-management/linear-regulators-ldo/ncp500",
+    "source_domain": "www.onsemi.com",
+    "revision": "Rev. 23 (February 2026)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 20
+  },
+  "package": {
+    "code": "TSOT-23-5",
+    "mfg_package_code": "CASE 483 (TSOP-5 / SN)",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "Standard 5-lead TSOP-5 / TSOT-23-5 (CASE 483, SN suffix) package has no exposed thermal pad."
+    },
+    "theta_ja_c_per_w": {
+      "value": 250,
+      "page": 2,
+      "condition": "TSOP-5 (CASE 483) junction-to-ambient thermal resistance (Maximum Ratings table, p.2)"
+    },
+    "theta_jc_c_per_w": null,
+    "tj_max_c": {
+      "value": 125,
+      "page": 2,
+      "condition": "Maximum operating junction temperature +125°C (internal thermal shutdown typically 160°C, Note 2, p.2)"
+    },
+    "pd_max_mw": {
+      "value": 400,
+      "page": 13,
+      "condition": "Maximum package power dissipation at TA = 25°C with TJ(max) = 125°C and RθJA = 250°C/W (p.13)"
+    },
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "Vin",
+        "role": "VIN",
+        "description": "Positive power supply input voltage (up to 6.0 V max; 3.8 V to 6.0 V line-regulation test range for 3.3 V variant)."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Power supply ground."
+      },
+      {
+        "pin": 3,
+        "name": "Enable",
+        "role": "EN",
+        "description": "Active-high standby control (>= 0.9 V ON, <= 0.15 V OFF); can be driven by 1.0 V logic; connect to Vin if unused."
+      },
+      {
+        "pin": 4,
+        "name": "N/C",
+        "role": "NC",
+        "description": "No internal connection (low-noise 50 uVRMS performance achieved without an external bypass capacitor)."
+      },
+      {
+        "pin": 5,
+        "name": "Vout",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output voltage (requires >= 1.0 uF ceramic or tantalum output capacitor)."
+      }
+    ],
+    "pinout_source_page": 1,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 6.0,
+      "page": 2,
+      "condition": "Maximum Ratings Input Voltage Vin = 0 to 6.0 V (p.2)"
+    },
+    "vin_min_v": {
+      "value": 3.8,
+      "page": 6,
+      "condition": "NCP500-3.3 line regulation minimum test input voltage (3.8 V to 6.0 V; series minimum starts at 1.8 V for lower-Vout options, p.1 & p.6)"
+    },
+    "vin_max_v": {
+      "value": 6.0,
+      "page": 6,
+      "condition": "NCP500-3.3 maximum operating input voltage (also 6.0 V Maximum Rating, p.2 & p.6)"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 6,
+      "condition": "Fixed 3.3 V output variant (NCP500SN33T1G, marking LCX, Active on p.16)"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 2.5,
+      "page": 6,
+      "condition": "3.218 V to 3.383 V (±2.5%) across TA = -40°C to +85°C and Iout = 1.0 mA to 150 mA (p.1 & p.6)"
+    },
+    "iout_max_ma": {
+      "value": 150,
+      "page": 6,
+      "condition": "Rated continuous output current (short-circuit current limit 200 mA min / 540 mA typ / 700 mA max, p.6)"
+    },
+    "iq_typ_ua": {
+      "value": 195,
+      "page": 6,
+      "condition": "NCP500-3.3 quiescent current at Enable = 0.9 V, Iout = 1.0 mA to 150 mA, TA = 25°C (300 uA max over TA = -40°C to +85°C, p.6)"
+    },
+    "ishdn_typ_ua": {
+      "value": 0.01,
+      "page": 6,
+      "condition": "Enable Input = 0 V, TA = 25°C (1.0 uA max over TA = -40°C to +85°C, p.6)"
+    },
+    "dropout_typ_mv": {
+      "value": 150,
+      "page": 6,
+      "condition": "NCP500-3.3 at Iout = 150 mA, measured at Vout - 2.0%, TA = 25°C (230 mV max over temp; 80 mV typ / 110 mV max at 75 mA, p.6)"
+    },
+    "psrr_db": {
+      "value": 62,
+      "page": 6,
+      "condition": "Ripple Rejection at f = 1.0 kHz, Vin = Vout(nom) + 1.0 V + 0.5 Vpp, Io = 60 mA, Cout = 1.0 uF (p.6)"
+    },
+    "output_noise_uvrms": {
+      "value": 50,
+      "page": 1,
+      "condition": "Typical RMS output noise with no external bypass capacitor, BW = 10 Hz to 100 kHz (p.1 & p.12)"
+    },
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 1.0,
+      "page": 12,
+      "condition": "Minimum 1.0 uF ceramic or tantalum output capacitor; stability plot verified 1 uF to 10 uF (p.1, p.12, Fig. 29 p.14)"
+    },
+    "esr_min_ohm": {
+      "value": 0,
+      "page": 12,
+      "condition": "No minimum ESR required ('does not require a minimum Equivalent Series Resistance', p.12; Fig. 29 p.14 stable down to <= 0.01 ohm)"
+    },
+    "esr_max_ohm": {
+      "value": 1.0,
+      "page": 14,
+      "condition": "Figure 29 Stability curve (Cout = 1 uF to 10 uF, IO = 0 to 150 mA): upper stable ESR ceiling is ~1.0 ohm at 50-150 mA (p.14)"
+    },
+    "en_active_high": true,
+    "reverse_current_protection": false
+  },
+  "design_gotchas": [
+    {
+      "title": "Pin 4 is N/C (Not BYPASS) — Fast 20 us Turn-On Without External Bypass Cap",
+      "severity": "INFO",
+      "detail": "NCP500 achieves 50 uVRMS low noise internally with Pin 4 left N/C (p.1-2, p.12). Installing it onto a legacy SOT-23-5 footprint that has a 10 nF bypass cap on Pin 4 is electrically harmless (since Pin 4 is unconnected), but verify startup timing since NCP500 turns on in 20 us typ vs. milliseconds for bypass-cap LDOs.",
+      "page": 12
+    },
+    {
+      "title": "Zero Headroom Between Operating Max and Absolute Max VIN (Both 6.0 V)",
+      "severity": "CRITICAL",
+      "detail": "Maximum Ratings (p.2) lists Input Voltage = 0 to 6.0 V—identical to the 6.0 V line-regulation operating upper limit (p.6). Supply transients exceeding 6.0 V on 5 V USB or wall-adapter rails risk device damage; add TVS clamping or choose a higher-VIN regulator if surges exceed 6.0 V.",
+      "page": 2
+    },
+    {
+      "title": "Enable Slew-Rate Requirement (> 10 mV/us) & High TSOP-5 RθJA (250°C/W)",
+      "severity": "WARNING",
+      "detail": "Applications Information (p.12) specifies that Enable turn-on/turn-off transients should exceed 10 mV/us for reliable switching. Additionally, TSOP-5 RθJA = 250°C/W caps total dissipation at 400 mW at TA = 25°C (p.13), leaving limited thermal margin at 5.5 V->3.3 V, 150 mA (330 mW) above 40°C ambient.",
+      "page": 12
+    },
+    {
+      "title": "DFN6 & Non-Standard Voltages Discontinued in Rev. 23 — Only Select TSOP-5 OPNs Active",
+      "severity": "INFO",
+      "detail": "Per Ordering Information (p.16, Rev. 23 Feb 2026), NCP500SN33T1G (TSOP-5, marking LCX) and automotive NCV500SN33T1G remain Active, whereas all DFN6 (SQL) variants and several voltage options (e.g., 2.8 V, 5.0 V commercial) are Discontinued.",
+      "page": 16
+    }
+  ],
+  "typical_use_cases": [
+    "Low-noise RF stages, VCOs, and portable instrumentation needing 50 uVRMS noise without a bypass cap",
+    "Fast-waking duty-cycled sensor rails leveraging 20 us turn-on time and 10 nA typical shutdown current",
+    "1.0 V–1.8 V MCU GPIO-controlled power domains (EN logic-high threshold >= 0.9 V)",
+    "Candidate drop-in for standard 5-pin SOT-23/TSOT-23 LDO footprints with Pin 4 N/C or unused BYPASS"
+  ],
+  "engineering_summary": "The onsemi NCP500SN33T1G is an Active 150 mA low-noise CMOS LDO in TSOT-23-5 (CASE 483 / TSOP-5) featuring 150 mV typical dropout at 150 mA, 20 us fast enable turn-on, 50 uVRMS noise without an external bypass capacitor (Pin 4 = N/C), and 0.9 V-compatible enable logic. It is stable with 1.0 uF ceramic capacitors (0 to 1.0 ohm ESR) and serves as a candidate drop-in for Pin-4-NC SOT-23-5/TSOT-23-5 footprints; engineers must verify the strict 6.0 V abs-max VIN ceiling, 195 uA active IQ, and 250°C/W thermal budget before production.",
+  "audit": {
+    "confidence_score": 0.98,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [1, 2, 6, 14, 16],
+    "audit_notes": [
+      "300 DPI PNG Vision check on p.1-2 confirmed TSOP-5 (CASE 483) Top View pinout (1=Vin, 2=GND, 3=Enable, 4=N/C, 5=Vout), Vin abs max 6.0 V, RθJA=250°C/W, and TJ(max)=125°C.",
+      "300 DPI PNG Vision check on p.6 confirmed -3.3 V Electrical Characteristics (3.218-3.383 V, 150 mV typ / 230 mV max dropout @150 mA, 195 uA typ IQ, 0.01 uA typ shutdown, 62 dB RR).",
+      "300 DPI PNG Vision check on p.14 (Fig. 29) confirmed ceramic stability down to <=0.01 ohm up to ~1.0 ohm max ESR; p.16 confirmed NCP500SN33T1G Active (marking LCX) in Rev. 23 (Feb 2026)."
+    ]
+  }
+}

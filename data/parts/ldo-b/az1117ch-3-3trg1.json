@@ -1,0 +1,192 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "AZ1117CH-3.3TRG1",
+  "slug": "az1117ch-3-3trg1",
+  "family": "AZ1117C",
+  "manufacturer": "Diodes Incorporated",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -20,
+    "ta_max_c": 125,
+    "grade_label": "Extended Commercial (-20°C to +125°C TJ — NOT -40°C Industrial)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.diodes.com/assets/Datasheets/AZ1117C.pdf",
+    "product_page_url": "https://www.diodes.com/part/view/AZ1117C",
+    "source_domain": "www.diodes.com",
+    "revision": "DS36676 Rev. 5 - 2 (September 2022)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 24
+  },
+  "package": {
+    "code": "SOT-223-3",
+    "mfg_package_code": "SOT223 (H)",
+    "pin_count": 3,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": true,
+      "net": "VOUT",
+      "note": "SOT223 (H suffix) thermal tab is internally connected to OUTPUT (Pin 2); contrast with H2 package where tab is ADJ/GND (p.2)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 125,
+      "page": 4,
+      "condition": "SOT223 without heatsink (p.4); drops to 100°C/W with 100 mm² 2 oz copper heatsink (Note 6, p.4)"
+    },
+    "theta_jc_c_per_w": {
+      "value": 15,
+      "page": 4,
+      "condition": "SOT223 thermal resistance junction-to-case = 15°C/W (p.4 & p.7)"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 4,
+      "condition": "Recommended operating junction temperature -20°C to +125°C (absolute maximum TJ = 150°C, p.4)"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "ADJ/GND",
+        "role": "GND",
+        "description": "Ground pin on fixed 3.3 V AZ1117CH-3.3 option (SOT223/H package, p.2)."
+      },
+      {
+        "pin": 2,
+        "name": "OUTPUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output, internally connected to the SOT223/H thermal tab; compatible with >= 10 uF low-ESR ceramic COUT."
+      },
+      {
+        "pin": 3,
+        "name": "INPUT",
+        "role": "VIN",
+        "description": "Unregulated input voltage (4.8 V to 15 V recommended for 3.3 V version; 18 V absolute maximum)."
+      }
+    ],
+    "pinout_source_page": 2,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 18,
+      "page": 4,
+      "condition": "Absolute Maximum Ratings Input Voltage = 18 V (p.4)"
+    },
+    "vin_min_v": {
+      "value": 4.8,
+      "page": 7,
+      "condition": "AZ1117C-3.3 minimum test input voltage (1.5 V <= VIN - VOUT <= 10 V => VIN >= 4.8 V, p.7)"
+    },
+    "vin_max_v": {
+      "value": 15,
+      "page": 4,
+      "condition": "Recommended Operating Conditions maximum input voltage = 15 V (p.4)"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 7,
+      "condition": "Fixed 3.3 V variant (AZ1117CH-3.3TRG1 Active in Ordering Information, p.11)"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 1,
+      "page": 7,
+      "condition": "3.267 V to 3.333 V (±1%) at TJ = 25°C, IOUT = 10 mA, VIN = 5.3 V; widens to 3.235 V to 3.365 V (±2%) over -20°C to +125°C (p.7)"
+    },
+    "iout_max_ma": {
+      "value": 800,
+      "page": 7,
+      "condition": "Dropout voltage guaranteed at IOUT = 0.8 A (current limit 1.0 A min / 1.35 A typ, p.1 & p.7)"
+    },
+    "iq_typ_ua": {
+      "value": 4000,
+      "page": 7,
+      "condition": "Quiescent current 4 mA typ (6 mA max) at IOUT = 0 mA, VIN = 5.3 V (p.7)"
+    },
+    "ishdn_typ_ua": null,
+    "dropout_typ_mv": {
+      "value": 1200,
+      "page": 7,
+      "condition": "SOT223 package at IOUT = 0.8 A, ΔVOUT = 1% (1.2 V typ, 1.3 V max over -20°C to +125°C, p.7)"
+    },
+    "psrr_db": {
+      "value": 70,
+      "page": 7,
+      "condition": "f = 120 Hz, COUT = 22 uF, VIN - VOUT = 3 V, IOUT = 300 mA (p.7)"
+    },
+    "output_noise_uvrms": {
+      "value": 99,
+      "page": 7,
+      "condition": "0.003% of VOUT = 99 uVRMS (10 Hz to 10 kHz, TA = 25°C, p.7)"
+    },
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 10,
+      "page": 3,
+      "condition": "Note 4 (p.3): Compatible with low-ESR ceramic capacitor >= 10 uF (ESR < 20 ohm)"
+    },
+    "esr_min_ohm": {
+      "value": 0,
+      "page": 3,
+      "condition": "Note 4 (p.3): Stable with low-ESR ceramic capacitors down to 0 ohm (no lower ESR floor)"
+    },
+    "esr_max_ohm": {
+      "value": 20,
+      "page": 3,
+      "condition": "Note 4 (p.3): Output capacitor ESR must be less than 20 ohm across operating conditions"
+    },
+    "en_active_high": null,
+    "reverse_current_protection": null
+  },
+  "design_gotchas": [
+    {
+      "title": "Operating Temperature Stops at -20°C — NOT Rated for -40°C Industrial Grade",
+      "severity": "CRITICAL",
+      "detail": "Unlike LM1117IMPX (-40°C to +125°C) or TLV1117I (-40°C to +125°C), AZ1117CH-3.3TRG1 is specified only from -20°C to +125°C TJ (p.1, p.4, p.7). Do not substitute it into outdoor/industrial -40°C designs without qualification.",
+      "page": 4
+    },
+    {
+      "title": "H vs. H2 Suffix SOT-223 Pinout Reversal Trap on Page 2",
+      "severity": "CRITICAL",
+      "detail": "Page 2 defines two incompatible SOT-223 pinouts in the same datasheet: SOT223/H (AZ1117CH) is standard 1117 (1=ADJ/GND, 2/Tab=OUTPUT, 3=INPUT), whereas SOT223/H2 (AZ1117CH2) swaps pins to 1=INPUT, 2/Tab=ADJ/GND, 3=OUTPUT! Always verify exact 'CH' vs 'CH2' ordering code.",
+      "page": 2
+    },
+    {
+      "title": "Ceramic-Cap Stable (MLCC Friendly) — Key Advantage Over AMS1117 & LM1117",
+      "severity": "INFO",
+      "detail": "Unlike legacy AMS1117 and TI LM1117 which oscillate with MLCCs, AZ1117C is internally compensated for low-ESR ceramic capacitors >= 10 uF with ESR < 20 ohm (p.1, Note 4 p.3), eliminating tantalum BOM cost on standard 1117 footprints.",
+      "page": 3
+    },
+    {
+      "title": "Higher SOT-223 Thermal Resistance (125°C/W Bare / 100°C/W with 100 mm² Copper)",
+      "severity": "WARNING",
+      "detail": "Datasheet thermal ratings list θJA = 125°C/W without heatsink and 100°C/W with 100 mm² of 2 oz copper (p.4 Note 6), notably higher than JEDEC 2s2p values cited by TI LM1117. Provide substantial VOUT tab copper and derate current when VIN > 5.5 V.",
+      "page": 4
+    }
+  ],
+  "typical_use_cases": [
+    "MLCC-only 5 V-to-3.3 V boards replacing tantalum-dependent AMS1117/LM1117 regulators (0 to 20 ohm ESR)",
+    "Consumer, office, and indoor embedded 3.3 V rails operating above -20°C up to 800 mA",
+    "Candidate drop-in upgrade on standard 1117 SOT-223 footprints to eliminate tantalum capacitors",
+    "Cost-optimized 1 A-limit / 800 mA-rated linear post-regulation with 18 V abs-max input margin"
+  ],
+  "engineering_summary": "The Diodes Incorporated AZ1117CH-3.3TRG1 is a ceramic-capacitor-stable 800 mA (1.0 A min current limit) SOT-223-3 LDO using the classic 1117 pinout (1=GND, 2/Tab=VOUT, 3=VIN) with 18 V abs-max VIN and 0–20 ohm ESR stability (>= 10 uF MLCC). It is a premier candidate drop-in for AMS1117-3.3 and LM1117 boards seeking to remove tantalum capacitors, provided engineers verify its -20°C minimum junction temperature limit (not -40°C), exact CH vs CH2 suffix, and 100–125°C/W thermal budget before production.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [2, 4],
+    "audit_notes": [
+      "300 DPI PNG Vision check on p.2 verified SOT223/H pinout (1=ADJ/GND, 2/Tab=OUTPUT, 3=INPUT) and caught the incompatible SOT223/H2 pinout variant.",
+      "300 DPI PNG Vision check on p.4 verified VIN abs max=18 V, Rec Op VIN max=15 V, TJ=-20 to +125°C (not -40°C), θJA=125°C/W bare / 100°C/W w/ 100 mm² 2 oz copper, θJC=15°C/W.",
+      "Verified ceramic stability (>= 10 uF, ESR < 20 ohm) on p.1 & p.3 Note 4, and AZ1117C-3.3 EC limits on p.7 (1.2 V typ / 1.3 V max dropout @0.8 A, 4 mA IQ, ±2% over temp)."
+    ]
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TLV1117-33IDCYR",
+  "slug": "tlv1117-33idcyr",
+  "family": "TLV1117",
+  "manufacturer": "Texas Instruments",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Industrial (-40°C to +125°C TJ, TLV1117I grade)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tlv1117.pdf",
+    "product_page_url": "https://www.ti.com/product/TLV1117",
+    "source_domain": "www.ti.com",
+    "revision": "SLVS561O (June 2025)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 56
+  },
+  "package": {
+    "code": "SOT-223-3",
+    "mfg_package_code": "DCY",
+    "pin_count": 3,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": true,
+      "net": "VOUT",
+      "note": "SOT-223 thermal tab (Pin 4 in TI DCY notation) is internally connected to OUTPUT (Pin 2 / VOUT); do NOT tie tab to GND (p.3)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 95.4,
+      "page": 6,
+      "condition": "New chip fixed-output DCY (SOT-223) JEDEC high-K PCB (p.1 & p.6); legacy chip DCY is 104.3°C/W (p.6)"
+    },
+    "theta_jc_c_per_w": {
+      "value": 55.6,
+      "page": 6,
+      "condition": "RθJC(top) for new chip fixed-output DCY package (legacy chip RθJC(top) is 61.1°C/W, p.6)"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 5,
+      "condition": "Recommended operating junction temperature -40°C to +125°C for I-grade (absolute maximum TJ = 150°C, p.4-5)"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "ADJ/GND",
+        "role": "GND",
+        "description": "Ground reference pin on fixed 3.3 V TLV1117-33IDCYR (ADJ on adjustable version, p.3)."
+      },
+      {
+        "pin": 2,
+        "name": "OUTPUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output, internally connected to the SOT-223 thermal tab (Pin 4); new chip is ceramic-stable, legacy requires 10 uF tantalum."
+      },
+      {
+        "pin": 3,
+        "name": "INPUT",
+        "role": "VIN",
+        "description": "Unregulated input voltage (4.7 V to 15 V recommended for 3.3 V option; 16 V absolute maximum, p.4-5)."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 16,
+      "page": 4,
+      "condition": "Absolute Maximum Ratings VIN = 16 V (lower than LM1117's 20 V rating, Sec 5.1, p.4)"
+    },
+    "vin_min_v": {
+      "value": 4.7,
+      "page": 5,
+      "condition": "TLV1117-33 Recommended Operating Conditions minimum VIN = 4.7 V (Sec 5.3, p.5)"
+    },
+    "vin_max_v": {
+      "value": 15,
+      "page": 5,
+      "condition": "Recommended Operating Conditions maximum VIN = 15 V (Sec 5.3, p.5)"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 7,
+      "condition": "Fixed 3.3 V industrial grade TLV1117I-33 (TLV1117-33IDCYR Active in Package Option Addendum, p.32)"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 1,
+      "page": 7,
+      "condition": "3.267 V to 3.333 V (±1%) at TJ = 25°C, VIN = 5 V, IOUT = 10 mA; widens to 3.168 V to 3.432 V (±4%) over -40°C to +125°C for TLV1117I-33 (p.7)"
+    },
+    "iout_max_ma": {
+      "value": 800,
+      "page": 5,
+      "condition": "Recommended maximum continuous output current = 800 mA (p.1 & p.5)"
+    },
+    "iq_typ_ua": {
+      "value": 65,
+      "page": 8,
+      "condition": "New chip (CSO: RFB/FFAB) fixed-output IQ = 65 uA typ (110 uA max) at IOUT = 0 mA, VIN = 15 V (CRITICAL: legacy chip CSO:SFB draws 5000 uA typ / 15000 uA max, p.8)"
+    },
+    "ishdn_typ_ua": null,
+    "dropout_typ_mv": {
+      "value": 800,
+      "page": 8,
+      "condition": "New chip fixed-output at IOUT = 800 mA (800 mV typ, 1200 mV max; CRITICAL: legacy chip is 1200 mV typ / 1400 mV max, p.8)"
+    },
+    "psrr_db": {
+      "value": 70,
+      "page": 8,
+      "condition": "New chip fixed-output at f = 120 Hz, VIN - VOUT = 3 V, VRIPPLE = 1 Vpp (legacy chip is 75 dB typ / 60 dB min, p.8)"
+    },
+    "output_noise_uvrms": {
+      "value": 60,
+      "page": 8,
+      "condition": "New chip fixed-output RMS output noise = 60 uVRMS (10 Hz to 100 kHz, VIN = 3.3 V, VOUT = 0.8 V, IOUT = 100 mA, p.8)"
+    },
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 1,
+      "page": 26,
+      "condition": "New chip fixed-output stable with >= 1.0 uF ceramic COUT (p.5 & p.26; CRITICAL: legacy chip requires 10 uF tantalum with 0.2-10 ohm ESR, p.1 & p.8)"
+    },
+    "esr_min_ohm": {
+      "value": 0.002,
+      "page": 5,
+      "condition": "New chip fixed-output minimum ESR = 2 mOhm (0.002 ohm, p.5; CRITICAL: legacy chip requires >= 0.2 ohm tantalum, p.1)"
+    },
+    "esr_max_ohm": {
+      "value": 0.5,
+      "page": 5,
+      "condition": "New chip fixed-output maximum ESR = 500 mOhm (0.5 ohm, p.5; legacy chip allows 0.2 to 10 ohm, p.1)"
+    },
+    "en_active_high": null,
+    "reverse_current_protection": false
+  },
+  "design_gotchas": [
+    {
+      "title": "CRITICAL Dual-Silicon Transition (New CMOS vs. Legacy Bipolar) Under Same OPN",
+      "severity": "CRITICAL",
+      "detail": "Per SLVS561O (p.1, p.5, p.8, p.29), TLV1117-33IDCYR can ship with either Legacy silicon (CSO: SFB — 5 mA IQ, 1.2 V dropout, requires 10 uF tantalum with 0.2–10 ohm ESR, 104.3°C/W RθJA) or New silicon (CSO: RFB/FFAB — 65 uA IQ, 0.8 V dropout, ceramic-cap stable 2–500 mOhm ESR, internal soft-start & 250 mA foldback short-circuit limit). Check reel CSO labels and design COUT/ESR safely if dual-fab inventory is possible!",
+      "page": 29
+    },
+    {
+      "title": "Mutually Narrow ESR Overlap Between Legacy (0.2–10 Ohm) and New Chip (0.002–0.5 Ohm)",
+      "severity": "CRITICAL",
+      "detail": "Notice that Legacy silicon requires ESR >= 0.2 ohm while New fixed-output silicon caps ESR at <= 0.5 ohm (p.1, p.5)! If a PCB must accept mixed legacy and new TLV1117-33IDCYR reels without oscillation, COUT ESR must land strictly inside the narrow 0.2–0.5 ohm overlap window (e.g., 10 uF low-ESR polymer-tantalum).",
+      "page": 5
+    },
+    {
+      "title": "Lower 16 V Absolute Maximum VIN vs. 20 V on LM1117 / NCP1117",
+      "severity": "WARNING",
+      "detail": "TLV1117 Absolute Maximum VIN is strictly 16 V (p.4), leaving only 1 V margin above the 15 V operating max—significantly tighter than TI LM1117 and onsemi NCP1117 (both 20 V abs max). Protect 12 V rails against inductive overshoot or surges > 16 V.",
+      "page": 4
+    },
+    {
+      "title": "No Reverse-Current Protection & Standard 1117 VOUT Thermal Tab",
+      "severity": "WARNING",
+      "detail": "Section 7.1.3 (p.23) requires an external Schottky diode from VOUT to VIN if VOUT can exceed VIN + 0.3 V. As with all standard 1117 SOT-223 parts, Pin 4 (tab) is tied to VOUT (Pin 2, p.3), never GND.",
+      "page": 23
+    }
+  ],
+  "typical_use_cases": [
+    "Modernized low-IQ (65 uA on new chip) & ceramic-stable candidate drop-in upgrade on legacy 1117 SOT-223 boards",
+    "Industrial (-40°C to +125°C) 5 V-to-3.3 V up-to-800 mA rails benefiting from 0.8 V dropout on new silicon",
+    "Space-saving 1117 designs migrating from bulky tantalum to 1–10 uF MLCCs (once verified on RFB/FFAB new-chip reels)",
+    "General-purpose 5 V or regulated 12 V bus post-regulation with <= 15 V steady-state input"
+  ],
+  "engineering_summary": "The TI TLV1117-33IDCYR is an industrial (-40°C to +125°C) 800 mA SOT-223-3 (DCY) regulator with classic 1117 pinout (1=GND, 2/Tab=VOUT, 3=VIN) undergoing TI's major silicon modernization (SLVS561O): new silicon (CSO: RFB/FFAB) slashes IQ to 65 uA, drops VDO to 800 mV, and supports ceramic caps (2–500 mOhm ESR), while legacy silicon (CSO: SFB) remains a 5 mA bipolar part requiring 0.2–10 ohm tantalum. Engineers using it as a candidate drop-in must verify reel CSO fab codes, ESR overlap (0.2–0.5 ohm if mixed), and the tight 16 V abs-max VIN ceiling before production.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 5, 6],
+    "audit_notes": [
+      "300 DPI PNG Vision check on p.3 confirmed DCY SOT-223 Top View pinout (1=ADJ/GND, 2=OUTPUT, 3=INPUT) and Tab (Pin 4) tied to OUTPUT (VOUT).",
+      "300 DPI PNG Vision check on p.5-6 confirmed Recommended Operating Conditions (4.7-15 V, 800 mA, TJ=-40 to 125°C), new-chip fixed-output ESR window (0.002-0.5 ohm), and DCY RθJA (95.4°C/W new vs 104.3°C/W legacy).",
+      "Documented critical New Chip (65 uA IQ, 800 mV dropout, ceramic-stable) vs Legacy Chip (5 mA IQ, 1200 mV dropout, 0.2-10 ohm tantalum) dual-silicon transition from p.1, p.8, and p.29."
+    ]
+  }
+}

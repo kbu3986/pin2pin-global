@@ -1,0 +1,188 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "AP7361C-33E-13",
+  "slug": "ap7361c-33e-13",
+  "family": "AP7361C",
+  "manufacturer": "Diodes Incorporated",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 85,
+    "grade_label": "Industrial (-40°C to +85°C TA, TJ up to +150°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.diodes.com/assets/Datasheets/AP7361C.pdf",
+    "product_page_url": "https://www.diodes.com/part/view/AP7361C",
+    "source_domain": "www.diodes.com",
+    "revision": "DS37274 Rev. 5 - 2 (October 2020)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 22
+  },
+  "package": {
+    "code": "SOT-223-3",
+    "mfg_package_code": "SOT223 (E)",
+    "pin_count": 3,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": true,
+      "net": "GND",
+      "note": "SOT223 (E suffix) thermal tab is contiguous with Pin 2 (GND) — INCOMPATIBLE with standard 1117 pinout (1=GND, 2/Tab=VOUT, 3=VIN); use AP7361C-33ER-13 (SOT223R) for 1117 pinout (p.1, p.15)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 110,
+      "page": 6,
+      "condition": "SOT223 mounted on FR-4 PCB with minimum recommended pad layout (Note 9, p.6)"
+    },
+    "theta_jc_c_per_w": null,
+    "tj_max_c": {
+      "value": 150,
+      "page": 4,
+      "condition": "Operating junction temperature range -40°C to +150°C (thermal shutdown TSD = 150°C typ, p.4-5 & p.12)"
+    },
+    "pd_max_mw": {
+      "value": 1100,
+      "page": 4,
+      "condition": "Absolute Maximum Ratings Power Dissipation for SOT223 at TA = +25°C (internally limited by TJ = +150°C, p.4)"
+    },
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "IN",
+        "role": "VIN",
+        "description": "Voltage input pin (2.2 V to 6.0 V recommended operating; 6.5 V absolute maximum, p.1-2, p.4)."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Ground pin, contiguous with the SOT223 (E suffix) thermal tab (p.1-2, p.15)."
+      },
+      {
+        "pin": 3,
+        "name": "OUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output; stable with >= 2.2 uF ceramic output capacitor (0 to 10 ohm ESR, p.1-2, p.12)."
+      }
+    ],
+    "pinout_source_page": 1,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 6.5,
+      "page": 4,
+      "condition": "Absolute Maximum Ratings Input Voltage VIN = 6.5 V (OUT/ADJ/EN max = VIN + 0.3 V, p.4)"
+    },
+    "vin_min_v": {
+      "value": 2.2,
+      "page": 4,
+      "condition": "Recommended Operating Conditions minimum VIN (for 3.3 V regulation, VIN >= 3.3 V + VDROP, p.4)"
+    },
+    "vin_max_v": {
+      "value": 6.0,
+      "page": 4,
+      "condition": "Recommended Operating Conditions maximum VIN = 6.0 V (p.4)"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 13,
+      "condition": "Fixed 3.3 V variant (AP7361C-33E-13 in Ordering Information, SOT223 package, p.13)"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 1,
+      "page": 5,
+      "condition": "±1% at TA = +25°C, IOUT = 100 mA, VIN = VOUT + 1 V for 1.5 V <= VOUT <= 3.3 V (p.5)"
+    },
+    "iout_max_ma": {
+      "value": 1000,
+      "page": 4,
+      "condition": "Maximum continuous output current 1.0 A (current limit 1.1 A min / 1.5 A typ; short-circuit foldback 400 mA typ, p.4-5)"
+    },
+    "iq_typ_ua": {
+      "value": 60,
+      "page": 5,
+      "condition": "Quiescent current 60 uA typ (80 uA max) at IOUT = 0 A, TA = +25°C (100 uA max over temp, p.5)"
+    },
+    "ishdn_typ_ua": null,
+    "dropout_typ_mv": {
+      "value": 340,
+      "page": 5,
+      "condition": "EC Table (p.5) for 2.6 V <= VOUT <= 3.3 V at IOUT = 1.0 A (340 mV typ, 480 mV max; 90 mV typ / 140 mV max at 300 mA; Features p.1 cites 360 mV typ)"
+    },
+    "psrr_db": {
+      "value": 75,
+      "page": 5,
+      "condition": "f = 1 kHz, IOUT = 100 mA, VIN = VOUT + 1 V + 0.5 Vpp (55 dB typ at f = 10 kHz, p.5)"
+    },
+    "output_noise_uvrms": null,
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 2.2,
+      "page": 1,
+      "condition": "Stable with >= 2.2 uF low-ESR ceramic output capacitor (4.7 uF used in EC tests, p.1, p.5, p.10)"
+    },
+    "esr_min_ohm": {
+      "value": 0,
+      "page": 12,
+      "condition": "ESR vs. Output Current stability graph (p.12): stable down to 0 ohm low-ESR MLCCs across 0–1000 mA"
+    },
+    "esr_max_ohm": {
+      "value": 10,
+      "page": 12,
+      "condition": "ESR vs. Output Current stability graph (p.12): stable up to 10 ohm ESR across 0–1000 mA"
+    },
+    "en_active_high": null,
+    "reverse_current_protection": false
+  },
+  "design_gotchas": [
+    {
+      "title": "CRITICAL E vs. ER Suffix Pinout Trap — AP7361C-33E-13 is INCOMPATIBLE with 1117 Pads",
+      "severity": "CRITICAL",
+      "detail": "300 DPI Vision inspection of p.1 and p.15 confirms AP7361C-33E-13 ('E' = SOT223) has Pin 1=IN, Pin 2/Tab=GND, Pin 3=OUT, which shorts VOUT to GND on standard 1117 footprints (1=GND, 2/Tab=VOUT, 3=VIN)! To drop onto a 1117 footprint, you MUST order the 'ER' (SOT223R) suffix (AP7361C-33ER-13), which maps 1=GND, 2/Tab=OUT, 3=IN.",
+      "page": 15
+    },
+    {
+      "title": "Strict 6.0 V Operating / 6.5 V Abs-Max VIN Limit — Never Connect to 12 V Rails",
+      "severity": "CRITICAL",
+      "detail": "Unlike 15 V–26 V bipolar SOT-223 regulators (AMS1117, LM1117, LM2937), AP7361C is a low-voltage CMOS LDO limited to 6.0 V recommended / 6.5 V absolute maximum VIN (p.4). Applying a 12 V supply immediately destroys the regulator.",
+      "page": 4
+    },
+    {
+      "title": "No Enable (EN) Shutdown Pin on SOT223 Package & 1.1 W Thermal Dissipation Ceiling",
+      "severity": "WARNING",
+      "detail": "Although the AP7361C datasheet lists 0.05 uA shutdown current on p.5, Section 'Enable' (p.11) clarifies that the EN pin is unavailable in the 3-pin SOT223 package (so ishdn_typ_ua is N/A). At 5.0 V->3.3 V and 1.0 A (1.7 W), SOT223 exceeds its 1.1 W rating (p.4) and 110°C/W bare-pad θJA (p.6) without heavy GND-plane heatsinking.",
+      "page": 11
+    },
+    {
+      "title": "Minor Datasheet Discrepancy on Dropout (340 mV EC Table vs. 360 mV Front Page) & No Noise Spec",
+      "severity": "INFO",
+      "detail": "Page 1 Features cites 360 mV typical dropout at 1 A, whereas the Electrical Characteristics table (p.5) specifies 340 mV typ / 480 mV max for 2.6–3.3 V outputs; design against the 480 mV max figure. Note also that DS37274 publishes no integrated output noise specification.",
+      "page": 5
+    }
+  ],
+  "typical_use_cases": [
+    "High-efficiency 5 V or 3.8 V to 3.3 V up-to-1 A CMOS rails with ultra-low 60 uA quiescent current",
+    "Pin-compatible low-VIN, low-IQ, MLCC-stable candidate drop-in on 78xx / LM2937 SOT-223 (1=IN, 2/Tab=GND, 3=OUT) footprints when VIN <= 6.0 V",
+    "Compact 1 A post-regulation after a 3.8 V–5.0 V buck converter requiring 75 dB PSRR and 2.2 uF MLCCs",
+    "Modern CMOS 3.3 V power rail with GND-referenced thermal tab for cleaner EMI shielding and ground heatsinking"
+  ],
+  "engineering_summary": "The Diodes Incorporated AP7361C-33E-13 is a modern 1.0 A CMOS LDO in SOT-223-3 (SOT223 / E suffix) delivering 60 uA quiescent current, 340 mV typ dropout at 1 A, 75 dB PSRR, and 0–10 ohm ceramic-cap stability (>= 2.2 uF). CRITICAL: the 'E' suffix has Pin 1=IN, Pin 2/Tab=GND, Pin 3=OUT (matching LM2937, NOT 1117—use 'ER' AP7361C-33ER-13 for 1117 footprints). It is an excellent low-dropout, low-IQ candidate drop-in for GND-tab SOT-223 pads once engineers verify VIN <= 6.0 V, no-EN-pin behavior, and 1.1 W thermal limits before production.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [1, 4, 6, 12, 15],
+    "audit_notes": [
+      "300 DPI PNG Vision check on p.1 and p.15 definitively confirmed SOT223 (E suffix) pinout (1=IN, 2/Tab=GND, 3=OUT) vs SOT223R (ER suffix) 1117 pinout (1=GND, 2/Tab=OUT, 3=IN).",
+      "300 DPI PNG Vision check on p.4 and p.6 confirmed VIN abs max=6.5 V, Rec Op 2.2-6.0 V / 1.0 A / TA=-40 to +85°C, PD=1100 mW, TJ=+150°C, and SOT223 θJA=110°C/W.",
+      "300 DPI PNG Vision check on p.12 confirmed 0 to 10 ohm ceramic ESR stability across 0-1000 mA; ishdn_typ_ua (no EN on SOT223, p.11) and output_noise_uvrms (not published) honestly left null."
+    ]
+  }
+}

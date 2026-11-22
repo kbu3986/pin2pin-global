@@ -1,0 +1,200 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TPS73633DBVR",
+  "slug": "tps73633dbvr",
+  "family": "TPS736",
+  "manufacturer": "Texas Instruments",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to +125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tps736.pdf",
+    "product_page_url": "https://www.ti.com/product/TPS736",
+    "source_domain": "www.ti.com",
+    "revision": "SBVS038X (May 2025)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 49
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "DBV",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "Standard 5-pin SOT-23 (DBV) package has no exposed thermal pad (RθJC(bot) N/A, p.4-5)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 185.2,
+      "page": 4,
+      "condition": "New silicon DBV (SOT-23-5) JEDEC high-K PCB; legacy silicon DBV is 221.9°C/W (p.5)"
+    },
+    "theta_jc_c_per_w": {
+      "value": 82.9,
+      "page": 4,
+      "condition": "RθJC(top) for new silicon DBV package (legacy silicon RθJC(top) is 119.8°C/W, p.5)"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 4,
+      "condition": "Recommended operating junction temperature max (absolute maximum TJ = 150°C, p.4)"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "IN",
+        "role": "VIN",
+        "description": "Unregulated input supply (1.7 V to 5.5 V recommended operating range)."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Ground reference pin."
+      },
+      {
+        "pin": 3,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high enable input (>= 1.7 V ON, <= 0.5 V OFF); pulling EN low before VIN collapse is required for reverse-current blocking."
+      },
+      {
+        "pin": 4,
+        "name": "NR",
+        "role": "BYPASS",
+        "description": "Noise-reduction capacitor pin on fixed-voltage TPS73633 (connect 0.01 uF ceramic to GND; pin is FB on adjustable TPS73601)."
+      },
+      {
+        "pin": 5,
+        "name": "OUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output; capacitor-free NMOS follower topology stable with 0 uF or any output capacitor."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 6,
+      "page": 4,
+      "condition": "Absolute Maximum Ratings IN pin voltage (-0.3 V to +6.0 V)"
+    },
+    "vin_min_v": {
+      "value": 1.7,
+      "page": 4,
+      "condition": "Recommended Operating Conditions minimum VIN (for 3.3 V regulation, VIN >= 3.3 V + VDO)"
+    },
+    "vin_max_v": {
+      "value": 5.5,
+      "page": 4,
+      "condition": "Recommended Operating Conditions maximum VIN"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 32,
+      "condition": "Fixed 3.3 V output version (TPS73633DBVR active in Package Option Addendum, p.32)"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 0.5,
+      "page": 6,
+      "condition": "Initial accuracy ±0.5% typ at TJ = 25°C; ±1.0% max over VIN, IOUT (10 mA to 400 mA), and -40°C <= TJ <= 125°C"
+    },
+    "iout_max_ma": {
+      "value": 400,
+      "page": 4,
+      "condition": "Recommended maximum continuous output current (subject to SOT-23-5 thermal limit)"
+    },
+    "iq_typ_ua": {
+      "value": 400,
+      "page": 6,
+      "condition": "Ground pin current IGND at IOUT = 10 mA (max 550 uA); rises to 800 uA typ (1000 uA max) at IOUT = 400 mA"
+    },
+    "ishdn_typ_ua": {
+      "value": 0.02,
+      "page": 6,
+      "condition": "Shutdown current at VEN <= 0.5 V, VIN = 5.5 V, TJ = 25°C (1.0 uA max over temp)"
+    },
+    "dropout_typ_mv": {
+      "value": 75,
+      "page": 6,
+      "condition": "IOUT = 400 mA, VIN = VOUT(nom) - 0.1 V (200 mV max over -40°C to +125°C)"
+    },
+    "psrr_db": {
+      "value": 58,
+      "page": 6,
+      "condition": "f = 100 Hz, IOUT = 400 mA, COUT = 10 uF, CNR = 0.01 uF (37 dB at 10 kHz)"
+    },
+    "output_noise_uvrms": {
+      "value": 28.05,
+      "page": 6,
+      "condition": "Formula 8.5 * VOUT = 28.05 uVRMS (10 Hz to 100 kHz, CNR = 0.01 uF, COUT = 10 uF, IOUT = 400 mA; p.6 & p.20)"
+    },
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 0,
+      "page": 1,
+      "condition": "Capacitor-free NMOS voltage-follower architecture stable with 0 uF or any ceramic/tantalum output capacitor (p.1, p.21)"
+    },
+    "esr_min_ohm": null,
+    "esr_max_ohm": null,
+    "en_active_high": true,
+    "reverse_current_protection": true
+  },
+  "design_gotchas": [
+    {
+      "title": "Mixed New vs. Legacy Silicon Shipments Change Thermal Resistance",
+      "severity": "WARNING",
+      "detail": "Non-M3 orderable TPS73633DBVR reels may ship either legacy or new silicon depending on CSO fab code (p.28). SOT-23-5 RθJA differs substantially between new silicon (185.2°C/W, p.4) and legacy silicon (221.9°C/W, p.5). Design thermal budgets against the worst-case 221.9°C/W value unless explicitly locking to an M3 suffix.",
+      "page": 5
+    },
+    {
+      "title": "Tying EN to VIN Disables Reverse-Current Blocking & Risks Startup Overshoot",
+      "severity": "CRITICAL",
+      "detail": "Inherent NMOS reverse-current blocking (0.1 uA typ) only operates when the pass FET is turned off via VEN <= 0.5 V before VIN collapses (p.6, p.18). Hard-wiring EN directly to VIN leaves the NMOS channel conducting during input collapse and can cause output overshoot on slow VIN ramps.",
+      "page": 18
+    },
+    {
+      "title": "SOT-23-5 Cannot Sustain Full 400 mA from a 5 V Input Rail",
+      "severity": "CRITICAL",
+      "detail": "At VIN = 5.0 V to VOUT = 3.3 V and IOUT = 400 mA, power dissipation is 0.68 W, producing 126°C–151°C junction rise in SOT-23-5 (DBV). Section 8.2.2 (p.20) explicitly advises against using the DBV package for 5 V-to-3.3 V at 400 mA; use SOT-223 (DCQ) or WSON (DRB) or derate load current.",
+      "page": 20
+    },
+    {
+      "title": "Ultra-Low COUT*ESR Product Can Ring & Foldback Latches Near 0 mA Below -0.2 V",
+      "severity": "WARNING",
+      "detail": "Although cap-free stable, paralleling multiple ultra-low-ESR MLCCs such that COUT * ESR_total < 50 nOhm*F can induce ringing on fast load transients (p.21). Additionally, forcing OUT below -0.2 V drives foldback current limit to 0 mA (p.18), requiring a Schottky clamp if negative bus contention is possible.",
+      "page": 21
+    }
+  ],
+  "typical_use_cases": [
+    "Ultra-low-dropout 3.6 V-to-3.3 V or 3.8 V-to-3.3 V post-regulation for RF and FPGA I/O rails",
+    "Space-constrained designs eliminating bulky output capacitors via cap-free NMOS stability",
+    "Low-noise 3.3 V analog sensor and PLL rails using Pin 4 NR bypass capacitor",
+    "Candidate drop-in upgrade over standard SOT-23-5 BYPASS-pin LDOs when low dropout is prioritized"
+  ],
+  "engineering_summary": "The TI TPS73633DBVR is a 400 mA capacitor-free NMOS LDO in SOT-23-5 (DBV) featuring 75 mV typical dropout at full load, ±1% accuracy over temperature, and 28 uVRMS low noise via its Pin 4 NR capacitor. Because its charge-pump NMOS follower requires no output capacitor for stability and offers reverse-current blocking when disabled, it is a strong candidate drop-in for SOT-23-5 BYPASS-pin footprints after verifying VIN <= 5.5 V, EN sequencing, and SOT-23-5 thermal dissipation limits before production.",
+  "audit": {
+    "confidence_score": 0.98,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 4],
+    "audit_notes": [
+      "300 DPI PNG Vision check on p.3 confirmed DBV SOT-23-5 Top View pinout (1=IN, 2=GND, 3=EN, 4=NR/FB, 5=OUT) and no exposed pad.",
+      "300 DPI PNG Vision check on p.4 confirmed Abs Max (VIN=6 V), Rec Op (1.7-5.5 V, 400 mA, TJ=-40 to 125°C), and new-silicon DBV RθJA=185.2°C/W.",
+      "Verified legacy vs new silicon thermal delta (221.9°C/W vs 185.2°C/W) and cap-free stability constraints on p.5, p.20-21."
+    ]
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "CAT6219-330TD-GT3",
+  "slug": "cat6219-330td-gt3",
+  "family": "CAT6219",
+  "manufacturer": "onsemi",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "EOL",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to +125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.onsemi.com/pdf/datasheet/cat6219-d.pdf",
+    "product_page_url": "https://www.onsemi.com/products/power-management/linear-regulators-ldo/cat6219",
+    "source_domain": "www.onsemi.com",
+    "revision": "Rev. 14 (September 2019)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 12
+  },
+  "package": {
+    "code": "TSOT-23-5",
+    "mfg_package_code": "CASE 419AE (TD)",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "5-lead TSOT-23 (CASE 419AE, TD suffix) has no exposed thermal pad; only the TDFN-6 package has a bottom thermal tab (PDF p.2-3)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 235,
+      "page": 3,
+      "condition": "SOT23-5 / TSOT-23-5 (TD) package thermal resistance junction-to-ambient (Table 3, PDF p.3)"
+    },
+    "theta_jc_c_per_w": null,
+    "tj_max_c": {
+      "value": 125,
+      "page": 3,
+      "condition": "Recommended operating junction temperature range -40°C to +125°C (absolute maximum TJ = 150°C, Table 2-3, PDF p.3)"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Supply voltage input (2.3 V to 5.5 V operating range; 6.5 V absolute maximum)."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Ground reference pin."
+      },
+      {
+        "pin": 3,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high enable input (>= 1.8 V ON, <= 0.4 V OFF) with internal 2.5 MOhm pull-down resistor."
+      },
+      {
+        "pin": 4,
+        "name": "BYP",
+        "role": "BYPASS",
+        "description": "Reference noise bypass capacitor pin (10 nF to GND) on fixed 3.3 V version (labeled BYP/ADJ on package diagram, PDF p.2-3)."
+      },
+      {
+        "pin": 5,
+        "name": "VOUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output with internal 250 ohm active discharge switch in shutdown; requires >= 2.2 uF COUT."
+      }
+    ],
+    "pinout_source_page": 2,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 6.5,
+      "page": 3,
+      "condition": "Table 2 Absolute Maximum Ratings VIN (-0.3 V to +6.5 V, PDF p.3)"
+    },
+    "vin_min_v": {
+      "value": 2.3,
+      "page": 3,
+      "condition": "Table 3 Recommended Operating Range minimum VIN (for 3.3 V output, VIN >= 3.3 V + VDROP, PDF p.3)"
+    },
+    "vin_max_v": {
+      "value": 5.5,
+      "page": 3,
+      "condition": "Table 3 Recommended Operating Range maximum VIN (PDF p.3)"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 12,
+      "condition": "Fixed 3.3 V version (CAT6219-330TD-GT3, Ordering Information Table, PDF p.12)"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 1.0,
+      "page": 4,
+      "condition": "Initial accuracy ±1.0% at 25°C for VOUT >= 2.0 V; ±2.0% over full -40°C to +125°C TJ range (Table 4, PDF p.4)"
+    },
+    "iout_max_ma": {
+      "value": 500,
+      "page": 4,
+      "condition": "Peak/rated 500 mA output current (200 mA typ short-circuit foldback limit; thermally limited in TSOT-23-5, PDF p.3-4)"
+    },
+    "iq_typ_ua": {
+      "value": 55,
+      "page": 4,
+      "condition": "Ground current at IOUT = 0 uA, TA = 25°C (75 uA max at 25°C, 90 uA max over TJ; 85 uA typ at IOUT = 500 mA, PDF p.4)"
+    },
+    "ishdn_typ_ua": null,
+    "dropout_typ_mv": {
+      "value": 300,
+      "page": 4,
+      "condition": "IOUT = 500 mA, TA = 25°C (400 mV max at 25°C, 500 mV max over TJ; Note 4: 2% output drop, PDF p.4)"
+    },
+    "psrr_db": {
+      "value": 64,
+      "page": 4,
+      "condition": "f = 1 kHz, CBYP = 10 nF, COUT = 2.2 uF (54 dB typ at f = 20 kHz, Table 4, PDF p.4)"
+    },
+    "output_noise_uvrms": {
+      "value": 45,
+      "page": 4,
+      "condition": "BW = 10 Hz to 100 kHz, CBYP = 10 nF (Note 5: specified for 1.8 V output version, Table 4, PDF p.4)"
+    },
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 2.2,
+      "page": 3,
+      "condition": "Table 3 Recommended Operating Range COUT = 2.2 uF min ceramic capacitor (PDF p.3)"
+    },
+    "esr_min_ohm": {
+      "value": 0.005,
+      "page": 4,
+      "condition": "Table 4 COUT ESR minimum = 5 mOhm (0.005 ohm) for stability (PDF p.4)"
+    },
+    "esr_max_ohm": {
+      "value": 0.5,
+      "page": 4,
+      "condition": "Table 4 COUT ESR maximum = 500 mOhm (0.5 ohm) for stability (PDF p.4)"
+    },
+    "en_active_high": true,
+    "reverse_current_protection": false
+  },
+  "design_gotchas": [
+    {
+      "title": "OBSOLETE / EOL Device — Mandatory Migration Target for Active BOMs",
+      "severity": "CRITICAL",
+      "detail": "300 DPI Vision inspection of PDF pages 2-4 reveals a full-page OBSOLETE watermark ('THIS DEVICE IS OBSOLETE'). Do not design CAT6219-330TD-GT3 into new projects; evaluate active Pin-4-BYPASS SOT-23-5 / TSOT-23-5 candidate replacements such as TPS73633DBVR (400 mA) or LP2985-33DBVR (150 mA) after verifying load and ESR limits.",
+      "page": 2
+    },
+    {
+      "title": "Continuous 500 mA Operation Overheats TSOT-23-5 (θJA = 235°C/W)",
+      "severity": "CRITICAL",
+      "detail": "Table 3 (PDF p.3) explicitly warns that continuous operation at 500 mA in SOT23-5/TSOT-23-5 may exceed maximum junction temperature and trip thermal shutdown (160°C). At 5.0 V to 3.3 V, 500 mA dissipates 0.85 W (> 199°C rise at 235°C/W); practical continuous current at 5 V->3.3 V is under ~200 mA at TA = 25°C.",
+      "page": 3
+    },
+    {
+      "title": "Internal 2.5 MOhm EN Pull-Down & 5 mOhm Minimum ESR Floor",
+      "severity": "WARNING",
+      "detail": "Unlike LDOs with internal EN pull-ups, leaving Pin 3 floating disables the CAT6219 via its 2.5 MOhm pull-down (PDF p.4). In addition, Table 4 specifies a 5 mOhm minimum ESR floor; ultra-low-ESR paralleled MLCCs can fall below 5 mOhm, and shutdown activates a 250 ohm output discharge switch.",
+      "page": 4
+    }
+  ],
+  "typical_use_cases": [
+    "Legacy 500 mA portable electronics and USB-powered rails requiring EOL cross-reference migration",
+    "Compact TSOT-23-5 3.3 V low-noise rails with Pin 4 bypass capacitor (10 nF)",
+    "Low-quiescent-current (55 uA) battery-powered systems needing active output discharge on disable",
+    "Reference baseline when migrating obsolete CAT6219 footprints to active SOT-23-5/TSOT-23-5 candidate drop-ins"
+  ],
+  "engineering_summary": "The onsemi CAT6219-330TD-GT3 is an OBSOLETE (EOL) 500 mA CMOS LDO in TSOT-23-5 (CASE 419AE) featuring 55 uA quiescent current, 300 mV typical dropout at 500 mA, 64 dB PSRR, and a Pin 4 BYP capacitor input. Shutdown ground current has no typical value published (1 uA max at 25°C, 2 uA max over TJ). Because the part is EOL and thermally constrained at 235°C/W, engineers maintaining legacy boards should treat compatible active SOT-23-5 BYPASS-pin LDOs as candidate drop-ins and verify current, ESR, and EN pull-down behavior before production.",
+  "audit": {
+    "confidence_score": 0.98,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [2, 3, 4],
+    "audit_notes": [
+      "300 DPI PNG Vision check on PDF p.2-4 detected prominent OBSOLETE watermark across the entire datasheet (lifecycle_status set to EOL).",
+      "300 DPI PNG Vision check on PDF p.2-3 confirmed TSOT-23-5 Top View pinout (1=VIN, 2=GND, 3=EN, 4=BYP, 5=VOUT), no exposed pad, and θJA=235°C/W.",
+      "300 DPI PNG Vision check on PDF p.4 (Table 4) confirmed IGND-SD Typ cell is blank (Max=1 uA @25°C / 2 uA over TJ), so ishdn_typ_ua is honestly set to null."
+    ]
+  }
+}
