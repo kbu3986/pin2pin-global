@@ -31,9 +31,18 @@ export default function RootLayout({
     ''
   ).trim();
 
+  const rawBasePath = (process.env.NEXT_PUBLIC_BASE_PATH || '').trim().replace(/\/+$/, '');
+  const basePath =
+    rawBasePath && rawBasePath !== '/'
+      ? rawBasePath.startsWith('/')
+        ? rawBasePath
+        : `/${rawBasePath}`
+      : '';
+
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href={`${basePath}/favicon.svg`} type="image/svg+xml" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
