@@ -1,0 +1,15 @@
+node_modules/
+.next/
+dist/
+out/
+.astro/
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.local
+.env.*.local
+data/raw-pdfs/
+*.log
+.DS_Store
+Thumbs.db
