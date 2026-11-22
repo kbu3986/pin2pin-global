@@ -1,0 +1,144 @@
+{
+  "schema_version": "2.0.0",
+  "batch": "wave2a-dcdc",
+  "agent": "wave2a-dcdc",
+  "generated_at": "2026-11-22",
+  "backlog_reference": "data/expansion-backlog.json (wave 2A, batch_dir === 'wave2a-dcdc')",
+  "summary": {
+    "total_parts": 5,
+    "passed_stage2_verifier": 5,
+    "failed_stage2_verifier": 0,
+    "dual_path_vision_verified": 5,
+    "unsupported_scans_quarantined": 0,
+    "topology_breakdown": {
+      "buck": 3,
+      "boost": 2
+    },
+    "manufacturers": {
+      "Texas Instruments": 4,
+      "Diodes Incorporated": 1
+    },
+    "total_vision_png_pages_inspected": 25,
+    "min_confidence_score": 0.99,
+    "avg_confidence_score": 0.99
+  },
+  "key_pinout_and_engineering_traps": [
+    {
+      "group": "6-Pin SOT-23-6 / TSOT-23-6 Buck Converters (Wave 2A vs Pilot Cross-Reference)",
+      "parts": ["TPS562201DDCR", "TPS54202DDCR", "AP63300WU-7", "TPS563201DDCR", "TPS54302DDCR", "AP63203WU-7", "AP62200WU-7"],
+      "finding": "Two incompatible 6-pin buck pinout families exist in identical SOT-23-6 / TSOT-23-6 footprints: (A) TI standard pinout (1=GND, 2=SW, 3=VIN, 4=FB/VFB, 5=EN, 6=BOOT/VBST) shared by TPS562201DDCR, TPS54202DDCR, TPS563201DDCR, TPS54302DDCR, and Diodes AP62200WU-7; and (B) Diodes AP63xxx pinout (1=FB, 2=EN, 3=VIN, 4=GND, 5=SW, 6=BST) shared by AP63300WU-7 and AP63203WU-7. Within Group A: TPS54202DDCR switches at 500 kHz (vs 400 kHz on 3 A sibling TPS54302DDCR), caps EN at 7.0 V abs max / 5.5 V rec (NEVER tie to 12/24 V VIN; float to enable), and uses 0.596 V VREF; TPS562201DDCR is the 2 A sibling of 3 A TPS563201DDCR (both 17 V max VIN, 7.0 V max VOUT, 0.768 V VFB, 580 kHz D-CAP2, 1.5 MOhm internal EN pulldown so floating DISABLES the IC). Within Group B: AP63300WU-7 is adjustable (0.800 V VFB), 3 A, 500 kHz with +/-6% FSS and 35 V EN, whereas pin-identical AP63203WU-7 is fixed 3.3 V (FB tied directly to VOUT), 2 A, 1.1 MHz."
+    },
+    {
+      "group": "5-Pin SOT-23-5 High-Voltage Non-Synchronous PFM Boost Siblings",
+      "parts": ["TPS61041DBVR", "TPS61040DBVR", "LM27313XMF/NOPB", "LM2733XMF/NOPB"],
+      "finding": "TPS61041DBVR shares the exact SOT-23-5 (DBV) pinout (1=SW, 2=GND, 3=FB, 4=EN, 5=VIN), 1.8-6.0 V VIN range (7 V abs max), 28 V max VOUT (30 V SW abs max), 1.233 V VREF, and 28 uA Iq with TPS61040DBVR, but reduces internal switch current limit from 400 mA to 250 mA typ (215 mA min) and increases RDS(on) from 600 mOhm to 750 mOhm typ (1250 mOhm max), lowering peak efficiency ~1% (~84.5% in Fig. 5-2) in exchange for smaller inductor sizing and lower output ripple. It also shares the SOT-23-5 pinout with 14 V LM27313/LM2733 (fatal overvoltage if swapped onto > 6 V rails) and requires an external >= 30 V Schottky diode with no shutdown load disconnect."
+    },
+    {
+      "group": "10-Pin VSON-10 (DRC) Ultra-Low-VIN Boost vs Buck-Boost Footprint Trap",
+      "parts": ["TPS61200DRCR", "TPS63001DRCR"],
+      "finding": "TPS61200DRCR and TPS63001DRCR share an identical 3 mm x 3 mm 10-pin VSON (DRC) package with PGND-connected exposed thermal PowerPAD and even share Pins 5=VIN, 6=EN, 9=GND, and 10=FB, YET Pins 1-4 and 7-8 are incompatible (TPS61200: 1=VAUX, 2=VOUT, 3=L, 4=PGND, 7=UVLO, 8=PS vs TPS63001: 1=VOUT, 2=L2, 3=PGND, 4=L1, 7=PS/SYNC, 8=VINA). Critical TPS61200 traps: (1) PS polarity is LOW = Power Save Enabled / HIGH = Forced PWM (corrected in Rev D); (2) UVLO (Pin 7) MUST tie to VAUX (Pin 1) when unused; (3) VAUX requires a low-ESR 0.1-1 uF snubber cap to GND; (4) Down Conversion mode when VIN >= VOUT dissipates linear heat like an LDO (~60% efficiency); (5) Loop stability requires COUT >= 5 * L(uH) uF and 1350 mA typ (1200 mA min) is an average input/inductor switch current limit."
+    }
+  ],
+  "parts": [
+    {
+      "opn": "TPS562201DDCR",
+      "slug": "tps562201ddcr",
+      "manufacturer": "Texas Instruments",
+      "topology": "buck",
+      "package": "SOT-23-6 (DDC)",
+      "exposed_pad": "NONE",
+      "datasheet_revision": "SLVSD91D (Sep 2024)",
+      "page_count": 28,
+      "pinout_verified": "1:GND, 2:SW, 3:VIN, 4:VFB, 5:EN(1.5M pulldown, 19V abs), 6:VBST",
+      "vref_v": 0.768,
+      "fsw_typ_khz": 580,
+      "iout_or_isw_max_ma": 2000,
+      "is_switch_limit": false,
+      "synchronous": true,
+      "en_active_high": true,
+      "vision_pages_checked": [1, 3, 4, 5],
+      "confidence_score": 0.99,
+      "stage2_status": "PASS"
+    },
+    {
+      "opn": "TPS54202DDCR",
+      "slug": "tps54202ddcr",
+      "manufacturer": "Texas Instruments",
+      "topology": "buck",
+      "package": "SOT-23-6 (DDC)",
+      "exposed_pad": "NONE",
+      "datasheet_revision": "SLVSD26C (Feb 2026)",
+      "page_count": 31,
+      "pinout_verified": "1:GND, 2:SW, 3:VIN, 4:FB, 5:EN(float-to-enable, <=7V abs), 6:BOOT",
+      "vref_v": 0.596,
+      "fsw_typ_khz": 500,
+      "iout_or_isw_max_ma": 2000,
+      "is_switch_limit": false,
+      "synchronous": true,
+      "en_active_high": true,
+      "vision_pages_checked": [1, 3, 4, 5],
+      "confidence_score": 0.99,
+      "stage2_status": "PASS"
+    },
+    {
+      "opn": "AP63300WU-7",
+      "slug": "ap63300wu-7",
+      "manufacturer": "Diodes Incorporated",
+      "topology": "buck",
+      "package": "TSOT-23-6 (TSOT26)",
+      "exposed_pad": "NONE",
+      "datasheet_revision": "DS42002 Rev. 3 - 2 (Aug 2019)",
+      "page_count": 22,
+      "pinout_verified": "1:FB(0.8V), 2:EN(35V), 3:VIN, 4:GND, 5:SW, 6:BST",
+      "vref_v": 0.8,
+      "fsw_typ_khz": 500,
+      "iout_or_isw_max_ma": 3000,
+      "is_switch_limit": false,
+      "synchronous": true,
+      "en_active_high": true,
+      "vision_pages_checked": [1, 2, 3, 5, 6],
+      "confidence_score": 0.99,
+      "stage2_status": "PASS"
+    },
+    {
+      "opn": "TPS61041DBVR",
+      "slug": "tps61041dbvr",
+      "manufacturer": "Texas Instruments",
+      "topology": "boost",
+      "package": "SOT-23-5 (DBV)",
+      "exposed_pad": "NONE",
+      "datasheet_revision": "SLVS413L (Aug 2026)",
+      "page_count": 39,
+      "pinout_verified": "1:SW, 2:GND, 3:FB, 4:EN(<=VIN+0.3V), 5:VIN",
+      "vref_v": 1.233,
+      "fsw_typ_khz": 1000,
+      "iout_or_isw_max_ma": 250,
+      "is_switch_limit": true,
+      "synchronous": false,
+      "en_active_high": true,
+      "vision_pages_checked": [1, 3, 4, 5, 6],
+      "confidence_score": 0.99,
+      "stage2_status": "PASS"
+    },
+    {
+      "opn": "TPS61200DRCR",
+      "slug": "tps61200drcr",
+      "manufacturer": "Texas Instruments",
+      "topology": "boost",
+      "package": "VSON-10 (DRC)",
+      "exposed_pad": "GND",
+      "datasheet_revision": "SLVS577E (Dec 2014)",
+      "page_count": 35,
+      "pinout_verified": "1:VAUX, 2:VOUT, 3:L(SW), 4:PGND, 5:VIN, 6:EN, 7:UVLO(->VAUX), 8:PS(Low=PFM), 9:GND, 10:FB, EP:PGND",
+      "vref_v": 0.5,
+      "fsw_typ_khz": 1450,
+      "iout_or_isw_max_ma": 1350,
+      "is_switch_limit": true,
+      "synchronous": true,
+      "en_active_high": true,
+      "vision_pages_checked": [1, 4, 5, 6, 7, 8, 16],
+      "confidence_score": 0.99,
+      "stage2_status": "PASS"
+    }
+  ]
+}
