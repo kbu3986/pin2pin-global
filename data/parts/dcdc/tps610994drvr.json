@@ -1,0 +1,221 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TPS610994DRVR",
+  "slug": "tps610994drvr",
+  "family": "TPS61099",
+  "manufacturer": "Texas Instruments",
+  "category": "dcdc",
+  "sub_topology": "boost",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Industrial / Extended (-40°C to 125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tps61099.pdf",
+    "product_page_url": "https://www.ti.com/product/TPS61099",
+    "source_domain": "www.ti.com",
+    "revision": "SLVSD88M (Aug 2026)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 34
+  },
+  "package": {
+    "code": "WSON-6",
+    "mfg_package_code": "DRV",
+    "pin_count": 6,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": true,
+      "net": "GND",
+      "note": "PowerPAD (Pin 7 thermal pad) MUST be soldered to PCB GND plane for electrical and thermal performance (Section 5 p.3)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 71.7,
+      "page": 4,
+      "condition": "JEDEC high-K board, DRV 6-pin WSON with PowerPAD",
+      "table_ref": "Section 6.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 83.0,
+      "page": 4,
+      "condition": "RthetaJC(top) = 83.0°C/W (RthetaJC(bot) = 14.4°C/W via PowerPAD)",
+      "table_ref": "Section 6.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 4,
+      "condition": "Recommended operating junction temperature max (Abs Max and TSD = 150°C)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "GND",
+        "role": "GND",
+        "description": "Analog and power ground reference."
+      },
+      {
+        "pin": 2,
+        "name": "VOUT",
+        "role": "VOUT",
+        "description": "Fixed 3.3 V regulated boost output."
+      },
+      {
+        "pin": 3,
+        "name": "FB",
+        "role": "FB",
+        "description": "Feedback pin; for fixed-output TPS610994 MUST be connected directly to GND."
+      },
+      {
+        "pin": 4,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high enable logic input with true load disconnect in shutdown (keep low >= 400 us on toggle)."
+      },
+      {
+        "pin": 5,
+        "name": "SW",
+        "role": "SW",
+        "description": "Switch node connection to inductor and internal synchronous MOSFETs."
+      },
+      {
+        "pin": 6,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Input supply voltage pin (0.7 V to 5.5 V)."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "topology": "boost",
+    "vin_abs_max_v": {
+      "value": 6.0,
+      "page": 4,
+      "condition": "VIN, SW, VOUT, EN, FB DC abs max 6.0 V (-0.3 V to 6.0 V)",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 0.7,
+      "page": 4,
+      "condition": "Minimum recommended operating input voltage (startup typ 0.7 V at 1 mA load)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 5.5,
+      "page": 4,
+      "condition": "Maximum recommended operating input voltage (supports automatic down-mode regulation when VIN > VOUT)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "vout_min_v": {
+      "value": 3.23,
+      "page": 5,
+      "condition": "TPS610994 fixed 3.3 V output min in PWM mode over -40°C to 125°C TJ",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "vout_max_v": {
+      "value": 3.37,
+      "page": 5,
+      "condition": "TPS610994 fixed 3.3 V output max in PWM mode (up to 3.40 V max in light-load PFM mode)",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "vout_fixed": true,
+    "vout_nom_v": {
+      "value": 3.3,
+      "page": 5,
+      "condition": "Fixed 3.3 V output variant (TPS610994)",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "vref_v": null,
+    "iout_or_isw_max_ma": {
+      "value": 1000,
+      "page": 5,
+      "condition": "Switch current limit typ 1.0 A (min 0.8 A for VOUT >= 2.5 V); not continuous output current",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "is_switch_limit": true,
+    "iq_typ_ua": {
+      "value": 1.0,
+      "page": 5,
+      "condition": "Ultra-low total quiescent current 1.0 uA typ (0.6 uA into VOUT + 0.4 uA into VIN, non-switching)",
+      "table_ref": "Section 1 & Section 6.5 Electrical Characteristics"
+    },
+    "fsw_typ_khz": {
+      "value": 1116,
+      "page": 16,
+      "condition": "Hysteretic variable switching frequency; ~1116 kHz per Eq. 5 (ILH = 300 mA p.5, L = 2.2 uH, VIN = 1.5 V, VOUT = 3.3 V, eta = 0.90)",
+      "table_ref": "Section 8.2.2.3 Equation 5"
+    },
+    "efficiency_peak_pct": {
+      "value": 95,
+      "page": 7,
+      "condition": "TPS610994 peak ~95% at VIN = 3.0 V, VOUT = 3.3 V (p.1 cites up to 93% for 3.3 V to 5 V)",
+      "table_ref": "Figure 6-5 (300 DPI Vision verified)"
+    },
+    "inductor_typ_uh": {
+      "value": 2.2,
+      "page": 4,
+      "condition": "Nominal effective inductance 2.2 uH for VOUT > 3.0 V (recommended range 0.7 uH to 2.86 uH)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "synchronous": true,
+    "min_cout_uf": {
+      "value": 10.0,
+      "page": 4,
+      "condition": "Minimum recommended output capacitance 10 uF (20 uF nominal recommended)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "en_active_high": true
+  },
+  "design_gotchas": [
+    {
+      "title": "Pin 3 (FB) MUST Connect to GND on Fixed 3.3 V TPS610994 (Opposite of TPS61221)",
+      "severity": "CRITICAL",
+      "detail": "For fixed-output TPS610994, Pin 3 (FB) must be tied directly to GND — the exact opposite of fixed TPS61221 (which ties FB to VOUT). Connecting FB to VOUT or leaving it floating causes output regulation faults.",
+      "page": 3
+    },
+    {
+      "title": "EN Low Pulse Must Be >= 400 us During ON-OFF-ON Toggling",
+      "severity": "CRITICAL",
+      "detail": "Section 7.3.1 warns that if EN is toggled high-low-high faster than 400 us, internal EEPROM trim registers may fail to reload properly. Always hold EN low for at least 400 us before re-enabling.",
+      "page": 12
+    },
+    {
+      "title": "WSON-6 PowerPAD Must Be Soldered to GND and Package Availability Check",
+      "severity": "WARNING",
+      "detail": "The 2 mm x 2 mm WSON-6 (DRV) exposed center pad (Pin 7) must be tied to the PCB GND plane. Also verify current distributor stock/orderable addendum: recent TI revisions emphasize TPS610994 in WCSP (YFF) alongside DRV fixed/adjustable variants (TPS61099DRVR / TPS610995DRVR).",
+      "page": 3
+    },
+    {
+      "title": "True Load Disconnect and Down-Mode Operation Require >= 10 uF Output Capacitance",
+      "severity": "INFO",
+      "detail": "Unlike TPS61221 and TPS613221A, TPS610994 provides true shutdown load disconnect and regulated linear down-mode when VIN > VOUT, but requires at least 10 uF effective output capacitance (20 uF nominal) for loop stability.",
+      "page": 4
+    }
+  ],
+  "typical_use_cases": [
+    "Ultra-long-life coin-cell, single alkaline, or Li-MnO2 battery IoT sensors needing 1.0 uA total Iq",
+    "Wearables and medical monitors requiring true load disconnect during sleep and down-mode regulation",
+    "High-efficiency compact 3.3 V boost rail in 2 mm x 2 mm WSON-6 with 1.0 A typical switch limit"
+  ],
+  "engineering_summary": "The TPS610994DRVR is an ultra-low quiescent current (1.0 uA total typ) fixed 3.3 V synchronous boost converter in a 2 mm x 2 mm WSON-6 (DRV) package with a GND-connected PowerPAD. It starts from 0.7 V typical, supports 1.0 A typical (0.8 A min) switch current, true shutdown load disconnect, and automatic down-mode regulation when VIN exceeds 3.3 V, reaching ~95% peak efficiency at 3.0 V to 3.3 V. Engineers must tie FB (Pin 3) to GND, respect the >= 400 us EN reset low time, and confirm orderable package availability in the official TI datasheet before production.",
+  "audit": {
+    "confidence_score": 0.97,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 4, 7],
+    "audit_notes": [
+      "300 DPI PNG Vision inspection on p.3 Fig 5-2 and Table 5-1 confirmed DRV 6-pin WSON Top View pinout (1=GND, 2=VOUT, 3=FB->GND, 4=EN, 5=SW, 6=VIN, PowerPAD=GND).",
+      "300 DPI PNG Vision inspection on p.4 verified Abs Max 6.0 V, Rec Op VIN 0.7-5.5 V, RthetaJA 71.7 C/W, RthetaJC(top) 83.0 C/W, RthetaJC(bot) 14.4 C/W, L 2.2 uH, and min Cout 10 uF.",
+      "300 DPI PNG Vision inspection on p.7 Fig 6-5 confirmed TPS610994 peak efficiency ~95% at VIN = 3.0 V, VOUT = 3.3 V.",
+      "Note: Latest SLVSD88M addendum lists TPS610994YFFR alongside DRV orderables TPS61099DRVR and TPS610995DRVR; DRV package specs apply across the TPS61099x DRV family."
+    ]
+  }
+}

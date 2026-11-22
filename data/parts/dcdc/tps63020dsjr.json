@@ -1,0 +1,268 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TPS63020DSJR",
+  "slug": "tps63020dsjr",
+  "family": "TPS63020",
+  "manufacturer": "Texas Instruments",
+  "category": "dcdc",
+  "sub_topology": "buck-boost",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 85,
+    "grade_label": "Industrial (-40°C to 85°C TA, TJ max 125°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tps63020.pdf",
+    "product_page_url": "https://www.ti.com/product/TPS63020",
+    "source_domain": "www.ti.com",
+    "revision": "SLVS916I (Oct 2019)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 34
+  },
+  "package": {
+    "code": "VSON-14",
+    "mfg_package_code": "DSJ",
+    "pin_count": 14,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": true,
+      "net": "GND",
+      "note": "Exposed thermal pad and 8 perimeter PGND tabs are internally connected to Power Ground (PGND); solder solidly to PCB GND plane (p.4)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 41.8,
+      "page": 5,
+      "condition": "JEDEC high-K board, DSJ 14-pin VSON with exposed PGND pad",
+      "table_ref": "Section 6.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 47.0,
+      "page": 5,
+      "condition": "RthetaJC(top) = 47.0°C/W (RthetaJC(bot) = 3.6°C/W via exposed PGND pad)",
+      "table_ref": "Section 6.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 5,
+      "condition": "Recommended operating junction temperature max (Abs Max 150°C; TSD 140°C typ p.6)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "VINA",
+        "role": "VIN",
+        "description": "Control stage analog supply input; connect to VIN via low-pass RC filter if noisy."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Analog/control ground; connect to exposed PGND pad at single point."
+      },
+      {
+        "pin": 3,
+        "name": "FB",
+        "role": "FB",
+        "description": "Voltage feedback input for adjustable TPS63020 (VREF = 0.500 V typ PWM)."
+      },
+      {
+        "pin": 4,
+        "name": "VOUT",
+        "role": "VOUT",
+        "description": "Buck-boost converter power output (tie Pins 4 and 5 together)."
+      },
+      {
+        "pin": 5,
+        "name": "VOUT",
+        "role": "VOUT",
+        "description": "Buck-boost converter power output (tie Pins 4 and 5 together)."
+      },
+      {
+        "pin": 6,
+        "name": "L2",
+        "role": "SW",
+        "description": "Inductor switching node L2 (tie Pins 6 and 7 together)."
+      },
+      {
+        "pin": 7,
+        "name": "L2",
+        "role": "SW",
+        "description": "Inductor switching node L2 (tie Pins 6 and 7 together)."
+      },
+      {
+        "pin": 8,
+        "name": "L1",
+        "role": "SW",
+        "description": "Inductor switching node L1 (tie Pins 8 and 9 together)."
+      },
+      {
+        "pin": 9,
+        "name": "L1",
+        "role": "SW",
+        "description": "Inductor switching node L1 (tie Pins 8 and 9 together)."
+      },
+      {
+        "pin": 10,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Power stage supply input (tie Pins 10 and 11 together)."
+      },
+      {
+        "pin": 11,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Power stage supply input (tie Pins 10 and 11 together)."
+      },
+      {
+        "pin": 12,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high enable input (1 = enabled, 0 = disabled with true load disconnect; do not leave open)."
+      },
+      {
+        "pin": 13,
+        "name": "PS/SYNC",
+        "role": "PS",
+        "description": "Power-save mode control (Low = PFM enabled, High = forced 2.4 MHz PWM, or external sync clock)."
+      },
+      {
+        "pin": 14,
+        "name": "PG",
+        "role": "PG",
+        "description": "Open-drain Power Good output indicator (requires external pull-up resistor)."
+      }
+    ],
+    "pinout_source_page": 4,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "topology": "buck-boost",
+    "vin_abs_max_v": {
+      "value": 7.0,
+      "page": 5,
+      "condition": "VIN, VINA, L1, L2, VOUT, EN, PS/SYNC, FB, PG DC abs max 7.0 V (L1/L2 AC < 10 ns max 10 V)",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 1.8,
+      "page": 5,
+      "condition": "Minimum recommended supply voltage at VIN and VINA",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 5.5,
+      "page": 5,
+      "condition": "Maximum recommended supply voltage at VIN and VINA",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "vout_min_v": {
+      "value": 1.2,
+      "page": 6,
+      "condition": "Adjustable output voltage range minimum (TPS63020)",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "vout_max_v": {
+      "value": 5.5,
+      "page": 6,
+      "condition": "Adjustable output voltage range maximum (TPS63020)",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "vout_fixed": false,
+    "vout_nom_v": null,
+    "vref_v": {
+      "value": 0.5,
+      "page": 6,
+      "condition": "PWM feedback reference voltage typ 500 mV (495 mV to 505 mV, PS/SYNC = VINA)",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "iout_or_isw_max_ma": {
+      "value": 3000,
+      "page": 1,
+      "condition": "Up to 3 A output current in step-down mode (> 2 A in boost mode at VIN > 2.5 V, VOUT = 3.3 V; 4 A average switch current limit per p.6)",
+      "table_ref": "Section 1 Features & Section 3 Description"
+    },
+    "is_switch_limit": false,
+    "iq_typ_ua": {
+      "value": 25,
+      "page": 6,
+      "condition": "25 uA typ into VIN+VINA (plus 5 uA typ into VOUT = 30 uA total, PFM mode, no load)",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "fsw_typ_khz": {
+      "value": 2400,
+      "page": 6,
+      "condition": "Fixed 2.4 MHz typ oscillator (2.2 MHz to 2.6 MHz; externally synchronizable)",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "efficiency_peak_pct": {
+      "value": 94,
+      "page": 1,
+      "condition": "Peak ~94% at VIN = 3.6 V, VOUT = 2.5 V / 4.5 V around 0.5 A load (up to 96% family headline p.1)",
+      "table_ref": "Page 1 Efficiency vs Output Current (300 DPI Vision verified)"
+    },
+    "inductor_typ_uh": {
+      "value": 1.5,
+      "page": 13,
+      "condition": "Nominal recommended inductor 1.5 uH (minimum 1.0 uH; high Isat >= 4.5 A required)",
+      "table_ref": "Section 8.2.2.2 Inductor Selection"
+    },
+    "synchronous": true,
+    "min_cout_uf": {
+      "value": 44.0,
+      "page": 13,
+      "condition": "Table minimum 2 x 22 uF (44 uF) ceramic X5R/X7R (3 x 22 uF = 66 uF recommended for stability and ripple)",
+      "table_ref": "Section 8.2.2.3 Output Capacitor"
+    },
+    "en_active_high": true
+  },
+  "design_gotchas": [
+    {
+      "title": "Large Minimum Ceramic Output Capacitance (44 uF Min / 66 uF Recommended)",
+      "severity": "CRITICAL",
+      "detail": "Because TPS63020 operates at 2.4 MHz with 4 A switch capability in boost/buck-boost transitions, TI specifies a minimum of 2 x 22 uF (44 uF nominal) and recommends 3 x 22 uF (66 uF) low-ESR ceramic output capacitors. Accounting for DC bias derating is mandatory to avoid boost-mode instability.",
+      "page": 13
+    },
+    {
+      "title": "Unique VSON-14 (DSJ) Footprint With 8 Edge PGND Tabs Cannot Drop Into VSON-10",
+      "severity": "CRITICAL",
+      "detail": "TPS63020DSJR uses a 3 mm x 4 mm 14-pin VSON package with a large exposed center pad plus 8 perimeter PGND ground tabs (RthetaJA = 41.8°C/W). It is completely pin- and footprint-incompatible with 10-pin VSON TPS63001DRCR or 6-pin SOT-563 TPS61023DRLR.",
+      "page": 4
+    },
+    {
+      "title": "EN and PS/SYNC Must Never Float; Separate VINA Filtering Recommended",
+      "severity": "WARNING",
+      "detail": "Neither EN (Pin 12) nor PS/SYNC (Pin 13) has internal pull resistors and must be actively driven or tied to VINA/GND. Feed VINA (Pin 1) with a dedicated 0.1 uF bypass capacitor (and optional 10-100 Ohm series resistor) to isolate control logic from VIN switching spikes.",
+      "page": 4
+    },
+    {
+      "title": "Output Current Drops From 3 A (Buck) to ~2 A (Boost) as Battery Discharges",
+      "severity": "WARNING",
+      "detail": "Although rated up to 3 A in step-down mode, deliverable output current at VOUT = 3.3 V falls to > 2 A at VIN = 2.5 V and lower near 1.8 V due to the 4 A average switch current limit and boost duty cycle.",
+      "page": 1
+    }
+  ],
+  "typical_use_cases": [
+    "Single-cell Li-Ion (2.5 V to 4.2 V) or 2-3 cell alkaline battery regulation to 3.3 V at > 2 A continuous load",
+    "Cellular/LTE-M/NB-IoT RF modem and industrial handheld power rails requiring seamless buck-to-boost transition",
+    "High-current compact 5.0 V or 3.3 V USB-powered systems needing PG supervision and external clock sync"
+  ],
+  "engineering_summary": "The TPS63020DSJR is a high-efficiency, high-current 4-switch synchronous buck-boost converter in a thermally enhanced 14-pin VSON (DSJ) package (RthetaJA = 41.8°C/W) with an integrated 4 A average switch limit. It regulates adjustable 1.2 V to 5.5 V outputs (VREF = 0.500 V) from 1.8 V to 5.5 V inputs at 2.4 MHz, delivering up to 3 A in step-down mode and > 2 A in boost mode (3.3 V out, VIN > 2.5 V) with true load disconnect and Power Good output. Always size ceramic output capacitance >= 44-66 uF considering DC bias and verify VSON-14 layout guidelines in the official TI datasheet before production.",
+  "audit": {
+    "confidence_score": 0.98,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [1, 4, 5],
+    "audit_notes": [
+      "300 DPI PNG Vision inspection on p.4 confirmed DSJ 14-pin VSON Top View pinout (1=VINA, 2=GND, 3=FB, 4-5=VOUT, 6-7=L2, 8-9=L1, 10-11=VIN, 12=EN, 13=PS/SYNC, 14=PG, Exposed Pad + 8 edge tabs = PGND).",
+      "300 DPI PNG Vision inspection on p.5 verified Abs Max 7.0 V (L1/L2 10 V < 10 ns), Rec Op VIN 1.8-5.5 V, TA -40 to 85 C, TJ max 125 C, RthetaJA 41.8 C/W, RthetaJC(top) 47 C/W, RthetaJC(bot) 3.6 C/W.",
+      "300 DPI PNG Vision inspection on p.1 confirmed Efficiency vs Output Current peaking ~94% at VIN = 3.6 V, VOUT = 2.5 V / 4.5 V."
+    ]
+  }
+}

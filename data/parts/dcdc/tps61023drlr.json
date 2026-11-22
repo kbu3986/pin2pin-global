@@ -1,0 +1,219 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TPS61023DRLR",
+  "slug": "tps61023drlr",
+  "family": "TPS61023",
+  "manufacturer": "Texas Instruments",
+  "category": "dcdc",
+  "sub_topology": "boost",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Industrial / Extended (-40°C to 125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tps61023.pdf",
+    "product_page_url": "https://www.ti.com/product/TPS61023",
+    "source_domain": "www.ti.com",
+    "revision": "SLVSF14B (Aug 2020)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 28
+  },
+  "package": {
+    "code": "SOT-563",
+    "mfg_package_code": "DRL",
+    "pin_count": 6,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "Ultra-compact 1.6 mm x 1.2 mm 6-pin SOT-563 (DRL) leadless-style gullwing/flat-lead package without exposed thermal pad."
+    },
+    "theta_ja_c_per_w": {
+      "value": 142.7,
+      "page": 4,
+      "condition": "JEDEC standard high-K board (91.4°C/W on TI EVM board)",
+      "table_ref": "Section 6.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 55.7,
+      "page": 4,
+      "condition": "RthetaJC(top), DRL 6-pin SOT-563",
+      "table_ref": "Section 6.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 4,
+      "condition": "Recommended operating junction temperature max (Abs Max and TSD = 150°C)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "FB",
+        "role": "FB",
+        "description": "Output voltage feedback sense input (VREF = 0.595 V PWM / 0.601 V PFM)."
+      },
+      {
+        "pin": 2,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high enable logic input (true output disconnect when pulled low; do not float)."
+      },
+      {
+        "pin": 3,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "IC bias supply input (0.5 V to 5.5 V operating; 1.8 V minimum startup)."
+      },
+      {
+        "pin": 4,
+        "name": "GND",
+        "role": "GND",
+        "description": "Analog and power ground reference."
+      },
+      {
+        "pin": 5,
+        "name": "SW",
+        "role": "SW",
+        "description": "Switch node connection to inductor and internal 47 mOhm LS / 68 mOhm HS FETs."
+      },
+      {
+        "pin": 6,
+        "name": "VOUT",
+        "role": "VOUT",
+        "description": "Boost converter regulated output and internal high-side FET drain."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "topology": "boost",
+    "vin_abs_max_v": {
+      "value": 7.0,
+      "page": 4,
+      "condition": "VIN, EN, VOUT, FB, SW DC abs max 7.0 V (SW transient 8.0 V for <= 10 ns)",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 0.5,
+      "page": 4,
+      "condition": "Minimum operating input voltage after startup (minimum startup VIN = 1.8 V per p.1 and p.5)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 5.5,
+      "page": 4,
+      "condition": "Maximum recommended input voltage (pass-through when VIN > VOUT)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "vout_min_v": {
+      "value": 2.2,
+      "page": 4,
+      "condition": "Minimum recommended adjustable output voltage",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "vout_max_v": {
+      "value": 5.5,
+      "page": 4,
+      "condition": "Maximum recommended adjustable output voltage",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "vout_fixed": false,
+    "vout_nom_v": null,
+    "vref_v": {
+      "value": 0.595,
+      "page": 5,
+      "condition": "PWM mode typ 595 mV (586-604 mV); PFM mode typ 601 mV",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "iout_or_isw_max_ma": {
+      "value": 3700,
+      "page": 5,
+      "condition": "Valley switching current limit typ 3.7 A (min 2.7 A, max 4.6 A); delivers ~1.5 A at 3.6 V to 5 V",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "is_switch_limit": true,
+    "iq_typ_ua": {
+      "value": 20,
+      "page": 5,
+      "condition": "Quiescent current into VOUT pin 20 uA typ (plus 0.9 uA typ into VIN), no switching",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "fsw_typ_khz": {
+      "value": 1000,
+      "page": 5,
+      "condition": "1.0 MHz typ when VIN > 1.5 V (folds back to 0.5 MHz typ at VIN = 1.0 V)",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "efficiency_peak_pct": {
+      "value": 94,
+      "page": 1,
+      "condition": "94% efficiency at VIN = 3.6 V, VOUT = 5.0 V, IOUT = 1.5 A",
+      "table_ref": "Section 1 Features"
+    },
+    "inductor_typ_uh": {
+      "value": 1.0,
+      "page": 4,
+      "condition": "Nominal effective inductance 1.0 uH (recommended range 0.37 uH to 2.9 uH)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "synchronous": true,
+    "min_cout_uf": {
+      "value": 4.0,
+      "page": 4,
+      "condition": "Minimum effective output capacitance 4 uF (nominal recommended 10 uF effective)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "en_active_high": true
+  },
+  "design_gotchas": [
+    {
+      "title": "1.8 V Minimum Startup Voltage Despite 0.5 V Running Floor",
+      "severity": "CRITICAL",
+      "detail": "Although TPS61023DRLR operates down to 0.5 V once VOUT is established (biasing internally from VOUT), it requires at least 1.8 V on VIN to start up cleanly. Single-cell 1.2 V NiMH or 1.5 V alkaline designs cannot cold-start this IC without an auxiliary rail.",
+      "page": 5
+    },
+    {
+      "title": "Switching Frequency Halves Below 1.5 V Input",
+      "severity": "WARNING",
+      "detail": "The oscillator runs at 1.0 MHz typical for VIN > 1.5 V but automatically folds down to 0.5 MHz typical at VIN = 1.0 V to improve low-VIN efficiency. Verify inductor saturation current at the doubled peak-to-peak ripple current when operating from deep-discharged supercapacitors.",
+      "page": 5
+    },
+    {
+      "title": "Ultra-Fine 0.5 mm Pitch SOT-563 Thermal Limits Under Heavy Load",
+      "severity": "WARNING",
+      "detail": "With no exposed pad and 142.7°C/W JEDEC RthetaJA (91.4°C/W on TI's high-copper EVM), high boost ratios at > 1.5 A output can rapidly approach the 125°C recommended TJ ceiling. Wide copper pours on SW, VOUT, and GND pins are mandatory.",
+      "page": 4
+    },
+    {
+      "title": "Valley Current Limit (3.7 A Typ) Means Peak Inductor Current Is Higher",
+      "severity": "INFO",
+      "detail": "TPS61023 regulates switch current via a 3.7 A typical (2.7 A min) valley current limit rather than peak limit, so peak inductor current reaches I_valley + delta_IL. Size inductor saturation rating comfortably above 4.5 A to avoid saturation during transients.",
+      "page": 5
+    }
+  ],
+  "typical_use_cases": [
+    "Single-cell Li-Ion (2.5 V to 4.2 V) or supercapacitor backup boost to 5.0 V at up to 1.5 A",
+    "Space-constrained portable medical, POS terminal, and handheld USB OTG 5 V power rails",
+    "Compact high-current synchronous boost requiring true load disconnect during shutdown"
+  ],
+  "engineering_summary": "The TPS61023DRLR is a high-power-density synchronous boost converter in an ultra-small 6-pin SOT-563 (DRL) package featuring a 3.7 A typical (2.7 A min) valley switch current limit, 47 mOhm/68 mOhm integrated MOSFETs, and true load disconnect in shutdown. It supports 0.5 V to 5.5 V operating inputs (1.8 V minimum startup), adjustable 2.2 V to 5.5 V outputs (VREF = 0.595 V), 1 MHz switching (0.5 MHz at 1 V VIN), and 94% efficiency at 3.6 V to 5 V / 1.5 A. Validate cold-start voltage requirements, SOT-563 thermal dissipation, and inductor saturation against the TI datasheet before production.",
+  "audit": {
+    "confidence_score": 0.98,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 4],
+    "audit_notes": [
+      "300 DPI PNG Vision inspection on p.3 confirmed DRL 6-pin SOT-563 Top View pinout (1=FB, 2=EN, 3=VIN, 4=GND, 5=SW, 6=VOUT) with no exposed pad.",
+      "300 DPI PNG Vision inspection on p.4 verified Abs Max 7.0 V (SW 8 V 10 ns), Rec Op VIN 0.5-5.5 V / VOUT 2.2-5.5 V, RthetaJA 142.7 C/W (EVM 91.4 C/W), L 1.0 uH, and min Cout 4 uF."
+    ]
+  }
+}

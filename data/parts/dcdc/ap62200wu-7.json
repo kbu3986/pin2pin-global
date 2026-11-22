@@ -1,0 +1,220 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "AP62200WU-7",
+  "slug": "ap62200wu-7",
+  "family": "AP62200",
+  "manufacturer": "Diodes Incorporated",
+  "category": "dcdc",
+  "sub_topology": "buck",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Industrial / Extended (-40°C to 125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.diodes.com/assets/Datasheets/AP62200_AP62201_AP62200T.pdf",
+    "product_page_url": "https://www.diodes.com/part/view/AP62200",
+    "source_domain": "www.diodes.com",
+    "revision": "DS41957 Rev. 7 - 2 (Jul 2025)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 23
+  },
+  "package": {
+    "code": "TSOT-23-6",
+    "mfg_package_code": "TSOT26",
+    "pin_count": 6,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "6-pin TSOT-23 (TSOT26 / ordering code WU) package without exposed thermal pad."
+    },
+    "theta_ja_c_per_w": {
+      "value": 70.0,
+      "page": 4,
+      "condition": "JEDEC standard board, TSOT26 package (60°C/W on EVM; do NOT confuse with SOT563 Z6 124°C/W)",
+      "table_ref": "Thermal Resistance Table p.4"
+    },
+    "theta_jc_c_per_w": {
+      "value": 42.0,
+      "page": 4,
+      "condition": "RthetaJC(top), TSOT26 package",
+      "table_ref": "Thermal Resistance Table p.4"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 4,
+      "condition": "Recommended operating junction temperature max 125°C (Abs Max and TSD = 160°C)",
+      "table_ref": "Recommended Operating Conditions p.4"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "GND",
+        "role": "GND",
+        "description": "Power and analog ground return for low-side FET and COT controller."
+      },
+      {
+        "pin": 2,
+        "name": "SW",
+        "role": "SW",
+        "description": "Switch node connection between integrated 90 mOhm HS and 65 mOhm LS MOSFETs."
+      },
+      {
+        "pin": 3,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Input power supply pin (4.2 V to 18.0 V recommended; 20 V DC / 22 V 400 ms abs max)."
+      },
+      {
+        "pin": 4,
+        "name": "FB",
+        "role": "FB",
+        "description": "Feedback input to external resistive divider (VREF = 0.800 V typ for AP62200; 0.763 V for AP62200T)."
+      },
+      {
+        "pin": 5,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high enable; float to auto-enable via internal pull-up (STRICTLY <= 8.0 V abs max!)."
+      },
+      {
+        "pin": 6,
+        "name": "BST",
+        "role": "BOOT",
+        "description": "High-side MOSFET gate-drive bootstrap capacitor pin (0.1 uF for VOUT <= 3 V; 0.33 uF rec for VOUT > 3 V)."
+      }
+    ],
+    "pinout_source_page": 1,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "topology": "buck",
+    "vin_abs_max_v": {
+      "value": 20.0,
+      "page": 4,
+      "condition": "VIN and SW DC abs max -0.3 V to 20.0 V (22 V for 400 ms; EN abs max ONLY 8.0 V!)",
+      "table_ref": "Absolute Maximum Ratings p.4"
+    },
+    "vin_min_v": {
+      "value": 4.2,
+      "page": 4,
+      "condition": "Minimum recommended operating input voltage",
+      "table_ref": "Recommended Operating Conditions p.4"
+    },
+    "vin_max_v": {
+      "value": 18.0,
+      "page": 4,
+      "condition": "Maximum recommended operating input voltage (NOT 24 V compatible)",
+      "table_ref": "Recommended Operating Conditions p.4"
+    },
+    "vout_min_v": {
+      "value": 0.8,
+      "page": 1,
+      "condition": "Minimum regulated adjustable output voltage (0.8 V to 7.0 V)",
+      "table_ref": "Features p.1 & Recommended Operating Conditions p.4"
+    },
+    "vout_max_v": {
+      "value": 7.0,
+      "page": 1,
+      "condition": "Maximum recommended regulated output voltage",
+      "table_ref": "Features p.1 & Recommended Operating Conditions p.4"
+    },
+    "vout_fixed": false,
+    "vout_nom_v": null,
+    "vref_v": {
+      "value": 0.8,
+      "page": 5,
+      "condition": "AP62200 feedback reference typ 0.800 V (0.792 V to 0.808 V at 25°C, +/-1%; AP62200T is 0.763 V!)",
+      "table_ref": "Electrical Characteristics p.5"
+    },
+    "iout_or_isw_max_ma": {
+      "value": 2000,
+      "page": 1,
+      "condition": "2 A continuous output current (LS valley current limit typ 2.8 A per p.5)",
+      "table_ref": "Features p.1 & Electrical Characteristics p.5"
+    },
+    "is_switch_limit": false,
+    "iq_typ_ua": {
+      "value": 135,
+      "page": 5,
+      "condition": "Operating quiescent current 135 uA typ (PFM mode, non-switching; shutdown 1 uA typ)",
+      "table_ref": "Electrical Characteristics p.5"
+    },
+    "fsw_typ_khz": {
+      "value": 750,
+      "page": 5,
+      "condition": "750 kHz typ COT switching frequency at VIN = 12 V, VOUT = 5 V, CCM",
+      "table_ref": "Electrical Characteristics p.5"
+    },
+    "efficiency_peak_pct": {
+      "value": 94,
+      "page": 2,
+      "condition": "Peak ~94% at VIN = 12 V, VOUT = 5.0 V, IOUT ~ 1 A (~91% at VOUT = 3.3 V)",
+      "table_ref": "Figure 2 Efficiency vs Output Current (300 DPI Vision verified)"
+    },
+    "inductor_typ_uh": {
+      "value": 3.3,
+      "page": 17,
+      "condition": "Table 1 recommends 3.3 uH for 3.3 V output and 4.7 uH for 5.0 V output (1.2-4.7 uH range)",
+      "table_ref": "Table 1 Recommended Component Selection p.17"
+    },
+    "synchronous": true,
+    "min_cout_uf": {
+      "value": 22.0,
+      "page": 18,
+      "condition": "Recommended 22 uF to 68 uF ceramic X5R/X7R (Table 1 uses 2 x 22 uF)",
+      "table_ref": "Output Capacitor Selection p.18"
+    },
+    "en_active_high": true
+  },
+  "design_gotchas": [
+    {
+      "title": "CRITICAL: EN Pin Abs Max Is ONLY 8.0 V — NEVER Tie Directly to 12 V / 18 V VIN!",
+      "severity": "CRITICAL",
+      "detail": "Although AP62200WU-7 accepts up to 18 V on VIN (20 V abs max), EN (Pin 5) has an 8.0 V absolute maximum rating! Tying EN directly to a 12 V bus (which works on pin-identical TPS563201DDCR) destroys AP62200WU-7. Leave EN floating to auto-enable or use a voltage divider keeping VEN < 6 V.",
+      "page": 4
+    },
+    {
+      "title": "Pin-Compatible With TPS54302DDCR & TPS563201DDCR — MISMATCH With AP63203WU-7 & Own SOT563 Sibling",
+      "severity": "CRITICAL",
+      "detail": "AP62200WU-7 (TSOT26: 1=GND, 2=SW, 3=VIN, 4=FB, 5=EN, 6=BST) matches TPS54302DDCR and TPS563201DDCR, but is COMPLETELY incompatible with Diodes' own AP63203WU-7 (1=FB, 2=EN, 3=VIN, 4=GND, 5=SW, 6=BST) AND with AP62200Z6 (SOT563 swaps Pins 1/3 and 4/6).",
+      "page": 1
+    },
+    {
+      "title": "VREF = 0.800 V Differs From TPS563201 (0.768 V), TPS54302 (0.596 V) & AP62200T (0.763 V)",
+      "severity": "CRITICAL",
+      "detail": "Replacing TPS54302DDCR (0.596 V) with AP62200WU-7 (0.800 V) without changing feedback resistors boosts VOUT by +34.2% (3.3 V jumps to 4.43 V!). Even against TPS563201DDCR (0.768 V), VOUT shifts +4.2%. Always recalculate resistors (or evaluate AP62200T at 0.763 V).",
+      "page": 5
+    },
+    {
+      "title": "330 nF Bootstrap Capacitor Recommended for VOUT > 3 V (vs Standard 100 nF)",
+      "severity": "WARNING",
+      "detail": "Section on Bootstrap Capacitor (p.18) recommends upsizing the BST-to-SW ceramic capacitor from 0.1 uF to 0.33 uF (330 nF) whenever VOUT > 3 V to ensure stable high-side gate drive in COT operation. Also verify 2 A continuous load limit vs 3 A TI peers.",
+      "page": 18
+    }
+  ],
+  "typical_use_cases": [
+    "12 V consumer/industrial point-of-load buck (5 V, 3.3 V, 1.8 V, 1.2 V) up to 2 A with fast COT transient response",
+    "Cost-effective pin-compatible second-source candidate for 12 V <= 2 A TPS563201DDCR / TPS54302DDCR rails (after resistor & EN check)",
+    "Low-profile TSOT-23-6 distributed 5 V/12 V bus converter for routers, printers, white goods, and IoT hubs"
+  ],
+  "engineering_summary": "The AP62200WU-7 is a 4.2 V to 18 V input (20 V DC / 22 V transient abs max), 2 A continuous synchronous COT buck converter in TSOT-23-6 (TSOT26, RthetaJA = 70°C/W) operating at 750 kHz with 135 uA PFM Iq, 0.800 V +/-1% VREF, and ~94% peak efficiency (12 V -> 5 V). It shares the exact pinout of TPS54302DDCR and TPS563201DDCR (NOT AP63203WU-7), making it a strong 12 V / <= 2 A alternative only after adjusting feedback resistors for 0.800 V VREF, ensuring EN stays <= 8.0 V abs max (float to enable), and upgrading Cbst to 330 nF for VOUT > 3 V; verify the Diodes datasheet before production.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [1, 2, 4],
+    "audit_notes": [
+      "300 DPI PNG Vision inspection on p.1 confirmed TSOT26 (WU) Top View pinout (1=GND, 2=SW, 3=VIN, 4=FB, 5=EN, 6=BST), matching TPS54302DDCR/TPS563201DDCR and contrasting with SOT563 (Z6) and AP63203WU-7.",
+      "300 DPI PNG Vision inspection on p.2 Fig 2 confirmed peak efficiency ~94% at VIN = 12 V, VOUT = 5.0 V (~91% at 3.3 V).",
+      "300 DPI PNG Vision inspection on p.4 verified Abs Max VIN 20 V (22 V 400 ms), EN abs max 8.0 V, Rec Op VIN 4.2-18 V, TJ -40 to 125 C, RthetaJA 70 C/W (TSOT26), and RthetaJC(top) 42 C/W."
+    ]
+  }
+}

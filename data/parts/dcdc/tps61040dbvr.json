@@ -1,0 +1,214 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TPS61040DBVR",
+  "slug": "tps61040dbvr",
+  "family": "TPS61040",
+  "manufacturer": "Texas Instruments",
+  "category": "dcdc",
+  "sub_topology": "boost",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 85,
+    "grade_label": "Industrial (-40°C to 85°C TA, TJ max 125°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tps61040.pdf",
+    "product_page_url": "https://www.ti.com/product/TPS61040",
+    "source_domain": "www.ti.com",
+    "revision": "SLVS413L (Aug 2026)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 39
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "DBV",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "Standard 5-pin SOT-23 (DBV) package without thermal exposed pad."
+    },
+    "theta_ja_c_per_w": {
+      "value": 205.2,
+      "page": 4,
+      "condition": "JEDEC high-K board, DBV 5-pin SOT-23",
+      "table_ref": "Section 5.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 118.3,
+      "page": 4,
+      "condition": "RthetaJC(top), DBV 5-pin SOT-23",
+      "table_ref": "Section 5.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 4,
+      "condition": "Recommended operating junction temperature max (Abs Max 150°C)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "SW",
+        "role": "SW",
+        "description": "Internal 30 V rated N-channel switch drain connected to inductor and external Schottky anode."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Analog and power ground reference."
+      },
+      {
+        "pin": 3,
+        "name": "FB",
+        "role": "FB",
+        "description": "Feedback input for adjustable output resistor divider (VREF = 1.233 V typ)."
+      },
+      {
+        "pin": 4,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high enable input (do not float; abs max VIN + 0.3 V)."
+      },
+      {
+        "pin": 5,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Input supply voltage pin (1.8 V to 6.0 V recommended)."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "topology": "boost",
+    "vin_abs_max_v": {
+      "value": 7.0,
+      "page": 4,
+      "condition": "VIN abs max -0.3 V to 7.0 V (SW pin abs max 30 V; EN abs max VIN + 0.3 V)",
+      "table_ref": "Section 5.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 1.8,
+      "page": 4,
+      "condition": "Minimum recommended operating input voltage",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 6.0,
+      "page": 4,
+      "condition": "Maximum recommended operating input voltage",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "vout_min_v": {
+      "value": 1.8,
+      "page": 5,
+      "condition": "Boost minimum output equals VIN (1.8 V minimum input)",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "vout_max_v": {
+      "value": 28.0,
+      "page": 4,
+      "condition": "Maximum recommended adjustable boost output voltage (SW abs max 30 V)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "vout_fixed": false,
+    "vout_nom_v": null,
+    "vref_v": {
+      "value": 1.233,
+      "page": 5,
+      "condition": "Feedback reference voltage typ 1.233 V (min 1.208 V, max 1.258 V over -40°C to 85°C)",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "iout_or_isw_max_ma": {
+      "value": 400,
+      "page": 5,
+      "condition": "Internal N-FET peak switch current limit typ 400 mA (min 350 mA, max 450 mA); not continuous output current",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "is_switch_limit": true,
+    "iq_typ_ua": {
+      "value": 28,
+      "page": 5,
+      "condition": "Non-switching quiescent current 28 uA typ (max 50 uA); shutdown current 1 uA typ",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "fsw_typ_khz": {
+      "value": 1000,
+      "page": 1,
+      "condition": "PFM peak-current control with switching frequency up to 1 MHz (min off-time 400 ns typ p.5)",
+      "table_ref": "Section 1 Features & Section 5.5"
+    },
+    "efficiency_peak_pct": {
+      "value": 87.5,
+      "page": 1,
+      "condition": "Peak ~87.5% at VIN = 5 V, VOUT = 18 V, IOUT = 20 mA to 30 mA",
+      "table_ref": "Page 1 Efficiency vs Output Current (300 DPI Vision verified)"
+    },
+    "inductor_typ_uh": {
+      "value": 10.0,
+      "page": 4,
+      "condition": "Nominal recommended inductance 10 uH (minimum 2.2 uH)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "synchronous": false,
+    "min_cout_uf": {
+      "value": 1.0,
+      "page": 4,
+      "condition": "Minimum recommended ceramic output capacitance 1.0 uF (4.7 uF typical for lower ripple)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "en_active_high": true
+  },
+  "design_gotchas": [
+    {
+      "title": "VIN Capped at 6.0 V (7.0 V Abs Max) vs Pin-Compatible 14 V LM27313/LM2733",
+      "severity": "CRITICAL",
+      "detail": "TPS61040DBVR shares the exact SOT-23-5 pinout (1=SW, 2=GND, 3=FB, 4=EN, 5=VIN) and ~1.23 V VFB with LM27313XMF/NOPB and LM2733XMF/NOPB, but its VIN max is only 6.0 V (7.0 V abs max). Placing TPS61040DBVR on a 9 V or 12 V rail built for LM27313/LM2733 will immediately destroy the IC.",
+      "page": 4
+    },
+    {
+      "title": "Non-Synchronous Boost Requires External High-Voltage Schottky Diode & Offers No Load Disconnect",
+      "severity": "CRITICAL",
+      "detail": "An external Schottky rectifier rated >= 30 V (e.g., MBR0530) is mandatory between SW and VOUT. Because this diode remains in the DC path even when EN is low, VOUT stays near VIN - Vf during shutdown.",
+      "page": 1
+    },
+    {
+      "title": "PFM Control Creates Load-Dependent Variable Frequency and Audible Ripple Risk",
+      "severity": "WARNING",
+      "detail": "Unlike fixed-frequency 1.6 MHz PWM LM27313/LM2733, TPS61040 uses constant-peak-current PFM (up to 1 MHz) to achieve 28 uA quiescent current. At light loads, switching frequency drops into the audible band and output voltage ripple increases unless CFF is tuned.",
+      "page": 1
+    },
+    {
+      "title": "400 mA Switch Limit Restricts High-Voltage Output Current",
+      "severity": "WARNING",
+      "detail": "With a 400 mA typ (350 mA min) peak switch limit and 10 uH inductor, maximum load current at 3.3 V -> 18 V or 24 V is only tens of milliamps (~25-45 mA). Verify peak-to-average boost current ratios before substituting for higher-current boost ICs.",
+      "page": 5
+    }
+  ],
+  "typical_use_cases": [
+    "OLED and small-to-medium LCD bias power rails (12 V to 28 V) from 1-cell Li-Ion or 3.3 V/5 V bus",
+    "Series white-LED backlight driver for handheld instruments and portable displays",
+    "Low-Iq (28 uA) low-current 3.3 V/5 V to 12 V/15 V/24 V auxiliary analog rail generation"
+  ],
+  "engineering_summary": "The TPS61040DBVR is a low-quiescent-current (28 uA typ) non-synchronous PFM boost converter in SOT-23-5 (DBV) featuring a 30 V rated internal switch (400 mA typ / 350 mA min peak limit) for boosting 1.8 V to 6.0 V inputs up to 28 V outputs (VREF = 1.233 V). It matches the 5-pin SOT-23 pinout of LM27313XMF/NOPB and LM2733XMF/NOPB while offering ~14x lower no-load Iq, but is strictly limited to <= 6.0 V input, 400 mA switch current, and variable PFM frequency. Verify VIN ceiling, load current, and Schottky selection against the official TI datasheet before production.",
+  "audit": {
+    "confidence_score": 0.98,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [1, 3, 4],
+    "audit_notes": [
+      "300 DPI PNG Vision inspection on p.3 confirmed DBV 5-pin SOT-23 Top View pinout (1=SW, 2=GND, 3=FB, 4=EN, 5=VIN) with no exposed pad.",
+      "300 DPI PNG Vision inspection on p.4 verified Abs Max VIN 7.0 V / SW 30 V, Rec Op VIN 1.8-6.0 V / VOUT up to 28 V, RthetaJA 205.2 C/W, RthetaJC(top) 118.3 C/W, L 10 uH, and min Cout 1.0 uF.",
+      "300 DPI PNG Vision inspection on p.1 confirmed Typical Application Schematic with external Schottky diode and ~87.5% peak efficiency at VIN = 5 V, VOUT = 18 V."
+    ]
+  }
+}

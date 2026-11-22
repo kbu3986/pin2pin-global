@@ -1,0 +1,214 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "LM2596SX-5.0/NOPB",
+  "slug": "lm2596sx-5-0-nopb",
+  "family": "LM2596",
+  "manufacturer": "Texas Instruments",
+  "category": "dcdc",
+  "sub_topology": "buck",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Industrial / Extended (-40°C to 125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/lm2596.pdf",
+    "product_page_url": "https://www.ti.com/product/LM2596",
+    "source_domain": "www.ti.com",
+    "revision": "SNVS124G (Mar 2023)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 47
+  },
+  "package": {
+    "code": "TO-263-5",
+    "mfg_package_code": "KTT",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": true,
+      "net": "GND",
+      "note": "Metal mounting tab (DDPAK / TO-263-5 KTT) is internally connected to Ground (Pin 3); solder directly to large PCB GND copper pour (Fig. 6-2 p.4)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 50.0,
+      "page": 5,
+      "condition": "KTT TO-263 on 0.5 sq-in 1-oz Cu (drops to 30°C/W on 2.5 sq-in Cu or 20°C/W double-sided Cu)",
+      "table_ref": "Section 7.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 2.0,
+      "page": 5,
+      "condition": "RthetaJC(top/tab), KTT 5-pin TO-263",
+      "table_ref": "Section 7.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 5,
+      "condition": "Recommended operating junction temperature max 125°C (Abs Max 150°C)",
+      "table_ref": "Section 7.3 Recommended Operating Conditions"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Wide positive input supply voltage pin (7.0 V to 40.0 V for fixed 5 V regulation; 45 V abs max)."
+      },
+      {
+        "pin": 2,
+        "name": "Output",
+        "role": "SW",
+        "description": "Emitter of internal bipolar NPN power switch; connect to external 33-47 uH inductor and Schottky catch diode."
+      },
+      {
+        "pin": 3,
+        "name": "Ground",
+        "role": "GND",
+        "description": "Circuit ground internally connected to the TO-263 metal thermal tab."
+      },
+      {
+        "pin": 4,
+        "name": "Feedback",
+        "role": "FB",
+        "description": "Senses regulated 5.0 V output voltage directly via internal resistive divider."
+      },
+      {
+        "pin": 5,
+        "name": "ON/OFF",
+        "role": "EN",
+        "description": "ACTIVE-LOW enable input (< 1.3 V or grounded/open = ON; > 1.3 V up to 25 V = OFF / standby)."
+      }
+    ],
+    "pinout_source_page": 4,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "topology": "buck",
+    "vin_abs_max_v": {
+      "value": 45.0,
+      "page": 5,
+      "condition": "VIN abs max 45 V (ON/OFF pin -0.3 V to 25 V; Feedback -0.3 V to 25 V)",
+      "table_ref": "Section 7.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 7.0,
+      "page": 6,
+      "condition": "Minimum VIN for fixed 5.0 V regulation (Section 7.6 p.6 specifies 7 V <= VIN <= 40 V; IC operating range 4.5 V to 40 V p.5)",
+      "table_ref": "Section 7.6 Electrical Characteristics (5-V Version)"
+    },
+    "vin_max_v": {
+      "value": 40.0,
+      "page": 6,
+      "condition": "Maximum recommended operating input voltage (4.5 V to 40 V IC; 7 V to 40 V for 5 V version)",
+      "table_ref": "Section 7.3 & Section 7.6"
+    },
+    "vout_min_v": {
+      "value": 4.75,
+      "page": 6,
+      "condition": "Fixed 5.0 V output min over -40°C to 125°C TJ, 7 V <= VIN <= 40 V, 0.2 A <= ILOAD <= 3 A (4.80 V at 25°C)",
+      "table_ref": "Section 7.6 Electrical Characteristics (5-V Version)"
+    },
+    "vout_max_v": {
+      "value": 5.25,
+      "page": 6,
+      "condition": "Fixed 5.0 V output max over -40°C to 125°C TJ, 7 V <= VIN <= 40 V, 0.2 A <= ILOAD <= 3 A (5.20 V at 25°C)",
+      "table_ref": "Section 7.6 Electrical Characteristics (5-V Version)"
+    },
+    "vout_fixed": true,
+    "vout_nom_v": {
+      "value": 5.0,
+      "page": 6,
+      "condition": "Fixed 5.0 V output version (LM2596-5.0)",
+      "table_ref": "Section 7.6 Electrical Characteristics (5-V Version)"
+    },
+    "vref_v": null,
+    "iout_or_isw_max_ma": {
+      "value": 3000,
+      "page": 1,
+      "condition": "Guaranteed 3 A continuous output load current (switch peak current limit typ 4.5 A, min 3.6 A per p.7)",
+      "table_ref": "Section 1 Features & Section 7.8"
+    },
+    "is_switch_limit": false,
+    "iq_typ_ua": {
+      "value": 5000,
+      "page": 7,
+      "condition": "Operating quiescent current 5 mA (5000 uA) typ, 10 mA max (standby IQ = 80 uA typ when ON/OFF pulled high)",
+      "table_ref": "Section 7.8 Electrical Characteristics (All Versions)"
+    },
+    "fsw_typ_khz": {
+      "value": 150,
+      "page": 7,
+      "condition": "Fixed 150 kHz typ oscillator (127 kHz to 173 kHz at 25°C; 110 kHz to 173 kHz over temp; folds to ~48 kHz in short-circuit)",
+      "table_ref": "Section 7.8 Electrical Characteristics (All Versions)"
+    },
+    "efficiency_peak_pct": {
+      "value": 80,
+      "page": 6,
+      "condition": "80% typical efficiency at VIN = 12 V, VOUT = 5.0 V, ILOAD = 3 A (limited by bipolar VSAT ~ 1.16 V & external Schottky diode)",
+      "table_ref": "Section 7.6 Electrical Characteristics (5-V Version)"
+    },
+    "inductor_typ_uh": {
+      "value": 33.0,
+      "page": 25,
+      "condition": "Table 9-3 recommends 33 uH for 5 V / 3 A up to 15 V VIN (47 uH for up to 40 V VIN)",
+      "table_ref": "Table 9-3 Inductor Selection Guide p.25"
+    },
+    "synchronous": false,
+    "min_cout_uf": {
+      "value": 82.0,
+      "page": 24,
+      "condition": "Requires 82 uF to 820 uF low-ESR aluminum electrolytic (or 10-470 uF solid tantalum); Table 9-3 uses 220-330 uF (NOT ultra-low-ESR ceramic!)",
+      "table_ref": "Section 9.2.2.4 Output Capacitor Selection p.24"
+    },
+    "en_active_high": false
+  },
+  "design_gotchas": [
+    {
+      "title": "INVERTED LOGIC: Pin 5 (ON/OFF) Is ACTIVE-LOW Enable (Opposite of Modern Bucks!)",
+      "severity": "CRITICAL",
+      "detail": "Pulling Pin 5 (ON/OFF) below 1.3 V (grounded or open) turns LM2596 ON, whereas pulling it above 1.3 V (up to 25 V max) SHUTS IT DOWN. This polarity is inverted compared to TPS54302DDCR, TPS54331DR, AP63203WU-7, and AP62200WU-7.",
+      "page": 4
+    },
+    {
+      "title": "Non-Synchronous Bipolar NPN Switch (VSAT = 1.16 V) Limits Efficiency to ~80% & Needs Copper Heatsinking",
+      "severity": "CRITICAL",
+      "detail": "Because LM2596 uses a legacy Darlington/bipolar switch (~1.16 V typ / 1.5 V max saturation at 3 A) plus an external Schottky diode, full 3 A load dissipates ~2.5-3.5 W across IC and diode (~80% efficiency vs 92-95% on synchronous MOSFET bucks). Large PCB copper area on the GND tab (<= 30°C/W) is mandatory at 3 A.",
+      "page": 6
+    },
+    {
+      "title": "Legacy 150 kHz Frequency Demands Bulky 33-47 uH Inductors & Finite-ESR Electrolytic Capacitors",
+      "severity": "CRITICAL",
+      "detail": "At 150 kHz, LM2596 requires large 33-47 uH inductors and 82-330 uF low-ESR electrolytic or tantalum output capacitors whose ESR provides loop zero damping. Pure ultra-low-ESR MLCC ceramic capacitors on input/output can trigger severe ringing (p.26) or loop instability.",
+      "page": 24
+    },
+    {
+      "title": "High 5 mA Operating Iq and 7 V Minimum Input for 5 V Regulation",
+      "severity": "WARNING",
+      "detail": "LM2596SX-5.0/NOPB draws 5 mA typical quiescent current (100x higher than TPS54302's 45 uA) and needs at least 7.0 V input (2 V headroom) to regulate 5.0 V accurately at 3 A, though it uniquely handles up to 40 V continuous (45 V abs max) industrial buses.",
+      "page": 6
+    }
+  ],
+  "typical_use_cases": [
+    "Legacy 24 V to 40 V industrial control, telecom, and automotive-adjacent step-down to fixed 5.0 V at up to 3 A",
+    "Rugged high-voltage pre-regulator for linear LDOs where 40 V continuous input tolerance outweighs board space",
+    "Reference baseline when migrating bulky 150 kHz TO-263 designs to modern compact 28-32 V synchronous MOSFET bucks"
+  ],
+  "engineering_summary": "The LM2596SX-5.0/NOPB is a classic SIMPLE SWITCHER 150 kHz non-synchronous bipolar buck regulator in a 5-pin TO-263 (KTT / DDPAK) power package (GND metal tab, RthetaJA = 20-50°C/W) delivering fixed 5.0 V at 3 A from wide 7.0 V to 40 V inputs (45 V abs max). Compared to modern synchronous bucks like TPS54302DDCR or AP63203WU-7, it tolerates higher 40 V inputs but suffers ~80% efficiency, 5 mA quiescent current, bulky 33-47 uH inductors, finite-ESR electrolytic capacitor requirements, and inverted ACTIVE-LOW ON/OFF enable polarity. Verify copper heatsinking and capacitor ESR stability in the TI datasheet before production.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [4, 5],
+    "audit_notes": [
+      "300 DPI PNG Vision inspection on p.4 Fig 6-2 confirmed KTT 5-pin TO-263 (DDPAK) Top View pinout (1=VIN, 2=Output, 3=Ground, 4=Feedback, 5=ON/OFF) with metal thermal tab internally connected to Ground.",
+      "300 DPI PNG Vision inspection on p.5 verified Abs Max VIN 45 V, ON/OFF 25 V, Rec Op VIN 4.5-40 V (7-40 V for 5 V version p.6), TJ -40 to 125 C, RthetaJA 50 C/W (0.5 sq-in Cu; 30/20 C/W larger Cu), and RthetaJC 2 C/W.",
+      "Confirmed inverted ACTIVE-LOW ON/OFF enable polarity (en_active_high: false), 150 kHz oscillator, 5 mA Iq, 80% efficiency at 12 V -> 5 V / 3 A, and electrolytic/tantalum ESR requirements."
+    ]
+  }
+}

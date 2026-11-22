@@ -1,0 +1,220 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TPS61221DCKR",
+  "slug": "tps61221dckr",
+  "family": "TPS61220",
+  "manufacturer": "Texas Instruments",
+  "category": "dcdc",
+  "sub_topology": "boost",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 85,
+    "grade_label": "Industrial (-40°C to 85°C TA, TJ max 125°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tps61220.pdf",
+    "product_page_url": "https://www.ti.com/product/TPS61221",
+    "source_domain": "www.ti.com",
+    "revision": "SLVS776B (Nov 2014)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 28
+  },
+  "package": {
+    "code": "SC-70-6",
+    "mfg_package_code": "DCK",
+    "pin_count": 6,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "Standard 6-pin SC-70 (DCK) package without thermal exposed pad."
+    },
+    "theta_ja_c_per_w": {
+      "value": 231.2,
+      "page": 4,
+      "condition": "JEDEC high-K board, DCK 6-pin SC-70",
+      "table_ref": "Section 7.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 61.8,
+      "page": 4,
+      "condition": "RthetaJC(top), DCK 6-pin SC-70",
+      "table_ref": "Section 7.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 4,
+      "condition": "Recommended operating junction temperature max (Abs Max 150°C p.3; TSD 140°C typ p.5)",
+      "table_ref": "Section 7.3 Recommended Operating Conditions"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Boost converter input supply pin (0.7 V to 5.5 V)."
+      },
+      {
+        "pin": 2,
+        "name": "FB",
+        "role": "FB",
+        "description": "Feedback input; for fixed 3.3 V TPS61221 MUST be connected directly to VOUT."
+      },
+      {
+        "pin": 3,
+        "name": "GND",
+        "role": "GND",
+        "description": "Analog and power ground reference."
+      },
+      {
+        "pin": 4,
+        "name": "VOUT",
+        "role": "VOUT",
+        "description": "Fixed 3.3 V boost converter output."
+      },
+      {
+        "pin": 5,
+        "name": "L",
+        "role": "SW",
+        "description": "Inductor switching node connected to internal synchronous power MOSFETs."
+      },
+      {
+        "pin": 6,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high enable input (do not leave floating; shutdown allows pass-through via body diode)."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "topology": "boost",
+    "vin_abs_max_v": {
+      "value": 7.5,
+      "page": 3,
+      "condition": "VIN, L, VOUT, EN, FB absolute maximum voltage (-0.3 V to 7.5 V)",
+      "table_ref": "Section 7.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 0.7,
+      "page": 4,
+      "condition": "Minimum recommended operating input voltage (startup typ 0.7 V into 3.3 kOhm load)",
+      "table_ref": "Section 7.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 5.5,
+      "page": 4,
+      "condition": "Maximum recommended input voltage (pass-through when VIN > VOUT)",
+      "table_ref": "Section 7.3 Recommended Operating Conditions"
+    },
+    "vout_min_v": {
+      "value": 3.2,
+      "page": 4,
+      "condition": "TPS61221 fixed 3.3 V output min over -40°C to 85°C TA",
+      "table_ref": "Section 7.5 Electrical Characteristics"
+    },
+    "vout_max_v": {
+      "value": 3.41,
+      "page": 4,
+      "condition": "TPS61221 fixed 3.3 V output max over -40°C to 85°C TA",
+      "table_ref": "Section 7.5 Electrical Characteristics"
+    },
+    "vout_fixed": true,
+    "vout_nom_v": {
+      "value": 3.3,
+      "page": 4,
+      "condition": "Fixed 3.3 V output variant (TPS61221)",
+      "table_ref": "Section 7.5 Electrical Characteristics"
+    },
+    "vref_v": null,
+    "iout_or_isw_max_ma": {
+      "value": 400,
+      "page": 4,
+      "condition": "Internal low-side switch current limit typ 400 mA (min 200 mA over temp / 240 mA at 25°C); not output load current",
+      "table_ref": "Section 7.5 Electrical Characteristics"
+    },
+    "is_switch_limit": true,
+    "iq_typ_ua": {
+      "value": 5.5,
+      "page": 4,
+      "condition": "Total quiescent current 5.5 uA typ (5.0 uA into VOUT + 0.5 uA into VIN, non-switching)",
+      "table_ref": "Section 1 & Section 7.5 Electrical Characteristics"
+    },
+    "fsw_typ_khz": {
+      "value": 812,
+      "page": 14,
+      "condition": "Hysteretic variable switching frequency; ~812 kHz typ per Eq. 1 (IL_ripple = 200 mA, L = 4.7 uH, VIN = 1.2 V, VOUT = 3.3 V; peaks ~878 kHz at VIN = 1.65 V)",
+      "table_ref": "Section 9.2.2.2 Equation 1"
+    },
+    "efficiency_peak_pct": {
+      "value": 93,
+      "page": 6,
+      "condition": "TPS61221 VOUT = 3.3 V peak ~93% at VIN = 3.0 V (TPS6122x family up to 95% per p.1)",
+      "table_ref": "Figure 3 (300 DPI Vision verified)"
+    },
+    "inductor_typ_uh": {
+      "value": 4.7,
+      "page": 13,
+      "condition": "Recommended nominal inductor 4.7 uH (minimum 2.2 uH per Section 9.2.2.2 p.14)",
+      "table_ref": "Section 9.2.1 Typical Application"
+    },
+    "synchronous": true,
+    "min_cout_uf": {
+      "value": 4.7,
+      "page": 14,
+      "condition": "Minimum ceramic output capacitance 4.7 uF (10 uF recommended for lower ripple)",
+      "table_ref": "Section 9.2.2.3 Output Capacitor"
+    },
+    "en_active_high": true
+  },
+  "design_gotchas": [
+    {
+      "title": "Pin 2 (FB) MUST Be Tied Directly to VOUT on Fixed 3.3 V TPS61221",
+      "severity": "CRITICAL",
+      "detail": "Unlike fixed-output TPS610994 (which ties FB to GND), fixed 3.3 V TPS61221 requires Pin 2 (FB) to be wired directly to VOUT (Pin 4) to close its internal divider. Leaving FB open or tied to GND breaks regulation and causes uncontrolled output voltage.",
+      "page": 3
+    },
+    {
+      "title": "NO True Load Disconnect When Disabled (EN = Low)",
+      "severity": "CRITICAL",
+      "detail": "Pulling EN low stops switching but does NOT isolate VOUT from VIN: current still passes through the inductor and the rectifying PFET body diode directly to the load (VOUT ≈ VIN - Vf). Use TPS610994 or an external load switch if zero-leakage load disconnect is required.",
+      "page": 12
+    },
+    {
+      "title": "Low Guaranteed Minimum Switch Current Limit (200 mA Over Temp)",
+      "severity": "WARNING",
+      "detail": "While typical switch current limit is 400 mA, worst-case guaranteed minimum over -40°C to 85°C is only 200 mA (240 mA at 25°C). From a 1.2 V battery to 3.3 V, worst-case output current can drop below 60-80 mA; size load budgets conservatively.",
+      "page": 4
+    },
+    {
+      "title": "EN Pin Must Not Float and Package RthetaJA Is High (231.2°C/W)",
+      "severity": "WARNING",
+      "detail": "EN has no internal pull resistor and must be driven or tied directly to VIN. In addition, the tiny SC-70-6 package exhibits 231.2°C/W RthetaJA, limiting continuous dissipation at 85°C ambient to ~170 mW.",
+      "page": 4
+    }
+  ],
+  "typical_use_cases": [
+    "Single-cell solar, thermal harvesting, or 1.2 V/1.5 V single-cell battery boost to 3.3 V for low-power MCUs",
+    "Ultra-low-Iq (5.5 uA) wireless sensor nodes, medical patches, and remote controls drawing < 100 mA",
+    "Compact SC-70-6 fixed 3.3 V step-up converter where pass-through during shutdown is acceptable"
+  ],
+  "engineering_summary": "The TPS61221DCKR is a fixed 3.3 V, ultra-low quiescent current (5.5 uA typ) hysteretic synchronous boost converter in a tiny 6-pin SC-70 (DCK) package capable of starting from 0.7 V typical inputs. It integrates a 400 mA typical (200 mA min over temperature) switch current limit and pairs with a 4.7 uH inductor and 4.7-10 uF ceramic capacitor. Critical layout traps include wiring Pin 2 (FB) directly to VOUT and accounting for body-diode pass-through (no true disconnect) when EN is low; always verify current margin and behavior against the official TI datasheet before production.",
+  "audit": {
+    "confidence_score": 0.98,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 4, 6],
+    "audit_notes": [
+      "300 DPI PNG Vision inspection on p.3 confirmed DCK 6-pin SC-70 Top View pinout (1=VIN, 2=FB, 3=GND, 4=VOUT, 5=L, 6=EN) and mandatory FB-to-VOUT connection for TPS61221.",
+      "300 DPI PNG Vision inspection on p.4 verified Rec Op VIN 0.7-5.5 V, TA -40 to 85 C, RthetaJA 231.2 C/W, RthetaJC(top) 61.8 C/W, ILIM 400 mA typ / 200 mA min, and Iq 5.5 uA total.",
+      "300 DPI PNG Vision inspection on p.6 Fig 3 confirmed TPS61221 VOUT = 3.3 V efficiency reaches ~93% at VIN = 3.0 V."
+    ]
+  }
+}

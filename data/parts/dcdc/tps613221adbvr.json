@@ -1,0 +1,214 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TPS613221ADBVR",
+  "slug": "tps613221adbvr",
+  "family": "TPS61322",
+  "manufacturer": "Texas Instruments",
+  "category": "dcdc",
+  "sub_topology": "boost",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Industrial / Extended (-40°C to 125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tps61322.pdf",
+    "product_page_url": "https://www.ti.com/product/TPS61322",
+    "source_domain": "www.ti.com",
+    "revision": "SLVSDY5E (Feb 2024)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 37
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "DBV",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "Standard 5-pin SOT-23 (DBV) package without thermal exposed pad."
+    },
+    "theta_ja_c_per_w": {
+      "value": 189.7,
+      "page": 4,
+      "condition": "JEDEC high-K board, DBV 5-pin SOT-23",
+      "table_ref": "Section 5.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 109.4,
+      "page": 4,
+      "condition": "RthetaJC(top), DBV 5-pin SOT-23",
+      "table_ref": "Section 5.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 4,
+      "condition": "Recommended operating junction temperature max (Abs Max and TSD = 150°C)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "SW",
+        "role": "SW",
+        "description": "Switch node connection to inductor and internal low-side/high-side synchronous MOSFETs."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Analog and power ground reference."
+      },
+      {
+        "pin": 3,
+        "name": "NC",
+        "role": "NC",
+        "description": "No internal connection; leave floating or connect to GND for thermal relief per layout rules."
+      },
+      {
+        "pin": 4,
+        "name": "VOUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V fixed boost output and internal supply bias input."
+      },
+      {
+        "pin": 5,
+        "name": "NC",
+        "role": "NC",
+        "description": "No internal connection; leave floating."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "topology": "boost",
+    "vin_abs_max_v": {
+      "value": 6.0,
+      "page": 4,
+      "condition": "SW and VOUT pin absolute maximum voltage (-0.3 V to 6.0 V)",
+      "table_ref": "Section 5.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 0.9,
+      "page": 4,
+      "condition": "Minimum recommended operating and startup input voltage (runs down to 0.4 V post-startup)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 5.5,
+      "page": 4,
+      "condition": "Maximum recommended input voltage (pass-through occurs when VIN > VOUT)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "vout_min_v": {
+      "value": 3.2,
+      "page": 5,
+      "condition": "TPS613221A fixed 3.3 V output minimum over -40°C to 125°C TJ",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "vout_max_v": {
+      "value": 3.4,
+      "page": 5,
+      "condition": "TPS613221A fixed 3.3 V output maximum over -40°C to 125°C TJ",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "vout_fixed": true,
+    "vout_nom_v": {
+      "value": 3.3,
+      "page": 5,
+      "condition": "Fixed 3.3 V output option (TPS613221A)",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "vref_v": null,
+    "iout_or_isw_max_ma": {
+      "value": 1200,
+      "page": 5,
+      "condition": "TPS613221A internal switch valley current limit typ 1.2 A (min 0.75 A, max 1.6 A); not continuous output current",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "is_switch_limit": true,
+    "iq_typ_ua": {
+      "value": 6.5,
+      "page": 5,
+      "condition": "Quiescent current into VOUT pin, non-switching, VIN = 1.5 V, VOUT = 3.3 V, TJ = 25°C",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "fsw_typ_khz": {
+      "value": 1600,
+      "page": 9,
+      "condition": "Hysteretic variable switching frequency; 1.6 MHz fixed oscillator during startup (Section 6.3.1 p.9) and ~1.4-1.7 MHz CCM with 2.2 uH inductor (Eq. 2 p.13)",
+      "table_ref": "Section 6.3.1 & Section 7.2.2"
+    },
+    "efficiency_peak_pct": {
+      "value": 94,
+      "page": 6,
+      "condition": "TPS613221A peak efficiency at VIN = 3.0 V, VOUT = 3.3 V, L = 2.2 uH, IOUT ~ 100 mA",
+      "table_ref": "Figure 6-3 (300 DPI Vision verified)"
+    },
+    "inductor_typ_uh": {
+      "value": 2.2,
+      "page": 4,
+      "condition": "Nominal effective inductance 2.2 uH (recommended range 0.7 uH to 13 uH effective)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "synchronous": true,
+    "min_cout_uf": {
+      "value": 4.7,
+      "page": 4,
+      "condition": "Minimum effective output capacitance 4.7 uF (nominal recommended 16 uF effective)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "en_active_high": null
+  },
+  "design_gotchas": [
+    {
+      "title": "No Enable (EN) Pin and No True Load Disconnect",
+      "severity": "CRITICAL",
+      "detail": "TPS613221ADBVR is an always-on 3-active-pin boost converter in SOT-23-5 (pins 3 and 5 are NC) with no EN or shutdown pin. When VIN is present, current flows directly to VOUT through the inductor and high-side body diode, so external load switching is required if system shutdown is needed.",
+      "page": 3
+    },
+    {
+      "title": "1.2 A Is Switch Current Limit, Not Continuous Load Current",
+      "severity": "CRITICAL",
+      "detail": "The 1.2 A typical (0.75 A minimum) rating is the internal low-side switch current limit, not guaranteed output load current. From a single 1.2 V alkaline cell boosting to 3.3 V, maximum deliverable load current is typically under 300 mA due to boost duty cycle and inductor ripple.",
+      "page": 5
+    },
+    {
+      "title": "Family Pinout Reversal Trap Between 3-Pin DBZ Variants",
+      "severity": "WARNING",
+      "detail": "While TPS613221ADBVR uses SOT-23-5 (DBV: 1=SW, 2=GND, 4=VOUT), the 3-pin SOT-23 (DBZ) siblings reverse Pin 1 and Pin 3 between non-A (TPS61322xDBZ: 1=SW, 2=VOUT, 3=GND) and A-suffix (TPS61322xADBZ: 1=GND, 2=VOUT, 3=SW) devices. Never assume family pin compatibility across packages or suffixes.",
+      "page": 3
+    },
+    {
+      "title": "High Output Current (> 350 mA) Requires Parallel External Schottky Diode",
+      "severity": "WARNING",
+      "detail": "For output currents above ~350 mA or VIN near 0.9 V, TI recommends placing a low-Vf Schottky diode in parallel between SW and VOUT to share freewheeling current and reduce switching spikes on the 6.0 V rated SW pin.",
+      "page": 13
+    }
+  ],
+  "typical_use_cases": [
+    "Single-cell or dual-cell alkaline/NiMH battery (0.9 V to 3.0 V) boost to fixed 3.3 V MCU rail",
+    "Ultra-low quiescent current (6.5 uA) always-on IoT sensors, smart meters, and wearables",
+    "Minimal-BOM 3-component boost power stage (IC, 2.2 uH inductor, ceramic Cout) without feedback resistors"
+  ],
+  "engineering_summary": "The TPS613221ADBVR is an ultra-low quiescent current (6.5 uA typ into VOUT) synchronous hysteretic boost converter in SOT-23-5 (DBV) providing a fixed 3.3 V output from 0.9 V to 5.5 V inputs (operating down to 0.4 V after startup). With a 1.2 A typical (0.75 A min) internal switch limit, 2.2 uH nominal inductor, and zero feedback resistors, it minimizes BOM count for single/dual-cell battery systems. Note that it lacks an EN pin and true load disconnect; engineers considering alternatives must verify pinout, shutdown behavior, and switch-current-limited load capacity against the official TI datasheet before production.",
+  "audit": {
+    "confidence_score": 0.98,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 4, 6],
+    "audit_notes": [
+      "300 DPI PNG Vision inspection on p.3 confirmed DBV 5-pin SOT-23 Top View pinout (1=SW, 2=GND, 3=NC, 4=VOUT, 5=NC) with no exposed pad and distinguished it from 3-pin DBZ variants.",
+      "300 DPI PNG Vision inspection on p.4 verified Abs Max 6.0 V, Rec Op VIN 0.9-5.5 V, RthetaJA 189.7 C/W, RthetaJC(top) 109.4 C/W, L 2.2 uH, and min Cout 4.7 uF.",
+      "300 DPI PNG Vision inspection on p.6 Fig 6-3 verified TPS613221A peak efficiency ~94% at VIN = 3.0 V, VOUT = 3.3 V."
+    ]
+  }
+}
