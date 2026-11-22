@@ -1,0 +1,226 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "OPA2134UA",
+  "slug": "opa2134ua",
+  "family": "OPA2134",
+  "manufacturer": "Texas Instruments",
+  "category": "opamp",
+  "sub_topology": "opamp-dual",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 85,
+    "grade_label": "Industrial (-40°C to 85°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/opa2134.pdf",
+    "product_page_url": "https://www.ti.com/product/OPA2134",
+    "source_domain": "www.ti.com",
+    "revision": "SBOS058B (Rev. November 2024)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 35
+  },
+  "package": {
+    "code": "SOIC-8",
+    "mfg_package_code": "D",
+    "pin_count": 8,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE"
+    },
+    "theta_ja_c_per_w": {
+      "value": 160,
+      "page": 6,
+      "condition": "D (SOIC-8) package, OPA2134",
+      "table_ref": "Section 5.5 Thermal Information - OPA2134"
+    },
+    "theta_jc_c_per_w": {
+      "value": 75,
+      "page": 6,
+      "condition": "RθJC(top), D (SOIC-8) package",
+      "table_ref": "Section 5.5 Thermal Information - OPA2134"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 5,
+      "condition": "Junction temperature, max",
+      "table_ref": "Section 5.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "OUT A",
+        "role": "OUT_A",
+        "description": "Output, channel A"
+      },
+      {
+        "pin": 2,
+        "name": "-IN A",
+        "role": "IN_NEG_A",
+        "description": "Inverting input, channel A"
+      },
+      {
+        "pin": 3,
+        "name": "+IN A",
+        "role": "IN_POS_A",
+        "description": "Noninverting input, channel A"
+      },
+      {
+        "pin": 4,
+        "name": "V-",
+        "role": "VEE",
+        "description": "Negative (lowest) power supply"
+      },
+      {
+        "pin": 5,
+        "name": "+IN B",
+        "role": "IN_POS_B",
+        "description": "Noninverting input, channel B"
+      },
+      {
+        "pin": 6,
+        "name": "-IN B",
+        "role": "IN_NEG_B",
+        "description": "Inverting input, channel B"
+      },
+      {
+        "pin": 7,
+        "name": "OUT B",
+        "role": "OUT_B",
+        "description": "Output, channel B"
+      },
+      {
+        "pin": 8,
+        "name": "V+",
+        "role": "VCC",
+        "description": "Positive (highest) power supply"
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "device_kind": "opamp",
+    "channels": 2,
+    "vs_abs_max_v": {
+      "value": 36,
+      "page": 5,
+      "condition": "Supply voltage (V+) - (V-), single supply max (±18 V dual; zero margin above 36 V recommended max)",
+      "table_ref": "Section 5.1 Absolute Maximum Ratings"
+    },
+    "vs_min_v": {
+      "value": 5,
+      "page": 5,
+      "condition": "Recommended operating minimum (5 V single supply or ±2.5 V dual)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "vs_max_v": {
+      "value": 36,
+      "page": 5,
+      "condition": "Recommended operating maximum (36 V single supply or ±18 V dual)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "gbwp_mhz": {
+      "value": 8,
+      "page": 7,
+      "condition": "VS = ±15 V, RL = 2 kΩ, TA = 25°C",
+      "table_ref": "Section 5.7 Electrical Characteristics"
+    },
+    "slew_rate_v_per_us": {
+      "value": 20,
+      "page": 7,
+      "condition": "VS = ±15 V, RL = 2 kΩ, TA = 25°C (±20 V/µs typ)",
+      "table_ref": "Section 5.7 Electrical Characteristics"
+    },
+    "prop_delay_ns": null,
+    "vos_max_mv": {
+      "value": 3.5,
+      "page": 7,
+      "condition": "VS = ±15 V, TA = 25°C (±1 mV typ, ±3.5 mV max)",
+      "table_ref": "Section 5.7 Electrical Characteristics"
+    },
+    "ib_typ_pa": {
+      "value": 5,
+      "page": 7,
+      "condition": "VS = ±15 V, TJ = 25°C (±5 pA typ, ±100 pA max; ±5 nA max over -40°C to +85°C)",
+      "table_ref": "Section 5.7 Electrical Characteristics"
+    },
+    "iq_per_ch_typ_ua": {
+      "value": 4000,
+      "page": 8,
+      "condition": "VS = ±15 V, IO = 0 mA, TA = 25°C, per amplifier (4 mA typ, 5 mA max)",
+      "table_ref": "Section 5.7 Electrical Characteristics (continued)"
+    },
+    "rail_to_rail_in": false,
+    "rail_to_rail_out": false,
+    "output_type": "push-pull",
+    "cmrr_typ_db": {
+      "value": 100,
+      "page": 7,
+      "condition": "VS = ±15 V, -12.5 V ≤ VCM ≤ 11.5 V, TA = 25°C (86 dB min)",
+      "table_ref": "Section 5.7 Electrical Characteristics"
+    },
+    "input_noise_nv_rt_hz": {
+      "value": 8,
+      "page": 7,
+      "condition": "VS = ±15 V, f = 1 kHz, TA = 25°C",
+      "table_ref": "Section 5.7 Electrical Characteristics"
+    },
+    "iout_short_ma": {
+      "value": 36,
+      "page": 8,
+      "condition": "VS = ±15 V, TA = 25°C (36 mA sourcing, -30 mA sinking typ)",
+      "table_ref": "Section 5.7 Electrical Characteristics (continued)"
+    }
+  },
+  "design_gotchas": [
+    {
+      "title": "High 4 mA/ch Quiescent Current Causes 38°C–48°C Self-Heating in SOIC-8 at ±15 V",
+      "severity": "CRITICAL",
+      "detail": "At ±15 V (30 V total), dual-channel quiescent current (8 mA typ / 10 mA max total) dissipates 240 mW–300 mW at idle. With RθJA = 160 °C/W in SOIC-8, the die already runs 38°C–48°C above ambient before driving 600 Ω loads; check thermal margin closely when upgrading from TL072IDR (1.4 mA/ch).",
+      "page": 8
+    },
+    {
+      "title": "Zero Overvoltage Headroom Above ±18 V (36 V Abs Max = 36 V Recommended Max)",
+      "severity": "CRITICAL",
+      "detail": "Unlike TL072IDR (42 V abs max), OPA2134UA lists 36 V (±18 V) as both its recommended maximum and absolute maximum supply rating. Unregulated transformer ripple or power-rail transients exceeding ±18 V will violate absolute maximum ratings.",
+      "page": 5
+    },
+    {
+      "title": "Non-Rail-to-Rail Input Range Requires 2.5 V Bottom / 3.5 V Top Headroom",
+      "severity": "WARNING",
+      "detail": "Guaranteed common-mode input range is (V-) + 2.5 V to (V+) - 3.5 V, making OPA2134UA impractical on 5 V single-supply rails (0 V guaranteed CM window) and incompatible with low-voltage RRIO sockets like MC33202DR2G or TLV9002IDR.",
+      "page": 7
+    },
+    {
+      "title": "MSL-3 Moisture Sensitivity (168 hr Floor Life) and 75-Unit Tube Packaging",
+      "severity": "INFO",
+      "detail": "OPA2134UA is rated Level-3-260C-168 HR (requires baking before reflow if exposed >168 hours) and ships in 75-unit tubes; order OPA2134UA/2K5 for 2500-piece tape-and-reel production.",
+      "page": 23
+    }
+  ],
+  "typical_use_cases": [
+    "Audiophile preamplifiers, studio mixing consoles, and DAC I/V output stages (0.00008% THD+N)",
+    "Low-noise (8 nV/√Hz) split-supply (±15 V) drop-in audio upgrade for TL072IDR",
+    "High-headroom 600 Ω and 2 kΩ balanced audio line drivers and headphone amps",
+    "Phase-inversion-free active crossovers, RIAA equalizers, and low-distortion filters"
+  ],
+  "engineering_summary": "The Texas Instruments OPA2134UA is a flagship SoundPlus dual FET-input audio operational amplifier in an 8-pin SOIC (D) package operating from ±2.5 V to ±18 V (5 V to 36 V) across -40°C to +85°C. Pin-compatible with TL072IDR in SOIC-8, it delivers ultra-low 0.00008% THD+N, 8 nV/√Hz voltage noise, 5 pA input bias, 8 MHz GBWP, 20 V/µs slew rate, and phase-inversion immunity. Designers upgrading from TL072IDR must budget for its 4 mA/ch quiescent current (240 mW idle dissipation at ±15 V in 160 °C/W SOIC-8) and strict 36 V absolute maximum supply limit.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 5, 6, 7, 8],
+    "audit_notes": [
+      "Verified OPA2134 SOIC-8 (D) Top View pinout on 300 DPI PNG page 3 (Figure 4-2 & Table 4-1).",
+      "Verified Abs Max (36 V, TJ=150°C) on page 5 PNG, OPA2134 D RθJA = 160 °C/W on page 6 PNG, and Electrical Characteristics on pages 7-8 PNGs.",
+      "Confirmed IQ = 4 mA per amplifier (4000 µA/ch) and ISC = 36 mA sourcing / -30 mA sinking on page 8 PNG."
+    ]
+  }
+}

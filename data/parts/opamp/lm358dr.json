@@ -1,0 +1,226 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "LM358DR",
+  "slug": "lm358dr",
+  "family": "LM358",
+  "manufacturer": "Texas Instruments",
+  "category": "opamp",
+  "sub_topology": "opamp-dual",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": 0,
+    "ta_max_c": 70,
+    "grade_label": "Commercial (0°C to 70°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/lm358.pdf",
+    "product_page_url": "https://www.ti.com/product/LM358",
+    "source_domain": "www.ti.com",
+    "revision": "SLOS068AB (Rev. October 2024)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 68
+  },
+  "package": {
+    "code": "SOIC-8",
+    "mfg_package_code": "D",
+    "pin_count": 8,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE"
+    },
+    "theta_ja_c_per_w": {
+      "value": 124.7,
+      "page": 5,
+      "condition": "D (SOIC-8) package, JEDEC High-K board",
+      "table_ref": "Section 5.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 66.9,
+      "page": 5,
+      "condition": "RθJC(top), D (SOIC-8) package",
+      "table_ref": "Section 5.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 4,
+      "condition": "Operating virtual-junction temperature, max",
+      "table_ref": "Section 5.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "OUT1",
+        "role": "OUT_A",
+        "description": "Output, channel 1"
+      },
+      {
+        "pin": 2,
+        "name": "IN1-",
+        "role": "IN_NEG_A",
+        "description": "Negative (inverting) input, channel 1"
+      },
+      {
+        "pin": 3,
+        "name": "IN1+",
+        "role": "IN_POS_A",
+        "description": "Positive (noninverting) input, channel 1"
+      },
+      {
+        "pin": 4,
+        "name": "V-",
+        "role": "VEE",
+        "description": "Negative (lowest) supply or ground for single-supply operation"
+      },
+      {
+        "pin": 5,
+        "name": "IN2+",
+        "role": "IN_POS_B",
+        "description": "Positive (noninverting) input, channel 2"
+      },
+      {
+        "pin": 6,
+        "name": "IN2-",
+        "role": "IN_NEG_B",
+        "description": "Negative (inverting) input, channel 2"
+      },
+      {
+        "pin": 7,
+        "name": "OUT2",
+        "role": "OUT_B",
+        "description": "Output, channel 2"
+      },
+      {
+        "pin": 8,
+        "name": "V+",
+        "role": "VCC",
+        "description": "Positive (highest) supply"
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "device_kind": "opamp",
+    "channels": 2,
+    "vs_abs_max_v": {
+      "value": 32,
+      "page": 4,
+      "condition": "LM358 (±16 V dual or 32 V single supply)",
+      "table_ref": "Section 5.1 Absolute Maximum Ratings"
+    },
+    "vs_min_v": {
+      "value": 3,
+      "page": 5,
+      "condition": "LM358 recommended single-supply minimum",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "vs_max_v": {
+      "value": 30,
+      "page": 5,
+      "condition": "LM358 recommended single-supply maximum",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "gbwp_mhz": {
+      "value": 0.7,
+      "page": 10,
+      "condition": "VS = 5 V, TA = 25°C, typ (LM358)",
+      "table_ref": "Section 5.7 Electrical Characteristics: LM358, LM358A"
+    },
+    "slew_rate_v_per_us": {
+      "value": 0.3,
+      "page": 10,
+      "condition": "VS = 5 V, G = +1, TA = 25°C, typ (LM358)",
+      "table_ref": "Section 5.7 Electrical Characteristics: LM358, LM358A"
+    },
+    "prop_delay_ns": null,
+    "vos_max_mv": {
+      "value": 7,
+      "page": 10,
+      "condition": "LM358, VS = 5 V to 30 V, VCM = 0 V, VO = 1.4 V, TA = 25°C (3 mV typ; 9 mV max over 0°C to 70°C)",
+      "table_ref": "Section 5.7 Electrical Characteristics: LM358, LM358A"
+    },
+    "ib_typ_pa": {
+      "value": 20000,
+      "page": 10,
+      "condition": "LM358, VS = 5 V, VO = 1.4 V, TA = 25°C (20 nA magnitude; datasheet specifies -20 nA typ, -250 nA max)",
+      "table_ref": "Section 5.7 Electrical Characteristics: LM358, LM358A"
+    },
+    "iq_per_ch_typ_ua": {
+      "value": 350,
+      "page": 10,
+      "condition": "VS = 5 V, VO = 2.5 V, IO = 0 A, TA = 25°C, per amplifier (600 µA max at 5 V; 500 µA typ at 30 V)",
+      "table_ref": "Section 5.7 Electrical Characteristics: LM358, LM358A"
+    },
+    "rail_to_rail_in": false,
+    "rail_to_rail_out": false,
+    "output_type": "push-pull",
+    "cmrr_typ_db": {
+      "value": 80,
+      "page": 10,
+      "condition": "VS = 5 V to 30 V, VCM = 0 V, TA = 25°C (65 dB min)",
+      "table_ref": "Section 5.7 Electrical Characteristics: LM358, LM358A"
+    },
+    "input_noise_nv_rt_hz": {
+      "value": 40,
+      "page": 10,
+      "condition": "f = 1 kHz, TA = 25°C",
+      "table_ref": "Section 5.7 Electrical Characteristics: LM358, LM358A"
+    },
+    "iout_short_ma": {
+      "value": 40,
+      "page": 10,
+      "condition": "VS = 10 V, VO = VS/2, TA = 25°C (±40 mA typ, ±60 mA max)",
+      "table_ref": "Section 5.7 Electrical Characteristics: LM358, LM358A"
+    }
+  },
+  "design_gotchas": [
+    {
+      "title": "Non-Rail-to-Rail Upper Input and Output Headroom Ceiling",
+      "severity": "CRITICAL",
+      "detail": "While inputs sense down to ground (V-), the upper common-mode limit is (V+) - 1.5 V at 25°C and (V+) - 2.0 V over 0°C to 70°C, and the output cannot swing above (V+) - 1.5 V at 5 V supply. On 3.3 V or 5 V rails, usable linear range is severely compressed compared to RRIO parts like TLV9002IDR.",
+      "page": 10
+    },
+    {
+      "title": "Identical SOIC-8 Pinout Trap vs LM393DR Open-Collector Comparator",
+      "severity": "CRITICAL",
+      "detail": "LM358DR and LM393DR share the exact same 8-pin SOIC pinout (OUT1/IN1-/IN1+/V-/IN2+/IN2-/OUT2/V+), but LM358DR is a compensated push-pull op-amp while LM393DR is an uncompensated open-collector comparator. Swapping LM393DR into an LM358DR socket causes missing high-side drive without pull-up resistors and severe instability under negative feedback.",
+      "page": 3
+    },
+    {
+      "title": "Commercial 0°C to 70°C Rating and 500 V HBM ESD on Legacy LM358DR",
+      "severity": "WARNING",
+      "detail": "Standard LM358DR is only specified for 0°C to 70°C, 30 V max supply, 7 mV max VOS, and ±500 V HBM ESD. Do not confuse it with the next-generation LM358BDR (-40°C to +85°C, 36 V, 3 mV max VOS, ±2000 V HBM) or LM2904B (-40°C to +125°C) covered in the same datasheet.",
+      "page": 4
+    },
+    {
+      "title": "Class-B Output Crossover Distortion and Weak Sink Current Near Ground",
+      "severity": "WARNING",
+      "detail": "The bipolar Class-B output stage introduces noticeable crossover distortion in AC/audio signals and sinks only 12 µA min (30 µA typ) when VO = 200 mV. Add a pull-down load resistor to V- when sinking current close to ground or when minimizing crossover distortion.",
+      "page": 10
+    }
+  ],
+  "typical_use_cases": [
+    "Low-side current sensing and ground-referenced DC control loops on 12 V–24 V industrial rails",
+    "Cost-sensitive power supply voltage/current regulation and battery charger feedback",
+    "General-purpose active low-pass filtering and DC buffer stages below 10 kHz",
+    "Legacy 5 V to 30 V board maintenance and second-source industrial control modules"
+  ],
+  "engineering_summary": "The Texas Instruments LM358DR is the industry-standard dual general-purpose bipolar operational amplifier in an 8-pin SOIC (D) package, rated for 3 V to 30 V single-supply operation (32 V abs max) over 0°C to 70°C. Its PNP differential input stage includes ground (V-) for low-side sensing, but upper common-mode and positive output headroom stop 1.5 V–2.0 V below V+. With 0.7 MHz GBWP, 0.3 V/µs slew rate, 350 µA/ch typical Iq, and 20 nA input bias current, it excels in low-cost 12 V–24 V DC loops but should not be swapped blindly with 5.5 V RRIO op-amps (LMV358IDR, TLV9002IDR) or the pin-identical LM393DR comparator.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 4, 5, 10],
+    "audit_notes": [
+      "Verified SOIC-8 (D) Top View pinout on 300 DPI PNG page 3 (Figure 4-1 & Table 4-1).",
+      "Isolated legacy LM358 specifications from Section 5.7 (page 10) and Sections 5.1/5.3 (pages 4-5), avoiding mix-up with LM358B/LM358BA.",
+      "Confirmed IQ = 350 µA per amplifier directly on page 10 PNG and converted IB = 20 nA to 20000 pA."
+    ]
+  }
+}

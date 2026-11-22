@@ -1,0 +1,226 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "MC33202DR2G",
+  "slug": "mc33202dr2g",
+  "family": "MC33202",
+  "manufacturer": "onsemi",
+  "category": "opamp",
+  "sub_topology": "opamp-dual",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 105,
+    "grade_label": "Extended Industrial (-40°C to 105°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.onsemi.com/pdf/datasheet/mc33201-d.pdf",
+    "product_page_url": "https://www.onsemi.com/products/amplifiers-comparators/operational-amplifiers-op-amps/mc33202",
+    "source_domain": "www.onsemi.com",
+    "revision": "Rev. 19 (October 2021)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 16
+  },
+  "package": {
+    "code": "SOIC-8",
+    "mfg_package_code": "CASE 751 (D)",
+    "pin_count": 8,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE"
+    },
+    "theta_ja_c_per_w": {
+      "value": 190,
+      "page": 5,
+      "condition": "Derived from Figure 2 SOIC-8 derating curve (PD ≈ 658 mW at TA = 25°C, TJ,max = 150°C)",
+      "table_ref": "Figure 2. Maximum Power Dissipation versus Temperature"
+    },
+    "theta_jc_c_per_w": null,
+    "tj_max_c": {
+      "value": 150,
+      "page": 3,
+      "condition": "Maximum Junction Temperature",
+      "table_ref": "Maximum Ratings"
+    },
+    "pd_max_mw": {
+      "value": 658,
+      "page": 5,
+      "condition": "SOIC-8 package at TA = 25°C (Figure 2 thermal derating curve)",
+      "table_ref": "Figure 2. Maximum Power Dissipation versus Temperature"
+    },
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "Output 1",
+        "role": "OUT_A",
+        "description": "Output, amplifier 1"
+      },
+      {
+        "pin": 2,
+        "name": "IN1-",
+        "role": "IN_NEG_A",
+        "description": "Inverting input, amplifier 1"
+      },
+      {
+        "pin": 3,
+        "name": "IN1+",
+        "role": "IN_POS_A",
+        "description": "Noninverting input, amplifier 1"
+      },
+      {
+        "pin": 4,
+        "name": "VEE",
+        "role": "VEE",
+        "description": "Negative power supply (or ground for single-supply operation)"
+      },
+      {
+        "pin": 5,
+        "name": "IN2+",
+        "role": "IN_POS_B",
+        "description": "Noninverting input, amplifier 2"
+      },
+      {
+        "pin": 6,
+        "name": "IN2-",
+        "role": "IN_NEG_B",
+        "description": "Inverting input, amplifier 2"
+      },
+      {
+        "pin": 7,
+        "name": "Output 2",
+        "role": "OUT_B",
+        "description": "Output, amplifier 2"
+      },
+      {
+        "pin": 8,
+        "name": "VCC",
+        "role": "VCC",
+        "description": "Positive power supply"
+      }
+    ],
+    "pinout_source_page": 2,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "device_kind": "opamp",
+    "channels": 2,
+    "vs_abs_max_v": {
+      "value": 13,
+      "page": 3,
+      "condition": "Supply Voltage (VCC to VEE), max",
+      "table_ref": "Maximum Ratings"
+    },
+    "vs_min_v": {
+      "value": 1.8,
+      "page": 1,
+      "condition": "Low voltage single-supply minimum (+1.8 V and Ground, or ±0.9 V)",
+      "table_ref": "Features"
+    },
+    "vs_max_v": {
+      "value": 12,
+      "page": 1,
+      "condition": "Single-supply maximum (+12 V and Ground, or ±6 V)",
+      "table_ref": "Features"
+    },
+    "gbwp_mhz": {
+      "value": 2.2,
+      "page": 4,
+      "condition": "VCC = +5.0 V, VEE = GND, f = 100 kHz, TA = 25°C",
+      "table_ref": "AC Electrical Characteristics"
+    },
+    "slew_rate_v_per_us": {
+      "value": 1,
+      "page": 4,
+      "condition": "VS = ±2.5 V, VO = -2.0 V to +2.0 V, RL = 2.0 kΩ, AV = +1.0, TA = 25°C (0.5 V/µs min)",
+      "table_ref": "AC Electrical Characteristics"
+    },
+    "prop_delay_ns": null,
+    "vos_max_mv": {
+      "value": 8,
+      "page": 3,
+      "condition": "MC33202, VCC = +5.0 V, VEE = GND, TA = 25°C (11 mV max over -40°C to +105°C; 10 mV max at 2.0 V/3.3 V)",
+      "table_ref": "DC Electrical Characteristics"
+    },
+    "ib_typ_pa": {
+      "value": 80000,
+      "page": 3,
+      "condition": "VCC = +5.0 V, VCM = 0 to 0.5 V or 1.0 to 5.0 V, TA = 25°C (80 nA typ, 200 nA max)",
+      "table_ref": "DC Electrical Characteristics"
+    },
+    "iq_per_ch_typ_ua": {
+      "value": 900,
+      "page": 4,
+      "condition": "VCC = +5.0 V, VEE = GND, VO = 0 V, TA = -40°C to +105°C, per amplifier (0.9 mA typ, 1.125 mA max)",
+      "table_ref": "DC Electrical Characteristics (cont.)"
+    },
+    "rail_to_rail_in": true,
+    "rail_to_rail_out": true,
+    "output_type": "push-pull",
+    "cmrr_typ_db": {
+      "value": 90,
+      "page": 4,
+      "condition": "VCC = +5.0 V, Vin = 0 V to 5.0 V, TA = 25°C (60 dB min)",
+      "table_ref": "DC Electrical Characteristics (cont.)"
+    },
+    "input_noise_nv_rt_hz": {
+      "value": 20,
+      "page": 4,
+      "condition": "f = 1.0 kHz, RS = 100 Ω, TA = 25°C (25 nV/√Hz at f = 10 Hz)",
+      "table_ref": "AC Electrical Characteristics"
+    },
+    "iout_short_ma": {
+      "value": 80,
+      "page": 4,
+      "condition": "Source and Sink, VCC = +5.0 V, TA = 25°C (50 mA min, 80 mA typ)",
+      "table_ref": "DC Electrical Characteristics (cont.)"
+    }
+  },
+  "design_gotchas": [
+    {
+      "title": "Internal Back-to-Back Differential Input Clamp Diodes Limit Comparator Use",
+      "severity": "CRITICAL",
+      "detail": "Per Maximum Ratings Note 1 and Figure 1, each amplifier includes parallel back-to-back diodes across the inverting and noninverting inputs. Applying large differential voltages without series current-limiting resistors conducts excessive input current; do not use directly as an open-loop comparator.",
+      "page": 3
+    },
+    {
+      "title": "Bipolar NPN/PNP Input Stage Flips Bias Current Polarity Near VEE + 0.8 V",
+      "severity": "WARNING",
+      "detail": "The all-bipolar rail-to-rail input stage switches from PNP to NPN around VEE + 0.8 V (page 9, Figure 6), reversing the 80 nA typ (200 nA max) input bias current and creating offset step errors with high-impedance sources compared to 5 pA CMOS op-amps like TLV9002IDR.",
+      "page": 9
+    },
+    {
+      "title": "80 mA High Output Current vs 658 mW SOIC-8 Thermal Derating Limit",
+      "severity": "WARNING",
+      "detail": "Current-boosted outputs drive 600 Ω loads and deliver 80 mA typ short-circuit current, so sustained heavy loads at 12 V supply can rapidly exceed the ~658 mW SOIC-8 power dissipation limit at 25°C (RθJA ≈ 190 °C/W, TJ,max = 150°C).",
+      "page": 5
+    },
+    {
+      "title": "12 V Operating / 13 V Absolute Max Ceiling vs 30 V–36 V Industrial Op-Amps",
+      "severity": "WARNING",
+      "detail": "MC33202DR2G spans 1.8 V to 12 V (wider than 5.5 V LMV358IDR/TLV9002IDR), but its 13 V absolute maximum rating prevents drop-in replacement on ±15 V (30 V) or 24 V LM358DR/TL072IDR/OPA2134UA rails.",
+      "page": 3
+    }
+  ],
+  "typical_use_cases": [
+    "600 Ω telecom/audio line drivers and headphone buffers on 3.3 V to 12 V rails",
+    "1.8 V–12 V single-supply RRIO industrial sensor and actuator drivers",
+    "High-current (up to 80 mA) rail-to-rail output buffer stages in SOIC-8",
+    "Battery-powered or 5 V/9 V/12 V audio preamps needing 0.002% THD at 1 kHz"
+  ],
+  "engineering_summary": "The onsemi MC33202DR2G is a dual all-bipolar rail-to-rail input and output (RRIO) operational amplifier in an 8-pin SOIC (CASE 751) package spanning 1.8 V to 12 V (13 V abs max) over -40°C to +105°C. Sharing the standard dual SOIC-8 pinout with LM358DR, LMV358IDR, and TLV9002IDR, it stands out for its current-boosted 600 Ω / 80 mA output drive, 2.2 MHz GBWP, 20 nV/√Hz noise, and phase-reversal immunity up to 200 mV beyond rails. Key tradeoffs include 80 nA bipolar input bias current with polarity reversal near VEE + 0.8 V, 0.9 mA/ch quiescent current, and internal back-to-back input clamp diodes.",
+  "audit": {
+    "confidence_score": 0.98,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [2, 3, 4, 5],
+    "audit_notes": [
+      "Verified MC33202 SOIC-8 Top View pinout and internal inverting/noninverting polarity signs on 300 DPI PNG page 2.",
+      "Verified Maximum Ratings, VOS max = 8.0 mV (MC33202 at 5 V), IB = 80 nA (80000 pA), ID = 0.9 mA/ch (900 µA/ch), GBW = 2.2 MHz, SR = 1.0 V/µs, ISC = 80 mA on pages 3-4 PNGs.",
+      "Extracted SOIC-8 thermal resistance RθJA ≈ 190 °C/W (PD ≈ 658 mW at 25°C, TJ = 150°C) from vector coordinates and Vision check of Figure 2 on page 5."
+    ]
+  }
+}

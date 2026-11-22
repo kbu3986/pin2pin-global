@@ -1,0 +1,208 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TLV9001IDBVR",
+  "slug": "tlv9001idbvr",
+  "family": "TLV9001",
+  "manufacturer": "Texas Instruments",
+  "category": "opamp",
+  "sub_topology": "opamp-single",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to 125°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tlv9001.pdf",
+    "product_page_url": "https://www.ti.com/product/TLV9001",
+    "source_domain": "www.ti.com",
+    "revision": "SBOS833R (Rev. November 2021)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 110
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "DBV",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE"
+    },
+    "theta_ja_c_per_w": {
+      "value": 232.9,
+      "page": 15,
+      "condition": "DBV (SOT-23-5) package, TLV9001",
+      "table_ref": "Section 7.4 Thermal Information: TLV9001"
+    },
+    "theta_jc_c_per_w": {
+      "value": 153.8,
+      "page": 15,
+      "condition": "RθJC(top), DBV (SOT-23-5) package",
+      "table_ref": "Section 7.4 Thermal Information: TLV9001"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 14,
+      "condition": "Junction temperature, max",
+      "table_ref": "Section 7.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "OUT",
+        "role": "OUT",
+        "description": "Output"
+      },
+      {
+        "pin": 2,
+        "name": "V-",
+        "role": "VEE",
+        "description": "Negative (low) supply or ground for single-supply operation"
+      },
+      {
+        "pin": 3,
+        "name": "IN+",
+        "role": "IN_POS",
+        "description": "Noninverting input"
+      },
+      {
+        "pin": 4,
+        "name": "IN-",
+        "role": "IN_NEG",
+        "description": "Inverting input"
+      },
+      {
+        "pin": 5,
+        "name": "V+",
+        "role": "VCC",
+        "description": "Positive (high) supply"
+      }
+    ],
+    "pinout_source_page": 7,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "device_kind": "opamp",
+    "channels": 1,
+    "vs_abs_max_v": {
+      "value": 7,
+      "page": 14,
+      "condition": "Supply voltage (V+) - (V-), max (updated to 7 V in Rev Q)",
+      "table_ref": "Section 7.1 Absolute Maximum Ratings"
+    },
+    "vs_min_v": {
+      "value": 1.8,
+      "page": 14,
+      "condition": "Recommended operating minimum",
+      "table_ref": "Section 7.3 Recommended Operating Conditions"
+    },
+    "vs_max_v": {
+      "value": 5.5,
+      "page": 14,
+      "condition": "Recommended operating maximum",
+      "table_ref": "Section 7.3 Recommended Operating Conditions"
+    },
+    "gbwp_mhz": {
+      "value": 1,
+      "page": 17,
+      "condition": "VS = 5 V, TA = 25°C",
+      "table_ref": "Section 7.10 Electrical Characteristics"
+    },
+    "slew_rate_v_per_us": {
+      "value": 2,
+      "page": 17,
+      "condition": "VS = 5 V, TA = 25°C",
+      "table_ref": "Section 7.10 Electrical Characteristics"
+    },
+    "prop_delay_ns": null,
+    "vos_max_mv": {
+      "value": 1.6,
+      "page": 17,
+      "condition": "VS = 5 V, TA = 25°C (±0.4 mV typ; ±2 mV max over -40°C to 125°C)",
+      "table_ref": "Section 7.10 Electrical Characteristics"
+    },
+    "ib_typ_pa": {
+      "value": 5,
+      "page": 17,
+      "condition": "VS = 5 V, TA = 25°C (±5 pA typ)",
+      "table_ref": "Section 7.10 Electrical Characteristics"
+    },
+    "iq_per_ch_typ_ua": {
+      "value": 60,
+      "page": 18,
+      "condition": "TLV9001, IO = 0 mA, VS = 5.5 V, TA = 25°C (77 µA max at 25°C; 85 µA max over temp)",
+      "table_ref": "Section 7.10 Electrical Characteristics (continued)"
+    },
+    "rail_to_rail_in": true,
+    "rail_to_rail_out": true,
+    "output_type": "push-pull",
+    "cmrr_typ_db": {
+      "value": 77,
+      "page": 17,
+      "condition": "VS = 5.5 V, full RRIO range (V-) - 0.1 V < VCM < (V+) + 0.1 V, TA = -40°C to 125°C (63 dB min; 95 dB typ below V+ - 1.4 V)",
+      "table_ref": "Section 7.10 Electrical Characteristics"
+    },
+    "input_noise_nv_rt_hz": {
+      "value": 30,
+      "page": 17,
+      "condition": "VS = 5 V, f = 1 kHz, TA = 25°C (27 nV/√Hz at f = 10 kHz)",
+      "table_ref": "Section 7.10 Electrical Characteristics"
+    },
+    "iout_short_ma": {
+      "value": 40,
+      "page": 17,
+      "condition": "VS = 5.5 V, TA = 25°C (±40 mA typ)",
+      "table_ref": "Section 7.10 Electrical Characteristics"
+    }
+  },
+  "design_gotchas": [
+    {
+      "title": "Critical SOT-23-5 Suffix Trap: TLV9001IDBVR vs TLV9001UIDBVR Pinout Swap",
+      "severity": "CRITICAL",
+      "detail": "Inside the exact same 5-pin SOT-23 (DBV) package, TLV9001IDBVR (Figure 6-1) uses 1=OUT, 2=V-, 3=IN+, 4=IN-, 5=V+ (matching TLV9061IDBVR and OPA333AIDBVR), whereas TLV9001UIDBVR (Figure 6-2, LMV321/MCP6001 style) swaps pins 1, 3, and 4 to 1=IN+, 2=V-, 3=IN-, 4=OUT, 5=V+. Ordering the wrong suffix shorts OUT to IN+.",
+      "page": 7
+    },
+    {
+      "title": "High 1200 Ω Open-Loop Output Impedance at 1 MHz",
+      "severity": "INFO",
+      "detail": "The resistive open-loop output impedance (1200 Ω at 1 MHz) enables easy stability into capacitive loads up to 500 pF, but reduces closed-loop drive stiffness at high frequencies into low-ohm loads.",
+      "page": 17
+    },
+    {
+      "title": "RRIO Complementary Input Crossover Reduces Upper-Rail CMRR",
+      "severity": "WARNING",
+      "detail": "CMRR is 95 dB typ below (V+) - 1.4 V, but drops to 77 dB typ (63 dB min) when signals cross the complementary input transition near (V+) - 1.4 V. Keep precision low-side sensing below V+ - 1.4 V.",
+      "page": 17
+    },
+    {
+      "title": "5.5 V Operating Supply Limit and ±10 mA ESD Clamp Diode Fault Limit",
+      "severity": "WARNING",
+      "detail": "Rated for 1.8 V to 5.5 V operation (7 V abs max). Input pins are diode-clamped to V+ and V-; any input excursion >0.5 V beyond supply rails must be current-limited to ≤10 mA.",
+      "page": 14
+    }
+  ],
+  "typical_use_cases": [
+    "Battery-powered IoT, wearable, and smoke-detector sensor signal conditioning",
+    "1.8 V–5.5 V low-side current sensing and active filter stages",
+    "Cost-sensitive RRIO single-channel ADC buffers with 500 pF capacitive-load stability",
+    "Ultra-low-bias (5 pA) high-impedance voltage follower and instrumentation buffers"
+  ],
+  "engineering_summary": "The Texas Instruments TLV9001IDBVR is a low-power (60 µA typ), 1 MHz, 2 V/µs rail-to-rail input and output (RRIO) single CMOS operational amplifier in a 5-pin SOT-23 (DBV) package operating from 1.8 V to 5.5 V (-40°C to 125°C). It pairs ±0.4 mV typical offset (±1.6 mV max), 5 pA input bias current, integrated RFI/EMI filtering, and 500 pF capacitive-load stability. It shares TI's standard DBV SOT-23-5 pinout (1=OUT, 2=V-, 3=IN+, 4=IN-, 5=V+) with TLV9061IDBVR and OPA333AIDBVR, but differs critically from the alternate TLV9001UIDBVR (U-variant) SOT-23-5 pinout.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [7, 14, 15, 17, 18],
+    "audit_notes": [
+      "Verified SOT-23-5 (DBV) Top View pinout on 300 DPI PNG page 7 (Figure 6-1 vs Figure 6-2 U-variant trap).",
+      "Verified Abs Max (7 V, TJ=150°C) on page 14 PNG, DBV RθJA=232.9 °C/W on page 15 PNG, and electrical specs on pages 17-18 PNGs.",
+      "Confirmed IB = 5 pA typ and IQ = 60 µA typ (77 µA max for TLV9001) on pages 17-18 PNGs."
+    ]
+  }
+}
