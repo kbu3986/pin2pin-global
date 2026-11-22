@@ -1,0 +1,168 @@
+{
+  "batch": "wave2a-ldo",
+  "wave": "2A",
+  "agent": "wave2a-ldo",
+  "verified_at": "2026-11-22",
+  "backlog_commit_ref": "73d18cd",
+  "schema_version": "2.0.0",
+  "summary": {
+    "total_parts": 5,
+    "passed_stage2": 5,
+    "failed_stage2": 0,
+    "unsupported_scan_count": 0,
+    "dual_path_vision_verified_count": 5,
+    "min_confidence_score": 0.99,
+    "nrnd_parts_flagged": [
+      "AP2204K-3.3TRG1 (NRND — Use AP2205 per DS37168 Rev. 6-3 p.1 banner & watermarks)"
+    ]
+  },
+  "parts": [
+    {
+      "idx": 1,
+      "opn": "TLV70233DBVR",
+      "slug": "tlv70233dbvr",
+      "manufacturer": "Texas Instruments",
+      "lifecycle_status": "Active",
+      "package": "SOT-23-5",
+      "mfg_package_code": "DBV (SOT-23-5)",
+      "datasheet_revision": "SLVSAG6D (September 2010 – Revised July 2019)",
+      "pdf_url": "https://www.ti.com/lit/ds/symlink/tlv702.pdf",
+      "pinout_view": "TOP_VIEW",
+      "verified_pinout": "1=IN(VIN), 2=GND(GND), 3=EN(EN:active-high), 4=NC(NC), 5=OUT(VOUT)",
+      "vision_pages_inspected": [3, 4, 5],
+      "key_specs": {
+        "vin_abs_max_v": 6,
+        "vin_max_v": 5.5,
+        "iout_max_ma": 300,
+        "iq_typ_ua": 35,
+        "dropout_typ_mv": 260,
+        "theta_ja_c_per_w": 249.2,
+        "ceramic_cap_stable": true,
+        "min_cout_uf": 1
+      }
+    },
+    {
+      "idx": 2,
+      "opn": "TPS7A0533PDBVR",
+      "slug": "tps7a0533pdbvr",
+      "manufacturer": "Texas Instruments",
+      "lifecycle_status": "Active",
+      "package": "SOT-23-5",
+      "mfg_package_code": "DBV (SOT-23-5)",
+      "datasheet_revision": "SBVS254D (February 2018 – Revised August 2019)",
+      "pdf_url": "https://www.ti.com/lit/ds/symlink/tps7a05.pdf",
+      "pinout_view": "TOP_VIEW",
+      "verified_pinout": "1=IN(VIN), 2=GND(GND), 3=EN(EN:active-high), 4=NC(NC), 5=OUT(VOUT)",
+      "vision_pages_inspected": [4, 5, 6, 7, 8, 9],
+      "key_specs": {
+        "vin_abs_max_v": 6.0,
+        "vin_max_v": 5.5,
+        "iout_max_ma": 200,
+        "iq_typ_ua": 1,
+        "dropout_typ_mv": 235,
+        "theta_ja_c_per_w": 185.6,
+        "ceramic_cap_stable": true,
+        "min_cout_uf": 0.47
+      }
+    },
+    {
+      "idx": 3,
+      "opn": "TPS79333DBVR",
+      "slug": "tps79333dbvr",
+      "manufacturer": "Texas Instruments",
+      "lifecycle_status": "Active",
+      "package": "SOT-23-5",
+      "mfg_package_code": "DBV (SOT-23-5)",
+      "datasheet_revision": "SLVS348N (July 2001 – Revised January 2025)",
+      "pdf_url": "https://www.ti.com/lit/ds/symlink/tps793.pdf",
+      "pinout_view": "TOP_VIEW",
+      "verified_pinout": "1=IN(VIN), 2=GND(GND), 3=EN(EN:active-high), 4=NC/NR(BYPASS:Legacy-NR/New-NC), 5=OUT(VOUT)",
+      "vision_pages_inspected": [3, 4, 5, 6, 7, 13, 31],
+      "key_specs": {
+        "vin_abs_max_v": 6,
+        "vin_max_v": 5.5,
+        "iout_max_ma": 200,
+        "iq_typ_ua": 250,
+        "dropout_typ_mv": 112,
+        "theta_ja_c_per_w": 182.3,
+        "ceramic_cap_stable": true,
+        "min_cout_uf": 2.2
+      }
+    },
+    {
+      "idx": 4,
+      "opn": "AP2127K-3.3TRG1",
+      "slug": "ap2127k-3-3trg1",
+      "manufacturer": "Diodes Incorporated",
+      "lifecycle_status": "Active",
+      "package": "SOT-23-5",
+      "mfg_package_code": "K (SOT-23-5)",
+      "datasheet_revision": "DS36478 Rev. 7 - 2 (December 2017)",
+      "pdf_url": "https://www.diodes.com/assets/Datasheets/AP2127.pdf",
+      "pinout_view": "TOP_VIEW",
+      "verified_pinout": "1=VIN(VIN), 2=GND(GND), 3=Shutdown(EN:active-high/overline-Shutdown), 4=NC/ADJ(NC), 5=VOUT(VOUT)",
+      "vision_pages_inspected": [1, 3, 4, 5, 11, 14],
+      "key_specs": {
+        "vin_abs_max_v": 6.5,
+        "vin_max_v": 6,
+        "iout_max_ma": 300,
+        "iq_typ_ua": 60,
+        "dropout_typ_mv": 170,
+        "theta_ja_c_per_w": 250,
+        "ceramic_cap_stable": true,
+        "min_cout_uf": 1
+      }
+    },
+    {
+      "idx": 5,
+      "opn": "AP2204K-3.3TRG1",
+      "slug": "ap2204k-3-3trg1",
+      "manufacturer": "Diodes Incorporated",
+      "lifecycle_status": "NRND",
+      "package": "SOT-23-5",
+      "mfg_package_code": "K (SOT-23-5)",
+      "datasheet_revision": "DS37168 Rev. 6 - 3 (June 2022)",
+      "pdf_url": "https://www.diodes.com/assets/Datasheets/AP2204.pdf",
+      "pinout_view": "TOP_VIEW",
+      "verified_pinout": "1=VIN(VIN), 2=GND(GND), 3=EN(EN:active-high,38V-rated), 4=ADJ/NC(NC), 5=VOUT(VOUT)",
+      "vision_pages_inspected": [1, 3, 4, 5, 10],
+      "key_specs": {
+        "vin_abs_max_v": 38,
+        "vin_max_v": 24,
+        "iout_max_ma": 150,
+        "iq_typ_ua": 20,
+        "dropout_typ_mv": 360,
+        "theta_ja_c_per_w": 250,
+        "ceramic_cap_stable": true,
+        "min_cout_uf": 2.2
+      }
+    }
+  ],
+  "key_traps_discovered": [
+    {
+      "trap": "TPS79333DBVR Legacy (CSO:DLN) vs New Chip (CSO:RFB) Silicon Lottery & Pin 4 NR-to-NC Shift",
+      "parts": ["TPS79333DBVR"],
+      "detail": "Per SLVS348N p.3, p.5–7 & p.28, non-M3 TPS79333DBVR reels may ship either Legacy Chip (Pin 4 = bandgap NR via 250 kOhm, 33 uVRMS noise, 70 dB 10 kHz PSRR, 50 us startup, 170 uA typ / 220 uA max IQ, 6.0 V abs max, 0.1 uF CIN) or New Chip (Pin 4 = NC, 69 uVRMS noise, 49 dB 10 kHz PSRR, 500 us startup, 250 uA typ / 1000 uA max IQ, 6.5 V abs max, 1 uF CIN, 120 Ohm active discharge). Grounding Pin 4 collapses VOUT on Legacy Chip reels; Vision on Fig. 4-1 also caught that Table 4-1 lists OUT=6 (6-pin DBV only) while 5-pin TPS79333DBVR has OUT=5."
+    },
+    {
+      "trap": "AP2204K-3.3TRG1 NRND Lifecycle Status, Severe 24 V SOT-23-5 Thermal Derating, & 2.5 mA EPNP IGND",
+      "parts": ["AP2204K-3.3TRG1"],
+      "detail": "300 DPI PNG Vision confirmed DS37168 Rev. 6-3 red banner & watermarks ('NOT RECOMMENDED FOR NEW DESIGN — USE AP2205'). At SOT-23-5 θJA = 250 °C/W, dropping 24 V to 3.3 V caps continuous load to <= 19 mA at TA = 25°C (<= 7.7 mA at 85°C). EPNP bipolar base drive elevates IGND from 20 uA (0 A) to 2.5 mA at 150 mA, and full-load dropout is 360 mV typ / 500 mV max vs p.1 headline 100 mV @ 100 uA. Unlike TPS70933DBVR's 7 V EN clamp, AP2204's 38 V EN allows direct VIN tie."
+    },
+    {
+      "trap": "TPS7A0533PDBVR Cold-Temp (< 15°C) Ramp-Down Glitch/130 ms Stall & Strict 3.6 V VOUT / 22 uF COUT Limits",
+      "parts": ["TPS7A0533PDBVR"],
+      "detail": "Below 15°C ambient (Sec. 8.1.3, p.22–23), ramping VIN down faster than 10 ms triggers partial-startup double-pulsing, and ramping EN down faster than 100 us can cause up to a 130 ms startup delay. Additionally, VOUT abs max is min(VIN + 0.3 V, 3.6 V), VEN must not exceed VIN + 0.3 V, COUT is strictly capped at 22 uF max, IOUT >= 10 uA is required for accuracy, and output noise is 180 uVRMS with 1.5–2.8 ms startup."
+    },
+    {
+      "trap": "AP2127K-3.3TRG1 Vision-Caught Overline 'Shutdown' Polarity, 250 °C/W Thermal Wall, & Page 11 ESR Plot Mismatch",
+      "parts": ["AP2127K-3.3TRG1"],
+      "detail": "Text extraction dropped the overbar over Pin 3 ('Shutdown'), which 300 DPI PNG Vision on p.1 & p.3 confirmed is active-low shutdown (= active-high EN, VIH >= 1.5 V, 3 MOhm pulldown, VCE <= VIN + 0.3 V). SOT-23-5 θJA = 250 °C/W caps PD(MAX) at 400 mW at 25°C (below the 510 mW needed for 5 V->3.3 V @ 300 mA). Page 11 ESR plots draw a black 'Min' line at ~0.25 Ohm (1 uF) / 0.1 Ohm (4.7 uF) despite p.1/p.12 low-ESR MLCC text."
+    },
+    {
+      "trap": "TLV70233DBVR Non-P Missing Active Discharge, 249.2 °C/W RθJA, & Front-Page vs Table 6.5 Dropout Delta",
+      "parts": ["TLV70233DBVR"],
+      "detail": "TLV70233DBVR (marking 'QVD') lacks the 120 Ohm active discharge MOSFET found on TLV70233PDBVR (marking 'SLH'), enforces VEN <= min(VIN + 0.3 V, 6.0 V), has no reverse-current blocking, and reaches ΔT = 127°C at 5 V->3.3 V @ 300 mA (RθJA = 249.2 °C/W). Table 6.5 specifies 260 mV typ / 375 mV max dropout at 300 mA vs p.1 headline 220 mV."
+    }
+  ]
+}

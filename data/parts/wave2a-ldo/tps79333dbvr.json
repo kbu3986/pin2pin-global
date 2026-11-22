@@ -1,0 +1,224 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TPS79333DBVR",
+  "slug": "tps79333dbvr",
+  "family": "TPS793",
+  "manufacturer": "Texas Instruments",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to +125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tps793.pdf",
+    "product_page_url": "https://www.ti.com/product/TPS793",
+    "source_domain": "www.ti.com",
+    "revision": "SLVS348N (July 2001 – Revised January 2025)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 43
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "DBV (SOT-23-5)",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "5-pin DBV SOT-23 fixed-voltage package has no exposed thermal pad (RθJC(bot) = N/A, p.5)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 182.3,
+      "page": 5,
+      "condition": "DBV (SOT23-5, 5 pins) New Chip JEDEC junction-to-ambient thermal resistance (Legacy Chip tabulated 6-pin DBV at 225.1 °C/W)",
+      "table_ref": "5.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 114.8,
+      "page": 5,
+      "condition": "DBV (SOT23-5, 5 pins) New Chip junction-to-case(top) thermal resistance RθJC(top)",
+      "table_ref": "5.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 4,
+      "condition": "Absolute maximum operating junction temperature TJ (-40°C to +150°C; recommended continuous TJ -40°C to +125°C)",
+      "table_ref": "5.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "IN",
+        "role": "VIN",
+        "description": "Input supply pin (2.7 V to 5.5 V operating; 6.0 V legacy / 6.5 V new chip abs max); requires >= 0.1 uF (legacy) or >= 1 uF (new chip) ceramic cap."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Regulator ground reference pin."
+      },
+      {
+        "pin": 3,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high enable pin (>= 1.7 V legacy / >= 0.85 V new chip ON; <= 0.7 V legacy / <= 0.425 V new chip OFF); tie to IN if unused, never float."
+      },
+      {
+        "pin": 4,
+        "name": "NC/NR",
+        "role": "BYPASS",
+        "description": "Noise Reduction pin on Legacy Chip (CSO:DLN: connect <= 0.1 uF cap to GND; NEVER short to GND!) vs No Connect on New Chip (CSO:RFB)."
+      },
+      {
+        "pin": 5,
+        "name": "OUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output (5-pin DBV Fig. 4-1; 120 Ohm active discharge on New Chip only); requires >= 2.2 uF ceramic cap (10 uF nom)."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 6,
+      "page": 4,
+      "condition": "6.0 V max for Legacy Chip (6.5 V max for New Chip); conservative 6.0 V applies because non-M3 TPS79333DBVR can ship either die",
+      "table_ref": "5.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 2.7,
+      "page": 4,
+      "condition": "Recommended operating VIN minimum (maintain VIN >= 3.3 V + VDO for 3.3 V regulation)",
+      "table_ref": "5.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 5.5,
+      "page": 4,
+      "condition": "Recommended operating VIN maximum",
+      "table_ref": "5.3 Recommended Operating Conditions"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 5,
+      "condition": "Fixed 3.3 V TPS79333 output option in 5-pin DBV SOT-23-5 (top marking 'PHUI', p.31)",
+      "table_ref": "5.5 Electrical Characteristics"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 2,
+      "page": 5,
+      "condition": "TPS79333 VOUT = 3.234 V min to 3.366 V max (±2%) over 0 uA < IOUT < 200 mA, 4.3 V < VIN < 5.5 V, TJ = -40°C to +125°C",
+      "table_ref": "5.5 Electrical Characteristics"
+    },
+    "iout_max_ma": {
+      "value": 200,
+      "page": 5,
+      "condition": "Continuous output current (ICL = 285..600 mA legacy, 320..460 mA / ISC = 175 mA typ new chip, p.6)",
+      "table_ref": "5.5 Electrical Characteristics"
+    },
+    "iq_typ_ua": {
+      "value": 250,
+      "page": 5,
+      "condition": "New Chip 250 uA typ / 1000 uA max over 0 uA <= IO <= 200 mA (Legacy Chip 170 uA typ / 220 uA max; non-M3 SN reels ship CSO:RFB)",
+      "table_ref": "5.5 Electrical Characteristics"
+    },
+    "ishdn_typ_ua": {
+      "value": 0.07,
+      "page": 6,
+      "condition": "Legacy Chip 0.07 uA typ / 1 uA max (New Chip 0.01 uA typ / 1 uA max) at VEN = 0 V, 2.7 V < VIN < 5.5 V",
+      "table_ref": "5.5 Electrical Characteristics"
+    },
+    "dropout_typ_mv": {
+      "value": 112,
+      "page": 7,
+      "condition": "TPS79333 dropout voltage 112 mV typ / 180 mV max at VIN = VOUT - 0.1 V, IOUT = 200 mA",
+      "table_ref": "5.5 Electrical Characteristics"
+    },
+    "psrr_db": {
+      "value": 65,
+      "page": 7,
+      "condition": "TPS79328 f = 100 Hz, IOUT = 200 mA, New Chip = 65 dB (Legacy Chip = 68 dB; at 10 kHz New Chip drops to 49 dB vs 70 dB Legacy)",
+      "table_ref": "5.5 Electrical Characteristics"
+    },
+    "output_noise_uvrms": {
+      "value": 69,
+      "page": 6,
+      "condition": "TPS79328 BW = 100 Hz to 100 kHz, IOUT = 200 mA, New Chip = 69 uVRMS (no NR pin; Legacy Chip = 33 uVRMS with CNR = 0.01 uF)",
+      "table_ref": "5.5 Electrical Characteristics"
+    },
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 2.2,
+      "page": 4,
+      "condition": "2.2 uF min ceramic X5R/X7R (10 uF nom; 0.47 uF min effective for New Chip; 1 uF allowed if IOUT < 100 mA, p.23–24)",
+      "table_ref": "5.3 Recommended Operating Conditions"
+    },
+    "esr_min_ohm": null,
+    "esr_max_ohm": null,
+    "en_active_high": true,
+    "reverse_current_protection": false
+  },
+  "design_gotchas": [
+    {
+      "title": "CRITICAL Mixed Legacy (CSO:DLN) vs New Chip (CSO:RFB) Silicon Lottery on Non-M3 OPN",
+      "severity": "CRITICAL",
+      "detail": "Table 8-1 (p.28) reveals non-M3 TPS79333DBVR reels can ship EITHER Legacy Chip (CSO:DLN) or New Chip (CSO:RFB) with major electrical divergence: Pin 4 changes from NR to NC, noise doubles (33 -> 69 uVRMS), 10 kHz PSRR plunges 21 dB (70 -> 49 dB), startup slows 10x (50 -> 500 us), max IQ jumps 4.5x (220 -> 1000 uA), VEN(HI) shifts (1.7 -> 0.85 V), UVLO shifts (2.25 -> 1.32 V), and only New Chip adds 120 Ohm active discharge. Use TPS79333DBVRM3 to lock New Chip or migrate to TPS7A20 for low noise.",
+      "page": 28
+    },
+    {
+      "title": "Never Ground Pin 4 (NC/NR) Unless Locked to M3 New-Chip Silicon",
+      "severity": "CRITICAL",
+      "detail": "Although Pin 4 is NC on New Chip silicon, Legacy Chip units connect Pin 4 to the internal 1.22 V bandgap reference via a 250 kOhm resistor (p.14, p.24). Grounding Pin 4 (as permitted on NC-pin LDOs like TLV702/AP2204) collapses VOUT on Legacy Chip reels! Keep a 0.01 uF low-leakage CNR cap to GND or leave Pin 4 floating if mixed reels are possible; never load Pin 4 resistively or inductively (p.25).",
+      "page": 3
+    },
+    {
+      "title": "New Chip Requires 1 uF CIN (Up From 0.1 uF Legacy) & 2.2 uF COUT for > 100 mA Load",
+      "severity": "WARNING",
+      "detail": "Table 5.3 (p.4) and Section 7.2.2.2 (p.23–24) require >= 1 uF ceramic CIN for New Chip stability (vs 0.1 uF on Legacy Chip) and >= 2.2 uF low-ESR ceramic COUT for 200 mA operation (1 uF only permitted below 100 mA). Do not copy legacy 0.1 uF CIN designs onto New Chip reels without upgrading CIN to 1 uF.",
+      "page": 4
+    },
+    {
+      "title": "No Reverse-Current Protection & Datasheet Table 4-1 Pin Numbering Trap (OUT=5 vs 6)",
+      "severity": "WARNING",
+      "detail": "Section 6.3.6 (p.17–18) warns that VOUT > VIN + 0.3 V forces damaging reverse body-diode current (limit <= 5% of rated IOUT = 10 mA or add an external Schottky). Also note Table 4-1 (p.3) prints DBV pin 6 for OUT (6-pin adjustable TPS79301) whereas Figure 4-1 confirms 5-pin fixed TPS79333DBVR has OUT on Pin 5.",
+      "page": 17
+    }
+  ],
+  "typical_use_cases": [
+    "Low-dropout (112 mV typ at 200 mA) 3.6–5.5 V to 3.3 V analog and peripheral rails in SOT-23-5",
+    "Drop-in maintenance and second-source support for legacy RF/audio boards populated with a 10 nF Pin-4 NR bypass cap",
+    "Compact 200 mA 3.3 V rails in TVs, printers, and building automation (upgrade to TPS7A20 for new ultra-low-noise designs)",
+    "Candidate drop-in comparison against SOT-23-5 BYPASS-pin LDOs (LP2985, TPS736, CAT6219) after verifying Legacy vs New die"
+  ],
+  "engineering_summary": "The Texas Instruments TPS79333DBVR is a 200 mA fixed 3.3 V (±2% over -40°C to +125°C) low-dropout (112 mV typ / 180 mV max at 200 mA) PMOS LDO in a 5-pin DBV SOT-23-5 package (1=IN, 2=GND, 3=EN active high, 4=NC/NR, 5=OUT, RθJA = 182.3 °C/W). Operating from 2.7 V to 5.5 V, non-M3 TPS79333DBVR reels may ship either Legacy Chip (CSO:DLN: Pin 4 NR bypass, 33 uVRMS noise, 70 dB 10 kHz PSRR, 50 us startup, 170 uA IQ, 6 V abs max) or New Chip (CSO:RFB: Pin 4 NC, 69 uVRMS noise, 49 dB 10 kHz PSRR, 500 us startup, 250 uA typ / 1000 uA max IQ, 6.5 V abs max, active discharge). Never ground Pin 4 on non-M3 boards and use >= 1 uF CIN and >= 2.2 uF COUT.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      13,
+      31
+    ],
+    "audit_notes": [
+      "300 DPI PNG Vision verified page 3 Figure 4-1 5-pin DBV Top View pinout (1=IN, 2=GND, 3=EN, 4=NC/NR, 5=OUT) and caught that Table 4-1 lists OUT=6 for 6-pin DBV only.",
+      "300 DPI PNG Vision verified page 4 Abs Max (6.0V Legacy / 6.5V New Chip, TJ=-40..150C) and Rec Op (VIN=2.7..5.5V, IOUT=200mA, CIN=0.1uF Legacy / 1uF New, COUT=2.2uF min / 10uF nom).",
+      "300 DPI PNG Vision verified pages 5–7 Thermal Info (DBV-5 RθJA=182.3 C/W, RθJC(top)=114.8 C/W) and Electrical Characteristics comparing Legacy vs New Chip (VOUT 3.234..3.366V [±2%], IGND 170uA/220uA vs 250uA/1000uA, Vn 33uVRMS vs 69uVRMS, tSTR 50us vs 500us, PSRR 68/70dB vs 65/49dB, VDO=112mV typ / 180mV max @200mA, VEN(HI) 1.7V vs 0.85V).",
+      "300 DPI PNG Vision verified page 13 Legacy Chip ESR stability plots and page 31 Addendum confirming Active TPS79333DBVR (SN finish, marking 'PHUI') alongside TPS79333DBVRM3."
+    ]
+  }
+}
