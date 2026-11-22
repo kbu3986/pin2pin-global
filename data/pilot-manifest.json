@@ -13,13 +13,13 @@
       "idx": 1,
       "batch": "ldo-a",
       "category": "ldo",
-      "opn": "XC6206P332MR-G",
-      "slug": "xc6206p332mr-g",
-      "family": "XC6206",
-      "manufacturer": "Torex Semiconductor",
+      "opn": "LM3480IM3-3.3/NOPB",
+      "slug": "lm3480im3-3-3-nopb",
+      "family": "LM3480",
+      "manufacturer": "Texas Instruments",
       "expected_package": "SOT-23-3",
-      "hint_pdf_url": "https://www.torexsemi.com/file/xc6206/XC6206.pdf",
-      "hint_product_url": "https://www.torexsemi.com/products/voltage-regulators/series/?name=XC6206"
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/lm3480.pdf",
+      "hint_product_url": "https://www.ti.com/product/LM3480"
     },
     {
       "idx": 2,
@@ -97,25 +97,25 @@
       "idx": 8,
       "batch": "ldo-a",
       "category": "ldo",
-      "opn": "XC6209B332MR-G",
-      "slug": "xc6209b332mr-g",
-      "family": "XC6209",
-      "manufacturer": "Torex Semiconductor",
+      "opn": "TLV73333PDBVR",
+      "slug": "tlv73333pdbvr",
+      "family": "TLV733P",
+      "manufacturer": "Texas Instruments",
       "expected_package": "SOT-23-5",
-      "hint_pdf_url": "https://www.torexsemi.com/file/xc6209/XC6209.pdf",
-      "hint_product_url": "https://www.torexsemi.com/products/voltage-regulators/series/?name=XC6209"
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tlv733p.pdf",
+      "hint_product_url": "https://www.ti.com/product/TLV733P"
     },
     {
       "idx": 9,
       "batch": "ldo-a",
       "category": "ldo",
-      "opn": "XC6210B332MR-G",
-      "slug": "xc6210b332mr-g",
-      "family": "XC6210",
-      "manufacturer": "Torex Semiconductor",
-      "expected_package": "SOT-23-5",
-      "hint_pdf_url": "https://www.torexsemi.com/file/xc6210/XC6210.pdf",
-      "hint_product_url": "https://www.torexsemi.com/products/voltage-regulators/series/?name=XC6210"
+      "opn": "NCP114ASN330T1G",
+      "slug": "ncp114asn330t1g",
+      "family": "NCP114",
+      "manufacturer": "onsemi",
+      "expected_package": "TSOT-23-5",
+      "hint_pdf_url": "https://www.onsemi.com/pdf/datasheet/ncp114-d.pdf",
+      "hint_product_url": "https://www.onsemi.com/products/power-management/linear-regulators-ldo/ncp114"
     },
     {
       "idx": 10,
@@ -186,8 +186,8 @@
       "family": "LP2985",
       "manufacturer": "Texas Instruments",
       "expected_package": "SOT-23-5",
-      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/lp2985-n.pdf",
-      "hint_product_url": "https://www.ti.com/product/LP2985-N"
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/lp2985.pdf",
+      "hint_product_url": "https://www.ti.com/product/LP2985"
     },
     {
       "idx": 16,
@@ -205,13 +205,13 @@
       "idx": 17,
       "batch": "ldo-b",
       "category": "ldo",
-      "opn": "ADP151AUJZ-3.3-R7",
-      "slug": "adp151aujz-3-3-r7",
-      "family": "ADP151",
-      "manufacturer": "Analog Devices",
+      "opn": "NCP500SN33T1G",
+      "slug": "ncp500sn33t1g",
+      "family": "NCP500",
+      "manufacturer": "onsemi",
       "expected_package": "TSOT-23-5",
-      "hint_pdf_url": "https://www.analog.com/media/en/technical-documentation/data-sheets/ADP151.pdf",
-      "hint_product_url": "https://www.analog.com/en/products/adp151.html"
+      "hint_pdf_url": "https://www.onsemi.com/pdf/datasheet/ncp500-d.pdf",
+      "hint_product_url": "https://www.onsemi.com/products/power-management/linear-regulators-ldo/ncp500"
     },
     {
       "idx": 18,
@@ -277,13 +277,13 @@
       "idx": 23,
       "batch": "ldo-b",
       "category": "ldo",
-      "opn": "LT1117CST-3.3#PBF",
-      "slug": "lt1117cst-3-3-pbf",
-      "family": "LT1117",
-      "manufacturer": "Analog Devices",
+      "opn": "LM2937IMP-3.3/NOPB",
+      "slug": "lm2937imp-3-3-nopb",
+      "family": "LM2937",
+      "manufacturer": "Texas Instruments",
       "expected_package": "SOT-223-3",
-      "hint_pdf_url": "https://www.analog.com/media/en/technical-documentation/data-sheets/1117fd.pdf",
-      "hint_product_url": "https://www.analog.com/en/products/lt1117.html"
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/lm2937.pdf",
+      "hint_product_url": "https://www.ti.com/product/LM2937"
     },
     {
       "idx": 24,
@@ -385,13 +385,13 @@
       "idx": 32,
       "batch": "dcdc",
       "category": "dcdc",
-      "opn": "LT1930ES5#TRMPBF",
-      "slug": "lt1930es5-trmpbf",
-      "family": "LT1930",
-      "manufacturer": "Analog Devices",
-      "expected_package": "TSOT-23-5",
-      "hint_pdf_url": "https://www.analog.com/media/en/technical-documentation/data-sheets/1930f.pdf",
-      "hint_product_url": "https://www.analog.com/en/products/lt1930.html"
+      "opn": "LM2733XMF/NOPB",
+      "slug": "lm2733xmf-nopb",
+      "family": "LM2733",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOT-23-5",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/lm2733.pdf",
+      "hint_product_url": "https://www.ti.com/product/LM2733"
     },
     {
       "idx": 33,
@@ -517,25 +517,25 @@
       "idx": 43,
       "batch": "opamp",
       "category": "opamp",
-      "opn": "AD8605ARTZ-R2",
-      "slug": "ad8605artz-r2",
-      "family": "AD8605",
-      "manufacturer": "Analog Devices",
+      "opn": "TLV9061IDBVR",
+      "slug": "tlv9061idbvr",
+      "family": "TLV9061",
+      "manufacturer": "Texas Instruments",
       "expected_package": "SOT-23-5",
-      "hint_pdf_url": "https://www.analog.com/media/en/technical-documentation/data-sheets/AD8605_8606_8608.pdf",
-      "hint_product_url": "https://www.analog.com/en/products/ad8605.html"
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tlv9061.pdf",
+      "hint_product_url": "https://www.ti.com/product/TLV9061"
     },
     {
       "idx": 44,
       "batch": "opamp",
       "category": "opamp",
-      "opn": "AD8606ARZ",
-      "slug": "ad8606arz",
-      "family": "AD8606",
-      "manufacturer": "Analog Devices",
+      "opn": "MC33202DR2G",
+      "slug": "mc33202dr2g",
+      "family": "MC33202",
+      "manufacturer": "onsemi",
       "expected_package": "SOIC-8",
-      "hint_pdf_url": "https://www.analog.com/media/en/technical-documentation/data-sheets/AD8605_8606_8608.pdf",
-      "hint_product_url": "https://www.analog.com/en/products/ad8606.html"
+      "hint_pdf_url": "https://www.onsemi.com/pdf/datasheet/mc33201-d.pdf",
+      "hint_product_url": "https://www.onsemi.com/products/amplifiers-comparators/operational-amplifiers-op-amps/mc33202"
     },
     {
       "idx": 45,
@@ -612,28 +612,28 @@
   ],
   "vs_pairs": [
     {
-      "slug": "ap7333-33sag-7-vs-xc6206p332mr-g",
+      "slug": "ap7333-33sag-7-vs-lm3480im3-3-3-nopb",
       "category": "ldo",
       "part_a": "ap7333-33sag-7",
-      "part_b": "xc6206p332mr-g"
+      "part_b": "lm3480im3-3-3-nopb"
     },
     {
-      "slug": "ap7313-33sag-7-vs-xc6206p332mr-g",
+      "slug": "ap7313-33sag-7-vs-lm3480im3-3-3-nopb",
       "category": "ldo",
       "part_a": "ap7313-33sag-7",
-      "part_b": "xc6206p332mr-g"
+      "part_b": "lm3480im3-3-3-nopb"
     },
     {
-      "slug": "ap7313-33srg-7-vs-xc6206p332mr-g",
+      "slug": "ap7313-33srg-7-vs-lm3480im3-3-3-nopb",
       "category": "ldo",
       "part_a": "ap7313-33srg-7",
-      "part_b": "xc6206p332mr-g"
+      "part_b": "lm3480im3-3-3-nopb"
     },
     {
-      "slug": "ap2210n-3-3trg1-vs-xc6206p332mr-g",
+      "slug": "ap2210n-3-3trg1-vs-lm3480im3-3-3-nopb",
       "category": "ldo",
       "part_a": "ap2210n-3-3trg1",
-      "part_b": "xc6206p332mr-g"
+      "part_b": "lm3480im3-3-3-nopb"
     },
     {
       "slug": "ap7313-33sag-7-vs-ap7333-33sag-7",
@@ -672,16 +672,16 @@
       "part_b": "ap2210n-3-3trg1"
     },
     {
-      "slug": "ap2112k-3-3trg1-vs-xc6209b332mr-g",
+      "slug": "ap2112k-3-3trg1-vs-tlv73333pdbvr",
       "category": "ldo",
       "part_a": "ap2112k-3-3trg1",
-      "part_b": "xc6209b332mr-g"
+      "part_b": "tlv73333pdbvr"
     },
     {
-      "slug": "ap2112k-3-3trg1-vs-xc6210b332mr-g",
+      "slug": "ap2112k-3-3trg1-vs-ncp114asn330t1g",
       "category": "ldo",
       "part_a": "ap2112k-3-3trg1",
-      "part_b": "xc6210b332mr-g"
+      "part_b": "ncp114asn330t1g"
     },
     {
       "slug": "ap2112k-3-3trg1-vs-tlv75533pdbvr",
@@ -726,10 +726,10 @@
       "part_b": "cat6219-330td-gt3"
     },
     {
-      "slug": "adp151aujz-3-3-r7-vs-ap2112k-3-3trg1",
+      "slug": "ap2112k-3-3trg1-vs-ncp500sn33t1g",
       "category": "ldo",
-      "part_a": "adp151aujz-3-3-r7",
-      "part_b": "ap2112k-3-3trg1"
+      "part_a": "ap2112k-3-3trg1",
+      "part_b": "ncp500sn33t1g"
     },
     {
       "slug": "ap2112k-3-3trg1-vs-ap2210k-3-3trg1",
@@ -738,22 +738,22 @@
       "part_b": "ap2210k-3-3trg1"
     },
     {
-      "slug": "xc6209b332mr-g-vs-xc6210b332mr-g",
+      "slug": "ncp114asn330t1g-vs-tlv73333pdbvr",
       "category": "ldo",
-      "part_a": "xc6209b332mr-g",
-      "part_b": "xc6210b332mr-g"
+      "part_a": "ncp114asn330t1g",
+      "part_b": "tlv73333pdbvr"
     },
     {
-      "slug": "tlv70033ddcr-vs-xc6209b332mr-g",
+      "slug": "tlv70033ddcr-vs-tlv73333pdbvr",
       "category": "ldo",
       "part_a": "tlv70033ddcr",
-      "part_b": "xc6209b332mr-g"
+      "part_b": "tlv73333pdbvr"
     },
     {
-      "slug": "tlv75533pdbvr-vs-xc6210b332mr-g",
+      "slug": "ncp114asn330t1g-vs-tlv75533pdbvr",
       "category": "ldo",
-      "part_a": "tlv75533pdbvr",
-      "part_b": "xc6210b332mr-g"
+      "part_a": "ncp114asn330t1g",
+      "part_b": "tlv75533pdbvr"
     },
     {
       "slug": "tlv75533pdbvr-vs-tps7a0233pdbvr",
@@ -780,9 +780,9 @@
       "part_b": "tps7a0233pdbvr"
     },
     {
-      "slug": "adp151aujz-3-3-r7-vs-tps7a2033pdbvr",
+      "slug": "ncp500sn33t1g-vs-tps7a2033pdbvr",
       "category": "ldo",
-      "part_a": "adp151aujz-3-3-r7",
+      "part_a": "ncp500sn33t1g",
       "part_b": "tps7a2033pdbvr"
     },
     {
@@ -798,10 +798,10 @@
       "part_b": "tps73633dbvr"
     },
     {
-      "slug": "tps7a0233pdbvr-vs-xc6206p332mr-g",
+      "slug": "lm3480im3-3-3-nopb-vs-tps7a0233pdbvr",
       "category": "ldo",
-      "part_a": "tps7a0233pdbvr",
-      "part_b": "xc6206p332mr-g"
+      "part_a": "lm3480im3-3-3-nopb",
+      "part_b": "tps7a0233pdbvr"
     },
     {
       "slug": "ap7333-33sag-7-vs-tps7a0233pdbvr",
@@ -828,10 +828,10 @@
       "part_b": "ncp1117st33t3g"
     },
     {
-      "slug": "ams1117-3-3-vs-lt1117cst-3-3-pbf",
+      "slug": "ams1117-3-3-vs-lm2937imp-3-3-nopb",
       "category": "ldo",
       "part_a": "ams1117-3-3",
-      "part_b": "lt1117cst-3-3-pbf"
+      "part_b": "lm2937imp-3-3-nopb"
     },
     {
       "slug": "ams1117-3-3-vs-ap7361c-33e-13",
@@ -852,10 +852,10 @@
       "part_b": "ncp1117st33t3g"
     },
     {
-      "slug": "lm1117impx-3-3-nopb-vs-lt1117cst-3-3-pbf",
+      "slug": "lm1117impx-3-3-nopb-vs-lm2937imp-3-3-nopb",
       "category": "ldo",
       "part_a": "lm1117impx-3-3-nopb",
-      "part_b": "lt1117cst-3-3-pbf"
+      "part_b": "lm2937imp-3-3-nopb"
     },
     {
       "slug": "ap7361c-33e-13-vs-lm1117impx-3-3-nopb",
@@ -924,16 +924,16 @@
       "part_b": "tps61040dbvr"
     },
     {
-      "slug": "lt1930es5-trmpbf-vs-tps61040dbvr",
+      "slug": "lm2733xmf-nopb-vs-tps61040dbvr",
       "category": "dcdc",
-      "part_a": "lt1930es5-trmpbf",
+      "part_a": "lm2733xmf-nopb",
       "part_b": "tps61040dbvr"
     },
     {
-      "slug": "lm27313xmf-nopb-vs-lt1930es5-trmpbf",
+      "slug": "lm27313xmf-nopb-vs-lm2733xmf-nopb",
       "category": "dcdc",
       "part_a": "lm27313xmf-nopb",
-      "part_b": "lt1930es5-trmpbf"
+      "part_b": "lm2733xmf-nopb"
     },
     {
       "slug": "tps613221adbvr-vs-tps63001drcr",
@@ -1038,10 +1038,10 @@
       "part_b": "lmv358idr"
     },
     {
-      "slug": "ad8606arz-vs-lm358dr",
+      "slug": "lm358dr-vs-mc33202dr2g",
       "category": "opamp",
-      "part_a": "ad8606arz",
-      "part_b": "lm358dr"
+      "part_a": "lm358dr",
+      "part_b": "mc33202dr2g"
     },
     {
       "slug": "lm358dr-vs-tlv9002idr",
@@ -1062,10 +1062,10 @@
       "part_b": "lm393dr"
     },
     {
-      "slug": "ad8606arz-vs-lmv358idr",
+      "slug": "lmv358idr-vs-mc33202dr2g",
       "category": "opamp",
-      "part_a": "ad8606arz",
-      "part_b": "lmv358idr"
+      "part_a": "lmv358idr",
+      "part_b": "mc33202dr2g"
     },
     {
       "slug": "lmv358idr-vs-tlv9002idr",
@@ -1074,9 +1074,9 @@
       "part_b": "tlv9002idr"
     },
     {
-      "slug": "ad8606arz-vs-tlv9002idr",
+      "slug": "mc33202dr2g-vs-tlv9002idr",
       "category": "opamp",
-      "part_a": "ad8606arz",
+      "part_a": "mc33202dr2g",
       "part_b": "tlv9002idr"
     },
     {
@@ -1092,9 +1092,9 @@
       "part_b": "tlv9002idr"
     },
     {
-      "slug": "ad8606arz-vs-opa2134ua",
+      "slug": "mc33202dr2g-vs-opa2134ua",
       "category": "opamp",
-      "part_a": "ad8606arz",
+      "part_a": "mc33202dr2g",
       "part_b": "opa2134ua"
     },
     {
@@ -1104,16 +1104,16 @@
       "part_b": "lmv358idr"
     },
     {
-      "slug": "ad8605artz-r2-vs-tlv9001idbvr",
+      "slug": "tlv9001idbvr-vs-tlv9061idbvr",
       "category": "opamp",
-      "part_a": "ad8605artz-r2",
-      "part_b": "tlv9001idbvr"
+      "part_a": "tlv9001idbvr",
+      "part_b": "tlv9061idbvr"
     },
     {
-      "slug": "ad8605artz-r2-vs-opa333aidbvr",
+      "slug": "opa333aidbvr-vs-tlv9061idbvr",
       "category": "opamp",
-      "part_a": "ad8605artz-r2",
-      "part_b": "opa333aidbvr"
+      "part_a": "opa333aidbvr",
+      "part_b": "tlv9061idbvr"
     },
     {
       "slug": "opa333aidbvr-vs-tlv9001idbvr",
