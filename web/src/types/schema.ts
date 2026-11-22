@@ -221,7 +221,7 @@ export interface DcdcGoldenPart extends BaseGoldenPart {
 
 export interface OpampGoldenPart extends BaseGoldenPart {
   category: 'opamp';
-  sub_topology: 'opamp-single' | 'opamp-dual' | 'comparator-dual';
+  sub_topology: 'opamp-single' | 'opamp-dual' | 'comparator-single' | 'comparator-dual';
   specs: OpampSpecs;
 }
 
@@ -352,6 +352,7 @@ export interface LabGearItem {
   title: string;
   reason: string;
   amazon_search_url: string;
+  coupang_search_url?: string;
   price_band: string;
 }
 
@@ -367,9 +368,11 @@ export interface SiteConfig {
     adsense_publisher_id: string;
     adsense_enabled: boolean;
     adsense_note: string;
+    ga4_measurement_id?: string;
     amazon_us_tag: string;
     coupang_partner_id: string;
     coupang_sub_id: string;
+    bom_pro_waitlist_url?: string;
   };
   legal: {
     engineering_disclaimer_short: string;

@@ -287,7 +287,12 @@ export const DcdcPartSchema = BasePartSchema.extend({
 
 export const OpampPartSchema = BasePartSchema.extend({
   category: z.literal('opamp'),
-  sub_topology: z.enum(['opamp-single', 'opamp-dual', 'comparator-dual']),
+  sub_topology: z.enum([
+    'opamp-single',
+    'opamp-dual',
+    'comparator-single',
+    'comparator-dual',
+  ]),
   specs: OpampSpecsSchema,
 });
 

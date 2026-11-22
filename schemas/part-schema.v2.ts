@@ -221,7 +221,7 @@ export interface DcdcGoldenPart extends BaseGoldenPart {
 
 export interface OpampGoldenPart extends BaseGoldenPart {
   category: 'opamp';
-  sub_topology: 'opamp-single' | 'opamp-dual' | 'comparator-dual';
+  sub_topology: 'opamp-single' | 'opamp-dual' | 'comparator-single' | 'comparator-dual';
   specs: OpampSpecs;
 }
 
