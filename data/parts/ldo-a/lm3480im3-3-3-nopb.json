@@ -1,0 +1,204 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "LM3480IM3-3.3/NOPB",
+  "slug": "lm3480im3-3-3-nopb",
+  "family": "LM3480",
+  "manufacturer": "Texas Instruments",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to +125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/lm3480.pdf",
+    "product_page_url": "https://www.ti.com/product/LM3480",
+    "source_domain": "www.ti.com",
+    "revision": "SNVS011H (June 1999 – Revised September 2015)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 22
+  },
+  "package": {
+    "code": "SOT-23-3",
+    "mfg_package_code": "DBZ (SOT-23-3)",
+    "pin_count": 3,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "3-pin DBZ SOT-23 package (2.92 mm x 1.30 mm body) with no exposed thermal pad."
+    },
+    "theta_ja_c_per_w": {
+      "value": 269.6,
+      "page": 4,
+      "condition": "DBZ 3-pin SOT-23 JEDEC junction-to-ambient thermal resistance",
+      "table_ref": "6.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 141.1,
+      "page": 4,
+      "condition": "DBZ 3-pin SOT-23 junction-to-case (top) thermal resistance RθJC(top)",
+      "table_ref": "6.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 4,
+      "condition": "Absolute maximum junction temperature +150°C (active thermal limit ~150°C; recommended operating TJ -40°C to +125°C)",
+      "table_ref": "6.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": {
+      "value": 370,
+      "page": 4,
+      "condition": "370 mW at TA = 50°C with RθJA = 269.6 °C/W and TJ_max = 150°C (increase/derate by 3.7 mW/°C below/above 50°C, Footnote 3)",
+      "table_ref": "6.1 Absolute Maximum Ratings"
+    },
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "OUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output voltage (Pin 1 = OUT — unique vs both SA and SR SOT-23-3 LDOs!)."
+      },
+      {
+        "pin": 2,
+        "name": "IN",
+        "role": "VIN",
+        "description": "High-voltage supply input up to 30 V operating (35 V abs max); decouple with >= 0.1 uF capacitor."
+      },
+      {
+        "pin": 3,
+        "name": "GND",
+        "role": "GND",
+        "description": "Common ground reference pin."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 35,
+      "page": 4,
+      "condition": "Absolute maximum input voltage (IN to GND)",
+      "table_ref": "6.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 4.8,
+      "page": 5,
+      "condition": "Electrical characteristics test minimum VIN = VNOM + 1.5 V (4.8 V for 3.3 V option; minimum regulation floor ~4.5 V at 100 mA given 1.2 V max dropout; designed for 5 V ±5% rails per Sec. 7.4.1)",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "vin_max_v": {
+      "value": 30,
+      "page": 4,
+      "condition": "Recommended maximum operating input voltage (IN to GND)",
+      "table_ref": "6.3 Recommended Operating Conditions"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 5,
+      "condition": "Fixed 3.3 V option (LM3480-3.3 / LM3480IM3-3.3/NOPB)",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 5,
+      "page": 1,
+      "condition": "±5% ensured over full load (1–100 mA) and temperature (-40°C to +125°C): 3.14 V to 3.46 V (3.17 V to 3.43 V at 25°C, p.5)",
+      "table_ref": "Features & 6.5 Electrical Characteristics"
+    },
+    "iout_max_ma": {
+      "value": 100,
+      "page": 5,
+      "condition": "100 mA ensured continuous output current (1 mA <= IOUT <= 100 mA)",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "iq_typ_ua": {
+      "value": 2000,
+      "page": 5,
+      "condition": "2 mA (2000 uA) typ at no load, 25°C; 4 mA max over -40°C to +125°C, 4.8 V <= VIN <= 30 V",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "ishdn_typ_ua": null,
+    "dropout_typ_mv": {
+      "value": 900,
+      "page": 5,
+      "condition": "0.9 V (900 mV) typ, 1.1 V max at 25°C, 1.2 V max over -40..+125°C at IOUT = 100 mA (0.7 V typ / 1.0 V max at 10 mA)",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "psrr_db": null,
+    "output_noise_uvrms": {
+      "value": 100,
+      "page": 5,
+      "condition": "VIN = 10 V, bandwidth 10 Hz to 100 kHz, VNOM = 3.3 V",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 0.1,
+      "page": 11,
+      "condition": "0.1 uF minimum output capacitor required for stability; no specific ESR limitation and no maximum capacitance cap",
+      "table_ref": "8.2.2.1 External Capacitors"
+    },
+    "esr_min_ohm": null,
+    "esr_max_ohm": null,
+    "en_active_high": null,
+    "reverse_current_protection": null
+  },
+  "design_gotchas": [
+    {
+      "title": "Unique SOT-23-3 Pinout (1=OUT, 2=IN, 3=GND) Incompatible With ALL Other SOT-23-3 LDOs in Batch",
+      "severity": "CRITICAL",
+      "detail": "LM3480IM3-3.3/NOPB assigns Pin 1=OUT, Pin 2=IN, Pin 3=GND. This conflicts directly with both Diodes Inc SA (AP7333-33SAG-7 / AP7313-33SAG-7: 1=IN, 2=OUT, 3=GND) AND reversed SR / AP2210N (1=GND, 2=OUT, 3=IN). Never drop LM3480 onto a standard 3-pin LDO footprint without verifying PCB net assignments.",
+      "page": 3
+    },
+    {
+      "title": "High 0.9 V Typ (1.2 V Max) Quasi-LDO Dropout & 2 mA Quiescent Current",
+      "severity": "WARNING",
+      "detail": "Built with a PNP-driven NPN Darlington-like quasi-LDO pass stage (Page 10), LM3480 drops 0.9 V typ (1.2 V max) at 100 mA — making single-cell Li-Ion (3.7 V) to 3.3 V impossible and requiring >= 4.5–4.75 V input (5 V ±5% min). Its 2 mA typ (4 mA max) no-load ground current is also ~35–80,000x higher than modern CMOS LDOs.",
+      "page": 5
+    },
+    {
+      "title": "Severe Thermal Derating at 24 V / 30 V Input in SOT-23-3 (RθJA = 269.6 C/W)",
+      "severity": "WARNING",
+      "detail": "Although LM3480 accepts up to 30 V operating (35 V abs max), SOT-23-3 RθJA is 269.6 °C/W (PD = 370 mW at TA = 50°C). Regulating 24 V down to 3.3 V (20.7 V drop) limits continuous load current to under 18 mA at 50°C ambient before hitting TJ = 150°C thermal limiting.",
+      "page": 4
+    },
+    {
+      "title": "Wide ±5% Output Tolerance & Minimum 1 mA Load Specification",
+      "severity": "INFO",
+      "detail": "Guaranteed output accuracy is ±5% (3.14 V to 3.46 V over -40°C to +125°C, tested over 1 mA to 100 mA), which is far looser than ±1%–±2% precision CMOS LDOs. On the upside, it stabilizes cleanly with just 0.1 uF ceramic output capacitance with no ESR restriction.",
+      "page": 5
+    }
+  ],
+  "typical_use_cases": [
+    "Ultra-compact 12 V / 24 V industrial bus to 3.3 V low-current (<20 mA) bias supplies replacing LM78Lxx",
+    "5 V ±5% to 3.3 V 100 mA compact bias regulator where 35 V input surge withstand is required",
+    "Post-regulator for noisy switching DC-DC rails needing minimal 0.1 uF external capacitors",
+    "High-voltage analog/control bias rail where simple 3-pin SOT-23-3 footprint and wide VIN range outweigh IQ"
+  ],
+  "engineering_summary": "The Texas Instruments LM3480IM3-3.3/NOPB is a 100 mA, 30 V-rated (35 V abs max) fixed 3.3 V (±5%) quasi-low-dropout linear regulator in a 3-pin DBZ SOT-23-3 package with a distinctive Pin 1=OUT, Pin 2=IN, Pin 3=GND assignment. Intended as a tiny alternative to 78Lxx regulators, it operates down to 0.9 V typical (1.2 V max) dropout at 100 mA and stabilizes with just 0.1 uF input and output capacitors with no ESR limits. Engineers must account for its incompatible SOT-23-3 pinout, 2 mA typical ground current, and 269.6 °C/W RθJA thermal ceiling when stepping down from 12 V–30 V inputs.",
+  "audit": {
+    "confidence_score": 0.98,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [
+      3,
+      4,
+      5,
+      9
+    ],
+    "audit_notes": [
+      "300 DPI PNG Vision verified page 3 DBZ 3-Pin SOT-23 Top View pinout: 1=OUT, 2=IN, 3=GND (3rd distinct SOT-23-3 pinout in ldo-a).",
+      "300 DPI PNG Vision verified page 4 Abs Max (VIN=35V, TJ_max=150C, PD=370mW @50C), Recommended Operating Conditions (VIN_max=30V, TJ=-40..125C), and Thermal Info (RθJA=269.6 C/W, RθJC(top)=141.1 C/W).",
+      "300 DPI PNG Vision verified page 5 Electrical Characteristics for VNOM=3.3V (3.14-3.46V over temp = ±5%, IGND=2mA typ / 4mA max, VDO=0.9V typ / 1.1V max @25C / 1.2V max over temp @100mA, en=100uVrms @VIN=10V).",
+      "300 DPI PNG Vision verified page 9 Figures 15-16 (PSRR plotted only for VOUT=5V, ~56-63 dB at 1 kHz, so psrr_db kept null per no-guessing rule); Path A page 11 confirmed 0.1 uF min COUT with no ESR limit."
+    ]
+  }
+}

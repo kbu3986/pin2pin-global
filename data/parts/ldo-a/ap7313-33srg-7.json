@@ -1,0 +1,208 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "AP7313-33SRG-7",
+  "slug": "ap7313-33srg-7",
+  "family": "AP7313",
+  "manufacturer": "Diodes Incorporated",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 85,
+    "grade_label": "Industrial (-40°C to +85°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.diodes.com/assets/Datasheets/AP7313.pdf",
+    "product_page_url": "https://www.diodes.com/part/view/AP7313",
+    "source_domain": "www.diodes.com",
+    "revision": "Rev. 2 (November 2009)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 13
+  },
+  "package": {
+    "code": "SOT-23-3",
+    "mfg_package_code": "SR (SOT23R)",
+    "pin_count": 3,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "3-lead reversed-pinout SOT23R package with no exposed thermal pad."
+    },
+    "theta_ja_c_per_w": {
+      "value": 230,
+      "page": 5,
+      "condition": "SOT23R (SR) mounted on FR-4 PCB, minimum recommended pad layout, 2oz copper, single-sided (Note 6) — higher than SA (207 C/W)",
+      "table_ref": "Electrical Characteristics"
+    },
+    "theta_jc_c_per_w": null,
+    "tj_max_c": {
+      "value": 150,
+      "page": 4,
+      "condition": "Absolute Maximum Junction Temperature (operating TJ range -40°C to 125°C; TSD typ 140°C)",
+      "table_ref": "Absolute Maximum Ratings"
+    },
+    "pd_max_mw": {
+      "value": 540,
+      "page": 4,
+      "condition": "SOT23R (SR) package at TA = 25°C (Note 3) — 60 mW lower than SA (600 mW)",
+      "table_ref": "Absolute Maximum Ratings"
+    },
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "GND",
+        "role": "GND",
+        "description": "Ground return pin (reversed vs SA SOT23 variant)."
+      },
+      {
+        "pin": 2,
+        "name": "OUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output pin; bypass to GND through a 1 uF ceramic capacitor."
+      },
+      {
+        "pin": 3,
+        "name": "IN",
+        "role": "VIN",
+        "description": "Voltage input pin (reversed vs SA SOT23 variant); bypass to GND through at least a 1 uF ceramic capacitor."
+      }
+    ],
+    "pinout_source_page": 2,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 7,
+      "page": 4,
+      "condition": "Absolute maximum input voltage",
+      "table_ref": "Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 2,
+      "page": 4,
+      "condition": "Recommended operating minimum VIN across family (for 3.3 V output, maintain VIN >= VOUT + Vdropout)",
+      "table_ref": "Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 6,
+      "page": 4,
+      "condition": "Recommended operating maximum VIN",
+      "table_ref": "Recommended Operating Conditions"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 2,
+      "condition": "Fixed 3.3 V option denoted by '-33' ordering code (top marking ID 'SJ')",
+      "table_ref": "Ordering Information"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 2,
+      "page": 5,
+      "condition": "±2% over TA = -40°C to 85°C, IOUT = 30 mA, VIN = VOUT + 1 V",
+      "table_ref": "Electrical Characteristics"
+    },
+    "iout_max_ma": {
+      "value": 150,
+      "page": 4,
+      "condition": "Recommended operating continuous output current (0 to 150 mA, stable at no load)",
+      "table_ref": "Recommended Operating Conditions"
+    },
+    "iq_typ_ua": {
+      "value": 55,
+      "page": 5,
+      "condition": "IOUT = 0 mA, TA = 25°C, VIN = VOUT + 1 V (75 uA max; 65 uA typ / 85 uA max at IOUT = 150 mA)",
+      "table_ref": "Electrical Characteristics"
+    },
+    "ishdn_typ_ua": null,
+    "dropout_typ_mv": {
+      "value": 150,
+      "page": 5,
+      "condition": "IOUT = 150 mA, TA = 25°C (300 mV max; VOUT drops 2% below nominal, Note 5)",
+      "table_ref": "Electrical Characteristics"
+    },
+    "psrr_db": {
+      "value": 65,
+      "page": 5,
+      "condition": "f = 100 Hz, IOUT = 30 mA, VIN = (VOUT + 1 V)DC + 0.5 VppAC, CIN = COUT = 1 uF",
+      "table_ref": "Electrical Characteristics"
+    },
+    "output_noise_uvrms": null,
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 1,
+      "page": 10,
+      "condition": "Recommended 1 uF to 4.7 uF X7R or X5R ceramic output capacitor",
+      "table_ref": "Application Note - Output Capacitor"
+    },
+    "esr_min_ohm": {
+      "value": 0.01,
+      "page": 10,
+      "condition": "Recommended output capacitor ESR window 10 mOhm to 200 mOhm",
+      "table_ref": "Application Note - Output Capacitor"
+    },
+    "esr_max_ohm": {
+      "value": 0.2,
+      "page": 10,
+      "condition": "Recommended output capacitor ESR window 10 mOhm to 200 mOhm",
+      "table_ref": "Application Note - Output Capacitor"
+    },
+    "en_active_high": null,
+    "reverse_current_protection": null
+  },
+  "design_gotchas": [
+    {
+      "title": "Reversed SOT23R Pinout Matches AP2210N (1=GND, 2=OUT, 3=IN), NOT AP7313-SA or LM3480",
+      "severity": "CRITICAL",
+      "detail": "AP7313-33SRG-7 (SR, SOT23R, marking 'SJ') places Pin 1=GND, Pin 2=OUT, Pin 3=IN — matching AP2210N-3.3TRG1 (and common 1=GND/2=OUT/3=IN SOT-23-3 layouts), while being strictly incompatible with AP7313-33SAG-7 / AP7333-33SAG-7 (1=IN, 2=OUT, 3=GND) and LM3480IM3-3.3/NOPB (1=OUT, 2=IN, 3=GND). Verify the 'SR' vs 'SA' ordering suffix during BOM purchasing.",
+      "page": 2
+    },
+    {
+      "title": "Higher Thermal Resistance (230 C/W) and Lower PD (540 mW) Than SA Package",
+      "severity": "WARNING",
+      "detail": "Because of internal leadframe routing in SOT23R, AP7313-33SRG-7 has θJA = 230 °C/W and PD = 540 mW at 25 °C (worse than SA's 207 °C/W and 600 mW). Recompute TJ margin separately whenever switching between SA and SR variants.",
+      "page": 5
+    },
+    {
+      "title": "6 V VIN Limit vs AP2210N-3.3TRG1 (13.2 V) & 55–65 uA Quiescent Current Tradeoff",
+      "severity": "WARNING",
+      "detail": "Although AP7313-33SRG-7 shares AP2210N-3.3TRG1's 1=GND, 2=OUT, 3=IN SOT-23-3 pinout with lower full-load IQ (65 uA vs 4 mA) and ceramic-cap stability, its 6 V operating / 7 V abs max VIN rating makes it unsafe on >6 V rails using AP2210N (13.2 V/15 V). Its 55 uA no-load IQ also exceeds ultra-low-Iq coin-cell LDOs.",
+      "page": 5
+    },
+    {
+      "title": "50 mA Short-Circuit Foldback & 10–200 mOhm Output Cap ESR",
+      "severity": "INFO",
+      "detail": "Current limit is 200 mA min / 300 mA typ with 50 mA short-circuit foldback below VOUT = 0.2 V. Use a 1 uF to 4.7 uF X5R/X7R ceramic capacitor within 10–200 mOhm ESR directly adjacent to OUT and GND.",
+      "page": 10
+    }
+  ],
+  "typical_use_cases": [
+    "Candidate pin-compatible ceramic-stable alternative on AP2210N-3.3TRG1 (1=GND, 2=OUT, 3=IN) 5 V SOT-23-3 boards <= 150 mA",
+    "150 mA 3.3 V logic supplies for portable devices and desktop/notebook peripherals",
+    "Space-constrained 3-pin LDO rails needing 150 mV typical dropout and 1 uF ceramic cap stability",
+    "Second-source 3.3 V regulator where reversed SOT23R (1=GND, 3=IN) footprint is already locked"
+  ],
+  "engineering_summary": "The Diodes Incorporated AP7313-33SRG-7 is the reversed-pinout SOT23R ('SR') variant of the 150 mA fixed 3.3 V (±2%) AP7313 LDO family, featuring Pin 1=GND, Pin 2=OUT, and Pin 3=IN. It shares the SA electrical ratings (2–6 V operating VIN, 7 V abs max, 150 mV typical dropout at 150 mA, 55 uA no-load / 65 uA full-load IQ, 65 dB PSRR at 100 Hz, 1 uF ceramic cap stability) but has a distinct thermal rating of θJA = 230 °C/W and PD = 540 mW at 25 °C. Its 1=GND, 2=OUT, 3=IN pinout aligns with AP2210N-3.3TRG1 footprints while remaining strictly incompatible with SA-suffix AP7313/AP7333 and LM3480 parts.",
+  "audit": {
+    "confidence_score": 0.98,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [
+      2,
+      4,
+      5
+    ],
+    "audit_notes": [
+      "300 DPI PNG Vision verified page 2 SOT23R (SR) Top View pinout: 1=GND, 2=OUT, 3=IN (reversed vs SA).",
+      "300 DPI PNG Vision verified page 4 Absolute Maximum Ratings (VIN=7V, TJ_max=150C, PD=540mW specifically for SOT23R) and Recommended Operating Conditions (VIN=2-6V, IOUT=150mA, TA=-40..85C).",
+      "300 DPI PNG Vision verified page 5 Electrical Characteristics (θJA=230 C/W specifically for SOT23R vs 207 C/W for SOT23; IQ=55uA @0mA / 65uA @150mA; Vdropout=150mV typ @150mA; ±2% accuracy; PSRR=65dB @100Hz).",
+      "Path A page 10 confirmed 1-4.7 uF ceramic cap and 10-200 mOhm ESR; page 11 confirmed top marking ID 'SJ' for AP7313-33SR."
+    ]
+  }
+}

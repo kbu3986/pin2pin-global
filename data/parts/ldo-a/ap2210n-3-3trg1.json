@@ -1,0 +1,207 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "AP2210N-3.3TRG1",
+  "slug": "ap2210n-3-3trg1",
+  "family": "AP2210",
+  "manufacturer": "Diodes Incorporated",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 85,
+    "grade_label": "Industrial (-40°C to +85°C ambient; -40°C to +125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.diodes.com/assets/Datasheets/AP2210.pdf",
+    "product_page_url": "https://www.diodes.com/part/view/AP2210",
+    "source_domain": "www.diodes.com",
+    "revision": "DS37517 Rev. 4 - 2 (March 2021)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 30
+  },
+  "package": {
+    "code": "SOT-23-3",
+    "mfg_package_code": "N (SOT-23-3)",
+    "pin_count": 3,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "3-lead SOT-23-3 package with no exposed thermal pad."
+    },
+    "theta_ja_c_per_w": {
+      "value": 200,
+      "page": 4,
+      "condition": "SOT-23-3 junction-to-ambient thermal resistance, no heatsink",
+      "table_ref": "Absolute Maximum Ratings"
+    },
+    "theta_jc_c_per_w": null,
+    "tj_max_c": {
+      "value": 150,
+      "page": 4,
+      "condition": "Absolute maximum junction temperature +150°C (recommended operating TJ -40°C to +125°C)",
+      "table_ref": "Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "GND",
+        "role": "GND",
+        "description": "Ground reference pin (matches AP7313-33SRG-7 SOT23R, opposite of SA SOT23)."
+      },
+      {
+        "pin": 2,
+        "name": "VOUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output voltage; requires >= 1.0 uF (2.2 uF recommended) output capacitor within ESR stability window."
+      },
+      {
+        "pin": 3,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Supply input voltage (up to 13.2 V operating, 15 V abs max); decouple with >= 1.0 uF capacitor."
+      }
+    ],
+    "pinout_source_page": 1,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 15,
+      "page": 4,
+      "condition": "Absolute maximum supply input voltage",
+      "table_ref": "Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 2.5,
+      "page": 4,
+      "condition": "Recommended operating VIN minimum across family (Note 4 recommends VOUT + 1 V = 4.3 V for full PSRR on 3.3 V rail; VOUT + 0.25 V minimum)",
+      "table_ref": "Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 13.2,
+      "page": 4,
+      "condition": "Recommended operating supply input voltage maximum",
+      "table_ref": "Recommended Operating Conditions"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 11,
+      "condition": "Fixed 3.3 V option (Green OPN AP2210N-3.3TRG1, top marking ID 'GH5' on p.24)",
+      "table_ref": "AP2210-3.3 Electrical Characteristics"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 1,
+      "page": 11,
+      "condition": "±1% at TJ = +25°C (±2% over -40°C <= TJ <= +125°C), VIN = 4.3 V, IOUT = 100 uA",
+      "table_ref": "AP2210-3.3 Electrical Characteristics"
+    },
+    "iout_max_ma": {
+      "value": 300,
+      "page": 1,
+      "condition": "Up to 300 mA continuous output current (current limit 450 mA typ, 900 mA max at VOUT = 0 V, p.11)",
+      "table_ref": "Features & AP2210-3.3 Electrical Characteristics"
+    },
+    "iq_typ_ua": {
+      "value": 100,
+      "page": 11,
+      "condition": "Ground pin current IGND at IOUT = 100 uA, VIN = 4.3 V, TJ = +25°C (150 uA max; rises to 350 uA at 50 mA, 1.3 mA at 150 mA, and 4 mA typ / 10 mA max at 300 mA due to bipolar pass base drive, Note 10)",
+      "table_ref": "AP2210-3.3 Electrical Characteristics"
+    },
+    "ishdn_typ_ua": null,
+    "dropout_typ_mv": {
+      "value": 250,
+      "page": 11,
+      "condition": "IOUT = 300 mA, TJ = +25°C (400 mV max at 25°C, 500 mV max over -40..125°C; 165 mV typ at 150 mA)",
+      "table_ref": "AP2210-3.3 Electrical Characteristics"
+    },
+    "psrr_db": {
+      "value": 75,
+      "page": 11,
+      "condition": "f = 100 Hz, IOUT = 100 uA, VIN = 4.3 V, COUT = 2.2 uF",
+      "table_ref": "AP2210-3.3 Electrical Characteristics"
+    },
+    "output_noise_uvrms": null,
+    "ceramic_cap_stable": false,
+    "min_cout_uf": {
+      "value": 1.0,
+      "page": 23,
+      "condition": "1.0 uF minimum when BYP pin is absent/unused (2.2 uF used in electrical tests for flatter low-ESR stability down to ~25 mOhm at 0 mA)",
+      "table_ref": "Application Information - Output Capacitor"
+    },
+    "esr_min_ohm": {
+      "value": 0.025,
+      "page": 22,
+      "condition": "Minimum ESR ~25 mOhm for COUT = 2.2 uF across 0–300 mA (~30 mOhm at 10–300 mA rising to ~150 mOhm at 0 mA for COUT = 1 uF); ultra-low-ESR MLCCs can fall below lower stability boundary",
+      "table_ref": "Performance Characteristics - ESR vs. Output Current"
+    },
+    "esr_max_ohm": {
+      "value": 15,
+      "page": 22,
+      "condition": "Upper ESR stability boundary ~15 Ohm at 150–300 mA for COUT = 2.2 uF (~12 Ohm for COUT = 1 uF)",
+      "table_ref": "Performance Characteristics - ESR vs. Output Current"
+    },
+    "en_active_high": null,
+    "reverse_current_protection": true
+  },
+  "design_gotchas": [
+    {
+      "title": "SOT-23-3 Pinout (1=GND, 2=VOUT, 3=VIN) Reversed vs AP7333-SA, AP7313-SA, and LM3480",
+      "severity": "CRITICAL",
+      "detail": "AP2210N-3.3TRG1 uses Pin 1=GND, Pin 2=VOUT, Pin 3=VIN (matching AP7313-33SRG-7 SOT23R). It is strictly pin-incompatible with AP7333-33SAG-7 / AP7313-33SAG-7 (1=IN, 2=OUT, 3=GND) and TI LM3480IM3-3.3/NOPB (1=VOUT, 2=VIN, 3=GND).",
+      "page": 1
+    },
+    {
+      "title": "Bipolar Pass Transistor Ground Current Jumps to 4 mA Typ (15 mA Max) at 300 mA Load",
+      "severity": "WARNING",
+      "detail": "Unlike CMOS LDOs with flat micro-amp IQ, AP2210 uses a bipolar pass element (Note 10). Ground pin current climbs from 100 uA at 100 uA load to 350 uA at 50 mA, 1.3 mA at 150 mA, and 4 mA typ (10 mA max at 25°C, 15 mA max over temp) at 300 mA, significantly reducing efficiency at heavy load.",
+      "page": 11
+    },
+    {
+      "title": "Minimum ESR Stability Floor (~20–30 mOhm) — Not Unconditionally Ceramic-Cap Stable",
+      "severity": "WARNING",
+      "detail": "Page 22 ESR vs. Output Current plots show a lower ESR instability region below ~25 mOhm (COUT = 2.2 uF) and rising to ~150 mOhm at 0 mA when COUT = 1 uF. Very low-ESR MLCC ceramic capacitors (5–10 mOhm) may oscillate unless a 2.2 uF+ capacitor with verified >=30 mOhm ESR or a small series damping resistor is used.",
+      "page": 22
+    },
+    {
+      "title": "13.2 V Operating Rating Requires Severe Current Derating in SOT-23-3 (θJA = 200 C/W)",
+      "severity": "WARNING",
+      "detail": "While AP2210N survives 15 V abs max / 13.2 V operating VIN (with built-in reverse current protection), regulating 12 V down to 3.3 V drops 8.7 V across the pass transistor. At θJA = 200 °C/W and TA = 50 °C, maximum allowable current before hitting TJ = 150 °C is under 58 mA.",
+      "page": 23
+    }
+  ],
+  "typical_use_cases": [
+    "9 V or 12 V industrial/battery rails stepped down to low-current 3.3 V logic (<60 mA) in SOT-23-3",
+    "High-PSRR (75 dB at 100 Hz) 3.3 V supplies with reverse-current protection on 1=GND, 2=VOUT, 3=VIN footprints",
+    "Higher-VIN upgrade candidate for 6 V-limited SOT23R (1=GND, 2=OUT, 3=IN) boards when ESR and IGND are verified",
+    "Portable wireless and consumer electronics requiring ±1% initial accuracy at 25°C"
+  ],
+  "engineering_summary": "The Diodes Incorporated AP2210N-3.3TRG1 is a 300 mA, 13.2 V-rated (15 V abs max) fixed 3.3 V (±1% at 25°C) RF LDO in a 3-pin SOT-23-3 package with Pin 1=GND, Pin 2=VOUT, and Pin 3=VIN. It offers 250 mV typical dropout at 300 mA, 75 dB PSRR at 100 Hz, built-in reverse-current protection, and θJA = 200 °C/W. Unlike CMOS LDOs, its bipolar pass stage draws up to 4 mA typ (15 mA max) ground current at 300 mA load and exhibits a ~25 mOhm lower ESR stability boundary (Page 22), requiring careful output capacitor ESR selection and thermal derating at high VIN.",
+  "audit": {
+    "confidence_score": 0.98,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [
+      1,
+      4,
+      11,
+      12,
+      22,
+      23,
+      24
+    ],
+    "audit_notes": [
+      "300 DPI PNG Vision verified page 1 SOT-23-3 Top View pinout: 1=GND, 2=VOUT, 3=VIN (no EN or BYP pins on 3-pin N package).",
+      "300 DPI PNG Vision verified page 4 Abs Max (VIN=15V, TJ=+150C, θJA=200 C/W) and Recommended Operating Conditions (VIN=2.5..13.2V, TJ=-40..+125C).",
+      "300 DPI PNG Vision verified page 11-12 AP2210-3.3 Electrical Characteristics (±1% @25C / ±2% over temp, VDROP=250mV typ @300mA, IGND=100uA @100uA climbing to 4mA typ @300mA, PSRR=75dB @100Hz, noise density 260 nV/rtHz — not uVRMS so output_noise_uvrms left null).",
+      "300 DPI PNG Vision verified page 22 ESR vs Output Current plots (lower ESR boundary ~25 mOhm for 2.2uF, ~30-150 mOhm for 1uF), page 23 Application Info, and page 24 Ordering Table (AP2210N-3.3TRG1 = Green SOT-23-3, -40..+85C, Marking ID 'GH5'; TRE1 variant is NRND)."
+    ]
+  }
+}

@@ -1,0 +1,208 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "AP7313-33SAG-7",
+  "slug": "ap7313-33sag-7",
+  "family": "AP7313",
+  "manufacturer": "Diodes Incorporated",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 85,
+    "grade_label": "Industrial (-40°C to +85°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.diodes.com/assets/Datasheets/AP7313.pdf",
+    "product_page_url": "https://www.diodes.com/part/view/AP7313",
+    "source_domain": "www.diodes.com",
+    "revision": "Rev. 2 (November 2009)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 13
+  },
+  "package": {
+    "code": "SOT-23-3",
+    "mfg_package_code": "SA (SOT23)",
+    "pin_count": 3,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "Standard 3-lead SOT23 package with no exposed thermal pad."
+    },
+    "theta_ja_c_per_w": {
+      "value": 207,
+      "page": 5,
+      "condition": "SOT23 (SA) mounted on FR-4 PCB, minimum recommended pad layout, 2oz copper, single-sided (Note 6)",
+      "table_ref": "Electrical Characteristics"
+    },
+    "theta_jc_c_per_w": null,
+    "tj_max_c": {
+      "value": 150,
+      "page": 4,
+      "condition": "Absolute Maximum Junction Temperature (operating TJ range -40°C to 125°C; TSD typ 140°C)",
+      "table_ref": "Absolute Maximum Ratings"
+    },
+    "pd_max_mw": {
+      "value": 600,
+      "page": 4,
+      "condition": "SOT23 (SA) package at TA = 25°C (Note 3); SOT23R (SR) variant is lower at 540 mW",
+      "table_ref": "Absolute Maximum Ratings"
+    },
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "IN",
+        "role": "VIN",
+        "description": "Voltage input pin; bypass to GND through at least a 1 uF ceramic capacitor."
+      },
+      {
+        "pin": 2,
+        "name": "OUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output pin; bypass to GND through a 1 uF ceramic capacitor."
+      },
+      {
+        "pin": 3,
+        "name": "GND",
+        "role": "GND",
+        "description": "Ground return pin."
+      }
+    ],
+    "pinout_source_page": 2,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 7,
+      "page": 4,
+      "condition": "Absolute maximum input voltage",
+      "table_ref": "Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 2,
+      "page": 4,
+      "condition": "Recommended operating minimum VIN across family (for 3.3 V output, maintain VIN >= VOUT + Vdropout)",
+      "table_ref": "Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 6,
+      "page": 4,
+      "condition": "Recommended operating maximum VIN",
+      "table_ref": "Recommended Operating Conditions"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 2,
+      "condition": "Fixed 3.3 V option denoted by '-33' ordering code (top marking ID 'NZ')",
+      "table_ref": "Ordering Information"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 2,
+      "page": 5,
+      "condition": "±2% over TA = -40°C to 85°C, IOUT = 30 mA, VIN = VOUT + 1 V",
+      "table_ref": "Electrical Characteristics"
+    },
+    "iout_max_ma": {
+      "value": 150,
+      "page": 4,
+      "condition": "Recommended operating continuous output current (0 to 150 mA, stable at no load)",
+      "table_ref": "Recommended Operating Conditions"
+    },
+    "iq_typ_ua": {
+      "value": 55,
+      "page": 5,
+      "condition": "IOUT = 0 mA, TA = 25°C, VIN = VOUT + 1 V (75 uA max; 65 uA typ / 85 uA max at IOUT = 150 mA)",
+      "table_ref": "Electrical Characteristics"
+    },
+    "ishdn_typ_ua": null,
+    "dropout_typ_mv": {
+      "value": 150,
+      "page": 5,
+      "condition": "IOUT = 150 mA, TA = 25°C (300 mV max; VOUT drops 2% below nominal, Note 5)",
+      "table_ref": "Electrical Characteristics"
+    },
+    "psrr_db": {
+      "value": 65,
+      "page": 5,
+      "condition": "f = 100 Hz, IOUT = 30 mA, VIN = (VOUT + 1 V)DC + 0.5 VppAC, CIN = COUT = 1 uF",
+      "table_ref": "Electrical Characteristics"
+    },
+    "output_noise_uvrms": null,
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 1,
+      "page": 10,
+      "condition": "Recommended 1 uF to 4.7 uF X7R or X5R ceramic output capacitor",
+      "table_ref": "Application Note - Output Capacitor"
+    },
+    "esr_min_ohm": {
+      "value": 0.01,
+      "page": 10,
+      "condition": "Recommended output capacitor ESR window 10 mOhm to 200 mOhm",
+      "table_ref": "Application Note - Output Capacitor"
+    },
+    "esr_max_ohm": {
+      "value": 0.2,
+      "page": 10,
+      "condition": "Recommended output capacitor ESR window 10 mOhm to 200 mOhm",
+      "table_ref": "Application Note - Output Capacitor"
+    },
+    "en_active_high": null,
+    "reverse_current_protection": null
+  },
+  "design_gotchas": [
+    {
+      "title": "Single-Letter Ordering Trap: SA vs SR/AP2210N Reverses Pins 1 & 3 (and LM3480 Differs Too)",
+      "severity": "CRITICAL",
+      "detail": "AP7313-33SAG-7 (SA, SOT23, marking 'NZ') is 1=IN, 2=OUT, 3=GND, whereas sibling OPN AP7313-33SRG-7 (SR, SOT23R, marking 'SJ') and AP2210N-3.3TRG1 reverse Pins 1 and 3 to 1=GND, 2=OUT, 3=IN, and LM3480IM3-3.3/NOPB uses 1=OUT, 2=IN, 3=GND. Never cross-substitute SA and SR suffixes on the same SOT-23-3 footprint.",
+      "page": 2
+    },
+    {
+      "title": "Current Limit and Short-Circuit Foldback Behavior at 150 mA Rating",
+      "severity": "WARNING",
+      "detail": "Rated continuous output is 150 mA with current limit 200 mA min / 300 mA typ and foldback short-circuit current clamped to 50 mA when VOUT < 0.2 V. Heavy capacitive loads or surge rails exceeding 200 mA during startup can trip foldback limiting.",
+      "page": 5
+    },
+    {
+      "title": "65 uA Quiescent Current Limits Always-On Coin-Cell Battery Life",
+      "severity": "WARNING",
+      "detail": "No-load IQ is 55 uA typ (75 uA max) and 65 uA typ at 150 mA load, with no shutdown pin to cut standby current. For micro-amp sleep budgets, a nanopower LDO or EN-controlled regulator is required.",
+      "page": 5
+    },
+    {
+      "title": "Verify 10–200 mOhm Output Capacitor ESR Window",
+      "severity": "INFO",
+      "detail": "Diodes Inc specifies 1 uF to 4.7 uF X5R/X7R ceramic capacitors with 10 mOhm to 200 mOhm ESR placed close to OUT and GND pins for clean transient response and stability.",
+      "page": 10
+    }
+  ],
+  "typical_use_cases": [
+    "150 mA 3.3 V auxiliary rails in notebook/desktop peripherals and LAN cards",
+    "Compact 3-pin SOT-23-3 local logic rails using 1 uF X5R/X7R ceramic capacitors",
+    "Fast-transient portable digital sub-rails (80 us startup, 150 mV typical dropout)",
+    "Pin-compatible lower-current sibling to AP7333-33SAG-7 on SA (1=IN, 2=OUT, 3=GND) layouts"
+  ],
+  "engineering_summary": "The Diodes Incorporated AP7313-33SAG-7 is a 150 mA fixed 3.3 V (±2%) LDO regulator in the standard SA SOT-23-3 package with Pin 1=IN, Pin 2=OUT, and Pin 3=GND. Operating from 2 V to 6 V (7 V abs max), it delivers 150 mV typical dropout at 150 mA, 55 uA no-load / 65 uA full-load IQ, 65 dB PSRR at 100 Hz, and stability with a 1 uF ceramic output capacitor (10–200 mOhm ESR). Its SA pinout matches AP7333-33SAG-7 (and shares the 207 °C/W θJA / 600 mW rating) but is strictly incompatible with AP7313-33SRG-7 / AP2210N-3.3TRG1 (1=GND, 2=OUT, 3=IN) and LM3480IM3-3.3/NOPB (1=OUT, 2=IN, 3=GND).",
+  "audit": {
+    "confidence_score": 0.98,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [
+      2,
+      4,
+      5
+    ],
+    "audit_notes": [
+      "300 DPI PNG Vision verified page 2 SOT23 (SA) Top View pinout: 1=IN, 2=OUT, 3=GND.",
+      "300 DPI PNG Vision verified page 4 Absolute Maximum Ratings (VIN=7V, TJ_max=150C, PD=600mW for SOT23) and Recommended Operating Conditions (VIN=2-6V, IOUT=150mA, TA=-40..85C).",
+      "300 DPI PNG Vision verified page 5 Electrical Characteristics (IQ=55uA @0mA / 65uA @150mA, Vdropout=150mV typ / 300mV max @150mA, accuracy ±2%, PSRR=65dB @100Hz, θJA=207 C/W for SOT23).",
+      "Path A page 10 confirmed 1-4.7 uF ceramic cap and 10-200 mOhm ESR; page 11 confirmed top marking ID 'NZ' for AP7313-33SA."
+    ]
+  }
+}

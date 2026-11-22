@@ -1,0 +1,335 @@
+{
+  "batch": "ldo-a",
+  "agent": "ldo-parser-a",
+  "verified_at": "2026-11-22",
+  "manifest_commit_ref": "b35dece",
+  "schema_version": "2.0.0",
+  "summary": {
+    "total_parts": 13,
+    "passed_stage2": 13,
+    "failed_stage2": 0,
+    "unsupported_scan_count": 0,
+    "dual_path_vision_verified_count": 13,
+    "min_confidence_score": 0.98,
+    "manifest_swaps_applied": [
+      "xc6206p332mr-g -> lm3480im3-3-3-nopb (Akamai 403 on torexsemi.com resolved per coordinator #10)",
+      "xc6209b332mr-g -> tlv73333pdbvr (Akamai 403 on torexsemi.com resolved per coordinator #10)",
+      "xc6210b332mr-g -> ncp114asn330t1g (Akamai 403 on torexsemi.com resolved per coordinator #10)"
+    ]
+  },
+  "parts": [
+    {
+      "idx": 1,
+      "opn": "LM3480IM3-3.3/NOPB",
+      "slug": "lm3480im3-3-3-nopb",
+      "manufacturer": "Texas Instruments",
+      "package": "SOT-23-3",
+      "mfg_package_code": "DBZ (SOT-23-3)",
+      "datasheet_revision": "SNVS011H (June 1999 – Revised September 2015)",
+      "pdf_url": "https://www.ti.com/lit/ds/symlink/lm3480.pdf",
+      "pinout_view": "TOP_VIEW",
+      "verified_pinout": "1=OUT(VOUT), 2=IN(VIN), 3=GND(GND)",
+      "vision_pages_inspected": [3, 4, 5, 9],
+      "key_specs": {
+        "vin_abs_max_v": 35,
+        "vin_max_v": 30,
+        "iout_max_ma": 100,
+        "iq_typ_ua": 2000,
+        "dropout_typ_mv": 900,
+        "theta_ja_c_per_w": 269.6,
+        "ceramic_cap_stable": true
+      }
+    },
+    {
+      "idx": 2,
+      "opn": "AP7333-33SAG-7",
+      "slug": "ap7333-33sag-7",
+      "manufacturer": "Diodes Incorporated",
+      "package": "SOT-23-3",
+      "mfg_package_code": "SA (SOT23)",
+      "datasheet_revision": "Rev. 2 (November 2009)",
+      "pdf_url": "https://www.diodes.com/assets/Datasheets/AP7333.pdf",
+      "pinout_view": "TOP_VIEW",
+      "verified_pinout": "1=IN(VIN), 2=OUT(VOUT), 3=GND(GND)",
+      "vision_pages_inspected": [2, 4, 5],
+      "key_specs": {
+        "vin_abs_max_v": 7,
+        "vin_max_v": 6,
+        "iout_max_ma": 300,
+        "iq_typ_ua": 55,
+        "dropout_typ_mv": 300,
+        "theta_ja_c_per_w": 207,
+        "ceramic_cap_stable": true
+      }
+    },
+    {
+      "idx": 3,
+      "opn": "AP7313-33SAG-7",
+      "slug": "ap7313-33sag-7",
+      "manufacturer": "Diodes Incorporated",
+      "package": "SOT-23-3",
+      "mfg_package_code": "SA (SOT23)",
+      "datasheet_revision": "Rev. 2 (November 2009)",
+      "pdf_url": "https://www.diodes.com/assets/Datasheets/AP7313.pdf",
+      "pinout_view": "TOP_VIEW",
+      "verified_pinout": "1=IN(VIN), 2=OUT(VOUT), 3=GND(GND)",
+      "vision_pages_inspected": [2, 4, 5],
+      "key_specs": {
+        "vin_abs_max_v": 7,
+        "vin_max_v": 6,
+        "iout_max_ma": 150,
+        "iq_typ_ua": 55,
+        "dropout_typ_mv": 150,
+        "theta_ja_c_per_w": 207,
+        "ceramic_cap_stable": true
+      }
+    },
+    {
+      "idx": 4,
+      "opn": "AP7313-33SRG-7",
+      "slug": "ap7313-33srg-7",
+      "manufacturer": "Diodes Incorporated",
+      "package": "SOT-23-3",
+      "mfg_package_code": "SR (SOT23R)",
+      "datasheet_revision": "Rev. 2 (November 2009)",
+      "pdf_url": "https://www.diodes.com/assets/Datasheets/AP7313.pdf",
+      "pinout_view": "TOP_VIEW",
+      "verified_pinout": "1=GND(GND), 2=OUT(VOUT), 3=IN(VIN)",
+      "vision_pages_inspected": [2, 4, 5],
+      "key_specs": {
+        "vin_abs_max_v": 7,
+        "vin_max_v": 6,
+        "iout_max_ma": 150,
+        "iq_typ_ua": 55,
+        "dropout_typ_mv": 150,
+        "theta_ja_c_per_w": 230,
+        "ceramic_cap_stable": true
+      }
+    },
+    {
+      "idx": 5,
+      "opn": "AP2210N-3.3TRG1",
+      "slug": "ap2210n-3-3trg1",
+      "manufacturer": "Diodes Incorporated",
+      "package": "SOT-23-3",
+      "mfg_package_code": "N (SOT-23-3)",
+      "datasheet_revision": "DS37517 Rev. 4 - 2 (March 2021)",
+      "pdf_url": "https://www.diodes.com/assets/Datasheets/AP2210.pdf",
+      "pinout_view": "TOP_VIEW",
+      "verified_pinout": "1=GND(GND), 2=VOUT(VOUT), 3=VIN(VIN)",
+      "vision_pages_inspected": [1, 4, 11, 12, 22, 23, 24],
+      "key_specs": {
+        "vin_abs_max_v": 15,
+        "vin_max_v": 13.2,
+        "iout_max_ma": 300,
+        "iq_typ_ua": 100,
+        "dropout_typ_mv": 250,
+        "theta_ja_c_per_w": 200,
+        "ceramic_cap_stable": false
+      }
+    },
+    {
+      "idx": 6,
+      "opn": "AP2210K-3.3TRG1",
+      "slug": "ap2210k-3-3trg1",
+      "manufacturer": "Diodes Incorporated",
+      "package": "SOT-23-5",
+      "mfg_package_code": "K (SOT-23-5)",
+      "datasheet_revision": "DS37517 Rev. 4 - 2 (March 2021)",
+      "pdf_url": "https://www.diodes.com/assets/Datasheets/AP2210.pdf",
+      "pinout_view": "TOP_VIEW",
+      "verified_pinout": "1=VIN(VIN), 2=GND(GND), 3=EN(EN:active-high), 4=BYP(BYPASS), 5=VOUT(VOUT)",
+      "vision_pages_inspected": [1, 4, 11, 12, 22, 23, 24],
+      "key_specs": {
+        "vin_abs_max_v": 15,
+        "vin_max_v": 13.2,
+        "iout_max_ma": 300,
+        "iq_typ_ua": 100,
+        "dropout_typ_mv": 250,
+        "theta_ja_c_per_w": 200,
+        "ceramic_cap_stable": false
+      }
+    },
+    {
+      "idx": 7,
+      "opn": "AP2112K-3.3TRG1",
+      "slug": "ap2112k-3-3trg1",
+      "manufacturer": "Diodes Incorporated",
+      "package": "SOT-23-5",
+      "mfg_package_code": "K (SOT25)",
+      "datasheet_revision": "DS39724 Rev. 2 - 2 (June 2017)",
+      "pdf_url": "https://www.diodes.com/assets/Datasheets/AP2112.pdf",
+      "pinout_view": "TOP_VIEW",
+      "verified_pinout": "1=VIN(VIN), 2=GND(GND), 3=EN(EN:active-high), 4=NC(NC), 5=VOUT(VOUT)",
+      "vision_pages_inspected": [1, 3, 8, 12],
+      "key_specs": {
+        "vin_abs_max_v": 6.5,
+        "vin_max_v": 6.0,
+        "iout_max_ma": 600,
+        "iq_typ_ua": 55,
+        "dropout_typ_mv": 250,
+        "theta_ja_c_per_w": 184,
+        "ceramic_cap_stable": true
+      }
+    },
+    {
+      "idx": 8,
+      "opn": "TLV73333PDBVR",
+      "slug": "tlv73333pdbvr",
+      "manufacturer": "Texas Instruments",
+      "package": "SOT-23-5",
+      "mfg_package_code": "DBV (SOT-23-5)",
+      "datasheet_revision": "SBVS235C (October 2014 – Revised July 2019)",
+      "pdf_url": "https://www.ti.com/lit/ds/symlink/tlv733p.pdf",
+      "pinout_view": "TOP_VIEW",
+      "verified_pinout": "1=IN(VIN), 2=GND(GND), 3=EN(EN:active-high), 4=NC(NC), 5=OUT(VOUT)",
+      "vision_pages_inspected": [4, 5, 6],
+      "key_specs": {
+        "vin_abs_max_v": 6.0,
+        "vin_max_v": 5.5,
+        "iout_max_ma": 300,
+        "iq_typ_ua": 34,
+        "dropout_typ_mv": 125,
+        "theta_ja_c_per_w": 228.4,
+        "ceramic_cap_stable": true
+      }
+    },
+    {
+      "idx": 9,
+      "opn": "NCP114ASN330T1G",
+      "slug": "ncp114asn330t1g",
+      "manufacturer": "onsemi",
+      "package": "TSOT-23-5",
+      "mfg_package_code": "SN (TSOP-5 Case 483)",
+      "datasheet_revision": "NCP114/D Rev. 31 (January 2024)",
+      "pdf_url": "https://www.onsemi.com/pdf/datasheet/ncp114-d.pdf",
+      "pinout_view": "TOP_VIEW",
+      "verified_pinout": "1=IN(VIN), 2=GND(GND), 3=EN(EN:active-high), 4=N/C(NC), 5=OUT(VOUT)",
+      "vision_pages_inspected": [1, 2, 3, 15],
+      "key_specs": {
+        "vin_abs_max_v": 6,
+        "vin_max_v": 5.5,
+        "iout_max_ma": 300,
+        "iq_typ_ua": 50,
+        "dropout_typ_mv": 150,
+        "theta_ja_c_per_w": 236,
+        "ceramic_cap_stable": true
+      }
+    },
+    {
+      "idx": 10,
+      "opn": "TPS7A0233PDBVR",
+      "slug": "tps7a0233pdbvr",
+      "manufacturer": "Texas Instruments",
+      "package": "SOT-23-5",
+      "mfg_package_code": "DBV (SOT-23-5)",
+      "datasheet_revision": "SBVS277C (July 2019 – Revised September 2022)",
+      "pdf_url": "https://www.ti.com/lit/ds/symlink/tps7a02.pdf",
+      "pinout_view": "TOP_VIEW",
+      "verified_pinout": "1=IN(VIN), 2=GND(GND), 3=EN(EN:active-high), 4=NC(NC), 5=OUT(VOUT)",
+      "vision_pages_inspected": [3, 4, 5, 6, 7],
+      "key_specs": {
+        "vin_abs_max_v": 6.5,
+        "vin_max_v": 6.0,
+        "iout_max_ma": 200,
+        "iq_typ_ua": 0.025,
+        "dropout_typ_mv": 270,
+        "theta_ja_c_per_w": 181.9,
+        "ceramic_cap_stable": true
+      }
+    },
+    {
+      "idx": 11,
+      "opn": "TLV75533PDBVR",
+      "slug": "tlv75533pdbvr",
+      "manufacturer": "Texas Instruments",
+      "package": "SOT-23-5",
+      "mfg_package_code": "DBV (SOT-23-5)",
+      "datasheet_revision": "SBVS320D (November 2017 – Revised September 2024)",
+      "pdf_url": "https://www.ti.com/lit/ds/symlink/tlv755p.pdf",
+      "pinout_view": "TOP_VIEW",
+      "verified_pinout": "1=IN(VIN), 2=GND(GND), 3=EN(EN:active-high), 4=NC(NC), 5=OUT(VOUT)",
+      "vision_pages_inspected": [3, 4, 5, 6],
+      "key_specs": {
+        "vin_abs_max_v": 6.0,
+        "vin_max_v": 5.5,
+        "iout_max_ma": 500,
+        "iq_typ_ua": 25,
+        "dropout_typ_mv": 150,
+        "theta_ja_c_per_w": 231.1,
+        "ceramic_cap_stable": true
+      }
+    },
+    {
+      "idx": 12,
+      "opn": "TLV70033DDCR",
+      "slug": "tlv70033ddcr",
+      "manufacturer": "Texas Instruments",
+      "package": "SOT-23-5",
+      "mfg_package_code": "DDC (SOT-23-THIN-5)",
+      "datasheet_revision": "SLVSA00E (September 2009 – Revised April 2015)",
+      "pdf_url": "https://www.ti.com/lit/ds/symlink/tlv700.pdf",
+      "pinout_view": "TOP_VIEW",
+      "verified_pinout": "1=IN(VIN), 2=GND(GND), 3=EN(EN:active-high), 4=N/C(NC), 5=OUT(VOUT)",
+      "vision_pages_inspected": [4, 5, 6],
+      "key_specs": {
+        "vin_abs_max_v": 6,
+        "vin_max_v": 5.5,
+        "iout_max_ma": 200,
+        "iq_typ_ua": 31,
+        "dropout_typ_mv": 175,
+        "theta_ja_c_per_w": 235.9,
+        "ceramic_cap_stable": true
+      }
+    },
+    {
+      "idx": 13,
+      "opn": "TPS7A2033PDBVR",
+      "slug": "tps7a2033pdbvr",
+      "manufacturer": "Texas Instruments",
+      "package": "SOT-23-5",
+      "mfg_package_code": "DBV (SOT-23-5)",
+      "datasheet_revision": "SBVS338H (March 2020 – Revised July 2024)",
+      "pdf_url": "https://www.ti.com/lit/ds/symlink/tps7a20.pdf",
+      "pinout_view": "TOP_VIEW",
+      "verified_pinout": "1=IN(VIN), 2=GND(GND), 3=EN(EN:active-high), 4=N/C(NC), 5=OUT(VOUT)",
+      "vision_pages_inspected": [4, 5, 6, 7],
+      "key_specs": {
+        "vin_abs_max_v": 6.5,
+        "vin_max_v": 6.0,
+        "iout_max_ma": 300,
+        "iq_typ_ua": 6.5,
+        "dropout_typ_mv": 145,
+        "theta_ja_c_per_w": 187.1,
+        "ceramic_cap_stable": true
+      }
+    }
+  ],
+  "key_traps_discovered": [
+    {
+      "trap": "3-Way Incompatible SOT-23-3 Pinout Matrix Across 5 OPNs",
+      "parts": ["LM3480IM3-3.3/NOPB", "AP7333-33SAG-7", "AP7313-33SAG-7", "AP7313-33SRG-7", "AP2210N-3.3TRG1"],
+      "detail": "Three mutually incompatible SOT-23-3 pinouts verified via 300 DPI PNG Vision: Group A (1=IN, 2=OUT, 3=GND: AP7333-33SAG-7, AP7313-33SAG-7), Group B (1=GND, 2=OUT, 3=IN: AP7313-33SRG-7, AP2210N-3.3TRG1), Group C (1=OUT, 2=IN, 3=GND: LM3480IM3-3.3/NOPB)."
+    },
+    {
+      "trap": "Single-Letter SA vs SR Ordering Suffix Changes Both Pinout AND Thermal Rating",
+      "parts": ["AP7313-33SAG-7", "AP7313-33SRG-7"],
+      "detail": "Within the same AP7313 datasheet, SA (SOT23) is 1=IN/2=OUT/3=GND with θJA=207 C/W & PD=600 mW, whereas SR (SOT23R) reverses Pins 1 & 3 to 1=GND/2=OUT/3=IN with θJA=230 C/W & PD=540 mW."
+    },
+    {
+      "trap": "SOT-23-5 Pin 4 BYP (<=100 pF) vs NC & Non-Ceramic ESR Boundary",
+      "parts": ["AP2210K-3.3TRG1", "AP2112K-3.3TRG1", "TPS7A2033PDBVR"],
+      "detail": "AP2210K-3.3TRG1 uses Pin 4 as internal bandgap BYP (max 100 pF, not 10 nF and not NC; tying Pin 4 to GND like TLV700/NCP114 thermal advice collapses VOUT). AP2210 also has a ~25 mOhm lower ESR stability floor (Page 22) and 4 mA typ bipolar IGND at 300 mA."
+    },
+    {
+      "trap": "Front-Page Package-Specific Spec Inflation (AUD-02)",
+      "parts": ["TLV75533PDBVR", "NCP114ASN330T1G", "TPS7A2033PDBVR"],
+      "detail": "TLV755P Page 1 headlines 60.3 C/W RθJA (DYD exposed-pad EVM only), while standard DBV SOT-23-5 is 231.1 C/W JEDEC (100.8 C/W EVM). NCP114 Page 1 headlines 135 mV dropout (UDFN4 only), while TSOP-5 (NCP114ASN330T1G) is 150 mV typ / 225 mV max and 236 C/W. TPS7A20 DBV dropout is 145 mV max vs 140 mV for DQN/DSBGA."
+    },
+    {
+      "trap": "EN Sequencing & VOUT Abs Max Constraints Across Pin-Compatible SOT-23-5 Parts",
+      "parts": ["TLV70033DDCR", "TLV73333PDBVR", "TPS7A0233PDBVR"],
+      "detail": "TLV70033DDCR and TLV73333PDBVR forbid VEN > VIN + 0.3 V (and TLV73333PDBVR caps VOUT abs max at just 3.6 V!), whereas TPS7A02/TPS7A20/TLV755P allow independent VEN up to 6.0–6.5 V. TPS7A02 also imposes a strict 22 uF maximum derated COUT cap."
+    }
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "AP2112K-3.3TRG1",
+  "slug": "ap2112k-3-3trg1",
+  "family": "AP2112",
+  "manufacturer": "Diodes Incorporated",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 85,
+    "grade_label": "Industrial (-40°C to +85°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.diodes.com/assets/Datasheets/AP2112.pdf",
+    "product_page_url": "https://www.diodes.com/part/view/AP2112",
+    "source_domain": "www.diodes.com",
+    "revision": "DS39724 Rev. 2 - 2 (June 2017)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 18
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "K (SOT25)",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "5-lead SOT25 (formerly SOT-23-5) package with no exposed thermal pad."
+    },
+    "theta_ja_c_per_w": {
+      "value": 184,
+      "page": 3,
+      "condition": "SOT25 junction-to-ambient thermal resistance, no heatsink",
+      "table_ref": "Absolute Maximum Ratings"
+    },
+    "theta_jc_c_per_w": {
+      "value": 96,
+      "page": 8,
+      "condition": "SOT25 junction-to-case thermal resistance",
+      "table_ref": "AP2112-3.3 Electrical Characteristics"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 3,
+      "condition": "Absolute Maximum operating junction temperature +150°C (OTSD typ +160°C, 25°C hysteresis)",
+      "table_ref": "Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Power supply input voltage (2.5 V to 6.0 V); decouple with 1.0 uF ceramic capacitor."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Ground reference pin."
+      },
+      {
+        "pin": 3,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high Chip Enable (VIH >= 1.5 V on, VIL <= 0.4 V off) with internal 3.0 MOhm pull-down resistor."
+      },
+      {
+        "pin": 4,
+        "name": "NC",
+        "role": "NC",
+        "description": "No internal connection (verify vs BYP/NR-pin LDOs such as AP2210K or LP2985)."
+      },
+      {
+        "pin": 5,
+        "name": "VOUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output with internal 60 Ohm active discharge resistor when EN is low."
+      }
+    ],
+    "pinout_source_page": 1,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 6.5,
+      "page": 3,
+      "condition": "Absolute maximum power supply voltage (VCC)",
+      "table_ref": "Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 2.5,
+      "page": 3,
+      "condition": "Recommended operating supply voltage minimum (for 3.3 V output, maintain VIN >= 3.3 V + VDROP)",
+      "table_ref": "Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 6.0,
+      "page": 3,
+      "condition": "Recommended operating supply voltage maximum",
+      "table_ref": "Recommended Operating Conditions"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 8,
+      "condition": "Fixed 3.3 V option (top marking ID 'G3P')",
+      "table_ref": "AP2112-3.3 Electrical Characteristics"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 1.5,
+      "page": 8,
+      "condition": "±1.5% (98.5% to 101.5% of nominal VOUT) at VIN = 4.3 V, 1 mA <= IOUT <= 30 mA, TA = +25°C",
+      "table_ref": "AP2112-3.3 Electrical Characteristics"
+    },
+    "iout_max_ma": {
+      "value": 600,
+      "page": 8,
+      "condition": "Guaranteed minimum continuous output current (600 mA min) at VIN = 4.3 V, VOUT = 3.251 V to 3.350 V",
+      "table_ref": "AP2112-3.3 Electrical Characteristics"
+    },
+    "iq_typ_ua": {
+      "value": 55,
+      "page": 8,
+      "condition": "VIN = 4.3 V, IOUT = 0 mA, TA = +25°C (80 uA max)",
+      "table_ref": "AP2112-3.3 Electrical Characteristics"
+    },
+    "ishdn_typ_ua": {
+      "value": 0.01,
+      "page": 8,
+      "condition": "VIN = 4.3 V, VEN in OFF mode (1.0 uA max)",
+      "table_ref": "AP2112-3.3 Electrical Characteristics"
+    },
+    "dropout_typ_mv": {
+      "value": 250,
+      "page": 8,
+      "condition": "IOUT = 600 mA, VOUT = 3.3 V, TA = +25°C (400 mV max; 125 mV typ / 200 mV max at 300 mA)",
+      "table_ref": "AP2112-3.3 Electrical Characteristics"
+    },
+    "psrr_db": {
+      "value": 65,
+      "page": 8,
+      "condition": "f = 100 Hz and f = 1 kHz, VIN = 4.3 V, 0.5 Vp-p ripple, IOUT = 100 mA",
+      "table_ref": "AP2112-3.3 Electrical Characteristics"
+    },
+    "output_noise_uvrms": {
+      "value": 50,
+      "page": 8,
+      "condition": "No load, 10 Hz <= f <= 100 kHz, CIN = COUT = 1.0 uF ceramic",
+      "table_ref": "AP2112-3.3 Electrical Characteristics"
+    },
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 1.0,
+      "page": 2,
+      "condition": "1.0 uF X7R or X5R ceramic recommended (also stable with tantalum or aluminum electrolytic)",
+      "table_ref": "Typical Applications Circuit (Note 4)"
+    },
+    "esr_min_ohm": null,
+    "esr_max_ohm": null,
+    "en_active_high": true,
+    "reverse_current_protection": null
+  },
+  "design_gotchas": [
+    {
+      "title": "6.5 V Abs Max & SOT25 Thermal Limit at 600 mA From 5 V Input",
+      "severity": "CRITICAL",
+      "detail": "At VIN = 5.0 V to VOUT = 3.3 V and full 600 mA load, power dissipation reaches 1.02 W. With θJA = 184 °C/W (no heatsink), ΔT = 187.7 °C — immediately exceeding the 150 °C TJ limit and 160 °C thermal shutdown even at 25 °C ambient. In SOT25, sustained 600 mA operation requires VIN close to ~3.7–4.2 V (e.g., single-cell Li-Ion) or heavy copper heatsinking; also note 6.5 V abs max leaves minimal headroom against 5 V USB hot-plug inductive ringing.",
+      "page": 3
+    },
+    {
+      "title": "50 mA Foldback Short-Circuit Limit Can Stall Startup Into Pre-Biased or Constant-Current Loads",
+      "severity": "WARNING",
+      "detail": "Page 11 explicitly warns that if a current-sink load exceeding the 50 mA foldback current limit is present at VOUT before AP2112 is enabled, foldback limiting can prevent the regulator from starting up. Evaluate multi-rail sequencing and active-load startup waveforms carefully.",
+      "page": 11
+    },
+    {
+      "title": "Pin 4 Is NC (Not BYP/NR) and EN Includes Internal 3 MOhm Pull-Down + 60 Ohm Output Auto-Discharge",
+      "severity": "INFO",
+      "detail": "Pin 4 is unconnected (NC), so an existing bypass capacitor on Pin 4 from an AP2210K or LP2985 footprint is harmless, though replacing AP2112K with a BYP/NR-pin LDO requires verifying Pin 4 routing. Unlike floating-EN parts, EN defaults OFF via a 3.0 MOhm pull-down and discharges VOUT through 60 Ohm when disabled.",
+      "page": 8
+    },
+    {
+      "title": "Tight 6.0 V Recommended VIN Max vs Higher-Voltage SOT-23-5 LDOs",
+      "severity": "WARNING",
+      "detail": "AP2112K-3.3TRG1 is rated to only 6.0 V operating / 6.5 V absolute maximum, making it unsafe as a drop-in substitute on 9 V or 12 V rails currently using AP2210K-3.3TRG1 (13.2 V operating / 15 V abs max) despite sharing Pins 1, 2, 3, and 5.",
+      "page": 3
+    }
+  ],
+  "typical_use_cases": [
+    "Single-cell Li-Ion (3.6 V–4.2 V) to 3.3 V power rails for ESP32/Wi-Fi/BLE MCUs needing up to 600 mA bursts",
+    "5 V USB-powered microcontroller and sensor boards needing compact SOT-23-5 enable control and fast 20 us startup",
+    "Sequenced digital sub-rails benefiting from internal 60 Ohm active output discharge when disabled",
+    "General-purpose 1 uF ceramic-cap stable 3.3 V rails in portable consumer and IoT designs"
+  ],
+  "engineering_summary": "The Diodes Incorporated AP2112K-3.3TRG1 is a widely deployed 600 mA fixed 3.3 V (±1.5%) CMOS LDO in a 5-pin SOT-23-5 (SOT25) package with standard 1=VIN, 2=GND, 3=EN (active high, 3 MOhm internal pull-down), 4=NC, 5=VOUT pinout. It operates from 2.5 V to 6.0 V (6.5 V abs max) with 250 mV typical dropout at 600 mA, 55 uA quiescent current, 0.01 uA shutdown current, 50 uVRMS noise, 65 dB PSRR (100 Hz/1 kHz), 60 Ohm active output discharge, and 1.0 uF ceramic cap stability. Engineers must derate load current thermally from 5 V inputs (θJA = 184 °C/W) and check 50 mA foldback startup behavior into constant-current loads.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [
+      1,
+      3,
+      8,
+      12
+    ],
+    "audit_notes": [
+      "300 DPI PNG Vision verified page 1 SOT25 Top View pinout: 1=VIN, 2=GND, 3=EN, 4=NC, 5=VOUT.",
+      "300 DPI PNG Vision verified page 3 Absolute Maximum Ratings (VCC=6.5V, TJ=+150C, θJA=184 C/W for SOT25) and Recommended Operating Conditions (VIN=2.5..6.0V, TA=-40..+85C).",
+      "300 DPI PNG Vision verified page 8 AP2112-3.3 Electrical Characteristics (±1.5%, IOUT(MAX)=600mA min, VDROP=250mV typ / 400mV max @600mA, IQ=55uA typ, ISTD=0.01uA typ, PSRR=65dB @100Hz/1kHz, VNOISE=50uVRMS, RPD=3.0MOhm, RDCHG=60Ohm, θJC=96 C/W for SOT25).",
+      "300 DPI PNG Vision verified page 12 Ordering Information confirming OPN AP2112K-3.3TRG1 = SOT25, -40 to +85C, 3.3V, Marking ID 'G3P'."
+    ]
+  }
+}
