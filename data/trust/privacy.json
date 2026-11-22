@@ -1,0 +1,52 @@
+{
+  "slug": "privacy",
+  "title": "Privacy Policy & Zero-Upload Architecture",
+  "description": "Privacy practices, browser-local zero-upload engineering tools, analytics, cookie usage, and Google AdSense disclosure for Pin2Pin Global.",
+  "updated_at": "2026-11-22",
+  "sections": [
+    {
+      "heading": "Zero-Upload Engineering Tool Philosophy",
+      "paragraphs": [
+        "Hardware engineers routinely work on confidential schematics, proprietary power budgets, and pre-release Bills of Materials (BOMs). Pin2Pin Global is architected from the ground up as a static web application with browser-local computation.",
+        "All interactive calculators — including the LDO Thermal Margin Calculator, DC-DC Efficiency & Inductor Ripple Calculator, Op-Amp GBWP & Slew-Rate Checker, parametric catalog filters, and planned client-side BOM CSV screening utilities — execute entirely inside your local browser JavaScript runtime. Your design inputs, operating voltages, load currents, and BOM data are never uploaded to, logged by, or stored on Pin2Pin Global servers."
+      ],
+      "bullets": [
+        "No user account or registration is required to browse part profiles, side-by-side comparisons, or run engineering calculators.",
+        "Calculator inputs stay strictly in ephemeral client-side browser memory and are cleared when you close or reload the tab.",
+        "No proprietary design files or CSV BOM tables are transmitted over the network."
+      ]
+    },
+    {
+      "heading": "Information Collected Automatically (Analytics & Hosting Logs)",
+      "paragraphs": [
+        "To measure site reliability, understand which part comparisons and calculators are most useful, and detect broken links, Pin2Pin Global may collect standard, aggregated web telemetry through privacy-respecting hosting infrastructure (Cloudflare Pages) and analytics services such as Google Analytics 4 (GA4).",
+        "Typical aggregated telemetry includes page URLs visited, referring domain, approximate country-level region, device viewport/browser type, and anonymized interaction events (such as calculator usage or outbound link clicks). We do not sell personal data or build individualized cross-site engineering profiles."
+      ]
+    },
+    {
+      "heading": "Google AdSense & Third-Party Advertising Cookies",
+      "paragraphs": [
+        "Once enabled following domain compliance review, Pin2Pin Global uses Google AdSense (Publisher ID: ca-pub-8587506565277191) to display clearly labeled advertisements that help fund ongoing datasheet verification and server infrastructure.",
+        "Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites on the internet. Google's use of advertising cookies enables it and its partners to serve ads to users based on their visit to pin2pin.dev and other sites."
+      ],
+      "bullets": [
+        "You may opt out of personalized advertising at any time by visiting Google Ads Settings (https://adssettings.google.com) or the Network Advertising Initiative opt-out page (https://optout.networkadvertising.org).",
+        "You can block or delete cookies through your browser preferences without restricting access to any Pin2Pin Global part specs, SVG pinout diagrams, or calculators.",
+        "Users in the European Economic Area (EEA), UK, and California retain full rights under GDPR and CCPA to request information about or deletion of any personal correspondence submitted to us."
+      ]
+    },
+    {
+      "heading": "Outbound Links, GitHub Issues & Affiliate Partners",
+      "paragraphs": [
+        "Pages on Pin2Pin Global contain outbound links to official semiconductor manufacturer websites, electronic component distributors (DigiKey, Mouser, LCSC search links), Amazon Associates lab equipment pages (tag: kbu3986-20), and our public GitHub issue tracker for error reporting. Clicking an outbound link takes you to an external website governed by that third party's own privacy policy and cookie practices.",
+        "If you voluntarily submit a pinout or specification error report via GitHub Issues or email engineering@pin2pin.dev, your GitHub username or email address is used strictly to investigate, verify, and respond to your technical report."
+      ]
+    },
+    {
+      "heading": "Policy Updates & Privacy Contact",
+      "paragraphs": [
+        "We may update this Privacy Policy periodically as new static features or compliance requirements take effect. The revision date at the top of this page always reflects the latest active version. For privacy questions or data deletion requests regarding direct email correspondence, contact engineering@pin2pin.dev."
+      ]
+    }
+  ]
+}

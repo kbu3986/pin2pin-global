@@ -1,0 +1,183 @@
+{
+  "slug": "rail-to-rail-opamp-phase-reversal-slew",
+  "title": "Rail-to-Rail Op-Amps, Phase Reversal, Slew Rate, and the LM358 vs LM393 Pinout Trap",
+  "subtitle": "How to avoid clipping, input crossover distortion, slew-induced full-power bandwidth collapse, and catastrophic op-amp/comparator confusion on SOIC-8 and SOT-23-5 boards.",
+  "category": "opamp",
+  "reading_time_min": 10,
+  "published_at": "2026-11-22",
+  "updated_at": "2026-11-22",
+  "author_role": "Senior Analog & Mixed-Signal Design Engineer",
+  "summary": "Dual SOIC-8 operational amplifiers and comparators share one of the most standardized pinouts in electronics — which makes substituting them dangerously deceptive. This engineering guide breaks down rail-to-rail input/output headroom limits, JFET phase reversal, GBWP versus slew-rate full-power bandwidth, zero-drift chopper quirks, and why LM358DR and LM393DR are NEVER drop-in replacements despite identical pin assignments.",
+  "key_takeaways": [
+    "LM358DR (dual push-pull op-amp) and LM393DR (dual open-collector comparator) have the EXACT same 8-pin SOIC-8 pinout, yet swapping them breaks circuits: LM393DR cannot pull high without an external pull-up resistor and oscillates violently in linear negative-feedback loops because it lacks internal frequency compensation.",
+    "Never replace a 32 V–36 V op-amp (LM358DR, TL072IDR, OPA2134UA) with a 5.5 V low-voltage CMOS RRIO part (LMV358IDR, TLV9002IDR) without verifying supply rails — 12 V or +/-15 V rails destroy 5.5 V CMOS silicon instantly.",
+    "Small-signal bandwidth f_-3dB = GBWP / A_CL does NOT guarantee large-signal fidelity: large sinusoidal swings distort into triangles above the Full-Power Bandwidth f_FPBW = SR / (2 * pi * V_peak).",
+    "Rail-to-rail output (RRO) never reaches literally 0.000 V or V+ under resistive load (saturation scales as I_load * R_ds,on), and dual-stage rail-to-rail input (RRI) amplifiers exhibit a Vos crossover step roughly 0.7–1.2 V below V+."
+  ],
+  "related_parts": [
+    "lm358dr",
+    "lmv358idr",
+    "tlv9002idr",
+    "mc33202dr2g",
+    "tl072idr",
+    "opa2134ua",
+    "opa333aidbvr",
+    "tlv9001idbvr",
+    "tlv9061idbvr",
+    "lm393dr"
+  ],
+  "related_vs": [
+    "lm358dr-vs-lm393dr",
+    "lm358dr-vs-tlv9002idr",
+    "lm358dr-vs-lmv358idr",
+    "opa2134ua-vs-tl072idr",
+    "opa333aidbvr-vs-tlv9001idbvr",
+    "tlv9001idbvr-vs-tlv9061idbvr"
+  ],
+  "sections": [
+    {
+      "heading": "1. The Classic SOIC-8 Trap: LM358DR vs LM393DR (Identical Pinout, Incompatible Silicon)",
+      "body": [
+        "Nearly every dual op-amp and dual comparator in an 8-pin SOIC-8 package obeys the industry-standard pinout: Pin 1 = OUT_A, Pin 2 = IN-_A, Pin 3 = IN+_A, Pin 4 = V-/GND, Pin 5 = IN+_B, Pin 6 = IN-_B, Pin 7 = OUT_B, Pin 8 = V+/VCC. That uniformity leads junior engineers — and naive distributor cross-reference tables — straight into the infamous LM358DR versus LM393DR mistake.",
+        "Although LM358DR and LM393DR share identical SOIC-8 pin numbers and nearly identical 3 V to 32 V (or 36 V) supply ranges, their internal architectures serve opposite jobs. LM358DR is a frequency-compensated linear operational amplifier with a push-pull (totem-pole) output stage capable of both sourcing and sinking current smoothly inside negative-feedback loops. LM393DR is a dedicated voltage comparator with NO internal Miller compensation capacitor and an OPEN-COLLECTOR NPN output transistor that can only sink current to GND.",
+        "Drop an LM393DR into an LM358DR unity-gain buffer or non-inverting amplifier PCB and two failures occur immediately: first, the output cannot drive high at all without an external pull-up resistor to VCC; second, even if you add a pull-up resistor, the uncompensated open-loop phase shift exceeds 180 degrees well before unity gain, turning your amplifier into a megahertz relaxation oscillator. Conversely, substituting an LM358DR into an LM393DR comparator circuit causes sluggish 10–50 us overdrive recovery, fails wired-OR / level-shifting open-collector logic (driving 12 V straight into a 3.3 V MCU GPIO pin!), and risks internal input clamp damage on differential overdrive."
+      ],
+      "callout": {
+        "type": "CRITICAL",
+        "title": "Pin-Compatible Does NOT Mean Electrically Substitutable",
+        "text": "Pin2Pin Global strictly blocks Level 1 Candidate Drop-In status whenever device_kind (opamp vs comparator) or output_type (push-pull vs open-collector) differs. LM358DR vs LM393DR and LMV358IDR vs LM393DR always trigger a CRITICAL output-stage & stability warning."
+      }
+    },
+    {
+      "heading": "2. Rail-to-Rail Reality: Input Common-Mode Crossover & Output Headroom",
+      "body": [
+        "Legacy 32 V bipolar op-amps like LM358DR handle inputs down to GND (0 V), but their upper input common-mode range stops roughly 1.5 V to 2.0 V below V+, and their output stage saturates roughly 1.5 V below V+ under load. On a 3.3 V single-supply microcontroller ADC front end, an LM358DR can only swing from ~0.05 V up to ~1.8 V — throwing away nearly half of your 12-bit ADC dynamic range! Worse, the LM358 Class-B output stage exhibits severe zero-crossing crossover distortion unless externally biased with a pull-down resistor.",
+        "Upgrading a 3.3 V or 5 V rail from LM358DR to a modern CMOS Rail-to-Rail Input/Output (RRIO) op-amp like TLV9002IDR (1.8–5.5 V, RRIO, 60 uA/ch) or LMV358IDR (2.7–5.5 V, RRO) recovers nearly the full 0–3.3 V ADC span — provided your supply rail never exceeds 5.5 V. If your board runs from 9 V or 12 V and still requires RRIO swing, neither LMV358IDR nor TLV9002IDR survives; instead, select a wider-supply bipolar RRIO part like MC33202DR2G (1.8–12 V) which delivers rail-to-rail input and output headroom without 5.5 V breakdown.",
+        "Keep two subtle rail-to-rail physics caveats in mind. First, 'Rail-to-Rail Output' still obeys Ohm's law across the output MOSFETs' R_ds,on: driving a heavy 2 kOhm load at 3.3 V (1.65 mA) drops 50–150 mV inside the output stage, so never expect literally 0.000 V or 3.300 V under load. Second, 'Rail-to-Rail Input' CMOS op-amps use two parallel input differential pairs (a PMOS pair active near GND and an NMOS pair active near V+). As your common-mode input sweeps across the handover threshold (~0.8 V to 1.2 V below V+), input offset voltage Vos jumps abruptly by several hundred microvolts, degrading CMRR and introducing THD in non-inverting unity-gain buffers. Inverting amplifier topologies eliminate this crossover error completely because the inputs stay fixed at a constant mid-rail virtual ground."
+      ],
+      "table": {
+        "headers": [
+          "Pilot OPN",
+          "Pkg & Ch",
+          "Vs Range",
+          "RR In / Out",
+          "GBWP / SR (or tpd)",
+          "Key Architectural Role"
+        ],
+        "rows": [
+          [
+            "LM358DR",
+            "SOIC-8 (2 ch)",
+            "3–32 V",
+            "No / No (GND in)",
+            "~1 MHz / ~0.5 V/us",
+            "Legacy high-Vs BJT; non-RRO, Class-B crossover"
+          ],
+          [
+            "LMV358IDR",
+            "SOIC-8 (2 ch)",
+            "2.7–5.5 V",
+            "No / Yes (RRO)",
+            "1 MHz / 1 V/us",
+            "Low-voltage 5 V upgrade; input stops ~1 V below V+"
+          ],
+          [
+            "TLV9002IDR",
+            "SOIC-8 (2 ch)",
+            "1.8–5.5 V",
+            "Yes / Yes (RRIO)",
+            "1 MHz / 2 V/us",
+            "Modern low-Iq (60 uA/ch) RRIO CMOS workhorse"
+          ],
+          [
+            "MC33202DR2G",
+            "SOIC-8 (2 ch)",
+            "1.8–12 V",
+            "Yes / Yes (RRIO)",
+            "2.2 MHz / 1 V/us",
+            "12 V capable bipolar RRIO for industrial single-supply"
+          ],
+          [
+            "TL072IDR",
+            "SOIC-8 (2 ch)",
+            "6–36 V (+/-18 V)",
+            "No / No",
+            "3–5 MHz / 13–20 V/us",
+            "Classic JFET; legacy versions suffer phase reversal"
+          ],
+          [
+            "OPA2134UA",
+            "SOIC-8 (2 ch)",
+            "5–36 V (+/-18 V)",
+            "No / No",
+            "8 MHz / 20 V/us",
+            "Ultra-low-distortion FET audio; phase-reversal free"
+          ],
+          [
+            "TLV9001IDBVR",
+            "SOT-23-5 (1 ch)",
+            "1.8–5.5 V",
+            "Yes / Yes (RRIO)",
+            "1 MHz / 2 V/us",
+            "Single-channel low-power CMOS RRIO (TI DBV pinout)"
+          ],
+          [
+            "TLV9061IDBVR",
+            "SOT-23-5 (1 ch)",
+            "1.8–5.5 V",
+            "Yes / Yes (RRIO)",
+            "10 MHz / 6.5 V/us",
+            "High-speed 10 MHz RRIO upgrade in same DBV footprint"
+          ],
+          [
+            "OPA333AIDBVR",
+            "SOT-23-5 (1 ch)",
+            "1.8–5.5 V",
+            "Yes / Yes (RRIO)",
+            "0.35 MHz / 0.16 V/us",
+            "Zero-drift chopper (10 uV Vos max); DC sensor specialist"
+          ],
+          [
+            "LM393DR",
+            "SOIC-8 (2 ch)",
+            "2–36 V",
+            "Comparator",
+            "tpd ~1.3 us (Open-Col)",
+            "OPEN-COLLECTOR comparator — NEVER drop into op-amp loop"
+          ]
+        ]
+      }
+    },
+    {
+      "heading": "3. JFET Phase Reversal: Why TL072IDR vs OPA2134UA Matters in Control Loops",
+      "body": [
+        "Phase reversal is one of the nastiest analog failure modes in industrial control and audio circuits. When the input voltage of a classic JFET-input op-amp (historically epitomized by legacy TL072 designs) drops below its negative common-mode limit — typically within ~3 V of the negative supply V- — the input JFET gate-channel junction forward-biases, inverting the polarity of the differential stage. The output abruptly slams all the way to the POSITIVE rail (+15 V) instead of clamping quietly at the negative rail (-15 V).",
+        "In a servo motor loop, PID heater controller, or audio limiter, phase reversal turns negative feedback into positive latch-up, pinning the actuator at 100% hard over until power is cycled. Modern upgraded silicon like OPA2134UA (TI's SoundPlus FET-input audio op-amp, 8 MHz GBWP, 20 V/us slew rate, 0.00008% THD+N) and newer revised TL072H/CMOS families incorporate internal phase-reversal protection clamps. Whenever you migrate an older split-rail (+/-12 V or +/-15 V) board from TL072IDR to OPA2134UA, verify quiescent current increase (~4 mA/ch vs ~1.4 mA/ch) and power dissipation — while enjoying clean, phase-reversal-free headroom and dramatically lower noise."
+      ]
+    },
+    {
+      "heading": "4. Small-Signal GBWP vs Large-Signal Slew Rate (Full-Power Bandwidth)",
+      "body": [
+        "Engineers frequently pick an op-amp by checking only Gain-Bandwidth Product (GBWP) and verifying f_-3dB = GBWP / A_CL >= 10 * f_signal. That guarantees small-signal gain flatness (say for a 50 mVpp sine wave), yet completely ignores large-signal Slew Rate (SR) limiting!",
+        "For a sine wave V(t) = V_peak * sin(2 * pi * f * t), the steepest slope occurs at zero crossing: dV/dt_max = 2 * pi * f * V_peak. If that required slope exceeds the op-amp's Slew Rate (in V/us), the output cannot keep up and collapses into a distorted triangle wave with severe harmonic distortion and phase lag. Rearranging yields the Full-Power Bandwidth: f_FPBW = SR / (2 * pi * V_peak).",
+        "Plug in real pilot numbers for a 20 kHz, 10 V_peak audio line driver (V_peak = 10 V): required slew rate is 2 * pi * 20,000 * 10 = 1.26 V/us. A classic LM358DR (SR ~0.3–0.5 V/us) hits its full-power ceiling at just f_FPBW = 0.5e6 / (2 * pi * 10) = 7.96 kHz — severely slewing every cymbal crash above 8 kHz! Upgrading to OPA2134UA (SR = 20 V/us) raises full-power bandwidth to 318 kHz, providing >15x slew headroom. Similarly, on a 3.3 V single-supply 500 kHz active filter with V_peak = 1.5 V, required slew rate is 2 * pi * 500,000 * 1.5 = 4.71 V/us: TLV9001IDBVR (1 MHz, 2 V/us) clips and distorts, whereas dropping in its pin-compatible higher-speed sibling TLV9061IDBVR (10 MHz, 6.5 V/us, SOT-23-5 DBV) cleanly clears both GBWP and slew budgets."
+      ],
+      "callout": {
+        "type": "TIP",
+        "title": "Watch Bandwidth & Zero-Drift Chopper Tradeoffs When Swapping SOT-23-5 Single Op-Amps",
+        "text": "TLV9001IDBVR (1 MHz), TLV9061IDBVR (10 MHz), and OPA333AIDBVR (350 kHz zero-drift chopper) all share the standard TI DBV SOT-23-5 pinout (1=OUT, 2=V-, 3=IN+, 4=IN-, 5=V+), yet behave completely differently! OPA333AIDBVR gives ultra-low 10 uV max offset for microvolt strain-gauge/shunt bridges, but its ~125 kHz internal chopping clock injects tiny current glitches into >100 kOhm source impedances and its 0.16 V/us slew rate cannot handle fast AC signals. Conversely, jumping from 1 MHz TLV9001 to 10 MHz TLV9061 into a heavy capacitive cable load (>100 pF) can cause ringing unless you add a 22–100 Ohm series isolation resistor R_iso."
+      }
+    },
+    {
+      "heading": "5. Pre-Swap Analog Verification Checklist",
+      "body": [
+        "Before finalizing any op-amp cross-reference on a schematic or prototype:",
+        "1. Verify Device Kind & Output Stage: Confirm push-pull op-amp vs open-collector/open-drain comparator; never mix LM358DR/LMV358IDR with LM393DR.",
+        "2. Check Supply Span & Absolute Max: Confirm total (V+ - V-) stays within recommended limits (especially separating 5.5 V CMOS parts from 12 V–36 V bipolar/JFET parts).",
+        "3. Check Both GBWP and Slew Rate: Run Pin2Pin Global's Op-Amp GBWP & Slew-Rate Checker with your exact closed-loop gain A_CL, maximum signal frequency f_sig, and peak output amplitude V_peak to guarantee both small-signal bandwidth and full-power slew margin.",
+        "4. Audit Input Bias Current (Ib) vs Source Impedance: Replacing a pA-class CMOS/JFET op-amp (TLV9002IDR, TL072IDR, OPA2134UA) with a 20 nA–100 nA BJT op-amp (LM358DR, MC33202DR2G) across a 1 MOhm pH probe or photodiode transimpedance resistor creates a 20 mV–100 mV DC error (V_err = Ib * R_source).",
+        "5. Test Capacitive Load Stability on the Bench: Apply a small 100 mVpp square wave at 10 kHz to the op-amp input and check output step overshoot (<15% overshoot ensures healthy >50 degrees phase margin)."
+      ]
+    }
+  ]
+}

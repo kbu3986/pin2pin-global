@@ -1,0 +1,183 @@
+{
+  "slug": "ceramic-capacitor-esr-ldo-oscillation",
+  "title": "Ceramic Capacitor ESR and LDO Loop Oscillation: Why Low-ESR MLCCs Destabilize Classic Regulators",
+  "subtitle": "Control-loop phase margin mechanics, the ESR zero equation, MLCC DC-bias derating traps, and how to safely migrate off tantalum-dependent 1117 LDOs.",
+  "category": "ldo",
+  "reading_time_min": 10,
+  "published_at": "2026-11-22",
+  "updated_at": "2026-11-22",
+  "author_role": "Senior Hardware & Power Integrity Engineer",
+  "summary": "Replacing a bulky 22 uF tantalum capacitor with a cheap 10 uF ceramic MLCC on a classic 1117 or PNP LDO is one of the most frequent causes of mysterious 50 kHz to 500 kHz rail ripple, ADC noise, and sporadic MCU resets. This guide explains the exact feedback-loop pole/zero physics, quantifies MLCC DC-bias capacitance loss, and maps out which pilot LDOs require minimum ESR versus which are truly ceramic-stable.",
+  "key_takeaways": [
+    "Legacy lateral-PNP and NPN-Darlington LDOs (such as AMS1117-3.3, LM1117IMPX-3.3/NOPB, NCP1117ST33T3G, and LM2937IMP-3.3/NOPB) rely on output capacitor Equivalent Series Resistance (ESR) to place a left-half-plane zero f_z,ESR = 1 / (2*pi*Cout*ESR) that restores phase margin before unity-gain crossover.",
+    "Modern multilayer ceramic capacitors (MLCCs) have ESR values between 2 mOhm and 15 mOhm — roughly 50x lower than the 0.3 Ohm minimum ESR window required by LM1117 — pushing f_z,ESR above the crossover frequency and collapsing phase margin below 15 degrees.",
+    "Even on ceramic-stable PMOS LDOs (AP7361C-33E-13, AZ1117CH-3.3TRG1, TLV75533PDBVR, TPS7A0233PDBVR), a 0402 or 0603 X5R MLCC biased at 3.3 V can lose 50% to 75% of its nominal capacitance — violating the datasheet's minimum effective Cout requirement.",
+    "Bench load-step transient ringing reveals loop stability immediately: >25% overshoot with multi-cycle ringing indicates <30 degrees of phase margin and requires either a ceramic-stable LDO swap or controlled series damping resistance."
+  ],
+  "related_parts": [
+    "ams1117-3-3",
+    "lm1117impx-3-3-nopb",
+    "az1117ch-3-3trg1",
+    "ncp1117st33t3g",
+    "ap7361c-33e-13",
+    "tlv1117-33idcyr",
+    "tps73633dbvr",
+    "tps7a0233pdbvr"
+  ],
+  "related_vs": [
+    "ams1117-3-3-vs-ap7361c-33e-13",
+    "ams1117-3-3-vs-lm1117impx-3-3-nopb",
+    "ams1117-3-3-vs-az1117ch-3-3trg1",
+    "ap7361c-33e-13-vs-lm1117impx-3-3-nopb",
+    "lm1117impx-3-3-nopb-vs-tlv1117-33idcyr"
+  ],
+  "sections": [
+    {
+      "heading": "1. The Feedback Loop Physics Behind LDO Instability",
+      "body": [
+        "Every linear voltage regulator is a closed-loop negative feedback amplifier driving a pass transistor and a capacitive load. To stay stable without oscillating, the open-loop transfer function A_OL(s) * beta must maintain positive phase margin — ideally >= 45 degrees across all load currents, temperatures, and component tolerances — at the unity-gain crossover frequency f_c where loop gain reaches 0 dB.",
+        "In a classic low-dropout regulator built around a common-emitter PNP or common-source PMOS pass element, the output stage exhibits high output impedance, producing a dominant low-frequency load pole directly determined by the load resistance R_L and output capacitance C_OUT: f_p1 = 1 / (2 * pi * R_L * C_OUT). Meanwhile, the internal error amplifier and pass-transistor gate/base capacitance create a second pole f_p2 at tens to hundreds of kilohertz. Two poles below unity gain contribute up to -180 degrees of phase shift — leaving zero phase margin and turning negative feedback into a Barkhausen oscillator.",
+        "To rescue phase margin, classic LDO designers exploited a convenient parasitic property of 1990s tantalum and aluminum electrolytic capacitors: their Equivalent Series Resistance (ESR). Placed in series with C_OUT, R_ESR creates a left-half-plane zero at f_z,ESR = 1 / (2 * pi * C_OUT * R_ESR). Each decade above f_z,ESR adds up to +90 degrees of phase lead, cancelling the phase lag of the second pole right through the unity-gain crossover region."
+      ],
+      "callout": {
+        "type": "CRITICAL",
+        "title": "The ESR Stability Tunnel Formula",
+        "text": "f_z,ESR = 1 / (2 * pi * C_OUT * R_ESR). If R_ESR is too small (as with a 5 mOhm ceramic MLCC), f_z,ESR shifts into the multi-megahertz range far above the LDO's unity-gain crossover, so phase boost arrives too late and the regulator oscillates. If R_ESR is too large (e.g., an aging dried-out electrolytic at -40 °C), f_z,ESR drops too low, extending bandwidth past a third parasitic pole f_p3 and again causing oscillation."
+      }
+    },
+    {
+      "heading": "2. Why Classic 1117 Regulators Oscillate With Ceramic MLCCs",
+      "body": [
+        "Consider the canonical LM1117IMPX-3.3/NOPB datasheet stability requirement: a minimum 10 uF tantalum output capacitor with ESR strictly inside 0.3 Ohm to 22 Ohm (typically 0.5 Ohm to 5 Ohm for comfortable margin). Plugging 10 uF and 1.0 Ohm into the zero equation gives f_z,ESR = 1 / (2 * pi * 10e-6 * 1.0) = 15.9 kHz, placing a stabilizing phase boost squarely below the regulator's crossover frequency.",
+        "Now substitute a modern 10 uF 0805 X7R ceramic MLCC with a typical ESR of 0.005 Ohm (5 mOhm) at 100 kHz. The zero shoots upward by a factor of 200x to f_z,ESR = 3.18 MHz — well past the LM1117 error amplifier's unity-gain bandwidth. With zero phase compensation from the output capacitor, the regulator breaks into sustained 100 kHz to 400 kHz oscillation of 50 mVpp to 300 mVpp, often appearing intermittently only at light load (where R_L is large and f_p1 moves lowest) or at cold ambient temperature.",
+        "Crucially, not every 1117-named part shares the exact same internal compensation! While legacy AMS1117-3.3, LM1117IMPX-3.3/NOPB, and NCP1117ST33T3G specify minimum ESR floors (tantalum or electrolytic stability curves), Diodes Incorporated engineered the C-suffix AZ1117CH-3.3TRG1 specifically with internal compensation so it remains stable with low-ESR ceramic capacitors (>= 10 uF). Similarly, TI's TLV1117-33IDCYR (explicitly examine its datasheet ESR stability window — many designs still require >= 0.2 Ohm ESR depending on Cout) and modern PMOS regulators like AP7361C-33E-13 (note SOT223 pinout difference!) or NMOS cap-free topologies like TPS73633DBVR use internal Miller compensation or follower architectures that do not depend on capacitor ESR at all."
+      ],
+      "table": {
+        "headers": [
+          "Pilot OPN",
+          "Package",
+          "Pass Architecture",
+          "Ceramic MLCC Stable?",
+          "Min Cout & ESR Guidance"
+        ],
+        "rows": [
+          [
+            "AMS1117-3.3",
+            "SOT-223-3",
+            "NPN Darlington",
+            "No (ESR-sensitive)",
+            "22 uF tantalum recommended; avoid bare low-ESR MLCC"
+          ],
+          [
+            "LM1117IMPX-3.3/NOPB",
+            "SOT-223-3",
+            "NPN Darlington",
+            "No (ESR window)",
+            ">= 10 uF tantalum; ESR strictly 0.3 Ohm to 22 Ohm"
+          ],
+          [
+            "NCP1117ST33T3G",
+            "SOT-223-3",
+            "NPN Darlington",
+            "No (ESR window)",
+            ">= 10 uF; ESR roughly 0.03–0.5 Ohm min depending on Iout"
+          ],
+          [
+            "LM2937IMP-3.3/NOPB",
+            "SOT-223-3",
+            "Lateral PNP",
+            "No (Strict ESR)",
+            ">= 10 uF; ESR 0.01–5 Ohm curve varies sharply over temp"
+          ],
+          [
+            "AZ1117CH-3.3TRG1",
+            "SOT-223-3",
+            "Compensated 1117C",
+            "Yes (Ceramic OK)",
+            "Stable with >= 10 uF low-ESR ceramic MLCC"
+          ],
+          [
+            "AP7361C-33E-13",
+            "SOT-223-3 (Tab=GND)",
+            "Modern PMOS",
+            "Yes (Ceramic OK)",
+            ">= 2.2 uF MLCC (note pinout differs from 1117)"
+          ],
+          [
+            "TPS73633DBVR",
+            "SOT-23-5",
+            "Cap-Free NMOS",
+            "Yes (Even 0 uF)",
+            "Stable with 0 uF or any ceramic cap (0.1–10 uF)"
+          ],
+          [
+            "TPS7A0233PDBVR",
+            "SOT-23-5",
+            "Ultra-Low Iq PMOS",
+            "Yes (Ceramic OK)",
+            ">= 1.0 uF nominal (>= 0.47 uF effective after DC bias)"
+          ]
+        ]
+      }
+    },
+    {
+      "heading": "3. The Hidden Second Trap: MLCC DC-Bias Capacitance Collapse",
+      "body": [
+        "Even after upgrading to a modern ceramic-stable LDO such as TLV75533PDBVR, TPS7A0233PDBVR, AP2112K-3.3TRG1, or AP7361C-33E-13, engineers still trigger stability failures by misreading the datasheet's minimum output capacitance specification. Datasheets specify minimum EFFECTIVE capacitance under operating bias and temperature — not the label printed on the capacitor reel.",
+        "Class II high-K ferroelectric dielectrics (X5R, X7R, Y5V) exhibit severe capacitance drop as DC voltage increases across thin dielectric layers. A compact 0402 1.0 uF 6.3 V X5R capacitor biased at 3.3 V DC routinely drops to 0.35 uF — a 65% loss! Add +/-10% manufacturing tolerance and -15% temperature drift at +85 °C, and effective capacitance falls to 0.26 uF, violating a 0.47 uF or 0.7 uF effective minimum.",
+        "The fix is straightforward and inexpensive: oversize both package footprint and voltage rating. For a 3.3 V rail requiring >= 1.0 uF effective capacitance, choose a 2.2 uF or 4.7 uF 0603 (or 0805) X7R capacitor rated at 16 V or 25 V. Check the capacitor vendor's actual DC-bias curve (Murata SimSurfing, TDK SEAT, Samsung CL-series charts) at 3.3 V DC before freezing the BOM."
+      ],
+      "callout": {
+        "type": "WARNING",
+        "title": "Never Assume Adding a 0.47 Ohm Series Resistor Fixes Every MLCC Board",
+        "text": "Engineers sometimes place a discrete 0.5 Ohm to 1.0 Ohm resistor in series with a 10 uF ceramic capacitor to force an LM1117 into its ESR stability tunnel. While this can restore loop stability, it degrades high-frequency transient impedance: a sudden 200 mA load step causes an immediate delta_V = I_step * R_ESR = 200 mV droop before the LDO error amplifier reacts. Worse, placing a second 10 uF MLCC directly on the 3.3 V rail near an MCU bypasses the damping resistor and can re-introduce oscillation!"
+      }
+    },
+    {
+      "heading": "4. How to Measure LDO Phase Margin on the Bench Without a VNA",
+      "body": [
+        "Most small hardware teams do not own a dedicated frequency-response analyzer or injection transformer to plot Bode phase margin directly. Fortunately, closed-loop phase margin maps directly to time-domain load-step transient ringing — something any 100 MHz oscilloscope and a MOSFET-switched load resistor can measure in five minutes.",
+        "Build a clean load-step fixture directly at the LDO output capacitor using a low-inductance 2-to-5 cm probe ground spring (never a 15 cm alligator clip ground lead, which picks up false ringing). Pulse the load current from roughly 10% to 80% of nominal load with a rise time faster than 1 us, AC-couple the oscilloscope at 20 mV/div, and inspect the output voltage recovery waveform.",
+        "Count the number of ringing half-cycles and measure the percent overshoot (M_p) relative to the initial step droop. Under a standard second-order approximation, clean damped recovery with <10% overshoot and at most one tiny half-cycle indicates >55 degrees of phase margin (rock solid). Roughly 20–30% overshoot with 2–3 decaying rings corresponds to roughly 35–45 degrees (marginal — test again at -20 °C and +85 °C). Sustained ringing of 4+ cycles or continuous sinusoidal ripple on an unloaded rail means phase margin has fallen below 20 degrees — do NOT ship that design."
+      ],
+      "table": {
+        "headers": [
+          "Bench Load-Step Observation",
+          "Estimated Phase Margin",
+          "Engineering Action"
+        ],
+        "rows": [
+          [
+            "Single smooth dip, no ringing (<= 5% overshoot)",
+            "> 65 deg (Overdamped)",
+            "Production-safe; verify across min/max load and cold temp"
+          ],
+          [
+            "1 small overshoot peak (10–15%), dies within 1 cycle",
+            "50–65 deg (Optimal)",
+            "Ideal balance of transient speed and loop stability"
+          ],
+          [
+            "2–3 decaying rings (20–35% overshoot)",
+            "30–45 deg (Marginal)",
+            "Inspect MLCC DC bias & ESR; test at 1 mA light load and cold"
+          ],
+          [
+            "4+ ringing cycles or steady 50–500 kHz oscillation",
+            "< 20 deg (Unstable)",
+            "FAIL: Swap to ceramic-stable LDO or fix output cap ESR window"
+          ]
+        ]
+      }
+    },
+    {
+      "heading": "5. Safe Migration Paths Off Legacy Tantalum-Dependent LDOs",
+      "body": [
+        "When auditing an existing BOM that contains an AMS1117-3.3 or LM1117IMPX-3.3/NOPB paired with ceramic MLCCs, you have three clean engineering paths depending on whether the PCB copper is already frozen:",
+        "Path A — Zero-Layout-Change SOT-223-3 Upgrade (Tab = VOUT): Replace AMS1117-3.3 or LM1117IMPX-3.3/NOPB with AZ1117CH-3.3TRG1 (SOT223 H package: Pin 1=GND, Pin 2/Tab=VOUT, Pin 3=VIN). The C-series internal compensation specifically supports >= 10 uF ceramic capacitors without a minimum ESR floor while retaining the 1117 footprint. Double-check dropout headroom (1117 architecture still exhibits ~1.1 V–1.2 V dropout, requiring Vin >= 4.75 V for a 3.3 V output).",
+        "Path B — PCB Respin to Ultra-Low-Dropout Ceramic-Stable PMOS (SOT-223-3 or SOT-23-5): If your input rail is 3.7 V Li-ion or noisy 4.5 V USB where 1117 dropout fails, migrate to a true modern PMOS LDO such as AP7361C-33E-13 (1 A, ~360 mV dropout, ceramic-stable >= 2.2 uF, requires Tab = GND PCB change!) or a compact SOT-23-5 device like TLV75533PDBVR (500 mA) or AP2112K-3.3TRG1 (600 mA) when thermal dissipation permits.",
+        "Path C — Cap-Free NMOS for Zero-ESR Uncertainty: In noise-sensitive or heavily distributed multi-MLCC rails where total downstream decoupling capacitance varies across board variants, NMOS follower topologies like TPS73633DBVR (400 mA, SOT-23-5) remain unconditionally stable from 0 uF up to tens of microfarads of ultra-low-ESR ceramic capacitance."
+      ]
+    }
+  ]
+}
