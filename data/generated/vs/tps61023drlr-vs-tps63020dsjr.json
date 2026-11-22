@@ -1,0 +1,253 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "tps61023drlr-vs-tps63020dsjr",
+  "category": "dcdc",
+  "part_a_slug": "tps61023drlr",
+  "part_b_slug": "tps63020dsjr",
+  "part_a_opn": "TPS61023DRLR",
+  "part_b_opn": "TPS63020DSJR",
+  "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+  "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+  "package_match": false,
+  "pinout_exact_match": false,
+  "exposed_pad_match": false,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "FB",
+      "part_a_role": "FB",
+      "part_b_name": "VINA",
+      "part_b_role": "VIN",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 1: TPS61023DRLR assigns FB (FB) whereas TPS63020DSJR assigns VINA (VIN) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "EN",
+      "part_a_role": "EN",
+      "part_b_name": "GND",
+      "part_b_role": "GND",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 2: TPS61023DRLR assigns EN (EN) whereas TPS63020DSJR assigns GND (GND) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "VIN",
+      "part_a_role": "VIN",
+      "part_b_name": "FB",
+      "part_b_role": "FB",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 3: TPS61023DRLR assigns VIN (VIN) whereas TPS63020DSJR assigns FB (FB) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "GND",
+      "part_a_role": "GND",
+      "part_b_name": "VOUT",
+      "part_b_role": "VOUT",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 4: TPS61023DRLR assigns GND (GND) whereas TPS63020DSJR assigns VOUT (VOUT) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "SW",
+      "part_a_role": "SW",
+      "part_b_name": "VOUT",
+      "part_b_role": "VOUT",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 5: TPS61023DRLR assigns SW (SW) whereas TPS63020DSJR assigns VOUT (VOUT) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 6,
+      "part_a_name": "VOUT",
+      "part_a_role": "VOUT",
+      "part_b_name": "L2",
+      "part_b_role": "SW",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 6: TPS61023DRLR assigns VOUT (VOUT) whereas TPS63020DSJR assigns L2 (SW) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 7,
+      "part_a_name": "— (No Pin)",
+      "part_a_role": "NONE",
+      "part_b_name": "L2",
+      "part_b_role": "SW",
+      "status": "MISMATCH",
+      "note": "Package pin-count mismatch (6-pin SOT-563 vs 14-pin VSON-14)."
+    },
+    {
+      "pin": 8,
+      "part_a_name": "— (No Pin)",
+      "part_a_role": "NONE",
+      "part_b_name": "L1",
+      "part_b_role": "SW",
+      "status": "MISMATCH",
+      "note": "Package pin-count mismatch (6-pin SOT-563 vs 14-pin VSON-14)."
+    },
+    {
+      "pin": 9,
+      "part_a_name": "— (No Pin)",
+      "part_a_role": "NONE",
+      "part_b_name": "L1",
+      "part_b_role": "SW",
+      "status": "MISMATCH",
+      "note": "Package pin-count mismatch (6-pin SOT-563 vs 14-pin VSON-14)."
+    },
+    {
+      "pin": 10,
+      "part_a_name": "— (No Pin)",
+      "part_a_role": "NONE",
+      "part_b_name": "VIN",
+      "part_b_role": "VIN",
+      "status": "MISMATCH",
+      "note": "Package pin-count mismatch (6-pin SOT-563 vs 14-pin VSON-14)."
+    },
+    {
+      "pin": 11,
+      "part_a_name": "— (No Pin)",
+      "part_a_role": "NONE",
+      "part_b_name": "VIN",
+      "part_b_role": "VIN",
+      "status": "MISMATCH",
+      "note": "Package pin-count mismatch (6-pin SOT-563 vs 14-pin VSON-14)."
+    },
+    {
+      "pin": 12,
+      "part_a_name": "— (No Pin)",
+      "part_a_role": "NONE",
+      "part_b_name": "EN",
+      "part_b_role": "EN",
+      "status": "MISMATCH",
+      "note": "Package pin-count mismatch (6-pin SOT-563 vs 14-pin VSON-14)."
+    },
+    {
+      "pin": 13,
+      "part_a_name": "— (No Pin)",
+      "part_a_role": "NONE",
+      "part_b_name": "PS/SYNC",
+      "part_b_role": "PS",
+      "status": "MISMATCH",
+      "note": "Package pin-count mismatch (6-pin SOT-563 vs 14-pin VSON-14)."
+    },
+    {
+      "pin": 14,
+      "part_a_name": "— (No Pin)",
+      "part_a_role": "NONE",
+      "part_b_name": "PG",
+      "part_b_role": "PG",
+      "status": "MISMATCH",
+      "note": "Package pin-count mismatch (6-pin SOT-563 vs 14-pin VSON-14)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Topology & Rectification",
+      "unit": "—",
+      "part_a_value": "boost (Synchronous)",
+      "part_b_value": "buck-boost (Synchronous)",
+      "winner": "CONTEXT",
+      "note": "Synchronous rectification eliminates external Schottky diode loss and PCB area."
+    },
+    {
+      "metric": "Package & Exposed Pad",
+      "unit": "—",
+      "part_a_value": "SOT-563 (DRL, EP: None, p.3)",
+      "part_b_value": "VSON-14 (DSJ, EP: GND, p.4)",
+      "winner": "CONTEXT",
+      "note": "Compact WSON/VSON/SOT-563 packages demand tight hot-loop layout and thermal vias."
+    },
+    {
+      "metric": "Input Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "0.5 to 5.5 V (p.4)",
+      "part_b_value": "1.8 to 5.5 V (p.5)",
+      "winner": "A",
+      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+    },
+    {
+      "metric": "Absolute Max Input Voltage",
+      "unit": "V",
+      "part_a_value": "7 V (p.4)",
+      "part_b_value": "7 V (p.5)",
+      "winner": "TIE",
+      "note": "Provides transient overshoot margin above nominal DC supply bus."
+    },
+    {
+      "metric": "Output Voltage Range",
+      "unit": "V",
+      "part_a_value": "2.2 to 5.5 V (p.4) (Adj)",
+      "part_b_value": "1.2 to 5.5 V (p.6) (Adj)",
+      "winner": "CONTEXT",
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+    },
+    {
+      "metric": "Max Current (Iout or Isw Limit)",
+      "unit": "mA",
+      "part_a_value": "3700 mA (p.5) [Isw limit]",
+      "part_b_value": "3000 mA (p.1) [Iout max]",
+      "winner": "CONTEXT",
+      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+    },
+    {
+      "metric": "Quiescent Current (Iq, typ)",
+      "unit": "µA",
+      "part_a_value": "20 µA (p.5)",
+      "part_b_value": "25 µA (p.6)",
+      "winner": "A",
+      "note": "Dominates light-load efficiency and standby battery runtime."
+    },
+    {
+      "metric": "Switching Frequency (fsw, typ)",
+      "unit": "kHz",
+      "part_a_value": "1000 kHz (p.5)",
+      "part_b_value": "2400 kHz (p.6)",
+      "winner": "CONTEXT",
+      "note": "Higher fsw shrinks inductor footprint; lower fsw reduces switching losses & high-band EMI."
+    },
+    {
+      "metric": "Peak Efficiency",
+      "unit": "%",
+      "part_a_value": "94 % (p.1)",
+      "part_b_value": "94 % (p.1)",
+      "winner": "TIE",
+      "note": "Check datasheet efficiency curve at your exact Vin/Vout/Iout operating point."
+    },
+    {
+      "metric": "Recommended Inductor (L, typ)",
+      "unit": "µH",
+      "part_a_value": "1 µH (p.4)",
+      "part_b_value": "1.5 µH (p.13)",
+      "winner": "CONTEXT",
+      "note": "Ensure inductor Isat exceeds worst-case peak switch current by >= 20–30%."
+    },
+    {
+      "metric": "Feedback Reference (Vref)",
+      "unit": "V",
+      "part_a_value": "0.595 V (p.5)",
+      "part_b_value": "0.5 V (p.6)",
+      "winner": "CONTEXT",
+      "note": "Any Vref discrepancy requires recalculating feedback divider R1/R2."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "142.7 °C/W (p.4) · 125 °C",
+      "part_b_value": "41.8 °C/W (p.5) · 125 °C",
+      "winner": "B",
+      "note": "Lower θJA improves continuous load thermal headroom on compact 2-layer PCBs."
+    }
+  ],
+  "swap_risks": [
+    "CRITICAL PACKAGE MISMATCH: TPS61023DRLR uses SOT-563 (6-pin, DRL) while TPS63020DSJR uses VSON-14 (14-pin, DSJ); PCB footprint redesign is mandatory.",
+    "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (FB vs VIN), Pin 2 (EN vs GND), Pin 3 (VIN vs FB), Pin 4 (GND vs VOUT), Pin 5 (SW vs VOUT), Pin 6 (VOUT vs SW), Pin 7 (NONE vs SW), Pin 8 (NONE vs SW), Pin 9 (NONE vs SW), Pin 10 (NONE vs VIN), Pin 11 (NONE vs VIN), Pin 12 (NONE vs EN), Pin 13 (NONE vs PS), Pin 14 (NONE vs PG). Soldering TPS63020DSJR onto a TPS61023DRLR footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
+    "Exposed thermal pad/tab mismatch (SOT-563: NONE vs VSON-14: GND); PCB land pattern & solder-mask change required.",
+    "CRITICAL TOPOLOGY DIFFERENCE: TPS61023DRLR is a boost converter whereas TPS63020DSJR is a buck-boost converter; power-stage architecture, inductor placement, and startup behavior differ fundamentally.",
+    "HIGH SWITCHING FREQUENCY SHIFT: fsw differs by 58% (TPS61023DRLR: 1000 kHz p.5 vs TPS63020DSJR: 2400 kHz p.6); re-evaluate inductor core loss, ripple current ΔIL, output capacitor ESR ripple, and EMI harmonics.",
+    "CAUTION INDUCTOR RETUNING: Typical inductor differs (TPS61023DRLR: 1 µH p.4 vs TPS63020DSJR: 1.5 µH p.13); check inductor Isat against peak switch current limit.",
+    "HIGH VREF MISMATCH: Feedback reference differs (TPS61023DRLR: 0.595 V p.5 vs TPS63020DSJR: 0.5 V p.6); dropping in without recalculating R1/R2 will output the wrong voltage rail.",
+    "CAUTION CURRENT RATING BASIS: TPS61023DRLR specifies 3700 mA (switch current limit Isw, p.5) vs TPS63020DSJR 3000 mA (continuous Iout, p.1). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling.",
+    "CAUTION THERMAL MARGIN: Package θJA differs by 71% (TPS61023DRLR: 142.7 °C/W p.4 vs TPS63020DSJR: 41.8 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max."
+  ],
+  "engineering_verdict": "TPS61023DRLR (Texas Instruments, SOT-563) and TPS63020DSJR (Texas Instruments, VSON-14) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (FB vs VIN), Pin 2 (EN vs GND), Pin 3 (VIN vs FB), Pin 4 (GND vs VOUT), Pin 5 (SW vs VOUT), Pin 6 (VOUT vs SW), Pin 7 (NONE vs SW), Pin 8 (NONE vs SW), Pin 9 (NONE vs SW), Pin 10 (NONE vs VIN), Pin 11 (NONE vs VIN), Pin 12 (NONE vs EN), Pin 13 (NONE vs PS), Pin 14 (NONE vs PG); exposed pad / thermal tab net mismatch. Key datasheet deltas: topology is boost (sync) vs buck-boost (sync), switching frequency is 1000 kHz (p.5) vs 2400 kHz (p.6), rated current is 3700 mA (p.5) vs 3000 mA (p.1), typical inductor is 1 µH (p.4) vs 1.5 µH (p.13), and Iq is 20 µA (p.5) vs 25 µA (p.6). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.4), thermal margin (θJA 142.7 vs 41.8 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "generated_at": "2026-11-22"
+}

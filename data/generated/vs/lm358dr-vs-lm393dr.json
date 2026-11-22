@@ -1,0 +1,192 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "lm358dr-vs-lm393dr",
+  "category": "opamp",
+  "part_a_slug": "lm358dr",
+  "part_b_slug": "lm393dr",
+  "part_a_opn": "LM358DR",
+  "part_b_opn": "LM393DR",
+  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+  "package_match": true,
+  "pinout_exact_match": true,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "OUT1",
+      "part_a_role": "OUT_A",
+      "part_b_name": "1OUT",
+      "part_b_role": "OUT_A",
+      "status": "CAUTION",
+      "note": "CRITICAL OUTPUT STAGE DIFFERENCE: LM358DR is opamp (push-pull) vs LM393DR comparator (open-collector); open-collector/drain requires external pull-up and is uncompensated for linear feedback."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "IN1-",
+      "part_a_role": "IN_NEG_A",
+      "part_b_name": "1IN-",
+      "part_b_role": "IN_NEG_A",
+      "status": "MATCH",
+      "note": "Functionally identical IN_NEG_A pin (IN1- vs 1IN-)."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "IN1+",
+      "part_a_role": "IN_POS_A",
+      "part_b_name": "1IN+",
+      "part_b_role": "IN_POS_A",
+      "status": "MATCH",
+      "note": "Functionally identical IN_POS_A pin (IN1+ vs 1IN+)."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "V-",
+      "part_a_role": "VEE",
+      "part_b_name": "GND",
+      "part_b_role": "VEE",
+      "status": "MATCH",
+      "note": "Functionally identical VEE pin (V- vs GND)."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "IN2+",
+      "part_a_role": "IN_POS_B",
+      "part_b_name": "2IN+",
+      "part_b_role": "IN_POS_B",
+      "status": "MATCH",
+      "note": "Functionally identical IN_POS_B pin (IN2+ vs 2IN+)."
+    },
+    {
+      "pin": 6,
+      "part_a_name": "IN2-",
+      "part_a_role": "IN_NEG_B",
+      "part_b_name": "2IN-",
+      "part_b_role": "IN_NEG_B",
+      "status": "MATCH",
+      "note": "Functionally identical IN_NEG_B pin (IN2- vs 2IN-)."
+    },
+    {
+      "pin": 7,
+      "part_a_name": "OUT2",
+      "part_a_role": "OUT_B",
+      "part_b_name": "2OUT",
+      "part_b_role": "OUT_B",
+      "status": "CAUTION",
+      "note": "CRITICAL OUTPUT STAGE DIFFERENCE: LM358DR is opamp (push-pull) vs LM393DR comparator (open-collector); open-collector/drain requires external pull-up and is uncompensated for linear feedback."
+    },
+    {
+      "pin": 8,
+      "part_a_name": "V+",
+      "part_a_role": "VCC",
+      "part_b_name": "VCC",
+      "part_b_role": "VCC",
+      "status": "MATCH",
+      "note": "Functionally identical VCC pin (V+ vs VCC)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Device Kind & Output Stage",
+      "unit": "—",
+      "part_a_value": "opamp (push-pull)",
+      "part_b_value": "comparator (open-collector)",
+      "winner": "CONTEXT",
+      "note": "Op-amps (compensated push-pull) and comparators (uncompensated open-collector) are NOT drop-in interchangeable."
+    },
+    {
+      "metric": "Package & Channel Count",
+      "unit": "—",
+      "part_a_value": "SOIC-8 · 2 ch (D, p.3)",
+      "part_b_value": "SOIC-8 · 2 ch (D, p.3)",
+      "winner": "TIE",
+      "note": "Single SOT-23-5 op-amps vary in pin ordering across vendors; verify Pin 1–5."
+    },
+    {
+      "metric": "Supply Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "3 to 30 V (p.5)",
+      "part_b_value": "2 to 30 V (p.4)",
+      "winner": "TIE",
+      "note": "Confirm total supply span (V+ - V-) stays within recommended limits."
+    },
+    {
+      "metric": "Absolute Max Supply (Vs,abs)",
+      "unit": "V",
+      "part_a_value": "32 V (p.4)",
+      "part_b_value": "36 V (p.4)",
+      "winner": "B",
+      "note": "Exceeding Vs,abs causes immediate gate-oxide or junction breakdown."
+    },
+    {
+      "metric": "Gain-Bandwidth Product (GBWP)",
+      "unit": "MHz",
+      "part_a_value": "0.7 MHz (p.10)",
+      "part_b_value": "N/A (Comparator)",
+      "winner": "CONTEXT",
+      "note": "Closed-loop -3 dB bandwidth scales as f_-3dB = GBWP / Acl."
+    },
+    {
+      "metric": "Slew Rate / Propagation Delay",
+      "unit": "V/µs · ns",
+      "part_a_value": "SR: 0.3 V/µs (p.10)",
+      "part_b_value": "tpd: 1300 ns (p.10)",
+      "winner": "CONTEXT",
+      "note": "Controls large-signal full-power bandwidth SR / (2π·Vpeak) or comparator switching speed."
+    },
+    {
+      "metric": "Input Offset Voltage (Vos, max)",
+      "unit": "mV",
+      "part_a_value": "7 mV (p.10)",
+      "part_b_value": "5 mV (p.8)",
+      "winner": "B",
+      "note": "Lower Vos minimizes DC error in current-shunt and sensor bridge amplifiers."
+    },
+    {
+      "metric": "Input Bias Current (Ib, typ)",
+      "unit": "pA",
+      "part_a_value": "20000 pA (p.10)",
+      "part_b_value": "25000 pA (p.8)",
+      "winner": "A",
+      "note": "CMOS/JFET pA-class inputs avoid offset voltage drops across high-impedance (>100 kΩ) sensors."
+    },
+    {
+      "metric": "Quiescent Current / Ch (Iq)",
+      "unit": "µA/ch",
+      "part_a_value": "350 µA/ch (p.10)",
+      "part_b_value": "225 µA/ch (p.8)",
+      "winner": "B",
+      "note": "Multiply by channel count for total IC standby current draw."
+    },
+    {
+      "metric": "Rail-to-Rail Input / Output",
+      "unit": "—",
+      "part_a_value": "IN: No · OUT: No",
+      "part_b_value": "IN: No · OUT: No",
+      "winner": "TIE",
+      "note": "RRIO prevents clipping on low-voltage 3.3 V single-supply ADC buffers."
+    },
+    {
+      "metric": "CMRR (typ) & Input Noise",
+      "unit": "dB · nV/√Hz",
+      "part_a_value": "80 dB (p.10) · 40 nV/√Hz (p.10)",
+      "part_b_value": "Not specified · Not specified",
+      "winner": "A",
+      "note": "Higher CMRR rejects common-mode noise; lower voltage noise improves SNR."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "124.7 °C/W (p.5) · 150 °C",
+      "part_b_value": "148.5 °C/W (p.5) · 150 °C",
+      "winner": "A",
+      "note": "Important when driving heavy resistive loads or high supply rails."
+    }
+  ],
+  "swap_risks": [
+    "CRITICAL OP-AMP VS COMPARATOR TRAP: LM358DR is a opamp with push-pull output while LM393DR is a comparator with open-collector output. Even with identical pinouts, an open-collector comparator CANNOT pull high without an external pull-up resistor and lacks internal Miller compensation — dropping it into a linear negative-feedback op-amp circuit causes severe oscillation; conversely, using an op-amp as a comparator causes slow overdrive recovery and output saturation lag.",
+    "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (LM358DR: 124.7 °C/W vs LM393DR: 148.5 °C/W) and worst-case ambient temperature (0..70 °C vs 0..70 °C)."
+  ],
+  "engineering_verdict": "LM358DR (Texas Instruments, SOIC-8) and LM393DR (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to device kind / output stage mismatch (opamp/push-pull vs comparator/open-collector). Key datasheet deltas: device type is opamp (push-pull) vs comparator (open-collector), supply limit is 30 V (p.5) vs 30 V (p.4), max Vos is 7 mV (p.10) vs 5 mV (p.8), input bias current is 20000 pA (p.10) vs 25000 pA (p.8), and Iq/ch is 350 µA (p.10) vs 225 µA (p.8). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 124.7 vs 148.5 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "generated_at": "2026-11-22"
+}

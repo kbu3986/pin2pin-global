@@ -1,0 +1,195 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "tps54302ddcr-vs-tps54331dr",
+  "category": "dcdc",
+  "part_a_slug": "tps54302ddcr",
+  "part_b_slug": "tps54331dr",
+  "part_a_opn": "TPS54302DDCR",
+  "part_b_opn": "TPS54331DR",
+  "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+  "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+  "package_match": false,
+  "pinout_exact_match": false,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "GND",
+      "part_a_role": "GND",
+      "part_b_name": "BOOT",
+      "part_b_role": "BOOT",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 1: TPS54302DDCR assigns GND (GND) whereas TPS54331DR assigns BOOT (BOOT) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "SW",
+      "part_a_role": "SW",
+      "part_b_name": "VIN",
+      "part_b_role": "VIN",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 2: TPS54302DDCR assigns SW (SW) whereas TPS54331DR assigns VIN (VIN) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "VIN",
+      "part_a_role": "VIN",
+      "part_b_name": "EN",
+      "part_b_role": "EN",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 3: TPS54302DDCR assigns VIN (VIN) whereas TPS54331DR assigns EN (EN) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "FB",
+      "part_a_role": "FB",
+      "part_b_name": "SS",
+      "part_b_role": "SS",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 4: TPS54302DDCR assigns FB (FB) whereas TPS54331DR assigns SS (SS) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "EN",
+      "part_a_role": "EN",
+      "part_b_name": "VSENSE",
+      "part_b_role": "FB",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 5: TPS54302DDCR assigns EN (EN) whereas TPS54331DR assigns VSENSE (FB) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 6,
+      "part_a_name": "BOOT",
+      "part_a_role": "BOOT",
+      "part_b_name": "COMP",
+      "part_b_role": "COMP",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 6: TPS54302DDCR assigns BOOT (BOOT) whereas TPS54331DR assigns COMP (COMP) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 7,
+      "part_a_name": "— (No Pin)",
+      "part_a_role": "NONE",
+      "part_b_name": "GND",
+      "part_b_role": "GND",
+      "status": "MISMATCH",
+      "note": "Package pin-count mismatch (6-pin SOT-23-6 vs 8-pin SOIC-8)."
+    },
+    {
+      "pin": 8,
+      "part_a_name": "— (No Pin)",
+      "part_a_role": "NONE",
+      "part_b_name": "PH",
+      "part_b_role": "SW",
+      "status": "MISMATCH",
+      "note": "Package pin-count mismatch (6-pin SOT-23-6 vs 8-pin SOIC-8)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Topology & Rectification",
+      "unit": "—",
+      "part_a_value": "buck (Synchronous)",
+      "part_b_value": "buck (Non-Sync Diode)",
+      "winner": "A",
+      "note": "Synchronous rectification eliminates external Schottky diode loss and PCB area."
+    },
+    {
+      "metric": "Package & Exposed Pad",
+      "unit": "—",
+      "part_a_value": "SOT-23-6 (DDC, EP: None, p.3)",
+      "part_b_value": "SOIC-8 (D, EP: None, p.3)",
+      "winner": "CONTEXT",
+      "note": "Compact WSON/VSON/SOT-563 packages demand tight hot-loop layout and thermal vias."
+    },
+    {
+      "metric": "Input Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "4.5 to 28 V (p.4)",
+      "part_b_value": "3.5 to 28 V (p.4)",
+      "winner": "TIE",
+      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+    },
+    {
+      "metric": "Absolute Max Input Voltage",
+      "unit": "V",
+      "part_a_value": "30 V (p.4)",
+      "part_b_value": "30 V (p.4)",
+      "winner": "TIE",
+      "note": "Provides transient overshoot margin above nominal DC supply bus."
+    },
+    {
+      "metric": "Output Voltage Range",
+      "unit": "V",
+      "part_a_value": "0.596 to 28 V (p.5/p.12) (Adj)",
+      "part_b_value": "0.8 to 25 V (p.1/p.21) (Adj)",
+      "winner": "CONTEXT",
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+    },
+    {
+      "metric": "Max Current (Iout or Isw Limit)",
+      "unit": "mA",
+      "part_a_value": "3000 mA (p.1) [Iout max]",
+      "part_b_value": "3000 mA (p.1) [Iout max]",
+      "winner": "TIE",
+      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+    },
+    {
+      "metric": "Quiescent Current (Iq, typ)",
+      "unit": "µA",
+      "part_a_value": "45 µA (p.5)",
+      "part_b_value": "110 µA (p.5)",
+      "winner": "A",
+      "note": "Dominates light-load efficiency and standby battery runtime."
+    },
+    {
+      "metric": "Switching Frequency (fsw, typ)",
+      "unit": "kHz",
+      "part_a_value": "400 kHz (p.5)",
+      "part_b_value": "570 kHz (p.6)",
+      "winner": "CONTEXT",
+      "note": "Higher fsw shrinks inductor footprint; lower fsw reduces switching losses & high-band EMI."
+    },
+    {
+      "metric": "Peak Efficiency",
+      "unit": "%",
+      "part_a_value": "95 % (p.1)",
+      "part_b_value": "94 % (p.1)",
+      "winner": "A",
+      "note": "Check datasheet efficiency curve at your exact Vin/Vout/Iout operating point."
+    },
+    {
+      "metric": "Recommended Inductor (L, typ)",
+      "unit": "µH",
+      "part_a_value": "10 µH (p.18)",
+      "part_b_value": "6.8 µH (p.16)",
+      "winner": "CONTEXT",
+      "note": "Ensure inductor Isat exceeds worst-case peak switch current by >= 20–30%."
+    },
+    {
+      "metric": "Feedback Reference (Vref)",
+      "unit": "V",
+      "part_a_value": "0.596 V (p.5)",
+      "part_b_value": "0.8 V (p.5)",
+      "winner": "CONTEXT",
+      "note": "Any Vref discrepancy requires recalculating feedback divider R1/R2."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "118.9 °C/W (p.4) · 125 °C",
+      "part_b_value": "116.3 °C/W (p.5) · 150 °C",
+      "winner": "TIE",
+      "note": "Lower θJA improves continuous load thermal headroom on compact 2-layer PCBs."
+    }
+  ],
+  "swap_risks": [
+    "CRITICAL PACKAGE MISMATCH: TPS54302DDCR uses SOT-23-6 (6-pin, DDC) while TPS54331DR uses SOIC-8 (8-pin, D); PCB footprint redesign is mandatory.",
+    "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (GND vs BOOT), Pin 2 (SW vs VIN), Pin 3 (VIN vs EN), Pin 4 (FB vs SS), Pin 5 (EN vs FB), Pin 6 (BOOT vs COMP), Pin 7 (NONE vs GND), Pin 8 (NONE vs SW). Soldering TPS54331DR onto a TPS54302DDCR footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
+    "HIGH RECTIFICATION DIFFERENCE: TPS54331DR is non-synchronous and requires an external Schottky catch/freewheeling diode, whereas the counterpart integrates a synchronous low-side MOSFET.",
+    "CAUTION INDUCTOR RETUNING: Typical inductor differs (TPS54302DDCR: 10 µH p.18 vs TPS54331DR: 6.8 µH p.16); check inductor Isat against peak switch current limit.",
+    "HIGH VREF MISMATCH: Feedback reference differs (TPS54302DDCR: 0.596 V p.5 vs TPS54331DR: 0.8 V p.5); dropping in without recalculating R1/R2 will output the wrong voltage rail."
+  ],
+  "engineering_verdict": "TPS54302DDCR (Texas Instruments, SOT-23-6) and TPS54331DR (Texas Instruments, SOIC-8) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (GND vs BOOT), Pin 2 (SW vs VIN), Pin 3 (VIN vs EN), Pin 4 (FB vs SS), Pin 5 (EN vs FB), Pin 6 (BOOT vs COMP), Pin 7 (NONE vs GND), Pin 8 (NONE vs SW). Key datasheet deltas: topology is buck (sync) vs buck (non-sync), switching frequency is 400 kHz (p.5) vs 570 kHz (p.6), rated current is 3000 mA (p.1) vs 3000 mA (p.1), typical inductor is 10 µH (p.18) vs 6.8 µH (p.16), and Iq is 45 µA (p.5) vs 110 µA (p.5). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 118.9 vs 116.3 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "generated_at": "2026-11-22"
+}

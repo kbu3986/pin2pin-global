@@ -1,0 +1,194 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "mc33202dr2g-vs-opa2134ua",
+  "category": "opamp",
+  "part_a_slug": "mc33202dr2g",
+  "part_b_slug": "opa2134ua",
+  "part_a_opn": "MC33202DR2G",
+  "part_b_opn": "OPA2134UA",
+  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+  "package_match": true,
+  "pinout_exact_match": true,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "Output 1",
+      "part_a_role": "OUT_A",
+      "part_b_name": "OUT A",
+      "part_b_role": "OUT_A",
+      "status": "MATCH",
+      "note": "Functionally identical OUT_A pin (Output 1 vs OUT A)."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "IN1-",
+      "part_a_role": "IN_NEG_A",
+      "part_b_name": "-IN A",
+      "part_b_role": "IN_NEG_A",
+      "status": "MATCH",
+      "note": "Functionally identical IN_NEG_A pin (IN1- vs -IN A)."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "IN1+",
+      "part_a_role": "IN_POS_A",
+      "part_b_name": "+IN A",
+      "part_b_role": "IN_POS_A",
+      "status": "MATCH",
+      "note": "Functionally identical IN_POS_A pin (IN1+ vs +IN A)."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "VEE",
+      "part_a_role": "VEE",
+      "part_b_name": "V-",
+      "part_b_role": "VEE",
+      "status": "MATCH",
+      "note": "Functionally identical VEE pin (VEE vs V-)."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "IN2+",
+      "part_a_role": "IN_POS_B",
+      "part_b_name": "+IN B",
+      "part_b_role": "IN_POS_B",
+      "status": "MATCH",
+      "note": "Functionally identical IN_POS_B pin (IN2+ vs +IN B)."
+    },
+    {
+      "pin": 6,
+      "part_a_name": "IN2-",
+      "part_a_role": "IN_NEG_B",
+      "part_b_name": "-IN B",
+      "part_b_role": "IN_NEG_B",
+      "status": "MATCH",
+      "note": "Functionally identical IN_NEG_B pin (IN2- vs -IN B)."
+    },
+    {
+      "pin": 7,
+      "part_a_name": "Output 2",
+      "part_a_role": "OUT_B",
+      "part_b_name": "OUT B",
+      "part_b_role": "OUT_B",
+      "status": "MATCH",
+      "note": "Functionally identical OUT_B pin (Output 2 vs OUT B)."
+    },
+    {
+      "pin": 8,
+      "part_a_name": "VCC",
+      "part_a_role": "VCC",
+      "part_b_name": "V+",
+      "part_b_role": "VCC",
+      "status": "MATCH",
+      "note": "Functionally identical VCC pin (VCC vs V+)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Device Kind & Output Stage",
+      "unit": "—",
+      "part_a_value": "opamp (push-pull)",
+      "part_b_value": "opamp (push-pull)",
+      "winner": "TIE",
+      "note": "Op-amps (compensated push-pull) and comparators (uncompensated open-collector) are NOT drop-in interchangeable."
+    },
+    {
+      "metric": "Package & Channel Count",
+      "unit": "—",
+      "part_a_value": "SOIC-8 · 2 ch (CASE 751 (D), p.2)",
+      "part_b_value": "SOIC-8 · 2 ch (D, p.3)",
+      "winner": "TIE",
+      "note": "Single SOT-23-5 op-amps vary in pin ordering across vendors; verify Pin 1–5."
+    },
+    {
+      "metric": "Supply Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "1.8 to 12 V (p.1)",
+      "part_b_value": "5 to 36 V (p.5)",
+      "winner": "B",
+      "note": "Confirm total supply span (V+ - V-) stays within recommended limits."
+    },
+    {
+      "metric": "Absolute Max Supply (Vs,abs)",
+      "unit": "V",
+      "part_a_value": "13 V (p.3)",
+      "part_b_value": "36 V (p.5)",
+      "winner": "B",
+      "note": "Exceeding Vs,abs causes immediate gate-oxide or junction breakdown."
+    },
+    {
+      "metric": "Gain-Bandwidth Product (GBWP)",
+      "unit": "MHz",
+      "part_a_value": "2.2 MHz (p.4)",
+      "part_b_value": "8 MHz (p.7)",
+      "winner": "B",
+      "note": "Closed-loop -3 dB bandwidth scales as f_-3dB = GBWP / Acl."
+    },
+    {
+      "metric": "Slew Rate / Propagation Delay",
+      "unit": "V/µs · ns",
+      "part_a_value": "SR: 1 V/µs (p.4)",
+      "part_b_value": "SR: 20 V/µs (p.7)",
+      "winner": "B",
+      "note": "Controls large-signal full-power bandwidth SR / (2π·Vpeak) or comparator switching speed."
+    },
+    {
+      "metric": "Input Offset Voltage (Vos, max)",
+      "unit": "mV",
+      "part_a_value": "8 mV (p.3)",
+      "part_b_value": "3.5 mV (p.7)",
+      "winner": "B",
+      "note": "Lower Vos minimizes DC error in current-shunt and sensor bridge amplifiers."
+    },
+    {
+      "metric": "Input Bias Current (Ib, typ)",
+      "unit": "pA",
+      "part_a_value": "80000 pA (p.3)",
+      "part_b_value": "5 pA (p.7)",
+      "winner": "B",
+      "note": "CMOS/JFET pA-class inputs avoid offset voltage drops across high-impedance (>100 kΩ) sensors."
+    },
+    {
+      "metric": "Quiescent Current / Ch (Iq)",
+      "unit": "µA/ch",
+      "part_a_value": "900 µA/ch (p.4)",
+      "part_b_value": "4000 µA/ch (p.8)",
+      "winner": "A",
+      "note": "Multiply by channel count for total IC standby current draw."
+    },
+    {
+      "metric": "Rail-to-Rail Input / Output",
+      "unit": "—",
+      "part_a_value": "IN: Yes · OUT: Yes",
+      "part_b_value": "IN: No · OUT: No",
+      "winner": "A",
+      "note": "RRIO prevents clipping on low-voltage 3.3 V single-supply ADC buffers."
+    },
+    {
+      "metric": "CMRR (typ) & Input Noise",
+      "unit": "dB · nV/√Hz",
+      "part_a_value": "90 dB (p.4) · 20 nV/√Hz (p.4)",
+      "part_b_value": "100 dB (p.7) · 8 nV/√Hz (p.7)",
+      "winner": "B",
+      "note": "Higher CMRR rejects common-mode noise; lower voltage noise improves SNR."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "190 °C/W (p.5) · 150 °C",
+      "part_b_value": "160 °C/W (p.6) · 150 °C",
+      "winner": "B",
+      "note": "Important when driving heavy resistive loads or high supply rails."
+    }
+  ],
+  "swap_risks": [
+    "CRITICAL SUPPLY VOLTAGE RATING: MC33202DR2G is limited to 12 V max (13 V abs max, p.3) whereas OPA2134UA supports up to 36 V (36 V abs max, p.5). Installing a 5.5 V CMOS op-amp on a 12 V–24 V rail causes instant breakdown.",
+    "HIGH HEADROOM / CLIPPING RISK: Rail-to-rail capability differs (MC33202DR2G: IN=RR, OUT=RR vs OPA2134UA: IN=Non-RR, OUT=Non-RR); verify input common-mode range (Vicm) and output voltage swing against ADC full-scale range.",
+    "CAUTION BANDWIDTH & PHASE MARGIN: GBWP differs by 3.6x (MC33202DR2G: 2.2 MHz p.4 vs OPA2134UA: 8 MHz p.7); higher-bandwidth replacements can oscillate with capacitive loads or stray feedback capacitance without an isolation resistor.",
+    "CAUTION SLEW RATE DIFFERENCE: Slew rate differs by 20x (MC33202DR2G: 1 V/µs p.4 vs OPA2134UA: 20 V/µs p.7); check full-power bandwidth SR / (2π·Vpeak)."
+  ],
+  "engineering_verdict": "MC33202DR2G (onsemi, SOIC-8) and OPA2134UA (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to supply voltage Vs,max drops >20%; rail-to-rail input/output swing differs; GBWP differs >= 3x. Key datasheet deltas: device type is opamp (push-pull) vs opamp (push-pull), supply limit is 12 V (p.1) vs 36 V (p.5), max Vos is 8 mV (p.3) vs 3.5 mV (p.7), input bias current is 80000 pA (p.3) vs 5 pA (p.7), and Iq/ch is 900 µA (p.4) vs 4000 µA (p.8). Always validate pinout orientation (TOP_VIEW p.2 vs TOP_VIEW p.3), thermal margin (θJA 190 vs 160 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "generated_at": "2026-11-22"
+}

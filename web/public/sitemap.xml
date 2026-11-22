@@ -91,7 +91,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/part/xc6206p332mr-g</loc>
+    <loc>https://pin2pin.dev/en/part/lm3480im3-3-3-nopb</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -133,13 +133,13 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/part/xc6209b332mr-g</loc>
+    <loc>https://pin2pin.dev/en/part/tlv73333pdbvr</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/part/xc6210b332mr-g</loc>
+    <loc>https://pin2pin.dev/en/part/ncp114asn330t1g</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -187,7 +187,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/part/adp151aujz-3-3-r7</loc>
+    <loc>https://pin2pin.dev/en/part/ncp500sn33t1g</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -223,7 +223,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/part/lt1117cst-3-3-pbf</loc>
+    <loc>https://pin2pin.dev/en/part/lm2937imp-3-3-nopb</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -277,7 +277,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/part/lt1930es5-trmpbf</loc>
+    <loc>https://pin2pin.dev/en/part/lm2733xmf-nopb</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -343,13 +343,13 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/part/ad8605artz-r2</loc>
+    <loc>https://pin2pin.dev/en/part/tlv9061idbvr</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/part/ad8606arz</loc>
+    <loc>https://pin2pin.dev/en/part/mc33202dr2g</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -391,7 +391,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/alt/xc6206p332mr-g-alternatives</loc>
+    <loc>https://pin2pin.dev/en/alt/lm3480im3-3-3-nopb-alternatives</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -433,13 +433,13 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/alt/xc6209b332mr-g-alternatives</loc>
+    <loc>https://pin2pin.dev/en/alt/tlv73333pdbvr-alternatives</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/alt/xc6210b332mr-g-alternatives</loc>
+    <loc>https://pin2pin.dev/en/alt/ncp114asn330t1g-alternatives</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -487,7 +487,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/alt/adp151aujz-3-3-r7-alternatives</loc>
+    <loc>https://pin2pin.dev/en/alt/ncp500sn33t1g-alternatives</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -523,7 +523,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/alt/lt1117cst-3-3-pbf-alternatives</loc>
+    <loc>https://pin2pin.dev/en/alt/lm2937imp-3-3-nopb-alternatives</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -577,7 +577,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/alt/lt1930es5-trmpbf-alternatives</loc>
+    <loc>https://pin2pin.dev/en/alt/lm2733xmf-nopb-alternatives</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -643,13 +643,13 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/alt/ad8605artz-r2-alternatives</loc>
+    <loc>https://pin2pin.dev/en/alt/tlv9061idbvr-alternatives</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/alt/ad8606arz-alternatives</loc>
+    <loc>https://pin2pin.dev/en/alt/mc33202dr2g-alternatives</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -691,25 +691,25 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/vs/ap7333-33sag-7-vs-xc6206p332mr-g</loc>
+    <loc>https://pin2pin.dev/en/vs/ap7333-33sag-7-vs-lm3480im3-3-3-nopb</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/vs/ap7313-33sag-7-vs-xc6206p332mr-g</loc>
+    <loc>https://pin2pin.dev/en/vs/ap7313-33sag-7-vs-lm3480im3-3-3-nopb</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/vs/ap7313-33srg-7-vs-xc6206p332mr-g</loc>
+    <loc>https://pin2pin.dev/en/vs/ap7313-33srg-7-vs-lm3480im3-3-3-nopb</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/vs/ap2210n-3-3trg1-vs-xc6206p332mr-g</loc>
+    <loc>https://pin2pin.dev/en/vs/ap2210n-3-3trg1-vs-lm3480im3-3-3-nopb</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -751,13 +751,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/vs/ap2112k-3-3trg1-vs-xc6209b332mr-g</loc>
+    <loc>https://pin2pin.dev/en/vs/ap2112k-3-3trg1-vs-tlv73333pdbvr</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/vs/ap2112k-3-3trg1-vs-xc6210b332mr-g</loc>
+    <loc>https://pin2pin.dev/en/vs/ap2112k-3-3trg1-vs-ncp114asn330t1g</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -805,7 +805,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/vs/adp151aujz-3-3-r7-vs-ap2112k-3-3trg1</loc>
+    <loc>https://pin2pin.dev/en/vs/ap2112k-3-3trg1-vs-ncp500sn33t1g</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -817,19 +817,19 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/vs/xc6209b332mr-g-vs-xc6210b332mr-g</loc>
+    <loc>https://pin2pin.dev/en/vs/ncp114asn330t1g-vs-tlv73333pdbvr</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/vs/tlv70033ddcr-vs-xc6209b332mr-g</loc>
+    <loc>https://pin2pin.dev/en/vs/tlv70033ddcr-vs-tlv73333pdbvr</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/vs/tlv75533pdbvr-vs-xc6210b332mr-g</loc>
+    <loc>https://pin2pin.dev/en/vs/ncp114asn330t1g-vs-tlv75533pdbvr</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -859,7 +859,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/vs/adp151aujz-3-3-r7-vs-tps7a2033pdbvr</loc>
+    <loc>https://pin2pin.dev/en/vs/ncp500sn33t1g-vs-tps7a2033pdbvr</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -877,7 +877,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/vs/tps7a0233pdbvr-vs-xc6206p332mr-g</loc>
+    <loc>https://pin2pin.dev/en/vs/lm3480im3-3-3-nopb-vs-tps7a0233pdbvr</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -907,7 +907,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/vs/ams1117-3-3-vs-lt1117cst-3-3-pbf</loc>
+    <loc>https://pin2pin.dev/en/vs/ams1117-3-3-vs-lm2937imp-3-3-nopb</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -931,7 +931,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/vs/lm1117impx-3-3-nopb-vs-lt1117cst-3-3-pbf</loc>
+    <loc>https://pin2pin.dev/en/vs/lm1117impx-3-3-nopb-vs-lm2937imp-3-3-nopb</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1003,13 +1003,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/vs/lt1930es5-trmpbf-vs-tps61040dbvr</loc>
+    <loc>https://pin2pin.dev/en/vs/lm2733xmf-nopb-vs-tps61040dbvr</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/vs/lm27313xmf-nopb-vs-lt1930es5-trmpbf</loc>
+    <loc>https://pin2pin.dev/en/vs/lm27313xmf-nopb-vs-lm2733xmf-nopb</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1117,7 +1117,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/vs/ad8606arz-vs-lm358dr</loc>
+    <loc>https://pin2pin.dev/en/vs/lm358dr-vs-mc33202dr2g</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1141,7 +1141,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/vs/ad8606arz-vs-lmv358idr</loc>
+    <loc>https://pin2pin.dev/en/vs/lmv358idr-vs-mc33202dr2g</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1153,7 +1153,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/vs/ad8606arz-vs-tlv9002idr</loc>
+    <loc>https://pin2pin.dev/en/vs/mc33202dr2g-vs-tlv9002idr</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1171,7 +1171,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/vs/ad8606arz-vs-opa2134ua</loc>
+    <loc>https://pin2pin.dev/en/vs/mc33202dr2g-vs-opa2134ua</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1183,13 +1183,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/vs/ad8605artz-r2-vs-tlv9001idbvr</loc>
+    <loc>https://pin2pin.dev/en/vs/tlv9001idbvr-vs-tlv9061idbvr</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pin2pin.dev/en/vs/ad8605artz-r2-vs-opa333aidbvr</loc>
+    <loc>https://pin2pin.dev/en/vs/opa333aidbvr-vs-tlv9061idbvr</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

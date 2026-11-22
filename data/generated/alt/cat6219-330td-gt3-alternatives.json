@@ -1,0 +1,121 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "cat6219-330td-gt3-alternatives",
+  "target_slug": "cat6219-330td-gt3",
+  "target_opn": "CAT6219-330TD-GT3",
+  "category": "ldo",
+  "summary": "Datasheet-verified cross-reference alternatives for CAT6219-330TD-GT3 (onsemi, TSOT-23-5, fixed-ldo): evaluated 24 same-category OPNs, surfacing 0 Level 1 Candidate Drop-In, 8 Level 2 Tuning Required, and 0 Level 3 Layout Change options. Verify pinout, thermal margin, and official manufacturer datasheets before production.",
+  "candidates": [
+    {
+      "alt_slug": "tlv75533pdbvr",
+      "alt_opn": "TLV75533PDBVR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOT-23-5",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Value / Second-Source",
+      "score": 67,
+      "key_advantage": "Lower Iq (25 µA vs 55 µA); Lower dropout (150 mV vs 300 mV)",
+      "key_tradeoff": "Verify θJA (231.1 °C/W) and latest Texas Instruments datasheet revision",
+      "vs_slug": null
+    },
+    {
+      "alt_slug": "tps73633dbvr",
+      "alt_opn": "TPS73633DBVR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOT-23-5",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Value / Second-Source",
+      "score": 65,
+      "key_advantage": "Lower dropout (75 mV vs 300 mV)",
+      "key_tradeoff": "Higher Iq (400 µA vs 55 µA); Lower Iout (400 mA vs 500 mA)",
+      "vs_slug": null
+    },
+    {
+      "alt_slug": "ap2112k-3-3trg1",
+      "alt_opn": "AP2112K-3.3TRG1",
+      "manufacturer": "Diodes Incorporated",
+      "package_code": "SOT-23-5",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Value / Second-Source",
+      "score": 62,
+      "key_advantage": "Higher Iout (600 mA vs 500 mA)",
+      "key_tradeoff": "Verify θJA (184 °C/W) and latest Diodes Incorporated datasheet revision",
+      "vs_slug": "ap2112k-3-3trg1-vs-cat6219-330td-gt3"
+    },
+    {
+      "alt_slug": "ncp114asn330t1g",
+      "alt_opn": "NCP114ASN330T1G",
+      "manufacturer": "onsemi",
+      "package_code": "TSOT-23-5",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Value / Second-Source",
+      "score": 61,
+      "key_advantage": "Lower dropout (150 mV vs 300 mV)",
+      "key_tradeoff": "Lower Iout (300 mA vs 500 mA)",
+      "vs_slug": null
+    },
+    {
+      "alt_slug": "ncp500sn33t1g",
+      "alt_opn": "NCP500SN33T1G",
+      "manufacturer": "onsemi",
+      "package_code": "TSOT-23-5",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Value / Second-Source",
+      "score": 61,
+      "key_advantage": "Lower dropout (150 mV vs 300 mV)",
+      "key_tradeoff": "Higher Iq (195 µA vs 55 µA); Lower Iout (150 mA vs 500 mA)",
+      "vs_slug": null
+    },
+    {
+      "alt_slug": "lp2985-33dbvr",
+      "alt_opn": "LP2985-33DBVR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOT-23-5",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Higher Current / Margin",
+      "score": 60,
+      "key_advantage": "Higher Vin,max (16 V vs 5.5 V); Lower dropout (180 mV vs 300 mV)",
+      "key_tradeoff": "Lower Iout (150 mA vs 500 mA)",
+      "vs_slug": "cat6219-330td-gt3-vs-lp2985-33dbvr"
+    },
+    {
+      "alt_slug": "tps7a2033pdbvr",
+      "alt_opn": "TPS7A2033PDBVR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOT-23-5",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Ultra-Low Iq Upgrade",
+      "score": 59,
+      "key_advantage": "Lower Iq (6.5 µA vs 55 µA); Lower dropout (145 mV vs 300 mV)",
+      "key_tradeoff": "Lower Iout (300 mA vs 500 mA)",
+      "vs_slug": null
+    },
+    {
+      "alt_slug": "tps70933dbvr",
+      "alt_opn": "TPS70933DBVR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOT-23-5",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Ultra-Low Iq Upgrade",
+      "score": 57,
+      "key_advantage": "Lower Iq (1.3 µA vs 55 µA); Higher Vin,max (30 V vs 5.5 V)",
+      "key_tradeoff": "Lower Iout (150 mA vs 500 mA); Higher dropout (960 mV vs 300 mV)",
+      "vs_slug": null
+    }
+  ],
+  "selection_checklist": [
+    "Verify exact pin numbering on TSOT-23-5 (1=VIN, 2=GND, 3=EN, 4=BYPASS, 5=VOUT) and exposed pad net (None).",
+    "Confirm output capacitor ESR stability (MLCC stable) and DC-bias derated capacitance >= 2.2 µF.",
+    "Check worst-case junction temperature Tj = Ta + (Vin,max - 3.3 V) × Iout × θJA stays >= 15 °C below Tj,max (125 °C).",
+    "Validate input transient headroom against Vin,max (5.5 V rec / 6.5 V abs) and Pin 4 (NC vs BYPASS) PCB net connectivity."
+  ],
+  "generated_at": "2026-11-22"
+}

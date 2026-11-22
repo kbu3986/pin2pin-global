@@ -1,0 +1,195 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "tl072idr-vs-tlv9002idr",
+  "category": "opamp",
+  "part_a_slug": "tl072idr",
+  "part_b_slug": "tlv9002idr",
+  "part_a_opn": "TL072IDR",
+  "part_b_opn": "TLV9002IDR",
+  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+  "package_match": true,
+  "pinout_exact_match": true,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "1OUT",
+      "part_a_role": "OUT_A",
+      "part_b_name": "OUT1",
+      "part_b_role": "OUT_A",
+      "status": "MATCH",
+      "note": "Functionally identical OUT_A pin (1OUT vs OUT1)."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "1IN-",
+      "part_a_role": "IN_NEG_A",
+      "part_b_name": "IN1-",
+      "part_b_role": "IN_NEG_A",
+      "status": "MATCH",
+      "note": "Functionally identical IN_NEG_A pin (1IN- vs IN1-)."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "1IN+",
+      "part_a_role": "IN_POS_A",
+      "part_b_name": "IN1+",
+      "part_b_role": "IN_POS_A",
+      "status": "MATCH",
+      "note": "Functionally identical IN_POS_A pin (1IN+ vs IN1+)."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "VCC-",
+      "part_a_role": "VEE",
+      "part_b_name": "V-",
+      "part_b_role": "VEE",
+      "status": "MATCH",
+      "note": "Functionally identical VEE pin (VCC- vs V-)."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "2IN+",
+      "part_a_role": "IN_POS_B",
+      "part_b_name": "IN2+",
+      "part_b_role": "IN_POS_B",
+      "status": "MATCH",
+      "note": "Functionally identical IN_POS_B pin (2IN+ vs IN2+)."
+    },
+    {
+      "pin": 6,
+      "part_a_name": "2IN-",
+      "part_a_role": "IN_NEG_B",
+      "part_b_name": "IN2-",
+      "part_b_role": "IN_NEG_B",
+      "status": "MATCH",
+      "note": "Functionally identical IN_NEG_B pin (2IN- vs IN2-)."
+    },
+    {
+      "pin": 7,
+      "part_a_name": "2OUT",
+      "part_a_role": "OUT_B",
+      "part_b_name": "OUT2",
+      "part_b_role": "OUT_B",
+      "status": "MATCH",
+      "note": "Functionally identical OUT_B pin (2OUT vs OUT2)."
+    },
+    {
+      "pin": 8,
+      "part_a_name": "VCC+",
+      "part_a_role": "VCC",
+      "part_b_name": "V+",
+      "part_b_role": "VCC",
+      "status": "MATCH",
+      "note": "Functionally identical VCC pin (VCC+ vs V+)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Device Kind & Output Stage",
+      "unit": "—",
+      "part_a_value": "opamp (push-pull)",
+      "part_b_value": "opamp (push-pull)",
+      "winner": "TIE",
+      "note": "Op-amps (compensated push-pull) and comparators (uncompensated open-collector) are NOT drop-in interchangeable."
+    },
+    {
+      "metric": "Package & Channel Count",
+      "unit": "—",
+      "part_a_value": "SOIC-8 · 2 ch (D, p.5)",
+      "part_b_value": "SOIC-8 · 2 ch (D, p.8)",
+      "winner": "TIE",
+      "note": "Single SOT-23-5 op-amps vary in pin ordering across vendors; verify Pin 1–5."
+    },
+    {
+      "metric": "Supply Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "4.5 to 40 V (p.11)",
+      "part_b_value": "1.8 to 5.5 V (p.14)",
+      "winner": "A",
+      "note": "Confirm total supply span (V+ - V-) stays within recommended limits."
+    },
+    {
+      "metric": "Absolute Max Supply (Vs,abs)",
+      "unit": "V",
+      "part_a_value": "42 V (p.10)",
+      "part_b_value": "7 V (p.14)",
+      "winner": "A",
+      "note": "Exceeding Vs,abs causes immediate gate-oxide or junction breakdown."
+    },
+    {
+      "metric": "Gain-Bandwidth Product (GBWP)",
+      "unit": "MHz",
+      "part_a_value": "5.25 MHz (p.15)",
+      "part_b_value": "1 MHz (p.17)",
+      "winner": "A",
+      "note": "Closed-loop -3 dB bandwidth scales as f_-3dB = GBWP / Acl."
+    },
+    {
+      "metric": "Slew Rate / Propagation Delay",
+      "unit": "V/µs · ns",
+      "part_a_value": "SR: 20 V/µs (p.16)",
+      "part_b_value": "SR: 2 V/µs (p.17)",
+      "winner": "A",
+      "note": "Controls large-signal full-power bandwidth SR / (2π·Vpeak) or comparator switching speed."
+    },
+    {
+      "metric": "Input Offset Voltage (Vos, max)",
+      "unit": "mV",
+      "part_a_value": "6 mV (p.15)",
+      "part_b_value": "1.6 mV (p.17)",
+      "winner": "B",
+      "note": "Lower Vos minimizes DC error in current-shunt and sensor bridge amplifiers."
+    },
+    {
+      "metric": "Input Bias Current (Ib, typ)",
+      "unit": "pA",
+      "part_a_value": "65 pA (p.15)",
+      "part_b_value": "5 pA (p.17)",
+      "winner": "B",
+      "note": "CMOS/JFET pA-class inputs avoid offset voltage drops across high-impedance (>100 kΩ) sensors."
+    },
+    {
+      "metric": "Quiescent Current / Ch (Iq)",
+      "unit": "µA/ch",
+      "part_a_value": "1400 µA/ch (p.16)",
+      "part_b_value": "60 µA/ch (p.18)",
+      "winner": "B",
+      "note": "Multiply by channel count for total IC standby current draw."
+    },
+    {
+      "metric": "Rail-to-Rail Input / Output",
+      "unit": "—",
+      "part_a_value": "IN: No · OUT: No",
+      "part_b_value": "IN: Yes · OUT: Yes",
+      "winner": "B",
+      "note": "RRIO prevents clipping on low-voltage 3.3 V single-supply ADC buffers."
+    },
+    {
+      "metric": "CMRR (typ) & Input Noise",
+      "unit": "dB · nV/√Hz",
+      "part_a_value": "100 dB (p.15) · 37 nV/√Hz (p.16)",
+      "part_b_value": "77 dB (p.17) · 30 nV/√Hz (p.17)",
+      "winner": "A",
+      "note": "Higher CMRR rejects common-mode noise; lower voltage noise improves SNR."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "147.8 °C/W (p.11) · 150 °C",
+      "part_b_value": "207.9 °C/W (p.15) · 150 °C",
+      "winner": "A",
+      "note": "Important when driving heavy resistive loads or high supply rails."
+    }
+  ],
+  "swap_risks": [
+    "CRITICAL SUPPLY VOLTAGE RATING: TLV9002IDR is limited to 5.5 V max (7 V abs max, p.14) whereas TL072IDR supports up to 40 V (42 V abs max, p.10). Installing a 5.5 V CMOS op-amp on a 12 V–24 V rail causes instant breakdown.",
+    "HIGH HEADROOM / CLIPPING RISK: Rail-to-rail capability differs (TL072IDR: IN=Non-RR, OUT=Non-RR vs TLV9002IDR: IN=RR, OUT=RR); verify input common-mode range (Vicm) and output voltage swing against ADC full-scale range.",
+    "CAUTION BANDWIDTH & PHASE MARGIN: GBWP differs by 5.3x (TL072IDR: 5.25 MHz p.15 vs TLV9002IDR: 1 MHz p.17); higher-bandwidth replacements can oscillate with capacitive loads or stray feedback capacitance without an isolation resistor.",
+    "CAUTION SLEW RATE DIFFERENCE: Slew rate differs by 10x (TL072IDR: 20 V/µs p.16 vs TLV9002IDR: 2 V/µs p.17); check full-power bandwidth SR / (2π·Vpeak).",
+    "CAUTION THERMAL MARGIN: Package θJA differs by 29% (TL072IDR: 147.8 °C/W p.11 vs TLV9002IDR: 207.9 °C/W p.15); re-check Tj = Ta + Pd × θJA against Tj,max."
+  ],
+  "engineering_verdict": "TL072IDR (Texas Instruments, SOIC-8) and TLV9002IDR (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to supply voltage Vs,max drops >20%; rail-to-rail input/output swing differs; GBWP differs >= 3x. Key datasheet deltas: device type is opamp (push-pull) vs opamp (push-pull), supply limit is 40 V (p.11) vs 5.5 V (p.14), max Vos is 6 mV (p.15) vs 1.6 mV (p.17), input bias current is 65 pA (p.15) vs 5 pA (p.17), and Iq/ch is 1400 µA (p.16) vs 60 µA (p.18). Always validate pinout orientation (TOP_VIEW p.5 vs TOP_VIEW p.8), thermal margin (θJA 147.8 vs 207.9 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "generated_at": "2026-11-22"
+}

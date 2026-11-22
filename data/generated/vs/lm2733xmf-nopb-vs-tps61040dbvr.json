@@ -1,0 +1,166 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "lm2733xmf-nopb-vs-tps61040dbvr",
+  "category": "dcdc",
+  "part_a_slug": "lm2733xmf-nopb",
+  "part_b_slug": "tps61040dbvr",
+  "part_a_opn": "LM2733XMF/NOPB",
+  "part_b_opn": "TPS61040DBVR",
+  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+  "package_match": true,
+  "pinout_exact_match": true,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "SW",
+      "part_a_role": "SW",
+      "part_b_name": "SW",
+      "part_b_role": "SW",
+      "status": "MATCH",
+      "note": "Identical pin assignment (SW / SW)."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "GND",
+      "part_a_role": "GND",
+      "part_b_name": "GND",
+      "part_b_role": "GND",
+      "status": "MATCH",
+      "note": "Identical pin assignment (GND / GND)."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "FB",
+      "part_a_role": "FB",
+      "part_b_name": "FB",
+      "part_b_role": "FB",
+      "status": "MATCH",
+      "note": "Identical pin assignment (FB / FB)."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "SHDN",
+      "part_a_role": "EN",
+      "part_b_name": "EN",
+      "part_b_role": "EN",
+      "status": "MATCH",
+      "note": "Functionally identical EN pin (SHDN vs EN)."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "VIN",
+      "part_a_role": "VIN",
+      "part_b_name": "VIN",
+      "part_b_role": "VIN",
+      "status": "MATCH",
+      "note": "Identical pin assignment (VIN / VIN)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Topology & Rectification",
+      "unit": "—",
+      "part_a_value": "boost (Non-Sync Diode)",
+      "part_b_value": "boost (Non-Sync Diode)",
+      "winner": "TIE",
+      "note": "Synchronous rectification eliminates external Schottky diode loss and PCB area."
+    },
+    {
+      "metric": "Package & Exposed Pad",
+      "unit": "—",
+      "part_a_value": "SOT-23-5 (DBV, EP: None, p.3)",
+      "part_b_value": "SOT-23-5 (DBV, EP: None, p.3)",
+      "winner": "TIE",
+      "note": "Compact WSON/VSON/SOT-563 packages demand tight hot-loop layout and thermal vias."
+    },
+    {
+      "metric": "Input Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "2.7 to 14 V (p.4)",
+      "part_b_value": "1.8 to 6 V (p.4)",
+      "winner": "A",
+      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+    },
+    {
+      "metric": "Absolute Max Input Voltage",
+      "unit": "V",
+      "part_a_value": "14.5 V (p.3)",
+      "part_b_value": "7 V (p.4)",
+      "winner": "A",
+      "note": "Provides transient overshoot margin above nominal DC supply bus."
+    },
+    {
+      "metric": "Output Voltage Range",
+      "unit": "V",
+      "part_a_value": "5 to 38 V (p.12/p.3) (Adj)",
+      "part_b_value": "1.8 to 28 V (p.5/p.4) (Adj)",
+      "winner": "CONTEXT",
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+    },
+    {
+      "metric": "Max Current (Iout or Isw Limit)",
+      "unit": "mA",
+      "part_a_value": "1000 mA (p.4) [Isw limit]",
+      "part_b_value": "400 mA (p.5) [Isw limit]",
+      "winner": "A",
+      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+    },
+    {
+      "metric": "Quiescent Current (Iq, typ)",
+      "unit": "µA",
+      "part_a_value": "400 µA (p.4)",
+      "part_b_value": "28 µA (p.5)",
+      "winner": "B",
+      "note": "Dominates light-load efficiency and standby battery runtime."
+    },
+    {
+      "metric": "Switching Frequency (fsw, typ)",
+      "unit": "kHz",
+      "part_a_value": "1600 kHz (p.5)",
+      "part_b_value": "1000 kHz (p.1)",
+      "winner": "CONTEXT",
+      "note": "Higher fsw shrinks inductor footprint; lower fsw reduces switching losses & high-band EMI."
+    },
+    {
+      "metric": "Peak Efficiency",
+      "unit": "%",
+      "part_a_value": "89 % (p.1)",
+      "part_b_value": "87.5 % (p.1)",
+      "winner": "A",
+      "note": "Check datasheet efficiency curve at your exact Vin/Vout/Iout operating point."
+    },
+    {
+      "metric": "Recommended Inductor (L, typ)",
+      "unit": "µH",
+      "part_a_value": "10 µH (p.1)",
+      "part_b_value": "10 µH (p.4)",
+      "winner": "CONTEXT",
+      "note": "Ensure inductor Isat exceeds worst-case peak switch current by >= 20–30%."
+    },
+    {
+      "metric": "Feedback Reference (Vref)",
+      "unit": "V",
+      "part_a_value": "1.23 V (p.4)",
+      "part_b_value": "1.233 V (p.5)",
+      "winner": "CONTEXT",
+      "note": "Any Vref discrepancy requires recalculating feedback divider R1/R2."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "210 °C/W (p.4) · 125 °C",
+      "part_b_value": "205.2 °C/W (p.4) · 125 °C",
+      "winner": "TIE",
+      "note": "Lower θJA improves continuous load thermal headroom on compact 2-layer PCBs."
+    }
+  ],
+  "swap_risks": [
+    "HIGH SWITCHING FREQUENCY SHIFT: fsw differs by 38% (LM2733XMF/NOPB: 1600 kHz p.5 vs TPS61040DBVR: 1000 kHz p.1); re-evaluate inductor core loss, ripple current ΔIL, output capacitor ESR ripple, and EMI harmonics.",
+    "HIGH INPUT VOLTAGE RANGE SHIFT: Recommended Vin,max differs (LM2733XMF/NOPB: 14 V p.4 vs TPS61040DBVR: 6 V p.4); verify line transients stay below Vin,abs,max.",
+    "CAUTION CURRENT RATING BASIS: LM2733XMF/NOPB specifies 1000 mA (switch current limit Isw, p.4) vs TPS61040DBVR 400 mA (switch current limit Isw, p.5). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling."
+  ],
+  "engineering_verdict": "LM2733XMF/NOPB (Texas Instruments, SOT-23-5) and TPS61040DBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to switching frequency differs >30%; Vin,max rating drops >20%; current rating or switch-limit basis differs. Key datasheet deltas: topology is boost (non-sync) vs boost (non-sync), switching frequency is 1600 kHz (p.5) vs 1000 kHz (p.1), rated current is 1000 mA (p.4) vs 400 mA (p.5), typical inductor is 10 µH (p.1) vs 10 µH (p.4), and Iq is 400 µA (p.4) vs 28 µA (p.5). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 210 vs 205.2 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "generated_at": "2026-11-22"
+}

@@ -1,0 +1,165 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "lm27313xmf-nopb-vs-lm2733xmf-nopb",
+  "category": "dcdc",
+  "part_a_slug": "lm27313xmf-nopb",
+  "part_b_slug": "lm2733xmf-nopb",
+  "part_a_opn": "LM27313XMF/NOPB",
+  "part_b_opn": "LM2733XMF/NOPB",
+  "compatibility_level": "LEVEL_1_CANDIDATE_DROP_IN",
+  "compatibility_badge": "Candidate Drop-In (Verify Datasheet Before Production)",
+  "package_match": true,
+  "pinout_exact_match": true,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "SW",
+      "part_a_role": "SW",
+      "part_b_name": "SW",
+      "part_b_role": "SW",
+      "status": "MATCH",
+      "note": "Identical pin assignment (SW / SW)."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "GND",
+      "part_a_role": "GND",
+      "part_b_name": "GND",
+      "part_b_role": "GND",
+      "status": "MATCH",
+      "note": "Identical pin assignment (GND / GND)."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "FB",
+      "part_a_role": "FB",
+      "part_b_name": "FB",
+      "part_b_role": "FB",
+      "status": "MATCH",
+      "note": "Identical pin assignment (FB / FB)."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "SHDN",
+      "part_a_role": "EN",
+      "part_b_name": "SHDN",
+      "part_b_role": "EN",
+      "status": "MATCH",
+      "note": "Identical pin assignment (SHDN / EN)."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "VIN",
+      "part_a_role": "VIN",
+      "part_b_name": "VIN",
+      "part_b_role": "VIN",
+      "status": "MATCH",
+      "note": "Identical pin assignment (VIN / VIN)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Topology & Rectification",
+      "unit": "—",
+      "part_a_value": "boost (Non-Sync Diode)",
+      "part_b_value": "boost (Non-Sync Diode)",
+      "winner": "TIE",
+      "note": "Synchronous rectification eliminates external Schottky diode loss and PCB area."
+    },
+    {
+      "metric": "Package & Exposed Pad",
+      "unit": "—",
+      "part_a_value": "SOT-23-5 (DBV, EP: None, p.3)",
+      "part_b_value": "SOT-23-5 (DBV, EP: None, p.3)",
+      "winner": "TIE",
+      "note": "Compact WSON/VSON/SOT-563 packages demand tight hot-loop layout and thermal vias."
+    },
+    {
+      "metric": "Input Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "2.7 to 14 V (p.4)",
+      "part_b_value": "2.7 to 14 V (p.4)",
+      "winner": "TIE",
+      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+    },
+    {
+      "metric": "Absolute Max Input Voltage",
+      "unit": "V",
+      "part_a_value": "14.5 V (p.3)",
+      "part_b_value": "14.5 V (p.3)",
+      "winner": "TIE",
+      "note": "Provides transient overshoot margin above nominal DC supply bus."
+    },
+    {
+      "metric": "Output Voltage Range",
+      "unit": "V",
+      "part_a_value": "5 to 28 V (p.1) (Adj)",
+      "part_b_value": "5 to 38 V (p.12/p.3) (Adj)",
+      "winner": "CONTEXT",
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+    },
+    {
+      "metric": "Max Current (Iout or Isw Limit)",
+      "unit": "mA",
+      "part_a_value": "800 mA (p.5) [Isw limit]",
+      "part_b_value": "1000 mA (p.4) [Isw limit]",
+      "winner": "B",
+      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+    },
+    {
+      "metric": "Quiescent Current (Iq, typ)",
+      "unit": "µA",
+      "part_a_value": "400 µA (p.5)",
+      "part_b_value": "400 µA (p.4)",
+      "winner": "TIE",
+      "note": "Dominates light-load efficiency and standby battery runtime."
+    },
+    {
+      "metric": "Switching Frequency (fsw, typ)",
+      "unit": "kHz",
+      "part_a_value": "1600 kHz (p.5)",
+      "part_b_value": "1600 kHz (p.5)",
+      "winner": "CONTEXT",
+      "note": "Higher fsw shrinks inductor footprint; lower fsw reduces switching losses & high-band EMI."
+    },
+    {
+      "metric": "Peak Efficiency",
+      "unit": "%",
+      "part_a_value": "91 % (p.7)",
+      "part_b_value": "89 % (p.1)",
+      "winner": "A",
+      "note": "Check datasheet efficiency curve at your exact Vin/Vout/Iout operating point."
+    },
+    {
+      "metric": "Recommended Inductor (L, typ)",
+      "unit": "µH",
+      "part_a_value": "10 µH (p.1)",
+      "part_b_value": "10 µH (p.1)",
+      "winner": "CONTEXT",
+      "note": "Ensure inductor Isat exceeds worst-case peak switch current by >= 20–30%."
+    },
+    {
+      "metric": "Feedback Reference (Vref)",
+      "unit": "V",
+      "part_a_value": "1.23 V (p.5)",
+      "part_b_value": "1.23 V (p.4)",
+      "winner": "CONTEXT",
+      "note": "Any Vref discrepancy requires recalculating feedback divider R1/R2."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "166.3 °C/W (p.4) · 125 °C",
+      "part_b_value": "210 °C/W (p.4) · 125 °C",
+      "winner": "A",
+      "note": "Lower θJA improves continuous load thermal headroom on compact 2-layer PCBs."
+    }
+  ],
+  "swap_risks": [
+    "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (LM27313XMF/NOPB: 166.3 °C/W vs LM2733XMF/NOPB: 210 °C/W) and worst-case ambient temperature (-40..125 °C vs -40..125 °C).",
+    "DATASHEET REVISION CHECK (AUD-04): Verify latest official manufacturer datasheets (SNVS487E (Jan 2015) vs SNVS209G (May 2019)) for part-marking codes, transient load response, and qualification status before production release."
+  ],
+  "engineering_verdict": "LM27313XMF/NOPB (Texas Instruments, SOT-23-5) and LM2733XMF/NOPB (Texas Instruments, SOT-23-5) qualify as Level 1 Candidate Drop-In alternatives with matching pin assignments, compatible exposed-pad nets, and aligned core operating ratings. Key datasheet deltas: topology is boost (non-sync) vs boost (non-sync), switching frequency is 1600 kHz (p.5) vs 1600 kHz (p.5), rated current is 800 mA (p.5) vs 1000 mA (p.4), typical inductor is 10 µH (p.1) vs 10 µH (p.1), and Iq is 400 µA (p.5) vs 400 µA (p.4). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 166.3 vs 210 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "generated_at": "2026-11-22"
+}

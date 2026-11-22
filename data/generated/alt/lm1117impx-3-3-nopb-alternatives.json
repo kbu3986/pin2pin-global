@@ -1,0 +1,121 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "lm1117impx-3-3-nopb-alternatives",
+  "target_slug": "lm1117impx-3-3-nopb",
+  "target_opn": "LM1117IMPX-3.3/NOPB",
+  "category": "ldo",
+  "summary": "Datasheet-verified cross-reference alternatives for LM1117IMPX-3.3/NOPB (Texas Instruments, SOT-223-3, fixed-ldo): evaluated 24 same-category OPNs, surfacing 2 Level 1 Candidate Drop-In, 2 Level 2 Tuning Required, and 4 Level 3 Layout Change options. Verify pinout, thermal margin, and official manufacturer datasheets before production.",
+  "candidates": [
+    {
+      "alt_slug": "ams1117-3-3",
+      "alt_opn": "AMS1117-3.3",
+      "manufacturer": "Advanced Monolithic Systems",
+      "package_code": "SOT-223-3",
+      "compatibility_level": "LEVEL_1_CANDIDATE_DROP_IN",
+      "compatibility_badge": "Candidate Drop-In (Verify Datasheet Before Production)",
+      "tier_tag": "Candidate Drop-In",
+      "score": 95,
+      "key_advantage": "Higher Iout (1000 mA vs 800 mA)",
+      "key_tradeoff": "Verify θJA (90 °C/W) and latest Advanced Monolithic Systems datasheet revision",
+      "vs_slug": "ams1117-3-3-vs-lm1117impx-3-3-nopb"
+    },
+    {
+      "alt_slug": "ncp1117st33t3g",
+      "alt_opn": "NCP1117ST33T3G",
+      "manufacturer": "onsemi",
+      "package_code": "SOT-223-3",
+      "compatibility_level": "LEVEL_1_CANDIDATE_DROP_IN",
+      "compatibility_badge": "Candidate Drop-In (Verify Datasheet Before Production)",
+      "tier_tag": "Higher Current / Margin",
+      "score": 95,
+      "key_advantage": "Higher Iout (1000 mA vs 800 mA)",
+      "key_tradeoff": "Verify θJA (160 °C/W) and latest onsemi datasheet revision",
+      "vs_slug": "lm1117impx-3-3-nopb-vs-ncp1117st33t3g"
+    },
+    {
+      "alt_slug": "tlv1117-33idcyr",
+      "alt_opn": "TLV1117-33IDCYR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOT-223-3",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Ultra-Low Iq Upgrade",
+      "score": 79,
+      "key_advantage": "Lower Iq (65 µA vs 5000 µA); Lower dropout (800 mV vs 1200 mV)",
+      "key_tradeoff": "Verify θJA (95.4 °C/W) and latest Texas Instruments datasheet revision",
+      "vs_slug": "lm1117impx-3-3-nopb-vs-tlv1117-33idcyr"
+    },
+    {
+      "alt_slug": "az1117ch-3-3trg1",
+      "alt_opn": "AZ1117CH-3.3TRG1",
+      "manufacturer": "Diodes Incorporated",
+      "package_code": "SOT-223-3",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Value / Second-Source",
+      "score": 74,
+      "key_advantage": "Ceramic MLCC stable (no tantalum ESR floor)",
+      "key_tradeoff": "Verify θJA (125 °C/W) and latest Diodes Incorporated datasheet revision",
+      "vs_slug": null
+    },
+    {
+      "alt_slug": "ap7361c-33e-13",
+      "alt_opn": "AP7361C-33E-13",
+      "manufacturer": "Diodes Incorporated",
+      "package_code": "SOT-223-3",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+      "tier_tag": "Functional Alternative (Layout Change)",
+      "score": 50,
+      "key_advantage": "Lower Iq (60 µA vs 5000 µA); Higher Iout (1000 mA vs 800 mA)",
+      "key_tradeoff": "Pinout or exposed-pad mismatch requires PCB rerouting; Lower Vin,max (6 V vs 15 V)",
+      "vs_slug": "ap7361c-33e-13-vs-lm1117impx-3-3-nopb"
+    },
+    {
+      "alt_slug": "lm2937imp-3-3-nopb",
+      "alt_opn": "LM2937IMP-3.3/NOPB",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOT-223-3",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+      "tier_tag": "Functional Alternative (Layout Change)",
+      "score": 47,
+      "key_advantage": "Lower Iq (2000 µA vs 5000 µA); Higher Vin,max (26 V vs 15 V)",
+      "key_tradeoff": "Pinout or exposed-pad mismatch requires PCB rerouting; Lower Iout (400 mA vs 800 mA)",
+      "vs_slug": "lm1117impx-3-3-nopb-vs-lm2937imp-3-3-nopb"
+    },
+    {
+      "alt_slug": "lm3480im3-3-3-nopb",
+      "alt_opn": "LM3480IM3-3.3/NOPB",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOT-23-3",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+      "tier_tag": "Functional Alternative (Layout Change)",
+      "score": 46,
+      "key_advantage": "Lower Iq (2000 µA vs 5000 µA); Higher Vin,max (30 V vs 15 V)",
+      "key_tradeoff": "Package change (SOT-223-3 → SOT-23-3) requires PCB layout mod; Lower Iout (100 mA vs 800 mA)",
+      "vs_slug": null
+    },
+    {
+      "alt_slug": "lp2985-33dbvr",
+      "alt_opn": "LP2985-33DBVR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOT-23-5",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+      "tier_tag": "Functional Alternative (Layout Change)",
+      "score": 46,
+      "key_advantage": "Lower Iq (69 µA vs 5000 µA); Lower dropout (180 mV vs 1200 mV)",
+      "key_tradeoff": "Package change (SOT-223-3 → SOT-23-5) requires PCB layout mod; Lower Iout (150 mA vs 800 mA)",
+      "vs_slug": null
+    }
+  ],
+  "selection_checklist": [
+    "Verify exact pin numbering on SOT-223-3 (1=GND, 2=VOUT, 3=VIN) and exposed pad net (VOUT).",
+    "Confirm output capacitor ESR stability (ESR window 0.3–22 Ω (p.15)) and DC-bias derated capacitance >= 10 µF.",
+    "Check worst-case junction temperature Tj = Ta + (Vin,max - 3.3 V) × Iout × θJA stays >= 15 °C below Tj,max (125 °C).",
+    "Validate input transient headroom against Vin,max (15 V rec / 20 V abs) and Pin 4 (NC vs BYPASS) PCB net connectivity."
+  ],
+  "generated_at": "2026-11-22"
+}

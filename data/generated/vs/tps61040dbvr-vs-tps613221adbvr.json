@@ -1,0 +1,169 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "tps61040dbvr-vs-tps613221adbvr",
+  "category": "dcdc",
+  "part_a_slug": "tps61040dbvr",
+  "part_b_slug": "tps613221adbvr",
+  "part_a_opn": "TPS61040DBVR",
+  "part_b_opn": "TPS613221ADBVR",
+  "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+  "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+  "package_match": true,
+  "pinout_exact_match": false,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "SW",
+      "part_a_role": "SW",
+      "part_b_name": "SW",
+      "part_b_role": "SW",
+      "status": "MATCH",
+      "note": "Identical pin assignment (SW / SW)."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "GND",
+      "part_a_role": "GND",
+      "part_b_name": "GND",
+      "part_b_role": "GND",
+      "status": "MATCH",
+      "note": "Identical pin assignment (GND / GND)."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "FB",
+      "part_a_role": "FB",
+      "part_b_name": "NC",
+      "part_b_role": "NC",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 3: TPS61040DBVR assigns FB (FB) whereas TPS613221ADBVR assigns NC (NC) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "EN",
+      "part_a_role": "EN",
+      "part_b_name": "VOUT",
+      "part_b_role": "VOUT",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 4: TPS61040DBVR assigns EN (EN) whereas TPS613221ADBVR assigns VOUT (VOUT) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "VIN",
+      "part_a_role": "VIN",
+      "part_b_name": "NC",
+      "part_b_role": "NC",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 5: TPS61040DBVR assigns VIN (VIN) whereas TPS613221ADBVR assigns NC (NC) — direct drop-in risks rail short or IC destruction."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Topology & Rectification",
+      "unit": "—",
+      "part_a_value": "boost (Non-Sync Diode)",
+      "part_b_value": "boost (Synchronous)",
+      "winner": "B",
+      "note": "Synchronous rectification eliminates external Schottky diode loss and PCB area."
+    },
+    {
+      "metric": "Package & Exposed Pad",
+      "unit": "—",
+      "part_a_value": "SOT-23-5 (DBV, EP: None, p.3)",
+      "part_b_value": "SOT-23-5 (DBV, EP: None, p.3)",
+      "winner": "TIE",
+      "note": "Compact WSON/VSON/SOT-563 packages demand tight hot-loop layout and thermal vias."
+    },
+    {
+      "metric": "Input Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "1.8 to 6 V (p.4)",
+      "part_b_value": "0.9 to 5.5 V (p.4)",
+      "winner": "B",
+      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+    },
+    {
+      "metric": "Absolute Max Input Voltage",
+      "unit": "V",
+      "part_a_value": "7 V (p.4)",
+      "part_b_value": "6 V (p.4)",
+      "winner": "A",
+      "note": "Provides transient overshoot margin above nominal DC supply bus."
+    },
+    {
+      "metric": "Output Voltage Range",
+      "unit": "V",
+      "part_a_value": "1.8 to 28 V (p.5/p.4) (Adj)",
+      "part_b_value": "3.2 to 3.4 V (p.5) (Fixed)",
+      "winner": "CONTEXT",
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+    },
+    {
+      "metric": "Max Current (Iout or Isw Limit)",
+      "unit": "mA",
+      "part_a_value": "400 mA (p.5) [Isw limit]",
+      "part_b_value": "1200 mA (p.5) [Isw limit]",
+      "winner": "B",
+      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+    },
+    {
+      "metric": "Quiescent Current (Iq, typ)",
+      "unit": "µA",
+      "part_a_value": "28 µA (p.5)",
+      "part_b_value": "6.5 µA (p.5)",
+      "winner": "B",
+      "note": "Dominates light-load efficiency and standby battery runtime."
+    },
+    {
+      "metric": "Switching Frequency (fsw, typ)",
+      "unit": "kHz",
+      "part_a_value": "1000 kHz (p.1)",
+      "part_b_value": "1600 kHz (p.9)",
+      "winner": "CONTEXT",
+      "note": "Higher fsw shrinks inductor footprint; lower fsw reduces switching losses & high-band EMI."
+    },
+    {
+      "metric": "Peak Efficiency",
+      "unit": "%",
+      "part_a_value": "87.5 % (p.1)",
+      "part_b_value": "94 % (p.6)",
+      "winner": "B",
+      "note": "Check datasheet efficiency curve at your exact Vin/Vout/Iout operating point."
+    },
+    {
+      "metric": "Recommended Inductor (L, typ)",
+      "unit": "µH",
+      "part_a_value": "10 µH (p.4)",
+      "part_b_value": "2.2 µH (p.4)",
+      "winner": "CONTEXT",
+      "note": "Ensure inductor Isat exceeds worst-case peak switch current by >= 20–30%."
+    },
+    {
+      "metric": "Feedback Reference (Vref)",
+      "unit": "V",
+      "part_a_value": "1.233 V (p.5)",
+      "part_b_value": "N/A (Fixed)",
+      "winner": "CONTEXT",
+      "note": "Any Vref discrepancy requires recalculating feedback divider R1/R2."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "205.2 °C/W (p.4) · 125 °C",
+      "part_b_value": "189.7 °C/W (p.4) · 125 °C",
+      "winner": "B",
+      "note": "Lower θJA improves continuous load thermal headroom on compact 2-layer PCBs."
+    }
+  ],
+  "swap_risks": [
+    "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 3 (FB vs NC), Pin 4 (EN vs VOUT), Pin 5 (VIN vs NC). Soldering TPS613221ADBVR onto a TPS61040DBVR footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
+    "HIGH RECTIFICATION DIFFERENCE: TPS61040DBVR is non-synchronous and requires an external Schottky catch/freewheeling diode, whereas the counterpart integrates a synchronous low-side MOSFET.",
+    "HIGH SWITCHING FREQUENCY SHIFT: fsw differs by 38% (TPS61040DBVR: 1000 kHz p.1 vs TPS613221ADBVR: 1600 kHz p.9); re-evaluate inductor core loss, ripple current ΔIL, output capacitor ESR ripple, and EMI harmonics.",
+    "CAUTION INDUCTOR RETUNING: Typical inductor differs (TPS61040DBVR: 10 µH p.4 vs TPS613221ADBVR: 2.2 µH p.4); check inductor Isat against peak switch current limit.",
+    "HIGH FEEDBACK CONFIGURATION: One converter is fixed-output while the other is adjustable; external R1/R2 feedback resistors and feedforward capacitor must be updated.",
+    "CAUTION CURRENT RATING BASIS: TPS61040DBVR specifies 400 mA (switch current limit Isw, p.5) vs TPS613221ADBVR 1200 mA (switch current limit Isw, p.5). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling."
+  ],
+  "engineering_verdict": "TPS61040DBVR (Texas Instruments, SOT-23-5) and TPS613221ADBVR (Texas Instruments, SOT-23-5) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to pinout mismatch on Pin 3 (FB vs NC), Pin 4 (EN vs VOUT), Pin 5 (VIN vs NC). Key datasheet deltas: topology is boost (non-sync) vs boost (sync), switching frequency is 1000 kHz (p.1) vs 1600 kHz (p.9), rated current is 400 mA (p.5) vs 1200 mA (p.5), typical inductor is 10 µH (p.4) vs 2.2 µH (p.4), and Iq is 28 µA (p.5) vs 6.5 µA (p.5). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 205.2 vs 189.7 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "generated_at": "2026-11-22"
+}

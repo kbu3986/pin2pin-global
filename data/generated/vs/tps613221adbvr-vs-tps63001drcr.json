@@ -1,0 +1,214 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "tps613221adbvr-vs-tps63001drcr",
+  "category": "dcdc",
+  "part_a_slug": "tps613221adbvr",
+  "part_b_slug": "tps63001drcr",
+  "part_a_opn": "TPS613221ADBVR",
+  "part_b_opn": "TPS63001DRCR",
+  "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+  "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+  "package_match": false,
+  "pinout_exact_match": false,
+  "exposed_pad_match": false,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "SW",
+      "part_a_role": "SW",
+      "part_b_name": "VOUT",
+      "part_b_role": "VOUT",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 1: TPS613221ADBVR assigns SW (SW) whereas TPS63001DRCR assigns VOUT (VOUT) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "GND",
+      "part_a_role": "GND",
+      "part_b_name": "L2",
+      "part_b_role": "SW",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 2: TPS613221ADBVR assigns GND (GND) whereas TPS63001DRCR assigns L2 (SW) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "NC",
+      "part_a_role": "NC",
+      "part_b_name": "PGND",
+      "part_b_role": "GND",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 3: TPS613221ADBVR assigns NC (NC) whereas TPS63001DRCR assigns PGND (GND) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "VOUT",
+      "part_a_role": "VOUT",
+      "part_b_name": "L1",
+      "part_b_role": "SW",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 4: TPS613221ADBVR assigns VOUT (VOUT) whereas TPS63001DRCR assigns L1 (SW) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "NC",
+      "part_a_role": "NC",
+      "part_b_name": "VIN",
+      "part_b_role": "VIN",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 5: TPS613221ADBVR assigns NC (NC) whereas TPS63001DRCR assigns VIN (VIN) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 6,
+      "part_a_name": "— (No Pin)",
+      "part_a_role": "NONE",
+      "part_b_name": "EN",
+      "part_b_role": "EN",
+      "status": "MISMATCH",
+      "note": "Package pin-count mismatch (5-pin SOT-23-5 vs 10-pin VSON-10)."
+    },
+    {
+      "pin": 7,
+      "part_a_name": "— (No Pin)",
+      "part_a_role": "NONE",
+      "part_b_name": "PS/SYNC",
+      "part_b_role": "PS",
+      "status": "MISMATCH",
+      "note": "Package pin-count mismatch (5-pin SOT-23-5 vs 10-pin VSON-10)."
+    },
+    {
+      "pin": 8,
+      "part_a_name": "— (No Pin)",
+      "part_a_role": "NONE",
+      "part_b_name": "VINA",
+      "part_b_role": "VIN",
+      "status": "MISMATCH",
+      "note": "Package pin-count mismatch (5-pin SOT-23-5 vs 10-pin VSON-10)."
+    },
+    {
+      "pin": 9,
+      "part_a_name": "— (No Pin)",
+      "part_a_role": "NONE",
+      "part_b_name": "GND",
+      "part_b_role": "GND",
+      "status": "MISMATCH",
+      "note": "Package pin-count mismatch (5-pin SOT-23-5 vs 10-pin VSON-10)."
+    },
+    {
+      "pin": 10,
+      "part_a_name": "— (No Pin)",
+      "part_a_role": "NONE",
+      "part_b_name": "FB",
+      "part_b_role": "FB",
+      "status": "MISMATCH",
+      "note": "Package pin-count mismatch (5-pin SOT-23-5 vs 10-pin VSON-10)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Topology & Rectification",
+      "unit": "—",
+      "part_a_value": "boost (Synchronous)",
+      "part_b_value": "buck-boost (Synchronous)",
+      "winner": "CONTEXT",
+      "note": "Synchronous rectification eliminates external Schottky diode loss and PCB area."
+    },
+    {
+      "metric": "Package & Exposed Pad",
+      "unit": "—",
+      "part_a_value": "SOT-23-5 (DBV, EP: None, p.3)",
+      "part_b_value": "VSON-10 (DRC, EP: GND, p.3)",
+      "winner": "CONTEXT",
+      "note": "Compact WSON/VSON/SOT-563 packages demand tight hot-loop layout and thermal vias."
+    },
+    {
+      "metric": "Input Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "0.9 to 5.5 V (p.4)",
+      "part_b_value": "1.8 to 5.5 V (p.4)",
+      "winner": "A",
+      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+    },
+    {
+      "metric": "Absolute Max Input Voltage",
+      "unit": "V",
+      "part_a_value": "6 V (p.4)",
+      "part_b_value": "7 V (p.4)",
+      "winner": "B",
+      "note": "Provides transient overshoot margin above nominal DC supply bus."
+    },
+    {
+      "metric": "Output Voltage Range",
+      "unit": "V",
+      "part_a_value": "3.2 to 3.4 V (p.5) (Fixed)",
+      "part_b_value": "3.3 to 3.3 V (p.1) (Fixed)",
+      "winner": "CONTEXT",
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+    },
+    {
+      "metric": "Max Current (Iout or Isw Limit)",
+      "unit": "mA",
+      "part_a_value": "1200 mA (p.5) [Isw limit]",
+      "part_b_value": "1200 mA (p.1) [Iout max]",
+      "winner": "CONTEXT",
+      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+    },
+    {
+      "metric": "Quiescent Current (Iq, typ)",
+      "unit": "µA",
+      "part_a_value": "6.5 µA (p.5)",
+      "part_b_value": "41 µA (p.5)",
+      "winner": "A",
+      "note": "Dominates light-load efficiency and standby battery runtime."
+    },
+    {
+      "metric": "Switching Frequency (fsw, typ)",
+      "unit": "kHz",
+      "part_a_value": "1600 kHz (p.9)",
+      "part_b_value": "1500 kHz (p.5)",
+      "winner": "CONTEXT",
+      "note": "Higher fsw shrinks inductor footprint; lower fsw reduces switching losses & high-band EMI."
+    },
+    {
+      "metric": "Peak Efficiency",
+      "unit": "%",
+      "part_a_value": "94 % (p.6)",
+      "part_b_value": "96 % (p.1)",
+      "winner": "B",
+      "note": "Check datasheet efficiency curve at your exact Vin/Vout/Iout operating point."
+    },
+    {
+      "metric": "Recommended Inductor (L, typ)",
+      "unit": "µH",
+      "part_a_value": "2.2 µH (p.4)",
+      "part_b_value": "2.2 µH (p.1)",
+      "winner": "CONTEXT",
+      "note": "Ensure inductor Isat exceeds worst-case peak switch current by >= 20–30%."
+    },
+    {
+      "metric": "Feedback Reference (Vref)",
+      "unit": "V",
+      "part_a_value": "N/A (Fixed)",
+      "part_b_value": "N/A (Fixed)",
+      "winner": "CONTEXT",
+      "note": "Any Vref discrepancy requires recalculating feedback divider R1/R2."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "189.7 °C/W (p.4) · 125 °C",
+      "part_b_value": "46.8 °C/W (p.4) · 125 °C",
+      "winner": "B",
+      "note": "Lower θJA improves continuous load thermal headroom on compact 2-layer PCBs."
+    }
+  ],
+  "swap_risks": [
+    "CRITICAL PACKAGE MISMATCH: TPS613221ADBVR uses SOT-23-5 (5-pin, DBV) while TPS63001DRCR uses VSON-10 (10-pin, DRC); PCB footprint redesign is mandatory.",
+    "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (SW vs VOUT), Pin 2 (GND vs SW), Pin 3 (NC vs GND), Pin 4 (VOUT vs SW), Pin 5 (NC vs VIN), Pin 6 (NONE vs EN), Pin 7 (NONE vs PS), Pin 8 (NONE vs VIN), Pin 9 (NONE vs GND), Pin 10 (NONE vs FB). Soldering TPS63001DRCR onto a TPS613221ADBVR footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
+    "Exposed thermal pad/tab mismatch (SOT-23-5: NONE vs VSON-10: GND); PCB land pattern & solder-mask change required.",
+    "CRITICAL TOPOLOGY DIFFERENCE: TPS613221ADBVR is a boost converter whereas TPS63001DRCR is a buck-boost converter; power-stage architecture, inductor placement, and startup behavior differ fundamentally.",
+    "CAUTION CURRENT RATING BASIS: TPS613221ADBVR specifies 1200 mA (switch current limit Isw, p.5) vs TPS63001DRCR 1200 mA (continuous Iout, p.1). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling.",
+    "CAUTION THERMAL MARGIN: Package θJA differs by 75% (TPS613221ADBVR: 189.7 °C/W p.4 vs TPS63001DRCR: 46.8 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max."
+  ],
+  "engineering_verdict": "TPS613221ADBVR (Texas Instruments, SOT-23-5) and TPS63001DRCR (Texas Instruments, VSON-10) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (SW vs VOUT), Pin 2 (GND vs SW), Pin 3 (NC vs GND), Pin 4 (VOUT vs SW), Pin 5 (NC vs VIN), Pin 6 (NONE vs EN), Pin 7 (NONE vs PS), Pin 8 (NONE vs VIN), Pin 9 (NONE vs GND), Pin 10 (NONE vs FB); exposed pad / thermal tab net mismatch. Key datasheet deltas: topology is boost (sync) vs buck-boost (sync), switching frequency is 1600 kHz (p.9) vs 1500 kHz (p.5), rated current is 1200 mA (p.5) vs 1200 mA (p.1), typical inductor is 2.2 µH (p.4) vs 2.2 µH (p.1), and Iq is 6.5 µA (p.5) vs 41 µA (p.5). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 189.7 vs 46.8 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "generated_at": "2026-11-22"
+}

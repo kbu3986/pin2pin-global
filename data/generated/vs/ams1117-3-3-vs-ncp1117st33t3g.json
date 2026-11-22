@@ -1,0 +1,147 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "ams1117-3-3-vs-ncp1117st33t3g",
+  "category": "ldo",
+  "part_a_slug": "ams1117-3-3",
+  "part_b_slug": "ncp1117st33t3g",
+  "part_a_opn": "AMS1117-3.3",
+  "part_b_opn": "NCP1117ST33T3G",
+  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+  "package_match": true,
+  "pinout_exact_match": true,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "GND",
+      "part_a_role": "GND",
+      "part_b_name": "Adjust/Ground",
+      "part_b_role": "GND",
+      "status": "MATCH",
+      "note": "Functionally identical GND pin (GND vs Adjust/Ground)."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "VOUT",
+      "part_a_role": "VOUT",
+      "part_b_name": "Output",
+      "part_b_role": "VOUT",
+      "status": "MATCH",
+      "note": "Functionally identical VOUT pin (VOUT vs Output)."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "VIN",
+      "part_a_role": "VIN",
+      "part_b_name": "Input",
+      "part_b_role": "VIN",
+      "status": "MATCH",
+      "note": "Functionally identical VIN pin (VIN vs Input)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Package & Exposed Pad",
+      "unit": "—",
+      "part_a_value": "SOT-223-3 (SOT-223, EP: VOUT, p.1)",
+      "part_b_value": "SOT-223-3 (CASE 318H (ST), EP: VOUT, p.1)",
+      "winner": "TIE",
+      "note": "Same JEDEC package outline."
+    },
+    {
+      "metric": "Input Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "4.8 to 15 V (p.2)",
+      "part_b_value": "4.75 to 15 V (p.3)",
+      "winner": "TIE",
+      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+    },
+    {
+      "metric": "Absolute Max Input Voltage",
+      "unit": "V",
+      "part_a_value": "15 V (p.2)",
+      "part_b_value": "20 V (p.2)",
+      "winner": "B",
+      "note": "Higher Vin,abs improves survivability against hot-plug and inductive bus spikes."
+    },
+    {
+      "metric": "Output Voltage & Accuracy",
+      "unit": "V / %",
+      "part_a_value": "3.3 V ±1.5% (p.2)",
+      "part_b_value": "3.3 V ±1% (p.3)",
+      "winner": "B",
+      "note": "Tighter Vout tolerance improves ADC reference and digital rail margin."
+    },
+    {
+      "metric": "Max Output Current (Iout)",
+      "unit": "mA",
+      "part_a_value": "1000 mA (p.1)",
+      "part_b_value": "1000 mA (p.3)",
+      "winner": "TIE",
+      "note": "Actual usable continuous Iout is also bounded by package θJA thermal derating."
+    },
+    {
+      "metric": "Quiescent Current (Iq, typ)",
+      "unit": "µA",
+      "part_a_value": "5000 µA (p.3)",
+      "part_b_value": "6000 µA (p.4)",
+      "winner": "A",
+      "note": "Lower Iq directly extends sleep-mode battery life in always-on IoT/portable rails."
+    },
+    {
+      "metric": "Dropout Voltage (Vdo, typ)",
+      "unit": "mV",
+      "part_a_value": "1100 mV (p.3)",
+      "part_b_value": "1070 mV (p.3)",
+      "winner": "TIE",
+      "note": "Lower dropout allows regulation deeper into Li-ion / 3.7 V discharge curves."
+    },
+    {
+      "metric": "Ceramic Cap Stability & Min Cout",
+      "unit": "µF / Ω",
+      "part_a_value": "ESR-Sensitive · >=22 µF · See datasheet ESR curve",
+      "part_b_value": "ESR-Sensitive · >=4.7 µF · 0.033–2.2 Ω (p.9)",
+      "winner": "B",
+      "note": "Non-ceramic-stable LDOs oscillate with low-ESR MLCCs unless series resistance or tantalum is used."
+    },
+    {
+      "metric": "PSRR (typ)",
+      "unit": "dB",
+      "part_a_value": "72 dB (p.3)",
+      "part_b_value": "64 dB (p.4)",
+      "winner": "A",
+      "note": "Higher PSRR attenuates upstream switching-converter ripple on analog/RF rails."
+    },
+    {
+      "metric": "Output Noise (typ)",
+      "unit": "µVrms",
+      "part_a_value": "99 µVrms (p.3)",
+      "part_b_value": "99 µVrms (p.4)",
+      "winner": "TIE",
+      "note": "Critical for RF VCOs, low-noise ADCs, and precision sensor excitation."
+    },
+    {
+      "metric": "Thermal Resistance (θJA)",
+      "unit": "°C/W",
+      "part_a_value": "90 °C/W (p.2)",
+      "part_b_value": "160 °C/W (p.2)",
+      "winner": "A",
+      "note": "Lower θJA yields lower junction temperature rise ΔTj = (Vin - Vout) × Iout × θJA."
+    },
+    {
+      "metric": "Max Junction Temp (Tj,max)",
+      "unit": "°C",
+      "part_a_value": "125 °C (p.2)",
+      "part_b_value": "125 °C (p.2)",
+      "winner": "TIE",
+      "note": "Keep steady-state Tj at least 15–25 °C below Tj,max for production reliability."
+    }
+  ],
+  "swap_risks": [
+    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs significantly (AMS1117-3.3: 22 µF p.4 vs NCP1117ST33T3G: 4.7 µF p.9); account for MLCC DC-bias derating.",
+    "CAUTION THERMAL MARGIN: Package θJA differs by 44% (AMS1117-3.3: 90 °C/W p.2 vs NCP1117ST33T3G: 160 °C/W p.2); re-check Tj = Ta + Pd × θJA against Tj,max."
+  ],
+  "engineering_verdict": "AMS1117-3.3 (Advanced Monolithic Systems, SOT-223-3) and NCP1117ST33T3G (onsemi, SOT-223-3) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to minimum output capacitance requirement differs >= 2.5x. Key datasheet deltas: Iq is 5000 µA (p.3) vs 6000 µA (p.4), max output current is 1000 mA (p.1) vs 1000 mA (p.3), recommended Vin,max is 15 V (p.2) vs 15 V (p.3), typical dropout is 1100 mV (p.3) vs 1070 mV (p.3), and ceramic capacitor stability is ESR-constrained vs ESR-constrained. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.1), thermal margin (θJA 90 vs 160 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "generated_at": "2026-11-22"
+}

@@ -1,0 +1,165 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "tlv9001idbvr-vs-tlv9061idbvr",
+  "category": "opamp",
+  "part_a_slug": "tlv9001idbvr",
+  "part_b_slug": "tlv9061idbvr",
+  "part_a_opn": "TLV9001IDBVR",
+  "part_b_opn": "TLV9061IDBVR",
+  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+  "package_match": true,
+  "pinout_exact_match": true,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "OUT",
+      "part_a_role": "OUT",
+      "part_b_name": "OUT",
+      "part_b_role": "OUT",
+      "status": "MATCH",
+      "note": "Identical pin assignment (OUT / OUT)."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "V-",
+      "part_a_role": "VEE",
+      "part_b_name": "V-",
+      "part_b_role": "VEE",
+      "status": "MATCH",
+      "note": "Identical pin assignment (V- / VEE)."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "IN+",
+      "part_a_role": "IN_POS",
+      "part_b_name": "IN+",
+      "part_b_role": "IN_POS",
+      "status": "MATCH",
+      "note": "Identical pin assignment (IN+ / IN_POS)."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "IN-",
+      "part_a_role": "IN_NEG",
+      "part_b_name": "IN-",
+      "part_b_role": "IN_NEG",
+      "status": "MATCH",
+      "note": "Identical pin assignment (IN- / IN_NEG)."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "V+",
+      "part_a_role": "VCC",
+      "part_b_name": "V+",
+      "part_b_role": "VCC",
+      "status": "MATCH",
+      "note": "Identical pin assignment (V+ / VCC)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Device Kind & Output Stage",
+      "unit": "—",
+      "part_a_value": "opamp (push-pull)",
+      "part_b_value": "opamp (push-pull)",
+      "winner": "TIE",
+      "note": "Op-amps (compensated push-pull) and comparators (uncompensated open-collector) are NOT drop-in interchangeable."
+    },
+    {
+      "metric": "Package & Channel Count",
+      "unit": "—",
+      "part_a_value": "SOT-23-5 · 1 ch (DBV, p.7)",
+      "part_b_value": "SOT-23-5 · 1 ch (DBV, p.5)",
+      "winner": "TIE",
+      "note": "Single SOT-23-5 op-amps vary in pin ordering across vendors; verify Pin 1–5."
+    },
+    {
+      "metric": "Supply Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "1.8 to 5.5 V (p.14)",
+      "part_b_value": "1.8 to 5.5 V (p.10)",
+      "winner": "TIE",
+      "note": "Confirm total supply span (V+ - V-) stays within recommended limits."
+    },
+    {
+      "metric": "Absolute Max Supply (Vs,abs)",
+      "unit": "V",
+      "part_a_value": "7 V (p.14)",
+      "part_b_value": "6 V (p.10)",
+      "winner": "A",
+      "note": "Exceeding Vs,abs causes immediate gate-oxide or junction breakdown."
+    },
+    {
+      "metric": "Gain-Bandwidth Product (GBWP)",
+      "unit": "MHz",
+      "part_a_value": "1 MHz (p.17)",
+      "part_b_value": "10 MHz (p.13)",
+      "winner": "B",
+      "note": "Closed-loop -3 dB bandwidth scales as f_-3dB = GBWP / Acl."
+    },
+    {
+      "metric": "Slew Rate / Propagation Delay",
+      "unit": "V/µs · ns",
+      "part_a_value": "SR: 2 V/µs (p.17)",
+      "part_b_value": "SR: 6.5 V/µs (p.13)",
+      "winner": "B",
+      "note": "Controls large-signal full-power bandwidth SR / (2π·Vpeak) or comparator switching speed."
+    },
+    {
+      "metric": "Input Offset Voltage (Vos, max)",
+      "unit": "mV",
+      "part_a_value": "1.6 mV (p.17)",
+      "part_b_value": "1.6 mV (p.13)",
+      "winner": "TIE",
+      "note": "Lower Vos minimizes DC error in current-shunt and sensor bridge amplifiers."
+    },
+    {
+      "metric": "Input Bias Current (Ib, typ)",
+      "unit": "pA",
+      "part_a_value": "5 pA (p.17)",
+      "part_b_value": "0.5 pA (p.13)",
+      "winner": "B",
+      "note": "CMOS/JFET pA-class inputs avoid offset voltage drops across high-impedance (>100 kΩ) sensors."
+    },
+    {
+      "metric": "Quiescent Current / Ch (Iq)",
+      "unit": "µA/ch",
+      "part_a_value": "60 µA/ch (p.18)",
+      "part_b_value": "538 µA/ch (p.14)",
+      "winner": "A",
+      "note": "Multiply by channel count for total IC standby current draw."
+    },
+    {
+      "metric": "Rail-to-Rail Input / Output",
+      "unit": "—",
+      "part_a_value": "IN: Yes · OUT: Yes",
+      "part_b_value": "IN: Yes · OUT: Yes",
+      "winner": "TIE",
+      "note": "RRIO prevents clipping on low-voltage 3.3 V single-supply ADC buffers."
+    },
+    {
+      "metric": "CMRR (typ) & Input Noise",
+      "unit": "dB · nV/√Hz",
+      "part_a_value": "77 dB (p.17) · 30 nV/√Hz (p.17)",
+      "part_b_value": "87 dB (p.13) · 16 nV/√Hz (p.13)",
+      "winner": "B",
+      "note": "Higher CMRR rejects common-mode noise; lower voltage noise improves SNR."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "232.9 °C/W (p.15) · 150 °C",
+      "part_b_value": "221.7 °C/W (p.11) · 150 °C",
+      "winner": "B",
+      "note": "Important when driving heavy resistive loads or high supply rails."
+    }
+  ],
+  "swap_risks": [
+    "CAUTION BANDWIDTH & PHASE MARGIN: GBWP differs by 10x (TLV9001IDBVR: 1 MHz p.17 vs TLV9061IDBVR: 10 MHz p.13); higher-bandwidth replacements can oscillate with capacitive loads or stray feedback capacitance without an isolation resistor.",
+    "CAUTION SLEW RATE DIFFERENCE: Slew rate differs by 3.3x (TLV9001IDBVR: 2 V/µs p.17 vs TLV9061IDBVR: 6.5 V/µs p.13); check full-power bandwidth SR / (2π·Vpeak)."
+  ],
+  "engineering_verdict": "TLV9001IDBVR (Texas Instruments, SOT-23-5) and TLV9061IDBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to GBWP differs >= 3x; slew rate differs >= 3x. Key datasheet deltas: device type is opamp (push-pull) vs opamp (push-pull), supply limit is 5.5 V (p.14) vs 5.5 V (p.10), max Vos is 1.6 mV (p.17) vs 1.6 mV (p.13), input bias current is 5 pA (p.17) vs 0.5 pA (p.13), and Iq/ch is 60 µA (p.18) vs 538 µA (p.14). Always validate pinout orientation (TOP_VIEW p.7 vs TOP_VIEW p.5), thermal margin (θJA 232.9 vs 221.7 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "generated_at": "2026-11-22"
+}

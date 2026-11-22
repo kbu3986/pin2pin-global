@@ -1,0 +1,180 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "ap63203wu-7-vs-lm2596sx-5-0-nopb",
+  "category": "dcdc",
+  "part_a_slug": "ap63203wu-7",
+  "part_b_slug": "lm2596sx-5-0-nopb",
+  "part_a_opn": "AP63203WU-7",
+  "part_b_opn": "LM2596SX-5.0/NOPB",
+  "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+  "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+  "package_match": false,
+  "pinout_exact_match": false,
+  "exposed_pad_match": false,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "FB",
+      "part_a_role": "FB",
+      "part_b_name": "VIN",
+      "part_b_role": "VIN",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 1: AP63203WU-7 assigns FB (FB) whereas LM2596SX-5.0/NOPB assigns VIN (VIN) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "EN",
+      "part_a_role": "EN",
+      "part_b_name": "Output",
+      "part_b_role": "SW",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 2: AP63203WU-7 assigns EN (EN) whereas LM2596SX-5.0/NOPB assigns Output (SW) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "VIN",
+      "part_a_role": "VIN",
+      "part_b_name": "Ground",
+      "part_b_role": "GND",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 3: AP63203WU-7 assigns VIN (VIN) whereas LM2596SX-5.0/NOPB assigns Ground (GND) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "GND",
+      "part_a_role": "GND",
+      "part_b_name": "Feedback",
+      "part_b_role": "FB",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 4: AP63203WU-7 assigns GND (GND) whereas LM2596SX-5.0/NOPB assigns Feedback (FB) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "SW",
+      "part_a_role": "SW",
+      "part_b_name": "ON/OFF",
+      "part_b_role": "EN",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 5: AP63203WU-7 assigns SW (SW) whereas LM2596SX-5.0/NOPB assigns ON/OFF (EN) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 6,
+      "part_a_name": "BST",
+      "part_a_role": "BOOT",
+      "part_b_name": "— (No Pin)",
+      "part_b_role": "NONE",
+      "status": "MISMATCH",
+      "note": "Package pin-count mismatch (6-pin TSOT-23-6 vs 5-pin TO-263-5)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Topology & Rectification",
+      "unit": "—",
+      "part_a_value": "buck (Synchronous)",
+      "part_b_value": "buck (Non-Sync Diode)",
+      "winner": "A",
+      "note": "Synchronous rectification eliminates external Schottky diode loss and PCB area."
+    },
+    {
+      "metric": "Package & Exposed Pad",
+      "unit": "—",
+      "part_a_value": "TSOT-23-6 (TSOT26, EP: None, p.1)",
+      "part_b_value": "TO-263-5 (KTT, EP: GND, p.4)",
+      "winner": "CONTEXT",
+      "note": "Compact WSON/VSON/SOT-563 packages demand tight hot-loop layout and thermal vias."
+    },
+    {
+      "metric": "Input Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "3.8 to 32 V (p.4)",
+      "part_b_value": "7 to 40 V (p.6)",
+      "winner": "B",
+      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+    },
+    {
+      "metric": "Absolute Max Input Voltage",
+      "unit": "V",
+      "part_a_value": "35 V (p.4)",
+      "part_b_value": "45 V (p.5)",
+      "winner": "B",
+      "note": "Provides transient overshoot margin above nominal DC supply bus."
+    },
+    {
+      "metric": "Output Voltage Range",
+      "unit": "V",
+      "part_a_value": "3.27 to 3.33 V (p.5) (Fixed)",
+      "part_b_value": "4.75 to 5.25 V (p.6) (Fixed)",
+      "winner": "CONTEXT",
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+    },
+    {
+      "metric": "Max Current (Iout or Isw Limit)",
+      "unit": "mA",
+      "part_a_value": "2000 mA (p.1) [Iout max]",
+      "part_b_value": "3000 mA (p.1) [Iout max]",
+      "winner": "B",
+      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+    },
+    {
+      "metric": "Quiescent Current (Iq, typ)",
+      "unit": "µA",
+      "part_a_value": "22 µA (p.5)",
+      "part_b_value": "5000 µA (p.7)",
+      "winner": "A",
+      "note": "Dominates light-load efficiency and standby battery runtime."
+    },
+    {
+      "metric": "Switching Frequency (fsw, typ)",
+      "unit": "kHz",
+      "part_a_value": "1100 kHz (p.5)",
+      "part_b_value": "150 kHz (p.7)",
+      "winner": "CONTEXT",
+      "note": "Higher fsw shrinks inductor footprint; lower fsw reduces switching losses & high-band EMI."
+    },
+    {
+      "metric": "Peak Efficiency",
+      "unit": "%",
+      "part_a_value": "92 % (p.2)",
+      "part_b_value": "80 % (p.6)",
+      "winner": "A",
+      "note": "Check datasheet efficiency curve at your exact Vin/Vout/Iout operating point."
+    },
+    {
+      "metric": "Recommended Inductor (L, typ)",
+      "unit": "µH",
+      "part_a_value": "3.9 µH (p.13)",
+      "part_b_value": "33 µH (p.25)",
+      "winner": "CONTEXT",
+      "note": "Ensure inductor Isat exceeds worst-case peak switch current by >= 20–30%."
+    },
+    {
+      "metric": "Feedback Reference (Vref)",
+      "unit": "V",
+      "part_a_value": "N/A (Fixed)",
+      "part_b_value": "N/A (Fixed)",
+      "winner": "CONTEXT",
+      "note": "Any Vref discrepancy requires recalculating feedback divider R1/R2."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "89 °C/W (p.4) · 125 °C",
+      "part_b_value": "50 °C/W (p.5) · 125 °C",
+      "winner": "B",
+      "note": "Lower θJA improves continuous load thermal headroom on compact 2-layer PCBs."
+    }
+  ],
+  "swap_risks": [
+    "CRITICAL PACKAGE MISMATCH: AP63203WU-7 uses TSOT-23-6 (6-pin, TSOT26) while LM2596SX-5.0/NOPB uses TO-263-5 (5-pin, KTT); PCB footprint redesign is mandatory.",
+    "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (FB vs VIN), Pin 2 (EN vs SW), Pin 3 (VIN vs GND), Pin 4 (GND vs FB), Pin 5 (SW vs EN), Pin 6 (BOOT vs NONE). Soldering LM2596SX-5.0/NOPB onto a AP63203WU-7 footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
+    "Exposed thermal pad/tab mismatch (TSOT-23-6: NONE vs TO-263-5: GND); PCB land pattern & solder-mask change required.",
+    "HIGH RECTIFICATION DIFFERENCE: LM2596SX-5.0/NOPB is non-synchronous and requires an external Schottky catch/freewheeling diode, whereas the counterpart integrates a synchronous low-side MOSFET.",
+    "HIGH SWITCHING FREQUENCY SHIFT: fsw differs by 86% (AP63203WU-7: 1100 kHz p.5 vs LM2596SX-5.0/NOPB: 150 kHz p.7); re-evaluate inductor core loss, ripple current ΔIL, output capacitor ESR ripple, and EMI harmonics.",
+    "CAUTION INDUCTOR RETUNING: Typical inductor differs (AP63203WU-7: 3.9 µH p.13 vs LM2596SX-5.0/NOPB: 33 µH p.25); check inductor Isat against peak switch current limit.",
+    "CAUTION CURRENT RATING BASIS: AP63203WU-7 specifies 2000 mA (continuous Iout, p.1) vs LM2596SX-5.0/NOPB 3000 mA (continuous Iout, p.1). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling.",
+    "CAUTION THERMAL MARGIN: Package θJA differs by 44% (AP63203WU-7: 89 °C/W p.4 vs LM2596SX-5.0/NOPB: 50 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max."
+  ],
+  "engineering_verdict": "AP63203WU-7 (Diodes Incorporated, TSOT-23-6) and LM2596SX-5.0/NOPB (Texas Instruments, TO-263-5) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (FB vs VIN), Pin 2 (EN vs SW), Pin 3 (VIN vs GND), Pin 4 (GND vs FB), Pin 5 (SW vs EN), Pin 6 (BOOT vs NONE); exposed pad / thermal tab net mismatch. Key datasheet deltas: topology is buck (sync) vs buck (non-sync), switching frequency is 1100 kHz (p.5) vs 150 kHz (p.7), rated current is 2000 mA (p.1) vs 3000 mA (p.1), typical inductor is 3.9 µH (p.13) vs 33 µH (p.25), and Iq is 22 µA (p.5) vs 5000 µA (p.7). Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.4), thermal margin (θJA 89 vs 50 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "generated_at": "2026-11-22"
+}
