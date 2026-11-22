@@ -1,0 +1,214 @@
+{
+  "slug": "sot23-3-ldo-pinout-traps",
+  "title": "SOT-23-3 and SOT-223-3 LDO Pinout Traps: Why 3-Pin Regulators Destroy Prototype PCBs",
+  "subtitle": "A datasheet-verified field guide to the three conflicting SOT-23-3 pinout permutations, SOT-223 thermal tab rail shorts, and SOT-23-5 Pin 4 NC-versus-BYPASS hazards.",
+  "category": "ldo",
+  "reading_time_min": 9,
+  "published_at": "2026-11-22",
+  "updated_at": "2026-11-22",
+  "author_role": "Senior Hardware & Power Integrity Engineer",
+  "summary": "Unlike 5-pin SOT-23-5 LDOs that largely converged on one de facto standard, 3-pin SOT-23-3 and SOT-223-3 linear regulators have no universal JEDEC pinout assignment. Swapping a standard-suffix OPN for a reversed-suffix OPN — even inside the exact same manufacturer family — can short VIN directly to GND or VOUT and destroy downstream logic in milliseconds.",
+  "key_takeaways": [
+    "Among just five 3.3 V SOT-23-3 LDOs in our verified pilot dataset, three completely distinct pinout permutations exist: IN-OUT-GND (AP7333-33SAG-7, AP7313-33SAG-7), GND-OUT-IN (AP7313-33SRG-7, AP2210N-3.3TRG1), and OUT-IN-GND (LM3480IM3-3.3/NOPB).",
+    "A single character difference in an ordering code (AP7313-33SAG-7 vs AP7313-33SRG-7, or AP7361C-33E-13 vs AP7361C-33ER-13) completely reverses Pin 1 and Pin 3 — never source by family name alone.",
+    "On SOT-223-3 packages, the large thermal tab is electrically live: 1117-family regulators (AMS1117-3.3, LM1117IMPX-3.3/NOPB, AZ1117CH-3.3TRG1) tie the tab to VOUT, whereas LM2937IMP-3.3/NOPB and AP7361C-33E-13 tie the tab to GND.",
+    "On SOT-23-5 and TSOT-23-5 LDOs, Pin 4 splits into NC (AP2112K-3.3TRG1, TPS7A0233PDBVR, TLV75533PDBVR) versus BYPASS/NR (LP2985-33DBVR, CAT6219-330TD-GT3, TPS73633DBVR) — tying an NC pad to GND on a PCB turns a future swap into a dead bandgap short."
+  ],
+  "related_parts": [
+    "lm3480im3-3-3-nopb",
+    "ap7333-33sag-7",
+    "ap7313-33sag-7",
+    "ap7313-33srg-7",
+    "ap2210n-3-3trg1",
+    "lm2937imp-3-3-nopb",
+    "ams1117-3-3",
+    "ap7361c-33e-13"
+  ],
+  "related_vs": [
+    "ap7313-33sag-7-vs-ap7313-33srg-7",
+    "ap7333-33sag-7-vs-lm3480im3-3-3-nopb",
+    "ap7313-33srg-7-vs-ap7333-33sag-7",
+    "ap2210n-3-3trg1-vs-ap7333-33sag-7",
+    "ams1117-3-3-vs-lm2937imp-3-3-nopb",
+    "ams1117-3-3-vs-ap7361c-33e-13"
+  ],
+  "sections": [
+    {
+      "heading": "1. The Myth of a Standard 3-Pin SOT-23-3 LDO Pinout",
+      "body": [
+        "Every seasoned PCB designer has seen a brand-new prototype emit a sharp pop and a wisp of epoxy smoke the first time bench power is applied. More often than teams care to admit, the culprit is not a firmware bug or a solder bridge — it is a 3-pin SOT-23-3 linear voltage regulator swapped during a last-minute BOM shortage.",
+        "When an engineer searches a distributor for a 3.3 V, 150 mA to 300 mA LDO in SOT-23-3, dozens of parts look parametrically interchangeable. Mechanically, every SOT-23-3 package shares the same three-lead JEDEC TO-236 outline: Pin 1 at bottom-left, Pin 2 at bottom-right, and Pin 3 centered at the top (Top View). Electrically, however, semiconductor manufacturers never standardized which lead carries VIN, VOUT, or GND. With three leads and three signals, there are 3! = 6 mathematical permutations, and at least four of them remain in active global volume production today.",
+        "To make matters worse, many semiconductor companies ship two opposite pinouts inside the exact same part family to compete for sockets originally designed around rival silicon. Diodes Incorporated explicitly markets both SOT23 (suffix SA) and SOT23R (suffix SR) inside the AP7313 and AP7333 datasheets. If a purchasing buyer substitutes AP7313-33SRG-7 when AP7313-33SAG-7 goes out of stock — assuming the single letter difference is merely a reel orientation or green-compound code — the assembly house will populate every board on the panel with VIN and GND physically swapped."
+      ],
+      "callout": {
+        "type": "CRITICAL",
+        "title": "Single-Letter Ordering Suffixes Reverse Power Rails",
+        "text": "AP7313-33SAG-7 (SOT23) maps Pin 1 = IN, Pin 2 = OUT, Pin 3 = GND. AP7313-33SRG-7 (SOT23R) maps Pin 1 = GND, Pin 2 = OUT, Pin 3 = IN. Dropping an SR reel onto an SA footprint applies reverse supply polarity across the internal PMOS body diode and substrate ESD structures, clamping VIN directly into GND through a forward-biased diode."
+      }
+    },
+    {
+      "heading": "2. Verified SOT-23-3 Pinout Matrix Across Real Pilot OPNs",
+      "body": [
+        "The table below compares five real, Vision-verified 3.3 V SOT-23-3 regulators from our pilot dataset. Every pin assignment was inspected directly on 300 DPI renders of the official manufacturer PDFs (Top View, Pin 1 bottom-left, Pin 2 bottom-right, Pin 3 top-center). Notice that across just five orderable part numbers, three completely incompatible pinout families appear.",
+        "Examine the failure mechanics when you cross-populate any two rows from different permutation groups. If a PCB laid out for AP7333-33SAG-7 (1=IN, 2=OUT, 3=GND) receives an AP2210N-3.3TRG1 (1=GND, 2=VOUT, 3=VIN), the board's VIN supply feeds Pin 1 (the IC's GND) while board GND ties to Pin 3 (the IC's VIN). The regulator's internal substrate-to-VIN parasitic diode immediately conducts heavy fault current limited only by the upstream power supply, heating the tiny 2.9 mm plastic package above 200 °C in less than a second.",
+        "An even subtler catastrophe occurs when substituting LM3480IM3-3.3/NOPB (1=OUT, 2=IN, 3=GND) onto an AP7333-33SAG-7 footprint (1=IN, 2=OUT, 3=GND). Here Pin 3 (GND) matches, which lulls engineers who only beep GND continuity during quick rework. Yet Pin 1 and Pin 2 are transposed: your 5 V or 12 V input rail connects straight to the LM3480's VOUT pin, while your 3.3 V MCU rail connects to VIN. The internal pass transistor body diode conducts from VOUT back to VIN, slamming roughly VIN - 0.7 V straight into every 3.3 V microcontroller, sensor, and ADC downstream."
+      ],
+      "table": {
+        "headers": [
+          "Exact OPN",
+          "Manufacturer",
+          "Mfg Package",
+          "Pin 1 (Bot-L)",
+          "Pin 2 (Bot-R)",
+          "Pin 3 (Top-C)",
+          "Pinout Group"
+        ],
+        "rows": [
+          [
+            "AP7333-33SAG-7",
+            "Diodes Inc.",
+            "SOT23 (SA)",
+            "IN",
+            "OUT",
+            "GND",
+            "Group A (IN-OUT-GND)"
+          ],
+          [
+            "AP7313-33SAG-7",
+            "Diodes Inc.",
+            "SOT23 (SA)",
+            "IN",
+            "OUT",
+            "GND",
+            "Group A (IN-OUT-GND)"
+          ],
+          [
+            "AP7313-33SRG-7",
+            "Diodes Inc.",
+            "SOT23R (SR)",
+            "GND",
+            "OUT",
+            "IN",
+            "Group B (GND-OUT-IN)"
+          ],
+          [
+            "AP2210N-3.3TRG1",
+            "Diodes Inc.",
+            "SOT-23-3",
+            "GND",
+            "VOUT",
+            "VIN",
+            "Group B (GND-OUT-IN)"
+          ],
+          [
+            "LM3480IM3-3.3/NOPB",
+            "Texas Instruments",
+            "DBZ (SOT-23)",
+            "OUT",
+            "IN",
+            "GND",
+            "Group C (OUT-IN-GND)"
+          ]
+        ]
+      }
+    },
+    {
+      "heading": "3. Why Even Matching SOT-23-3 Pinouts Still Fail Electrical Checks",
+      "body": [
+        "Confirming Pin 1, Pin 2, and Pin 3 match is only the first gate — it never automatically grants Level 1 drop-in status. Compare two Group B devices in the table above: AP7313-33SRG-7 and AP2210N-3.3TRG1 both share the exact GND-OUT-IN SOT-23-3 pinout. Yet their electrical envelopes diverge dramatically.",
+        "AP7313-33SRG-7 is a 150 mA CMOS low-dropout regulator rated to 6.0 V recommended maximum input voltage (7.0 V absolute maximum). By contrast, AP2210N-3.3TRG1 is a 300 mA RF ultra-low-dropout regulator supporting up to 16 V operating input (20 V absolute maximum). Replacing an AP2210N-3.3TRG1 on a 12 V industrial sensor board with an AP7313-33SRG-7 respects every pin assignment — and instantly destroys the 6 V silicon via input overvoltage.",
+        "Conversely, comparing Group A parts AP7313-33SAG-7 (150 mA) and AP7333-33SAG-7 (300 mA) illustrates directional compatibility. Upgrading a 120 mA circuit from AP7313-33SAG-7 to AP7333-33SAG-7 increases current headroom while keeping the identical SOT23 pinout and ceramic-capacitor stability. Downgrading a 250 mA load in the opposite direction pushes AP7313-33SAG-7 straight into current limit and thermal foldback. Always evaluate substitutions directionally against worst-case VIN transients, peak load current, dropout headroom, and thermal resistance."
+      ]
+    },
+    {
+      "heading": "4. The SOT-223-3 Thermal Tab Short Trap: VOUT Tab vs GND Tab",
+      "body": [
+        "Three-pin hazard syndrome is not confined to tiny SOT-23-3 parts. In higher-current 500 mA to 1 A designs, the SOT-223-3 package introduces an even more destructive failure mode: a large copper-soldered thermal tab (mechanically Pin 4) that is internally bonded to the silicon substrate and electrically tied to Pin 2.",
+        "The ubiquitous 1117 family — including AMS1117-3.3, LM1117IMPX-3.3/NOPB, AZ1117CH-3.3TRG1, NCP1117ST33T3G, and TLV1117-33IDCYR — follows the classic 1117 SOT-223-3 pinout: Pin 1 = ADJ/GND, Pin 2 = VOUT, Pin 3 = VIN, and Thermal Tab = VOUT. Because the tab sits at +3.3 V, PCB designers pour an isolated 3.3 V copper island under the tab (often stitched to an inner 3.3 V plane) and keep ground pours well clear.",
+        "However, another major family of SOT-223-3 regulators — anchored by classic 78xx/LM2937-style automotive and linear LDOs as well as modern CMOS replacements — uses the exact opposite arrangement: Pin 1 = VIN, Pin 2 = GND, Pin 3 = VOUT, and Thermal Tab = GND. In our pilot dataset, both LM2937IMP-3.3/NOPB (TI DCY SOT-223) and AP7361C-33E-13 (Diodes Inc. SOT223 standard E suffix) tie Pin 2 and the large thermal tab directly to GND! Notice that Diodes Inc. also manufactures a reversed-suffix AP7361C-33ER-13 (SOT223R) specifically to match the 1117 VOUT-tab footprint. Ordering AP7361C-33E-13 (missing the single letter R) and reflowing it onto an AMS1117-3.3 PCB shorts your 3.3 V copper thermal pour directly to GND while connecting your 5 V VIN rail to Pin 3 (VOUT)."
+      ],
+      "table": {
+        "headers": [
+          "SOT-223-3 OPN",
+          "Pin 1",
+          "Pin 2",
+          "Pin 3",
+          "Thermal Tab (Pin 4)",
+          "Ceramic MLCC Stable?"
+        ],
+        "rows": [
+          [
+            "AMS1117-3.3",
+            "GND / ADJ",
+            "VOUT",
+            "VIN",
+            "VOUT (+3.3 V)",
+            "No (ESR window required)"
+          ],
+          [
+            "LM1117IMPX-3.3/NOPB",
+            "GND / ADJ",
+            "VOUT",
+            "VIN",
+            "VOUT (+3.3 V)",
+            "No (0.3–22 Ohm ESR)"
+          ],
+          [
+            "AZ1117CH-3.3TRG1",
+            "GND / ADJ",
+            "VOUT",
+            "VIN",
+            "VOUT (+3.3 V)",
+            "Yes (C-series MLCC)"
+          ],
+          [
+            "LM2937IMP-3.3/NOPB",
+            "VIN",
+            "GND",
+            "VOUT",
+            "GND (0 V)",
+            "No (ESR-sensitive)"
+          ],
+          [
+            "AP7361C-33E-13",
+            "IN",
+            "GND",
+            "OUT",
+            "GND (0 V)",
+            "Yes (>= 2.2 uF MLCC)"
+          ]
+        ]
+      },
+      "callout": {
+        "type": "WARNING",
+        "title": "Never Assume SOT-223 Tab Equals Ground",
+        "text": "When migrating from a legacy AMS1117-3.3 or LM1117IMPX-3.3/NOPB to a modern ceramic-stable 1 A LDO, verify BOTH the lead numbering and the thermal tab electrical net. AP7361C-33E-13 (Tab = GND) requires a PCB layout change on any 1117 footprint (Tab = VOUT); only the reversed SOT223R suffix (ER) matches the 1117 copper pour."
+      }
+    },
+    {
+      "heading": "5. The Hidden SOT-23-5 / TSOT-23-5 Pin 4 Trap (NC vs BYPASS) and Height Mismatch",
+      "body": [
+        "Most modern 5-pin LDOs in SOT-23-5 and TSOT-23-5 converged on a widely shared power-pin arrangement: Pin 1 = VIN, Pin 2 = GND, Pin 3 = EN (Active-High), and Pin 5 = VOUT. Parts such as AP2112K-3.3TRG1, TLV73333PDBVR, TLV75533PDBVR, TPS7A0233PDBVR, TLV70033DDCR, TPS7A2033PDBVR, NCP114ASN330T1G, LP2985-33DBVR, CAT6219-330TD-GT3, TPS73633DBVR, and AP2210K-3.3TRG1 all share those four power/control pins. Yet two subtle hazards routinely break production swaps.",
+        "First, Pin 4 diverges into two incompatible roles: No Connect (NC) on modern digital LDOs like AP2112K-3.3TRG1, TLV75533PDBVR, and TPS7A0233PDBVR versus Bandgap Noise Bypass (BYPASS / NR) on low-noise analog LDOs like LP2985-33DBVR, CAT6219-330TD-GT3, and AP2210K-3.3TRG1. Some PCB engineers route a GND plane or a stray trace straight across an unused NC pad during layout. If a supply-chain swap later drops an LP2985-33DBVR onto that board, the grounded Pin 4 shorts the internal 1.23 V bandgap reference to 0 V, collapsing VOUT to zero.",
+        "Second, check the mechanical height profile between SOT-23-5 (JEDEC MO-178, maximum seated height ~1.45 mm) and TSOT-23-5 (Thin SOT, JEDEC MO-193, maximum height ~1.00 mm), such as swapping AP2112K-3.3TRG1 (SOT-23-5) with CAT6219-330TD-GT3 or NCP114ASN330T1G (TSOT-23-5). While the 0.95 mm lead pitch and PCB land pattern generally overlap, going from TSOT-23-5 to a taller SOT-23-5 inside an ultra-slim wearable enclosure or EMI shield can cause mechanical interference and requires checking SMT pick-and-place feeder Z-height.",
+        "Finally, watch high-voltage exceptions like TPS70933DBVR (30 V input rated, SOT-23-5): always check Pin 3 enable threshold hysteresis and whether Pin 4 is NC before pairing it with 5.5 V–6.0 V CMOS regulators like TPS7A0233PDBVR. Best practice on every new SOT-23-5 layout is to place a 0402 Do-Not-Populate (DNP) capacitor footprint from Pin 4 to GND, keeping the Pin 4 copper isolated from all power and signal planes so both NC and BYPASS second-sources remain safely deployable."
+      ],
+      "callout": {
+        "type": "TIP",
+        "title": "Future-Proof Every SOT-23-5 Layout With a DNP Pin-4 Capacitor",
+        "text": "Never pour copper or route signals through Pin 4 of a SOT-23-5 LDO. Connect Pin 4 exclusively to a dedicated 0402 DNP capacitor pad to GND: leave it unpopulated for NC parts (AP2112K, TLV755P, TPS7A02) and populate a 10 nF C0G/X7R cap if you later second-source a BYPASS/NR part (LP2985, CAT6219)."
+      }
+    },
+    {
+      "heading": "6. Five-Step Pre-Swap Bench & CAD Verification Checklist",
+      "body": [
+        "Before approving any LDO substitution on an Engineering Change Order (ECO) or hand-reworking a prototype PCB, execute this five-step verification sequence directly against the latest official manufacturer PDFs:",
+        "1. Lock to Exact OPN, Never Family Name: Confirm the complete ordering string including package and pinout suffix (such as -SAG vs -SRG, -E vs -ER, or DBVR vs DCYR). Cross-check the datasheet's Package Marking / Top Mark table against the laser marking on the actual tape-and-reel components.",
+        "2. Verify Top View vs Bottom View Drawing Orientation: Visually trace Pin 1, Pin 2, and Pin 3 (and the thermal tab) on the official datasheet Pin Configuration diagram, verifying Pin 1 index placement against your KiCad or Altium footprint library.",
+        "3. Check Exposed Pad / Tab Net Continuity: Confirm on the schematic and Gerber copper layers whether a SOT-223 or DFN thermal pad ties to GND, VOUT, or floats — a single net discrepancy mandates a Level 3 PCB layout respin.",
+        "4. Audit Pin 4 (NC vs BYPASS) and Enable Polarity: Verify on the PCB layout that Pin 4 is isolated or decoupled via a capacitor, and confirm Active-High vs Active-Low enable logic plus internal pull-up/pull-down current.",
+        "5. Power Up Through a Current-Limited Bench Supply: On the first reworked board, set a bench power supply current limit to roughly 1.2x expected nominal draw (typically 50–100 mA for an unloaded 3.3 V rail) and ramp VIN slowly while monitoring VOUT and package temperature with a thermal camera or thermocouple."
+      ]
+    }
+  ]
+}

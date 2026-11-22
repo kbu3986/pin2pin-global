@@ -1,0 +1,138 @@
+{
+  "slug": "thermal-derating-tj-margin-guide",
+  "title": "Semiconductor Thermal Derating & Junction Temperature (Tj) Margin: Why Nameplate Current Is a Trap",
+  "subtitle": "How to calculate real continuous power limits from theta_JA, why JEDEC 4-layer datasheet numbers mislead 2-layer PCB designs, and practical copper-pour rules.",
+  "category": "general",
+  "reading_time_min": 9,
+  "published_at": "2026-11-22",
+  "updated_at": "2026-11-22",
+  "author_role": "Senior Hardware & Power Integrity Engineer",
+  "summary": "A 600 mA LDO in SOT-23-5 or a 1 A regulator in SOT-223-3 almost never delivers its headline current continuously from a 5 V or 12 V input rail. This guide walks through exact thermal resistance calculations, real worked examples from our pilot LDO and DC-DC parts, JEDEC JESD51-7 vs 2-layer board corrections, and bench measurement using Psi_JT.",
+  "key_takeaways": [
+    "Always compute actual steady-state junction temperature via Tj = Ta + Pd * theta_JA, where linear regulator power is Pd = (Vin - Vout) * Iout + Vin * Iq, and enforce at least 15–25 °C thermal margin below Tj,max.",
+    "A 600 mA SOT-23-5 LDO (such as AP2112K-3.3TRG1 with theta_JA ~200 °C/W on standard copper) dropping 5.0 V to 3.3 V at 50 °C ambient hits Tj,max = 125 °C at just 220 mA — barely one-third of its headline 600 mA current limit.",
+    "High-voltage SOT-23-5 LDOs like TPS70933DBVR (30 V Vin,max, 150 mA rated) can only sustain ~12 mA continuously from a 24 V industrial bus at 60 °C ambient without triggering thermal shutdown.",
+    "Switching to a synchronous Buck converter (TPS54302DDCR or AP63203WU-7 at 88–92% efficiency) cuts power dissipation by 6x–12x compared to a linear LDO on 12 V-to-3.3 V or 24 V-to-5 V conversions."
+  ],
+  "related_parts": [
+    "ap2112k-3-3trg1",
+    "tlv75533pdbvr",
+    "tps70933dbvr",
+    "ams1117-3-3",
+    "ap7361c-33e-13",
+    "tps54302ddcr",
+    "lm2596sx-5-0-nopb"
+  ],
+  "related_vs": [
+    "ap2112k-3-3trg1-vs-tlv75533pdbvr",
+    "tps70933dbvr-vs-tps7a0233pdbvr",
+    "ams1117-3-3-vs-ap7361c-33e-13",
+    "lm2596sx-5-0-nopb-vs-tps54302ddcr",
+    "ap2112k-3-3trg1-vs-ap2210k-3-3trg1"
+  ],
+  "sections": [
+    {
+      "heading": "1. Why Headline Current Ratings Rarely Survive Thermal Physics",
+      "body": [
+        "Every datasheet front page advertises an attractive current number in bold font: 600 mA for AP2112K-3.3TRG1 in SOT-23-5, 500 mA for TLV75533PDBVR in SOT-23-5, 150 mA at 30 V for TPS70933DBVR, or 1000 mA for AMS1117-3.3 and AP7361C-33E-13 in SOT-223-3. Those headline figures represent the silicon die's internal over-current protection threshold — measured during brief pulsed tests where the die stays near 25 °C. They are NOT continuous thermal ratings.",
+        "In a linear regulator, the excess voltage drop across the pass element converts directly into heat inside a millimeter-scale epoxy package: Pd = (Vin - Vout) * Iout + Vin * Iq. That heat must escape through the leadframe, solder joints, and PCB copper planes into surrounding air, raising the silicon junction temperature according to the fundamental first-order thermal network equation: Tj = Ta + Pd * theta_JA.",
+        "Once Tj climbs past the device's recommended maximum operating junction temperature (typically 125 °C, occasionally 150 °C for automotive-grade or specialized silicon), long-term electromigration accelerates exponentially, output accuracy drifts outside specification, and around 150–165 °C internal thermal shutdown (TSD) abruptly cuts off the rail. If your product sits inside a sealed plastic enclosure where internal air ambient Ta reaches 55–65 °C, a board that passed comfortably on a 22 °C open lab bench will cycle into thermal shutdown in the field."
+      ],
+      "callout": {
+        "type": "CRITICAL",
+        "title": "Derate Continuous Maximum Current Directly From Thermal Margin",
+        "text": "Iout,max_thermal = [ (Tj,target - Ta,max) / theta_JA - Vin * Iq ] / (Vin - Vout). For production reliability, set Tj,target <= Tj,max - 20 °C (for example, <= 105 °C on a 125 °C rated part) and use internal enclosure air temperature for Ta,max, not room temperature."
+      }
+    },
+    {
+      "heading": "2. Worked Real-World Calculations Across Pilot LDOs & DC-DC Converters",
+      "body": [
+        "Nothing illustrates the gap between datasheet current limits and thermal reality faster than working through exact numbers at a realistic enclosed ambient temperature of Ta = 50 °C with a conservative target junction temperature of Tj,target = 105 °C (giving 20 °C margin below Tj,max = 125 °C). That yields an allowable temperature rise of delta_T = 55 °C.",
+        "Case 1 — 5.0 V USB to 3.3 V in SOT-23-5 (AP2112K-3.3TRG1 / TLV75533PDBVR): With typical JEDEC theta_JA around 200 °C/W, maximum allowable dissipation is Pd,max = 55 °C / 200 °C/W = 275 mW. Dividing by (5.0 V - 3.3 V) = 1.7 V allows only Iout = 162 mA continuous! Running a Wi-Fi module drawing 350 mA average from 5 V through a SOT-23-5 LDO dissipates 595 mW, pushing Tj to 50 + 0.595 * 200 = 169 °C — straight into thermal shutdown.",
+        "Case 2 — 24 V Industrial Rail to 3.3 V in SOT-23-5 (TPS70933DBVR): TPS70933DBVR safely withstands 30 V input and carries a 150 mA current rating. Yet at Vin = 24 V, Vout = 3.3 V (20.7 V drop!) and theta_JA ~212 °C/W, allowable Pd = 55 / 212 = 259 mW permits a maximum continuous current of just 259 mW / 20.7 V = 12.5 mA! TPS70933DBVR shines for powering a 3 mA sleep-mode MCU or CAN transceiver standby rail directly off 24 V — never a 100 mA load.",
+        "Case 3 — 12 V to 3.3 V in SOT-223-3 (AMS1117-3.3 / AP7361C-33E-13) vs Synchronous Buck (TPS54302DDCR): At Vin = 12 V to 3.3 V (8.7 V drop), even a well-heatsunk SOT-223-3 at theta_JA ~60 °C/W allows Pd = 55 / 60 = 917 mW, capping continuous current at 105 mA (far below 1 A). Replacing that LDO with a 28 V synchronous Buck converter like TPS54302DDCR (SOT-23-6, ~90% efficiency at 1 A, 3.3 W output) reduces total converter loss to P_loss = P_out * (1/eta - 1) = 3.3 * (1/0.90 - 1) = 367 mW shared between IC MOSFETs and inductor — cutting heat by over 20x at 1 A load!"
+      ],
+      "table": {
+        "headers": [
+          "Scenario & Pilot OPN",
+          "Vin -> Vout",
+          "Typ theta_JA",
+          "Nameplate Rating",
+          "Safe Continuous Iout (Ta=50°C, Tj<=105°C)"
+        ],
+        "rows": [
+          [
+            "AP2112K-3.3TRG1 (SOT-23-5)",
+            "5.0 V -> 3.3 V",
+            "~200 °C/W",
+            "600 mA",
+            "~162 mA (275 mW budget)"
+          ],
+          [
+            "TLV75533PDBVR (SOT-23-5)",
+            "5.0 V -> 3.3 V",
+            "~205 °C/W",
+            "500 mA",
+            "~158 mA (268 mW budget)"
+          ],
+          [
+            "TPS70933DBVR (SOT-23-5)",
+            "24.0 V -> 3.3 V",
+            "~212 °C/W",
+            "150 mA",
+            "~12.5 mA (259 mW budget)"
+          ],
+          [
+            "AMS1117-3.3 (SOT-223, 1 sq in Cu)",
+            "5.0 V -> 3.3 V",
+            "~60 °C/W",
+            "1000 mA",
+            "~539 mA (917 mW budget)"
+          ],
+          [
+            "AMS1117-3.3 (SOT-223, 1 sq in Cu)",
+            "12.0 V -> 3.3 V",
+            "~60 °C/W",
+            "1000 mA",
+            "~105 mA (917 mW budget)"
+          ],
+          [
+            "TPS54302DDCR (SOT-23-6 Buck, 90%)",
+            "12.0 V -> 3.3 V",
+            "~100 °C/W",
+            "3000 mA",
+            "> 2000 mA (IC loss < 450 mW)"
+          ]
+        ]
+      }
+    },
+    {
+      "heading": "3. The JEDEC 2s2p vs Real 2-Layer PCB theta_JA Illusion",
+      "body": [
+        "Most modern Texas Instruments, Diodes Inc., and onsemi datasheets quote theta_JA measured on a standardized JEDEC JESD51-7 High-K test coupon: a 4-layer PCB (2 signal layers, 2 solid 1-oz internal copper planes, 76 mm x 114 mm) sitting undisturbed in still air with zero neighboring heat sources. Real-world PCBs frequently violate every single one of those assumptions.",
+        "On a cost-optimized 2-layer board with minimal copper around a SOT-23-5 or SOT-223-3 package, actual theta_JA is routinely 35% to 80% higher than the High-K datasheet number. Worse, if a power inductor, MOSFET, or USB-C bridge IC sits 4 mm away dissipating another 500 mW into the same copper pour, thermal coupling elevates the local PCB temperature around the LDO pins well above ambient air.",
+        "To lower real-world theta_JA on exposed-pad packages (SOT-223-3, WSON-6 like TPS610994DRVR, VSON-10/14 like TPS63001DRCR and TPS63020DSJR, or TO-263-5 like LM2596SX-5.0/NOPB), stitch the thermal pad directly to inner and bottom copper pours using a dense array of 0.3 mm finished-hole vias on a 1.0 mm grid (tented or via-in-pad plated-over to prevent solder wicking). Increasing copper area on top and bottom layers up to ~1 square inch (~645 mm^2) yields the sharpest drop in theta_JA; beyond ~2 square inches on 1-oz copper, lateral spreading resistance produces diminishing returns."
+      ]
+    },
+    {
+      "heading": "4. Measuring True Junction Temperature on the Bench: Use Psi_JT, Not theta_JC",
+      "body": [
+        "A classic bench validation mistake is measuring the top plastic case temperature T_case with an IR thermal camera or thermocouple and computing Tj = T_case + Pd * theta_JC(top). That equation is physically wrong for nearly all surface-mount PCB assemblies! Why? Because theta_JC(top) is defined under an artificial infinite-heatsink test condition forcing 100% of total power Pd out the top plastic face of the package.",
+        "On a real PCB, 80% to 95% of an SMD IC's heat exits downward through the metal leads and exposed thermal pad into the board copper — only a tiny fraction escapes through the insulating black mold compound on top. Multiplying total Pd by theta_JC(top) therefore wildly overestimates Tj (often by 30–60 °C).",
+        "Instead, look in the Thermal Information table of modern datasheets for the junction-to-top characterization parameter Psi_JT (expressed in °C/W, typically just 2–15 °C/W for SOT-23 and SOT-223 packages). Psi_JT is specifically calibrated for realistic PCB heat-flow splits, allowing accurate bench estimation via Tj = T_top + Pd * Psi_JT. When measuring T_top with an IR thermal camera, paint a tiny dot of matte black emissivity tape (epsilon = 0.95) or use a 36–40 AWG fine-gauge Type-K thermocouple bonded with thermally conductive epoxy so the wire itself does not heatsink the tiny package."
+      ],
+      "callout": {
+        "type": "TIP",
+        "title": "Use Pin2Pin Global's Interactive LDO Thermal Calculator Before Freezing Layout",
+        "text": "Every LDO part page on Pin2Pin Global embeds an interactive LDO Thermal Margin Calculator pre-populated with that OPN's verified Vout, Iq, dropout voltage, theta_JA, and Tj,max. Dial in your worst-case enclosure Ta (e.g., 55 °C) and max Vin (+10% tolerance) to see immediately whether a SOT-23-5 LDO stays green or demands a SOT-223-3 or Buck converter."
+      }
+    },
+    {
+      "heading": "5. Designing for Transient Thermal Pulses vs Continuous Loads",
+      "body": [
+        "Not every high-current load runs at 100% duty cycle. A cellular NB-IoT modem or LoRa transceiver transmitting 300 mA bursts for 50 ms every 10 seconds (0.5% duty cycle) imposes negligible average heating (P_avg = 0.005 * P_peak), though the silicon die still experiences transient thermal impedance Z_th(t) during the pulse.",
+        "For short pulses (<10 ms), heat stays mostly inside the silicon die and copper leadframe; for multi-second pulses (>2–5 s), SOT-23 packages approach their steady-state theta_JA. Always verify BOTH steady-state average Tj AND peak pulse junction excursion, and confirm that peak load current stays comfortably below the IC's minimum guaranteed current-limit threshold (not just typical) with sufficient dropout headroom Vin,min - Vout >= Vdo(I_peak, T_max)."
+      ]
+    }
+  ]
+}

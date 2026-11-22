@@ -1,0 +1,149 @@
+{
+  "slug": "boost-buck-layout-inductor-selection",
+  "title": "Buck, Boost, and Buck-Boost PCB Layout & Inductor Selection: Mastering Hot Loops, Switch Limits, and Vref Swaps",
+  "subtitle": "Practical design equations for inductor ripple and Isat margin, why boost Isw does not equal Iout, hot-loop EMI control, and safe SOT-23-6 second-sourcing.",
+  "category": "dcdc",
+  "reading_time_min": 10,
+  "published_at": "2026-11-22",
+  "updated_at": "2026-11-22",
+  "author_role": "Senior Power Electronics & EMC Engineer",
+  "summary": "Swapping a switching DC-DC converter is far less forgiving than swapping an LDO: differences in switching frequency, feedback reference Vref, switch-current limit vs output current, synchronous rectification, and hot-loop geometry determine whether a board runs cool and passes EMC or destroys its inductor and rings wildly. This guide presents exact sizing equations and PCB layout checklists anchored to our 15 verified pilot converters.",
+  "key_takeaways": [
+    "Boost converters specify peak switch current limit Isw, NOT continuous output current: usable output current scales down with step-up ratio as Iout,max ≈ (Isw,min - delta_IL / 2) * (Vin / Vout) * eta.",
+    "Always pick an inductor whose saturation current Isat exceeds the IC's worst-case peak current limit (not just nominal load current) by >= 25–30%, or startup/short-circuit transients will collapse inductance and cause switch-FET failure.",
+    "Hot-loop topology flips between Buck and Boost: in a Buck converter (TPS54302DDCR, AP63203WU-7) the discontinuous high-di/dt loop is CIN -> IC VIN/GND -> SW; in a Boost converter (TPS61040DBVR, TPS613221ADBVR) the critical high-di/dt loop is SW -> Catch Diode/High-Side FET -> COUT -> GND.",
+    "Even when two SOT-23-6 / TSOT-23-6 synchronous Bucks share similar footprints (TPS54302DDCR vs TPS563201DDCR vs AP63203WU-7), differences in Vref (0.596 V vs 0.768 V vs fixed 3.3 V), fsw (400 kHz vs 580 kHz vs 1.1 MHz), and Vin,max (28 V vs 17 V vs 32 V) mandate Level 2 passive recalculation or Level 3 layout changes."
+  ],
+  "related_parts": [
+    "tps613221adbvr",
+    "tps61023drlr",
+    "tps61040dbvr",
+    "tps63020dsjr",
+    "tps54302ddcr",
+    "tps563201ddcr",
+    "ap63203wu-7",
+    "lm2596sx-5-0-nopb"
+  ],
+  "related_vs": [
+    "tps54302ddcr-vs-tps563201ddcr",
+    "ap63203wu-7-vs-tps54302ddcr",
+    "lm27313xmf-nopb-vs-tps61040dbvr",
+    "tps61023drlr-vs-tps613221adbvr",
+    "tps63001drcr-vs-tps63020dsjr"
+  ],
+  "sections": [
+    {
+      "heading": "1. The #1 Boost Converter Spec Trap: Switch Limit (Isw) vs Output Current (Iout)",
+      "body": [
+        "Hardware engineers routinely misread Boost regulator datasheets by treating the front-page switch current limit (Isw) as deliverable load current. On a Buck converter like TPS54302DDCR (3 A continuous Iout) or AP63203WU-7 (2 A continuous Iout), average inductor current equals output current I_L,avg = I_OUT. On a Boost converter like TPS613221ADBVR, TPS61023DRLR, TPS610994DRVR, TPS61040DBVR, LM27313XMF/NOPB, or LM2733XMF/NOPB, the inductor sits on the INPUT side — meaning input current is multiplied upward by the voltage boost ratio.",
+        "In continuous conduction mode (CCM), average inductor current is I_L,avg = I_OUT * (V_OUT / (V_IN * eta)), where eta is converter efficiency (typically 0.82 to 0.93). The peak current seen by the internal low-side NMOS switch and the inductor core is I_peak = I_L,avg + delta_IL / 2. Solving backwards from the datasheet's minimum guaranteed switch current limit I_SW,min gives the true maximum load current: I_OUT,max = (I_SW,min - delta_IL / 2) * (V_IN / V_OUT) * eta.",
+        "Work a real battery example: stepping a nearly depleted 1.0 V single AA cell up to 3.3 V with a TPS613221ADBVR (minimum switch limit ~420 mA, eta ~83%, delta_IL ~120 mA). Usable continuous load current is I_OUT,max ≈ (420 - 60) * (1.0 / 3.3) * 0.83 ≈ 90 mA — less than one-quarter of the switch current limit! If your sensor radio needs 400 mA bursts from a single AA or Li-ion cell, step up to a high-Isw synchronous boost like TPS61023DRLR (3.7 A switch limit in SOT-563) or a buck-boost like TPS63020DSJR (VSON-14) when battery voltage crosses above and below 3.3 V."
+      ],
+      "callout": {
+        "type": "CRITICAL",
+        "title": "Inductor Saturation Current (Isat) Must Beat Switch Limit, Not Nominal Load",
+        "text": "During startup inrush, load steps, or brief output shorts, the DC-DC controller drives inductor current all the way up to the IC's peak switch current limit Isw,max. If the inductor saturates below Isw,max, its inductance collapses by >50%, di/dt spikes vertically, and current shoots past the FET's safe operating area faster than the controller's leading-edge blanking timer can turn it off."
+      }
+    },
+    {
+      "heading": "2. Inductor Sizing Equations Across Buck, Boost, and Buck-Boost",
+      "body": [
+        "Selecting an inductor balances three competing parameters: ripple current ratio r = delta_IL / I_L,avg (typically targeted at 0.25 to 0.45 at full load), DC winding resistance (DCR, governing conduction loss I_rms^2 * DCR), and AC core loss at switching frequency f_sw.",
+        "For a Buck converter (duty cycle D ≈ V_OUT / V_IN): delta_IL = V_OUT * (1 - D) / (L * f_sw), so target inductance is L = V_OUT * (V_IN - V_OUT) / (V_IN * f_sw * delta_IL). Notice how switching frequency directly shrinks magnetics: legacy 150 kHz LM2596SX-5.0/NOPB needs a massive 33 uH to 68 uH shielded power inductor, whereas a 400 kHz TPS54302DDCR uses 10 uH to 15 uH, a 580 kHz TPS563201DDCR uses 3.3 uH to 4.7 uH, and a 1.1 MHz AP63203WU-7 drops all the way down to a compact 2.2 uH to 3.9 uH shielded inductor.",
+        "For a Boost converter (duty cycle D ≈ 1 - (V_IN * eta) / V_OUT): delta_IL = V_IN * D / (L * f_sw), giving L = V_IN * (V_OUT - V_IN) / (V_OUT * f_sw * delta_IL). Note that ripple peaks at D = 0.5 (when V_IN = 0.5 * V_OUT), so always verify ripple and peak current at BOTH minimum V_IN (worst-case I_peak) and mid-range V_IN (worst-case ripple). For four-switch Buck-Boost converters like TPS63020DSJR (2.4 MHz) and TPS63001DRCR (1.25–1.5 MHz), follow the datasheet's exact 1.0 uH to 2.2 uH range closely because internal slope compensation is tuned to that narrow inductance band."
+      ],
+      "table": {
+        "headers": [
+          "Topology & Pilot Example",
+          "Typical fsw",
+          "Typical L",
+          "Critical High-di/dt Hot Loop",
+          "Key Swap Caution"
+        ],
+        "rows": [
+          [
+            "Buck: TPS54302DDCR (SOT-23-6)",
+            "400 kHz",
+            "10–15 uH",
+            "CIN (+) -> VIN -> HS/LS FET -> GND -> CIN (-)",
+            "Vref ~0.596 V; check R1/R2 & Vin,max (28 V)"
+          ],
+          [
+            "Buck: TPS563201DDCR (SOT-23-6)",
+            "580 kHz",
+            "3.3–4.7 uH",
+            "CIN (+) -> VIN -> HS/LS FET -> GND -> CIN (-)",
+            "Vref ~0.768 V; Vin,max only 17 V vs 28 V"
+          ],
+          [
+            "Buck: AP63203WU-7 (TSOT-23-6)",
+            "1100 kHz",
+            "3.9 uH",
+            "CIN (+) -> VIN -> HS/LS FET -> GND -> CIN (-)",
+            "Fixed 3.3 V; check exact pinout vs TI DDC"
+          ],
+          [
+            "Buck (Legacy): LM2596SX-5.0/NOPB",
+            "150 kHz",
+            "33–68 uH",
+            "CIN -> VIN -> SW -> External Schottky -> GND",
+            "Non-sync external Schottky + big TO-263 heatsink"
+          ],
+          [
+            "Boost (Sync): TPS61023DRLR",
+            "~1000 kHz",
+            "0.47–1.0 uH",
+            "SW -> Sync Rectifier -> VOUT -> COUT -> GND",
+            "3.7 A Isw in tiny SOT-563; 0603 COUT right at pins"
+          ],
+          [
+            "Boost (Non-Sync): TPS61040DBVR",
+            "Up to 1000 kHz",
+            "10 uH",
+            "SW -> External Schottky -> COUT -> GND",
+            "High-voltage 28 V LCD/OLED bias; fast Schottky required"
+          ],
+          [
+            "Buck-Boost: TPS63020DSJR",
+            "2400 kHz",
+            "1.0–1.5 uH",
+            "Both CIN-VINA-PGND and VOUT-COUT-PGND loops",
+            "VSON-14 thermal pad via stitching mandatory"
+          ]
+        ]
+      }
+    },
+    {
+      "heading": "3. Hot-Loop PCB Layout: Buck vs Boost Geometry",
+      "body": [
+        "Most switching-converter EMC failures and unexplained controller lockups trace back to parasitic loop inductance L_loop in the discontinuous high-di/dt current loop. During a 5 ns switching transition of 2 A, even 10 nH of stray PCB trace inductance (~10 mm of narrow trace) generates V_spike = L_loop * (di/dt) = 10e-9 * (2 / 5e-9) = 4.0 V of ringing overshoot on the switch node — enough to push a 28 V converter past its 30 V absolute maximum rating or radiate 100–300 MHz harmonics straight through CISPR/FCC limits.",
+        "Crucially, the discontinuous hot loop lives on OPPOSITE sides of the inductor depending on topology. In a Buck converter (TPS54302DDCR, TPS563201DDCR, AP63203WU-7, AP62200WU-7, TPS54331DR), output inductor current is continuous, while input current pulses abruptly from 0 A to I_peak every cycle. Therefore, place a low-ESL 0603/0805 ceramic input capacitor (plus a 100 nF 0402 high-frequency bypass) directly across the IC's VIN and GND pins on the SAME top copper layer with zero vias in the primary hot loop.",
+        "In a Boost converter (TPS613221ADBVR, TPS61023DRLR, TPS610994DRVR, TPS61040DBVR, LM27313XMF/NOPB, LM2733XMF/NOPB), input inductor current is continuous while output diode/synchronous-rectifier current pulses abruptly. Here the ceramic OUTPUT capacitor COUT (and external Schottky diode for non-synchronous parts like TPS61040DBVR or LM27313XMF/NOPB) must sit millimeters from the VOUT/SW and PGND pins on the top layer. Meanwhile, keep the copper area of the switching node (SW) compact — just large enough to carry current to the inductor pad without acting as a miniature patch antenna capacitively coupling dv/dt noise into nearby analog traces."
+      ],
+      "callout": {
+        "type": "WARNING",
+        "title": "Keep Feedback (FB) Traces Away From SW and Under-Inductor Flux",
+        "text": "The FB pin is a high-impedance error-amplifier summing node (typically 10 kOhm to 200 kOhm Thevenin impedance). Place the R1/R2 feedback divider millimeters from the FB and AGND pins, route the top VOUT sense trace from AFTER the output capacitors (Kelvin sensing), and never route FB underneath an unshielded inductor or parallel to the SW copper pour."
+      }
+    },
+    {
+      "heading": "4. Feedback Divider (Vref), Feedforward Cap, and Safe Cross-Reference Swaps",
+      "body": [
+        "When cross-referencing adjustable 6-pin Bucks or 5-pin Boosts — for example comparing TPS54302DDCR vs TPS563201DDCR, or LM27313XMF/NOPB vs LM2733XMF/NOPB vs TPS61040DBVR — pinout compatibility is only step one. Always verify four passive-tuning parameters before soldering a substitute onto an existing PCB:",
+        "1. Feedback Reference Voltage (V_REF): Output voltage obeys V_OUT = V_REF * (1 + R1 / R2). Dropping a TPS563201DDCR (V_REF = 0.768 V) onto a board populated with resistors calculated for TPS54302DDCR (V_REF = 0.596 V) boosts your 3.3 V rail by 29% to 4.25 V — instantly frying 3.6 V absolute-maximum MCUs and Flash memory!",
+        "2. Switching Frequency Shift (>30%): Jumping from 400 kHz to 580 kHz or 1.1 MHz alters inductor ripple, core hysteresis loss, and loop crossover frequency. Verify that your existing inductor's self-resonant frequency (SRF) sits at least 5x–10x above the new f_sw and check core temperature under full load.",
+        "3. Synchronous vs Non-Synchronous Rectification: Legacy boost parts (TPS61040DBVR, LM27313XMF/NOPB, LM2733XMF/NOPB) and legacy bucks (TPS54331DR, LM2596SX-5.0/NOPB) require an external Schottky diode rated >= 1.25x V_OUT (or V_IN for buck) and >= I_peak with low reverse leakage at hot ambient (Schottky reverse leakage doubles roughly every 10 °C and can trigger thermal runaway at 85 °C!). Synchronous replacements eliminate that diode completely.",
+        "4. Bootstrap Capacitor & Enable Threshold: High-side NMOS bucks (TPS54302DDCR, TPS563201DDCR, AP63203WU-7, AP62200WU-7) require a 100 nF ceramic BOOT-to-SW capacitor; verify exact voltage rating (>= 16 V X7R) and confirm whether EN has an internal precision UVLO divider threshold."
+      ]
+    },
+    {
+      "heading": "5. Bench Verification With a 100 MHz Oscilloscope & Electronic Load",
+      "body": [
+        "Before signing off any DC-DC design or second-source swap, capture three oscilloscope plots using a short ground-spring probe directly across the output ceramic capacitor and switch node:",
+        "1. Switch Node (SW) Waveform at Maximum V_IN and Full Load: Confirm clean square edges with overshoot staying safely below the IC's SW absolute maximum voltage rating (and undershoot within negative transient limits). Excessive >20% ringing indicates hot-loop layout inductance or missing gate/snubber damping.",
+        "2. Output Voltage Ripple & Load-Step Stability: Measure peak-to-peak VOUT ripple at 20 MHz bandwidth limit across light load (PFM/pulse-skipping mode) and full load (CCM). Apply a 10% to 90% electronic load step and confirm fast, well-damped recovery without sub-harmonic oscillation.",
+        "3. Thermal Soak at Worst-Case V_IN: Run full rated load for 15 minutes inside the target enclosure and inspect IC package, inductor body, and Schottky diode (if non-synchronous) temperatures. Use Pin2Pin Global's DC-DC Efficiency & Inductor Ripple Calculator on every converter page to pre-check delta_IL, I_peak, and power loss before cutting copper."
+      ]
+    }
+  ]
+}
