@@ -1,0 +1,89 @@
+{
+  "site_name": "Pin2Pin Global",
+  "tagline": "Datasheet-Verified Semiconductor Pinout & Cross-Reference Engineering DB",
+  "site_url": "https://pin2pin.dev",
+  "default_locale": "en",
+  "supported_locales": ["en"],
+  "contact_email": "engineering@pin2pin.dev",
+  "error_report_issue_url": "https://github.com/kbu3986/pin2pin-global/issues/new",
+  "monetization": {
+    "adsense_publisher_id": "ca-pub-8587506565277191",
+    "adsense_enabled": false,
+    "adsense_note": "Enable after custom domain DNS verification and 200-page EN pilot GSC indexing audit (Week 3-4 per AUD-06).",
+    "amazon_us_tag": "kbu3986-20",
+    "coupang_partner_id": "AF2200875",
+    "coupang_sub_id": "pin2pin-kr"
+  },
+  "legal": {
+    "engineering_disclaimer_short": "Engineering Reference Only (AS-IS): Verify pinout, absolute maximum ratings, and thermal limits against the latest official manufacturer datasheet before PCB layout or production. Not approved for medical (IEC 60601), automotive (AEC-Q100), aerospace, or life-support safety-critical systems.",
+    "trademark_notice": "All manufacturer names and part numbers are trademarks of their respective owners and are used strictly for nominative engineering cross-reference identification."
+  },
+  "distributor_search_deeplinks": {
+    "policy": "Zero scraping / zero cached distributor pricing per AUD-03. Outbound search links only.",
+    "digikey": "https://www.digikey.com/en/products/result?keywords={OPN}",
+    "mouser": "https://www.mouser.com/c/?q={OPN}",
+    "lcsc": "https://www.lcsc.com/search?q={OPN}"
+  },
+  "lab_gear_affiliates": {
+    "ldo": [
+      {
+        "title": "0603 & 0805 MLCC Ceramic Capacitor SMD Sample Book (X7R / C0G)",
+        "reason": "Essential for validating LDO output capacitance and ESR stability margins on the bench.",
+        "amazon_search_url": "https://www.amazon.com/s?k=0603+0805+SMD+ceramic+capacitor+sample+book+X7R&tag=kbu3986-20",
+        "price_band": "$25–$45"
+      },
+      {
+        "title": "Micro-Amp Benchtop / Handheld True-RMS Multimeter (uA Range)",
+        "reason": "Verify real quiescent current (Iq) and shutdown leakage against datasheet claims.",
+        "amazon_search_url": "https://www.amazon.com/s?k=true+rms+multimeter+microamp+uA+electronics&tag=kbu3986-20",
+        "price_band": "$50–$180"
+      },
+      {
+        "title": "SOT-23 / SOT-223 Breakout PCB Adapter Kit & Hot Air Rework Station",
+        "reason": "Rapid bench prototyping and safe drop-in replacement validation before spinning a PCB.",
+        "amazon_search_url": "https://www.amazon.com/s?k=SOT-23+SOT-223+breakout+adapter+kit&tag=kbu3986-20",
+        "price_band": "$15–$90"
+      }
+    ],
+    "dcdc": [
+      {
+        "title": "100 MHz Digital Storage Oscilloscope (2–4 Channel, Low-Noise Probe)",
+        "reason": "Inspect switch-node ringing, inductor ripple current, and load-transient overshoot.",
+        "amazon_search_url": "https://www.amazon.com/s?k=100MHz+digital+oscilloscope+4+channel&tag=kbu3986-20",
+        "price_band": "$250–$450"
+      },
+      {
+        "title": "Shielded SMD Power Inductor Sample Kit (1 uH to 100 uH)",
+        "reason": "Tune switching converter efficiency and saturation current headroom on prototypes.",
+        "amazon_search_url": "https://www.amazon.com/s?k=shielded+SMD+power+inductor+sample+kit&tag=kbu3986-20",
+        "price_band": "$25–$55"
+      },
+      {
+        "title": "Programmable DC Electronic Load (Constant Current / Transient Step)",
+        "reason": "Measure real DC-DC converter efficiency curve and thermal rise under full load.",
+        "amazon_search_url": "https://www.amazon.com/s?k=programmable+DC+electronic+load+tester&tag=kbu3986-20",
+        "price_band": "$120–$260"
+      }
+    ],
+    "opamp": [
+      {
+        "title": "1% Precision 0603 Thin-Film Resistor Sample Book (Gain & Divider Network)",
+        "reason": "Minimize gain error and CMRR degradation when evaluating precision op-amp swaps.",
+        "amazon_search_url": "https://www.amazon.com/s?k=0603+1%25+SMD+resistor+sample+book&tag=kbu3986-20",
+        "price_band": "$20–$40"
+      },
+      {
+        "title": "Dual-Channel Function / Arbitrary Waveform Generator (25–60 MHz)",
+        "reason": "Verify op-amp slew rate, GBWP roll-off, and comparator propagation delay on the bench.",
+        "amazon_search_url": "https://www.amazon.com/s?k=dual+channel+DDS+function+signal+generator&tag=kbu3986-20",
+        "price_band": "$90–$220"
+      },
+      {
+        "title": "SOIC-8 & SOT-23-5 DIP Prototype Adapter Board Pack",
+        "reason": "Swap single and dual rail-to-rail op-amps quickly on breadboard or evaluation fixtures.",
+        "amazon_search_url": "https://www.amazon.com/s?k=SOIC-8+SOT-23-5+DIP+adapter+board+kit&tag=kbu3986-20",
+        "price_band": "$12–$25"
+      }
+    ]
+  }
+}

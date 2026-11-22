@@ -1,0 +1,17 @@
+{
+  "name": "pin2pin-global",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Pin2Pin Global — Datasheet-verified semiconductor cross-reference and pin-compatible alternative engineering database",
+  "scripts": {
+    "verify:schema": "node pipeline/stage2_physics_verifier.mjs --all",
+    "build:xref": "node pipeline/stage3_xref_engine.mjs",
+    "qa:gate": "node pipeline/stage5_qa_gate.mjs",
+    "web:dev": "npm --prefix web run dev",
+    "web:build": "npm --prefix web run build"
+  },
+  "dependencies": {
+    "zod": "^3.24.2"
+  }
+}

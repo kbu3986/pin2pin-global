@@ -10,6 +10,9 @@ __pycache__/
 .env.local
 .env.*.local
 data/raw-pdfs/
+data/pdfs/
+data/rendered-pngs/
+*.pdf
 *.log
 .DS_Store
 Thumbs.db
