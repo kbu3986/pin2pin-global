@@ -1,0 +1,249 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TPS63001DRCR",
+  "slug": "tps63001drcr",
+  "family": "TPS63000",
+  "manufacturer": "Texas Instruments",
+  "category": "dcdc",
+  "sub_topology": "buck-boost",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 85,
+    "grade_label": "Industrial (-40°C to 85°C TA, TJ max 125°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tps63000.pdf",
+    "product_page_url": "https://www.ti.com/product/TPS63001",
+    "source_domain": "www.ti.com",
+    "revision": "SLVS520C (Oct 2015)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 26
+  },
+  "package": {
+    "code": "VSON-10",
+    "mfg_package_code": "DRC",
+    "pin_count": 10,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": true,
+      "net": "GND",
+      "note": "Exposed thermal pad is internally connected to PGND; solder solidly to PCB power ground plane (p.3)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 46.8,
+      "page": 4,
+      "condition": "JEDEC high-K board, DRC 10-pin VSON with exposed PGND pad",
+      "table_ref": "Section 6.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 62.5,
+      "page": 4,
+      "condition": "RthetaJC(top) = 62.5°C/W (RthetaJC(bot) = 4.1°C/W via exposed PGND pad)",
+      "table_ref": "Section 6.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 4,
+      "condition": "Recommended operating virtual junction temperature max (Abs Max 150°C; TSD 140°C typ p.5)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "pd_max_mw": {
+      "value": 820,
+      "page": 16,
+      "condition": "Maximum allowable package dissipation at TA = 85°C (TJ = 125°C)",
+      "table_ref": "Section 8.2.2.7 Thermal Calculations"
+    },
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "VOUT",
+        "role": "VOUT",
+        "description": "Fixed 3.3 V buck-boost converter power output."
+      },
+      {
+        "pin": 2,
+        "name": "L2",
+        "role": "SW",
+        "description": "Inductor switching node L2."
+      },
+      {
+        "pin": 3,
+        "name": "PGND",
+        "role": "GND",
+        "description": "Power ground connected internally to exposed thermal pad."
+      },
+      {
+        "pin": 4,
+        "name": "L1",
+        "role": "SW",
+        "description": "Inductor switching node L1."
+      },
+      {
+        "pin": 5,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Power stage supply input (1.8 V to 5.5 V; 1.9 V min startup)."
+      },
+      {
+        "pin": 6,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high enable input (1 = enabled, 0 = disabled with load disconnect; do not float)."
+      },
+      {
+        "pin": 7,
+        "name": "PS/SYNC",
+        "role": "PS",
+        "description": "Power-save mode control (0 = PFM enabled, 1 = forced PWM, or 1.25-1.8 MHz external sync clock)."
+      },
+      {
+        "pin": 8,
+        "name": "VINA",
+        "role": "VIN",
+        "description": "Control stage analog supply input (TI recommends 100 Ohm + 0.1 uF RC filter from VIN)."
+      },
+      {
+        "pin": 9,
+        "name": "GND",
+        "role": "GND",
+        "description": "Control/logic analog ground."
+      },
+      {
+        "pin": 10,
+        "name": "FB",
+        "role": "FB",
+        "description": "Feedback sense pin; MUST be connected directly to VOUT on fixed 3.3 V TPS63001."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "topology": "buck-boost",
+    "vin_abs_max_v": {
+      "value": 7.0,
+      "page": 4,
+      "condition": "VIN, VINA, L1, L2, VOUT, PS/SYNC, EN, FB abs max -0.3 V to 7.0 V",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 1.8,
+      "page": 4,
+      "condition": "Minimum recommended operating supply voltage (minimum startup VIN = 1.9 V per p.5)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 5.5,
+      "page": 4,
+      "condition": "Maximum recommended supply voltage at VIN and VINA",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "vout_min_v": {
+      "value": 3.3,
+      "page": 1,
+      "condition": "Fixed 3.3 V output variant TPS63001 (adjustable TPS63000 spans 1.2 V to 5.5 V; internal VFB accuracy +/-1% PWM per p.5)",
+      "table_ref": "Section 1 Features & Section 6.5"
+    },
+    "vout_max_v": {
+      "value": 3.3,
+      "page": 1,
+      "condition": "Fixed 3.3 V output variant TPS63001 (nominal fixed 3.3 V; up to ~+3% PFM ripple margin)",
+      "table_ref": "Section 1 Features & Section 6.5"
+    },
+    "vout_fixed": true,
+    "vout_nom_v": {
+      "value": 3.3,
+      "page": 1,
+      "condition": "Fixed 3.3 V output voltage option (TPS63001)",
+      "table_ref": "Section 1 Features"
+    },
+    "vref_v": null,
+    "iout_or_isw_max_ma": {
+      "value": 1200,
+      "page": 1,
+      "condition": "1200 mA output current at 3.3 V in step-down mode (VIN = 3.6 V to 5.5 V); 800 mA in boost mode (VIN > 2.4 V); 1800 mA typ switch limit p.5",
+      "table_ref": "Section 1 Features & Section 6.5"
+    },
+    "is_switch_limit": false,
+    "iq_typ_ua": {
+      "value": 41,
+      "page": 5,
+      "condition": "Total quiescent current 41 uA typ (40 uA into VINA + 1 uA into VIN at VIN = 3.6 V, VOUT = 3.3 V; p.1 states < 50 uA)",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "fsw_typ_khz": {
+      "value": 1500,
+      "page": 5,
+      "condition": "1250 kHz to 1500 kHz internal oscillator (synchronizable 1250 kHz to 1800 kHz via PS/SYNC)",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "efficiency_peak_pct": {
+      "value": 96,
+      "page": 1,
+      "condition": "Up to 96% family efficiency per p.1 Features (~94% peak for TPS63001 at VIN = 3.6 V, VOUT = 3.3 V, IOUT = 0.3-0.5 A per p.1 plot)",
+      "table_ref": "Section 1 Features & Page 1 Plot (300 DPI Vision verified)"
+    },
+    "inductor_typ_uh": {
+      "value": 2.2,
+      "page": 1,
+      "condition": "Nominal recommended 2.2 uH inductor (e.g., TDK VLF4012-2R2 per p.10)",
+      "table_ref": "Page 1 Typical Application Schematic"
+    },
+    "synchronous": true,
+    "min_cout_uf": {
+      "value": 15.0,
+      "page": 12,
+      "condition": "Recommended minimum nominal 15 uF ceramic output capacitance (Typical Application p.1 uses 2 x 10 uF = 20 uF)",
+      "table_ref": "Section 8.2.2.3 Output Capacitor"
+    },
+    "en_active_high": true
+  },
+  "design_gotchas": [
+    {
+      "title": "Pin 10 (FB) MUST Be Connected Directly to VOUT on Fixed 3.3 V TPS63001",
+      "severity": "CRITICAL",
+      "detail": "TPS63001 uses an internal feedback divider (1 MOhm FB input impedance) that requires Pin 10 (FB) to be routed directly to VOUT (Pin 1) at the output capacitor. Leaving FB floating or tying it to GND breaks voltage regulation.",
+      "page": 3
+    },
+    {
+      "title": "Recommended 100 Ohm + 0.1 uF RC Filter on VINA (Pin 8) Prevents Control Noise Faults",
+      "severity": "WARNING",
+      "detail": "Page 1 Typical Application Schematic places a 100 Ohm resistor and 0.1 uF ceramic capacitor between VIN and VINA (Pin 8) to shield the internal analog control stage from 1.5 MHz power-stage switching transients. Always decouple VINA closely to GND (Pin 9).",
+      "page": 1
+    },
+    {
+      "title": "1.9 V Startup Threshold and 800 mA Boost-Mode Ceiling vs 1200 mA Buck Rating",
+      "severity": "WARNING",
+      "detail": "Although TPS63001 operates down to 1.8 V once running, guaranteed startup requires >= 1.9 V on VIN. Furthermore, maximum 3.3 V load current drops from 1200 mA (step-down, VIN >= 3.6 V) to 800 mA in boost mode (VIN > 2.4 V) and lower near 1.8 V.",
+      "page": 5
+    },
+    {
+      "title": "Incompatible VSON-10 (DRC) Package vs Larger VSON-14 TPS63020DSJR",
+      "severity": "INFO",
+      "detail": "TPS63001DRCR uses a 3 mm x 3 mm 10-pin VSON (DRC) without a PG pin, whereas TPS63020DSJR uses a 3 mm x 4 mm 14-pin VSON (DSJ) with PG and 4 A switches. Any migration between the two requires full PCB layout redesign.",
+      "page": 3
+    }
+  ],
+  "typical_use_cases": [
+    "Single-cell Li-Ion (2.5 V to 4.2 V) or 2-3 cell NiMH/alkaline battery regulated to fixed 3.3 V up to 1.2 A",
+    "Portable audio players, smart wearables, and personal medical monitors needing < 50 uA Iq and load disconnect",
+    "Compact 3 mm x 3 mm VSON-10 fixed 3.3 V buck-boost rail with optional external clock synchronization"
+  ],
+  "engineering_summary": "The TPS63001DRCR is a fixed 3.3 V, 4-switch synchronous buck-boost converter in a compact 3 mm x 3 mm 10-pin VSON (DRC) package with a PGND exposed thermal pad (RthetaJA = 46.8°C/W). Operating from 1.8 V to 5.5 V (1.9 V startup) at 1.25-1.5 MHz with 41 uA total typical Iq and 1.8 A typical switch current limit, it delivers up to 1200 mA in buck mode and 800 mA in boost mode (VIN > 2.4 V) with true load disconnect. Remember to wire FB (Pin 10) directly to VOUT and include the 100 Ohm / 0.1 uF VINA RC filter; verify full derating in the official TI datasheet before production.",
+  "audit": {
+    "confidence_score": 0.98,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [1, 3, 4],
+    "audit_notes": [
+      "300 DPI PNG Vision inspection on p.3 confirmed DRC 10-pin VSON Top View pinout (1=VOUT, 2=L2, 3=PGND, 4=L1, 5=VIN, 6=EN, 7=PS/SYNC, 8=VINA, 9=GND, 10=FB->VOUT, Exposed Pad=PGND).",
+      "300 DPI PNG Vision inspection on p.4 verified Abs Max 7.0 V, Rec Op VIN 1.8-5.5 V, TA -40 to 85 C, TJ max 125 C, RthetaJA 46.8 C/W, RthetaJC(top) 62.5 C/W, and RthetaJC(bot) 4.1 C/W.",
+      "300 DPI PNG Vision inspection on p.1 verified Typical Application Schematic (L=2.2 uH, 2x10 uF Cout, VINA 100 Ohm + 0.1 uF filter), up to 96% family efficiency headline, and ~94% TPS63001 peak efficiency at 3.6 V -> 3.3 V."
+    ]
+  }
+}

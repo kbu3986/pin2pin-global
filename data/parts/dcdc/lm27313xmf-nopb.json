@@ -1,0 +1,214 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "LM27313XMF/NOPB",
+  "slug": "lm27313xmf-nopb",
+  "family": "LM27313",
+  "manufacturer": "Texas Instruments",
+  "category": "dcdc",
+  "sub_topology": "boost",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Industrial / Extended (-40°C to 125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/lm27313.pdf",
+    "product_page_url": "https://www.ti.com/product/LM27313",
+    "source_domain": "www.ti.com",
+    "revision": "SNVS487E (Jan 2015)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 26
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "DBV",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "Standard 5-pin SOT-23 (DBV) package without thermal exposed pad."
+    },
+    "theta_ja_c_per_w": {
+      "value": 166.3,
+      "page": 4,
+      "condition": "JEDEC high-K board, DBV 5-pin SOT-23",
+      "table_ref": "Section 6.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 71.8,
+      "page": 4,
+      "condition": "RthetaJC(top), DBV 5-pin SOT-23",
+      "table_ref": "Section 6.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 4,
+      "condition": "Recommended operating junction temperature max (-40°C to 125°C)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "SW",
+        "role": "SW",
+        "description": "Drain of internal 30 V rated DMOS FET switch (500 mOhm typ RDS(on))."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Analog and power ground reference."
+      },
+      {
+        "pin": 3,
+        "name": "FB",
+        "role": "FB",
+        "description": "Feedback input to external divider with mandatory feedforward capacitor Cf across R1."
+      },
+      {
+        "pin": 4,
+        "name": "SHDN",
+        "role": "EN",
+        "description": "Active-low shutdown / active-high enable input (ON >= 1.5 V, OFF <= 0.50 V; tie to VIN if unused)."
+      },
+      {
+        "pin": 5,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Analog and power supply input (2.7 V to 14.0 V)."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "topology": "boost",
+    "vin_abs_max_v": {
+      "value": 14.5,
+      "page": 3,
+      "condition": "VIN abs max -0.4 V to 14.5 V (SW abs max 30 V; FB abs max 6 V; SHDN abs max VIN + 0.3 V)",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 2.7,
+      "page": 4,
+      "condition": "Minimum recommended operating input voltage (-40°C to 125°C TJ)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 14.0,
+      "page": 4,
+      "condition": "Maximum recommended operating input voltage (-40°C to 125°C TJ)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "vout_min_v": {
+      "value": 5.0,
+      "page": 1,
+      "condition": "Datasheet typical application output range 5 V to 28 V (boost VOUT > VIN >= 2.7 V)",
+      "table_ref": "Section 1 Features & Section 3 Description"
+    },
+    "vout_max_v": {
+      "value": 28.0,
+      "page": 1,
+      "condition": "Maximum recommended boost output voltage (SW abs max 30 V)",
+      "table_ref": "Section 1 Features"
+    },
+    "vout_fixed": false,
+    "vout_nom_v": null,
+    "vref_v": {
+      "value": 1.23,
+      "page": 5,
+      "condition": "Feedback reference voltage typ 1.230 V (1.205 V to 1.255 V over -40°C to 125°C TJ)",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "iout_or_isw_max_ma": {
+      "value": 800,
+      "page": 5,
+      "condition": "Guaranteed min switch current limit 800 mA at D <= 50% (typ 1250 mA; headline rating up to 800 mA per p.1)",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "is_switch_limit": true,
+    "iq_typ_ua": {
+      "value": 400,
+      "page": 5,
+      "condition": "Non-switching quiescent current 400 uA typ (max 500 uA); active switching IQ = 2.1 mA typ / 3.0 mA max; shutdown 0.024 uA typ",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "fsw_typ_khz": {
+      "value": 1600,
+      "page": 5,
+      "condition": "Fixed 1.6 MHz PWM switching frequency (1.15 MHz to 1.90 MHz over -40°C to 125°C TJ)",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "efficiency_peak_pct": {
+      "value": 91,
+      "page": 7,
+      "condition": "Peak ~91% at VIN = 6.5 V to 10 V, VOUT = 12 V to 20 V",
+      "table_ref": "Figures 8-10 (300 DPI Vision verified)"
+    },
+    "inductor_typ_uh": {
+      "value": 10.0,
+      "page": 1,
+      "condition": "Typical application inductor 10 uH (minimum ~3.3 uH for DCM per p.15)",
+      "table_ref": "Page 1 Typical Application & Section 8.2"
+    },
+    "synchronous": false,
+    "min_cout_uf": {
+      "value": 4.7,
+      "page": 11,
+      "condition": "4.7 uF to 10 uF ceramic X5R/X7R output capacitor (10 uF required for VOUT < 10 V)",
+      "table_ref": "Section 8.2.2.2 Output Capacitor"
+    },
+    "en_active_high": true
+  },
+  "design_gotchas": [
+    {
+      "title": "Feedforward Capacitor Cf Across R1 Is Mandatory for Loop Stability",
+      "severity": "CRITICAL",
+      "detail": "Although described as internally compensated, Section 8.2.2.4 explicitly warns that an external feedforward capacitor Cf across the upper feedback resistor R1 (placing a zero near 8 kHz) is required for loop stability; omitting Cf can cause output oscillation.",
+      "page": 11
+    },
+    {
+      "title": "High Active Quiescent Current (2.1 mA Switching / 400 uA Non-Switching) vs TPS61040",
+      "severity": "WARNING",
+      "detail": "LM27313XMF/NOPB shares the exact SOT-23-5 pinout and 1.23 V VREF with TPS61040DBVR, making them pin-compatible candidates on 3.3 V/5 V buses, but LM27313 draws ~14x higher non-switching Iq (400 uA vs 28 uA) and 2.1 mA switching Iq, making it unsuitable for coin-cell/sleep-critical loads.",
+      "page": 5
+    },
+    {
+      "title": "30 V Switch Ceiling vs 40 V Pin-Compatible Sister LM2733XMF/NOPB",
+      "severity": "WARNING",
+      "detail": "LM27313XMF/NOPB has a 30 V SW abs max rating (28 V max VOUT) and 800 mA min switch limit, whereas pin-identical LM2733XMF/NOPB extends SW to 40 V and 1.0 A min switch limit. Verify VOUT + Vdiode + switching ringing stays strictly below 30 V on LM27313.",
+      "page": 3
+    },
+    {
+      "title": "SHDN Pin Must Not Float and Requires External Schottky Diode",
+      "severity": "WARNING",
+      "detail": "SHDN (Pin 4) is active-high enable (ON >= 1.5 V, OFF <= 0.50 V) and must be tied to VIN (or driven via pull-up) if unused; never leave floating. As a non-synchronous boost, an external >= 30 V Schottky diode is mandatory and allows pass-through in shutdown.",
+      "page": 3
+    }
+  ],
+  "typical_use_cases": [
+    "5 V or 12 V industrial bus step-up to 15 V, 24 V, or 28 V LCD/OLED bias and sensor excitation rails",
+    "Higher-current fixed-frequency 1.6 MHz alternative to PFM TPS61040DBVR where predictable EMI spectrum is needed",
+    "Compact SOT-23-5 white-LED string driver and analog op-amp dual-rail boost supply"
+  ],
+  "engineering_summary": "The LM27313XMF/NOPB is a fixed-frequency 1.6 MHz current-mode non-synchronous boost converter in SOT-23-5 (DBV) supporting wide 2.7 V to 14.0 V inputs, up to 28 V outputs (30 V SW abs max), and an 800 mA minimum (1.25 A typ) internal DMOS switch. It shares an identical pinout and 1.230 V feedback reference with TPS61040DBVR and LM2733XMF/NOPB, providing clean fixed-frequency PWM and 2x-3x higher switch current than TPS61040 at the trade-off of higher quiescent current (400 uA non-switching / 2.1 mA switching). Always include the mandatory Cf feedforward capacitor and verify diode/thermal margins in the TI datasheet before production.",
+  "audit": {
+    "confidence_score": 0.98,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 4, 7],
+    "audit_notes": [
+      "300 DPI PNG Vision inspection on p.3 confirmed DBV 5-pin SOT-23 Top View pinout (1=SW, 2=GND, 3=FB, 4=SHDN, 5=VIN) with no exposed pad, matching TPS61040DBVR and LM2733XMF/NOPB.",
+      "300 DPI PNG Vision inspection on p.4 verified Rec Op VIN 2.7-14 V, TJ -40 to 125 C, RthetaJA 166.3 C/W, and RthetaJC(top) 71.8 C/W.",
+      "300 DPI PNG Vision inspection on p.7 Figs 8-10 confirmed peak efficiency ~91% at VIN = 6.5-10 V, VOUT = 12-20 V."
+    ]
+  }
+}

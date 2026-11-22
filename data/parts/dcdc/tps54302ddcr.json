@@ -1,0 +1,220 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TPS54302DDCR",
+  "slug": "tps54302ddcr",
+  "family": "TPS54302",
+  "manufacturer": "Texas Instruments",
+  "category": "dcdc",
+  "sub_topology": "buck",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Industrial / Extended (-40°C to 125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tps54302.pdf",
+    "product_page_url": "https://www.ti.com/product/TPS54302",
+    "source_domain": "www.ti.com",
+    "revision": "SLVSDG6C (Mar 2026)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 32
+  },
+  "package": {
+    "code": "SOT-23-6",
+    "mfg_package_code": "DDC",
+    "pin_count": 6,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "6-pin thin SOT-23 (DDC / SOT-23-THIN) package without exposed thermal pad."
+    },
+    "theta_ja_c_per_w": {
+      "value": 118.9,
+      "page": 4,
+      "condition": "JEDEC high-K board, DDC 6-pin SOT-23 (57.2°C/W on official TI EVM board)",
+      "table_ref": "Section 5.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 58.3,
+      "page": 4,
+      "condition": "RthetaJC(top), DDC 6-pin SOT-23",
+      "table_ref": "Section 5.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 4,
+      "condition": "Recommended operating junction temperature max (Abs Max 150°C; TSD 160°C typ p.5)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "GND",
+        "role": "GND",
+        "description": "Power and analog ground (low-side NFET source and controller reference)."
+      },
+      {
+        "pin": 2,
+        "name": "SW",
+        "role": "SW",
+        "description": "Switch node connection between integrated 85 mOhm HS and 40 mOhm LS NFETs."
+      },
+      {
+        "pin": 3,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Wide input supply voltage pin (4.5 V to 28.0 V; 30 V abs max)."
+      },
+      {
+        "pin": 4,
+        "name": "FB",
+        "role": "FB",
+        "description": "Feedback input to external resistive divider (VREF = 0.596 V typ)."
+      },
+      {
+        "pin": 5,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high enable pin; float to enable via internal pull-up (STRICTLY <= 5.5 V rec / 7.0 V abs max!)."
+      },
+      {
+        "pin": 6,
+        "name": "BOOT",
+        "role": "BOOT",
+        "description": "High-side NFET gate-drive bootstrap capacitor pin (connect 0.1 uF ceramic cap to SW)."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "topology": "buck",
+    "vin_abs_max_v": {
+      "value": 30.0,
+      "page": 4,
+      "condition": "VIN and SW DC abs max -0.3 V to 30 V (EN and FB abs max ONLY 7.0 V!)",
+      "table_ref": "Section 5.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 4.5,
+      "page": 4,
+      "condition": "Minimum recommended operating input voltage",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 28.0,
+      "page": 4,
+      "condition": "Maximum recommended operating input voltage",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "vout_min_v": {
+      "value": 0.596,
+      "page": 5,
+      "condition": "Minimum adjustable output equals internal VREF = 0.596 V typ",
+      "table_ref": "Section 5.5 Electrical Characteristics & Section 6.3.8 p.11"
+    },
+    "vout_max_v": {
+      "value": 28.0,
+      "page": 12,
+      "condition": "Supports up to 100% duty-cycle dropout operation when BOOT-SW > 2.1 V (practical VOUT <= VIN - IOUT*RDS(on))",
+      "table_ref": "Section 6.3.10 Bootstrap Voltage"
+    },
+    "vout_fixed": false,
+    "vout_nom_v": null,
+    "vref_v": {
+      "value": 0.596,
+      "page": 5,
+      "condition": "Feedback reference voltage typ 0.596 V (0.581 V to 0.611 V over -40°C to 125°C TJ, +/-2.5%)",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "iout_or_isw_max_ma": {
+      "value": 3000,
+      "page": 1,
+      "condition": "3 A continuous output current (HS peak current limit typ 5 A, min 3.5 A per p.5)",
+      "table_ref": "Section 1 Features & Section 5.5"
+    },
+    "is_switch_limit": false,
+    "iq_typ_ua": {
+      "value": 45,
+      "page": 5,
+      "condition": "Non-switching quiescent current 45 uA typ (shutdown current 2 uA typ)",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "fsw_typ_khz": {
+      "value": 400,
+      "page": 5,
+      "condition": "Fixed 400 kHz typ (290 kHz to 510 kHz with frequency spread spectrum enabled)",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "efficiency_peak_pct": {
+      "value": 95,
+      "page": 1,
+      "condition": "Peak ~95% at VIN = 12 V, VOUT = 5 V, IOUT ~ 1 A",
+      "table_ref": "Page 1 Efficiency vs Output Current (300 DPI Vision verified)"
+    },
+    "inductor_typ_uh": {
+      "value": 10.0,
+      "page": 18,
+      "condition": "10 uH for 5 V / 3 A reference design (6.8 uH for 3.3 V / 3 A per Table 7-2 p.18)",
+      "table_ref": "Table 7-2 Recommended Component Values"
+    },
+    "synchronous": true,
+    "min_cout_uf": {
+      "value": 44.0,
+      "page": 18,
+      "condition": "Table 7-2 recommends 44 uF ceramic for 3.3 V and 5 V designs (Eq. 11 min 30 uF p.17)",
+      "table_ref": "Table 7-2 Recommended Component Values"
+    },
+    "en_active_high": true
+  },
+  "design_gotchas": [
+    {
+      "title": "CRITICAL: EN Pin Abs Max Is ONLY 7.0 V (Rec 5.5 V) — NEVER Tie Directly to 12 V / 24 V VIN",
+      "severity": "CRITICAL",
+      "detail": "Even though VIN handles 28 V (30 V abs max), EN (Pin 5) is rated ONLY to 5.5 V recommended / 7.0 V abs max! Connecting EN directly to a 12 V or 24 V bus (as allowed on TPS563201 or AP63203) destroys TPS54302 immediately. Float EN to auto-enable or use a precision resistor divider.",
+      "page": 4
+    },
+    {
+      "title": "Feedback Reference (0.596 V) Differs From Pin-Compatible TPS563201 (0.768 V) and AP62200 (0.800 V)",
+      "severity": "CRITICAL",
+      "detail": "TPS54302DDCR shares the exact 6-pin SOT-23/TSOT-23 pinout (1=GND, 2=SW, 3=VIN, 4=FB, 5=EN, 6=BOOT) with TPS563201DDCR and AP62200WU-7, but its 0.596 V VREF is 22-26% lower. Dropping it into an existing divider without recalculating Rtop/Rbot lowers VOUT by ~25% (or raises VOUT +29-34% if swapping in the opposite direction).",
+      "page": 5
+    },
+    {
+      "title": "Pinout Mismatch Against AP63203WU-7 Despite Identical 6-Pin TSOT/SOT-23 Body",
+      "severity": "CRITICAL",
+      "detail": "Do NOT confuse TPS54302DDCR (1=GND, 2=SW, 3=VIN, 4=FB, 5=EN, 6=BOOT) with Diodes AP63203WU-7 (1=FB, 2=EN, 3=VIN, 4=GND, 5=SW, 6=BST). Putting one on the other's footprint shorts SW/VIN/GND/FB immediately.",
+      "page": 3
+    },
+    {
+      "title": "Lower 400 kHz Switching Frequency Requires Larger Inductors (6.8-10 uH) Than 580-1100 kHz Parts",
+      "severity": "WARNING",
+      "detail": "At 400 kHz (with spread spectrum), TPS54302 requires 6.8 uH (3.3 V) to 10 uH (5 V) inductors, compared to 2.2-3.3 uH on 580 kHz TPS563201 or 750 kHz AP62200. Reusing a 2.2 uH inductor causes excessive ripple current and premature current-limit hiccup.",
+      "page": 18
+    }
+  ],
+  "typical_use_cases": [
+    "Industrial 12 V and 24 V distributed bus step-down to 5.0 V or 3.3 V at up to 3 A continuous load",
+    "EMI-sensitive appliances, audio equipment, and set-top boxes leveraging built-in frequency spread spectrum",
+    "Ultra-low-BOM 6-pin synchronous buck upgrade over non-synchronous SOIC-8 TPS54331DR or TO-263 LM2596"
+  ],
+  "engineering_summary": "The TPS54302DDCR is a 4.5 V to 28 V input, 3 A continuous synchronous buck converter in SOT-23-6 (DDC) integrating 85 mOhm/40 mOhm MOSFETs, internal compensation, 5 ms soft-start, Eco-mode pulse skip (45 uA Iq), and EMI-friendly 400 kHz spread-spectrum switching (~95% peak efficiency). It is pin-compatible with TPS563201DDCR and AP62200WU-7 (NOT AP63203WU-7), but engineers MUST respect its 7.0 V abs max EN pin limit (float to enable), recalculate feedback resistors for VREF = 0.596 V, and upsize the inductor to 6.8-10 uH; always verify against the official TI datasheet before production.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [1, 3, 4],
+    "audit_notes": [
+      "300 DPI PNG Vision inspection on p.3 confirmed DDC 6-pin SOT-23-THIN Top View pinout (1=GND, 2=SW, 3=VIN, 4=FB, 5=EN, 6=BOOT) with no exposed pad.",
+      "300 DPI PNG Vision inspection on p.4 verified VIN abs max 30 V, EN abs max 7 V (Rec 5.5 V), Rec Op VIN 4.5-28 V, TJ max 125 C, RthetaJA 118.9 C/W (EVM 57.2 C/W), and RthetaJC(top) 58.3 C/W.",
+      "300 DPI PNG Vision inspection on p.1 verified Efficiency vs Output Current peaking ~95% at VIN = 12 V, VOUT = 5 V."
+    ]
+  }
+}

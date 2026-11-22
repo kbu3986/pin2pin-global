@@ -1,0 +1,220 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "AP63203WU-7",
+  "slug": "ap63203wu-7",
+  "family": "AP63203",
+  "manufacturer": "Diodes Incorporated",
+  "category": "dcdc",
+  "sub_topology": "buck",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 85,
+    "grade_label": "Industrial (-40°C to 85°C TA, TJ max 125°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.diodes.com/assets/Datasheets/AP63200-AP63201-AP63203-AP63205.pdf",
+    "product_page_url": "https://www.diodes.com/part/view/AP63203",
+    "source_domain": "www.diodes.com",
+    "revision": "DS41326 Rev. 3 - 2 (Nov 2024)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 18
+  },
+  "package": {
+    "code": "TSOT-23-6",
+    "mfg_package_code": "TSOT26",
+    "pin_count": 6,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "6-pin TSOT-23 (TSOT26 / ordering code WU) package without thermal exposed pad."
+    },
+    "theta_ja_c_per_w": {
+      "value": 89.0,
+      "page": 4,
+      "condition": "2 oz Cu 4-layer FR-4 PCB, TSOT26 package",
+      "table_ref": "Thermal Resistance Table p.4"
+    },
+    "theta_jc_c_per_w": {
+      "value": 39.0,
+      "page": 4,
+      "condition": "RthetaJC, TSOT26 package",
+      "table_ref": "Thermal Resistance Table p.4"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 12,
+      "condition": "Recommended max operating junction temperature 125°C (Abs Max 160°C p.4; TSD 160°C p.5 / 150°C note p.11)",
+      "table_ref": "Recommended Operating Conditions p.4 & Thermal Section p.12"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "FB",
+        "role": "FB",
+        "description": "Output voltage feedback pin; connect directly to VOUT for fixed 3.3 V AP63203."
+      },
+      {
+        "pin": 2,
+        "name": "EN",
+        "role": "EN",
+        "description": "High-voltage rated (35 V abs max) active-high enable; tie to VIN or leave floating to enable."
+      },
+      {
+        "pin": 3,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Wide input supply voltage pin (3.8 V to 32.0 V; 35 V DC / 40 V 400 ms abs max)."
+      },
+      {
+        "pin": 4,
+        "name": "GND",
+        "role": "GND",
+        "description": "Power and analog ground reference."
+      },
+      {
+        "pin": 5,
+        "name": "SW",
+        "role": "SW",
+        "description": "Switch node between integrated 125 mOhm HS and 68 mOhm LS MOSFETs."
+      },
+      {
+        "pin": 6,
+        "name": "BST",
+        "role": "BOOT",
+        "description": "High-side MOSFET gate-drive bootstrap capacitor pin (connect 0.1 uF ceramic cap to SW)."
+      }
+    ],
+    "pinout_source_page": 1,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "topology": "buck",
+    "vin_abs_max_v": {
+      "value": 35.0,
+      "page": 4,
+      "condition": "VIN, EN, SW DC abs max -0.3 V to 35.0 V (40 V transient for 400 ms)",
+      "table_ref": "Absolute Maximum Ratings p.4"
+    },
+    "vin_min_v": {
+      "value": 3.8,
+      "page": 4,
+      "condition": "Minimum recommended input supply voltage (3.8 V to 32.0 V)",
+      "table_ref": "Recommended Operating Conditions p.4"
+    },
+    "vin_max_v": {
+      "value": 32.0,
+      "page": 4,
+      "condition": "Maximum recommended input supply voltage",
+      "table_ref": "Recommended Operating Conditions p.4"
+    },
+    "vout_min_v": {
+      "value": 3.27,
+      "page": 5,
+      "condition": "AP63203 fixed 3.3 V output min at TJ = 25°C (+/-1% initial accuracy)",
+      "table_ref": "Electrical Characteristics p.5"
+    },
+    "vout_max_v": {
+      "value": 3.33,
+      "page": 5,
+      "condition": "AP63203 fixed 3.3 V output max at TJ = 25°C (+/-1% initial accuracy)",
+      "table_ref": "Electrical Characteristics p.5"
+    },
+    "vout_fixed": true,
+    "vout_nom_v": {
+      "value": 3.3,
+      "page": 5,
+      "condition": "Fixed 3.3 V output variant (AP63203)",
+      "table_ref": "Electrical Characteristics p.5"
+    },
+    "vref_v": null,
+    "iout_or_isw_max_ma": {
+      "value": 2000,
+      "page": 1,
+      "condition": "2 A continuous output current (HS peak current limit typ 2.8 A, min 2.3 A per p.5)",
+      "table_ref": "Features p.1 & Electrical Characteristics p.5"
+    },
+    "is_switch_limit": false,
+    "iq_typ_ua": {
+      "value": 22,
+      "page": 5,
+      "condition": "Ultra-low PFM operating quiescent current 22 uA typ (shutdown 1 uA typ)",
+      "table_ref": "Electrical Characteristics p.5"
+    },
+    "fsw_typ_khz": {
+      "value": 1100,
+      "page": 5,
+      "condition": "Fixed 1.1 MHz typ switching frequency for AP63203/AP63205 with +/-6% FSS (AP63200/AP63201 are 500 kHz!)",
+      "table_ref": "Electrical Characteristics p.5 & Ordering Info p.16"
+    },
+    "efficiency_peak_pct": {
+      "value": 92,
+      "page": 2,
+      "condition": "AP63203 peak ~92% at VIN = 12 V, VOUT = 3.3 V, IOUT = 0.8 A to 1.0 A",
+      "table_ref": "Figure 2 Efficiency vs Output Current (300 DPI Vision verified)"
+    },
+    "inductor_typ_uh": {
+      "value": 3.9,
+      "page": 13,
+      "condition": "Table 2 specifically recommends 3.9 uH for 1.1 MHz fixed 3.3 V AP63203 (2.2-10 uH general family range)",
+      "table_ref": "Table 2 Recommended Component Selection p.13"
+    },
+    "synchronous": true,
+    "min_cout_uf": {
+      "value": 22.0,
+      "page": 14,
+      "condition": "Recommended 22 uF to 68 uF ceramic X5R/X7R (Table 2 p.13 uses 2 x 22 uF)",
+      "table_ref": "Output Capacitor Selection p.14"
+    },
+    "en_active_high": true
+  },
+  "design_gotchas": [
+    {
+      "title": "CRITICAL PINOUT TRAP: Completely Incompatible With TPS54302DDCR, TPS563201DDCR & AP62200WU-7!",
+      "severity": "CRITICAL",
+      "detail": "Despite sharing an identical 6-pin TSOT-23 / SOT-23-6 footprint, AP63203WU-7 uses 1=FB, 2=EN, 3=VIN, 4=GND, 5=SW, 6=BST — completely scrambled relative to TPS54302DDCR, TPS563201DDCR, and Diodes' own AP62200WU-7 (which all use 1=GND, 2=SW, 3=VIN, 4=FB, 5=EN, 6=BST). Never drop one onto the other's PCB pads!",
+      "page": 1
+    },
+    {
+      "title": "Fixed 3.3 V Output Only (Tie Pin 1 FB Directly to VOUT) — Not Adjustable",
+      "severity": "CRITICAL",
+      "detail": "AP63203WU-7 is a fixed 3.3 V device whose Pin 1 (FB) connects directly to VOUT without external feedback resistors (AP63200/AP63201 are the adjustable 0.8 V VREF variants, and AP63205 is fixed 5.0 V). Putting a resistor divider on AP63203 FB shifts or destabilizes VOUT.",
+      "page": 2
+    },
+    {
+      "title": "1.1 MHz Switching Frequency Differs From 500 kHz Siblings AP63200/AP63201",
+      "severity": "WARNING",
+      "detail": "Fixed-output AP63203/AP63205 run at 1.1 MHz (requiring a smaller 3.9 uH inductor), whereas adjustable AP63200/AP63201 in the exact same datasheet run at 500 kHz. Verify inductor core loss at 1.1 MHz and note the +/-6% frequency spread spectrum (FSS) for EMI.",
+      "page": 5
+    },
+    {
+      "title": "2 A Continuous Rating (vs 3 A on TPS54302/TPS563201) Despite Higher 32 V Input Rating",
+      "severity": "WARNING",
+      "detail": "AP63203WU-7 offers superior 32 V input range (35 V DC / 40 V 400 ms), 35 V-tolerant EN pin, and ultra-low 22 uA PFM Iq, but is limited to 2 A continuous output (2.8 A typ HS peak limit) vs 3 A on TPS54302DDCR.",
+      "page": 4
+    }
+  ],
+  "typical_use_cases": [
+    "24 V industrial automation, PLC, and building control rails stepped down directly to fixed 3.3 V up to 2 A",
+    "Ultra-low-Iq (22 uA) always-on 12 V/24 V battery-powered IoT gateways and smart appliances",
+    "EMI-sensitive compact 3.3 V point-of-load buck leveraging 1.1 MHz FSS and zero external feedback resistors"
+  ],
+  "engineering_summary": "The AP63203WU-7 is a 3.8 V to 32 V input (35 V DC / 40 V transient abs max), 2 A continuous fixed 3.3 V synchronous buck converter in TSOT-23-6 (TSOT26) with 22 uA ultra-low PFM Iq, 1.1 MHz switching with +/-6% FSS, and a 35 V-tolerant float-to-enable EN pin (~92% peak efficiency at 12 V -> 3.3 V). CRITICAL LAYOUT WARNING: Its pinout (1=FB, 2=EN, 3=VIN, 4=GND, 5=SW, 6=BST) is completely incompatible with TPS54302DDCR, TPS563201DDCR, and Diodes' own AP62200WU-7; always verify PCB footprint and fixed-3.3 V FB wiring in the official Diodes datasheet before production.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [1, 2, 3, 4],
+    "audit_notes": [
+      "300 DPI PNG Vision inspection on p.1 and p.2 confirmed TSOT26 Top View pinout (1=FB, 2=EN, 3=VIN, 4=GND, 5=SW, 6=BST) — explicitly distinct from TPS54302/TPS563201/AP62200 — and fixed 3.3 V FB-to-VOUT wiring.",
+      "300 DPI PNG Vision inspection on p.2 Fig 2 confirmed AP63203 peak efficiency ~92% at VIN = 12 V, VOUT = 3.3 V.",
+      "300 DPI PNG Vision inspection on p.3 and p.4 confirmed Abs Max 35 V (40 V 400 ms), EN 35 V tolerant, Rec Op VIN 3.8-32 V, TA -40 to 85 C, RthetaJA 89 C/W, and RthetaJC 39 C/W."
+    ]
+  }
+}
