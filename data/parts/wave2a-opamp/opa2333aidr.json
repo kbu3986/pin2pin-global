@@ -1,0 +1,221 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "OPA2333AIDR",
+  "slug": "opa2333aidr",
+  "family": "OPA2333",
+  "manufacturer": "Texas Instruments",
+  "category": "opamp",
+  "sub_topology": "opamp-dual",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to 125°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/opa2333.pdf",
+    "product_page_url": "https://www.ti.com/product/OPA2333",
+    "source_domain": "www.ti.com",
+    "revision": "SBOS351E (Rev. December 2015)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 49
+  },
+  "package": {
+    "code": "SOIC-8",
+    "mfg_package_code": "D",
+    "pin_count": 8,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE"
+    },
+    "theta_ja_c_per_w": {
+      "value": 124,
+      "page": 6,
+      "condition": "D (SOIC-8) package, OPA2333 (note single OPA333 D is 140.1 °C/W)",
+      "table_ref": "Section 6.5 Thermal Information: OPA2333"
+    },
+    "theta_jc_c_per_w": {
+      "value": 73.7,
+      "page": 6,
+      "condition": "RθJC(top), D (SOIC-8) package, OPA2333",
+      "table_ref": "Section 6.5 Thermal Information: OPA2333"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 5,
+      "condition": "Operating junction temperature, max",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "OUT A",
+        "role": "OUT_A",
+        "description": "Output, channel A"
+      },
+      {
+        "pin": 2,
+        "name": "-IN A",
+        "role": "IN_NEG_A",
+        "description": "Inverting input, channel A"
+      },
+      {
+        "pin": 3,
+        "name": "+IN A",
+        "role": "IN_POS_A",
+        "description": "Noninverting input, channel A"
+      },
+      {
+        "pin": 4,
+        "name": "V-",
+        "role": "VEE",
+        "description": "Negative (lowest) power supply"
+      },
+      {
+        "pin": 5,
+        "name": "+IN B",
+        "role": "IN_POS_B",
+        "description": "Noninverting input, channel B"
+      },
+      {
+        "pin": 6,
+        "name": "-IN B",
+        "role": "IN_NEG_B",
+        "description": "Inverting input, channel B"
+      },
+      {
+        "pin": 7,
+        "name": "OUT B",
+        "role": "OUT_B",
+        "description": "Output, channel B"
+      },
+      {
+        "pin": 8,
+        "name": "V+",
+        "role": "VCC",
+        "description": "Positive (highest) power supply"
+      }
+    ],
+    "pinout_source_page": 4,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "device_kind": "opamp",
+    "channels": 2,
+    "vs_abs_max_v": {
+      "value": 7,
+      "page": 5,
+      "condition": "Supply voltage, max",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings"
+    },
+    "vs_min_v": {
+      "value": 1.8,
+      "page": 5,
+      "condition": "Recommended operating minimum",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "vs_max_v": {
+      "value": 5.5,
+      "page": 5,
+      "condition": "Recommended operating maximum",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "gbwp_mhz": {
+      "value": 0.35,
+      "page": 7,
+      "condition": "CL = 100 pF, TA = 25°C (350 kHz typ)",
+      "table_ref": "Section 6.6 Electrical Characteristics"
+    },
+    "slew_rate_v_per_us": {
+      "value": 0.16,
+      "page": 7,
+      "condition": "G = +1, TA = 25°C",
+      "table_ref": "Section 6.6 Electrical Characteristics"
+    },
+    "prop_delay_ns": null,
+    "vos_max_mv": {
+      "value": 0.01,
+      "page": 7,
+      "condition": "VS = 5 V, TA = 25°C (10 µV max, 2 µV typ; zero-drift 0.05 µV/°C max over -40°C to 125°C)",
+      "table_ref": "Section 6.6 Electrical Characteristics"
+    },
+    "ib_typ_pa": {
+      "value": 70,
+      "page": 7,
+      "condition": "TA = 25°C (±70 pA typ, ±200 pA max; ±150 pA typ over -40°C to 125°C)",
+      "table_ref": "Section 6.6 Electrical Characteristics"
+    },
+    "iq_per_ch_typ_ua": {
+      "value": 17,
+      "page": 7,
+      "condition": "IO = 0 A, TA = 25°C, per amplifier (25 µA max at 25°C; 28 µA max over -40°C to 125°C; 34 µA typ total for dual package)",
+      "table_ref": "Section 6.6 Electrical Characteristics"
+    },
+    "rail_to_rail_in": true,
+    "rail_to_rail_out": true,
+    "output_type": "push-pull",
+    "cmrr_typ_db": {
+      "value": 130,
+      "page": 7,
+      "condition": "(V-) - 0.1 V < VCM < (V+) + 0.1 V, TA = -40°C to 125°C (106 dB min; crossover-free RRIO)",
+      "table_ref": "Section 6.6 Electrical Characteristics"
+    },
+    "input_noise_nv_rt_hz": null,
+    "iout_short_ma": {
+      "value": 5,
+      "page": 7,
+      "condition": "TA = 25°C (±5 mA typ — micropower output stage; continuous short-circuit for one amplifier per package)",
+      "table_ref": "Section 6.6 Electrical Characteristics"
+    }
+  },
+  "design_gotchas": [
+    {
+      "title": "Weak ±5 mA Output Drive and 350 kHz / 0.16 V/µs Speed vs Pin-Identical TLV9002/TLV9062/LMV358",
+      "severity": "CRITICAL",
+      "detail": "OPA2333AIDR uses the standard dual SOIC-8 pinout, matching TLV9002IDR (40 mA, 1 MHz), TLV9062IDR (50 mA, 10 MHz), and LMV358IDR (40 mA, 1 MHz), but has only ±5 mA short-circuit drive, 2 kΩ open-loop output impedance, 350 kHz GBWP, and 0.16 V/µs slew rate. Strictly for low-frequency DC precision—not fast AC or low-ohm loads.",
+      "page": 7
+    },
+    {
+      "title": "Auto-Calibration Chopper Input Bias Pulses (±70 pA Typ) Require Balanced Low Source Impedance",
+      "severity": "WARNING",
+      "detail": "Proprietary zero-drift auto-calibration introduces ±70 pA typ (±200 pA max) pulsed switching currents at the inputs rather than sub-pA static CMOS bias. Keep source resistances matched and moderate (<10 kΩ) or add differential RC filtering to avoid chopper current offset errors.",
+      "page": 7
+    },
+    {
+      "title": "7.0 V Abs Max Supply Ceiling and Strict ±1 mA Signal Input Current Limit",
+      "severity": "CRITICAL",
+      "detail": "Supply absolute maximum is 7.0 V (5.5 V operating max), so OPA2333AIDR must never be populated in 12 V/24 V LM358DR or ±15 V TL072IDR SOIC-8 footprints. Section 6.1 also caps continuous signal input current at ±1 mA, requiring series current-limiting resistors if inputs can exceed supply rails.",
+      "page": 5
+    },
+    {
+      "title": "Seebeck Thermal EMF and Asymmetric Solder Joints Can Mask 10 µV Offset Performance",
+      "severity": "INFO",
+      "detail": "Realizing true 10 µV max offset and 0.05 µV/°C max drift across both SOIC-8 channels requires symmetric copper routing, equal numbers of solder/via transitions on inverting and noninverting paths, and shielding from board thermal gradients or airflow.",
+      "page": 23
+    }
+  ],
+  "typical_use_cases": [
+    "Dual-channel Wheatstone bridge, strain-gauge, thermocouple, and RTD sensor conditioning",
+    "Two-op-amp micropower instrumentation amplifiers for medical wearables and electronic scales",
+    "Battery-powered 1.8 V–5.5 V precision shunt current sensing (34 µA total dual Iq, 10 µV max VOS)",
+    "Zero-crossover 16-bit to 24-bit sigma-delta ADC differential drivers needing 130 dB CMRR"
+  ],
+  "engineering_summary": "The Texas Instruments OPA2333AIDR is a dual ultra-low-power (17 µA/ch typ), zero-drift auto-calibrated RRIO CMOS operational amplifier in an 8-pin SOIC (D) package operating from 1.8 V to 5.5 V (-40°C to +125°C). Delivering 10 µV max input offset voltage, 0.05 µV/°C max drift, 130 dB crossover-free CMRR, 0.1 µV/V DC channel separation, and 1.1 µVPP 0.1–10 Hz noise with zero 1/f flicker, it shares the standard dual SOIC-8 pinout with LMV358IDR, TLV9002IDR, and TLV9062IDR while trading speed (350 kHz GBWP, 0.16 V/µs) and drive (±5 mA) for microvolt DC accuracy.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [4, 5, 6, 7],
+    "audit_notes": [
+      "Verified OPA2333 SOIC-8 (D) Top View pinout on 300 DPI PNG page 4 (1=OUT A, 2=-IN A, 3=+IN A, 4=V-, 5=+IN B, 6=-IN B, 7=OUT B, 8=V+; no exposed pad on D package, unlike DRB VSON-8).",
+      "Verified Abs Max (7 V, TJ=150°C, ±1 mA input current) on page 5 PNG and OPA2333-specific D-package RθJA = 124.0 °C/W, RθJC(top) = 73.7 °C/W on page 6 PNG (Section 6.5, distinct from single OPA333 Section 6.4).",
+      "Verified Section 6.6 Electrical Characteristics on page 7 PNG: converted VOS max 10 µV -> 0.01 mV, GBW 350 kHz -> 0.35 MHz, confirmed IQ = 17 µA per amplifier and IB = 70 pA typ; left input_noise_nv_rt_hz null because Section 6.6 only tabulates peak-to-peak µVPP noise."
+    ]
+  }
+}

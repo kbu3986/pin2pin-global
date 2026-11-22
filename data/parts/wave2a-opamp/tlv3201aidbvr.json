@@ -1,0 +1,198 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TLV3201AIDBVR",
+  "slug": "tlv3201aidbvr",
+  "family": "TLV3201",
+  "manufacturer": "Texas Instruments",
+  "category": "opamp",
+  "sub_topology": "comparator-single",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to 125°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tlv3201.pdf",
+    "product_page_url": "https://www.ti.com/product/TLV3201",
+    "source_domain": "www.ti.com",
+    "revision": "SBOS561C (Rev. May 2024)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 40
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "DBV",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE"
+    },
+    "theta_ja_c_per_w": {
+      "value": 237.8,
+      "page": 4,
+      "condition": "DBV (SOT-23-5) package, TLV3201",
+      "table_ref": "Section 6.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 108.7,
+      "page": 4,
+      "condition": "RθJC(top), DBV (SOT-23-5) package, TLV3201",
+      "table_ref": "Section 6.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 4,
+      "condition": "Junction temperature TJ, max",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "OUT",
+        "role": "OUT",
+        "description": "Push-pull CMOS comparator output (actively drives both high to VCC and low to GND)"
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "VEE",
+        "description": "Negative supply, ground"
+      },
+      {
+        "pin": 3,
+        "name": "IN+",
+        "role": "IN_POS",
+        "description": "Positive (noninverting) input"
+      },
+      {
+        "pin": 4,
+        "name": "IN-",
+        "role": "IN_NEG",
+        "description": "Negative (inverting) input"
+      },
+      {
+        "pin": 5,
+        "name": "VCC",
+        "role": "VCC",
+        "description": "Positive supply"
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "device_kind": "comparator",
+    "channels": 1,
+    "vs_abs_max_v": {
+      "value": 7,
+      "page": 4,
+      "condition": "Supply voltage, max",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings"
+    },
+    "vs_min_v": {
+      "value": 2.7,
+      "page": 4,
+      "condition": "Recommended operating minimum (2.7 V single supply or ±1.35 V dual)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "vs_max_v": {
+      "value": 5.5,
+      "page": 4,
+      "condition": "Recommended operating maximum (5.5 V single supply or ±2.75 V dual)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "gbwp_mhz": null,
+    "slew_rate_v_per_us": null,
+    "prop_delay_ns": {
+      "value": 43,
+      "page": 5,
+      "condition": "VCC = 5 V, 100 mV input overdrive, CL = 15 pF, Low-to-High, TA = 25°C (42 ns typ H-to-L; 47 ns L-to-H / 45 ns H-to-L at 20 mV overdrive; 50 ns max at 25°C, 55 ns max over -40°C to 125°C; 40 ns headline / 38 ns H-to-L at 2.7 V)",
+      "table_ref": "Section 6.6 Switching Characteristics: VCC = 5V"
+    },
+    "vos_max_mv": {
+      "value": 3,
+      "page": 5,
+      "condition": "VIO-TLV3201, VCC = 5 V, VCM = VCC/2, TA = 25°C (1 mV typ; 4 mV max over -40°C to 125°C; note dual TLV3202 is 5 mV max)",
+      "table_ref": "Section 6.5 Electrical Characteristics: VCC = 5V"
+    },
+    "ib_typ_pa": {
+      "value": 1,
+      "page": 5,
+      "condition": "VCC = 5 V, VCM = VCC/2, TA = 25°C (1 pA typ, 50 pA max at 25°C; 5 nA max over -40°C to 125°C)",
+      "table_ref": "Section 6.5 Electrical Characteristics: VCC = 5V"
+    },
+    "iq_per_ch_typ_ua": {
+      "value": 40,
+      "page": 5,
+      "condition": "VCC = 5 V, TA = 25°C (40 µA typ, 50 µA max at 25°C; 65 µA max over -40°C to 125°C; 36 µA typ at 2.7 V)",
+      "table_ref": "Section 6.5 Electrical Characteristics: VCC = 5V"
+    },
+    "rail_to_rail_in": true,
+    "rail_to_rail_out": true,
+    "output_type": "push-pull",
+    "cmrr_typ_db": {
+      "value": 70,
+      "page": 5,
+      "condition": "VCC = 5 V, -0.2 V < VCM < 5.2 V, TA = 25°C (60 dB min; 68 dB typ / 56 dB min at 2.7 V)",
+      "table_ref": "Section 6.5 Electrical Characteristics: VCC = 5V"
+    },
+    "input_noise_nv_rt_hz": null,
+    "iout_short_ma": {
+      "value": 48,
+      "page": 5,
+      "condition": "VCC = 5 V, TA = 25°C (ISC sinking 48 mA typ / 40 mA min; ISC sourcing 60 mA typ / 52 mA min; 19 mA sink / 21 mA source at 2.7 V)",
+      "table_ref": "Section 6.5 Electrical Characteristics: VCC = 5V"
+    }
+  },
+  "design_gotchas": [
+    {
+      "title": "Push-Pull Output — Do NOT Wired-AND or Pull Up to a Different Logic Rail",
+      "severity": "CRITICAL",
+      "detail": "TLV3201AIDBVR features an active push-pull CMOS output (driving up to 60 mA sourcing / 48 mA sinking at 5 V)—NOT an open-drain or open-collector output like LM393DR or LMV7235. Tying multiple outputs together in a wired-AND fault bus or pulling OUT up to a higher/lower voltage domain causes direct rail-to-rail bus contention and destructive shoot-through current.",
+      "page": 5
+    },
+    {
+      "title": "Identical SOT-23-5 Pinout to Single Op-Amps (TLV9001/TLV9061/OPA333) — Incompatible With LMV321IDBVR",
+      "severity": "CRITICAL",
+      "detail": "TLV3201AIDBVR (1=OUT, 2=GND, 3=IN+, 4=IN-, 5=VCC) matches the exact SOT-23-5 DBV pinout of linear op-amps TLV9001IDBVR, TLV9061IDBVR, and OPA333AIDBVR, but is an uncompensated 43 ns high-speed comparator that oscillates violently in linear negative-feedback op-amp sockets. Conversely, its pins 1/3/4 are permuted relative to LMV321IDBVR (1=IN+, 3=IN-, 4=OUT).",
+      "page": 3
+    },
+    {
+      "title": "Fast 2.9 ns / 3.7 ns Edges and Push-Pull Switching Shoot-Through Require Local 0.1 µF Decoupling",
+      "severity": "WARNING",
+      "detail": "With 2.9 ns rise / 3.7 ns fall times and 1.2 mV typical internal hysteresis, fast push-pull output transitions create brief VCC-to-GND shoot-through current pulses (Section 8.1.3). Place a low-ESR 0.1 µF ceramic capacitor directly across pins 2 and 5 and add external positive-feedback hysteresis for slowly varying or noisy inputs to avoid output chatter.",
+      "page": 15
+    },
+    {
+      "title": "Back-to-Back Input ESD Clamp Network Limits Differential Overdrive Above Supply",
+      "severity": "WARNING",
+      "detail": "Although common-mode range extends 200 mV beyond both rails without phase inversion, Section 8.1.1 (Figure 8-2) shows internal back-to-back input clamp diodes with 1 kΩ resistors. Avoid differential input voltages exceeding VCC and limit over-rail input current to ≤10 mA using external series resistors.",
+      "page": 12
+    }
+  ],
+  "typical_use_cases": [
+    "High-speed 2.7 V–5.5 V PWM current-limit protection, pulse-width monitoring, and fault detectors",
+    "Battery-powered zero-crossing detectors and threshold triggers requiring 43 ns speed at 40 µA Iq",
+    "Optical receiver, time-of-flight, and high-speed sampling clock/edge slicing on 3.3 V/5 V rails",
+    "Direct CMOS/TTL logic-level Schmitt triggers without external pull-up resistors"
+  ],
+  "engineering_summary": "The Texas Instruments TLV3201AIDBVR is an ultra-low-power (40 µA typ), high-speed (43 ns typ propagation delay at 5 V / 100 mV overdrive; 40 ns headline) single rail-to-rail input comparator with an active push-pull CMOS output in a 5-pin SOT-23 (DBV) package operating from 2.7 V to 5.5 V (-40°C to +125°C). Featuring 1 pA input bias current, 3 mV max offset, 1.2 mV internal hysteresis, and input common-mode range 200 mV beyond both rails without phase inversion, it eliminates pull-up resistors while demanding caution against wired-AND bus contention and op-amp socket confusion on the identical TLV9001/TLV9061/OPA333 SOT-23-5 footprint.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 4, 5, 6],
+    "audit_notes": [
+      "Visually verified TLV3201 DBV (SOT-23-5) Top View pinout on 300 DPI PNG page 3 (Figure 5-1 & Pin Functions table): 1=OUT, 2=GND, 3=IN+, 4=IN-, 5=VCC (identical to TLV9001/TLV9061/OPA333 DBV op-amps; reversed pins 1/3/4 vs LMV321IDBVR).",
+      "Verified push-pull output architecture, Abs Max (7 V, TJ=150°C), Recommended Operating (2.7 V–5.5 V), and TLV3201 DBV RθJA = 237.8 °C/W, RθJC(top) = 108.7 °C/W on page 4 PNG.",
+      "Verified Section 6.5/6.6 (5 V) and 6.7/6.8 (2.7 V) on pages 5-6 PNGs: VIO-TLV3201 = 3 mV max (distinct from TLV3202 5 mV), IB = 1 pA typ, IQ = 40 µA typ, ISC = 48 mA sink / 60 mA source, tPD = 43 ns L-to-H (42 ns H-to-L) at 5 V / 100 mV OD (47/45 ns at 20 mV OD, 50 ns max)."
+    ]
+  }
+}

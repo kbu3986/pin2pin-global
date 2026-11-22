@@ -1,0 +1,203 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "LMV321IDBVR",
+  "slug": "lmv321idbvr",
+  "family": "LMV321",
+  "manufacturer": "Texas Instruments",
+  "category": "opamp",
+  "sub_topology": "opamp-single",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to 125°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/lmv321.pdf",
+    "product_page_url": "https://www.ti.com/product/LMV321",
+    "source_domain": "www.ti.com",
+    "revision": "SLOS263Y (Rev. August 2023)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 53
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "DBV",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE"
+    },
+    "theta_ja_c_per_w": {
+      "value": 232.9,
+      "page": 5,
+      "condition": "DBV (SOT-23-5) package, LMV321",
+      "table_ref": "Section 6.4 Thermal Information: LMV321"
+    },
+    "theta_jc_c_per_w": null,
+    "tj_max_c": {
+      "value": 150,
+      "page": 5,
+      "condition": "Operating virtual junction temperature, max",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "1IN+",
+        "role": "IN_POS",
+        "description": "Noninverting input (REVERSED SOT-23-5 layout vs TLV9001/TLV9061/OPA333 DBV)"
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "VEE",
+        "description": "Negative supply (ground for single-supply operation)"
+      },
+      {
+        "pin": 3,
+        "name": "1IN-",
+        "role": "IN_NEG",
+        "description": "Inverting input"
+      },
+      {
+        "pin": 4,
+        "name": "OUT",
+        "role": "OUT",
+        "description": "Output"
+      },
+      {
+        "pin": 5,
+        "name": "VCC+",
+        "role": "VCC",
+        "description": "Positive supply"
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "device_kind": "opamp",
+    "channels": 1,
+    "vs_abs_max_v": {
+      "value": 5.5,
+      "page": 5,
+      "condition": "Supply voltage VCC, max (zero overvoltage headroom above 5.5 V recommended max)",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings"
+    },
+    "vs_min_v": {
+      "value": 2.7,
+      "page": 5,
+      "condition": "Single-supply recommended minimum",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "vs_max_v": {
+      "value": 5.5,
+      "page": 5,
+      "condition": "Single-supply recommended maximum",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "gbwp_mhz": {
+      "value": 1,
+      "page": 7,
+      "condition": "VCC+ = 5 V, CL = 200 pF, TA = 25°C",
+      "table_ref": "Section 6.8 Electrical Characteristics: VCC+ = 5 V"
+    },
+    "slew_rate_v_per_us": {
+      "value": 1,
+      "page": 7,
+      "condition": "VCC+ = 5 V, TA = 25°C",
+      "table_ref": "Section 6.8 Electrical Characteristics: VCC+ = 5 V"
+    },
+    "prop_delay_ns": null,
+    "vos_max_mv": {
+      "value": 7,
+      "page": 7,
+      "condition": "VCC+ = 5 V, TA = 25°C (1.7 mV typ; 9 mV max over -40°C to +125°C)",
+      "table_ref": "Section 6.8 Electrical Characteristics: VCC+ = 5 V"
+    },
+    "ib_typ_pa": {
+      "value": 15000,
+      "page": 7,
+      "condition": "VCC+ = 5 V, TA = 25°C (15 nA typ, 250 nA max at 25°C; 500 nA max over temp; 11 nA typ at 2.7 V)",
+      "table_ref": "Section 6.8 Electrical Characteristics: VCC+ = 5 V"
+    },
+    "iq_per_ch_typ_ua": {
+      "value": 130,
+      "page": 7,
+      "condition": "LMV321I, VCC+ = 5 V, TA = 25°C (250 µA max at 25°C; 350 µA max over -40°C to +125°C; 80 µA typ at 2.7 V)",
+      "table_ref": "Section 6.8 Electrical Characteristics: VCC+ = 5 V"
+    },
+    "rail_to_rail_in": false,
+    "rail_to_rail_out": true,
+    "output_type": "push-pull",
+    "cmrr_typ_db": {
+      "value": 65,
+      "page": 7,
+      "condition": "VCC+ = 5 V, VCM = 0 to 4 V, TA = 25°C (50 dB min; 63 dB typ at 2.7 V)",
+      "table_ref": "Section 6.8 Electrical Characteristics: VCC+ = 5 V"
+    },
+    "input_noise_nv_rt_hz": {
+      "value": 39,
+      "page": 7,
+      "condition": "VCC+ = 5 V, f = 1 kHz, TA = 25°C (46 nV/√Hz at 2.7 V)",
+      "table_ref": "Section 6.8 Electrical Characteristics: VCC+ = 5 V"
+    },
+    "iout_short_ma": {
+      "value": 40,
+      "page": 7,
+      "condition": "VCC+ = 5 V, TA = 25°C (40 mA typ sourcing and sinking; revised in Rev X)",
+      "table_ref": "Section 6.8 Electrical Characteristics: VCC+ = 5 V"
+    }
+  },
+  "design_gotchas": [
+    {
+      "title": "CRITICAL SOT-23-5 Pinout Mismatch vs TLV9001IDBVR, TLV9061IDBVR, OPA333AIDBVR, and TLV3201AIDBVR",
+      "severity": "CRITICAL",
+      "detail": "LMV321IDBVR uses the classic LMV321/SC-70 SOT-23-5 pinout (1=1IN+, 2=GND, 3=1IN-, 4=OUT, 5=VCC+), permuting pins 1, 3, and 4 relative to TI standard DBV parts TLV9001IDBVR, TLV9061IDBVR, OPA333AIDBVR, and TLV3201AIDBVR (1=OUT, 2=V-, 3=IN+, 4=IN-, 5=V+). Direct substitution shorts the output into the noninverting input—use TI's U-variant (e.g., TLV9001UIDBVR) for pin-matched RRIO upgrades.",
+      "page": 3
+    },
+    {
+      "title": "Zero Supply Headroom Above 5.5 V (Abs Max = Operating Max = 5.5 V)",
+      "severity": "CRITICAL",
+      "detail": "Section 6.1 specifies 5.5 V as the absolute maximum VCC—identical to the 5.5 V recommended maximum—leaving zero margin for 5 V rail overshoot or unregulated USB surges, unlike TLV9001IDBVR (7.0 V abs max) or TLV9061IDBVR (6.0 V abs max). Short circuits from OUT to VCC can also cause permanent thermal destruction.",
+      "page": 5
+    },
+    {
+      "title": "Rail-to-Rail Output Only — Input Common-Mode Clips 1.0 V Below VCC+",
+      "severity": "WARNING",
+      "detail": "While output swings within 10 mV typ of VCC+ into 10 kΩ, guaranteed common-mode input range stops at VCC+ - 1.0 V (0 to 4.0 V on 5 V; 0 to 1.7 V on 2.7 V). Unity-gain buffers driven above 4.0 V on a 5 V rail saturate and distort; use an RRIO U-variant such as TLV9001UIDBVR when full-rail input swing is needed.",
+      "page": 7
+    },
+    {
+      "title": "High Bipolar Input Bias (15 nA Typ / 250 nA Max) and 7 mV Max Offset",
+      "severity": "WARNING",
+      "detail": "LMV321IDBVR draws 15 nA typ (15,000 pA; up to 500 nA over temperature) input bias current with 7 mV max room-temperature offset (9 mV over temp), making it unsuitable for MΩ sensor bridges or high-precision low-side shunts where CMOS pA-bias amplifiers excel.",
+      "page": 7
+    }
+  ],
+  "typical_use_cases": [
+    "Cost-sensitive 3.3 V and 5 V single-supply MCU ADC buffers and active filters on LMV321 SOT-23-5 footprints",
+    "Compact consumer appliance, HVAC, and telecom power-module signal conditioning (-40°C to +125°C)",
+    "Low-voltage rail-to-rail output single-channel alternative to legacy LM358 half-sections",
+    "General-purpose ground-sensing low-side current and voltage monitoring with 1 MHz GBWP"
+  ],
+  "engineering_summary": "The Texas Instruments LMV321IDBVR is a general-purpose, low-voltage (2.7 V to 5.5 V), rail-to-rail output single operational amplifier in a 5-pin SOT-23 (DBV) package rated from -40°C to +125°C. Delivering 1 MHz GBWP, 1 V/µs slew rate, 130 µA typical supply current, and ±40 mA short-circuit drive without Class-B crossover distortion, it is a staple in budget 3.3 V/5 V boards. Crucially, its SOT-23-5 pinout (1=1IN+, 2=GND, 3=1IN-, 4=OUT, 5=VCC+) is NOT pin-compatible with TLV9001IDBVR, TLV9061IDBVR, or OPA333AIDBVR (1=OUT, 3=IN+, 4=IN-), and its 5.5 V absolute maximum supply rating leaves zero headroom above 5.5 V.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 5, 6, 7],
+    "audit_notes": [
+      "Visually verified LMV321 SOT-23-5 (DBV) Top View pinout on 300 DPI PNG page 3 (Figure 5-2 & Table 5-2): 1=1IN+, 2=GND, 3=1IN-, 4=OUT, 5=VCC+ — explicitly confirmed permutation mismatch vs TLV9001/TLV9061/OPA333/TLV3201 DBV.",
+      "Verified Abs Max (5.5 V, TJ=150°C), Recommended Operating (2.7 V–5.5 V, -40°C to 125°C), and LMV321 DBV RθJA = 232.9 °C/W on page 5 PNG (Section 6.4).",
+      "Verified Section 6.7 (2.7 V) and Section 6.8 (5 V) Electrical Characteristics on pages 6-7 PNGs: converted IIB = 15 nA -> 15000 pA, confirmed single-channel LMV321I ICC = 130 µA typ at 5 V (80 µA at 2.7 V)."
+    ]
+  }
+}

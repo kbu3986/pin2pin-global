@@ -1,0 +1,226 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TLV9062IDR",
+  "slug": "tlv9062idr",
+  "family": "TLV9062",
+  "manufacturer": "Texas Instruments",
+  "category": "opamp",
+  "sub_topology": "opamp-dual",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to 125°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tlv9062.pdf",
+    "product_page_url": "https://www.ti.com/product/TLV9062",
+    "source_domain": "www.ti.com",
+    "revision": "SBOS839N (Rev. July 2026)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 99
+  },
+  "package": {
+    "code": "SOIC-8",
+    "mfg_package_code": "D",
+    "pin_count": 8,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE"
+    },
+    "theta_ja_c_per_w": {
+      "value": 157.6,
+      "page": 11,
+      "condition": "D (SOIC-8) package, TLV9062",
+      "table_ref": "Section 6.6 Thermal Information: TLV9062"
+    },
+    "theta_jc_c_per_w": {
+      "value": 104.6,
+      "page": 11,
+      "condition": "RθJC(top), D (SOIC-8) package, TLV9062",
+      "table_ref": "Section 6.6 Thermal Information: TLV9062"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 10,
+      "condition": "Junction temperature, max",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "OUT1",
+        "role": "OUT_A",
+        "description": "Output, channel 1"
+      },
+      {
+        "pin": 2,
+        "name": "IN1-",
+        "role": "IN_NEG_A",
+        "description": "Inverting input, channel 1"
+      },
+      {
+        "pin": 3,
+        "name": "IN1+",
+        "role": "IN_POS_A",
+        "description": "Noninverting input, channel 1"
+      },
+      {
+        "pin": 4,
+        "name": "V-",
+        "role": "VEE",
+        "description": "Negative (lowest) supply or ground for single-supply operation"
+      },
+      {
+        "pin": 5,
+        "name": "IN2+",
+        "role": "IN_POS_B",
+        "description": "Noninverting input, channel 2"
+      },
+      {
+        "pin": 6,
+        "name": "IN2-",
+        "role": "IN_NEG_B",
+        "description": "Inverting input, channel 2"
+      },
+      {
+        "pin": 7,
+        "name": "OUT2",
+        "role": "OUT_B",
+        "description": "Output, channel 2"
+      },
+      {
+        "pin": 8,
+        "name": "V+",
+        "role": "VCC",
+        "description": "Positive (highest) supply"
+      }
+    ],
+    "pinout_source_page": 6,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "device_kind": "opamp",
+    "channels": 2,
+    "vs_abs_max_v": {
+      "value": 6,
+      "page": 10,
+      "condition": "Supply voltage [(V+) - (V-)], max",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings"
+    },
+    "vs_min_v": {
+      "value": 1.8,
+      "page": 10,
+      "condition": "Recommended operating minimum",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "vs_max_v": {
+      "value": 5.5,
+      "page": 10,
+      "condition": "Recommended operating maximum",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "gbwp_mhz": {
+      "value": 10,
+      "page": 13,
+      "condition": "VS = 5 V, G = +1, TA = 25°C",
+      "table_ref": "Section 6.10 Electrical Characteristics"
+    },
+    "slew_rate_v_per_us": {
+      "value": 6.5,
+      "page": 13,
+      "condition": "VS = 5 V, G = +1, TA = 25°C",
+      "table_ref": "Section 6.10 Electrical Characteristics"
+    },
+    "prop_delay_ns": null,
+    "vos_max_mv": {
+      "value": 1.6,
+      "page": 13,
+      "condition": "VS = 5 V, TA = 25°C (±0.3 mV typ; ±2 mV max over -40°C to 125°C)",
+      "table_ref": "Section 6.10 Electrical Characteristics"
+    },
+    "ib_typ_pa": {
+      "value": 0.5,
+      "page": 13,
+      "condition": "VS = 1.8 V to 5.5 V, TA = 25°C (±0.5 pA typ)",
+      "table_ref": "Section 6.10 Electrical Characteristics"
+    },
+    "iq_per_ch_typ_ua": {
+      "value": 538,
+      "page": 14,
+      "condition": "VS = 5.5 V, IO = 0 mA, TA = 25°C, per amplifier (750 µA max at 25°C; 800 µA max over -40°C to 125°C; ~1.08 mA typ total for dual package)",
+      "table_ref": "Section 6.10 Electrical Characteristics (continued)"
+    },
+    "rail_to_rail_in": true,
+    "rail_to_rail_out": true,
+    "output_type": "push-pull",
+    "cmrr_typ_db": {
+      "value": 87,
+      "page": 13,
+      "condition": "VS = 5.5 V, full RRIO range VCM = -0.1 V to 5.6 V, TA = -40°C to 125°C (57 dB min; 103 dB typ / 80 dB min for VCM < V+ - 1.4 V)",
+      "table_ref": "Section 6.10 Electrical Characteristics"
+    },
+    "input_noise_nv_rt_hz": {
+      "value": 16,
+      "page": 13,
+      "condition": "VS = 5 V, f = 1 kHz, TA = 25°C (10 nV/√Hz at f = 10 kHz)",
+      "table_ref": "Section 6.10 Electrical Characteristics"
+    },
+    "iout_short_ma": {
+      "value": 50,
+      "page": 14,
+      "condition": "VS = 5 V, TA = 25°C (±50 mA typ; continuous short-circuit rating applies to one amplifier per package)",
+      "table_ref": "Section 6.10 Electrical Characteristics (continued)"
+    }
+  },
+  "design_gotchas": [
+    {
+      "title": "6.0 V Absolute Maximum Supply Limit — Destructive in 12 V / 24 V LM358 or TL072 SOIC-8 Sockets",
+      "severity": "CRITICAL",
+      "detail": "TLV9062IDR shares the industry-standard dual SOIC-8 pinout with LM358DR (32 V abs max), TL072IDR (42 V), and NE5532DR (36 V), but has a strict 6.0 V absolute maximum supply rating (5.5 V operating max). Only install it on 1.8 V–5.5 V rails and ensure power-rail transients never exceed 6.0 V.",
+      "page": 10
+    },
+    {
+      "title": "10 MHz GBWP Upgrade Over LMV358/TLV9002 Requires Tight Bypassing & Capacitive-Load Isolation",
+      "severity": "WARNING",
+      "detail": "Replacing a 1 MHz LMV358IDR or TLV9002IDR with the 10 MHz, 6.5 V/µs TLV9062IDR increases loop bandwidth 10x. Place a 0.1 µF ceramic bypass capacitor directly across pins 4 and 8, keep feedback nodes compact, and insert an RISO series resistor when driving capacitive loads above 100 pF.",
+      "page": 2
+    },
+    {
+      "title": "9x Higher Quiescent Current (~1.08 mA Total) vs TLV9002IDR and 32x vs OPA2333AIDR",
+      "severity": "WARNING",
+      "detail": "At 538 µA/ch typ (750 µA/ch max at 25°C; 1.6 mA total max over temp), TLV9062IDR consumes nearly 9x more idle current than pin-compatible TLV9002IDR (60 µA/ch) and over 31x more than OPA2333AIDR (17 µA/ch), which can significantly shorten coin-cell or ultra-low-power IoT battery life.",
+      "page": 14
+    },
+    {
+      "title": "Complementary RRIO Input Crossover Drops Full-Range CMRR from 103 dB to 87 dB Typ",
+      "severity": "INFO",
+      "detail": "CMRR is 103 dB typ (80 dB min) for VCM < (V+) - 1.4 V, but degrades to 87 dB typ (57 dB min) across the full -0.1 V to 5.6 V input swing due to NMOS/PMOS input-stage handoff. For crossover-free DC precision on SOIC-8, consider OPA2333AIDR.",
+      "page": 13
+    }
+  ],
+  "typical_use_cases": [
+    "High-speed 1.8 V–5.5 V dual SAR ADC input buffers and active anti-aliasing filters",
+    "Motor-control dual-phase low-side shunt current sensing in HVAC and e-bike controllers",
+    "High-impedance photodiode, pH, and CMOS sensor front-ends requiring 0.5 pA bias current",
+    "Pin-compatible 10 MHz RRIO bandwidth upgrade for 3.3 V/5 V LMV358IDR or TLV9002IDR SOIC-8 sockets"
+  ],
+  "engineering_summary": "The Texas Instruments TLV9062IDR is a dual 10 MHz, 6.5 V/µs, rail-to-rail input and output (RRIO) CMOS operational amplifier in an 8-pin SOIC (D) package operating from 1.8 V to 5.5 V (-40°C to +125°C). Offering ±0.3 mV typical offset (±1.6 mV max), 0.5 pA input bias current, 10 nV/√Hz noise at 10 kHz (16 nV/√Hz at 1 kHz), internal EMI/RFI filtering, and ±50 mA short-circuit output drive, it serves as a high-speed SOIC-8 candidate upgrade for 3.3 V/5 V LMV358IDR and TLV9002IDR circuits provided the 6.0 V absolute maximum ceiling and 538 µA/ch quiescent current fit the system budget.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [6, 10, 11, 13, 14],
+    "audit_notes": [
+      "Verified TLV9062 SOIC-8 (D) Top View pinout on 300 DPI PNG page 6 (Figure 5-6 & Table 5-3): 1=OUT1, 2=IN1-, 3=IN1+, 4=V-, 5=IN2+, 6=IN2-, 7=OUT2, 8=V+ (no exposed pad on D package).",
+      "Verified Abs Max (6 V, TJ=150°C) on page 10 PNG, TLV9062 D RθJA = 157.6 °C/W and RθJC(top) = 104.6 °C/W on page 11 PNG (Section 6.6), and Electrical Characteristics on pages 13-14 PNGs.",
+      "Confirmed IB = 0.5 pA typ and IQ = 538 µA typ per amplifier directly on pages 13-14 PNGs; confirmed TLV9062IDR Active Production status in Package Option Addendum."
+    ]
+  }
+}
