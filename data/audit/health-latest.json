@@ -1,0 +1,525 @@
+{
+  "checked_at": "2026-11-22T12:35:11.709Z",
+  "summary": {
+    "total_parts": 65,
+    "total_vs_pairs": 130,
+    "total_en_pages": 278,
+    "unique_official_pdfs": 62,
+    "broken_pdfs": 0,
+    "revision_drift_detected": 0,
+    "live_site_ok": true,
+    "open_github_issues": 0
+  },
+  "pdfs": {
+    "broken": [],
+    "revision_drifts": [],
+    "details": [
+      {
+        "url": "http://www.advanced-monolithic.com/pdf/ds1117.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "95151",
+        "etag": "\"173af-4722743492240\"",
+        "lastModified": "Thu, 27 Aug 2009 22:41:05 GMT"
+      },
+      {
+        "url": "https://www.diodes.com/assets/Datasheets/AP2112.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "755270",
+        "etag": "\"594999fa-b8646\"",
+        "lastModified": "Tue, 20 Jun 2017 21:56:10 GMT"
+      },
+      {
+        "url": "https://www.diodes.com/assets/Datasheets/AP2127.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "931768",
+        "etag": "\"5a344416-e37b8\"",
+        "lastModified": "Fri, 15 Dec 2017 21:52:22 GMT"
+      },
+      {
+        "url": "https://www.diodes.com/assets/Datasheets/AP2204.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "1453132",
+        "etag": "\"62bccd70-162c4c\"",
+        "lastModified": "Wed, 29 Jun 2022 22:08:48 GMT"
+      },
+      {
+        "url": "https://www.diodes.com/assets/Datasheets/AP2210.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "726814",
+        "etag": "\"60463ca8-b171e\"",
+        "lastModified": "Mon, 08 Mar 2021 15:03:04 GMT"
+      },
+      {
+        "url": "https://www.diodes.com/assets/Datasheets/AP62200_AP62201_AP62200T.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "1789511",
+        "etag": "\"6875801e-1b4e47\"",
+        "lastModified": "Mon, 14 Jul 2025 22:09:34 GMT"
+      },
+      {
+        "url": "https://www.diodes.com/assets/Datasheets/AP63200-AP63201-AP63203-AP63205.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "1226090",
+        "etag": "\"6737ab26-12b56a\"",
+        "lastModified": "Fri, 15 Nov 2024 20:12:22 GMT"
+      },
+      {
+        "url": "https://www.diodes.com/assets/Datasheets/AP63300-AP63301.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "1375130",
+        "etag": "\"5d4b4942-14fb9a\"",
+        "lastModified": "Wed, 07 Aug 2019 21:57:22 GMT"
+      },
+      {
+        "url": "https://www.diodes.com/assets/Datasheets/AP7313.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "278446",
+        "etag": "\"55dce481-43fae\"",
+        "lastModified": "Tue, 25 Aug 2015 21:56:17 GMT"
+      },
+      {
+        "url": "https://www.diodes.com/assets/Datasheets/AP7333.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "361270",
+        "etag": "\"55dce483-58336\"",
+        "lastModified": "Tue, 25 Aug 2015 21:56:19 GMT"
+      },
+      {
+        "url": "https://www.diodes.com/assets/Datasheets/AP7361C.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "931328",
+        "etag": "\"5f7c8a36-e3600\"",
+        "lastModified": "Tue, 06 Oct 2020 15:16:06 GMT"
+      },
+      {
+        "url": "https://www.diodes.com/assets/Datasheets/AZ1117C.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "1124339",
+        "etag": "\"63234e6b-1127f3\"",
+        "lastModified": "Thu, 15 Sep 2022 16:10:19 GMT"
+      },
+      {
+        "url": "https://www.onsemi.com/pdf/datasheet/cat6219-d.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": null,
+        "etag": null,
+        "lastModified": null
+      },
+      {
+        "url": "https://www.onsemi.com/pdf/datasheet/mc33201-d.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "422035",
+        "etag": null,
+        "lastModified": null
+      },
+      {
+        "url": "https://www.onsemi.com/pdf/datasheet/ncp1117-d.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "1750668",
+        "etag": null,
+        "lastModified": null
+      },
+      {
+        "url": "https://www.onsemi.com/pdf/datasheet/ncp114-d.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "1352039",
+        "etag": null,
+        "lastModified": null
+      },
+      {
+        "url": "https://www.onsemi.com/pdf/datasheet/ncp500-d.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": null,
+        "etag": null,
+        "lastModified": null
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/lm1117.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "2920491",
+        "etag": "\"2c902b-65c5c2503334d\"",
+        "lastModified": "Sat, 26 Sep 2026 05:31:27 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/lm2596.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "5095029",
+        "etag": "\"4dbe75-65a28ddde701c\"",
+        "lastModified": "Sat, 29 Aug 2026 05:30:27 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/lm27313.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "867862",
+        "etag": "\"d3e16-6434ddb749c31\"",
+        "lastModified": "Tue, 11 Nov 2025 08:58:53 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/lm2733.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "1029156",
+        "etag": "\"fb424-6434caeb8c738\"",
+        "lastModified": "Tue, 11 Nov 2025 07:34:48 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/lm2937.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "1896324",
+        "etag": "\"1cef84-65c5c2b068623\"",
+        "lastModified": "Sat, 26 Sep 2026 05:33:08 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/lm3480.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "772754",
+        "etag": "\"bca92-65a8d834d54b0\"",
+        "lastModified": "Thu, 03 Sep 2026 05:35:00 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/lm358.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "4150801",
+        "etag": "\"3f5611-65dda72b77324\"",
+        "lastModified": "Thu, 15 Oct 2026 05:37:49 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/lm393.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "3290405",
+        "etag": "\"323525-65ffa77f63554\"",
+        "lastModified": "Wed, 11 Nov 2026 06:40:19 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/lmv321.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "2605821",
+        "etag": "\"27c2fd-65d112da301b5\"",
+        "lastModified": "Mon, 05 Oct 2026 05:30:21 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/lmv358.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "2605821",
+        "etag": "\"27c2fd-65d112da301b5\"",
+        "lastModified": "Mon, 05 Oct 2026 05:30:21 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/lp2985.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "10385978",
+        "etag": "\"9e7a3a-65a3d0cbc8963\"",
+        "lastModified": "Sun, 30 Aug 2026 05:35:13 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/ne5532.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "1080659",
+        "etag": "\"107d53-658c0831b13a7\"",
+        "lastModified": "Tue, 11 Aug 2026 07:35:16 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/opa2134.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "1482135",
+        "etag": "\"169d97-65973dbe79b1b\"",
+        "lastModified": "Thu, 20 Aug 2026 05:33:25 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/opa2333.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "1944689",
+        "etag": "\"1dac71-658c226799f88\"",
+        "lastModified": "Tue, 11 Aug 2026 09:32:32 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/opa333.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "1944689",
+        "etag": "\"1dac71-658c226799f88\"",
+        "lastModified": "Tue, 11 Aug 2026 09:32:32 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tl072.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "6081648",
+        "etag": "\"5ccc70-65ffa580e8a9e\"",
+        "lastModified": "Wed, 11 Nov 2026 06:31:24 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tlv1117.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "2697370",
+        "etag": "\"29289a-65c5c2c62ae42\"",
+        "lastModified": "Sat, 26 Sep 2026 05:33:31 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tlv3201.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "1756021",
+        "etag": "\"1acb75-65fbe1d907e7f\"",
+        "lastModified": "Sun, 08 Nov 2026 06:40:04 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tlv700.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "1123994",
+        "etag": "\"11269a-65bcf5d70e807\"",
+        "lastModified": "Sat, 19 Sep 2026 05:34:04 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tlv702.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "954929",
+        "etag": "\"e9231-66087452b45bb\"",
+        "lastModified": "Wed, 18 Nov 2026 06:39:17 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tlv733p.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "1064412",
+        "etag": "\"103ddc-65768ce7aacda\"",
+        "lastModified": "Sat, 25 Jul 2026 05:31:52 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tlv755p.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "3071549",
+        "etag": "\"2ede3d-660af61a4e5fd\"",
+        "lastModified": "Fri, 20 Nov 2026 06:30:34 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tlv9001.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "8043521",
+        "etag": "\"7abc01-65e8fc6fd12c4\"",
+        "lastModified": "Sat, 24 Oct 2026 05:57:52 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tlv9002.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "8043521",
+        "etag": "\"7abc01-65e8fc6fd12c4\"",
+        "lastModified": "Sat, 24 Oct 2026 05:57:52 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tlv9061.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "8130782",
+        "etag": "\"7c10de-65ffa5bbb7377\"",
+        "lastModified": "Wed, 11 Nov 2026 06:32:25 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tlv9062.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "8130782",
+        "etag": "\"7c10de-65ffa5bbb7377\"",
+        "lastModified": "Wed, 11 Nov 2026 06:32:25 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tps54202.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "1880341",
+        "etag": "\"1cb115-65dee9a43457e\"",
+        "lastModified": "Fri, 16 Oct 2026 05:40:31 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tps54302.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "2316963",
+        "etag": "\"235aa3-6604accbbe2b2\"",
+        "lastModified": "Sun, 15 Nov 2026 06:30:38 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tps54331.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "2098305",
+        "etag": "\"200481-658bf045f0838\"",
+        "lastModified": "Tue, 11 Aug 2026 05:48:15 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tps562201.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "1691692",
+        "etag": "\"19d02c-660c3a7c8200f\"",
+        "lastModified": "Sat, 21 Nov 2026 06:41:50 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tps563201.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "1527700",
+        "etag": "\"174f94-660c3a5179021\"",
+        "lastModified": "Sat, 21 Nov 2026 06:41:04 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tps61023.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "2392725",
+        "etag": "\"248295-660c38716b483\"",
+        "lastModified": "Sat, 21 Nov 2026 06:32:41 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tps61040.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "2278827",
+        "etag": "\"22c5ab-660af7534353b\"",
+        "lastModified": "Fri, 20 Nov 2026 06:36:02 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tps61099.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "2926574",
+        "etag": "\"2ca7ee-660af76894109\"",
+        "lastModified": "Fri, 20 Nov 2026 06:36:24 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tps61200.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "1946949",
+        "etag": "\"1db545-65133e3471087\"",
+        "lastModified": "Thu, 07 May 2026 05:52:38 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tps61220.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "1297851",
+        "etag": "\"13cdbb-64eb013df2510\"",
+        "lastModified": "Sun, 05 Apr 2026 05:46:54 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tps61322.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "3181270",
+        "etag": "\"308ad6-65fa9fff94331\"",
+        "lastModified": "Sat, 07 Nov 2026 06:40:08 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tps63000.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "1220074",
+        "etag": "\"129dea-6434ef4161c08\"",
+        "lastModified": "Tue, 11 Nov 2025 10:17:21 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tps63020.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "1855244",
+        "etag": "\"1c4f0c-64f3cae63992c\"",
+        "lastModified": "Sun, 12 Apr 2026 05:31:42 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tps709.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "2270426",
+        "etag": "\"22a4da-660af6952693a\"",
+        "lastModified": "Fri, 20 Nov 2026 06:32:42 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tps736.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "2682303",
+        "etag": "\"28edbf-65f81b9ffaec0\"",
+        "lastModified": "Thu, 05 Nov 2026 06:37:16 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tps793.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "3272124",
+        "etag": "\"31edbc-6514836eba62f\"",
+        "lastModified": "Fri, 08 May 2026 06:07:41 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tps7a02.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "3405603",
+        "etag": "\"33f723-65b9302f97d0f\"",
+        "lastModified": "Wed, 16 Sep 2026 05:33:48 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tps7a05.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "3834557",
+        "etag": "\"3a82bd-6609b673c4d4b\"",
+        "lastModified": "Thu, 19 Nov 2026 06:40:28 GMT"
+      },
+      {
+        "url": "https://www.ti.com/lit/ds/symlink/tps7a20.pdf",
+        "ok": true,
+        "status": 200,
+        "contentLength": "8987703",
+        "etag": "\"892437-65fbe1d40f366\"",
+        "lastModified": "Sun, 08 Nov 2026 06:39:59 GMT"
+      }
+    ]
+  },
+  "live": {
+    "live_base": "https://kbu3986.github.io/pin2pin-global",
+    "checked_routes": 15,
+    "failed_routes": [],
+    "sitemap_live_urls": 278,
+    "manifest_expected_urls": 278,
+    "sitemap_synced": true,
+    "ok": true
+  },
+  "open_issues": []
+}
