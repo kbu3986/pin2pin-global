@@ -1,0 +1,220 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TLV73333PDBVR",
+  "slug": "tlv73333pdbvr",
+  "family": "TLV733P",
+  "manufacturer": "Texas Instruments",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to +125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tlv733p.pdf",
+    "product_page_url": "https://www.ti.com/product/TLV733P",
+    "source_domain": "www.ti.com",
+    "revision": "SBVS235C (October 2014 – Revised July 2019)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 39
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "DBV (SOT-23-5)",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "5-pin DBV SOT-23 package has no exposed thermal pad (thermal pad applies only to DQN X2SON-4 package)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 228.4,
+      "page": 5,
+      "condition": "DBV (5-pin SOT-23) JEDEC junction-to-ambient thermal resistance",
+      "table_ref": "6.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 151.5,
+      "page": 5,
+      "condition": "DBV (5-pin SOT-23) junction-to-case (top) thermal resistance RθJC(top)",
+      "table_ref": "6.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 5,
+      "condition": "Absolute maximum junction temperature -40°C to +150°C (recommended operating TJ -40°C to +125°C; Tsd typ 160°C)",
+      "table_ref": "6.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "IN",
+        "role": "VIN",
+        "description": "Input voltage pin (1.4 V to 5.5 V operating, 6.0 V abs max); capacitor-free stable, 0.1–1 uF recommended if source impedance > 0.5 Ohm."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Ground reference pin."
+      },
+      {
+        "pin": 3,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high Enable input (VEN(HI) >= 0.9 V, VEN(LO) <= 0.35 V); MUST NOT exceed VIN + 0.3 V."
+      },
+      {
+        "pin": 4,
+        "name": "NC",
+        "role": "NC",
+        "description": "No internal connection."
+      },
+      {
+        "pin": 5,
+        "name": "OUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output (abs max 3.6 V!) with 120 Ohm active discharge ('P' suffix); capacitor-free stable (0–100 uF ceramic)."
+      }
+    ],
+    "pinout_source_page": 4,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 6.0,
+      "page": 5,
+      "condition": "Absolute maximum VIN (VEN abs max = VIN + 0.3 V; VOUT abs max = 3.6 V)",
+      "table_ref": "6.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 1.4,
+      "page": 5,
+      "condition": "Recommended operating VIN minimum across family (maintain VIN >= 3.3 V + VDO for 3.3 V regulation)",
+      "table_ref": "6.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 5.5,
+      "page": 5,
+      "condition": "Recommended operating VIN maximum (EN operating max = VIN)",
+      "table_ref": "6.3 Recommended Operating Conditions"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 6,
+      "condition": "Fixed 3.3 V active-discharge ('33P') ordering option in DBV SOT-23-5",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 1.4,
+      "page": 6,
+      "condition": "±1.4% max over -40°C <= TJ <= +125°C (±1% at TJ = 25°C)",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "iout_max_ma": {
+      "value": 300,
+      "page": 5,
+      "condition": "Recommended continuous output current (ILIM = 360 mA min to 700 mA max; foldback IOS = 170 mA typ at VOUT = 3.3 V)",
+      "table_ref": "6.3 Recommended Operating Conditions"
+    },
+    "iq_typ_ua": {
+      "value": 34,
+      "page": 6,
+      "condition": "IOUT = 0 mA, TJ = 25°C (60 uA max over -40..+125°C)",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "ishdn_typ_ua": {
+      "value": 0.1,
+      "page": 6,
+      "condition": "VEN <= 0.35 V, 2.0 V <= VIN <= 5.5 V, TJ = 25°C (1 uA max)",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "dropout_typ_mv": {
+      "value": 125,
+      "page": 6,
+      "condition": "VOUT = 3.3 V, IOUT = 300 mA, VOUT = 0.98 x VOUT(nom) (220 mV max at -40..+85°C; 270 mV max at -40..+125°C)",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "psrr_db": {
+      "value": 68,
+      "page": 6,
+      "condition": "f = 100 Hz, VOUT = 1.8 V, IOUT = 300 mA (50 dB at 1 kHz per p.1; 35 dB at 10 kHz; 28 dB at 100 kHz)",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "output_noise_uvrms": {
+      "value": 120,
+      "page": 6,
+      "condition": "BW = 10 Hz to 100 kHz, VOUT = 1.8 V, IOUT = 10 mA",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 0,
+      "page": 16,
+      "condition": "0 uF minimum (capacitor-free stable architecture; 0.1–1 uF X5R/X7R ceramic recommended for load transients > 0.1 A/us; 100 uF max)",
+      "table_ref": "8.1.1 Input and Output Capacitor Selection"
+    },
+    "esr_min_ohm": null,
+    "esr_max_ohm": null,
+    "en_active_high": true,
+    "reverse_current_protection": null
+  },
+  "design_gotchas": [
+    {
+      "title": "Tight 3.6 V Absolute Maximum on VOUT & VEN <= VIN + 0.3 V Sequencing Limit",
+      "severity": "CRITICAL",
+      "detail": "Table 6.1 on Page 5 restricts VOUT absolute maximum to ONLY 3.6 V (just 0.3 V above 3.3 V nominal!) and caps VEN at VIN + 0.3 V (operating EN <= VIN). Any external back-biasing of the 3.3 V rail above 3.6 V or driving EN high before VIN rises violates absolute maximum ratings.",
+      "page": 5
+    },
+    {
+      "title": "Capacitor-Free Operation Suffers Large Droop on Fast Load Steps (> 0.1 A/us)",
+      "severity": "WARNING",
+      "detail": "Although TLV73333PDBVR is unconditionally stable with 0 uF CIN/COUT (eliminating startup inrush), Section 8.1.1 warns that load slew rates exceeding 0.1 A/us cause significant output voltage deviation unless an external 0.1–1 uF ceramic COUT is added (maximum recommended COUT is 100 uF).",
+      "page": 16
+    },
+    {
+      "title": "High-Frequency PSRR Drops to 28 dB at 100 kHz & Noise Is 120 uVRMS",
+      "severity": "WARNING",
+      "detail": "While 100 Hz PSRR is 68 dB, PSRR falls to 35 dB at 10 kHz and 28 dB at 100 kHz with 120 uVRMS integrated noise — making TLV733P a poor choice for post-buck switching ripple rejection or sensitive RF/ADC rails compared to TPS7A20 (75 dB @ 100 kHz, 7 uVRMS).",
+      "page": 6
+    },
+    {
+      "title": "228.4 C/W DBV Thermal Resistance Limits Full 300 mA Load From 5 V Input",
+      "severity": "INFO",
+      "detail": "At VIN = 5.0 V to VOUT = 3.3 V and 300 mA, PD = 510 mW causes ~116.5 °C rise on a JEDEC board (RθJA = 228.4 °C/W), restricting ambient temperature near room temp unless VIN is lower (e.g., 3.7–4.2 V Li-Ion) or copper area is enlarged.",
+      "page": 5
+    }
+  ],
+  "typical_use_cases": [
+    "Ultra-compact BOM-minimized 3.3 V digital rails needing capacitor-free zero-inrush startup",
+    "Single-cell Li-Ion to 3.3 V rails up to 300 mA benefiting from ultra-low 125 mV typical dropout",
+    "Space-constrained portable consumer and tablet sub-rails with ±1.4% max accuracy and 120 Ohm active discharge",
+    "Pin-compatible 300 mA SOT-23-5 replacement on 1=IN, 2=GND, 3=EN, 4=NC, 5=OUT boards when VIN <= 5.5 V and VEN <= VIN"
+  ],
+  "engineering_summary": "The Texas Instruments TLV73333PDBVR is a capacitor-free 300 mA fixed 3.3 V (±1% typ, ±1.4% max over -40°C to +125°C) LDO in a 5-pin DBV SOT-23-5 package (1=IN, 2=GND, 3=EN active high, 4=NC, 5=OUT with 120 Ohm active discharge). Operating from 1.4 V to 5.5 V (6.0 V abs max), it delivers 125 mV typical dropout at 300 mA, 34 uA IQ, 0.1 uA shutdown current, and stable operation from 0 uF to 100 uF ceramic COUT. Designers must watch its strict 3.6 V VOUT abs max, VEN <= VIN + 0.3 V limit, modest high-frequency PSRR (28 dB at 100 kHz), and 228.4 °C/W RθJA.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [
+      4,
+      5,
+      6
+    ],
+    "audit_notes": [
+      "300 DPI PNG Vision verified page 4 DBV 5-Pin SOT-23 Top View pinout (1=IN, 2=GND, 3=EN, 4=NC, 5=OUT; no exposed pad on DBV).",
+      "300 DPI PNG Vision verified page 5 Abs Max (VIN=6.0V, VEN<=VIN+0.3V, VOUT<=3.6V, TJ_max=150C), Recommended Operating Conditions (VIN=1.4..5.5V, IOUT=300mA, VEN=0..VIN), and Thermal Info for DBV (RθJA=228.4 C/W, RθJC(top)=151.5 C/W).",
+      "300 DPI PNG Vision verified page 6 Electrical Characteristics (±1% @25C / ±1.4% over temp, VDO=125mV typ / 220mV max @85C / 270mV max @125C for 3.3V @300mA, IGND=34uA typ, ISHDN=0.1uA typ, PSRR=68dB @100Hz / 28dB @100kHz, Vn=120uVRMS, pulldown=120Ohm).",
+      "Path A page 16 confirmed capacitor-free stability (0 uF min, 100 uF max, recommend 0.1-1 uF ceramic for >0.1 A/us load steps)."
+    ]
+  }
+}

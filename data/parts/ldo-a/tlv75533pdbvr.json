@@ -1,0 +1,221 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TLV75533PDBVR",
+  "slug": "tlv75533pdbvr",
+  "family": "TLV755P",
+  "manufacturer": "Texas Instruments",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to +125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tlv755p.pdf",
+    "product_page_url": "https://www.ti.com/product/TLV755P",
+    "source_domain": "www.ti.com",
+    "revision": "SBVS320D (November 2017 – Revised September 2024)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 51
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "DBV (SOT-23-5)",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "Standard 5-pin DBV SOT-23-5 has NO exposed thermal pad (unlike sibling DYD package which adds an exposed GND thermal pad)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 231.1,
+      "page": 5,
+      "condition": "JEDEC standard 2s2p PCB (no vias) for DBV SOT-23-5 (100.8 °C/W on EVM; 60.3 °C/W headline spec applies ONLY to exposed-pad DYD package)",
+      "table_ref": "5.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 118.4,
+      "page": 5,
+      "condition": "JEDEC RθJC(top) for DBV SOT-23-5",
+      "table_ref": "5.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 4,
+      "condition": "Absolute maximum operating junction temperature (recommended operating TJ -40°C to +125°C; TSD typ 165°C)",
+      "table_ref": "5.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "IN",
+        "role": "VIN",
+        "description": "Input voltage pin (1.45 V to 5.5 V operating, 6.0 V abs max); requires >= 1 uF nominal (>= 0.47 uF effective) ceramic capacitor."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Ground reference pin."
+      },
+      {
+        "pin": 3,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high Enable input (VHI >= 1.0 V on, VLO <= 0.3 V off, 10 nA typ leakage)."
+      },
+      {
+        "pin": 4,
+        "name": "NC",
+        "role": "NC",
+        "description": "No internal connection."
+      },
+      {
+        "pin": 5,
+        "name": "OUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output with internal 120 Ohm active output discharge when disabled; requires 1 uF to 200 uF ceramic cap (>= 0.47 uF effective)."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 6.0,
+      "page": 4,
+      "condition": "Absolute maximum supply voltage VIN and enable voltage VEN",
+      "table_ref": "5.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 1.45,
+      "page": 4,
+      "condition": "Recommended operating VIN minimum across family (maintain VIN >= 3.3 V + VDO for 3.3 V regulation)",
+      "table_ref": "5.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 5.5,
+      "page": 4,
+      "condition": "Recommended operating VIN maximum (tighter than 6.0 V on AP2112K/TPS7A02)",
+      "table_ref": "5.3 Recommended Operating Conditions"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 5,
+      "condition": "Fixed 3.3 V option ('33P' active-discharge ordering variant in DBV SOT-23-5)",
+      "table_ref": "5.5 Electrical Characteristics"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 1,
+      "page": 5,
+      "condition": "±1% max over -40°C <= TJ <= +85°C for DBV package (±1.5% max over -40°C <= TJ <= +125°C)",
+      "table_ref": "5.5 Electrical Characteristics"
+    },
+    "iout_max_ma": {
+      "value": 500,
+      "page": 4,
+      "condition": "Recommended continuous output current (current limit 560 mA min / 720 mA typ / 865 mA max; foldback ISC = 355 mA typ)",
+      "table_ref": "5.3 Recommended Operating Conditions"
+    },
+    "iq_typ_ua": {
+      "value": 25,
+      "page": 5,
+      "condition": "TJ = 25°C, IOUT = 0 mA (14 uA min, 31 uA max at 25°C; 33 uA max to 85°C; 40 uA max to 125°C)",
+      "table_ref": "5.5 Electrical Characteristics"
+    },
+    "ishdn_typ_ua": {
+      "value": 0.1,
+      "page": 5,
+      "condition": "VEN <= 0.4 V, 1.4 V <= VIN <= 5.5 V, -40°C <= TJ <= +125°C (1 uA max)",
+      "table_ref": "5.5 Electrical Characteristics"
+    },
+    "dropout_typ_mv": {
+      "value": 150,
+      "page": 6,
+      "condition": "IOUT = 500 mA, 3.3 V <= VOUT < 5.0 V, DBV package (215 mV max at -40..+85°C; 238 mV max at -40..+125°C)",
+      "table_ref": "5.5 Electrical Characteristics"
+    },
+    "psrr_db": {
+      "value": 52,
+      "page": 6,
+      "condition": "f = 1 kHz, VIN = VOUT + 1 V, IOUT = 50 mA (46 dB at 100 kHz, 52 dB at 1 MHz)",
+      "table_ref": "5.5 Electrical Characteristics"
+    },
+    "output_noise_uvrms": {
+      "value": 71.5,
+      "page": 6,
+      "condition": "BW = 10 Hz to 100 kHz, VOUT = 1.2 V, IOUT = 50 mA",
+      "table_ref": "5.5 Electrical Characteristics"
+    },
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 1,
+      "page": 4,
+      "condition": "1 uF nominal minimum (must retain >= 0.47 uF effective after DC-bias derating; 200 uF max), X5R/X7R ceramic",
+      "table_ref": "5.3 Recommended Operating Conditions"
+    },
+    "esr_min_ohm": null,
+    "esr_max_ohm": null,
+    "en_active_high": true,
+    "reverse_current_protection": false
+  },
+  "design_gotchas": [
+    {
+      "title": "DBV Thermal Resistance (231.1 C/W JEDEC) vs Page-1 Headline 60.3 C/W (DYD Exposed-Pad Only)",
+      "severity": "CRITICAL",
+      "detail": "The Page 1 feature bullet advertises '60.3 °C/W RθJA in SOT-23-5', but Table 5.4 proves that metric applies ONLY to the exposed-pad DYD package on TI's LP087A EVM. The standard DBV OPN (TLV75533PDBVR, no thermal pad) has RθJA = 231.1 °C/W on a JEDEC 2s2p board (100.8 °C/W on EVM). Never budget 500 mA at 5 V->3.3 V (0.85 W) in DBV without thermal derating or switching to DYD.",
+      "page": 5
+    },
+    {
+      "title": "Tight 5.5 V Max Operating / 6.0 V Abs Max Input Voltage Margin on 5 V Rails",
+      "severity": "WARNING",
+      "detail": "TLV75533PDBVR has a 5.5 V recommended max and 6.0 V absolute maximum VIN rating (lower than AP2112K and TPS7A02 at 6.0 V/6.5 V). USB 5 V hot-plug inductive overshoot or poorly regulated 5 V wall adapters can easily breach 6.0 V without TVS or bulk input clamping.",
+      "page": 4
+    },
+    {
+      "title": "No Internal Reverse-Current Protection — Body Diode Conducts When VOUT > VIN + 0.3 V",
+      "severity": "WARNING",
+      "detail": "Section 7.1.4 explicitly warns that excessive reverse current through the PMOS body diode can cause electromigration, overheating, or latch-up when VOUT exceeds VIN + 0.3 V (e.g., large COUT during VIN collapse or externally back-driven rail). Add an external Schottky diode from OUT to IN if reverse bias is possible.",
+      "page": 17
+    },
+    {
+      "title": "DC-Bias Derating Must Keep Effective COUT >= 0.47 uF (and <= 200 uF)",
+      "severity": "INFO",
+      "detail": "TI specifies a nominal 1 uF X5R/X7R ceramic capacitor assuming 50% derating, requiring at least 0.47 uF actual effective capacitance at 3.3 V DC bias (avoid tiny 0201/0402 6.3 V parts that lose >60% capacitance at 3.3 V).",
+      "page": 15
+    }
+  ],
+  "typical_use_cases": [
+    "High-efficiency 3.6 V–4.2 V Li-Ion to 3.3 V rails up to 500 mA with ultra-low 150 mV typical dropout",
+    "Compact SOT-23-5 microcontroller and camera-sensor rails needing ±1% accuracy (-40..+85°C) and 25 uA IQ",
+    "Sequenced digital rails utilizing built-in monotonic soft-start (550 us) and 120 Ohm active output discharge",
+    "Direct low-Iq, low-dropout upgrade candidate for AP2112K-3.3TRG1 footprints when VIN stays <= 5.5 V"
+  ],
+  "engineering_summary": "The Texas Instruments TLV75533PDBVR is a 500 mA fixed 3.3 V (±1% from -40°C to +85°C) low-dropout CMOS regulator in a standard 5-pin DBV SOT-23-5 package (1=IN, 2=GND, 3=EN active high, 4=NC, 5=OUT) with 120 Ohm active output discharge and built-in soft-start. Operating from 1.45 V to 5.5 V (6.0 V abs max), it achieves 150 mV typical dropout at 500 mA, 25 uA quiescent current, 0.1 uA shutdown current, 52 dB PSRR at 1 kHz, 71.5 uVRMS noise, and 1 uF ceramic cap stability. Engineers must note its 231.1 °C/W JEDEC RθJA in DBV (not the DYD exposed-pad 60.3 °C/W metric), tight 6.0 V abs max rating, and lack of internal reverse-current protection.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "audit_notes": [
+      "300 DPI PNG Vision verified page 3 Figure 4-2 DBV SOT-23-5 Top View pinout (1=IN, 2=GND, 3=EN, 4=NC, 5=OUT; no exposed pad unlike DYD Figure 4-3).",
+      "300 DPI PNG Vision verified page 4 Abs Max (VIN=6.0V, VEN=6.0V, TJ_max=150C) and Recommended Operating Conditions (VIN=1.45..5.5V, IOUT=500mA, COUT=1..200uF, TJ=-40..125C).",
+      "300 DPI PNG Vision verified page 5 Thermal Information confirming DBV JEDEC RθJA=231.1 C/W, RθJC(top)=118.4 C/W (and EVM 100.8 C/W vs DYD 60.3 C/W), plus Electrical Characteristics (±1% accuracy at 85C, IGND=25uA typ, ISHDN=0.1uA typ).",
+      "300 DPI PNG Vision verified page 6 Electrical Characteristics (VDO=150mV typ / 215mV max @500mA, 85C for DBV; PSRR=52dB @1kHz / 46dB @100kHz; VN=71.5uVRMS; VHI>=1.0V; VLO<=0.3V; RPULLDOWN=120Ohm). Path A page 17 Section 7.1.4 confirmed no reverse-current protection."
+    ]
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TLV70033DDCR",
+  "slug": "tlv70033ddcr",
+  "family": "TLV700",
+  "manufacturer": "Texas Instruments",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to +125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tlv700.pdf",
+    "product_page_url": "https://www.ti.com/product/TLV700",
+    "source_domain": "www.ti.com",
+    "revision": "SLVSA00E (September 2009 – Revised April 2015)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 42
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "DDC (SOT-23-THIN-5)",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "Thin-profile 5-pin DDC SOT-23 package (2.90 mm x 1.60 mm body) with no exposed thermal pad; Pin 4 (NC) may optionally be tied to GND for thermal dissipation."
+    },
+    "theta_ja_c_per_w": {
+      "value": 235.9,
+      "page": 5,
+      "condition": "DDC (5-pin SOT) JEDEC junction-to-ambient thermal resistance",
+      "table_ref": "6.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 61.9,
+      "page": 5,
+      "condition": "DDC (5-pin SOT) junction-to-case (top) thermal resistance RθJC(top)",
+      "table_ref": "6.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 5,
+      "condition": "Absolute maximum junction temperature -55°C to +150°C (operating TJ -40°C to +125°C; Tsd typ 160°C)",
+      "table_ref": "6.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "IN",
+        "role": "VIN",
+        "description": "Input supply voltage (2.0 V to 5.5 V operating, 6.0 V abs max); 1 uF ceramic decoupling recommended."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Ground reference pin."
+      },
+      {
+        "pin": 3,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high Enable input (VEN >= 0.9 V on, <= 0.4 V off); MUST NOT exceed VIN + 0.3 V."
+      },
+      {
+        "pin": 4,
+        "name": "N/C",
+        "role": "NC",
+        "description": "No internal connection; TI permits tying Pin 4 to GND to improve thermal dissipation."
+      },
+      {
+        "pin": 5,
+        "name": "OUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output (no active discharge); stable with >= 0.1 uF effective capacitance (1 uF X5R/X7R nominal recommended)."
+      }
+    ],
+    "pinout_source_page": 4,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 6,
+      "page": 5,
+      "condition": "Absolute maximum supply voltage VIN (and VOUT = 6 V; VEN = min(VIN + 0.3 V, 6 V))",
+      "table_ref": "6.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 2,
+      "page": 5,
+      "condition": "Recommended operating VIN minimum (UVLO rising typ 1.9 V; maintain VIN >= 3.3 V + VDO for 3.3 V regulation)",
+      "table_ref": "6.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 5.5,
+      "page": 5,
+      "condition": "Recommended operating VIN maximum",
+      "table_ref": "6.3 Recommended Operating Conditions"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 1,
+      "condition": "Fixed 3.3 V ordering option (TLV70033DDCR)",
+      "table_ref": "Features & Orderable Addendum"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 2,
+      "page": 6,
+      "condition": "±2% DC output accuracy over -40°C <= TJ <= +125°C, IOUT = 10 mA",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "iout_max_ma": {
+      "value": 200,
+      "page": 5,
+      "condition": "Recommended continuous output current (current limit 220 mA min to 860 mA max at VOUT = 0.9 x VOUT(nom), p.6)",
+      "table_ref": "6.3 Recommended Operating Conditions"
+    },
+    "iq_typ_ua": {
+      "value": 31,
+      "page": 6,
+      "condition": "IOUT = 0 mA, TJ = 25°C (55 uA max over -40..+125°C; rises to 270 uA typ at IOUT = 200 mA)",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "ishdn_typ_ua": {
+      "value": 1,
+      "page": 6,
+      "condition": "VEN <= 0.4 V, 2 V <= VIN <= 4.5 V (2 uA max; 400 nA typ at VIN = 2 V)",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "dropout_typ_mv": {
+      "value": 175,
+      "page": 6,
+      "condition": "IOUT = 200 mA, VIN = 0.98 x VOUT(nom), VOUT = 2.35 V (250 mV max; 85 mV typ at 100 mA, 43 mV typ at 50 mA; Note 1 applies for VOUT >= 2.35 V)",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "psrr_db": {
+      "value": 68,
+      "page": 6,
+      "condition": "f = 1 kHz, VIN = 2.3 V, VOUT = 1.8 V, IOUT = 10 mA",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "output_noise_uvrms": {
+      "value": 48,
+      "page": 6,
+      "condition": "BW = 100 Hz to 100 kHz, VIN = 2.3 V, VOUT = 1.8 V, IOUT = 10 mA",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 1,
+      "page": 13,
+      "condition": "1 uF nominal X5R/X7R ceramic recommended; stable down to 0.1 uF minimum effective capacitance after DC-bias and temperature derating",
+      "table_ref": "8.2.2.1 Input and Output Capacitor Requirements"
+    },
+    "esr_min_ohm": null,
+    "esr_max_ohm": {
+      "value": 0.2,
+      "page": 13,
+      "condition": "Maximum output capacitor ESR must be less than 200 mOhm",
+      "table_ref": "8.2.2.1 Input and Output Capacitor Requirements"
+    },
+    "en_active_high": true,
+    "reverse_current_protection": false
+  },
+  "design_gotchas": [
+    {
+      "title": "VEN Must Never Exceed VIN + 0.3 V (Sequencing Trap vs TPS7A02/TLV755P)",
+      "severity": "CRITICAL",
+      "detail": "Absolute Maximum Ratings Footnote (2) on Page 5 restricts VEN to the lesser of VIN + 0.3 V or 6 V. Driving EN from an always-on MCU rail while VIN is unpowered violates absolute maximum ratings and back-feeds internal ESD diodes — unlike TPS7A02, TPS7A20, and TLV755P which tolerate independent VEN up to 6.0–6.5 V.",
+      "page": 5
+    },
+    {
+      "title": "No Active Output Discharge and No Internal Reverse-Current Limiting",
+      "severity": "WARNING",
+      "detail": "TLV70033DDCR lacks an internal output pulldown resistor when disabled (causing VOUT to coast down slowly under light load) and Section 7.3.1 warns that the PMOS body diode conducts unlimited reverse current if VOUT exceeds VIN (externally limit to <= 5% of rated 200 mA = 10 mA).",
+      "page": 11
+    },
+    {
+      "title": "DDC Thin SOT-23-5 Footprint Caution & High 235.9 C/W RθJA",
+      "severity": "WARNING",
+      "detail": "DDC is TI's thin-profile SOT-23-5 (1.1 mm max height vs ~1.45 mm on DBV) with RθJA = 235.9 °C/W. Page 4 notes Pin 4 (NC) can be tied to GND to improve heat spreading, though doing so would short Pin 4 if a BYP/NR-pin LDO (e.g., AP2210K) were ever substituted on the same board.",
+      "page": 5
+    },
+    {
+      "title": "Requires >= 0.1 uF Effective Output Capacitance and ESR < 200 mOhm",
+      "severity": "INFO",
+      "detail": "While TLV700 tolerates heavy ceramic DC-bias derating down to 0.1 uF effective capacitance, TI cautions on Page 13 that a nominal 0.1 uF capacitor does not guarantee stability and recommends a 1 uF X5R/X7R ceramic capacitor with ESR < 200 mOhm.",
+      "page": 13
+    }
+  ],
+  "typical_use_cases": [
+    "Cost-sensitive 200 mA Bluetooth, ZigBee, and handheld RF/MCU 3.3 V rails with 68 dB PSRR",
+    "Ultra-low-height PCBs requiring thin-profile DDC SOT-23-5 (2.90 x 1.60 mm) and tiny ceramic output caps",
+    "Single-cell Li-Ion battery rails benefiting from 175 mV typical dropout at 200 mA and 31 uA no-load IQ",
+    "General-purpose 100 us fast-startup 3.3 V supplies when EN is tied to VIN or sequenced after VIN"
+  ],
+  "engineering_summary": "The Texas Instruments TLV70033DDCR is a 200 mA fixed 3.3 V (±2% over -40°C to +125°C) low-dropout regulator in a thin-profile 5-pin DDC SOT-23-5 package (1=IN, 2=GND, 3=EN active high, 4=N/C, 5=OUT). Operating from 2.0 V to 5.5 V (6.0 V abs max), it delivers 175 mV typical dropout at 200 mA, 31 uA no-load IQ (270 uA at 200 mA), 1 uA shutdown current, 68 dB PSRR at 1 kHz, 48 uVRMS noise, and stability down to 0.1 uF effective ceramic capacitance (<200 mOhm ESR). Key gotchas include VEN <= VIN + 0.3 V abs max, no active output discharge, no reverse-current protection, and 235.9 °C/W RθJA.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [
+      4,
+      5,
+      6
+    ],
+    "audit_notes": [
+      "300 DPI PNG Vision verified page 4 DDC 5-Pin SOT Top View pinout (1=IN, 2=GND, 3=EN, 4=N/C, 5=OUT).",
+      "300 DPI PNG Vision verified page 5 Abs Max (VIN=6V, VEN<=min(VIN+0.3V,6V), VOUT=6V, TJ_max=150C), Recommended Operating Conditions (VIN=2..5.5V, IOUT=200mA), and Thermal Info for DDC (RθJA=235.9 C/W, RθJC(top)=61.9 C/W).",
+      "300 DPI PNG Vision verified page 6 Electrical Characteristics (±2% accuracy, VDO=175mV typ / 250mV max @200mA, IGND=31uA typ @0mA / 270uA @200mA, ISHDN=1uA typ @2..4.5V, PSRR=68dB @1kHz, Vn=48uVRMS, VEN(high)>=0.9V).",
+      "Path A page 11 confirmed no internal reverse-current limiting (body diode conducts) and no active discharge; page 13 confirmed 0.1 uF effective COUT minimum (1 uF nominal recommended) and <200 mOhm max ESR."
+    ]
+  }
+}

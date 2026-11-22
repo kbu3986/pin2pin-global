@@ -1,0 +1,226 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TPS7A2033PDBVR",
+  "slug": "tps7a2033pdbvr",
+  "family": "TPS7A20",
+  "manufacturer": "Texas Instruments",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to +125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tps7a20.pdf",
+    "product_page_url": "https://www.ti.com/product/TPS7A20",
+    "source_domain": "www.ti.com",
+    "revision": "SBVS338H (March 2020 – Revised July 2024)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 63
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "DBV (SOT-23-5)",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "5-pin DBV SOT-23 package has no exposed thermal pad (unlike sibling DQN X2SON-4 package)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 187.1,
+      "page": 6,
+      "condition": "DBV (5-pin SOT-23) JEDEC junction-to-ambient thermal resistance",
+      "table_ref": "5.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 85.5,
+      "page": 6,
+      "condition": "DBV (5-pin SOT-23) junction-to-case (top) thermal resistance RθJC(top)",
+      "table_ref": "5.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 5,
+      "condition": "Absolute maximum operating junction temperature (recommended operating TJ -40°C to +125°C; TSD typ 165°C)",
+      "table_ref": "5.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "IN",
+        "role": "VIN",
+        "description": "Input voltage supply (1.6 V to 6.0 V operating, 6.5 V abs max); recommend >= 1 uF nominal (>= 0.47 uF effective) ceramic cap."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Common ground pin."
+      },
+      {
+        "pin": 3,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high Smart Enable (VEN(HI) >= 0.9 V, VEN(LOW) <= 0.3 V); 500 kOhm pulldown disconnects when enabled."
+      },
+      {
+        "pin": 4,
+        "name": "N/C",
+        "role": "NC",
+        "description": "No internal electrical connection (ultra-low 7 uVRMS noise achieved without an external bypass capacitor)."
+      },
+      {
+        "pin": 5,
+        "name": "OUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output with internal 150 Ohm active output discharge; requires 1 uF to 200 uF ceramic cap (<= 100 mOhm ESR)."
+      }
+    ],
+    "pinout_source_page": 4,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 6.5,
+      "page": 5,
+      "condition": "Absolute maximum VIN and VEN (VOUT abs max is min(6.5 V, VIN + 0.3 V))",
+      "table_ref": "5.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 1.6,
+      "page": 5,
+      "condition": "Recommended operating VIN minimum across family (maintain VIN >= 3.3 V + VDO for 3.3 V regulation)",
+      "table_ref": "5.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 6.0,
+      "page": 5,
+      "condition": "Recommended operating VIN and VEN maximum",
+      "table_ref": "5.3 Recommended Operating Conditions"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 1,
+      "condition": "Fixed 3.3 V active-discharge ('33P') ordering option in DBV SOT-23-5",
+      "table_ref": "Features & Orderable Addendum"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 1.5,
+      "page": 6,
+      "condition": "±1.5% over -40°C <= TJ <= +125°C, VIN = (VOUT + 0.3 V) to 6.0 V, IOUT = 1..300 mA, VOUT >= 2.8 V (DBV package)",
+      "table_ref": "5.5 Electrical Characteristics"
+    },
+    "iout_max_ma": {
+      "value": 300,
+      "page": 5,
+      "condition": "Recommended continuous output current (ICL = 360 mA min / 520 mA typ / 730 mA max for DBV; ISC = 160 mA typ)",
+      "table_ref": "5.3 Recommended Operating Conditions"
+    },
+    "iq_typ_ua": {
+      "value": 6.5,
+      "page": 6,
+      "condition": "VEN = VIN = 6 V, IOUT = 0 mA, TJ = 25°C (8.5 uA max at 25°C, 15 uA max to 125°C; rises to 2000 uA typ at IOUT = 300 mA)",
+      "table_ref": "5.5 Electrical Characteristics"
+    },
+    "ishdn_typ_ua": {
+      "value": 0.07,
+      "page": 6,
+      "condition": "VEN = 0 V (disabled), VIN = 6.0 V, TJ = 25°C (0.2 uA max)",
+      "table_ref": "5.5 Electrical Characteristics"
+    },
+    "dropout_typ_mv": {
+      "value": 145,
+      "page": 6,
+      "condition": "145 mV max for DBV package at IOUT = 300 mA, 2.5 V <= VOUT < 5.5 V, VOUT = 95% VOUT(NOM) (140 mV max for DQN/DSBGA; Table 5.5 specifies MAX only)",
+      "table_ref": "5.5 Electrical Characteristics"
+    },
+    "psrr_db": {
+      "value": 95,
+      "page": 7,
+      "condition": "f = 1 kHz (and 100 Hz), IOUT = 20 mA, VIN = VOUT + 1.0 V (92 dB at 1 kHz / 300 mA; 75 dB at 100 kHz / 20 mA)",
+      "table_ref": "5.5 Electrical Characteristics"
+    },
+    "output_noise_uvrms": {
+      "value": 7,
+      "page": 7,
+      "condition": "BW = 10 Hz to 100 kHz, VOUT = 2.8 V, IOUT = 300 mA (10 uVRMS at IOUT = 1 mA) — no external bypass cap required",
+      "table_ref": "5.5 Electrical Characteristics"
+    },
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 1,
+      "page": 5,
+      "condition": "1 uF nominal minimum (0.47 uF effective min, 200 uF effective max), low-ESR ceramic capacitor",
+      "table_ref": "5.3 Recommended Operating Conditions"
+    },
+    "esr_min_ohm": null,
+    "esr_max_ohm": {
+      "value": 0.1,
+      "page": 5,
+      "condition": "Maximum output capacitor ESR of 100 mOhm specified in Recommended Operating Conditions",
+      "table_ref": "5.3 Recommended Operating Conditions"
+    },
+    "en_active_high": true,
+    "reverse_current_protection": false
+  },
+  "design_gotchas": [
+    {
+      "title": "Output Capacitor ESR Must Stay <= 100 mOhm (Avoid Tantalum/Electrolytic Caps)",
+      "severity": "WARNING",
+      "detail": "Table 5.3 on Page 5 enforces a strict 100 mOhm maximum output capacitor ESR (with 0.47 uF to 200 uF effective capacitance). High-ESR tantalum or aluminum electrolytic capacitors can violate stability and degrade the 95 dB PSRR / 7 uVRMS noise performance; use low-ESR X5R/X7R MLCCs placed directly at OUT and GND.",
+      "page": 5
+    },
+    {
+      "title": "Ground Current Scales From 6.5 uA (No Load) to 2.0 mA Typ at Full 300 mA Load",
+      "severity": "WARNING",
+      "detail": "While no-load IQ is an ultra-low 6.5 uA typ (even in dropout at 0 mA), Table 5.5 reveals IGND rises to 2,000 uA (2.0 mA) typ at IOUT = 300 mA to sustain the 95 dB PSRR and 7 uVRMS noise loop bandwidth. Include this load-dependent ground current in heavy-load power budgets.",
+      "page": 6
+    },
+    {
+      "title": "No Internal Reverse-Current Protection — Limit Reverse Current to <= 5% Rated (15 mA)",
+      "severity": "WARNING",
+      "detail": "VOUT abs max is min(6.5 V, VIN + 0.3 V), and the datasheet warns that reverse current from OUT to IN during input collapse can damage the device unless limited to <= 5% of rated output current (15 mA) for brief events or bypassed with an external Schottky diode.",
+      "page": 5
+    },
+    {
+      "title": "Ultra-Low 7 uVRMS Noise Achieved With Pin 4 = N/C (Not BYP/NR)",
+      "severity": "INFO",
+      "detail": "Unlike legacy low-noise RF LDOs (AP2210K, LP2985, CAT6219) that require an external bypass cap on Pin 4, TPS7A2033PDBVR leaves Pin 4 N/C while delivering 7 uVRMS noise and 95 dB PSRR at 1 kHz — making it an easy RF upgrade on standard 1=IN, 2=GND, 3=EN, 4=NC, 5=OUT footprints (note 750 us typ / 1150 us max startup time).",
+      "page": 4
+    }
+  ],
+  "typical_use_cases": [
+    "Ultra-low-noise RF, VCO, PLL, ADC/DAC, and camera image-sensor 3.3 V rails (7 uVRMS, 95 dB PSRR @ 1 kHz)",
+    "Low-Iq battery-powered precision analog and portable medical sensors needing 6.5 uA standby IQ",
+    "Post-DC/DC buck ripple cleanup at 100 kHz–1 MHz (75 dB PSRR @ 100 kHz, 45 dB @ 1 MHz) without a Pin-4 bypass cap",
+    "Drop-in low-noise upgrade candidate on standard SOT-23-5 (Pin 4 = NC) boards up to 300 mA"
+  ],
+  "engineering_summary": "The Texas Instruments TPS7A2033PDBVR is a premier 300 mA ultra-low-noise (7 uVRMS, 10 Hz–100 kHz), ultra-high-PSRR (95 dB at 1 kHz, 75 dB at 100 kHz) fixed 3.3 V (±1.5% over -40°C to +125°C) LDO in a 5-pin DBV SOT-23-5 package (1=IN, 2=GND, 3=EN smart active-high, 4=N/C, 5=OUT with 150 Ohm discharge). Operating from 1.6 V to 6.0 V (6.5 V abs max), it achieves <= 145 mV max dropout at 300 mA (DBV) and 6.5 uA no-load IQ without needing a Pin-4 noise-bypass capacitor. Engineers must keep COUT ESR <= 100 mOhm, note 2 mA IGND at 300 mA load, and add external protection against reverse bias.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "audit_notes": [
+      "300 DPI PNG Vision verified page 4 Figure 4-4 DBV 5-Pin SOT-23 Top View pinout (1=IN, 2=GND, 3=EN, 4=N/C, 5=OUT; no exposed pad on DBV).",
+      "300 DPI PNG Vision verified page 5 Abs Max (VIN=6.5V, VEN=6.5V, VOUT=min(6.5V,VIN+0.3V), TJ_max=150C) and Recommended Operating Conditions (VIN=1.6..6.0V, IOUT=300mA, COUT=1..200uF, ESR<=100mOhm).",
+      "300 DPI PNG Vision verified page 6 Thermal Info (DBV RθJA=187.1 C/W, RθJC(top)=85.5 C/W) and Electrical Specs (±1.5% for DBV >=2.8V, IGND=6.5uA @0mA / 2000uA @300mA, ISHDN=0.07uA typ, VDO=145mV max specifically for DBV @300mA).",
+      "300 DPI PNG Vision verified page 7 Electrical & Switching Specs (PSRR=95dB @1kHz/20mA & 92dB @1kHz/300mA, VN=7uVRMS @300mA, RPULLDOWN=150Ohm, VEN(HI)>=0.9V, tSTR=750us typ / 1150us max). Path A confirmed reverse current damage warning (limit <=5%)."
+    ]
+  }
+}

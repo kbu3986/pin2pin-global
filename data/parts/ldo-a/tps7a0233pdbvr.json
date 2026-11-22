@@ -1,0 +1,222 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TPS7A0233PDBVR",
+  "slug": "tps7a0233pdbvr",
+  "family": "TPS7A02",
+  "manufacturer": "Texas Instruments",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to +125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tps7a02.pdf",
+    "product_page_url": "https://www.ti.com/product/TPS7A02",
+    "source_domain": "www.ti.com",
+    "revision": "SBVS277C (July 2019 – Revised September 2022)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 48
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "DBV (SOT-23-5)",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "5-pin DBV SOT-23 package has no exposed thermal pad (unlike sibling DQN X2SON-4 package)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 181.9,
+      "page": 5,
+      "condition": "DBV (SOT-23-5) JEDEC junction-to-ambient thermal resistance",
+      "table_ref": "6.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 53.0,
+      "page": 5,
+      "condition": "DBV (SOT-23-5) junction-to-case(top) thermal resistance RθJC(top)",
+      "table_ref": "6.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 4,
+      "condition": "Absolute maximum operating junction temperature (recommended operating TJ -40°C to +125°C; TSD typ 170°C)",
+      "table_ref": "6.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "IN",
+        "role": "VIN",
+        "description": "Input supply voltage (1.5 V to 6.0 V operating, 6.5 V abs max); recommend >= 1 uF ceramic decoupling capacitor."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Ground reference pin."
+      },
+      {
+        "pin": 3,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high Smart Enable (VEN(HI) >= 1.1 V, VEN(LOW) <= 0.3 V); 500 kOhm internal pulldown disconnects once enabled."
+      },
+      {
+        "pin": 4,
+        "name": "NC",
+        "role": "NC",
+        "description": "No internal connection; connect to ground or leave floating."
+      },
+      {
+        "pin": 5,
+        "name": "OUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output with 60 Ohm active discharge ('P' suffix); requires 1 uF to 22 uF ceramic cap (>= 0.5 uF effective)."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 6.5,
+      "page": 4,
+      "condition": "Absolute maximum VIN and VEN voltage",
+      "table_ref": "6.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 1.5,
+      "page": 5,
+      "condition": "Recommended operating VIN minimum across family (maintain VIN >= 3.3 V + VDO for 3.3 V regulation)",
+      "table_ref": "6.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 6.0,
+      "page": 5,
+      "condition": "Recommended operating VIN maximum",
+      "table_ref": "6.3 Recommended Operating Conditions"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 1,
+      "condition": "Fixed 3.3 V active-discharge ('33P') ordering option in DBV SOT-23-5",
+      "table_ref": "Features & Orderable Addendum"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 1.5,
+      "page": 6,
+      "condition": "±1.5% over TJ = -40°C to +125°C for VOUT >= 1.5 V (±1% nominal at TJ = 25°C, 1 uA <= IOUT <= 1 mA)",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "iout_max_ma": {
+      "value": 200,
+      "page": 5,
+      "condition": "Recommended continuous output current (current limit 240 mA min / 450 mA typ / 750 mA max; ISC = 65 mA typ)",
+      "table_ref": "6.3 Recommended Operating Conditions"
+    },
+    "iq_typ_ua": {
+      "value": 0.025,
+      "page": 6,
+      "condition": "25 nA (0.025 uA) typ, 46 nA max at IOUT = 0 mA, TJ = 25°C (60 nA max -40..+85°C); stays 25 nA typ even in dropout",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "ishdn_typ_ua": {
+      "value": 0.003,
+      "page": 6,
+      "condition": "3 nA (0.003 uA) typ, 10 nA max at VEN = 0 V, 1.5 V <= VIN <= 5.0 V, TJ = 25°C",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "dropout_typ_mv": {
+      "value": 270,
+      "page": 6,
+      "condition": "270 mV max (-40°C to +85°C; 310 mV max to +125°C) at IOUT = 200 mA, 3.3 V <= VOUT <= 5.0 V (Table 6.5 specifies MAX only, Note 4: VOUT = 95% VOUT(nom))",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "psrr_db": {
+      "value": 55,
+      "page": 6,
+      "condition": "f = 1 kHz, IOUT = 30 mA, VIN = VOUT(nom) + 0.5 V",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "output_noise_uvrms": {
+      "value": 130,
+      "page": 6,
+      "condition": "BW = 10 Hz to 100 kHz, VOUT = 0.8 V, IOUT = 30 mA",
+      "table_ref": "6.5 Electrical Characteristics"
+    },
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 1,
+      "page": 5,
+      "condition": "1 uF nominal minimum (>= 0.5 uF effective capacitance required) and STRICT 22 uF maximum derated capacitance for stability, X5R/X7R ceramic",
+      "table_ref": "6.3 Recommended Operating Conditions"
+    },
+    "esr_min_ohm": null,
+    "esr_max_ohm": null,
+    "en_active_high": true,
+    "reverse_current_protection": false
+  },
+  "design_gotchas": [
+    {
+      "title": "Strict 22 uF Maximum Output Capacitance Limit for Loop Stability",
+      "severity": "CRITICAL",
+      "detail": "Recommended Operating Conditions (Page 5, Note 2) caps derated output capacitance at 22 uF maximum for loop stability (with 0.5 uF minimum effective capacitance). Do not place large 47 uF–100 uF bulk decoupling capacitors on VOUT as commonly done with conventional LDOs like TLV755P (up to 200 uF).",
+      "page": 5
+    },
+    {
+      "title": "Slow 1.2 ms Typ (1.6 ms Max) Startup Time & Higher 130 uVRMS Output Noise",
+      "severity": "WARNING",
+      "detail": "Achieving 25 nA nanopower IQ comes with a 1,200 us typ (1,600 us max) startup time for 3.0 V < VOUT <= 5.0 V (Page 7) and 130 uVRMS noise (vs 7 uVRMS on TPS7A20). Account for the >1.6 ms startup delay in power-sequencing timers and avoid using TPS7A02 for ultra-low-noise RF/ADC analog supplies.",
+      "page": 7
+    },
+    {
+      "title": "No Internal Reverse-Current Blocking & 5.5 V Absolute Maximum on VOUT",
+      "severity": "WARNING",
+      "detail": "VOUT absolute maximum is min(VIN + 0.3 V, 5.5 V), and Section 7.3 explicitly warns that reverse current when VIN collapses can damage the device unless limited to <= 5% of rated output current (10 mA) for brief durations or blocked with an external Schottky diode.",
+      "page": 4
+    },
+    {
+      "title": "Smart Enable 500 kOhm Pulldown Disconnects When Enabled — Ideal for Floating EN",
+      "severity": "INFO",
+      "detail": "Unlike standard pull-down LDOs that waste microamps through an EN pulldown resistor while ON, TPS7A02 disconnects its 500 kOhm pulldown once EN > 1.1 V and startup finishes (limiting EN leakage to 10 nA typ), while still safely keeping the regulator OFF if EN floats.",
+      "page": 3
+    }
+  ],
+  "typical_use_cases": [
+    "Multi-year coin-cell or primary-lithium IoT sensors, smart meters, and smoke detectors needing 25 nA IQ",
+    "Always-on wearable MCU standby rails maintaining 25 nA IQ even in battery end-of-life dropout",
+    "Battery-powered medical monitors (pulse oximeters, glucose meters) needing 3 nA shelf-life shutdown current",
+    "Pin-compatible ultra-low-Iq upgrade for 5-pin SOT-23-5 (1=IN, 2=GND, 3=EN, 4=NC, 5=OUT) boards <= 200 mA"
+  ],
+  "engineering_summary": "The Texas Instruments TPS7A0233PDBVR is a nanopower 200 mA fixed 3.3 V (±1.5% over -40°C to +125°C) LDO in a 5-pin DBV SOT-23-5 package (1=IN, 2=GND, 3=EN active high with smart pulldown, 4=NC, 5=OUT with 60 Ohm active discharge). Operating from 1.5 V to 6.0 V (6.5 V abs max), it achieves a benchmark 25 nA (0.025 uA) quiescent current even in dropout and 3 nA shutdown current, with <= 270 mV max dropout at 200 mA (to 85°C), 55 dB PSRR at 1 kHz, and 181.9 °C/W RθJA. Designers must respect its 22 uF maximum derated output capacitance cap, 1.2–1.6 ms startup time, and lack of reverse-current blocking.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "audit_notes": [
+      "300 DPI PNG Vision verified page 3 Figure 5-2 DBV SOT-23-5 Top View pinout (1=IN, 2=GND, 3=EN, 4=NC, 5=OUT; no thermal pad on DBV).",
+      "300 DPI PNG Vision verified page 4 Abs Max (VIN=6.5V, VEN=6.5V, VOUT=min(VIN+0.3,5.5V), TJ_max=150C) and page 5 Recommended Operating Conditions (VIN=1.5..6.0V, IOUT=200mA, COUT=1..22uF, RθJA=181.9 C/W, RθJC(top)=53.0 C/W for DBV).",
+      "300 DPI PNG Vision verified page 6-7 Electrical & Switching Characteristics (IGND=25nA typ / 46nA max, ISHDN=3nA typ / 10nA max, VDO=270mV max at 85C / 310mV max at 125C [no typ tabulated], PSRR=55dB @1kHz, VN=130uVRMS, VEN(HI)>=1.1V, RPULLDOWN=60Ohm, tSTR=1200us typ / 1600us max).",
+      "Path A confirmed reverse current damage warning (limit <=5% rated current) and exact OPN TPS7A0233PDBVR ('P' = active discharge) in addendum."
+    ]
+  }
+}

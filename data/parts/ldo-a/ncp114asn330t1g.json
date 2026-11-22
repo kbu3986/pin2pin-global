@@ -1,0 +1,221 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "NCP114ASN330T1G",
+  "slug": "ncp114asn330t1g",
+  "family": "NCP114",
+  "manufacturer": "onsemi",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 85,
+    "grade_label": "Industrial (-40°C to +85°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.onsemi.com/pdf/datasheet/ncp114-d.pdf",
+    "product_page_url": "https://www.onsemi.com/products/power-management/linear-regulators-ldo/ncp114",
+    "source_domain": "www.onsemi.com",
+    "revision": "NCP114/D Rev. 31 (January 2024)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 19
+  },
+  "package": {
+    "code": "TSOT-23-5",
+    "mfg_package_code": "SN (TSOP-5 Case 483)",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "5-pin TSOP-5 (TSOT-23-5, Case 483, 3.00 x 1.50 x 0.95 mm) has NO exposed pad (EPAD applies only to UDFN4 package)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 236,
+      "page": 2,
+      "condition": "TSOP-5 single component mounted on 1 oz FR-4 PCB with 645 mm^2 Cu area (Note 3; UDFN4 is 170 °C/W)",
+      "table_ref": "Thermal Characteristics"
+    },
+    "theta_jc_c_per_w": null,
+    "tj_max_c": {
+      "value": 150,
+      "page": 2,
+      "condition": "Absolute Maximum Junction Temperature TJ(MAX) = 150°C (electrical specs characterized over -40°C <= TJ <= 85°C; TSD typ 160°C)",
+      "table_ref": "Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "IN",
+        "role": "VIN",
+        "description": "Input voltage pin (1.7 V to 5.5 V operating, 6.0 V abs max); connect >= 1 uF X5R/X7R ceramic capacitor."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Power supply ground pin."
+      },
+      {
+        "pin": 3,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high Enable input (VEN_HI >= 0.9 V, VEN_LO <= 0.4 V) with internal 300 nA pulldown current source."
+      },
+      {
+        "pin": 4,
+        "name": "N/C",
+        "role": "NC",
+        "description": "Not internally connected; onsemi permits tying Pin 4 to GND to improve thermal dissipation."
+      },
+      {
+        "pin": 5,
+        "name": "OUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output with 100 Ohm active discharge ('A' version); requires 1 uF nominal (>= 0.22 uF effective) ceramic cap with ESR < 2 Ohm."
+      }
+    ],
+    "pinout_source_page": 1,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 6,
+      "page": 2,
+      "condition": "Absolute maximum VIN and VEN (-0.3 V to 6 V; VOUT = -0.3 V to VIN + 0.3 V or 6 V)",
+      "table_ref": "Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 1.7,
+      "page": 3,
+      "condition": "Operating input voltage minimum across family (maintain VIN >= 3.3 V + VDO for 3.3 V regulation)",
+      "table_ref": "Electrical Characteristics"
+    },
+    "vin_max_v": {
+      "value": 5.5,
+      "page": 3,
+      "condition": "Operating input voltage maximum",
+      "table_ref": "Electrical Characteristics"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 16,
+      "condition": "Fixed 3.3 V active-discharge ('A' version) TSOP-5 option (Marking 'CAL')",
+      "table_ref": "Ordering Information"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 2,
+      "page": 3,
+      "condition": "±2% over -40°C <= TJ <= 85°C for VOUT > 2.0 V (±1% at room temperature per p.1 Features)",
+      "table_ref": "Electrical Characteristics"
+    },
+    "iout_max_ma": {
+      "value": 300,
+      "page": 3,
+      "condition": "300 mA rated continuous load (ICL = 300 mA min / 600 mA typ at 90% VOUT; ISC = 630 mA typ, p.13)",
+      "table_ref": "Electrical Characteristics"
+    },
+    "iq_typ_ua": {
+      "value": 50,
+      "page": 3,
+      "condition": "Ground current IQ at IOUT = 0 mA, TJ = +25°C (95 uA max over -40..+85°C; dynamic IQ rises under load)",
+      "table_ref": "Electrical Characteristics"
+    },
+    "ishdn_typ_ua": {
+      "value": 0.01,
+      "page": 3,
+      "condition": "0.01 uA (10 nA) typ, 1 uA max at VEN <= 0.4 V, VIN = 5.5 V (p.1 bullet rounds to 0.1 uA)",
+      "table_ref": "Electrical Characteristics"
+    },
+    "dropout_typ_mv": {
+      "value": 150,
+      "page": 3,
+      "condition": "TSOP-5 package specifically: 150 mV typ, 225 mV max at IOUT = 300 mA, VOUT = 3.3 V (p.1 headline 135 mV typ / 200 mV max applies ONLY to UDFN4, Note 5)",
+      "table_ref": "Electrical Characteristics"
+    },
+    "psrr_db": {
+      "value": 75,
+      "page": 3,
+      "condition": "f = 1 kHz, VIN = 3.6 V, VOUT = 3.1 V, IOUT = 150 mA",
+      "table_ref": "Electrical Characteristics"
+    },
+    "output_noise_uvrms": {
+      "value": 70,
+      "page": 3,
+      "condition": "f = 10 Hz to 100 kHz, VIN = 2.5 V, VOUT = 1.8 V, IOUT = 150 mA",
+      "table_ref": "Electrical Characteristics"
+    },
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 1,
+      "page": 13,
+      "condition": "1 uF nominal X5R/X7R ceramic recommended; stable down to 0.22 uF minimum effective capacitance after DC-bias and temperature derating",
+      "table_ref": "Output Decoupling (COUT)"
+    },
+    "esr_min_ohm": null,
+    "esr_max_ohm": {
+      "value": 2,
+      "page": 13,
+      "condition": "No minimum ESR requirement; maximum COUT ESR must be less than 2 Ohm (tantalum capacitors discouraged due to high cold-temp ESR)",
+      "table_ref": "Output Decoupling (COUT)"
+    },
+    "en_active_high": true,
+    "reverse_current_protection": false
+  },
+  "design_gotchas": [
+    {
+      "title": "TSOP-5 (TSOT-23-5) Has Worse Dropout (150 mV), Load Reg (28 mV), and RθJA (236 C/W) Than Page-1 UDFN Specs",
+      "severity": "CRITICAL",
+      "detail": "Page 1 advertises 135 mV typical dropout, which belongs ONLY to the 1x1 mm UDFN4 package. For NCP114ASN330T1G in TSOP-5 (TSOT-23-5, Case 483), Page 3 specifies 150 mV typ / 225 mV max dropout at 300 mA, 28 mV typ / 45 mV max load regulation (vs 12/30 mV for UDFN4), and RθJA = 236 °C/W (vs 170 °C/W for UDFN4).",
+      "page": 3
+    },
+    {
+      "title": "Operating Junction Temperature Characterized Only Up to +85 C (Not +125 C)",
+      "severity": "WARNING",
+      "detail": "Although TJ(MAX) abs max is 150 °C, all Electrical Characteristics on Page 3 and the PD(MAX) formula on Page 13 (`PD(MAX) = (85°C - TA) / RθJA`) limit specified operation to TJ <= +85 °C — significantly stricter than TI's 125 °C-rated DBV SOT-23-5 LDOs (TLV755P, TPS7A20, TLV733P).",
+      "page": 13
+    },
+    {
+      "title": "No Reverse-Current Protection — Body Diode Conducts When VOUT > VIN",
+      "severity": "WARNING",
+      "detail": "Page 14 explicitly states that the PMOS pass transistor's inherent body diode forward-biases whenever VOUT exceeds VIN, requiring external Schottky protection in applications subject to back-biasing or fast VIN collapse.",
+      "page": 14
+    },
+    {
+      "title": "High 75 dB PSRR (1 kHz) With Active Discharge ('A' Version) & Low-Height TSOP-5 Body",
+      "severity": "INFO",
+      "detail": "NCP114ASN330T1G ('A' version, Marking 'CAL') includes 100 Ohm active output discharge (unlike 'B' version NCP114BSN330T1G) and a 300 nA internal EN pulldown. TSOP-5 (Case 483, 0.95 mm max height) is a thin-profile TSOT-23-5 package sharing the standard 0.95 mm-pitch 5-pin footprint (1=IN, 2=GND, 3=EN, 4=NC, 5=OUT).",
+      "page": 16
+    }
+  ],
+  "typical_use_cases": [
+    "Low-profile (<1 mm height) 300 mA Bluetooth, ZigBee, GPS, and WLAN 3.3 V rails needing 75 dB PSRR at 1 kHz",
+    "Single-cell Li-Ion portable devices requiring 150 mV typical dropout, 10 nA shutdown, and 100 Ohm active discharge",
+    "Cost-effective second-source TSOT-23-5 / SOT-23-5 footprint alternative when TJ stays <= 85°C and VIN <= 5.5 V",
+    "Compact 0402 ceramic-decoupled 3.3 V sub-rails stable down to 0.22 uF effective output capacitance"
+  ],
+  "engineering_summary": "The onsemi NCP114ASN330T1G is a 300 mA fixed 3.3 V (±2% over -40°C to +85°C) CMOS LDO in a low-profile TSOP-5 (TSOT-23-5, Case 483) package with standard 1=IN, 2=GND, 3=EN (active high, 300 nA internal pulldown), 4=N/C, 5=OUT pinout and 100 Ohm active output discharge. Operating from 1.7 V to 5.5 V (6 V abs max), it achieves 75 dB PSRR at 1 kHz, 70 uVRMS noise, 50 uA no-load IQ, 0.01 uA shutdown current, 150 mV typical dropout (TSOP-5) at 300 mA, and 1 uF ceramic cap stability (ESR < 2 Ohm). Engineers must note its +85°C operating TJ specification ceiling, 236 °C/W RθJA, and lack of reverse-current blocking.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [
+      1,
+      2,
+      3,
+      15
+    ],
+    "audit_notes": [
+      "300 DPI PNG Vision verified page 1 TSOP-5 (SN Suffix, Case 483) Top View pinout: 1=IN, 2=GND, 3=EN, 4=N/C, 5=OUT (no exposed pad).",
+      "300 DPI PNG Vision verified page 2 Abs Max (VIN=6V, VEN=6V, TJ_max=150C) and Thermal Characteristics specifically for TSOP-5 (RθJA=236 C/W vs UDFN4 170 C/W).",
+      "300 DPI PNG Vision verified page 3 Electrical Characteristics (-40..+85C TJ, VIN=1.7..5.5V, ±2% accuracy for >2.0V, TSOP-5 VDO=150mV typ / 225mV max @300mA/3.3V [vs UDFN 135/200mV], IQ=50uA typ, IDIS=0.01uA typ, PSRR=75dB @1kHz, VN=70uVrms, RDIS=100Ohm for Version A).",
+      "Path A page 13-14 confirmed 1 uF nominal / 0.22 uF effective COUT, <2 Ohm max ESR, 85C PD(MAX) derating equation, and PMOS body diode reverse current; page 16 confirmed OPN NCP114ASN330T1G = TSOP-5, 3.3V, Marking 'CAL', with active output discharge."
+    ]
+  }
+}
