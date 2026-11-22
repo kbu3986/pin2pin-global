@@ -1,0 +1,203 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "OPA333AIDBVR",
+  "slug": "opa333aidbvr",
+  "family": "OPA333",
+  "manufacturer": "Texas Instruments",
+  "category": "opamp",
+  "sub_topology": "opamp-single",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to 125°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/opa333.pdf",
+    "product_page_url": "https://www.ti.com/product/OPA333",
+    "source_domain": "www.ti.com",
+    "revision": "SBOS351E (Rev. December 2015)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 49
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "DBV",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE"
+    },
+    "theta_ja_c_per_w": {
+      "value": 220.8,
+      "page": 6,
+      "condition": "DBV (SOT-23-5) package, OPA333",
+      "table_ref": "Section 6.4 Thermal Information: OPA333"
+    },
+    "theta_jc_c_per_w": {
+      "value": 97.5,
+      "page": 6,
+      "condition": "RθJC(top), DBV (SOT-23-5) package",
+      "table_ref": "Section 6.4 Thermal Information: OPA333"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 5,
+      "condition": "Operating junction temperature, max",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "OUT",
+        "role": "OUT",
+        "description": "Output"
+      },
+      {
+        "pin": 2,
+        "name": "V-",
+        "role": "VEE",
+        "description": "Negative (lowest) power supply"
+      },
+      {
+        "pin": 3,
+        "name": "+IN",
+        "role": "IN_POS",
+        "description": "Noninverting input"
+      },
+      {
+        "pin": 4,
+        "name": "-IN",
+        "role": "IN_NEG",
+        "description": "Inverting input"
+      },
+      {
+        "pin": 5,
+        "name": "V+",
+        "role": "VCC",
+        "description": "Positive (highest) power supply"
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "device_kind": "opamp",
+    "channels": 1,
+    "vs_abs_max_v": {
+      "value": 7,
+      "page": 5,
+      "condition": "Supply voltage, max",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings"
+    },
+    "vs_min_v": {
+      "value": 1.8,
+      "page": 5,
+      "condition": "Recommended operating minimum",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "vs_max_v": {
+      "value": 5.5,
+      "page": 5,
+      "condition": "Recommended operating maximum",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "gbwp_mhz": {
+      "value": 0.35,
+      "page": 7,
+      "condition": "CL = 100 pF, TA = 25°C (350 kHz typ)",
+      "table_ref": "Section 6.6 Electrical Characteristics"
+    },
+    "slew_rate_v_per_us": {
+      "value": 0.16,
+      "page": 7,
+      "condition": "G = +1, TA = 25°C",
+      "table_ref": "Section 6.6 Electrical Characteristics"
+    },
+    "prop_delay_ns": null,
+    "vos_max_mv": {
+      "value": 0.01,
+      "page": 7,
+      "condition": "VS = 5 V, TA = 25°C (10 µV max, 2 µV typ; zero-drift 0.05 µV/°C max)",
+      "table_ref": "Section 6.6 Electrical Characteristics"
+    },
+    "ib_typ_pa": {
+      "value": 70,
+      "page": 7,
+      "condition": "TA = 25°C (±70 pA typ, ±200 pA max; ±150 pA typ over -40°C to 125°C)",
+      "table_ref": "Section 6.6 Electrical Characteristics"
+    },
+    "iq_per_ch_typ_ua": {
+      "value": 17,
+      "page": 7,
+      "condition": "IO = 0 A, TA = 25°C, per amplifier (25 µA max at 25°C; 28 µA max over -40°C to 125°C)",
+      "table_ref": "Section 6.6 Electrical Characteristics"
+    },
+    "rail_to_rail_in": true,
+    "rail_to_rail_out": true,
+    "output_type": "push-pull",
+    "cmrr_typ_db": {
+      "value": 130,
+      "page": 7,
+      "condition": "(V-) - 0.1 V < VCM < (V+) + 0.1 V, TA = -40°C to 125°C (106 dB min; zero-crossover RRIO)",
+      "table_ref": "Section 6.6 Electrical Characteristics"
+    },
+    "input_noise_nv_rt_hz": null,
+    "iout_short_ma": {
+      "value": 5,
+      "page": 7,
+      "condition": "TA = 25°C (±5 mA typ — microPower output stage)",
+      "table_ref": "Section 6.6 Electrical Characteristics"
+    }
+  },
+  "design_gotchas": [
+    {
+      "title": "Weak ±5 mA Output Drive and 350 kHz / 0.16 V/µs Speed Limit vs Pin-Identical TLV9001/TLV9061",
+      "severity": "CRITICAL",
+      "detail": "OPA333AIDBVR shares the exact TI DBV SOT-23-5 pinout (1=OUT, 2=V-, 3=+IN, 4=-IN, 5=V+) with TLV9001IDBVR (40 mA, 1 MHz) and TLV9061IDBVR (50 mA, 10 MHz), but delivers only ±5 mA short-circuit current, 2 kΩ open-loop output impedance, 350 kHz GBW, and 0.16 V/µs slew rate. Strictly for low-frequency DC precision—not fast signals or heavy loads.",
+      "page": 7
+    },
+    {
+      "title": "Chopper Auto-Calibration Input Bias Pulses Require Balanced Low Source Impedance",
+      "severity": "WARNING",
+      "detail": "Internal auto-calibration chopping yields ±70 pA typ (±200 pA max) pulsed input bias current rather than sub-pA static CMOS bias. Keep source resistances balanced and modest (<10 kΩ) or add differential RC filtering to prevent chopper current rectification errors.",
+      "page": 7
+    },
+    {
+      "title": "SOT-23-5 (DBV) vs SC70-5 (DCK) Pinout Reversal Inside Same Datasheet",
+      "severity": "CRITICAL",
+      "detail": "OPA333AIDBVR (5-pin SOT-23) places OUT on Pin 1 and +IN on Pin 3, whereas OPA333AIDCKR (5-pin SC70) puts +IN on Pin 1, -IN on Pin 3, and OUT on Pin 4 (page 3). Never carry over pin numbers when shrinking from DBV to DCK.",
+      "page": 3
+    },
+    {
+      "title": "Strict ±1 mA Signal Input Current Abs Max and Seebeck Thermal EMF Sensitivity",
+      "severity": "WARNING",
+      "detail": "Absolute Maximum Ratings specify ±1 mA signal input current (page 5), and achieving true 10 µV offset accuracy requires symmetric PCB copper layout shielded from air currents and heat sources to prevent thermocouple (Seebeck) voltages >0.1 µV/°C (page 12).",
+      "page": 5
+    }
+  ],
+  "typical_use_cases": [
+    "Thermocouple, RTD, bridge load-cell, and precision electronic scale front-ends",
+    "Battery-powered handheld instrumentation needing 17 µA Iq and 10 µV max offset",
+    "Low-side micro-volt shunt current sensing with zero 1/f flicker noise (1.1 µVPP 0.1–10 Hz)",
+    "High-linearity 16-bit to 24-bit sigma-delta ADC buffers requiring 130 dB crossover-free CMRR"
+  ],
+  "engineering_summary": "The Texas Instruments OPA333AIDBVR is an ultra-low-power (17 µA typ), zero-drift auto-calibrated RRIO CMOS operational amplifier in a 5-pin SOT-23 (DBV) package operating from 1.8 V to 5.5 V (-40°C to 125°C). It achieves industry-leading DC precision—10 µV max input offset, 0.05 µV/°C max drift, 130 dB crossover-free CMRR, and 1.1 µVPP 0.1–10 Hz noise with zero 1/f flicker. While pin-for-pin identical in SOT-23-5 (DBV) to TLV9001IDBVR and TLV9061IDBVR, its 350 kHz GBWP, 0.16 V/µs slew rate, and ±5 mA output limit confine it strictly to precision low-frequency DC measurement.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 5, 6, 7],
+    "audit_notes": [
+      "Verified OPA333 DBV (SOT-23-5) Top View pinout on 300 DPI PNG page 3 (1=OUT, 2=V-, 3=+IN, 4=-IN, 5=V+) and noted DCK SC70 pinout difference.",
+      "Verified Abs Max (7 V, TJ=150°C) on page 5 PNG, DBV RθJA=220.8 °C/W on page 6 PNG, and Electrical Characteristics on page 7 PNG.",
+      "Converted VOS max = 10 µV -> 0.01 mV and GBW = 350 kHz -> 0.35 MHz; left input_noise_nv_rt_hz null since Section 6.6 only tabulates 0.01-1 Hz and 0.1-10 Hz µVPP noise."
+    ]
+  }
+}

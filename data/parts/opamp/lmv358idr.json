@@ -1,0 +1,221 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "LMV358IDR",
+  "slug": "lmv358idr",
+  "family": "LMV358",
+  "manufacturer": "Texas Instruments",
+  "category": "opamp",
+  "sub_topology": "opamp-dual",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to 125°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/lmv358.pdf",
+    "product_page_url": "https://www.ti.com/product/LMV358",
+    "source_domain": "www.ti.com",
+    "revision": "SLOS263Y (Rev. August 2023)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 53
+  },
+  "package": {
+    "code": "SOIC-8",
+    "mfg_package_code": "D",
+    "pin_count": 8,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE"
+    },
+    "theta_ja_c_per_w": {
+      "value": 207.9,
+      "page": 6,
+      "condition": "D (SOIC-8) package, LMV358",
+      "table_ref": "Section 6.6 Thermal Information: LMV358"
+    },
+    "theta_jc_c_per_w": null,
+    "tj_max_c": {
+      "value": 150,
+      "page": 5,
+      "condition": "Operating virtual junction temperature, max",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "OUT",
+        "role": "OUT_A",
+        "description": "Output, channel 1 (labeled OUT in TI Figure 5-1)"
+      },
+      {
+        "pin": 2,
+        "name": "1IN-",
+        "role": "IN_NEG_A",
+        "description": "Inverting input, channel 1"
+      },
+      {
+        "pin": 3,
+        "name": "1IN+",
+        "role": "IN_POS_A",
+        "description": "Noninverting input, channel 1"
+      },
+      {
+        "pin": 4,
+        "name": "GND",
+        "role": "VEE",
+        "description": "Negative supply (ground for single-supply operation)"
+      },
+      {
+        "pin": 5,
+        "name": "2IN+",
+        "role": "IN_POS_B",
+        "description": "Noninverting input, channel 2"
+      },
+      {
+        "pin": 6,
+        "name": "2IN-",
+        "role": "IN_NEG_B",
+        "description": "Inverting input, channel 2"
+      },
+      {
+        "pin": 7,
+        "name": "2OUT",
+        "role": "OUT_B",
+        "description": "Output, channel 2"
+      },
+      {
+        "pin": 8,
+        "name": "VCC+",
+        "role": "VCC",
+        "description": "Positive supply"
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "device_kind": "opamp",
+    "channels": 2,
+    "vs_abs_max_v": {
+      "value": 5.5,
+      "page": 5,
+      "condition": "Supply voltage VCC, max (zero overvoltage headroom above 5.5 V recommended max)",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings"
+    },
+    "vs_min_v": {
+      "value": 2.7,
+      "page": 5,
+      "condition": "Single-supply recommended minimum",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "vs_max_v": {
+      "value": 5.5,
+      "page": 5,
+      "condition": "Single-supply recommended maximum",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "gbwp_mhz": {
+      "value": 1,
+      "page": 7,
+      "condition": "VCC+ = 5 V, CL = 200 pF, TA = 25°C",
+      "table_ref": "Section 6.8 Electrical Characteristics: VCC+ = 5 V"
+    },
+    "slew_rate_v_per_us": {
+      "value": 1,
+      "page": 7,
+      "condition": "VCC+ = 5 V, TA = 25°C",
+      "table_ref": "Section 6.8 Electrical Characteristics: VCC+ = 5 V"
+    },
+    "prop_delay_ns": null,
+    "vos_max_mv": {
+      "value": 7,
+      "page": 7,
+      "condition": "VCC+ = 5 V, TA = 25°C (1.7 mV typ; 9 mV max over -40°C to +125°C)",
+      "table_ref": "Section 6.8 Electrical Characteristics: VCC+ = 5 V"
+    },
+    "ib_typ_pa": {
+      "value": 15000,
+      "page": 7,
+      "condition": "VCC+ = 5 V, TA = 25°C (15 nA typ, 250 nA max; 11 nA typ at 2.7 V)",
+      "table_ref": "Section 6.8 Electrical Characteristics: VCC+ = 5 V"
+    },
+    "iq_per_ch_typ_ua": {
+      "value": 105,
+      "page": 7,
+      "condition": "VCC+ = 5 V, TA = 25°C (derived from 210 µA typ total for both amplifiers / 2 channels; 70 µA/ch at 2.7 V)",
+      "table_ref": "Section 6.8 Electrical Characteristics: VCC+ = 5 V"
+    },
+    "rail_to_rail_in": false,
+    "rail_to_rail_out": true,
+    "output_type": "push-pull",
+    "cmrr_typ_db": {
+      "value": 65,
+      "page": 7,
+      "condition": "VCC+ = 5 V, VCM = 0 to 4 V, TA = 25°C (50 dB min)",
+      "table_ref": "Section 6.8 Electrical Characteristics: VCC+ = 5 V"
+    },
+    "input_noise_nv_rt_hz": {
+      "value": 39,
+      "page": 7,
+      "condition": "VCC+ = 5 V, f = 1 kHz, TA = 25°C (46 nV/√Hz at 2.7 V)",
+      "table_ref": "Section 6.8 Electrical Characteristics: VCC+ = 5 V"
+    },
+    "iout_short_ma": {
+      "value": 40,
+      "page": 7,
+      "condition": "VCC+ = 5 V, TA = 25°C (40 mA typ sourcing and sinking; revised in Rev X)",
+      "table_ref": "Section 6.8 Electrical Characteristics: VCC+ = 5 V"
+    }
+  },
+  "design_gotchas": [
+    {
+      "title": "5.5 V Absolute Maximum Ceiling — Destructive If Swapped into LM358 High-Voltage Boards",
+      "severity": "CRITICAL",
+      "detail": "Despite sharing the 358 designation and identical SOIC-8 pinout with LM358DR (32 V abs max), LMV358IDR has an absolute maximum supply rating of only 5.5 V with zero overvoltage headroom above its 5.5 V operating maximum. Installing it on a 9 V, 12 V, or 24 V LM358 board causes immediate permanent damage.",
+      "page": 5
+    },
+    {
+      "title": "Rail-to-Rail Output Only — Input Common-Mode Stops 1.0 V Below VCC+",
+      "severity": "WARNING",
+      "detail": "LMV358IDR provides rail-to-rail output swing (within 10 mV typ of VCC+ at RL = 10 kΩ), but its input common-mode range is only 0 V to 4.0 V at VCC+ = 5 V (0 V to 1.7 V at 2.7 V). Driving noninverting buffers near VCC+ clips or distorts the output; use TLV9002IDR for true RRIO.",
+      "page": 7
+    },
+    {
+      "title": "High SOIC-8 Thermal Resistance (207.9 °C/W) Under Heavy Output Loads",
+      "severity": "WARNING",
+      "detail": "TI updated LMV358 SOIC-8 RθJA to 207.9 °C/W (significantly higher than LM358DR at 124.7 °C/W). Continuous high output currents near the 40 mA short-circuit limit at elevated ambient temperatures (-40°C to 125°C) must be thermally derated to stay below TJ = 150°C.",
+      "page": 6
+    },
+    {
+      "title": "Identical SOIC-8 Pinout to LM393DR Open-Collector Comparator",
+      "severity": "WARNING",
+      "detail": "Shares the standard dual SOIC-8 footprint with the LM393DR comparator, but LMV358IDR is a compensated push-pull op-amp rated only to 5.5 V. Do not cross-populate with LM393DR without checking supply voltage, pull-up resistors, and compensation requirements.",
+      "page": 3
+    }
+  ],
+  "typical_use_cases": [
+    "3.3 V and 5 V single-supply MCU ADC signal conditioning and active filters",
+    "Low-voltage rail-to-rail output upgrade for 3.3 V/5 V legacy LM358 circuits",
+    "Portable consumer electronics, HVAC controls, and appliance sensor buffers",
+    "Cost-sensitive extended-temperature (-40°C to 125°C) low-side current sensing"
+  ],
+  "engineering_summary": "The Texas Instruments LMV358IDR is a low-voltage (2.7 V to 5.5 V), rail-to-rail output dual operational amplifier in an 8-pin SOIC (D) package rated from -40°C to +125°C. Built as a low-voltage counterpart to the classic LM358 on the exact same SOIC-8 pinout, it eliminates Class-B crossover distortion, boosts bandwidth to 1 MHz and slew rate to 1 V/µs, and cuts quiescent current to 105 µA/ch typ (210 µA total at 5 V). Designers must verify two hard constraints: its 5.5 V absolute maximum supply rating (zero headroom above 5.5 V) and non-rail-to-rail upper input limit (VCC+ - 1.0 V).",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 5, 6, 7],
+    "audit_notes": [
+      "Verified SOIC-8 (D) Top View pinout on 300 DPI PNG page 3 (Figure 5-1 & Table 5-1; note Pin 1 literal name is 'OUT' and Pin 4 is 'GND').",
+      "Verified total ICC = 210 µA for both amplifiers at VCC+ = 5 V on page 7 PNG and normalized iq_per_ch_typ_ua to 105 µA/ch.",
+      "Confirmed RθJA = 207.9 °C/W for LMV358 D (SOIC-8) on page 6 PNG and 5.5 V abs max on page 5 PNG."
+    ]
+  }
+}

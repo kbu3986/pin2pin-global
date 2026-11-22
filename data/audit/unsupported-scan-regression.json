@@ -1,0 +1,44 @@
+{
+  "audit_id": "AUD-01-UNSUPPORTED-SCAN-REGRESSION",
+  "executed_at": "2026-11-22",
+  "owner": "opamp-parser",
+  "requirement": "Prove Stage 0 flags image-only scanned PDFs (zero text layer) as UNSUPPORTED_SCAN with exit code 3, and Stage 2 verifyGoldenPart rejects UNSUPPORTED_SCAN parts from publishing.",
+  "stage0_test": {
+    "synthetic_pdf_path": "data/pdfs/opamp/scan-test.pdf",
+    "generator": "PIL rasterized 1200x1600 PNG embedded into 2-page PDF via pymupdf with zero selectable text layer",
+    "command": "python pipeline/stage0_pdf_ingest.py --slug scan-test --local-pdf data/pdfs/opamp/scan-test.pdf --out-dir data/pdfs/opamp",
+    "exit_code": 3,
+    "expected_exit_code": 3,
+    "observed_report": {
+      "slug": "scan-test",
+      "page_count": 2,
+      "total_chars": 0,
+      "avg_chars_per_page": 0.0,
+      "low_text_pages": 2,
+      "low_text_ratio": 1.0,
+      "parse_source_mode": "UNSUPPORTED_SCAN",
+      "quality_status": "QUARANTINED_UNSUPPORTED_SCAN",
+      "selected_vision_pages": [1]
+    },
+    "passed": true
+  },
+  "stage2_test": {
+    "target_function": "verifyGoldenPart (pipeline/stage2_physics_verifier.mjs)",
+    "test_case": "Valid schema-v2 Golden Op-Amp payload mutated with datasheet.parse_source_mode = 'UNSUPPORTED_SCAN' (page_count = 2, all citations = 1)",
+    "observed_result": {
+      "ok": false,
+      "fileLabel": "synthetic-unsupported-scan.json",
+      "opn": "SCAN-TEST-OPAMP",
+      "slug": "scan-test-opamp",
+      "category": "opamp",
+      "populatedCount": 18,
+      "errors": [
+        "AUD-01: Part marked UNSUPPORTED_SCAN must be quarantined, not published."
+      ],
+      "warnings": []
+    },
+    "expected_ok": false,
+    "passed": true
+  },
+  "overall_status": "PASS"
+}
