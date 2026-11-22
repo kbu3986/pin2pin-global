@@ -4,7 +4,7 @@
   "target_slug": "ncp500sn33t1g",
   "target_opn": "NCP500SN33T1G",
   "category": "ldo",
-  "summary": "Datasheet-verified cross-reference alternatives for NCP500SN33T1G (onsemi, TSOT-23-5, fixed-ldo): evaluated 24 same-category OPNs, surfacing 0 Level 1 Candidate Drop-In, 8 Level 2 Tuning Required, and 0 Level 3 Layout Change options. Verify pinout, thermal margin, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for NCP500SN33T1G (onsemi, TSOT-23-5, fixed-ldo): evaluated 29 same-category OPNs, surfacing 0 Level 1 Candidate Drop-In, 8 Level 2 Tuning Required, and 0 Level 3 Layout Change options. Verify pinout, thermal margin, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "ncp114asn330t1g",
@@ -46,6 +46,32 @@
       "vs_slug": "ncp500sn33t1g-vs-tps7a2033pdbvr"
     },
     {
+      "alt_slug": "ap2127k-3-3trg1",
+      "alt_opn": "AP2127K-3.3TRG1",
+      "manufacturer": "Diodes Incorporated",
+      "package_code": "SOT-23-5",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Ultra-Low Iq Upgrade",
+      "score": 69,
+      "key_advantage": "Lower Iq (60 µA vs 195 µA); Higher Iout (300 mA vs 150 mA)",
+      "key_tradeoff": "Verify θJA (250 °C/W) and latest Diodes Incorporated datasheet revision",
+      "vs_slug": null
+    },
+    {
+      "alt_slug": "ap2204k-3-3trg1",
+      "alt_opn": "AP2204K-3.3TRG1",
+      "manufacturer": "Diodes Incorporated",
+      "package_code": "SOT-23-5",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Ultra-Low Iq Upgrade",
+      "score": 69,
+      "key_advantage": "Lower Iq (20 µA vs 195 µA); Higher Vin,max (24 V vs 6 V)",
+      "key_tradeoff": "Higher dropout (360 mV vs 150 mV)",
+      "vs_slug": null
+    },
+    {
       "alt_slug": "tps70933dbvr",
       "alt_opn": "TPS70933DBVR",
       "manufacturer": "Texas Instruments",
@@ -82,32 +108,6 @@
       "score": 67,
       "key_advantage": "Lower Iq (55 µA vs 195 µA); Higher Iout (500 mA vs 150 mA)",
       "key_tradeoff": "Higher dropout (300 mV vs 150 mV)",
-      "vs_slug": null
-    },
-    {
-      "alt_slug": "tlv70033ddcr",
-      "alt_opn": "TLV70033DDCR",
-      "manufacturer": "Texas Instruments",
-      "package_code": "SOT-23-5",
-      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
-      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
-      "tier_tag": "Ultra-Low Iq Upgrade",
-      "score": 66,
-      "key_advantage": "Lower Iq (31 µA vs 195 µA); Higher Iout (200 mA vs 150 mA)",
-      "key_tradeoff": "Verify θJA (235.9 °C/W) and latest Texas Instruments datasheet revision",
-      "vs_slug": null
-    },
-    {
-      "alt_slug": "tlv73333pdbvr",
-      "alt_opn": "TLV73333PDBVR",
-      "manufacturer": "Texas Instruments",
-      "package_code": "SOT-23-5",
-      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
-      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
-      "tier_tag": "Ultra-Low Iq Upgrade",
-      "score": 66,
-      "key_advantage": "Lower Iq (34 µA vs 195 µA); Higher Iout (300 mA vs 150 mA)",
-      "key_tradeoff": "Verify θJA (228.4 °C/W) and latest Texas Instruments datasheet revision",
       "vs_slug": null
     }
   ],

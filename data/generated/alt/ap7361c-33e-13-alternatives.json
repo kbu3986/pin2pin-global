@@ -4,7 +4,7 @@
   "target_slug": "ap7361c-33e-13",
   "target_opn": "AP7361C-33E-13",
   "category": "ldo",
-  "summary": "Datasheet-verified cross-reference alternatives for AP7361C-33E-13 (Diodes Incorporated, SOT-223-3, fixed-ldo): evaluated 24 same-category OPNs, surfacing 0 Level 1 Candidate Drop-In, 1 Level 2 Tuning Required, and 7 Level 3 Layout Change options. Verify pinout, thermal margin, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for AP7361C-33E-13 (Diodes Incorporated, SOT-223-3, fixed-ldo): evaluated 29 same-category OPNs, surfacing 0 Level 1 Candidate Drop-In, 1 Level 2 Tuning Required, and 7 Level 3 Layout Change options. Verify pinout, thermal margin, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "lm2937imp-3-3-nopb",

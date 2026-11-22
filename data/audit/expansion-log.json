@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "runs": [
+    {
+      "run_id": "2026-11-22-pilot-v1",
+      "date": "2026-11-22",
+      "wave": "Phase 1-2 Pilot",
+      "parts_added": 50,
+      "total_parts": 50,
+      "total_vs": 85,
+      "total_guides": 5,
+      "total_tools": 3,
+      "total_en_pages": 200,
+      "qa_gates_passed": "7/7",
+      "highlights": [
+        "50/50 official PDF Dual-Path 300 DPI PNG Vision verification",
+        "21-package deterministic SVG pinout & diff renderer",
+        "3 interactive engineering calculators (LDO Tj, DC-DC Ripple, Op-Amp GBWP/Slew)"
+      ]
+    },
+    {
+      "run_id": "2026-11-22-wave2a-monetization-v2",
+      "date": "2026-11-22",
+      "wave": "Wave 2A + Monetization & Autonomous Ops",
+      "parts_added": 15,
+      "total_parts": 65,
+      "total_vs": 130,
+      "total_guides": 7,
+      "total_tools": 4,
+      "total_en_pages": 278,
+      "qa_gates_passed": "7/7",
+      "highlights": [
+        "Added 15 Vision-verified OPNs (5 LDO + 5 DC-DC + 5 Op-Amp/Comparator including NE5532 Rev K & TLV3201 push-pull comparator)",
+        "Launched Zero-Upload Client-Side BOM CSV Alternative & EOL Risk Checker (/en/tools/bom-checker/)",
+        "Enabled AdSense (ca-pub-8587506565277191), Coupang KR (AF2200875) + Amazon US (kbu3986-20), GA4/event tracking hooks",
+        "Added 2 deep field guides (DC-DC VREF/EN traps, Op-Amp vs Comparator SOIC-8 traps) & Community Launch Playbook"
+      ]
+    }
+  ]
+}

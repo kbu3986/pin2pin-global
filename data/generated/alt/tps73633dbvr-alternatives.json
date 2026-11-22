@@ -4,7 +4,7 @@
   "target_slug": "tps73633dbvr",
   "target_opn": "TPS73633DBVR",
   "category": "ldo",
-  "summary": "Datasheet-verified cross-reference alternatives for TPS73633DBVR (Texas Instruments, SOT-23-5, fixed-ldo): evaluated 24 same-category OPNs, surfacing 0 Level 1 Candidate Drop-In, 8 Level 2 Tuning Required, and 0 Level 3 Layout Change options. Verify pinout, thermal margin, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for TPS73633DBVR (Texas Instruments, SOT-23-5, fixed-ldo): evaluated 29 same-category OPNs, surfacing 0 Level 1 Candidate Drop-In, 8 Level 2 Tuning Required, and 0 Level 3 Layout Change options. Verify pinout, thermal margin, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "ap2112k-3-3trg1",
@@ -46,6 +46,32 @@
       "vs_slug": null
     },
     {
+      "alt_slug": "ap2127k-3-3trg1",
+      "alt_opn": "AP2127K-3.3TRG1",
+      "manufacturer": "Diodes Incorporated",
+      "package_code": "SOT-23-5",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Ultra-Low Iq Upgrade",
+      "score": 67,
+      "key_advantage": "Lower Iq (60 µA vs 400 µA)",
+      "key_tradeoff": "Lower Iout (300 mA vs 400 mA); Higher dropout (170 mV vs 75 mV)",
+      "vs_slug": null
+    },
+    {
+      "alt_slug": "tlv70233dbvr",
+      "alt_opn": "TLV70233DBVR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOT-23-5",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Ultra-Low Iq Upgrade",
+      "score": 67,
+      "key_advantage": "Lower Iq (35 µA vs 400 µA)",
+      "key_tradeoff": "Lower Iout (300 mA vs 400 mA); Higher dropout (260 mV vs 75 mV)",
+      "vs_slug": null
+    },
+    {
       "alt_slug": "tlv73333pdbvr",
       "alt_opn": "TLV73333PDBVR",
       "manufacturer": "Texas Instruments",
@@ -82,32 +108,6 @@
       "score": 66,
       "key_advantage": "Lower Iq (100 µA vs 400 µA); Higher Vin,max (13.2 V vs 5.5 V)",
       "key_tradeoff": "Lower Iout (300 mA vs 400 mA); Higher dropout (250 mV vs 75 mV)",
-      "vs_slug": null
-    },
-    {
-      "alt_slug": "lp2985-33dbvr",
-      "alt_opn": "LP2985-33DBVR",
-      "manufacturer": "Texas Instruments",
-      "package_code": "SOT-23-5",
-      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
-      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
-      "tier_tag": "Ultra-Low Iq Upgrade",
-      "score": 66,
-      "key_advantage": "Lower Iq (69 µA vs 400 µA); Higher Vin,max (16 V vs 5.5 V)",
-      "key_tradeoff": "Lower Iout (150 mA vs 400 mA); Higher dropout (180 mV vs 75 mV)",
-      "vs_slug": null
-    },
-    {
-      "alt_slug": "ncp114asn330t1g",
-      "alt_opn": "NCP114ASN330T1G",
-      "manufacturer": "onsemi",
-      "package_code": "TSOT-23-5",
-      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
-      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
-      "tier_tag": "Ultra-Low Iq Upgrade",
-      "score": 62,
-      "key_advantage": "Lower Iq (50 µA vs 400 µA)",
-      "key_tradeoff": "Lower Iout (300 mA vs 400 mA); Higher dropout (150 mV vs 75 mV)",
       "vs_slug": null
     }
   ],

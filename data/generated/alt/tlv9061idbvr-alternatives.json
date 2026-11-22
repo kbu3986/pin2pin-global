@@ -4,7 +4,7 @@
   "target_slug": "tlv9061idbvr",
   "target_opn": "TLV9061IDBVR",
   "category": "opamp",
-  "summary": "Datasheet-verified cross-reference alternatives for TLV9061IDBVR (Texas Instruments, SOT-23-5, opamp-single): evaluated 9 same-category OPNs, surfacing 0 Level 1 Candidate Drop-In, 2 Level 2 Tuning Required, and 6 Level 3 Layout Change options. Verify pinout, thermal margin, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for TLV9061IDBVR (Texas Instruments, SOT-23-5, opamp-single): evaluated 14 same-category OPNs, surfacing 0 Level 1 Candidate Drop-In, 3 Level 2 Tuning Required, and 5 Level 3 Layout Change options. Verify pinout, thermal margin, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "opa333aidbvr",
@@ -33,6 +33,45 @@
       "vs_slug": "tlv9001idbvr-vs-tlv9061idbvr"
     },
     {
+      "alt_slug": "tlv3201aidbvr",
+      "alt_opn": "TLV3201AIDBVR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOT-23-5",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Ultra-Low Iq Upgrade",
+      "score": 54,
+      "key_advantage": "Lower Iq/ch (40 µA vs 538 µA)",
+      "key_tradeoff": "Different device/output (comparator push-pull vs opamp push-pull); Wider Vos (3 mV vs 1.6 mV)",
+      "vs_slug": null
+    },
+    {
+      "alt_slug": "lmv321idbvr",
+      "alt_opn": "LMV321IDBVR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOT-23-5",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+      "tier_tag": "Functional Alternative (Layout Change)",
+      "score": 53,
+      "key_advantage": "Lower Iq/ch (130 µA vs 538 µA)",
+      "key_tradeoff": "Pinout or exposed-pad mismatch requires PCB rerouting; Wider Vos (7 mV vs 1.6 mV)",
+      "vs_slug": "lmv321idbvr-vs-tlv9061idbvr"
+    },
+    {
+      "alt_slug": "opa2333aidr",
+      "alt_opn": "OPA2333AIDR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOIC-8",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+      "tier_tag": "Functional Alternative (Layout Change)",
+      "score": 42,
+      "key_advantage": "Tighter Vos (0.01 mV vs 1.6 mV); Lower Iq/ch (17 µA vs 538 µA)",
+      "key_tradeoff": "Package change (SOT-23-5 → SOIC-8) requires PCB layout mod",
+      "vs_slug": null
+    },
+    {
       "alt_slug": "mc33202dr2g",
       "alt_opn": "MC33202DR2G",
       "manufacturer": "onsemi",
@@ -59,55 +98,16 @@
       "vs_slug": null
     },
     {
-      "alt_slug": "lm358dr",
-      "alt_opn": "LM358DR",
+      "alt_slug": "tlv9062idr",
+      "alt_opn": "TLV9062IDR",
       "manufacturer": "Texas Instruments",
       "package_code": "SOIC-8",
       "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
       "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
       "tier_tag": "Functional Alternative (Layout Change)",
-      "score": 38,
-      "key_advantage": "Lower Iq/ch (350 µA vs 538 µA); Higher Vs,max (30 V vs 5.5 V)",
-      "key_tradeoff": "Package change (SOT-23-5 → SOIC-8) requires PCB layout mod; Wider Vos (7 mV vs 1.6 mV)",
-      "vs_slug": null
-    },
-    {
-      "alt_slug": "lmv358idr",
-      "alt_opn": "LMV358IDR",
-      "manufacturer": "Texas Instruments",
-      "package_code": "SOIC-8",
-      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
-      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
-      "tier_tag": "Functional Alternative (Layout Change)",
-      "score": 38,
-      "key_advantage": "Lower Iq/ch (105 µA vs 538 µA)",
-      "key_tradeoff": "Package change (SOT-23-5 → SOIC-8) requires PCB layout mod; Wider Vos (7 mV vs 1.6 mV)",
-      "vs_slug": null
-    },
-    {
-      "alt_slug": "opa2134ua",
-      "alt_opn": "OPA2134UA",
-      "manufacturer": "Texas Instruments",
-      "package_code": "SOIC-8",
-      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
-      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
-      "tier_tag": "Functional Alternative (Layout Change)",
-      "score": 38,
-      "key_advantage": "Higher Vs,max (36 V vs 5.5 V)",
-      "key_tradeoff": "Package change (SOT-23-5 → SOIC-8) requires PCB layout mod; Wider Vos (3.5 mV vs 1.6 mV)",
-      "vs_slug": null
-    },
-    {
-      "alt_slug": "tl072idr",
-      "alt_opn": "TL072IDR",
-      "manufacturer": "Texas Instruments",
-      "package_code": "SOIC-8",
-      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
-      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
-      "tier_tag": "Functional Alternative (Layout Change)",
-      "score": 38,
-      "key_advantage": "Higher Vs,max (40 V vs 5.5 V)",
-      "key_tradeoff": "Package change (SOT-23-5 → SOIC-8) requires PCB layout mod; Wider Vos (6 mV vs 1.6 mV)",
+      "score": 40,
+      "key_advantage": "Texas Instruments multi-source option in SOIC-8",
+      "key_tradeoff": "Package change (SOT-23-5 → SOIC-8) requires PCB layout mod",
       "vs_slug": null
     }
   ],

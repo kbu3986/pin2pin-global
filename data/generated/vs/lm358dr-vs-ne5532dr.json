@@ -1,0 +1,192 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "lm358dr-vs-ne5532dr",
+  "category": "opamp",
+  "part_a_slug": "lm358dr",
+  "part_b_slug": "ne5532dr",
+  "part_a_opn": "LM358DR",
+  "part_b_opn": "NE5532DR",
+  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+  "package_match": true,
+  "pinout_exact_match": true,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "OUT1",
+      "part_a_role": "OUT_A",
+      "part_b_name": "1OUT",
+      "part_b_role": "OUT_A",
+      "status": "MATCH",
+      "note": "Functionally identical OUT_A pin (OUT1 vs 1OUT)."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "IN1-",
+      "part_a_role": "IN_NEG_A",
+      "part_b_name": "1IN-",
+      "part_b_role": "IN_NEG_A",
+      "status": "MATCH",
+      "note": "Functionally identical IN_NEG_A pin (IN1- vs 1IN-)."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "IN1+",
+      "part_a_role": "IN_POS_A",
+      "part_b_name": "1IN+",
+      "part_b_role": "IN_POS_A",
+      "status": "MATCH",
+      "note": "Functionally identical IN_POS_A pin (IN1+ vs 1IN+)."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "V-",
+      "part_a_role": "VEE",
+      "part_b_name": "VCC-",
+      "part_b_role": "VEE",
+      "status": "MATCH",
+      "note": "Functionally identical VEE pin (V- vs VCC-)."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "IN2+",
+      "part_a_role": "IN_POS_B",
+      "part_b_name": "2IN+",
+      "part_b_role": "IN_POS_B",
+      "status": "MATCH",
+      "note": "Functionally identical IN_POS_B pin (IN2+ vs 2IN+)."
+    },
+    {
+      "pin": 6,
+      "part_a_name": "IN2-",
+      "part_a_role": "IN_NEG_B",
+      "part_b_name": "2IN-",
+      "part_b_role": "IN_NEG_B",
+      "status": "MATCH",
+      "note": "Functionally identical IN_NEG_B pin (IN2- vs 2IN-)."
+    },
+    {
+      "pin": 7,
+      "part_a_name": "OUT2",
+      "part_a_role": "OUT_B",
+      "part_b_name": "2OUT",
+      "part_b_role": "OUT_B",
+      "status": "MATCH",
+      "note": "Functionally identical OUT_B pin (OUT2 vs 2OUT)."
+    },
+    {
+      "pin": 8,
+      "part_a_name": "V+",
+      "part_a_role": "VCC",
+      "part_b_name": "VCC+",
+      "part_b_role": "VCC",
+      "status": "MATCH",
+      "note": "Functionally identical VCC pin (V+ vs VCC+)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Device Kind & Output Stage",
+      "unit": "—",
+      "part_a_value": "opamp (push-pull)",
+      "part_b_value": "opamp (push-pull)",
+      "winner": "TIE",
+      "note": "Op-amps (compensated push-pull) and comparators (uncompensated open-collector) are NOT drop-in interchangeable."
+    },
+    {
+      "metric": "Package & Channel Count",
+      "unit": "—",
+      "part_a_value": "SOIC-8 · 2 ch (D, p.3)",
+      "part_b_value": "SOIC-8 · 2 ch (D, p.2)",
+      "winner": "TIE",
+      "note": "Single SOT-23-5 op-amps vary in pin ordering across vendors; verify Pin 1–5."
+    },
+    {
+      "metric": "Supply Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "3 to 30 V (p.5)",
+      "part_b_value": "10 to 30 V (p.3)",
+      "winner": "A",
+      "note": "Confirm total supply span (V+ - V-) stays within recommended limits."
+    },
+    {
+      "metric": "Absolute Max Supply (Vs,abs)",
+      "unit": "V",
+      "part_a_value": "32 V (p.4)",
+      "part_b_value": "36 V (p.3)",
+      "winner": "B",
+      "note": "Exceeding Vs,abs causes immediate gate-oxide or junction breakdown."
+    },
+    {
+      "metric": "Gain-Bandwidth Product (GBWP)",
+      "unit": "MHz",
+      "part_a_value": "0.7 MHz (p.10)",
+      "part_b_value": "12 MHz (p.4)",
+      "winner": "B",
+      "note": "Closed-loop -3 dB bandwidth scales as f_-3dB = GBWP / Acl."
+    },
+    {
+      "metric": "Slew Rate / Propagation Delay",
+      "unit": "V/µs · ns",
+      "part_a_value": "SR: 0.3 V/µs (p.10)",
+      "part_b_value": "SR: 5 V/µs (p.4)",
+      "winner": "B",
+      "note": "Controls large-signal full-power bandwidth SR / (2π·Vpeak) or comparator switching speed."
+    },
+    {
+      "metric": "Input Offset Voltage (Vos, max)",
+      "unit": "mV",
+      "part_a_value": "7 mV (p.10)",
+      "part_b_value": "4 mV (p.4)",
+      "winner": "B",
+      "note": "Lower Vos minimizes DC error in current-shunt and sensor bridge amplifiers."
+    },
+    {
+      "metric": "Input Bias Current (Ib, typ)",
+      "unit": "pA",
+      "part_a_value": "20000 pA (p.10)",
+      "part_b_value": "200000 pA (p.4)",
+      "winner": "A",
+      "note": "CMOS/JFET pA-class inputs avoid offset voltage drops across high-impedance (>100 kΩ) sensors."
+    },
+    {
+      "metric": "Quiescent Current / Ch (Iq)",
+      "unit": "µA/ch",
+      "part_a_value": "350 µA/ch (p.10)",
+      "part_b_value": "3000 µA/ch (p.4)",
+      "winner": "A",
+      "note": "Multiply by channel count for total IC standby current draw."
+    },
+    {
+      "metric": "Rail-to-Rail Input / Output",
+      "unit": "—",
+      "part_a_value": "IN: No · OUT: No",
+      "part_b_value": "IN: No · OUT: No",
+      "winner": "TIE",
+      "note": "RRIO prevents clipping on low-voltage 3.3 V single-supply ADC buffers."
+    },
+    {
+      "metric": "CMRR (typ) & Input Noise",
+      "unit": "dB · nV/√Hz",
+      "part_a_value": "80 dB (p.10) · 40 nV/√Hz (p.10)",
+      "part_b_value": "100 dB (p.4) · 5 nV/√Hz (p.4)",
+      "winner": "B",
+      "note": "Higher CMRR rejects common-mode noise; lower voltage noise improves SNR."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "124.7 °C/W (p.5) · 150 °C",
+      "part_b_value": "97 °C/W (p.3) · 150 °C",
+      "winner": "B",
+      "note": "Important when driving heavy resistive loads or high supply rails."
+    }
+  ],
+  "swap_risks": [
+    "CAUTION BANDWIDTH & PHASE MARGIN: GBWP differs by 17.1x (LM358DR: 0.7 MHz p.10 vs NE5532DR: 12 MHz p.4); higher-bandwidth replacements can oscillate with capacitive loads or stray feedback capacitance without an isolation resistor.",
+    "CAUTION SLEW RATE DIFFERENCE: Slew rate differs by 16.7x (LM358DR: 0.3 V/µs p.10 vs NE5532DR: 5 V/µs p.4); check full-power bandwidth SR / (2π·Vpeak)."
+  ],
+  "engineering_verdict": "LM358DR (Texas Instruments, SOIC-8) and NE5532DR (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to GBWP differs >= 3x; slew rate differs >= 3x. Key datasheet deltas: device type is opamp (push-pull) vs opamp (push-pull), supply limit is 30 V (p.5) vs 30 V (p.3), max Vos is 7 mV (p.10) vs 4 mV (p.4), input bias current is 20000 pA (p.10) vs 200000 pA (p.4), and Iq/ch is 350 µA (p.10) vs 3000 µA (p.4). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.2), thermal margin (θJA 124.7 vs 97 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "generated_at": "2026-11-22"
+}

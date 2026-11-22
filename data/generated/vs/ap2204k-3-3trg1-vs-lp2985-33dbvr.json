@@ -1,0 +1,167 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "ap2204k-3-3trg1-vs-lp2985-33dbvr",
+  "category": "ldo",
+  "part_a_slug": "ap2204k-3-3trg1",
+  "part_b_slug": "lp2985-33dbvr",
+  "part_a_opn": "AP2204K-3.3TRG1",
+  "part_b_opn": "LP2985-33DBVR",
+  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+  "package_match": true,
+  "pinout_exact_match": false,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "VIN",
+      "part_a_role": "VIN",
+      "part_b_name": "VIN",
+      "part_b_role": "VIN",
+      "status": "MATCH",
+      "note": "Identical pin assignment (VIN / VIN)."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "GND",
+      "part_a_role": "GND",
+      "part_b_name": "GND",
+      "part_b_role": "GND",
+      "status": "MATCH",
+      "note": "Identical pin assignment (GND / GND)."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "EN",
+      "part_a_role": "EN",
+      "part_b_name": "ON/OFF",
+      "part_b_role": "EN",
+      "status": "MATCH",
+      "note": "Functionally identical EN pin (EN vs ON/OFF)."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "ADJ/NC",
+      "part_a_role": "NC",
+      "part_b_name": "BYPASS",
+      "part_b_role": "BYPASS",
+      "status": "CAUTION",
+      "note": "Pin 4 differs (ADJ/NC/NC vs BYPASS/BYPASS): safe only if PCB leaves Pin 4 floating or decoupled via 10 nF to GND; if PCB ties NC pin directly to GND/VIN, trace cut is mandatory."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "VOUT",
+      "part_a_role": "VOUT",
+      "part_b_name": "VOUT",
+      "part_b_role": "VOUT",
+      "status": "MATCH",
+      "note": "Identical pin assignment (VOUT / VOUT)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Package & Exposed Pad",
+      "unit": "—",
+      "part_a_value": "SOT-23-5 (K (SOT-23-5), EP: None, p.1)",
+      "part_b_value": "SOT-23-5 (DBV, EP: None, p.3)",
+      "winner": "TIE",
+      "note": "Same JEDEC package outline."
+    },
+    {
+      "metric": "Input Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "2.6 to 24 V (p.4)",
+      "part_b_value": "2.5 to 16 V (p.4)",
+      "winner": "A",
+      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+    },
+    {
+      "metric": "Absolute Max Input Voltage",
+      "unit": "V",
+      "part_a_value": "38 V (p.4)",
+      "part_b_value": "16 V (p.4)",
+      "winner": "A",
+      "note": "Higher Vin,abs improves survivability against hot-plug and inductive bus spikes."
+    },
+    {
+      "metric": "Output Voltage & Accuracy",
+      "unit": "V / %",
+      "part_a_value": "3.3 V ±2% (p.5)",
+      "part_b_value": "3.3 V ±1.5% (p.5)",
+      "winner": "B",
+      "note": "Tighter Vout tolerance improves ADC reference and digital rail margin."
+    },
+    {
+      "metric": "Max Output Current (Iout)",
+      "unit": "mA",
+      "part_a_value": "150 mA (p.5)",
+      "part_b_value": "150 mA (p.4)",
+      "winner": "TIE",
+      "note": "Actual usable continuous Iout is also bounded by package θJA thermal derating."
+    },
+    {
+      "metric": "Quiescent Current (Iq, typ)",
+      "unit": "µA",
+      "part_a_value": "20 µA (p.5)",
+      "part_b_value": "69 µA (p.6)",
+      "winner": "A",
+      "note": "Lower Iq directly extends sleep-mode battery life in always-on IoT/portable rails."
+    },
+    {
+      "metric": "Dropout Voltage (Vdo, typ)",
+      "unit": "mV",
+      "part_a_value": "360 mV (p.5)",
+      "part_b_value": "180 mV (p.6)",
+      "winner": "B",
+      "note": "Lower dropout allows regulation deeper into Li-ion / 3.7 V discharge curves."
+    },
+    {
+      "metric": "Ceramic Cap Stability & Min Cout",
+      "unit": "µF / Ω",
+      "part_a_value": "Ceramic OK · >=2.2 µF · Low-ESR MLCC compatible",
+      "part_b_value": "Ceramic OK · >=2.2 µF · 0–1 Ω (p.4)",
+      "winner": "TIE",
+      "note": "Non-ceramic-stable LDOs oscillate with low-ESR MLCCs unless series resistance or tantalum is used."
+    },
+    {
+      "metric": "PSRR (typ)",
+      "unit": "dB",
+      "part_a_value": "60 dB (p.5)",
+      "part_b_value": "78 dB (p.7)",
+      "winner": "B",
+      "note": "Higher PSRR attenuates upstream switching-converter ripple on analog/RF rails."
+    },
+    {
+      "metric": "Output Noise (typ)",
+      "unit": "µVrms",
+      "part_a_value": "30 µVrms (p.5)",
+      "part_b_value": "30 µVrms (p.7)",
+      "winner": "TIE",
+      "note": "Critical for RF VCOs, low-noise ADCs, and precision sensor excitation."
+    },
+    {
+      "metric": "Thermal Resistance (θJA)",
+      "unit": "°C/W",
+      "part_a_value": "250 °C/W (p.4)",
+      "part_b_value": "178.6 °C/W (p.5)",
+      "winner": "B",
+      "note": "Lower θJA yields lower junction temperature rise ΔTj = (Vin - Vout) × Iout × θJA."
+    },
+    {
+      "metric": "Max Junction Temp (Tj,max)",
+      "unit": "°C",
+      "part_a_value": "150 °C (p.4)",
+      "part_b_value": "125 °C (p.4)",
+      "winner": "A",
+      "note": "Keep steady-state Tj at least 15–25 °C below Tj,max for production reliability."
+    }
+  ],
+  "swap_risks": [
+    "HIGH PIN 4 (NC vs BYPASS/NR) CHECK: One device uses Pin 4 as an internal bandgap bypass/noise-reduction node while the other is NC. Verify Pin 4 is NOT tied to GND or VIN on the existing PCB before swapping; add a 10 nF bypass cap if low noise is required.",
+    "HIGH INPUT VOLTAGE RATING DROP: LP2985-33DBVR is rated to only 16 V rec. (16 V abs max, p.4) vs AP2204K-3.3TRG1 at 24 V rec. (38 V abs max, p.4). Verify worst-case input transient spikes.",
+    "CAUTION LIFECYCLE STATUS (NRND): AP2204K-3.3TRG1 is flagged NRND by Diodes Incorporated; do not design into new production layouts — evaluate Active alternatives.",
+    "CAUTION THERMAL MARGIN: Package θJA differs by 29% (AP2204K-3.3TRG1: 250 °C/W p.4 vs LP2985-33DBVR: 178.6 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max."
+  ],
+  "engineering_verdict": "AP2204K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and LP2985-33DBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to Pin 4 NC vs BYPASS difference; Vin,max rating drops >20%. Key datasheet deltas: Iq is 20 µA (p.5) vs 69 µA (p.6), max output current is 150 mA (p.5) vs 150 mA (p.4), recommended Vin,max is 24 V (p.4) vs 16 V (p.4), typical dropout is 360 mV (p.5) vs 180 mV (p.6), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 250 vs 178.6 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "generated_at": "2026-11-22"
+}

@@ -4,7 +4,7 @@
   "target_slug": "tps613221adbvr",
   "target_opn": "TPS613221ADBVR",
   "category": "dcdc",
-  "summary": "Datasheet-verified cross-reference alternatives for TPS613221ADBVR (Texas Instruments, SOT-23-5, boost): evaluated 14 same-category OPNs, surfacing 0 Level 1 Candidate Drop-In, 0 Level 2 Tuning Required, and 8 Level 3 Layout Change options. Verify pinout, thermal margin, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for TPS613221ADBVR (Texas Instruments, SOT-23-5, boost): evaluated 19 same-category OPNs, surfacing 0 Level 1 Candidate Drop-In, 0 Level 2 Tuning Required, and 9 Level 3 Layout Change options. Verify pinout, thermal margin, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "tps61040dbvr",
@@ -46,6 +46,19 @@
       "vs_slug": null
     },
     {
+      "alt_slug": "tps61041dbvr",
+      "alt_opn": "TPS61041DBVR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOT-23-5",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+      "tier_tag": "Functional Alternative (Layout Change)",
+      "score": 50,
+      "key_advantage": "Texas Instruments multi-source option in SOT-23-5",
+      "key_tradeoff": "Pinout or exposed-pad mismatch requires PCB rerouting; Higher Iq (28 µA vs 6.5 µA)",
+      "vs_slug": null
+    },
+    {
       "alt_slug": "tps61023drlr",
       "alt_opn": "TPS61023DRLR",
       "manufacturer": "Texas Instruments",
@@ -72,6 +85,19 @@
       "vs_slug": "tps610994drvr-vs-tps613221adbvr"
     },
     {
+      "alt_slug": "tps61200drcr",
+      "alt_opn": "TPS61200DRCR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "VSON-10",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+      "tier_tag": "Functional Alternative (Layout Change)",
+      "score": 48,
+      "key_advantage": "Texas Instruments multi-source option in VSON-10",
+      "key_tradeoff": "Package change (SOT-23-5 → VSON-10) requires PCB layout mod; Higher Iq (55 µA vs 6.5 µA)",
+      "vs_slug": null
+    },
+    {
       "alt_slug": "tps61221dckr",
       "alt_opn": "TPS61221DCKR",
       "manufacturer": "Texas Instruments",
@@ -96,19 +122,6 @@
       "key_advantage": "Texas Instruments multi-source option in VSON-10",
       "key_tradeoff": "Package change (SOT-23-5 → VSON-10) requires PCB layout mod; Higher Iq (41 µA vs 6.5 µA)",
       "vs_slug": "tps613221adbvr-vs-tps63001drcr"
-    },
-    {
-      "alt_slug": "ap62200wu-7",
-      "alt_opn": "AP62200WU-7",
-      "manufacturer": "Diodes Incorporated",
-      "package_code": "TSOT-23-6",
-      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
-      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
-      "tier_tag": "Functional Alternative (Layout Change)",
-      "score": 28,
-      "key_advantage": "Higher current rating (2000 mA vs 1200 mA); Wider Vin,max (18 V vs 5.5 V)",
-      "key_tradeoff": "Package change (SOT-23-5 → TSOT-23-6) requires PCB layout mod; Higher Iq (135 µA vs 6.5 µA)",
-      "vs_slug": null
     }
   ],
   "selection_checklist": [

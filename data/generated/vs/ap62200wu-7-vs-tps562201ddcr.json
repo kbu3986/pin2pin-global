@@ -1,0 +1,174 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "ap62200wu-7-vs-tps562201ddcr",
+  "category": "dcdc",
+  "part_a_slug": "ap62200wu-7",
+  "part_b_slug": "tps562201ddcr",
+  "part_a_opn": "AP62200WU-7",
+  "part_b_opn": "TPS562201DDCR",
+  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+  "package_match": false,
+  "pinout_exact_match": true,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "GND",
+      "part_a_role": "GND",
+      "part_b_name": "GND",
+      "part_b_role": "GND",
+      "status": "MATCH",
+      "note": "Identical pin assignment (GND / GND)."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "SW",
+      "part_a_role": "SW",
+      "part_b_name": "SW",
+      "part_b_role": "SW",
+      "status": "MATCH",
+      "note": "Identical pin assignment (SW / SW)."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "VIN",
+      "part_a_role": "VIN",
+      "part_b_name": "VIN",
+      "part_b_role": "VIN",
+      "status": "MATCH",
+      "note": "Identical pin assignment (VIN / VIN)."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "FB",
+      "part_a_role": "FB",
+      "part_b_name": "VFB",
+      "part_b_role": "FB",
+      "status": "CAUTION",
+      "note": "Reference voltage differs (0.8 V vs 0.768 V): recalculate external R1/R2 divider to maintain target VOUT."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "EN",
+      "part_a_role": "EN",
+      "part_b_name": "EN",
+      "part_b_role": "EN",
+      "status": "MATCH",
+      "note": "Identical pin assignment (EN / EN)."
+    },
+    {
+      "pin": 6,
+      "part_a_name": "BST",
+      "part_a_role": "BOOT",
+      "part_b_name": "VBST",
+      "part_b_role": "BOOT",
+      "status": "MATCH",
+      "note": "Functionally identical BOOT pin (BST vs VBST)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Topology & Rectification",
+      "unit": "—",
+      "part_a_value": "buck (Synchronous)",
+      "part_b_value": "buck (Synchronous)",
+      "winner": "TIE",
+      "note": "Synchronous rectification eliminates external Schottky diode loss and PCB area."
+    },
+    {
+      "metric": "Package & Exposed Pad",
+      "unit": "—",
+      "part_a_value": "TSOT-23-6 (TSOT26, EP: None, p.1)",
+      "part_b_value": "SOT-23-6 (DDC, EP: None, p.3)",
+      "winner": "CONTEXT",
+      "note": "Compact WSON/VSON/SOT-563 packages demand tight hot-loop layout and thermal vias."
+    },
+    {
+      "metric": "Input Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "4.2 to 18 V (p.4)",
+      "part_b_value": "4.5 to 17 V (p.4)",
+      "winner": "A",
+      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+    },
+    {
+      "metric": "Absolute Max Input Voltage",
+      "unit": "V",
+      "part_a_value": "20 V (p.4)",
+      "part_b_value": "19 V (p.4)",
+      "winner": "A",
+      "note": "Provides transient overshoot margin above nominal DC supply bus."
+    },
+    {
+      "metric": "Output Voltage Range",
+      "unit": "V",
+      "part_a_value": "0.8 to 7 V (p.1) (Adj)",
+      "part_b_value": "0.76 to 7 V (p.1) (Adj)",
+      "winner": "CONTEXT",
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+    },
+    {
+      "metric": "Max Current (Iout or Isw Limit)",
+      "unit": "mA",
+      "part_a_value": "2000 mA (p.1) [Iout max]",
+      "part_b_value": "2000 mA (p.1) [Iout max]",
+      "winner": "TIE",
+      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+    },
+    {
+      "metric": "Quiescent Current (Iq, typ)",
+      "unit": "µA",
+      "part_a_value": "135 µA (p.5)",
+      "part_b_value": "120 µA (p.5)",
+      "winner": "B",
+      "note": "Dominates light-load efficiency and standby battery runtime."
+    },
+    {
+      "metric": "Switching Frequency (fsw, typ)",
+      "unit": "kHz",
+      "part_a_value": "750 kHz (p.5)",
+      "part_b_value": "580 kHz (p.5)",
+      "winner": "CONTEXT",
+      "note": "Higher fsw shrinks inductor footprint; lower fsw reduces switching losses & high-band EMI."
+    },
+    {
+      "metric": "Peak Efficiency",
+      "unit": "%",
+      "part_a_value": "94 % (p.2)",
+      "part_b_value": "93 % (p.1)",
+      "winner": "A",
+      "note": "Check datasheet efficiency curve at your exact Vin/Vout/Iout operating point."
+    },
+    {
+      "metric": "Recommended Inductor (L, typ)",
+      "unit": "µH",
+      "part_a_value": "3.3 µH (p.17)",
+      "part_b_value": "3.3 µH (p.13)",
+      "winner": "CONTEXT",
+      "note": "Ensure inductor Isat exceeds worst-case peak switch current by >= 20–30%."
+    },
+    {
+      "metric": "Feedback Reference (Vref)",
+      "unit": "V",
+      "part_a_value": "0.8 V (p.5)",
+      "part_b_value": "0.768 V (p.5)",
+      "winner": "CONTEXT",
+      "note": "Any Vref discrepancy requires recalculating feedback divider R1/R2."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "70 °C/W (p.4) · 125 °C",
+      "part_b_value": "90.8 °C/W (p.4) · 125 °C",
+      "winner": "A",
+      "note": "Lower θJA improves continuous load thermal headroom on compact 2-layer PCBs."
+    }
+  ],
+  "swap_risks": [
+    "CAUTION PACKAGE HEIGHT/PROFILE: AP62200WU-7 (TSOT-23-6) vs TPS562201DDCR (SOT-23-6) share the same JEDEC land pattern pitch, but thin-profile TSOT (~1.0 mm) vs standard SOT (~1.45 mm) differs in body height; verify enclosure Z-clearance, SMT nozzle height, and solder fillet spec.",
+    "HIGH VREF MISMATCH: Feedback reference differs (AP62200WU-7: 0.8 V p.5 vs TPS562201DDCR: 0.768 V p.5); dropping in without recalculating R1/R2 will output the wrong voltage rail."
+  ],
+  "engineering_verdict": "AP62200WU-7 (Diodes Incorporated, TSOT-23-6) and TPS562201DDCR (Texas Instruments, SOT-23-6) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to feedback reference voltage Vref differs. Key datasheet deltas: topology is buck (sync) vs buck (sync), switching frequency is 750 kHz (p.5) vs 580 kHz (p.5), rated current is 2000 mA (p.1) vs 2000 mA (p.1), typical inductor is 3.3 µH (p.17) vs 3.3 µH (p.13), and Iq is 135 µA (p.5) vs 120 µA (p.5). Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 70 vs 90.8 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "generated_at": "2026-11-22"
+}

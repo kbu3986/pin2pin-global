@@ -4,7 +4,7 @@
   "target_slug": "tps63020dsjr",
   "target_opn": "TPS63020DSJR",
   "category": "dcdc",
-  "summary": "Datasheet-verified cross-reference alternatives for TPS63020DSJR (Texas Instruments, VSON-14, buck-boost): evaluated 14 same-category OPNs, surfacing 0 Level 1 Candidate Drop-In, 0 Level 2 Tuning Required, and 8 Level 3 Layout Change options. Verify pinout, thermal margin, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for TPS63020DSJR (Texas Instruments, VSON-14, buck-boost): evaluated 19 same-category OPNs, surfacing 0 Level 1 Candidate Drop-In, 0 Level 2 Tuning Required, and 8 Level 3 Layout Change options. Verify pinout, thermal margin, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "tps63001drcr",
@@ -31,6 +31,19 @@
       "key_advantage": "Higher current rating (3700 mA vs 3000 mA)",
       "key_tradeoff": "Package change (VSON-14 → SOT-563) requires PCB layout mod; Different topology (boost vs buck-boost)",
       "vs_slug": "tps61023drlr-vs-tps63020dsjr"
+    },
+    {
+      "alt_slug": "ap63300wu-7",
+      "alt_opn": "AP63300WU-7",
+      "manufacturer": "Diodes Incorporated",
+      "package_code": "TSOT-23-6",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+      "tier_tag": "Functional Alternative (Layout Change)",
+      "score": 28,
+      "key_advantage": "Wider Vin,max (32 V vs 5.5 V)",
+      "key_tradeoff": "Package change (VSON-14 → TSOT-23-6) requires PCB layout mod; Different topology (buck vs buck-boost)",
+      "vs_slug": null
     },
     {
       "alt_slug": "lm2596sx-5-0-nopb",
@@ -95,19 +108,6 @@
       "score": 28,
       "key_advantage": "Lower Iq (1 µA vs 25 µA)",
       "key_tradeoff": "Package change (VSON-14 → WSON-6) requires PCB layout mod; Lower current rating (1000 mA vs 3000 mA)",
-      "vs_slug": null
-    },
-    {
-      "alt_slug": "tps61221dckr",
-      "alt_opn": "TPS61221DCKR",
-      "manufacturer": "Texas Instruments",
-      "package_code": "SC-70-6",
-      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
-      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
-      "tier_tag": "Functional Alternative (Layout Change)",
-      "score": 28,
-      "key_advantage": "Lower Iq (5.5 µA vs 25 µA)",
-      "key_tradeoff": "Package change (VSON-14 → SC-70-6) requires PCB layout mod; Lower current rating (400 mA vs 3000 mA)",
       "vs_slug": null
     }
   ],

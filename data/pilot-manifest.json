@@ -1,12 +1,13 @@
 {
-  "manifest_version": "2.0.0",
+  "manifest_version": "2.1.0",
   "locale": "en",
+  "updated_at": "2026-11-22",
   "page_budget": {
-    "part_pages": 50,
-    "alt_pages": 50,
-    "vs_pages": 85,
-    "static_hub_tool_guide_trust_pages": 15,
-    "total_en_pages": 200
+    "part_pages": 65,
+    "alt_pages": 65,
+    "vs_pages": 130,
+    "static_hub_tool_guide_trust_pages": 18,
+    "total_en_pages": 278
   },
   "parts": [
     {
@@ -608,6 +609,186 @@
       "expected_package": "SOIC-8",
       "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/lm393.pdf",
       "hint_product_url": "https://www.ti.com/product/LM393"
+    },
+    {
+      "idx": 51,
+      "batch": "wave2a-ldo",
+      "category": "ldo",
+      "opn": "AP2127K-3.3TRG1",
+      "slug": "ap2127k-3-3trg1",
+      "family": "AP2127",
+      "manufacturer": "Diodes Incorporated",
+      "expected_package": "SOT-23-5",
+      "hint_pdf_url": "https://www.diodes.com/assets/Datasheets/AP2127.pdf",
+      "hint_product_url": "https://www.diodes.com/part/view/AP2127"
+    },
+    {
+      "idx": 52,
+      "batch": "wave2a-ldo",
+      "category": "ldo",
+      "opn": "AP2204K-3.3TRG1",
+      "slug": "ap2204k-3-3trg1",
+      "family": "AP2204",
+      "manufacturer": "Diodes Incorporated",
+      "expected_package": "SOT-23-5",
+      "hint_pdf_url": "https://www.diodes.com/assets/Datasheets/AP2204.pdf",
+      "hint_product_url": "https://www.diodes.com/part/view/AP2204"
+    },
+    {
+      "idx": 53,
+      "batch": "wave2a-dcdc",
+      "category": "dcdc",
+      "opn": "AP63300WU-7",
+      "slug": "ap63300wu-7",
+      "family": "AP63300",
+      "manufacturer": "Diodes Incorporated",
+      "expected_package": "TSOT-23-6",
+      "hint_pdf_url": "https://www.diodes.com/assets/Datasheets/AP63300-AP63301.pdf",
+      "hint_product_url": "https://www.diodes.com/part/view/AP63300"
+    },
+    {
+      "idx": 54,
+      "batch": "wave2a-opamp",
+      "category": "opamp",
+      "opn": "LMV321IDBVR",
+      "slug": "lmv321idbvr",
+      "family": "LMV321",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOT-23-5",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/lmv321.pdf",
+      "hint_product_url": "https://www.ti.com/product/LMV321"
+    },
+    {
+      "idx": 55,
+      "batch": "wave2a-opamp",
+      "category": "opamp",
+      "opn": "NE5532DR",
+      "slug": "ne5532dr",
+      "family": "NE5532",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOIC-8",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/ne5532.pdf",
+      "hint_product_url": "https://www.ti.com/product/NE5532"
+    },
+    {
+      "idx": 56,
+      "batch": "wave2a-opamp",
+      "category": "opamp",
+      "opn": "OPA2333AIDR",
+      "slug": "opa2333aidr",
+      "family": "OPA2333",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOIC-8",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/opa2333.pdf",
+      "hint_product_url": "https://www.ti.com/product/OPA2333"
+    },
+    {
+      "idx": 57,
+      "batch": "wave2a-opamp",
+      "category": "opamp",
+      "opn": "TLV3201AIDBVR",
+      "slug": "tlv3201aidbvr",
+      "family": "TLV3201",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOT-23-5",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tlv3201.pdf",
+      "hint_product_url": "https://www.ti.com/product/TLV3201"
+    },
+    {
+      "idx": 58,
+      "batch": "wave2a-ldo",
+      "category": "ldo",
+      "opn": "TLV70233DBVR",
+      "slug": "tlv70233dbvr",
+      "family": "TLV702",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOT-23-5",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tlv702.pdf",
+      "hint_product_url": "https://www.ti.com/product/TLV702"
+    },
+    {
+      "idx": 59,
+      "batch": "wave2a-opamp",
+      "category": "opamp",
+      "opn": "TLV9062IDR",
+      "slug": "tlv9062idr",
+      "family": "TLV9062",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOIC-8",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tlv9062.pdf",
+      "hint_product_url": "https://www.ti.com/product/TLV9062"
+    },
+    {
+      "idx": 60,
+      "batch": "wave2a-dcdc",
+      "category": "dcdc",
+      "opn": "TPS54202DDCR",
+      "slug": "tps54202ddcr",
+      "family": "TPS54202",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOT-23-6",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tps54202.pdf",
+      "hint_product_url": "https://www.ti.com/product/TPS54202"
+    },
+    {
+      "idx": 61,
+      "batch": "wave2a-dcdc",
+      "category": "dcdc",
+      "opn": "TPS562201DDCR",
+      "slug": "tps562201ddcr",
+      "family": "TPS562201",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOT-23-6",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tps562201.pdf",
+      "hint_product_url": "https://www.ti.com/product/TPS562201"
+    },
+    {
+      "idx": 62,
+      "batch": "wave2a-dcdc",
+      "category": "dcdc",
+      "opn": "TPS61041DBVR",
+      "slug": "tps61041dbvr",
+      "family": "TPS61041",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOT-23-5",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tps61040.pdf",
+      "hint_product_url": "https://www.ti.com/product/TPS61041"
+    },
+    {
+      "idx": 63,
+      "batch": "wave2a-dcdc",
+      "category": "dcdc",
+      "opn": "TPS61200DRCR",
+      "slug": "tps61200drcr",
+      "family": "TPS61200",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "VSON-10",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tps61200.pdf",
+      "hint_product_url": "https://www.ti.com/product/TPS61200"
+    },
+    {
+      "idx": 64,
+      "batch": "wave2a-ldo",
+      "category": "ldo",
+      "opn": "TPS79333DBVR",
+      "slug": "tps79333dbvr",
+      "family": "TPS793",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOT-23-5",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tps793.pdf",
+      "hint_product_url": "https://www.ti.com/product/TPS793"
+    },
+    {
+      "idx": 65,
+      "batch": "wave2a-ldo",
+      "category": "ldo",
+      "opn": "TPS7A0533PDBVR",
+      "slug": "tps7a0533pdbvr",
+      "family": "TPS7A05",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOT-23-5",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tps7a05.pdf",
+      "hint_product_url": "https://www.ti.com/product/TPS7A05"
     }
   ],
   "vs_pairs": [
@@ -1120,6 +1301,276 @@
       "category": "opamp",
       "part_a": "opa333aidbvr",
       "part_b": "tlv9001idbvr"
+    },
+    {
+      "slug": "ap2127k-3-3trg1-vs-tlv70233dbvr",
+      "category": "ldo",
+      "part_a": "ap2127k-3-3trg1",
+      "part_b": "tlv70233dbvr"
+    },
+    {
+      "slug": "ap2127k-3-3trg1-vs-tlv73333pdbvr",
+      "category": "ldo",
+      "part_a": "ap2127k-3-3trg1",
+      "part_b": "tlv73333pdbvr"
+    },
+    {
+      "slug": "ap2127k-3-3trg1-vs-tps7a2033pdbvr",
+      "category": "ldo",
+      "part_a": "ap2127k-3-3trg1",
+      "part_b": "tps7a2033pdbvr"
+    },
+    {
+      "slug": "ap2204k-3-3trg1-vs-lp2985-33dbvr",
+      "category": "ldo",
+      "part_a": "ap2204k-3-3trg1",
+      "part_b": "lp2985-33dbvr"
+    },
+    {
+      "slug": "ap2204k-3-3trg1-vs-tps70933dbvr",
+      "category": "ldo",
+      "part_a": "ap2204k-3-3trg1",
+      "part_b": "tps70933dbvr"
+    },
+    {
+      "slug": "ap2204k-3-3trg1-vs-tlv70033ddcr",
+      "category": "ldo",
+      "part_a": "ap2204k-3-3trg1",
+      "part_b": "tlv70033ddcr"
+    },
+    {
+      "slug": "ap62200wu-7-vs-ap63300wu-7",
+      "category": "dcdc",
+      "part_a": "ap62200wu-7",
+      "part_b": "ap63300wu-7"
+    },
+    {
+      "slug": "ap63203wu-7-vs-ap63300wu-7",
+      "category": "dcdc",
+      "part_a": "ap63203wu-7",
+      "part_b": "ap63300wu-7"
+    },
+    {
+      "slug": "ap63300wu-7-vs-tps54202ddcr",
+      "category": "dcdc",
+      "part_a": "ap63300wu-7",
+      "part_b": "tps54202ddcr"
+    },
+    {
+      "slug": "lmv321idbvr-vs-opa333aidbvr",
+      "category": "opamp",
+      "part_a": "lmv321idbvr",
+      "part_b": "opa333aidbvr"
+    },
+    {
+      "slug": "lmv321idbvr-vs-tlv9001idbvr",
+      "category": "opamp",
+      "part_a": "lmv321idbvr",
+      "part_b": "tlv9001idbvr"
+    },
+    {
+      "slug": "lmv321idbvr-vs-tlv9061idbvr",
+      "category": "opamp",
+      "part_a": "lmv321idbvr",
+      "part_b": "tlv9061idbvr"
+    },
+    {
+      "slug": "mc33202dr2g-vs-ne5532dr",
+      "category": "opamp",
+      "part_a": "mc33202dr2g",
+      "part_b": "ne5532dr"
+    },
+    {
+      "slug": "lm358dr-vs-ne5532dr",
+      "category": "opamp",
+      "part_a": "lm358dr",
+      "part_b": "ne5532dr"
+    },
+    {
+      "slug": "lmv358idr-vs-ne5532dr",
+      "category": "opamp",
+      "part_a": "lmv358idr",
+      "part_b": "ne5532dr"
+    },
+    {
+      "slug": "mc33202dr2g-vs-opa2333aidr",
+      "category": "opamp",
+      "part_a": "mc33202dr2g",
+      "part_b": "opa2333aidr"
+    },
+    {
+      "slug": "lm358dr-vs-opa2333aidr",
+      "category": "opamp",
+      "part_a": "lm358dr",
+      "part_b": "opa2333aidr"
+    },
+    {
+      "slug": "lmv358idr-vs-opa2333aidr",
+      "category": "opamp",
+      "part_a": "lmv358idr",
+      "part_b": "opa2333aidr"
+    },
+    {
+      "slug": "lmv321idbvr-vs-tlv3201aidbvr",
+      "category": "opamp",
+      "part_a": "lmv321idbvr",
+      "part_b": "tlv3201aidbvr"
+    },
+    {
+      "slug": "opa333aidbvr-vs-tlv3201aidbvr",
+      "category": "opamp",
+      "part_a": "opa333aidbvr",
+      "part_b": "tlv3201aidbvr"
+    },
+    {
+      "slug": "tlv3201aidbvr-vs-tlv9001idbvr",
+      "category": "opamp",
+      "part_a": "tlv3201aidbvr",
+      "part_b": "tlv9001idbvr"
+    },
+    {
+      "slug": "ap2210k-3-3trg1-vs-tlv70233dbvr",
+      "category": "ldo",
+      "part_a": "ap2210k-3-3trg1",
+      "part_b": "tlv70233dbvr"
+    },
+    {
+      "slug": "ap2112k-3-3trg1-vs-tlv70233dbvr",
+      "category": "ldo",
+      "part_a": "ap2112k-3-3trg1",
+      "part_b": "tlv70233dbvr"
+    },
+    {
+      "slug": "ap2204k-3-3trg1-vs-tlv70233dbvr",
+      "category": "ldo",
+      "part_a": "ap2204k-3-3trg1",
+      "part_b": "tlv70233dbvr"
+    },
+    {
+      "slug": "mc33202dr2g-vs-tlv9062idr",
+      "category": "opamp",
+      "part_a": "mc33202dr2g",
+      "part_b": "tlv9062idr"
+    },
+    {
+      "slug": "lm358dr-vs-tlv9062idr",
+      "category": "opamp",
+      "part_a": "lm358dr",
+      "part_b": "tlv9062idr"
+    },
+    {
+      "slug": "lmv358idr-vs-tlv9062idr",
+      "category": "opamp",
+      "part_a": "lmv358idr",
+      "part_b": "tlv9062idr"
+    },
+    {
+      "slug": "tps54202ddcr-vs-tps54302ddcr",
+      "category": "dcdc",
+      "part_a": "tps54202ddcr",
+      "part_b": "tps54302ddcr"
+    },
+    {
+      "slug": "tps54202ddcr-vs-tps562201ddcr",
+      "category": "dcdc",
+      "part_a": "tps54202ddcr",
+      "part_b": "tps562201ddcr"
+    },
+    {
+      "slug": "tps54202ddcr-vs-tps563201ddcr",
+      "category": "dcdc",
+      "part_a": "tps54202ddcr",
+      "part_b": "tps563201ddcr"
+    },
+    {
+      "slug": "tps54302ddcr-vs-tps562201ddcr",
+      "category": "dcdc",
+      "part_a": "tps54302ddcr",
+      "part_b": "tps562201ddcr"
+    },
+    {
+      "slug": "tps562201ddcr-vs-tps563201ddcr",
+      "category": "dcdc",
+      "part_a": "tps562201ddcr",
+      "part_b": "tps563201ddcr"
+    },
+    {
+      "slug": "ap62200wu-7-vs-tps562201ddcr",
+      "category": "dcdc",
+      "part_a": "ap62200wu-7",
+      "part_b": "tps562201ddcr"
+    },
+    {
+      "slug": "lm27313xmf-nopb-vs-tps61041dbvr",
+      "category": "dcdc",
+      "part_a": "lm27313xmf-nopb",
+      "part_b": "tps61041dbvr"
+    },
+    {
+      "slug": "lm2733xmf-nopb-vs-tps61041dbvr",
+      "category": "dcdc",
+      "part_a": "lm2733xmf-nopb",
+      "part_b": "tps61041dbvr"
+    },
+    {
+      "slug": "tps61040dbvr-vs-tps61041dbvr",
+      "category": "dcdc",
+      "part_a": "tps61040dbvr",
+      "part_b": "tps61041dbvr"
+    },
+    {
+      "slug": "tps61200drcr-vs-tps63001drcr",
+      "category": "dcdc",
+      "part_a": "tps61200drcr",
+      "part_b": "tps63001drcr"
+    },
+    {
+      "slug": "lm27313xmf-nopb-vs-tps61200drcr",
+      "category": "dcdc",
+      "part_a": "lm27313xmf-nopb",
+      "part_b": "tps61200drcr"
+    },
+    {
+      "slug": "lm2733xmf-nopb-vs-tps61200drcr",
+      "category": "dcdc",
+      "part_a": "lm2733xmf-nopb",
+      "part_b": "tps61200drcr"
+    },
+    {
+      "slug": "ap2204k-3-3trg1-vs-tps79333dbvr",
+      "category": "ldo",
+      "part_a": "ap2204k-3-3trg1",
+      "part_b": "tps79333dbvr"
+    },
+    {
+      "slug": "ap2127k-3-3trg1-vs-tps79333dbvr",
+      "category": "ldo",
+      "part_a": "ap2127k-3-3trg1",
+      "part_b": "tps79333dbvr"
+    },
+    {
+      "slug": "ap2210k-3-3trg1-vs-tps79333dbvr",
+      "category": "ldo",
+      "part_a": "ap2210k-3-3trg1",
+      "part_b": "tps79333dbvr"
+    },
+    {
+      "slug": "ap2204k-3-3trg1-vs-tps7a0533pdbvr",
+      "category": "ldo",
+      "part_a": "ap2204k-3-3trg1",
+      "part_b": "tps7a0533pdbvr"
+    },
+    {
+      "slug": "ap2127k-3-3trg1-vs-tps7a0533pdbvr",
+      "category": "ldo",
+      "part_a": "ap2127k-3-3trg1",
+      "part_b": "tps7a0533pdbvr"
+    },
+    {
+      "slug": "ap2210k-3-3trg1-vs-tps7a0533pdbvr",
+      "category": "ldo",
+      "part_a": "ap2210k-3-3trg1",
+      "part_b": "tps7a0533pdbvr"
     }
   ],
   "static_routes": {
@@ -1130,14 +1581,17 @@
     "tools": [
       "/en/tools/ldo-thermal-calculator",
       "/en/tools/dcdc-efficiency-ripple-calculator",
-      "/en/tools/opamp-gbwp-slewrate-checker"
+      "/en/tools/opamp-gbwp-slewrate-checker",
+      "/en/tools/bom-checker"
     ],
     "guides": [
-      "/en/guides/sot23-3-ldo-pinout-traps",
-      "/en/guides/ceramic-capacitor-esr-ldo-oscillation",
-      "/en/guides/thermal-derating-tj-margin-guide",
       "/en/guides/boost-buck-layout-inductor-selection",
-      "/en/guides/rail-to-rail-opamp-phase-reversal-slew"
+      "/en/guides/ceramic-capacitor-esr-ldo-oscillation",
+      "/en/guides/dcdc-vref-en-polarity-traps",
+      "/en/guides/opamp-vs-comparator-soic8-traps",
+      "/en/guides/rail-to-rail-opamp-phase-reversal-slew",
+      "/en/guides/sot23-3-ldo-pinout-traps",
+      "/en/guides/thermal-derating-tj-margin-guide"
     ],
     "trust_pages": [
       "/en/about",
