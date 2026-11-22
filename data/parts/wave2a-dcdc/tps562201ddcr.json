@@ -1,0 +1,221 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TPS562201DDCR",
+  "slug": "tps562201ddcr",
+  "family": "TPS562201",
+  "manufacturer": "Texas Instruments",
+  "category": "dcdc",
+  "sub_topology": "buck",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Industrial / Extended (-40°C to 125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tps562201.pdf",
+    "product_page_url": "https://www.ti.com/product/TPS562201",
+    "source_domain": "www.ti.com",
+    "revision": "SLVSD91D (Sep 2024)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 28
+  },
+  "package": {
+    "code": "SOT-23-6",
+    "mfg_package_code": "DDC",
+    "pin_count": 6,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "6-pin thin SOT-23 (DDC / SOT-23-THIN) package without thermal exposed pad."
+    },
+    "theta_ja_c_per_w": {
+      "value": 90.8,
+      "page": 4,
+      "condition": "JEDEC high-K board, DDC 6-pin SOT-23",
+      "table_ref": "Section 5.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 42.3,
+      "page": 4,
+      "condition": "RthetaJC(top), DDC 6-pin SOT-23",
+      "table_ref": "Section 5.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 4,
+      "condition": "Recommended operating junction temperature max (Abs Max 150°C p.4; TSD 160°C typ p.5)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "GND",
+        "role": "GND",
+        "description": "Power and analog ground return for low-side power NFET and D-CAP2 controller."
+      },
+      {
+        "pin": 2,
+        "name": "SW",
+        "role": "SW",
+        "description": "Switch node connection between integrated 140 mOhm HS and 84 mOhm LS NFETs."
+      },
+      {
+        "pin": 3,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Input power supply pin (4.5 V to 17.0 V recommended; 19 V abs max)."
+      },
+      {
+        "pin": 4,
+        "name": "VFB",
+        "role": "FB",
+        "description": "Converter feedback input to external divider (VREF = 0.768 V CCM / 0.774 V Eco-mode)."
+      },
+      {
+        "pin": 5,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high enable with internal 1.5 MOhm pulldown (floating DISABLES part; rated up to 19 V abs max)."
+      },
+      {
+        "pin": 6,
+        "name": "VBST",
+        "role": "BOOT",
+        "description": "High-side NFET gate-drive bootstrap capacitor pin (connect 0.1 uF ceramic cap to SW)."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "topology": "buck",
+    "vin_abs_max_v": {
+      "value": 19.0,
+      "page": 4,
+      "condition": "VIN, EN, SW DC abs max -0.3 V to 19 V (SW 10 ns transient -3.5 V to 21 V)",
+      "table_ref": "Section 5.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 4.5,
+      "page": 4,
+      "condition": "Minimum recommended operating supply input voltage",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 17.0,
+      "page": 4,
+      "condition": "Maximum recommended operating supply input voltage (NOT 24 V compatible)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "vout_min_v": {
+      "value": 0.76,
+      "page": 1,
+      "condition": "Minimum regulated adjustable output voltage (~VFB)",
+      "table_ref": "Section 1 Features"
+    },
+    "vout_max_v": {
+      "value": 7.0,
+      "page": 1,
+      "condition": "Maximum recommended regulated output voltage (0.76 V to 7 V; max recommended duty cycle 75% p.17)",
+      "table_ref": "Section 1 Features"
+    },
+    "vout_fixed": false,
+    "vout_nom_v": null,
+    "vref_v": {
+      "value": 0.768,
+      "page": 5,
+      "condition": "CCM feedback threshold typ 768 mV (749 mV to 787 mV over -40°C to 125°C TJ; Eco-mode typ 774 mV)",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "iout_or_isw_max_ma": {
+      "value": 2000,
+      "page": 1,
+      "condition": "2 A continuous output current (DC overcurrent limit Iocl typ 3.2 A, min 2.4 A, max 4.0 A per p.5)",
+      "table_ref": "Section 1 Features & Section 5.5"
+    },
+    "is_switch_limit": false,
+    "iq_typ_ua": {
+      "value": 120,
+      "page": 5,
+      "condition": "TPS562201 operating non-switching supply current 120 uA typ (200 uA max; shutdown 8 uA typ / 20 uA max; FCCM TPS562208 is 350 uA typ)",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "fsw_typ_khz": {
+      "value": 580,
+      "page": 5,
+      "condition": "580 kHz typ D-CAP2 switching frequency (VIN = 12 V, VO = 3.3 V, IO = 1 A; TON extension can drop fSW down to ~200 kHz when VIN < 7 V p.10-11)",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "efficiency_peak_pct": {
+      "value": 93,
+      "page": 1,
+      "condition": "Peak ~93% at VOUT = 5 V, Iload ~ 0.3 A to 1 A (~89% at VOUT = 3.3 V)",
+      "table_ref": "Page 1 TPS562201 Efficiency Plot (300 DPI Vision verified)"
+    },
+    "inductor_typ_uh": {
+      "value": 3.3,
+      "page": 13,
+      "condition": "Table 7-2 recommends 3.3 uH typ for 2.5-3.3 V (2.2 uH for 1.0-1.8 V; 4.7 uH for 5.0-6.5 V)",
+      "table_ref": "Table 7-2 Recommended Component Values"
+    },
+    "synchronous": true,
+    "min_cout_uf": {
+      "value": 20.0,
+      "page": 13,
+      "condition": "Table 7-2 and Section 7.2.2.3 (p.14) recommend 20 uF to 68 uF low-ESR ceramic output capacitance",
+      "table_ref": "Table 7-2 Recommended Component Values"
+    },
+    "en_active_high": true
+  },
+  "design_gotchas": [
+    {
+      "title": "Pin-Identical 2 A Sibling of TPS563201DDCR — Verify Current Limit & Inductor Sizing",
+      "severity": "WARNING",
+      "detail": "TPS562201DDCR shares the exact SOT-23-6 pinout, 0.768 V VFB, 580 kHz D-CAP2 control, 17 V VIN max, and 1.5 MOhm EN pulldown with 3 A TPS563201DDCR, making it a strong cost-down candidate below 2 A. However, its higher-RDS(on) 140/84 mOhm FETs, lower 2.4 A min OCL (vs 3.5 A min), and larger recommended inductors (3.3 uH at 3.3 V, 4.7 uH at 5 V vs 2.2/3.3 uH) must be verified before downgrading a 3 A rail.",
+      "page": 5
+    },
+    {
+      "title": "17 V Max Input (19 V Abs Max) Fails on 24 V Rails Built for Pin-Identical TPS54202/TPS54302",
+      "severity": "CRITICAL",
+      "detail": "TPS562201DDCR uses the same SOT-23-6 pinout (1=GND, 2=SW, 3=VIN, 4=VFB, 5=EN, 6=VBST) as TPS54202DDCR, TPS54302DDCR, and AP62200WU-7, but its 17 V max VIN (19 V abs max) and 7.0 V max VOUT cannot survive 24 V industrial buses. Furthermore, its 0.768 V VFB causes +28.9% overvoltage if dropped onto a 0.596 V TPS54x02 divider without recalculating resistors.",
+      "page": 4
+    },
+    {
+      "title": "Floating EN Disables TPS562201 (Internal 1.5 MOhm Pulldown) — Opposite of TPS54202 & AP62200",
+      "severity": "CRITICAL",
+      "detail": "Unlike float-to-enable TPS54202DDCR, TPS54302DDCR, and AP62200WU-7, TPS562201 integrates a 1.5 MOhm (600-2400 kOhm) pulldown on EN (Pin 5), so leaving EN floating holds the converter permanently OFF. Conversely, EN is rated to 17 V rec / 19 V abs max and may be tied directly to VIN.",
+      "page": 5
+    },
+    {
+      "title": "Incompatible Pinout vs AP63300/AP63203 and D-CAP2 75% Duty-Cycle / Cout Bounds",
+      "severity": "WARNING",
+      "detail": "Do NOT confuse TPS562201DDCR with Diodes AP63300WU-7 or AP63203WU-7 (which use 1=FB, 2=EN, 3=VIN, 4=GND, 5=SW, 6=BST). Also obey D-CAP2 ceramic Cout bounds (20-68 uF per Table 7-2) and the 75% max recommended duty cycle (VIN_min >= VOUT / 0.75 per Section 7.3).",
+      "page": 17
+    }
+  ],
+  "typical_use_cases": [
+    "5 V or 12 V adapter/bus step-down to 1.05 V, 1.8 V, 3.3 V, or 5.0 V at up to 2 A continuous load",
+    "Cost-optimized D-CAP2 fast-transient point-of-load supply for set-top boxes, routers, DTVs, and cameras",
+    "Compact 580 kHz SOT-23-6 Eco-mode buck with minimal external components and 1.0 ms internal soft-start"
+  ],
+  "engineering_summary": "The TPS562201DDCR is a 4.5 V to 17 V input, 2 A continuous synchronous buck converter in SOT-23-6 (DDC) using TI's D-CAP2 control with Eco-mode pulse skipping (580 kHz typ, 140/84 mOhm FETs, 120 uA Iq, ~93% peak efficiency at 5 V). It is the pin-compatible 2 A sibling of TPS563201DDCR and shares the SOT-23-6 pinout of TPS54202DDCR/TPS54302DDCR/AP62200WU-7 (NOT AP63300WU-7/AP63203WU-7), but engineers must respect its 17 V VIN / 7.0 V VOUT ceilings, 0.768 V feedback reference, 20-68 uF Cout window, and internal 1.5 MOhm EN pulldown (must be pulled high to start). Always verify divider ratios and transient margins against the official TI datasheet before production.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [1, 3, 4, 5],
+    "audit_notes": [
+      "300 DPI PNG Vision inspection on p.3 confirmed DDC 6-pin SOT-23-THIN Top View pinout (1=GND, 2=SW, 3=VIN, 4=VFB, 5=EN, 6=VBST) with no exposed pad.",
+      "300 DPI PNG Vision inspection on p.4 verified Abs Max VIN/EN/SW 19 V, Rec Op VIN 4.5-17 V, TJ -40 to 125 C, RthetaJA 90.8 C/W, and RthetaJC(top) 42.3 C/W.",
+      "300 DPI PNG Vision inspection on p.5 verified TPS562201 IQ 120 uA typ (200 uA max), REN 1500 kOhm pulldown, VFBTH 768 mV CCM / 774 mV Eco, RDS(on) 140/84 mOhm, Iocl 3.2 A typ (2.4 A min), and Fsw 580 kHz.",
+      "300 DPI PNG Vision inspection on p.1 confirmed SLVSD91D (Sep 2024) revision, VOUT 0.76-7 V, and TPS562201 Efficiency plot peaking ~93% at VOUT = 5 V."
+    ]
+  }
+}

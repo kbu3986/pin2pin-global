@@ -1,0 +1,221 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "AP63300WU-7",
+  "slug": "ap63300wu-7",
+  "family": "AP63300",
+  "manufacturer": "Diodes Incorporated",
+  "category": "dcdc",
+  "sub_topology": "buck",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 85,
+    "grade_label": "Industrial (-40°C to 85°C TA, TJ max 125°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.diodes.com/assets/Datasheets/AP63300-AP63301.pdf",
+    "product_page_url": "https://www.diodes.com/part/view/AP63300",
+    "source_domain": "www.diodes.com",
+    "revision": "DS42002 Rev. 3 - 2 (Aug 2019)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 22
+  },
+  "package": {
+    "code": "TSOT-23-6",
+    "mfg_package_code": "TSOT26",
+    "pin_count": 6,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "6-pin TSOT-23 (TSOT26 / ordering code WU) package without thermal exposed pad."
+    },
+    "theta_ja_c_per_w": {
+      "value": 89.0,
+      "page": 5,
+      "condition": "FR-4 substrate, single-layer PCB, 2 oz copper, minimum recommended pad layout, TSOT26",
+      "table_ref": "Thermal Resistance Table p.5 (Note 6)"
+    },
+    "theta_jc_c_per_w": {
+      "value": 39.0,
+      "page": 5,
+      "condition": "ThetaJC, TSOT26 package",
+      "table_ref": "Thermal Resistance Table p.5"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 5,
+      "condition": "Recommended operating junction temperature max 125°C (Abs Max 160°C p.5; TSD 160°C typ / 25°C hys p.6)",
+      "table_ref": "Recommended Operating Conditions p.5"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "FB",
+        "role": "FB",
+        "description": "Feedback sensing terminal connected to external output resistive divider (VFB = 0.800 V +/-1% typ)."
+      },
+      {
+        "pin": 2,
+        "name": "EN",
+        "role": "EN",
+        "description": "High-voltage rated (35 V abs max) active-high enable with 1.18 V UVLO threshold; tie to VIN or float to auto-enable."
+      },
+      {
+        "pin": 3,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Wide input supply pin (3.8 V to 32.0 V recommended; 35 V DC / 40 V 400 ms abs max)."
+      },
+      {
+        "pin": 4,
+        "name": "GND",
+        "role": "GND",
+        "description": "Power and analog ground reference."
+      },
+      {
+        "pin": 5,
+        "name": "SW",
+        "role": "SW",
+        "description": "Power switching output node between integrated 75 mOhm HS and 40 mOhm LS MOSFETs."
+      },
+      {
+        "pin": 6,
+        "name": "BST",
+        "role": "BOOT",
+        "description": "High-side gate drive boost input (connect 100 nF ceramic capacitor from BST to SW)."
+      }
+    ],
+    "pinout_source_page": 1,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "topology": "buck",
+    "vin_abs_max_v": {
+      "value": 35.0,
+      "page": 5,
+      "condition": "VIN DC abs max -0.3 V to +35.0 V (+40.0 V for 400 ms transient); VEN -0.3 V to +35.0 V",
+      "table_ref": "Absolute Maximum Ratings p.5"
+    },
+    "vin_min_v": {
+      "value": 3.8,
+      "page": 5,
+      "condition": "Minimum recommended operating supply voltage",
+      "table_ref": "Recommended Operating Conditions p.5"
+    },
+    "vin_max_v": {
+      "value": 32.0,
+      "page": 5,
+      "condition": "Maximum recommended operating supply voltage",
+      "table_ref": "Recommended Operating Conditions p.5"
+    },
+    "vout_min_v": {
+      "value": 0.8,
+      "page": 5,
+      "condition": "Minimum recommended adjustable output voltage (equals VFB = 0.800 V)",
+      "table_ref": "Recommended Operating Conditions p.5"
+    },
+    "vout_max_v": {
+      "value": 31.0,
+      "page": 5,
+      "condition": "Maximum recommended adjustable output voltage (supports ~100% duty LDO low-dropout mode p.18)",
+      "table_ref": "Recommended Operating Conditions p.5"
+    },
+    "vout_fixed": false,
+    "vout_nom_v": null,
+    "vref_v": {
+      "value": 0.8,
+      "page": 6,
+      "condition": "Feedback reference voltage typ 800 mV (792 mV min to 808 mV max, +/-1% in CCM)",
+      "table_ref": "Electrical Characteristics p.6"
+    },
+    "iout_or_isw_max_ma": {
+      "value": 3000,
+      "page": 1,
+      "condition": "3 A continuous output current (HS peak current limit 4.5 A typ / 4.1 A min; LS valley limit 4.0 A typ per p.6)",
+      "table_ref": "Features p.1 & Electrical Characteristics p.6"
+    },
+    "is_switch_limit": false,
+    "iq_typ_ua": {
+      "value": 22,
+      "page": 6,
+      "condition": "AP63300 PFM quiescent supply current 22 uA typ (VEN floating, VFB = 1.0 V; PWM-only AP63301 is 280 uA typ; shutdown 1 uA typ)",
+      "table_ref": "Electrical Characteristics p.6"
+    },
+    "fsw_typ_khz": {
+      "value": 500,
+      "page": 6,
+      "condition": "500 kHz typ oscillator frequency (450 kHz to 550 kHz) with +/-6% Frequency Spread Spectrum (FSS) on AP63300",
+      "table_ref": "Electrical Characteristics p.6 & Features p.1"
+    },
+    "efficiency_peak_pct": {
+      "value": 95,
+      "page": 2,
+      "condition": "AP63300 peak ~95% at VIN = 12 V, VOUT = 5 V, L = 6.8 uH, IOUT ~ 0.8-1 A (up to 88% at 5 mA light load per p.1)",
+      "table_ref": "Figure 2 Efficiency vs Output Current (300 DPI Vision verified)"
+    },
+    "inductor_typ_uh": {
+      "value": 6.8,
+      "page": 2,
+      "condition": "6.8 uH in Figure 1 (5 V / 3 A); Table 1 p.17 recommends 4.7 uH for 3.3 V, 6.8 uH for 5 V, 10 uH for 12 V (2.2-10 uH range)",
+      "table_ref": "Figure 1 p.2 & Table 1 p.17"
+    },
+    "synchronous": true,
+    "min_cout_uf": {
+      "value": 22.0,
+      "page": 18,
+      "condition": "Section 13 recommends 22 uF to 68 uF ceramic output capacitance (Table 1 p.17 uses 2 x 22 uF for 1.8-12 V and 3 x 22 uF for 1.2-1.5 V)",
+      "table_ref": "Section 13 Output Capacitor p.18"
+    },
+    "en_active_high": true
+  },
+  "design_gotchas": [
+    {
+      "title": "CRITICAL PINOUT TRAP: Completely Incompatible With TI TPS54302/TPS54202/TPS563201/TPS562201 & AP62200!",
+      "severity": "CRITICAL",
+      "detail": "Despite sharing the same 6-pin TSOT-23 / SOT-23-6 footprint, AP63300WU-7 uses 1=FB, 2=EN, 3=VIN, 4=GND, 5=SW, 6=BST — completely scrambled relative to TPS54302DDCR, TPS54202DDCR, TPS563201DDCR, TPS562201DDCR, and Diodes' own AP62200WU-7 (which all use 1=GND, 2=SW, 3=VIN, 4=FB, 5=EN, 6=BOOT/BST). Never cross-populate onto TI SOT-23-6 pads!",
+      "page": 1
+    },
+    {
+      "title": "Pin-Identical to AP63203WU-7 But Adjustable (0.8 V VFB), 500 kHz, and 3 A — Do NOT Tie FB to VOUT!",
+      "severity": "CRITICAL",
+      "detail": "AP63300WU-7 shares the exact TSOT26 pinout of fixed 3.3 V AP63203WU-7, but AP63300 is adjustable (VFB = 0.800 V +/-1%) and runs at 500 kHz (vs 1.1 MHz). Dropping AP63300WU-7 onto an AP63203 board where FB ties directly to VOUT forces VOUT to 0.8 V; an external R1/R2 divider, C4 feedforward cap, and 4.7-6.8 uH inductor are mandatory.",
+      "page": 2
+    },
+    {
+      "title": "3 A Thermal Density in Non-Exposed-Pad TSOT26 Requires 2 oz Copper and Dense Ground Vias",
+      "severity": "WARNING",
+      "detail": "With RthetaJA = 89°C/W and no exposed thermal pad, running 3 A continuous at 24 V input generates significant package heat. Diodes Section Layout (p.19) specifically recommends 2 oz top/bottom copper, internal GND planes on 4-layer boards, and thermal vias around GND/VIN; check Fig. 38 derating above 60-85°C TA.",
+      "page": 19
+    },
+    {
+      "title": "PFM Light-Load Ripple & FSS Differences vs Forced-PWM Sibling AP63301WU-7",
+      "severity": "INFO",
+      "detail": "AP63300WU-7 (marking T6) uses PFM (22 uA Iq, up to 88% efficiency at 5 mA) plus +/-6% FSS for low EMI, at the cost of variable frequency and higher ripple at light loads. Select pin-identical AP63301WU-7 (marking T7, 280 uA Iq, no FSS) when constant 500 kHz forced-PWM ripple is required.",
+      "page": 20
+    }
+  ],
+  "typical_use_cases": [
+    "Industrial 12 V and 24 V distributed power bus conversion to adjustable 1.2 V-12 V rails up to 3 A",
+    "Ultra-low-Iq (22 uA) always-on 24 V IoT controllers, appliances, power tools, and home audio supplies",
+    "EMI-sensitive compact 3 A TSOT-23-6 synchronous buck leveraging ringing-free gate drive and +/-6% FSS"
+  ],
+  "engineering_summary": "The AP63300WU-7 is a 3.8 V to 32 V input (35 V DC / 40 V 400 ms abs max), 3 A adjustable synchronous buck converter in TSOT-23-6 (TSOT26) with 75/40 mOhm FETs, 0.800 V +/-1% VFB, 22 uA PFM Iq, 500 kHz +/-6% FSS, and a 35 V-tolerant float-to-enable EN pin (~95% peak efficiency at 12 V to 5 V). CRITICAL LAYOUT WARNING: Its pinout (1=FB, 2=EN, 3=VIN, 4=GND, 5=SW, 6=BST) matches AP63203WU-7 (requiring an external FB divider and 4.7-6.8 uH inductor vs fixed 3.3 V / 1.1 MHz AP63203) and is completely incompatible with TI SOT-23-6 bucks and AP62200WU-7; verify against the official Diodes datasheet before production.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [1, 2, 3, 5, 6],
+    "audit_notes": [
+      "300 DPI PNG Vision inspection on p.1 and p.3 confirmed TSOT26 Top View pinout (1=FB, 2=EN, 3=VIN, 4=GND, 5=SW, 6=BST) with no exposed pad — matching AP63203WU-7 and incompatible with TI SOT-23-6 bucks and AP62200WU-7.",
+      "300 DPI PNG Vision inspection on p.2 verified Figure 1 Typical Application (5 V, L=6.8 uH, 2x22 uF Cout, R1=158k, R2=30.1k, C4=47 pF) and Figure 2 AP63300 efficiency peaking ~95% at 12 V -> 5 V.",
+      "300 DPI PNG Vision inspection on p.5 verified Abs Max VIN 35 V DC / 40 V 400 ms, VEN 35 V, TJ 160 C, ThetaJA 89 C/W, ThetaJC 39 C/W, Rec Op VIN 3.8-32 V, VOUT 0.8-31 V, TA -40 to 85 C, TJ -40 to 125 C.",
+      "300 DPI PNG Vision inspection on p.6 verified AP63300 IQ 22 uA typ (AP63301 280 uA), ISHDN 1 uA, RDS(on) 75/40 mOhm, IPEAK_LIMIT 4.5 A typ (4.1 A min), fSW 500 kHz (450-550 kHz), VFB 800 mV (792-808 mV), and tSS 4 ms."
+    ]
+  }
+}

@@ -1,0 +1,256 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TPS61200DRCR",
+  "slug": "tps61200drcr",
+  "family": "TPS61200",
+  "manufacturer": "Texas Instruments",
+  "category": "dcdc",
+  "sub_topology": "boost",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 85,
+    "grade_label": "Industrial (-40°C to 85°C TA, TJ max 125°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tps61200.pdf",
+    "product_page_url": "https://www.ti.com/product/TPS61200",
+    "source_domain": "www.ti.com",
+    "revision": "SLVS577E (Dec 2014)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 35
+  },
+  "package": {
+    "code": "VSON-10",
+    "mfg_package_code": "DRC",
+    "pin_count": 10,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": true,
+      "net": "GND",
+      "note": "Exposed thermal PowerPAD must be soldered to PCB power ground (PGND) for mechanical reliability and 41.2°C/W RthetaJA thermal dissipation (p.4, p.21)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 41.2,
+      "page": 5,
+      "condition": "JEDEC high-K board, DRC 10-pin VSON (3 mm x 3 mm) with exposed thermal pad soldered to PGND",
+      "table_ref": "Section 8.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 62.8,
+      "page": 5,
+      "condition": "RthetaJC(top) = 62.8°C/W (RthetaJC(bot) = 4.1°C/W via exposed PowerPAD)",
+      "table_ref": "Section 8.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 5,
+      "condition": "Recommended operating junction temperature max 125°C (Abs Max 150°C p.5; TSD 140°C typ / 20°C hys p.6)",
+      "table_ref": "Section 8.3 Recommended Operating Conditions"
+    },
+    "pd_max_mw": {
+      "value": 971,
+      "page": 21,
+      "condition": "Maximum package dissipation at TA = 85°C (TJ_max = 125°C, RthetaJA = 41.2°C/W)",
+      "table_ref": "Section 13.3 Thermal Considerations Eq. 6"
+    },
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "VAUX",
+        "role": "BYPASS",
+        "description": "Control-stage auxiliary supply pin; MUST decouple to GND with low-ESR ceramic cap (0.1 uF min, 1 uF for VOUT < 2.5 V)."
+      },
+      {
+        "pin": 2,
+        "name": "VOUT",
+        "role": "VOUT",
+        "description": "Adjustable synchronous boost output (1.8 V to 5.5 V; true load disconnect in shutdown)."
+      },
+      {
+        "pin": 3,
+        "name": "L",
+        "role": "SW",
+        "description": "Inductor switching node connected to integrated 150 mOhm main and 180 mOhm rectifying N-MOSFETs."
+      },
+      {
+        "pin": 4,
+        "name": "PGND",
+        "role": "GND",
+        "description": "Power ground for switching MOSFETs; connect to exposed PowerPAD and star-tie to GND at one point."
+      },
+      {
+        "pin": 5,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Ultra-low-voltage boost supply input (0.3 V to 5.5 V operating; 0.5 V min startup into full load)."
+      },
+      {
+        "pin": 6,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high enable input (High = enabled, Low = shutdown with true load disconnect; do NOT float)."
+      },
+      {
+        "pin": 7,
+        "name": "UVLO",
+        "role": "OTHER",
+        "description": "Programmable UVLO comparator input (250 mV falling / 350 mV rising); MUST connect to VAUX if unused."
+      },
+      {
+        "pin": 8,
+        "name": "PS",
+        "role": "PS",
+        "description": "Power Save mode input (High = disabled / forced PWM, Low = enabled / PFM; do NOT float)."
+      },
+      {
+        "pin": 9,
+        "name": "GND",
+        "role": "GND",
+        "description": "Quiet control/logic analog ground reference for FB divider and control stage."
+      },
+      {
+        "pin": 10,
+        "name": "FB",
+        "role": "FB",
+        "description": "Feedback input for adjustable TPS61200 external divider (VFB = 500 mV typ, 495-505 mV; fixed TPS61201/61202 tie to VOUT)."
+      }
+    ],
+    "pinout_source_page": 4,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "topology": "boost",
+    "vin_abs_max_v": {
+      "value": 7.0,
+      "page": 5,
+      "condition": "VIN, L, VAUX, VOUT, PS, EN, FB, UVLO abs max -0.3 V to 7 V",
+      "table_ref": "Section 8.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 0.3,
+      "page": 5,
+      "condition": "Ultra-low operating input voltage down to 0.3 V once started (minimum startup VIN = 0.5 V into full load per p.1 & p.6)",
+      "table_ref": "Section 8.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 5.5,
+      "page": 5,
+      "condition": "Maximum recommended input voltage (enters linear Down Conversion mode automatically when VIN >= VOUT)",
+      "table_ref": "Section 8.3 Recommended Operating Conditions"
+    },
+    "vout_min_v": {
+      "value": 1.8,
+      "page": 6,
+      "condition": "Minimum recommended adjustable output voltage for TPS61200",
+      "table_ref": "Section 8.5 Electrical Characteristics"
+    },
+    "vout_max_v": {
+      "value": 5.5,
+      "page": 6,
+      "condition": "Maximum recommended adjustable output voltage for TPS61200 (internal OVP 5.5 V min to 7 V max)",
+      "table_ref": "Section 8.5 Electrical Characteristics"
+    },
+    "vout_fixed": false,
+    "vout_nom_v": null,
+    "vref_v": {
+      "value": 0.5,
+      "page": 6,
+      "condition": "TPS61200 feedback reference voltage typ 500 mV (495 mV min to 505 mV max, +/-1%)",
+      "table_ref": "Section 8.5 Electrical Characteristics"
+    },
+    "iout_or_isw_max_ma": {
+      "value": 1350,
+      "page": 6,
+      "condition": "Average inductor/input switch current limit ILIM typ 1350 mA (min 1200 mA, max 1500 mA at VOUT = 3.3 V; 1.3-A switches; delivers up to 600 mA at 5 V from VIN >= 3 V or 300 mA at 3.3 V from VIN >= 2.4 V)",
+      "table_ref": "Section 8.5 Electrical Characteristics & Section 1"
+    },
+    "is_switch_limit": true,
+    "iq_typ_ua": {
+      "value": 55,
+      "page": 6,
+      "condition": "Total typical quiescent current 55 uA (1 uA VIN + 50 uA VOUT + 4 uA VAUX at IO = 0 mA, VIN = 1.2 V, VOUT = VAUX = 3.3 V, PS = Low; p.1 '< 55 uA')",
+      "table_ref": "Section 8.5 Electrical Characteristics & Section 1"
+    },
+    "fsw_typ_khz": {
+      "value": 1450,
+      "page": 6,
+      "condition": "Internal PWM oscillator specified 1250 kHz min to 1650 kHz max (midpoint 1450 kHz; no separate typ entry in Section 8.5)",
+      "table_ref": "Section 8.5 Electrical Characteristics"
+    },
+    "efficiency_peak_pct": {
+      "value": 93,
+      "page": 8,
+      "condition": "Peak ~93% in boost mode at VI = 3.6 V, VO = 5 V, Power Save Enabled (Fig. 6; >90% at 300 mA/3.3 V or 600 mA/5 V per p.1)",
+      "table_ref": "Figure 6 p.8 & Section 1 Features (300 DPI Vision verified)"
+    },
+    "inductor_typ_uh": {
+      "value": 2.2,
+      "page": 15,
+      "condition": "Recommended nominal inductor 2.2 uH for best overall performance (allowable range 1.5 uH to 4.7 uH; never below 1.5 uH)",
+      "table_ref": "Section 11.2.2.3 Inductor Selection & Page 1 Schematic"
+    },
+    "synchronous": true,
+    "min_cout_uf": {
+      "value": 10.0,
+      "page": 1,
+      "condition": "Page 1 Typical Application uses 10 uF ceramic; Eq. 5 (p.16) requires COUT(min) = 5 * L(uH) uF (11 uF for 2.2 uH, 7.5 uF for min 1.5 uH; Table 2 p.14 uses 2 x 10 uF)",
+      "table_ref": "Section 4 Typical Application p.1 & Section 11.2.2.4.2 Eq. 5 p.16"
+    },
+    "en_active_high": true
+  },
+  "design_gotchas": [
+    {
+      "title": "Inverted PS Polarity (Fixed in Rev D) & Mandatory UVLO-to-VAUX / VAUX-Snubber Connections",
+      "severity": "CRITICAL",
+      "detail": "Pin 8 (PS) is LOW = Power Save (PFM) Enabled and HIGH = Forced PWM (older datasheet revisions printed this backwards!), and neither PS nor EN may float. Pin 7 (UVLO) MUST tie to VAUX (Pin 1) when unused (otherwise VOUT stays disabled), and VAUX MUST have a low-ESR ceramic cap to GND (0.1 uF min; 1 uF if VOUT < 2.5 V) because it doubles as the main-switch snubber.",
+      "page": 4
+    },
+    {
+      "title": "Linear Down-Conversion Mode Dissipates Heavy Heat When VIN >= VOUT (Not a True Buck-Boost)",
+      "severity": "CRITICAL",
+      "detail": "When VIN reaches or exceeds VOUT, TPS61200 drops excess voltage across its rectifying MOSFETs like a linear regulator (efficiency falls toward ~60% in Figs. 8-9 p.8), rapidly consuming its 971 mW dissipation budget at 85°C TA. Additionally, Power Save mode cannot be disabled while in Down Conversion mode.",
+      "page": 12
+    },
+    {
+      "title": "Deceptively Similar 3x3 mm VSON-10 (DRC) Package Is NOT Pin-Compatible With TPS63001DRCR",
+      "severity": "CRITICAL",
+      "detail": "Although TPS61200DRCR and buck-boost TPS63001DRCR share the exact 3 mm x 3 mm VSON-10 (DRC) footprint, PGND PowerPAD, and Pins 5=VIN, 6=EN, 9=GND, 10=FB, Pins 1-4 and 7-8 are completely different (TPS61200: 1=VAUX, 2=VOUT, 3=L, 4=PGND, 7=UVLO, 8=PS vs TPS63001: 1=VOUT, 2=L2, 3=PGND, 4=L1, 7=PS/SYNC, 8=VINA).",
+      "page": 4
+    },
+    {
+      "title": "Average Input Current Limit (1350 mA Typ / 1200 mA Min) Restricts Ultra-Low-VIN Output Power",
+      "severity": "WARNING",
+      "detail": "ILIM regulates average inductor/input current (not output current). At 0.5-0.9 V solar or single-cell inputs, deliverable 3.3 V load current drops sharply (~100-250 mA per Fig. 1 p.7), and cold startup into full load requires VIN >= 0.5 V before operating down to 0.3 V.",
+      "page": 7
+    },
+    {
+      "title": "Loop Stability Requires COUT >= 5 * L (uF/uH) and Soldered PGND PowerPAD",
+      "severity": "WARNING",
+      "detail": "Section 11.2.2.4.2 Eq. 5 ties minimum ceramic output capacitance directly to inductance (COUT >= 5 * L(uH) uF, i.e., >= 11 uF for 2.2 uH; 2 x 10 uF recommended). Always solder the exposed thermal pad to PGND and Kelvin-route the 500 mV FB divider to quiet GND (Pin 9).",
+      "page": 16
+    }
+  ],
+  "typical_use_cases": [
+    "Single-cell solar, fuel-cell, or single/dual alkaline/NiMH battery boost (0.3-5.5 V) to adjustable 1.8-5.5 V",
+    "Single-cell Li-Ion boost/down-conversion to 3.3 V (300 mA+) or 5.0 V (up to 600 mA) with true load disconnect",
+    "Compact 3 mm x 3 mm VSON-10 energy-harvesting or portable medical supply with programmable UVLO"
+  ],
+  "engineering_summary": "The TPS61200DRCR is a 0.3 V to 5.5 V input (0.5 V full-load startup), adjustable 1.8 V to 5.5 V (VFB = 500 mV) synchronous boost converter in 3x3 mm VSON-10 (DRC) with a PGND PowerPAD (RthetaJA = 41.2°C/W, 971 mW max at 85°C TA). With a 1250-1650 kHz oscillator, 1350 mA typ (1200 mA min) average inductor current limit, 55 uA total Iq, true load disconnect, and ~93% peak boost efficiency, it adds linear Down Conversion when VIN >= VOUT. Decouple VAUX, tie unused UVLO to VAUX, verify PS polarity (Low=PFM, High=PWM), keep COUT >= 5*L uF/uH, and never confuse its DRC pinout with TPS63001DRCR; verify against the official TI datasheet before production.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [1, 4, 5, 6, 7, 8, 16],
+    "audit_notes": [
+      "300 DPI PNG Vision inspection on p.4 confirmed DRC 10-pin VSON Top View pinout (1=VAUX, 2=VOUT, 3=L, 4=PGND, 5=VIN, 6=EN, 7=UVLO, 8=PS, 9=GND, 10=FB) and Exposed Thermal Pad connected to PGND.",
+      "300 DPI PNG Vision inspection on p.5 verified Abs Max 7 V across all pins, Rec Op VIN 0.3-5.5 V, TA -40 to 85 C, TJ -40 to 125 C, RthetaJA 41.2 C/W, RthetaJC(top) 62.8 C/W, and RthetaJC(bot) 4.1 C/W.",
+      "300 DPI PNG Vision inspection on p.6 verified VOUT 1.8-5.5 V, VFB 500 mV (495-505 mV), oscillator 1250-1650 kHz, ILIM 1350 mA typ (1200-1500 mA), RDS(on) 150/180 mOhm, total IQ 55 uA (1+50+4 uA), and TSD 140 C.",
+      "300 DPI PNG Vision inspection on p.1, p.7, p.8, and p.16 verified SLVS577E (Dec 2014) revision, 2.2 uH / 10 uF schematic, Eq. 5 COUT = 5*L(uF/uH), ~93% boost peak efficiency (Fig. 6), and linear down-mode efficiency drop (Figs. 8-9)."
+    ]
+  }
+}
