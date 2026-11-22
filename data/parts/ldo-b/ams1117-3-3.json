@@ -1,0 +1,188 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "AMS1117-3.3",
+  "slug": "ams1117-3-3",
+  "family": "AMS1117",
+  "manufacturer": "Advanced Monolithic Systems",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Industrial (-40°C to +125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "http://www.advanced-monolithic.com/pdf/ds1117.pdf",
+    "product_page_url": "http://www.advanced-monolithic.com/products.html",
+    "source_domain": "www.advanced-monolithic.com",
+    "revision": "DS1117 (RoHS Compliant)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 8
+  },
+  "package": {
+    "code": "SOT-223-3",
+    "mfg_package_code": "SOT-223",
+    "pin_count": 3,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": true,
+      "net": "VOUT",
+      "note": "SOT-223 large thermal tab is internally connected to Pin 2 (VOUT); do NOT connect tab to GND."
+    },
+    "theta_ja_c_per_w": {
+      "value": 90,
+      "page": 2,
+      "condition": "SOT-223 junction-to-ambient thermal resistance (p.2; varies 46°C/W to >90°C/W with PCB copper area per Table 1, p.5)"
+    },
+    "theta_jc_c_per_w": {
+      "value": 15,
+      "page": 3,
+      "condition": "Thermal resistance junction-to-case maximum 15°C/W for SOT-223 (p.3 & p.5)"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 2,
+      "condition": "Operating junction temperature range -40°C to +125°C (Absolute Maximum Ratings, p.2)"
+    },
+    "pd_max_mw": {
+      "value": 1200,
+      "page": 3,
+      "condition": "Note 2: Line and load regulation guaranteed up to 1.2 W for SOT-223 (internal power dissipation thermally limited, p.2-3)"
+    },
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "GND",
+        "role": "GND",
+        "description": "Ground pin on fixed 3.3 V version (labeled Ground/Adjust on family pinout diagram, p.1)."
+      },
+      {
+        "pin": 2,
+        "name": "VOUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output; internally connected to the SOT-223 thermal tab."
+      },
+      {
+        "pin": 3,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Unregulated input voltage (4.8 V min recommended for 3.3 V regulation; 15 V absolute maximum)."
+      }
+    ],
+    "pinout_source_page": 1,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 15,
+      "page": 2,
+      "condition": "Absolute Maximum Ratings Input Voltage = 15 V (p.2)"
+    },
+    "vin_min_v": {
+      "value": 4.8,
+      "page": 2,
+      "condition": "Minimum VIN for AMS1117-3.3 regulation (1.5 V <= VIN - VOUT <= 12 V test condition, p.2; 4.75 V line reg test p.3)"
+    },
+    "vin_max_v": {
+      "value": 15,
+      "page": 2,
+      "condition": "Maximum input voltage 15 V (EC line regulation tested up to VIN - VOUT <= 12 V, capped by 15 V abs max, p.2)"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 2,
+      "condition": "Fixed 3.3 V output option (AMS1117-3.3, p.1-2)"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 1.5,
+      "page": 2,
+      "condition": "3.251 V to 3.349 V (±1.5%) at TJ = 25°C, IOUT = 10 mA, VIN = 5 V; widens to 3.201 V to 3.399 V (±3.0%) over -40°C to +125°C (p.2)"
+    },
+    "iout_max_ma": {
+      "value": 1000,
+      "page": 1,
+      "condition": "1 A output current rating (current limit 900 mA min / 1100 mA typ; dropout & load reg characterized at 0.8 A, p.1 & p.3)"
+    },
+    "iq_typ_ua": {
+      "value": 5000,
+      "page": 3,
+      "condition": "Quiescent current 5 mA typ (11 mA max) for fixed versions at VIN - VOUT = 1.5 V (p.3)"
+    },
+    "ishdn_typ_ua": null,
+    "dropout_typ_mv": {
+      "value": 1100,
+      "page": 3,
+      "condition": "1.1 V typ (1.3 V max) at IOUT = 0.8 A, ΔVOUT = 1% (p.3)"
+    },
+    "psrr_db": {
+      "value": 72,
+      "page": 3,
+      "condition": "AMS1117-3.3 ripple rejection 72 dB typ (60 dB min) at f = 120 Hz, COUT = 22 uF tantalum, IOUT = 1 A, VIN = 4.75 V (p.3)"
+    },
+    "output_noise_uvrms": {
+      "value": 99,
+      "page": 3,
+      "condition": "RMS output noise = 0.003% of VOUT = 99 uVRMS (10 Hz to 10 kHz, TA = 25°C, p.3)"
+    },
+    "ceramic_cap_stable": false,
+    "min_cout_uf": {
+      "value": 22,
+      "page": 4,
+      "condition": "Stability section (p.4) requires minimum 22 uF solid tantalum output capacitor for frequency compensation"
+    },
+    "esr_min_ohm": null,
+    "esr_max_ohm": null,
+    "en_active_high": null,
+    "reverse_current_protection": false
+  },
+  "design_gotchas": [
+    {
+      "title": "NOT Ceramic-Cap Stable — Requires 22 uF Solid Tantalum (No Numeric ESR Window Published)",
+      "severity": "CRITICAL",
+      "detail": "Page 4 Stability explicitly mandates a minimum 22 uF solid tantalum capacitor to place the ESR zero in the loop-stable region and omits numeric ESR bounds. Using low-ESR MLCC ceramic capacitors directly on VOUT frequently causes hundreds-of-kHz oscillation; use tantalum, electrolytic, or a ceramic-stable candidate alternative such as AZ1117CH-3.3TRG1.",
+      "page": 4
+    },
+    {
+      "title": "SOT-223 Thermal Tab is VOUT (Not GND) & High 1.1–1.3 V Dropout",
+      "severity": "CRITICAL",
+      "detail": "The SOT-223 mounting tab is internally tied to Pin 2 (VOUT), so pouring a GND heatsink under the tab creates a dead short (p.1, p.5). Its quasi-LDO NPN Darlington pass stage also drops 1.1 V typ / 1.3 V max at 0.8 A, demanding VIN >= 4.6 V (4.8 V test spec) and limiting usable VIN headroom to 15 V abs max.",
+      "page": 1
+    },
+    {
+      "title": "High 5 mA Quiescent Current & 1.2 W SOT-223 Thermal Ceiling",
+      "severity": "WARNING",
+      "detail": "AMS1117-3.3 draws 5 mA typ (11 mA max) quiescent current even at no load (p.3), making it unsuitable for battery-powered sleep rails. Regulation is guaranteed only up to 1.2 W in SOT-223 (Note 2, p.3), so 12 V-to-3.3 V operation limits continuous load current to under ~135 mA.",
+      "page": 3
+    },
+    {
+      "title": "Widespread Counterfeit / Clone Ecosystem & Strict 15 V Abs Max",
+      "severity": "WARNING",
+      "detail": "Because generic '1117' clones vary wildly in stability, dropout, and voltage rating, always verify authentic Advanced Monolithic Systems DS1117 specs—especially the lower 15 V absolute maximum VIN compared to LM1117/NCP1117 (20 V) and AZ1117C (18 V).",
+      "page": 2
+    }
+  ],
+  "typical_use_cases": [
+    "5 V USB or wall-adapter to 3.3 V power rails on development boards and consumer electronics",
+    "Cost-sensitive linear post-regulation where 5 mA IQ and 22 uF tantalum COUT are acceptable",
+    "Legacy 1117 SOT-223 footprint baseline for evaluating ceramic-stable or lower-IQ candidate drop-ins",
+    "High-efficiency moderate-current (<= 500 mA) 5 V-to-3.3 V rails with generous VOUT copper heatsinking"
+  ],
+  "engineering_summary": "The Advanced Monolithic Systems AMS1117-3.3 is the ubiquitous 1 A (0.8 A dropout-rated), 15 V max-VIN SOT-223-3 linear regulator with classic 1117 pinout (1=GND, 2/Tab=VOUT, 3=VIN). It requires a 22 uF solid tantalum output capacitor for stability (not MLCC-stable), exhibits 1.1 V typ / 1.3 V max dropout and 5 mA typ quiescent current, and has a 15 V abs-max input ceiling. Engineers evaluating LM1117, AZ1117C, NCP1117, or TLV1117 as candidate drop-ins must verify ESR stability, VIN rating, and thermal copper area before production.",
+  "audit": {
+    "confidence_score": 0.98,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [1, 2, 3],
+    "audit_notes": [
+      "300 DPI PNG Vision check on p.1 confirmed SOT-223 Top View pinout (1=Ground/Adjust, 2=VOUT, 3=VIN) and thermal tab tied to VOUT.",
+      "300 DPI PNG Vision check on p.2-3 confirmed VIN abs max=15 V, TJ=-40 to 125°C, θJA=90°C/W, θJC=15°C/W, PD=1.2 W (Note 2), VDROP=1.1 V typ / 1.3 V max @0.8 A, IQ=5 mA typ / 11 mA max, PSRR=72 dB typ.",
+      "Verified 22 uF solid tantalum stability requirement on p.4; esr_min_ohm and esr_max_ohm honestly left null because DS1117 publishes no numeric ESR limits."
+    ]
+  }
+}

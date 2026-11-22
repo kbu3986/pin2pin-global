@@ -1,0 +1,208 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "LP2985-33DBVR",
+  "slug": "lp2985-33dbvr",
+  "family": "LP2985",
+  "manufacturer": "Texas Instruments",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to +125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/lp2985.pdf",
+    "product_page_url": "https://www.ti.com/product/LP2985",
+    "source_domain": "www.ti.com",
+    "revision": "SLVS522S (May 2025)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 43
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "DBV",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "Standard 5-pin SOT-23 (DBV) package has no exposed thermal pad."
+    },
+    "theta_ja_c_per_w": {
+      "value": 178.6,
+      "page": 5,
+      "condition": "New chip DBV (SOT-23-5) JEDEC high-K PCB; legacy chip DBV is 205.4°C/W (p.5)"
+    },
+    "theta_jc_c_per_w": {
+      "value": 77.9,
+      "page": 5,
+      "condition": "RθJC(top) for new chip DBV (legacy chip RθJC(top) is 128.0°C/W, p.5)"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 4,
+      "condition": "Recommended operating junction temperature max (absolute maximum TJ = 150°C, p.4)"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Input supply voltage (2.5 V to 16 V recommended for new chip; 2.2 V to 16 V for legacy chip)."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Common ground reference pin."
+      },
+      {
+        "pin": 3,
+        "name": "ON/OFF",
+        "role": "EN",
+        "description": "Active-high enable pin (>= 1.6 V ON, <= 0.15 V OFF over temp); tie to VIN if unused."
+      },
+      {
+        "pin": 4,
+        "name": "BYPASS",
+        "role": "BYPASS",
+        "description": "External 10 nF low-leakage capacitor to GND reduces output noise to 30 uVRMS (optional; leave open if unused)."
+      },
+      {
+        "pin": 5,
+        "name": "VOUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output; requires >= 2.2 uF nominal ceramic capacitor (>= 1 uF effective)."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 16,
+      "page": 4,
+      "condition": "Conservative legacy-chip Absolute Maximum VIN = 16 V (new chip rated to 18 V abs max, p.4; non-M3 reels may ship either silicon)"
+    },
+    "vin_min_v": {
+      "value": 2.5,
+      "page": 4,
+      "condition": "New chip Recommended Operating minimum VIN (legacy chip 2.2 V; for 3.3 V VOUT, VIN >= 3.3 V + VDO)"
+    },
+    "vin_max_v": {
+      "value": 16,
+      "page": 4,
+      "condition": "Recommended Operating maximum VIN (both legacy and new chip)"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 33,
+      "condition": "Fixed 3.3 V output variant (LP2985-33DBVR Active in Package Option Addendum, p.33)"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 1.5,
+      "page": 5,
+      "condition": "Standard LP2985 legacy chip ±1.5% at TJ = 25°C, IOUT = 1 mA (±3.5% over temp); new chip is ±0.5% at 25°C / ±1.0% over temp (p.5)"
+    },
+    "iout_max_ma": {
+      "value": 150,
+      "page": 4,
+      "condition": "Recommended maximum continuous output current (300 mA min / 350 mA typ peak current, p.7)"
+    },
+    "iq_typ_ua": {
+      "value": 69,
+      "page": 6,
+      "condition": "New chip IGND at IOUT = 0 mA (legacy 65 uA); rises steeply to 765 uA typ (new) / 850 uA typ (legacy) at IOUT = 150 mA"
+    },
+    "ishdn_typ_ua": {
+      "value": 1.12,
+      "page": 7,
+      "condition": "New chip shutdown IGND at VON/OFF < 0.15 V, VIN = 16 V (max 2.75 uA over temp; legacy chip is 0.01 uA typ / 2 uA max, p.7)"
+    },
+    "dropout_typ_mv": {
+      "value": 180,
+      "page": 6,
+      "condition": "New chip at IOUT = 150 mA, TJ = 25°C (198 mV max at 25°C; legacy chip is 280 mV typ / 350 mV max at 25°C, p.6)"
+    },
+    "psrr_db": {
+      "value": 78,
+      "page": 7,
+      "condition": "New chip ripple rejection at f = 1 kHz, CBYPASS = 10 nF, COUT = 10 uF (legacy chip is 45 dB typ, p.7)"
+    },
+    "output_noise_uvrms": {
+      "value": 30,
+      "page": 7,
+      "condition": "BW = 300 Hz to 50 kHz, CBYPASS = 10 nF, COUT = 2.2 uF, VOUT = 3.3 V, ILOAD = 150 mA (both legacy and new chip)"
+    },
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 2.2,
+      "page": 4,
+      "condition": "Minimum 2.2 uF nominal ceramic capacitor recommended to guarantee >= 1.0 uF effective capacitance after DC bias/temp derating (p.4, p.20-21)"
+    },
+    "esr_min_ohm": {
+      "value": 0,
+      "page": 4,
+      "condition": "New chip stable down to 0 ohm ESR (p.4); CRITICAL: legacy chip requires ESR >= 0.005 ohm (5 mOhm) per Section 7.1.3 (p.21)"
+    },
+    "esr_max_ohm": {
+      "value": 1,
+      "page": 4,
+      "condition": "Maximum COUT ESR = 1 ohm for new chip (legacy chip allows up to 5 ohm, p.21)"
+    },
+    "en_active_high": true,
+    "reverse_current_protection": false
+  },
+  "design_gotchas": [
+    {
+      "title": "Non-M3 OPN Ships Either Legacy Bipolar or New CMOS Silicon",
+      "severity": "CRITICAL",
+      "detail": "Per Table 8-1 (p.30), ordering LP2985-33DBVR (without M3) can supply either legacy silicon or redesigned new silicon. Key specs diverge dramatically: legacy has 45 dB PSRR, 280 mV dropout, 5 mOhm minimum ESR floor, 16 V abs max, and 205.4°C/W RθJA, while new chip has 78 dB PSRR, 180 mV dropout, 0-1 ohm ESR, 18 V abs max, and 1.12 uA shutdown current (100x higher typ than legacy 0.01 uA).",
+      "page": 30
+    },
+    {
+      "title": "TI Native LP2985 (SLVS522S) vs. National LP2985-N (SNVS018AB) Datasheet Split",
+      "severity": "WARNING",
+      "detail": "The orderable OPN LP2985-33DBVR belongs exclusively to TI's SLVS522S datasheet (lp2985.pdf), not the legacy National Semiconductor LP2985-N datasheet (lp2985-n.pdf, which covers LP2985IM5-3.3/NOPB). Always verify parametric specs against SLVS522S.",
+      "page": 33
+    },
+    {
+      "title": "No Reverse-Current Protection — Body Diode Conducts When VOUT > VIN",
+      "severity": "WARNING",
+      "detail": "Section 7.1.4 (p.21) warns that an intrinsic body diode conducts reverse current from VOUT to VIN if the output is held higher than input (e.g., during VIN short or backup-rail presence). Add an external Schottky diode across OUT-to-IN if reverse bias can occur.",
+      "page": 21
+    },
+    {
+      "title": "Ground Current Rises >10x Under Full 150 mA Load & High-VIN Thermal Limits",
+      "severity": "WARNING",
+      "detail": "Although no-load IQ is ~69 uA, ground pin current climbs to 765-850 uA typ at 150 mA (p.6). Additionally, operating near 12 V-16 V VIN in SOT-23-5 (178.6-205.4°C/W) strictly limits continuous load current to ~35-50 mA at TA = 25°C before hitting TJ(max) = 125°C.",
+      "page": 6
+    }
+  ],
+  "typical_use_cases": [
+    "12 V industrial or 2-3S battery to 3.3 V low-noise rails up to 150 mA (subject to thermal derating)",
+    "Low-noise analog, ADC reference, and RF stages leveraging Pin 4 10 nF bypass capacitor (30 uVRMS)",
+    "Candidate drop-in second source for standard SOT-23-5 BYPASS-pin LDO footprints requiring > 6 V VIN",
+    "General-purpose microcontroller standby rails with active-high ON/OFF control"
+  ],
+  "engineering_summary": "The TI LP2985-33DBVR is a 150 mA, 16 V max-VIN SOT-23-5 (DBV) LDO with a Pin 4 noise-bypass capacitor delivering 30 uVRMS output noise. It bridges 5.5 V CMOS LDOs and 30 V HV LDOs, making it a strong candidate drop-in for SOT-23-5 BYPASS footprints needing 12 V rail headroom. Engineers must account for mixed legacy-vs-new silicon shipments (PSRR 45 vs 78 dB, shutdown current 0.01 vs 1.12 uA, legacy 5 mOhm ESR floor) and verify SLVS522S ratings before production.",
+  "audit": {
+    "confidence_score": 0.98,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 4],
+    "audit_notes": [
+      "Resolved datasheet mismatch: confirmed LP2985-33DBVR is orderable in TI native lp2985.pdf (SLVS522S, p.33), not lp2985-n.pdf.",
+      "300 DPI PNG Vision check on p.3 confirmed DBV SOT-23-5 Top View pinout (1=VIN, 2=GND, 3=ON/OFF, 4=BYPASS, 5=VOUT) and no exposed pad.",
+      "300 DPI PNG Vision check on p.4 confirmed legacy (16 V abs max) vs new chip (18 V abs max) ratings, COUT >= 2.2 uF nominal, and 0-1 ohm new-chip ESR window."
+    ]
+  }
+}

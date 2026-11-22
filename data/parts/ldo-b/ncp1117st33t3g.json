@@ -1,0 +1,192 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "NCP1117ST33T3G",
+  "slug": "ncp1117st33t3g",
+  "family": "NCP1117",
+  "manufacturer": "onsemi",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": 0,
+    "ta_max_c": 125,
+    "grade_label": "Commercial (0°C to +125°C TJ; use NCP1117IST33T3G for -40°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.onsemi.com/pdf/datasheet/ncp1117-d.pdf",
+    "product_page_url": "https://www.onsemi.com/products/power-management/linear-regulators-ldo/ncp1117",
+    "source_domain": "www.onsemi.com",
+    "revision": "Rev. 31 (August 2021)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 20
+  },
+  "package": {
+    "code": "SOT-223-3",
+    "mfg_package_code": "CASE 318H (ST)",
+    "pin_count": 3,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": true,
+      "net": "VOUT",
+      "note": "SOT-223 heatsink tab (Pin 4) is internally connected to Pin 2 (Output / VOUT); do NOT tie tab to GND (p.1)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 160,
+      "page": 2,
+      "condition": "CASE 318H (SOT-223) minimum-size pad (p.2); drops to ~65°C/W with 30 mm square 2 oz copper per Fig. 21 (p.8)"
+    },
+    "theta_jc_c_per_w": {
+      "value": 15,
+      "page": 2,
+      "condition": "CASE 318H (SOT-223) thermal resistance junction-to-case = 15°C/W (p.2)"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 2,
+      "condition": "Operating junction temperature max +125°C (absolute maximum die TJ = 150°C, thermal shutdown 175°C typ, p.2 & p.4)"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "Adjust/Ground",
+        "role": "GND",
+        "description": "Ground reference pin on fixed 3.3 V NCP1117ST33T3G (Adjust on variable version, p.1)."
+      },
+      {
+        "pin": 2,
+        "name": "Output",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output, internally connected to the SOT-223 thermal tab; requires >= 4.7 uF cap with 0.033–2.2 ohm ESR."
+      },
+      {
+        "pin": 3,
+        "name": "Input",
+        "role": "VIN",
+        "description": "Unregulated input supply (4.75 V to 15 V EC range for 3.3 V option; 20 V absolute maximum)."
+      }
+    ],
+    "pinout_source_page": 1,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 20,
+      "page": 2,
+      "condition": "Maximum Ratings Input Voltage = 20 V (Note 3: Iout must not exceed 1.0 A when Vin > 12 V, p.2)"
+    },
+    "vin_min_v": {
+      "value": 4.75,
+      "page": 3,
+      "condition": "NCP1117-3.3 minimum input voltage for output regulation tests (4.75 V <= Vin <= 15 V, p.3)"
+    },
+    "vin_max_v": {
+      "value": 15,
+      "page": 3,
+      "condition": "NCP1117-3.3 line regulation and quiescent current maximum specified input voltage (series operates up to 20 V with Iout <= 1.0 A above 12 V, p.1-4)"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 3,
+      "condition": "Fixed 3.3 V output option (NCP1117ST33T3G Active in Ordering Information, p.12)"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 1.0,
+      "page": 3,
+      "condition": "3.267 V to 3.333 V (±1.0%) at TA = 25°C, Vin = 5.3 V, Iout = 10 mA; widens to 3.235 V to 3.365 V (±2.0%) over 0°C to +125°C (p.3)"
+    },
+    "iout_max_ma": {
+      "value": 1000,
+      "page": 3,
+      "condition": "Output current in excess of 1.0 A (1.0 A min / 1.5 A typ / 2.2 A max current limit; dropout specified at 800 mA, p.1 & p.3)"
+    },
+    "iq_typ_ua": {
+      "value": 6000,
+      "page": 4,
+      "condition": "NCP1117-3.3 quiescent current 6.0 mA typ (10 mA max) at Vin = 15 V (p.4)"
+    },
+    "ishdn_typ_ua": null,
+    "dropout_typ_mv": {
+      "value": 1070,
+      "page": 3,
+      "condition": "1.07 V typ (1.20 V max) at Iout = 800 mA, ΔVout = 1% (0.95 V typ at 100 mA, 1.03 V typ at 500 mA, p.3)"
+    },
+    "psrr_db": {
+      "value": 64,
+      "page": 4,
+      "condition": "NCP1117-3.3 ripple rejection 64 dB typ (60 dB min) at f = 120 Hz, Vin - Vout = 6.4 V, Iout = 500 mA, Cout = 10 uF (p.4)"
+    },
+    "output_noise_uvrms": {
+      "value": 99,
+      "page": 4,
+      "condition": "0.003% of Vout = 99 uVRMS (10 Hz to 10 kHz, TA = 25°C, p.4)"
+    },
+    "ceramic_cap_stable": false,
+    "min_cout_uf": {
+      "value": 4.7,
+      "page": 9,
+      "condition": "Output Capacitor section (p.9): minimum 4.7 uF tantalum/electrolytic with ESR between 33 mOhm and 2.2 ohm"
+    },
+    "esr_min_ohm": {
+      "value": 0.033,
+      "page": 9,
+      "condition": "33 mOhm (0.033 ohm) typical minimum ESR floor at 4.7 uF (Fig. 12-13 p.6 & text p.9; drops to ~20 mOhm at 10 uF)"
+    },
+    "esr_max_ohm": {
+      "value": 2.2,
+      "page": 9,
+      "condition": "2.2 ohm maximum ESR ceiling across full load and temperature range (p.9)"
+    },
+    "en_active_high": null,
+    "reverse_current_protection": false
+  },
+  "design_gotchas": [
+    {
+      "title": "Commercial 0°C to +125°C Grade Only — Missing 'I' Prefix Excludes Sub-Zero Operation",
+      "severity": "CRITICAL",
+      "detail": "NCP1117ST33T3G (without 'I') is rated strictly 0°C to +125°C TJ (p.2, p.4 Note 4, p.12). For -40°C to +125°C industrial designs, order the industrial variant NCP1117IST33T3G or evaluate LM1117IMPX-3.3/NOPB.",
+      "page": 4
+    },
+    {
+      "title": "33 mOhm Minimum ESR Floor Places Standard 4.7–10 uF MLCCs in Unstable Region",
+      "severity": "CRITICAL",
+      "detail": "300 DPI Vision inspection of Figure 12–13 (p.6) and Applications text (p.9) confirms a 33 mOhm typical minimum ESR boundary (~20 mOhm at 10 uF) up to 2.2 ohm max. Standard 4.7–10 uF MLCCs (< 10 mOhm ESR) fall into the Region of Instability unless >= 47 uF ceramic or a small series resistor is added.",
+      "page": 6
+    },
+    {
+      "title": "High 160°C/W Minimum-Pad RθJA & 1.0 A Current Cap Above 12 V Input",
+      "severity": "WARNING",
+      "detail": "CASE 318H SOT-223 exhibits 160°C/W on a minimum pad (p.2), dropping to ~65°C/W only with a 30 mm square 2 oz copper heatsink connected to the VOUT tab (Fig. 21, p.8). Note 3 (p.2) also limits output current to <= 1.0 A whenever Vin > 12 V.",
+      "page": 2
+    },
+    {
+      "title": "External Protection Diode Required if Cout > 50 uF & Input Can Be Crowbarred",
+      "severity": "INFO",
+      "detail": "Page 10 warns that although the internal output-to-input path survives ~15 A for 100 us, designs using Cout > 50 uF where Vin can be abruptly shorted to ground should add an external protection diode across Vout-to-Vin.",
+      "page": 10
+    }
+  ],
+  "typical_use_cases": [
+    "Commercial (0°C–125°C) 5 V-to-3.3 V up-to-1 A linear rails with lower dropout (1.07 V typ) than LM1117",
+    "Consumer set-top boxes, networking gear, and active bus termination on standard 1117 SOT-223 footprints",
+    "Higher-current (1.0 A min limit) candidate drop-in for AMS1117-3.3 with 20 V max VIN margin",
+    "12 V-to-3.3 V moderate-current supplies utilizing tantalum or polymer-tantalum COUT (33 mOhm–2.2 ohm ESR)"
+  ],
+  "engineering_summary": "The onsemi NCP1117ST33T3G is a commercial-grade (0°C to +125°C) 1.0 A SOT-223-3 (CASE 318H) linear regulator with standard 1117 pinout (1=GND, 2/Tab=VOUT, 3=VIN), 20 V absolute maximum input rating, and slightly lower dropout (1.07 V typ / 1.20 V max at 800 mA) than LM1117. It is a strong candidate drop-in for 1117 SOT-223 footprints in indoor systems, but engineers must verify its 0°C minimum temperature limit (use NCP1117IST33T3G for -40°C), 33 mOhm–2.2 ohm ESR window (not direct 4.7–10 uF MLCC-stable), and 160°C/W minimum-pad thermal resistance before production.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [1, 2, 6],
+    "audit_notes": [
+      "300 DPI PNG Vision check on p.1 confirmed SOT-223 (CASE 318H) Top View pinout (1=Adjust/Ground, 2=Output, 3=Input) and heatsink tab connected to Pin 2 (VOUT).",
+      "300 DPI PNG Vision check on p.2 confirmed Vin max=20 V (Note 3: <=1 A above 12 V), commercial TJ=0 to 125°C, θJA=160°C/W min pad, θJC=15°C/W.",
+      "300 DPI PNG Vision check on p.6 (Fig. 12-13) confirmed Region of Instability below ~20-33 mOhm ESR, matching p.9 text (4.7 uF min, 0.033-2.2 ohm ESR)."
+    ]
+  }
+}

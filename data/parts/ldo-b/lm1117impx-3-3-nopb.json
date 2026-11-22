@@ -1,0 +1,192 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "LM1117IMPX-3.3/NOPB",
+  "slug": "lm1117impx-3-3-nopb",
+  "family": "LM1117",
+  "manufacturer": "Texas Instruments",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Industrial (-40°C to +125°C TJ, LM1117I grade)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/lm1117.pdf",
+    "product_page_url": "https://www.ti.com/product/LM1117",
+    "source_domain": "www.ti.com",
+    "revision": "SNOS412Q (January 2023)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 47
+  },
+  "package": {
+    "code": "SOT-223-3",
+    "mfg_package_code": "DCY",
+    "pin_count": 3,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": true,
+      "net": "VOUT",
+      "note": "SOT-223 thermal tab (Pin 4 in TI DCY notation) is internally connected to VOUT (Pin 2); do NOT connect tab to GND (p.3)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 61.6,
+      "page": 4,
+      "condition": "DCY (SOT-223) JEDEC high-K PCB (Sec 7.4, p.4); rises to 136°C/W on minimal 0.0123 in² pad per Table 9-2 (p.18)"
+    },
+    "theta_jc_c_per_w": {
+      "value": 42.5,
+      "page": 4,
+      "condition": "RθJC(top) for DCY SOT-223 package (Sec 7.4, p.4)"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 4,
+      "condition": "Recommended operating junction temperature max -40°C to +125°C for LM1117I (abs max TJ = 150°C, Sec 7.1 & 7.3, p.4)"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "ADJ/GND",
+        "role": "GND",
+        "description": "Ground reference pin on fixed 3.3 V option (ADJ on adjustable version, p.3)."
+      },
+      {
+        "pin": 2,
+        "name": "VOUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output, internally connected to the SOT-223 thermal tab (Pin 4); requires >= 10 uF tantalum COUT (0.3-22 ohm ESR)."
+      },
+      {
+        "pin": 3,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Unregulated power supply input (4.75 V to 15 V operating for 3.3 V option; 20 V absolute maximum)."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 20,
+      "page": 4,
+      "condition": "Absolute Maximum Ratings VIN = 20 V (Sec 7.1, p.4)"
+    },
+    "vin_min_v": {
+      "value": 4.75,
+      "page": 7,
+      "condition": "LM1117I-3.3 minimum input voltage for guaranteed output regulation (4.75 V <= VIN <= 10 V/15 V, Sec 7.6, p.7)"
+    },
+    "vin_max_v": {
+      "value": 15,
+      "page": 4,
+      "condition": "Recommended Operating Conditions maximum input voltage = 15 V (Sec 7.3, p.4)"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 7,
+      "condition": "Fixed 3.3 V industrial grade LM1117I-3.3 (LM1117IMPX-3.3/NOPB Active on p.25)"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 1,
+      "page": 7,
+      "condition": "LM1117I-3.3: 3.267 V to 3.333 V (±1%) at TJ = 25°C, IOUT = 10 mA, VIN = 5 V; widens to 3.168 V to 3.432 V (±4%) over -40°C to +125°C (Sec 7.6, p.7)"
+    },
+    "iout_max_ma": {
+      "value": 800,
+      "page": 7,
+      "condition": "Rated continuous output current 800 mA (current limit 800 mA min / 1200 mA typ / 1500 mA max, Sec 7.6, p.7-8)"
+    },
+    "iq_typ_ua": {
+      "value": 5000,
+      "page": 8,
+      "condition": "LM1117I-3.3 quiescent current 5 mA typ at 25°C (15 mA max over -40°C to +125°C, VIN <= 15 V, Sec 7.6, p.8)"
+    },
+    "ishdn_typ_ua": null,
+    "dropout_typ_mv": {
+      "value": 1200,
+      "page": 8,
+      "condition": "LM1117I at IOUT = 800 mA, ΔVOUT = 1%, TJ = 25°C (1400 mV max over -40°C to +125°C; 1.1 V typ at 100 mA, Sec 7.6, p.8)"
+    },
+    "psrr_db": {
+      "value": 75,
+      "page": 8,
+      "condition": "f = 120 Hz, VIN - VOUT = 3 V, VRIPPLE = 1 Vpp, TJ = 25°C (60 dB min over -40°C to +125°C, Sec 7.6, p.8)"
+    },
+    "output_noise_uvrms": {
+      "value": 99,
+      "page": 8,
+      "condition": "0.003% of VOUT = 99 uVRMS (10 Hz to 10 kHz, TJ = 25°C, Sec 7.6, p.8)"
+    },
+    "ceramic_cap_stable": false,
+    "min_cout_uf": {
+      "value": 10,
+      "page": 15,
+      "condition": "Minimum 10 uF solid tantalum output capacitor required for stability (Sec 9.2.2.1.1, p.15)"
+    },
+    "esr_min_ohm": {
+      "value": 0.3,
+      "page": 15,
+      "condition": "Strict lower ESR floor of 0.3 ohm (300 mOhm) — standard low-ESR MLCCs (< 10 mOhm) violate stability window (p.15)"
+    },
+    "esr_max_ohm": {
+      "value": 22,
+      "page": 15,
+      "condition": "Upper ESR ceiling of 22 ohm for loop stability across operating range (Sec 9.2.2.1.1, p.15)"
+    },
+    "en_active_high": null,
+    "reverse_current_protection": false
+  },
+  "design_gotchas": [
+    {
+      "title": "Strict 0.3–22 Ohm ESR Window — Unstable With Direct MLCC Ceramic Output Capacitors",
+      "severity": "CRITICAL",
+      "detail": "Section 9.2.2.1.1 (p.15) mandates at least 10 uF tantalum with ESR strictly between 0.3 ohm and 22 ohm. Placing an MLCC directly on VOUT without a ~0.5–1 ohm series resistor causes oscillation. If your BOM requires MLCC-only stability on the same SOT-223 1117 footprint, evaluate ceramic-stable candidates like AZ1117CH-3.3TRG1 or new-chip TLV1117.",
+      "page": 15
+    },
+    {
+      "title": "Industrial LM1117I Grade Widens Over-Temperature Accuracy to ±4% & IQ Max to 15 mA",
+      "severity": "WARNING",
+      "detail": "Whereas commercial LM1117 (0–125°C, Sec 7.5) holds ±2% over temperature and 10 mA max IQ, the industrial LM1117I-3.3 (-40 to +125°C, Sec 7.6, p.7-8) allows ±4% VOUT tolerance (3.168–3.432 V), 15 mA max IQ, and 1.4 V max dropout at 800 mA. Always read Section 7.6 for IMP/IMPX OPNs.",
+      "page": 7
+    },
+    {
+      "title": "SOT-223 Tab is VOUT (Not GND) & Real-World RθJA Reaches 136°C/W on Minimal Pad",
+      "severity": "CRITICAL",
+      "detail": "Pin 4 (tab) is internally connected to VOUT (Pin 2, p.3), making it incompatible with GND-tab SOT-223 regulators like LM2937 or AP7361C-33E-13. While JEDEC high-K RθJA is 61.6°C/W (p.4), Table 9-2 (p.18) demonstrates 136°C/W on a minimal 0.0123 in² pad—provide >= 0.4 in² copper on VOUT for sustained 5 V->3.3 V @ 800 mA.",
+      "page": 18
+    },
+    {
+      "title": "High Output Capacitance (>= 1000 uF) Needs External Reverse-Discharge Protection Diode",
+      "severity": "INFO",
+      "detail": "Section 8.4.1 (p.13) notes the internal output-to-input diode handles 10–20 A microsecond surges, but when COUT >= 1000 uF and VIN is abruptly shorted to ground, an external Schottky diode from VOUT to VIN is recommended to prevent silicon damage.",
+      "page": 13
+    }
+  ],
+  "typical_use_cases": [
+    "Industrial -40°C to +125°C 5 V or 12 V bus post-regulation to 3.3 V up to 800 mA",
+    "Higher-VIN-margin (20 V abs max) candidate drop-in replacement for AMS1117-3.3 footprints using tantalum COUT",
+    "Active SCSI/fieldbus termination and robust legacy 3.3 V linear supplies",
+    "High-PSRR (75 dB at 120 Hz) linear post-regulator downstream of a 5 V switching buck converter"
+  ],
+  "engineering_summary": "The TI LM1117IMPX-3.3/NOPB is an industrial-grade (-40°C to +125°C) 800 mA SOT-223-3 (DCY) LDO with standard 1117 pinout (1=GND, 2/Tab=VOUT, 3=VIN) and 20 V absolute maximum input voltage. It is a widely used candidate drop-in for AMS1117-3.3 and NCP1117ST33T3G footprints, offering wider -40°C rating and higher VIN margin than AMS1117, but engineers must verify its strict 0.3–22 ohm ESR window (not ceramic-stable), ±4% over-temp tolerance, 1.4 V max dropout, and VOUT tab copper heatsinking before production.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 4],
+    "audit_notes": [
+      "300 DPI PNG Vision check on p.3 confirmed DCY SOT-223 Top View pinout (1=ADJ/GND, 2=VOUT, 3=VIN) and Tab (Pin 4) tied to VOUT.",
+      "300 DPI PNG Vision check on p.4 confirmed VIN abs max=20 V, Rec Op VIN max=15 V, TJ=-40 to 125°C (LM1117I), and DCY RθJA=61.6°C/W / RθJC(top)=42.5°C/W.",
+      "Extracted industrial-grade specs specifically from Section 7.6 (LM1117I, p.7-8) rather than commercial Section 7.5, and confirmed 10 uF / 0.3-22 ohm ESR requirement on p.15."
+    ]
+  }
+}

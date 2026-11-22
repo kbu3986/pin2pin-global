@@ -1,0 +1,188 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "LM2937IMP-3.3/NOPB",
+  "slug": "lm2937imp-3-3-nopb",
+  "family": "LM2937",
+  "manufacturer": "Texas Instruments",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 85,
+    "grade_label": "Industrial SOT-223 (-40°C to +85°C TJ for LM2937IMP DCY)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/lm2937.pdf",
+    "product_page_url": "https://www.ti.com/product/LM2937",
+    "source_domain": "www.ti.com",
+    "revision": "SNVS100F (July 2014; Addendum Nov 2025)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 35
+  },
+  "package": {
+    "code": "SOT-223-3",
+    "mfg_package_code": "DCY (IMP)",
+    "pin_count": 3,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": true,
+      "net": "GND",
+      "note": "SOT-223 tab (Pin 4 in TI DCY notation) is internally connected to Pin 2 (GND) — INCOMPATIBLE with standard 1117 SOT-223 pinout (1=GND, 2/Tab=VOUT, 3=VIN) (p.3)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 58.3,
+      "page": 4,
+      "condition": "DCY (SOT-223 4-pin) JEDEC High-K 2s2p (Sec 6.4, p.4); rises to 174°C/W with no heatsink pad (p.15), or 74°C/W (1 oz) / 51°C/W (2 oz) on PCB plane (p.16)"
+    },
+    "theta_jc_c_per_w": {
+      "value": 39.2,
+      "page": 4,
+      "condition": "RθJC(top) for DCY SOT-223 package (RθJC(bot) = 22.5°C/W, Sec 6.4, p.4)"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 4,
+      "condition": "Absolute maximum junction temperature 150°C (thermal shutdown > 150°C, Sec 6.1); CRITICAL: recommended operating TJ for SOT-223 (LM2937IMP DCY) is capped at +85°C (Sec 6.3 p.4 & p.15)"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "INPUT",
+        "role": "VIN",
+        "description": "Unregulated input voltage (4.3 V to 26 V continuous; +60 V / -50 V automotive load-dump & reverse-battery protected, p.3-5)."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Ground reference pin, internally connected to the SOT-223 thermal tab (Pin 4, p.3)."
+      },
+      {
+        "pin": 3,
+        "name": "OUTPUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output; requires >= 10 uF output capacitor with 0.01 to 3.0 ohm ESR for loop stability (p.3, p.13)."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 26,
+      "page": 4,
+      "condition": "Continuous Absolute Maximum VIN = 26 V (+60 V transient for t <= 100 ms; -15 V reverse DC / -50 V reverse transient < 1 ms, Sec 6.1 & p.5)"
+    },
+    "vin_min_v": {
+      "value": 4.3,
+      "page": 4,
+      "condition": "Recommended Operating minimum VIN = VOUT + 1 V = 4.3 V for 3.3 V option (Sec 6.3 p.4 & Sec 9 p.17; VOUT + 2 V = 5.3 V recommended for best dynamic performance)"
+    },
+    "vin_max_v": {
+      "value": 26,
+      "page": 4,
+      "condition": "Maximum recommended continuous operational input voltage = 26 V (OVSD disables output above ~32 V typ, Sec 6.3 p.4 & Sec 7.3.3 p.11)"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 22,
+      "condition": "Fixed 3.3 V variant (LM2937IMP-3.3/NOPB Active Production in Package Option Addendum, marking L69B, p.22)"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 3,
+      "page": 5,
+      "condition": "±3% at TA = TJ = 25°C across 5 mA <= IOUT <= IOUT(MAX); widens to ±5% over full operating temperature range (p.1 Features & Sec 6.5-6.9)"
+    },
+    "iout_max_ma": {
+      "value": 400,
+      "page": 5,
+      "condition": "Package-specific IOUT(MAX) = 400 mA for SOT-223 (DCY/IMP) package vs. 500 mA for TO-220 and DDPAK/TO-263 (Sec 6.5-6.9, p.5-7)"
+    },
+    "iq_typ_ua": {
+      "value": 2000,
+      "page": 5,
+      "condition": "2 mA typ (10 mA max) at (VOUT + 2 V) <= VIN <= 26 V, IOUT = 5 mA; rises to 10 mA typ (20 mA max) at full rated load IOUT(MAX) (Sec 6.5-6.9, p.5)"
+    },
+    "ishdn_typ_ua": null,
+    "dropout_typ_mv": {
+      "value": 500,
+      "page": 5,
+      "condition": "0.5 V typ (1.0 V max over temp) at IOUT = IOUT(MAX) (400 mA in SOT-223); 110 mV typ (250 mV max) at 50 mA (Sec 6.5-6.9, p.5)"
+    },
+    "psrr_db": {
+      "value": 58,
+      "page": 9,
+      "condition": "Figure 9 Ripple Rejection curve (~58 dB from 10 Hz to 10 kHz at VIN = 10 V, VOUT = 5 V, COUT = 10 uF, IOUT = 50 mA, p.9)"
+    },
+    "output_noise_uvrms": null,
+    "ceramic_cap_stable": false,
+    "min_cout_uf": {
+      "value": 10,
+      "page": 13,
+      "condition": "Minimum 10 uF output capacitor across full operating temperature range (Sec 8.1 & Table 1, p.13)"
+    },
+    "esr_min_ohm": {
+      "value": 0.01,
+      "page": 13,
+      "condition": "Strict lower ESR limit of 10 mOhm (0.01 ohm) per Sec 8.1, Table 1 (p.13), and Figure 19 ESR Limits (p.14) — ultra-low-ESR MLCCs (< 10 mOhm) risk oscillation"
+    },
+    "esr_max_ohm": {
+      "value": 3.0,
+      "page": 13,
+      "condition": "Upper ESR stability ceiling of 3.0 ohm across full load and temperature range (Sec 8.1 p.13 & Fig. 19 p.14)"
+    },
+    "en_active_high": null,
+    "reverse_current_protection": true
+  },
+  "design_gotchas": [
+    {
+      "title": "CRITICAL Pinout & Tab Reversal vs. 1117 Family — Installing on 1117 Pads Shorts VOUT to GND",
+      "severity": "CRITICAL",
+      "detail": "LM2937IMP-3.3/NOPB uses classic 78xx/2937 SOT-223 pinout (1=INPUT, 2/Tab=GND, 3=OUTPUT, p.3), which is completely incompatible with the 1117 family (1=GND, 2/Tab=VOUT, 3=VIN). Dropping an LM2937 onto an AMS1117/LM1117 PCB shorts VOUT to GND through the tab and applies VIN to the GND pin—mandatory PCB layout change required.",
+      "page": 3
+    },
+    {
+      "title": "SOT-223 Package Derated to 400 mA Max & +85°C Recommended TJ (Not 500 mA / 125°C)",
+      "severity": "CRITICAL",
+      "detail": "Despite the '500-mA' datasheet title, Sections 6.3, 6.5–6.9, and 8.2.2.3 (p.4–5, p.15) specifically cap the SOT-223 (DCY/IMP) package at IOUT(MAX) = 400 mA and TJ(max) = +85°C (vs. 500 mA and +125°C for TO-220/TO-263). On high-VIN 12–24 V buses, thermal dissipation severely restricts usable SOT-223 current.",
+      "page": 4
+    },
+    {
+      "title": "10 mOhm Minimum ESR Floor Contradicts Page 1 Blurb — Beware Ultra-Low-ESR MLCCs",
+      "severity": "WARNING",
+      "detail": "Although Page 1 mentions 'stable for all ESR below 3 ohm', Section 8.1, Table 1 (p.13), and Figure 19 (p.14) mandate COUT >= 10 uF with ESR strictly between 10 mOhm and 3.0 ohm, warning that too-low ESR causes loop oscillation. Use solid tantalum or pair MLCCs with a small series damping resistor; avoid aluminum electrolytics at -40°C (30x ESR rise, p.14).",
+      "page": 13
+    },
+    {
+      "title": "Minimum 5 mA Load Specification & Consolidated SNVS100F Datasheet Scope",
+      "severity": "INFO",
+      "detail": "Electrical specs require >= 5 mA minimum load for guaranteed ±3%/±5% regulation, and ground current climbs to 10 mA typ (20 mA max) at full load (p.5). Note that TI consolidated active LM2937IMP-3.3/NOPB ordering into SNVS100F (p.22), whose EC tables explicitly print 5 V–15 V options (output noise scales at 30 uVrms/V across printed options).",
+      "page": 22
+    }
+  ],
+  "typical_use_cases": [
+    "Automotive 12 V / 24 V battery-connected 3.3 V rails needing +60 V / -50 V load-dump and reverse-battery protection",
+    "Rugged industrial control and fieldbus supplies with wide 4.3–26 V input and GND-referenced SOT-223 heatsink plane",
+    "Pin-compatible HV rugged upgrade on 78xx / AP7361C-E (1=IN, 2/Tab=GND, 3=OUT) SOT-223 footprints after checking 400 mA & ESR limits",
+    "Point-of-load 5 V-to-3.3 V regulation benefiting from 0.5 V typ PNP dropout (much lower than 1.2 V NPN 1117s)"
+  ],
+  "engineering_summary": "The TI LM2937IMP-3.3/NOPB is an automotive-rugged PNP LDO in SOT-223-3 (DCY) supporting 26 V continuous VIN (+60 V / -50 V transients, reverse-battery protection, 0.5 V typ dropout) with Pin 1=INPUT, Pin 2/Tab=GND, Pin 3=OUTPUT. It is strictly pin-incompatible with the 1117 family (requiring PCB layout redesign), while sharing pinout order with AP7361C-33E-13. Engineers must respect SOT-223-specific caps (400 mA max, +85°C recommended TJ), 10 mOhm–3 ohm COUT ESR window, and 2–10 mA quiescent current before production.",
+  "audit": {
+    "confidence_score": 0.97,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 4, 9, 10, 14],
+    "audit_notes": [
+      "300 DPI PNG Vision check on p.3 confirmed DCY SOT-223 Top View pinout (1=INPUT, 2=GND, 3=OUTPUT, Tab/Pin 4=GND) — exact reversal vs 1117 family.",
+      "300 DPI PNG Vision check on p.4 confirmed continuous VIN=26 V / transient 60 V, abs max TJ=150°C, SOT-223 DCY recommended TJ cap=+85°C, RθJA=58.3°C/W, RθJC(top)=39.2°C/W.",
+      "300 DPI PNG Vision check on p.9 (Fig. 9) verified ~58 dB PSRR (10 Hz–10 kHz), and p.10/14 (Fig. 16 & 19) verified 0.01–3.0 ohm COUT ESR stability window; output_noise_uvrms left null because SNVS100F prints EC tables for 5–15 V options only."
+    ]
+  }
+}

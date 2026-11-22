@@ -1,0 +1,208 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TPS70933DBVR",
+  "slug": "tps70933dbvr",
+  "family": "TPS709",
+  "manufacturer": "Texas Instruments",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to +125°C TJ; EC tested -40°C to +85°C TA)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tps709.pdf",
+    "product_page_url": "https://www.ti.com/product/TPS709",
+    "source_domain": "www.ti.com",
+    "revision": "SBVS186H (July 2021)",
+    "verified_at": "2026-11-22",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 43
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "DBV",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "Standard 5-pin SOT-23 (DBV) package has no exposed thermal pad (RθJC(bot) N/A, p.4)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 212.1,
+      "page": 4,
+      "condition": "DBV (SOT-23-5) JEDEC high-K junction-to-ambient thermal resistance (Sec 6.4, p.4)"
+    },
+    "theta_jc_c_per_w": {
+      "value": 78.5,
+      "page": 4,
+      "condition": "RθJC(top) for DBV 5-pin package (Sec 6.4, p.4)"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 4,
+      "condition": "Recommended operating junction temperature max (absolute maximum TJ = 150°C, p.4)"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "IN",
+        "role": "VIN",
+        "description": "High-voltage unregulated input supply (2.7 V to 30 V operating, 32 V abs max)."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Ground reference pin."
+      },
+      {
+        "pin": 3,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high enable with internal 300 nA pull-up and 6.5 V Zener clamp (7 V abs max — NEVER tie directly to VIN > 6.5 V; leave floating to enable)."
+      },
+      {
+        "pin": 4,
+        "name": "NC",
+        "role": "NC",
+        "description": "No internal connection (standard TPS709 DBV pinout; differs from TPS709A/TPS709B variants)."
+      },
+      {
+        "pin": 5,
+        "name": "OUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output; requires 2.2 uF nominal ceramic capacitor (>= 1.5 uF effective, max 47 uF, ESR <= 0.2 ohm)."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 32,
+      "page": 4,
+      "condition": "Absolute Maximum Ratings IN pin voltage (-0.3 V to +32 V; EN pin is strictly limited to +7.0 V abs max, p.4)"
+    },
+    "vin_min_v": {
+      "value": 2.7,
+      "page": 4,
+      "condition": "Recommended Operating Conditions minimum VIN (for 3.3 V regulation, VIN >= 3.3 V + VDO)"
+    },
+    "vin_max_v": {
+      "value": 30,
+      "page": 4,
+      "condition": "Recommended Operating Conditions maximum VIN = 30 V (Sec 6.3, p.4)"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 22,
+      "condition": "Fixed 3.3 V output version (TPS70933DBVR Active in Package Option Addendum, p.22)"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 1,
+      "page": 5,
+      "condition": "±1% for VOUT >= 3.3 V across -40°C <= TA <= 85°C, VIN = VOUT + 1 V, IOUT = 1 mA (±2% for VOUT < 3.3 V, p.5)"
+    },
+    "iout_max_ma": {
+      "value": 150,
+      "page": 5,
+      "condition": "Rated continuous output current 150 mA (supports up to 200 mA peak; thermally limited at high VIN, p.1 & p.5)"
+    },
+    "iq_typ_ua": {
+      "value": 1.3,
+      "page": 5,
+      "condition": "Ground pin current IGND at IOUT = 0 mA, VOUT <= 3.3 V (2.05 uA max over -40°C to +85°C; 1 uA headline p.1)"
+    },
+    "ishdn_typ_ua": {
+      "value": 0.15,
+      "page": 5,
+      "condition": "Shutdown current (150 nA typ) at VEN <= 0.4 V, VIN = 2.7 V, TA = 25°C (1.2 uA max at VIN = 30 V over temp, p.5)"
+    },
+    "dropout_typ_mv": {
+      "value": 960,
+      "page": 5,
+      "condition": "TPS70933 (3.3 V) at IOUT = 150 mA (1400 mV max over -40°C to +85°C; 295 mV typ / 400 mV max at IOUT = 50 mA, p.5)"
+    },
+    "psrr_db": {
+      "value": 52,
+      "page": 5,
+      "condition": "f = 1 kHz, IOUT = 10 mA, COUT = 2.2 uF (62 dB at 100 Hz, 80 dB at 10 Hz, p.5)"
+    },
+    "output_noise_uvrms": {
+      "value": 190,
+      "page": 5,
+      "condition": "BW = 10 Hz to 100 kHz, IOUT = 10 mA, VIN = 2.7 V, VOUT = 1.2 V, COUT = 2.2 uF (p.5)"
+    },
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 2.2,
+      "page": 3,
+      "condition": "2.2 uF nominal ceramic capacitor recommended to ensure >= 1.5 uF effective capacitance for VOUT >= 1.5 V (max 47 uF, p.3 & p.14)"
+    },
+    "esr_min_ohm": {
+      "value": 0,
+      "page": 14,
+      "condition": "Stable with low-ESR ceramic capacitors from 0 ohm up to 0.2 ohm (Sec 8.1.1, p.14)"
+    },
+    "esr_max_ohm": {
+      "value": 0.2,
+      "page": 14,
+      "condition": "Strict upper ESR stability ceiling of 0.2 ohm (200 mOhm) — tantalum/electrolytic caps > 0.2 ohm can oscillate (p.14)"
+    },
+    "en_active_high": true,
+    "reverse_current_protection": true
+  },
+  "design_gotchas": [
+    {
+      "title": "CRITICAL EN Pin Destruction Trap — 6.5 V Zener Clamp & 7 V Abs Max",
+      "severity": "CRITICAL",
+      "detail": "Unlike low-voltage SOT-23-5 LDOs where tying EN directly to VIN is standard practice, the TPS709 EN pin has an internal 6.5 V Zener clamp and 7.0 V Absolute Maximum rating (p.4, p.13). Tying EN directly to a 12 V or 24 V VIN rail destroys the IC! Leave EN floating to auto-enable via its internal 300 nA pull-up, or add a current-limiting resistor.",
+      "page": 4
+    },
+    {
+      "title": "High 960 mV–1.4 V Dropout at 150 mA Limits 5 V-to-3.3 V Margin",
+      "severity": "WARNING",
+      "detail": "The 3.3 V TPS70933 exhibits 960 mV typical / 1400 mV maximum dropout at 150 mA (p.5), requiring VIN >= 4.7 V worst-case at full load. It is poorly suited as a low-headroom 3.7 V Li-ion LDO; use it for >= 5 V–30 V keep-alive and industrial rails.",
+      "page": 5
+    },
+    {
+      "title": "Severe SOT-23-5 Thermal Derating at 24 V–30 V Input & Strict COUT <= 47 uF / ESR <= 0.2 Ohm",
+      "severity": "WARNING",
+      "detail": "At RθJA = 212.1°C/W (p.4), dropping 24 V to 3.3 V allows only ~22 mA continuous load at TA = 25°C before reaching TJ = 125°C. Also keep COUT strictly between 1.5 uF effective and 47 uF max with ESR <= 0.2 ohm (p.14); high-ESR tantalum or bulk caps destabilize the loop.",
+      "page": 14
+    },
+    {
+      "title": "TPS709 vs. TPS709A / TPS709B Have Completely Different SOT-23-5 Pinouts",
+      "severity": "CRITICAL",
+      "detail": "Page 3 shows that standard TPS709 uses 1=IN, 2=GND, 3=EN, 4=NC, 5=OUT, whereas TPS709A and TPS709B rearrange IN, GND, EN, and OUT pins on the exact same DBV package. Verify the exact OPN prefix before sourcing.",
+      "page": 3
+    }
+  ],
+  "typical_use_cases": [
+    "Always-on 12 V / 24 V industrial PLC, metering, and automotive keep-alive 3.3 V rails (1.3 uA IQ)",
+    "Multi-cell (3S–7S) battery pack BMS microcontroller supply rails requiring ultra-low standby drain",
+    "Back-powered MCU / RTC rails benefiting from integrated 10 nA reverse-current blocking (VOUT > 1.8 V)",
+    "Candidate drop-in HV upgrade for Pin-4-NC SOT-23-5 footprints ONLY when EN is disconnected from VIN > 6.5 V"
+  ],
+  "engineering_summary": "The TI TPS70933DBVR is an ultra-low-quiescent-current (1.3 uA typ), 30 V max-input (32 V abs max) 150 mA LDO in SOT-23-5 (DBV) with Pin 4 N/C and built-in reverse-current protection. Although it shares the standard 1=IN, 2=GND, 3=EN, 4=NC, 5=OUT SOT-23-5 pinout, engineers evaluating it as a candidate drop-in must never tie EN to VIN above 6.5 V (7 V abs max clamp), must respect its 1.4 V max dropout at 150 mA, and must enforce 1.5–47 uF COUT with ESR <= 0.2 ohm before production.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 4],
+    "audit_notes": [
+      "300 DPI PNG Vision check on p.3 confirmed standard TPS709 DBV pinout (1=IN, 2=GND, 3=EN, 4=NC, 5=OUT) and pinout divergence from TPS709A/B.",
+      "300 DPI PNG Vision check on p.4 confirmed IN abs max 32 V, EN abs max 7 V (6.5 V Zener clamp), Rec Op VIN 2.7-30 V, and DBV RθJA=212.1°C/W.",
+      "Verified 3.3 V dropout (960 mV typ / 1400 mV max @150 mA), 1.3 uA IGND, 0.15 uA shutdown, 0-0.2 ohm ESR window, and reverse-current protection on p.5 & p.13-14."
+    ]
+  }
+}
