@@ -161,5 +161,5 @@
     "HIGH LOAD CURRENT DERATING: TLV70033DDCR supplies up to 200 mA (p.5) compared to TLV73333PDBVR at 300 mA (p.5); confirm peak inrush and thermal dissipation margin."
   ],
   "engineering_verdict": "TLV70033DDCR (Texas Instruments, SOT-23-5) and TLV73333PDBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to minimum output capacitance requirement differs >= 2.5x; Iout,max rating drops >20%. Key datasheet deltas: Iq is 31 µA (p.6) vs 34 µA (p.6), max output current is 200 mA (p.5) vs 300 mA (p.5), recommended Vin,max is 5.5 V (p.5) vs 5.5 V (p.5), typical dropout is 175 mV (p.6) vs 125 mV (p.6), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.4 vs TOP_VIEW p.4), thermal margin (θJA 235.9 vs 228.4 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

@@ -162,5 +162,5 @@
     "CAUTION CURRENT RATING BASIS: LM2733XMF/NOPB specifies 1000 mA (switch current limit Isw, p.4) vs TPS61040DBVR 400 mA (switch current limit Isw, p.5). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling."
   ],
   "engineering_verdict": "LM2733XMF/NOPB (Texas Instruments, SOT-23-5) and TPS61040DBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to switching frequency differs >30%; Vin,max rating drops >20%; current rating or switch-limit basis differs. Key datasheet deltas: topology is boost (non-sync) vs boost (non-sync), switching frequency is 1600 kHz (p.5) vs 1000 kHz (p.1), rated current is 1000 mA (p.4) vs 400 mA (p.5), typical inductor is 10 µH (p.1) vs 10 µH (p.4), and Iq is 400 µA (p.4) vs 28 µA (p.5). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 210 vs 205.2 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

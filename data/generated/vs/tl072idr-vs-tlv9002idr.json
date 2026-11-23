@@ -191,5 +191,5 @@
     "CAUTION THERMAL MARGIN: Package θJA differs by 29% (TL072IDR: 147.8 °C/W p.11 vs TLV9002IDR: 207.9 °C/W p.15); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
   "engineering_verdict": "TL072IDR (Texas Instruments, SOIC-8) and TLV9002IDR (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to supply voltage Vs,max drops >20%; rail-to-rail input/output swing differs; GBWP differs >= 3x. Key datasheet deltas: device type is opamp (push-pull) vs opamp (push-pull), supply limit is 40 V (p.11) vs 5.5 V (p.14), max Vos is 6 mV (p.15) vs 1.6 mV (p.17), input bias current is 65 pA (p.15) vs 5 pA (p.17), and Iq/ch is 1400 µA (p.16) vs 60 µA (p.18). Always validate pinout orientation (TOP_VIEW p.5 vs TOP_VIEW p.8), thermal margin (θJA 147.8 vs 207.9 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

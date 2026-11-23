@@ -190,5 +190,5 @@
     "CAUTION THERMAL MARGIN: Package θJA differs by 29% (LM393DR: 148.5 °C/W p.5 vs LMV358IDR: 207.9 °C/W p.6); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
   "engineering_verdict": "LM393DR (Texas Instruments, SOIC-8) and LMV358IDR (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to device kind / output stage mismatch (comparator/open-collector vs opamp/push-pull); supply voltage Vs,max drops >20%; rail-to-rail input/output swing differs. Key datasheet deltas: device type is comparator (open-collector) vs opamp (push-pull), supply limit is 30 V (p.4) vs 5.5 V (p.5), max Vos is 5 mV (p.8) vs 7 mV (p.7), input bias current is 25000 pA (p.8) vs 15000 pA (p.7), and Iq/ch is 225 µA (p.8) vs 105 µA (p.7). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 148.5 vs 207.9 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

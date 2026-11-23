@@ -162,5 +162,5 @@
     "HIGH LOAD CURRENT DERATING: LP2985-33DBVR supplies up to 150 mA (p.4) compared to AP2112K-3.3TRG1 at 600 mA (p.8); confirm peak inrush and thermal dissipation margin."
   ],
   "engineering_verdict": "AP2112K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and LP2985-33DBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to Pin 4 NC vs BYPASS difference; Vin,max rating drops >20%; Iout,max rating drops >20%. Key datasheet deltas: Iq is 55 µA (p.8) vs 69 µA (p.6), max output current is 600 mA (p.8) vs 150 mA (p.4), recommended Vin,max is 6 V (p.3) vs 16 V (p.4), typical dropout is 250 mV (p.8) vs 180 mV (p.6), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 184 vs 178.6 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

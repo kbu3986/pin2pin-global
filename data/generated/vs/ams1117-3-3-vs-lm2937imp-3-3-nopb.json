@@ -147,5 +147,5 @@
     "CAUTION THERMAL MARGIN: Package θJA differs by 35% (AMS1117-3.3: 90 °C/W p.2 vs LM2937IMP-3.3/NOPB: 58.3 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
   "engineering_verdict": "AMS1117-3.3 (Advanced Monolithic Systems, SOT-223-3) and LM2937IMP-3.3/NOPB (Texas Instruments, SOT-223-3) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to pinout mismatch on Pin 1 (GND vs VIN), Pin 2 (VOUT vs GND), Pin 3 (VIN vs VOUT); exposed pad / thermal tab net mismatch. Key datasheet deltas: Iq is 5000 µA (p.3) vs 2000 µA (p.5), max output current is 1000 mA (p.1) vs 400 mA (p.5), recommended Vin,max is 15 V (p.2) vs 26 V (p.4), typical dropout is 1100 mV (p.3) vs 500 mV (p.5), and ceramic capacitor stability is ESR-constrained vs ESR-constrained. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 90 vs 58.3 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

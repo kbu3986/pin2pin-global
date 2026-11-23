@@ -246,5 +246,5 @@
     "CAUTION CURRENT RATING BASIS: TPS63001DRCR specifies 1200 mA (continuous Iout, p.1) vs TPS63020DSJR 3000 mA (continuous Iout, p.1). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling."
   ],
   "engineering_verdict": "TPS63001DRCR (Texas Instruments, VSON-10) and TPS63020DSJR (Texas Instruments, VSON-14) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (VOUT vs VIN), Pin 2 (SW vs GND), Pin 3 (GND vs FB), Pin 4 (SW vs VOUT), Pin 5 (VIN vs VOUT), Pin 6 (EN vs SW), Pin 7 (PS vs SW), Pin 8 (VIN vs SW), Pin 9 (GND vs SW), Pin 10 (FB vs VIN), Pin 11 (NONE vs VIN), Pin 12 (NONE vs EN), Pin 13 (NONE vs PS), Pin 14 (NONE vs PG). Key datasheet deltas: topology is buck-boost (sync) vs buck-boost (sync), switching frequency is 1500 kHz (p.5) vs 2400 kHz (p.6), rated current is 1200 mA (p.1) vs 3000 mA (p.1), typical inductor is 2.2 µH (p.1) vs 1.5 µH (p.13), and Iq is 41 µA (p.5) vs 25 µA (p.6). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.4), thermal margin (θJA 46.8 vs 41.8 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

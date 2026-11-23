@@ -189,5 +189,5 @@
     "CAUTION SLEW RATE DIFFERENCE: Slew rate differs by 6.5x (MC33202DR2G: 1 V/µs p.4 vs TLV9062IDR: 6.5 V/µs p.13); check full-power bandwidth SR / (2π·Vpeak)."
   ],
   "engineering_verdict": "MC33202DR2G (onsemi, SOIC-8) and TLV9062IDR (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to supply voltage Vs,max drops >20%; GBWP differs >= 3x; slew rate differs >= 3x. Key datasheet deltas: device type is opamp (push-pull) vs opamp (push-pull), supply limit is 12 V (p.1) vs 5.5 V (p.10), max Vos is 8 mV (p.3) vs 1.6 mV (p.13), input bias current is 80000 pA (p.3) vs 0.5 pA (p.13), and Iq/ch is 900 µA (p.4) vs 538 µA (p.14). Always validate pinout orientation (TOP_VIEW p.2 vs TOP_VIEW p.6), thermal margin (θJA 190 vs 157.6 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

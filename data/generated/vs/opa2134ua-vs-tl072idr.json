@@ -188,5 +188,5 @@
     "DATASHEET REVISION CHECK (AUD-04): Verify latest official manufacturer datasheets (SBOS058B (Rev. November 2024) vs SLOS080W (Rev. July 2025)) for part-marking codes, transient load response, and qualification status before production release."
   ],
   "engineering_verdict": "OPA2134UA (Texas Instruments, SOIC-8) and TL072IDR (Texas Instruments, SOIC-8) qualify as Level 1 Candidate Drop-In alternatives with matching pin assignments, compatible exposed-pad nets, and aligned core operating ratings. Key datasheet deltas: device type is opamp (push-pull) vs opamp (push-pull), supply limit is 36 V (p.5) vs 40 V (p.11), max Vos is 3.5 mV (p.7) vs 6 mV (p.15), input bias current is 5 pA (p.7) vs 65 pA (p.15), and Iq/ch is 4000 µA (p.8) vs 1400 µA (p.16). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.5), thermal margin (θJA 160 vs 147.8 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

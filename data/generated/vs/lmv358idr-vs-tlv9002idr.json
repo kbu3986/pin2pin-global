@@ -188,5 +188,5 @@
     "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (LMV358IDR: 207.9 °C/W vs TLV9002IDR: 207.9 °C/W) and worst-case ambient temperature (-40..125 °C vs -40..125 °C)."
   ],
   "engineering_verdict": "LMV358IDR (Texas Instruments, SOIC-8) and TLV9002IDR (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to rail-to-rail input/output swing differs. Key datasheet deltas: device type is opamp (push-pull) vs opamp (push-pull), supply limit is 5.5 V (p.5) vs 5.5 V (p.14), max Vos is 7 mV (p.7) vs 1.6 mV (p.17), input bias current is 15000 pA (p.7) vs 5 pA (p.17), and Iq/ch is 105 µA (p.7) vs 60 µA (p.18). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.8), thermal margin (θJA 207.9 vs 207.9 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

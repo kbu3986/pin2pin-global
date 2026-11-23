@@ -162,5 +162,5 @@
     "CAUTION PRECISION OFFSET SHIFT: Maximum Vos differs by 160x (OPA333AIDBVR: 0.01 mV p.7 vs TLV9061IDBVR: 1.6 mV p.13); high-gain DC sensor stages may lose accuracy or require zero-drift chopper filtering."
   ],
   "engineering_verdict": "OPA333AIDBVR (Texas Instruments, SOT-23-5) and TLV9061IDBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to GBWP differs >= 3x; slew rate differs >= 3x; input offset voltage Vos differs >= 10x. Key datasheet deltas: device type is opamp (push-pull) vs opamp (push-pull), supply limit is 5.5 V (p.5) vs 5.5 V (p.10), max Vos is 0.01 mV (p.7) vs 1.6 mV (p.13), input bias current is 70 pA (p.7) vs 0.5 pA (p.13), and Iq/ch is 17 µA (p.7) vs 538 µA (p.14). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.5), thermal margin (θJA 220.8 vs 221.7 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

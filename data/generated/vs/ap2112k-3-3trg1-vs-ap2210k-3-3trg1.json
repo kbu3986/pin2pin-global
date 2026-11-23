@@ -163,5 +163,5 @@
     "HIGH LOAD CURRENT DERATING: AP2210K-3.3TRG1 supplies up to 300 mA (p.1) compared to AP2112K-3.3TRG1 at 600 mA (p.8); confirm peak inrush and thermal dissipation margin."
   ],
   "engineering_verdict": "AP2112K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and AP2210K-3.3TRG1 (Diodes Incorporated, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to Pin 4 NC vs BYPASS difference; ceramic output capacitor ESR stability difference; Vin,max rating drops >20%. Key datasheet deltas: Iq is 55 µA (p.8) vs 100 µA (p.11), max output current is 600 mA (p.8) vs 300 mA (p.1), recommended Vin,max is 6 V (p.3) vs 13.2 V (p.4), typical dropout is 250 mV (p.8) vs 250 mV (p.11), and ceramic capacitor stability is supported vs ESR-constrained. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.1), thermal margin (θJA 184 vs 200 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

@@ -161,5 +161,5 @@
     "DATASHEET REVISION CHECK (AUD-04): Verify latest official manufacturer datasheets (SNVS487E (Jan 2015) vs SNVS209G (May 2019)) for part-marking codes, transient load response, and qualification status before production release."
   ],
   "engineering_verdict": "LM27313XMF/NOPB (Texas Instruments, SOT-23-5) and LM2733XMF/NOPB (Texas Instruments, SOT-23-5) qualify as Level 1 Candidate Drop-In alternatives with matching pin assignments, compatible exposed-pad nets, and aligned core operating ratings. Key datasheet deltas: topology is boost (non-sync) vs boost (non-sync), switching frequency is 1600 kHz (p.5) vs 1600 kHz (p.5), rated current is 800 mA (p.5) vs 1000 mA (p.4), typical inductor is 10 µH (p.1) vs 10 µH (p.1), and Iq is 400 µA (p.5) vs 400 µA (p.4). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 166.3 vs 210 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

@@ -161,5 +161,5 @@
     "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs significantly (TLV75533PDBVR: 1 µF p.4 vs TPS73633DBVR: 0 µF p.1); account for MLCC DC-bias derating."
   ],
   "engineering_verdict": "TLV75533PDBVR (Texas Instruments, SOT-23-5) and TPS73633DBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to Pin 4 NC vs BYPASS difference; minimum output capacitance requirement differs >= 2.5x. Key datasheet deltas: Iq is 25 µA (p.5) vs 400 µA (p.6), max output current is 500 mA (p.4) vs 400 mA (p.4), recommended Vin,max is 5.5 V (p.4) vs 5.5 V (p.4), typical dropout is 150 mV (p.6) vs 75 mV (p.6), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 231.1 vs 185.2 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

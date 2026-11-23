@@ -143,5 +143,5 @@
     "CAUTION THERMAL MARGIN: Package θJA differs by 44% (AMS1117-3.3: 90 °C/W p.2 vs NCP1117ST33T3G: 160 °C/W p.2); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
   "engineering_verdict": "AMS1117-3.3 (Advanced Monolithic Systems, SOT-223-3) and NCP1117ST33T3G (onsemi, SOT-223-3) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to minimum output capacitance requirement differs >= 2.5x. Key datasheet deltas: Iq is 5000 µA (p.3) vs 6000 µA (p.4), max output current is 1000 mA (p.1) vs 1000 mA (p.3), recommended Vin,max is 15 V (p.2) vs 15 V (p.3), typical dropout is 1100 mV (p.3) vs 1070 mV (p.3), and ceramic capacitor stability is ESR-constrained vs ESR-constrained. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.1), thermal margin (θJA 90 vs 160 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

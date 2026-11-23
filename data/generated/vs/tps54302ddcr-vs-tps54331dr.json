@@ -191,5 +191,5 @@
     "HIGH VREF MISMATCH: Feedback reference differs (TPS54302DDCR: 0.596 V p.5 vs TPS54331DR: 0.8 V p.5); dropping in without recalculating R1/R2 will output the wrong voltage rail."
   ],
   "engineering_verdict": "TPS54302DDCR (Texas Instruments, SOT-23-6) and TPS54331DR (Texas Instruments, SOIC-8) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (GND vs BOOT), Pin 2 (SW vs VIN), Pin 3 (VIN vs EN), Pin 4 (FB vs SS), Pin 5 (EN vs FB), Pin 6 (BOOT vs COMP), Pin 7 (NONE vs GND), Pin 8 (NONE vs SW). Key datasheet deltas: topology is buck (sync) vs buck (non-sync), switching frequency is 400 kHz (p.5) vs 570 kHz (p.6), rated current is 3000 mA (p.1) vs 3000 mA (p.1), typical inductor is 10 µH (p.18) vs 6.8 µH (p.16), and Iq is 45 µA (p.5) vs 110 µA (p.5). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 118.9 vs 116.3 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

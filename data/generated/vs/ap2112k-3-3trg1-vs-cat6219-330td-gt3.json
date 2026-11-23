@@ -162,5 +162,5 @@
     "CAUTION LIFECYCLE STATUS (EOL): CAT6219-330TD-GT3 is flagged EOL by onsemi; do not design into new production layouts — evaluate Active alternatives."
   ],
   "engineering_verdict": "AP2112K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and CAT6219-330TD-GT3 (onsemi, TSOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to Pin 4 NC vs BYPASS difference. Key datasheet deltas: Iq is 55 µA (p.8) vs 55 µA (p.4), max output current is 600 mA (p.8) vs 500 mA (p.4), recommended Vin,max is 6 V (p.3) vs 5.5 V (p.3), typical dropout is 250 mV (p.8) vs 300 mV (p.4), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.2), thermal margin (θJA 184 vs 235 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

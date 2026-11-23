@@ -161,5 +161,5 @@
     "CAUTION SLEW RATE DIFFERENCE: Slew rate differs by 3.3x (TLV9001IDBVR: 2 V/µs p.17 vs TLV9061IDBVR: 6.5 V/µs p.13); check full-power bandwidth SR / (2π·Vpeak)."
   ],
   "engineering_verdict": "TLV9001IDBVR (Texas Instruments, SOT-23-5) and TLV9061IDBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to GBWP differs >= 3x; slew rate differs >= 3x. Key datasheet deltas: device type is opamp (push-pull) vs opamp (push-pull), supply limit is 5.5 V (p.14) vs 5.5 V (p.10), max Vos is 1.6 mV (p.17) vs 1.6 mV (p.13), input bias current is 5 pA (p.17) vs 0.5 pA (p.13), and Iq/ch is 60 µA (p.18) vs 538 µA (p.14). Always validate pinout orientation (TOP_VIEW p.7 vs TOP_VIEW p.5), thermal margin (θJA 232.9 vs 221.7 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

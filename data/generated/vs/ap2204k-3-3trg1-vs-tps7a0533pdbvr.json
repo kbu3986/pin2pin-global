@@ -164,5 +164,5 @@
     "CAUTION THERMAL MARGIN: Package θJA differs by 26% (AP2204K-3.3TRG1: 250 °C/W p.4 vs TPS7A0533PDBVR: 185.6 °C/W p.6); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
   "engineering_verdict": "AP2204K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and TPS7A0533PDBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to minimum output capacitance requirement differs >= 2.5x; Vin,max rating drops >20%; Iout,max rating drops >20%. Key datasheet deltas: Iq is 20 µA (p.5) vs 1 µA (p.7), max output current is 150 mA (p.5) vs 200 mA (p.6), recommended Vin,max is 24 V (p.4) vs 5.5 V (p.6), typical dropout is 360 mV (p.5) vs 235 mV (p.8), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.4), thermal margin (θJA 250 vs 185.6 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

@@ -175,5 +175,5 @@
     "CAUTION THERMAL MARGIN: Package θJA differs by 41% (AP62200WU-7: 70 °C/W p.4 vs TPS54302DDCR: 118.9 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
   "engineering_verdict": "AP62200WU-7 (Diodes Incorporated, TSOT-23-6) and TPS54302DDCR (Texas Instruments, SOT-23-6) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to switching frequency differs >30%; recommended inductor value differs >20%; feedback reference voltage Vref differs. Key datasheet deltas: topology is buck (sync) vs buck (sync), switching frequency is 750 kHz (p.5) vs 400 kHz (p.5), rated current is 2000 mA (p.1) vs 3000 mA (p.1), typical inductor is 3.3 µH (p.17) vs 10 µH (p.18), and Iq is 135 µA (p.5) vs 45 µA (p.5). Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 70 vs 118.9 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

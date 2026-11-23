@@ -143,5 +143,5 @@
     "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (AMS1117-3.3: 90 °C/W vs TLV1117-33IDCYR: 95.4 °C/W) and worst-case ambient temperature (-40..125 °C vs -40..125 °C)."
   ],
   "engineering_verdict": "AMS1117-3.3 (Advanced Monolithic Systems, SOT-223-3) and TLV1117-33IDCYR (Texas Instruments, SOT-223-3) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to ceramic output capacitor ESR stability difference. Key datasheet deltas: Iq is 5000 µA (p.3) vs 65 µA (p.8), max output current is 1000 mA (p.1) vs 800 mA (p.5), recommended Vin,max is 15 V (p.2) vs 15 V (p.5), typical dropout is 1100 mV (p.3) vs 800 mV (p.8), and ceramic capacitor stability is ESR-constrained vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 90 vs 95.4 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

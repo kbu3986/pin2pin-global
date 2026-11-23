@@ -164,5 +164,5 @@
     "CAUTION THERMAL MARGIN: Package θJA differs by 27% (AP2204K-3.3TRG1: 250 °C/W p.4 vs TPS79333DBVR: 182.3 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
   "engineering_verdict": "AP2204K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and TPS79333DBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to Pin 4 NC vs BYPASS difference; Vin,max rating drops >20%; Iout,max rating drops >20%. Key datasheet deltas: Iq is 20 µA (p.5) vs 250 µA (p.5), max output current is 150 mA (p.5) vs 200 mA (p.5), recommended Vin,max is 24 V (p.4) vs 5.5 V (p.4), typical dropout is 360 mV (p.5) vs 112 mV (p.7), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 250 vs 182.3 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

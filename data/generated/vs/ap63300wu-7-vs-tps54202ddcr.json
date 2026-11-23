@@ -173,5 +173,5 @@
     "CAUTION CURRENT RATING BASIS: AP63300WU-7 specifies 3000 mA (continuous Iout, p.1) vs TPS54202DDCR 2000 mA (continuous Iout, p.1). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling."
   ],
   "engineering_verdict": "AP63300WU-7 (Diodes Incorporated, TSOT-23-6) and TPS54202DDCR (Texas Instruments, SOT-23-6) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to pinout mismatch on Pin 1 (FB vs GND), Pin 2 (EN vs SW), Pin 4 (GND vs FB), Pin 5 (SW vs EN). Key datasheet deltas: topology is buck (sync) vs buck (sync), switching frequency is 500 kHz (p.6) vs 500 kHz (p.5), rated current is 3000 mA (p.1) vs 2000 mA (p.1), typical inductor is 6.8 µH (p.2) vs 15 µH (p.17), and Iq is 22 µA (p.6) vs 45 µA (p.5). Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 89 vs 118.6 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

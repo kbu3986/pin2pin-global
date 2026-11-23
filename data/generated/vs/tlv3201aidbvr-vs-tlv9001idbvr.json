@@ -161,5 +161,5 @@
     "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (TLV3201AIDBVR: 237.8 °C/W vs TLV9001IDBVR: 232.9 °C/W) and worst-case ambient temperature (-40..125 °C vs -40..125 °C)."
   ],
   "engineering_verdict": "TLV3201AIDBVR (Texas Instruments, SOT-23-5) and TLV9001IDBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to device kind / output stage mismatch (comparator/push-pull vs opamp/push-pull). Key datasheet deltas: device type is comparator (push-pull) vs opamp (push-pull), supply limit is 5.5 V (p.4) vs 5.5 V (p.14), max Vos is 3 mV (p.5) vs 1.6 mV (p.17), input bias current is 1 pA (p.5) vs 5 pA (p.17), and Iq/ch is 40 µA (p.5) vs 60 µA (p.18). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.7), thermal margin (θJA 237.8 vs 232.9 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

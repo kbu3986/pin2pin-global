@@ -146,5 +146,5 @@
     "CAUTION DROPOUT HEADROOM: Typical dropout differs by 700 mV (LM1117IMPX-3.3/NOPB: 1200 mV p.8 vs LM2937IMP-3.3/NOPB: 500 mV p.5); verify Vin,min - Vout >= Vdo at cold/hot corners."
   ],
   "engineering_verdict": "LM1117IMPX-3.3/NOPB (Texas Instruments, SOT-223-3) and LM2937IMP-3.3/NOPB (Texas Instruments, SOT-223-3) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to pinout mismatch on Pin 1 (GND vs VIN), Pin 2 (VOUT vs GND), Pin 3 (VIN vs VOUT); exposed pad / thermal tab net mismatch. Key datasheet deltas: Iq is 5000 µA (p.8) vs 2000 µA (p.5), max output current is 800 mA (p.7) vs 400 mA (p.5), recommended Vin,max is 15 V (p.4) vs 26 V (p.4), typical dropout is 1200 mV (p.8) vs 500 mV (p.5), and ceramic capacitor stability is ESR-constrained vs ESR-constrained. Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 61.6 vs 58.3 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

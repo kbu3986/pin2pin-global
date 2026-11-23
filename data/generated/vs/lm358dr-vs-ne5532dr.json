@@ -188,5 +188,5 @@
     "CAUTION SLEW RATE DIFFERENCE: Slew rate differs by 16.7x (LM358DR: 0.3 V/µs p.10 vs NE5532DR: 5 V/µs p.4); check full-power bandwidth SR / (2π·Vpeak)."
   ],
   "engineering_verdict": "LM358DR (Texas Instruments, SOIC-8) and NE5532DR (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to GBWP differs >= 3x; slew rate differs >= 3x. Key datasheet deltas: device type is opamp (push-pull) vs opamp (push-pull), supply limit is 30 V (p.5) vs 30 V (p.3), max Vos is 7 mV (p.10) vs 4 mV (p.4), input bias current is 20000 pA (p.10) vs 200000 pA (p.4), and Iq/ch is 350 µA (p.10) vs 3000 µA (p.4). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.2), thermal margin (θJA 124.7 vs 97 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

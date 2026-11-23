@@ -170,5 +170,5 @@
     "CAUTION CURRENT RATING BASIS: TPS54202DDCR specifies 2000 mA (continuous Iout, p.1) vs TPS54302DDCR 3000 mA (continuous Iout, p.1). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling."
   ],
   "engineering_verdict": "TPS54202DDCR (Texas Instruments, SOT-23-6) and TPS54302DDCR (Texas Instruments, SOT-23-6) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to recommended inductor value differs >20%; current rating or switch-limit basis differs. Key datasheet deltas: topology is buck (sync) vs buck (sync), switching frequency is 500 kHz (p.5) vs 400 kHz (p.5), rated current is 2000 mA (p.1) vs 3000 mA (p.1), typical inductor is 15 µH (p.17) vs 10 µH (p.18), and Iq is 45 µA (p.5) vs 45 µA (p.5). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 118.6 vs 118.9 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

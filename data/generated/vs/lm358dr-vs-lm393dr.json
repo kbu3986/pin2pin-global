@@ -188,5 +188,5 @@
     "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (LM358DR: 124.7 °C/W vs LM393DR: 148.5 °C/W) and worst-case ambient temperature (0..70 °C vs 0..70 °C)."
   ],
   "engineering_verdict": "LM358DR (Texas Instruments, SOIC-8) and LM393DR (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to device kind / output stage mismatch (opamp/push-pull vs comparator/open-collector). Key datasheet deltas: device type is opamp (push-pull) vs comparator (open-collector), supply limit is 30 V (p.5) vs 30 V (p.4), max Vos is 7 mV (p.10) vs 5 mV (p.8), input bias current is 20000 pA (p.10) vs 25000 pA (p.8), and Iq/ch is 350 µA (p.10) vs 225 µA (p.8). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 124.7 vs 148.5 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

@@ -163,5 +163,5 @@
     "CAUTION SLEW RATE DIFFERENCE: Slew rate differs by 6.5x (LMV321IDBVR: 1 V/µs p.7 vs TLV9061IDBVR: 6.5 V/µs p.13); check full-power bandwidth SR / (2π·Vpeak)."
   ],
   "engineering_verdict": "LMV321IDBVR (Texas Instruments, SOT-23-5) and TLV9061IDBVR (Texas Instruments, SOT-23-5) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to pinout mismatch on Pin 1 (IN_POS vs OUT), Pin 3 (IN_NEG vs IN_POS), Pin 4 (OUT vs IN_NEG). Key datasheet deltas: device type is opamp (push-pull) vs opamp (push-pull), supply limit is 5.5 V (p.5) vs 5.5 V (p.10), max Vos is 7 mV (p.7) vs 1.6 mV (p.13), input bias current is 15000 pA (p.7) vs 0.5 pA (p.13), and Iq/ch is 130 µA (p.7) vs 538 µA (p.14). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.5), thermal margin (θJA 232.9 vs 221.7 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

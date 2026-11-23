@@ -213,5 +213,5 @@
     "CAUTION THERMAL MARGIN: Package θJA differs by 80% (LM2733XMF/NOPB: 210 °C/W p.4 vs TPS61200DRCR: 41.2 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
   "engineering_verdict": "LM2733XMF/NOPB (Texas Instruments, SOT-23-5) and TPS61200DRCR (Texas Instruments, VSON-10) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (SW vs BYPASS), Pin 2 (GND vs VOUT), Pin 3 (FB vs SW), Pin 4 (EN vs GND), Pin 6 (NONE vs EN), Pin 7 (NONE vs OTHER), Pin 8 (NONE vs PS), Pin 9 (NONE vs GND), Pin 10 (NONE vs FB); exposed pad / thermal tab net mismatch. Key datasheet deltas: topology is boost (non-sync) vs boost (sync), switching frequency is 1600 kHz (p.5) vs 1450 kHz (p.6), rated current is 1000 mA (p.4) vs 1350 mA (p.6), typical inductor is 10 µH (p.1) vs 2.2 µH (p.15), and Iq is 400 µA (p.4) vs 55 µA (p.6). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.4), thermal margin (θJA 210 vs 41.2 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

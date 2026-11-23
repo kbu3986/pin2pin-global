@@ -189,5 +189,5 @@
     "CAUTION SLEW RATE DIFFERENCE: Slew rate differs by 66.7x (LM358DR: 0.3 V/µs p.10 vs TL072IDR: 20 V/µs p.16); check full-power bandwidth SR / (2π·Vpeak)."
   ],
   "engineering_verdict": "LM358DR (Texas Instruments, SOIC-8) and TL072IDR (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to supply voltage Vs,max drops >20%; GBWP differs >= 3x; slew rate differs >= 3x. Key datasheet deltas: device type is opamp (push-pull) vs opamp (push-pull), supply limit is 30 V (p.5) vs 40 V (p.11), max Vos is 7 mV (p.10) vs 6 mV (p.15), input bias current is 20000 pA (p.10) vs 65 pA (p.15), and Iq/ch is 350 µA (p.10) vs 1400 µA (p.16). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.5), thermal margin (θJA 124.7 vs 147.8 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

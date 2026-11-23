@@ -161,5 +161,5 @@
     "CAUTION LIFECYCLE STATUS (NRND): AP2204K-3.3TRG1 is flagged NRND by Diodes Incorporated; do not design into new production layouts — evaluate Active alternatives."
   ],
   "engineering_verdict": "AP2204K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and TPS70933DBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to dropout voltage headroom differs >= 500 mV. Key datasheet deltas: Iq is 20 µA (p.5) vs 1.3 µA (p.5), max output current is 150 mA (p.5) vs 150 mA (p.5), recommended Vin,max is 24 V (p.4) vs 30 V (p.4), typical dropout is 360 mV (p.5) vs 960 mV (p.5), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 250 vs 212.1 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

@@ -161,5 +161,5 @@
     "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (TLV75533PDBVR: 231.1 °C/W vs TPS7A0233PDBVR: 181.9 °C/W) and worst-case ambient temperature (-40..125 °C vs -40..125 °C)."
   ],
   "engineering_verdict": "TLV75533PDBVR (Texas Instruments, SOT-23-5) and TPS7A0233PDBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to Iout,max rating drops >20%. Key datasheet deltas: Iq is 25 µA (p.5) vs 0.025 µA (p.6), max output current is 500 mA (p.4) vs 200 mA (p.5), recommended Vin,max is 5.5 V (p.4) vs 6 V (p.5), typical dropout is 150 mV (p.6) vs 270 mV (p.6), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 231.1 vs 181.9 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

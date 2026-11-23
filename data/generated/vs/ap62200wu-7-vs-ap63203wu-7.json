@@ -172,5 +172,5 @@
     "HIGH INPUT VOLTAGE RANGE SHIFT: Recommended Vin,max differs (AP62200WU-7: 18 V p.4 vs AP63203WU-7: 32 V p.4); verify line transients stay below Vin,abs,max."
   ],
   "engineering_verdict": "AP62200WU-7 (Diodes Incorporated, TSOT-23-6) and AP63203WU-7 (Diodes Incorporated, TSOT-23-6) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to pinout mismatch on Pin 1 (GND vs FB), Pin 2 (SW vs EN), Pin 4 (FB vs GND), Pin 5 (EN vs SW). Key datasheet deltas: topology is buck (sync) vs buck (sync), switching frequency is 750 kHz (p.5) vs 1100 kHz (p.5), rated current is 2000 mA (p.1) vs 2000 mA (p.1), typical inductor is 3.3 µH (p.17) vs 3.9 µH (p.13), and Iq is 135 µA (p.5) vs 22 µA (p.5). Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.1), thermal margin (θJA 70 vs 89 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

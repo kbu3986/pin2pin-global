@@ -165,5 +165,5 @@
     "CAUTION CURRENT RATING BASIS: TPS61040DBVR specifies 400 mA (switch current limit Isw, p.5) vs TPS613221ADBVR 1200 mA (switch current limit Isw, p.5). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling."
   ],
   "engineering_verdict": "TPS61040DBVR (Texas Instruments, SOT-23-5) and TPS613221ADBVR (Texas Instruments, SOT-23-5) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to pinout mismatch on Pin 3 (FB vs NC), Pin 4 (EN vs VOUT), Pin 5 (VIN vs NC). Key datasheet deltas: topology is boost (non-sync) vs boost (sync), switching frequency is 1000 kHz (p.1) vs 1600 kHz (p.9), rated current is 400 mA (p.5) vs 1200 mA (p.5), typical inductor is 10 µH (p.4) vs 2.2 µH (p.4), and Iq is 28 µA (p.5) vs 6.5 µA (p.5). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 205.2 vs 189.7 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

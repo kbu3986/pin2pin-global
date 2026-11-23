@@ -191,5 +191,5 @@
     "CAUTION THERMAL MARGIN: Package θJA differs by 34% (LM358DR: 124.7 °C/W p.5 vs MC33202DR2G: 190 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
   "engineering_verdict": "LM358DR (Texas Instruments, SOIC-8) and MC33202DR2G (onsemi, SOIC-8) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to supply voltage Vs,max drops >20%; rail-to-rail input/output swing differs; GBWP differs >= 3x. Key datasheet deltas: device type is opamp (push-pull) vs opamp (push-pull), supply limit is 30 V (p.5) vs 12 V (p.1), max Vos is 7 mV (p.10) vs 8 mV (p.3), input bias current is 20000 pA (p.10) vs 80000 pA (p.3), and Iq/ch is 350 µA (p.10) vs 900 µA (p.4). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.2), thermal margin (θJA 124.7 vs 190 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

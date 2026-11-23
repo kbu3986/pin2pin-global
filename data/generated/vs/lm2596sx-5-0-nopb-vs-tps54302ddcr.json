@@ -178,5 +178,5 @@
     "CAUTION THERMAL MARGIN: Package θJA differs by 58% (LM2596SX-5.0/NOPB: 50 °C/W p.5 vs TPS54302DDCR: 118.9 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
   "engineering_verdict": "LM2596SX-5.0/NOPB (Texas Instruments, TO-263-5) and TPS54302DDCR (Texas Instruments, SOT-23-6) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (VIN vs GND), Pin 3 (GND vs VIN), Pin 6 (NONE vs BOOT); exposed pad / thermal tab net mismatch. Key datasheet deltas: topology is buck (non-sync) vs buck (sync), switching frequency is 150 kHz (p.7) vs 400 kHz (p.5), rated current is 3000 mA (p.1) vs 3000 mA (p.1), typical inductor is 33 µH (p.25) vs 10 µH (p.18), and Iq is 5000 µA (p.7) vs 45 µA (p.5). Always validate pinout orientation (TOP_VIEW p.4 vs TOP_VIEW p.3), thermal margin (θJA 50 vs 118.9 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

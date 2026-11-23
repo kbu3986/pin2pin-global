@@ -161,5 +161,5 @@
     "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (VIN vs GND), Pin 2 (GND vs VOUT), Pin 3 (EN vs VIN), Pin 4 (BYPASS vs NONE), Pin 5 (VOUT vs NONE). Soldering AP2210N-3.3TRG1 onto a AP2210K-3.3TRG1 footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board."
   ],
   "engineering_verdict": "AP2210K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and AP2210N-3.3TRG1 (Diodes Incorporated, SOT-23-3) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (VIN vs GND), Pin 2 (GND vs VOUT), Pin 3 (EN vs VIN), Pin 4 (BYPASS vs NONE), Pin 5 (VOUT vs NONE). Key datasheet deltas: Iq is 100 µA (p.11) vs 100 µA (p.11), max output current is 300 mA (p.1) vs 300 mA (p.1), recommended Vin,max is 13.2 V (p.4) vs 13.2 V (p.4), typical dropout is 250 mV (p.11) vs 250 mV (p.11), and ceramic capacitor stability is ESR-constrained vs ESR-constrained. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.1), thermal margin (θJA 200 vs 200 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

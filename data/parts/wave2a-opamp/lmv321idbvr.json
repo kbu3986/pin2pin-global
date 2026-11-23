@@ -17,7 +17,7 @@
     "product_page_url": "https://www.ti.com/product/LMV321",
     "source_domain": "www.ti.com",
     "revision": "SLOS263Y (Rev. August 2023)",
-    "verified_at": "2026-11-22",
+    "verified_at": "2026-11-23",
     "parse_source_mode": "DUAL_PATH_TEXT_VISION",
     "page_count": 53
   },
@@ -193,11 +193,12 @@
     "auditor_passed": true,
     "human_reviewed": false,
     "needs_human_review": false,
-    "vision_pages_checked": [3, 5, 6, 7],
+    "vision_pages_checked": [1, 3, 5, 6, 7, 23],
     "audit_notes": [
       "Visually verified LMV321 SOT-23-5 (DBV) Top View pinout on 300 DPI PNG page 3 (Figure 5-2 & Table 5-2): 1=1IN+, 2=GND, 3=1IN-, 4=OUT, 5=VCC+ — explicitly confirmed permutation mismatch vs TLV9001/TLV9061/OPA333/TLV3201 DBV.",
       "Verified Abs Max (5.5 V, TJ=150°C), Recommended Operating (2.7 V–5.5 V, -40°C to 125°C), and LMV321 DBV RθJA = 232.9 °C/W on page 5 PNG (Section 6.4).",
-      "Verified Section 6.7 (2.7 V) and Section 6.8 (5 V) Electrical Characteristics on pages 6-7 PNGs: converted IIB = 15 nA -> 15000 pA, confirmed single-channel LMV321I ICC = 130 µA typ at 5 V (80 µA at 2.7 V)."
+      "Verified Section 6.7 (2.7 V) and Section 6.8 (5 V) Electrical Characteristics on pages 6-7 PNGs: converted IIB = 15 nA -> 15000 pA, confirmed single-channel LMV321I ICC = 130 µA typ at 5 V (80 µA at 2.7 V).",
+      "2026-11-23 drift re-verification: re-ingested official TI PDF after CDN ETag/length drift and visually re-verified 300 DPI PNG pages 1, 3, 5, 7, and 23; SLOS263Y (Rev. August 2023) revision, pinout, ratings, and Active status unchanged."
     ]
   }
 }

@@ -143,5 +143,5 @@
     "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (AZ1117CH-3.3TRG1: 125 °C/W vs NCP1117ST33T3G: 160 °C/W) and worst-case ambient temperature (-20..125 °C vs 0..125 °C)."
   ],
   "engineering_verdict": "AZ1117CH-3.3TRG1 (Diodes Incorporated, SOT-223-3) and NCP1117ST33T3G (onsemi, SOT-223-3) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to ceramic output capacitor ESR stability difference. Key datasheet deltas: Iq is 4000 µA (p.7) vs 6000 µA (p.4), max output current is 800 mA (p.7) vs 1000 mA (p.3), recommended Vin,max is 15 V (p.4) vs 15 V (p.3), typical dropout is 1200 mV (p.7) vs 1070 mV (p.3), and ceramic capacitor stability is supported vs ESR-constrained. Always validate pinout orientation (TOP_VIEW p.2 vs TOP_VIEW p.1), thermal margin (θJA 125 vs 160 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

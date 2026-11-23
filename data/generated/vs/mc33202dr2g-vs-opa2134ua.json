@@ -190,5 +190,5 @@
     "CAUTION SLEW RATE DIFFERENCE: Slew rate differs by 20x (MC33202DR2G: 1 V/µs p.4 vs OPA2134UA: 20 V/µs p.7); check full-power bandwidth SR / (2π·Vpeak)."
   ],
   "engineering_verdict": "MC33202DR2G (onsemi, SOIC-8) and OPA2134UA (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to supply voltage Vs,max drops >20%; rail-to-rail input/output swing differs; GBWP differs >= 3x. Key datasheet deltas: device type is opamp (push-pull) vs opamp (push-pull), supply limit is 12 V (p.1) vs 36 V (p.5), max Vos is 8 mV (p.3) vs 3.5 mV (p.7), input bias current is 80000 pA (p.3) vs 5 pA (p.7), and Iq/ch is 900 µA (p.4) vs 4000 µA (p.8). Always validate pinout orientation (TOP_VIEW p.2 vs TOP_VIEW p.3), thermal margin (θJA 190 vs 160 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

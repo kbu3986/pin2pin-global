@@ -144,5 +144,5 @@
     "HIGH INPUT VOLTAGE RATING DROP: AP7333-33SAG-7 is rated to only 6 V rec. (7 V abs max, p.4) vs AP2210N-3.3TRG1 at 13.2 V rec. (15 V abs max, p.4). Verify worst-case input transient spikes."
   ],
   "engineering_verdict": "AP2210N-3.3TRG1 (Diodes Incorporated, SOT-23-3) and AP7333-33SAG-7 (Diodes Incorporated, SOT-23-3) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to pinout mismatch on Pin 1 (GND vs VIN), Pin 3 (VIN vs GND). Key datasheet deltas: Iq is 100 µA (p.11) vs 55 µA (p.5), max output current is 300 mA (p.1) vs 300 mA (p.4), recommended Vin,max is 13.2 V (p.4) vs 6 V (p.4), typical dropout is 250 mV (p.11) vs 300 mV (p.5), and ceramic capacitor stability is ESR-constrained vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.2), thermal margin (θJA 200 vs 207 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

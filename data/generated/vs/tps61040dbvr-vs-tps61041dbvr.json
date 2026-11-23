@@ -161,5 +161,5 @@
     "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (TPS61040DBVR: 205.2 °C/W vs TPS61041DBVR: 205.2 °C/W) and worst-case ambient temperature (-40..85 °C vs -40..85 °C)."
   ],
   "engineering_verdict": "TPS61040DBVR (Texas Instruments, SOT-23-5) and TPS61041DBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to current rating or switch-limit basis differs. Key datasheet deltas: topology is boost (non-sync) vs boost (non-sync), switching frequency is 1000 kHz (p.1) vs 1000 kHz (p.4), rated current is 400 mA (p.5) vs 250 mA (p.5), typical inductor is 10 µH (p.4) vs 10 µH (p.4), and Iq is 28 µA (p.5) vs 28 µA (p.5). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 205.2 vs 205.2 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

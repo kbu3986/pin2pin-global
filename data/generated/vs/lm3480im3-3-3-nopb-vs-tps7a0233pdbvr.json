@@ -166,5 +166,5 @@
     "CAUTION THERMAL MARGIN: Package θJA differs by 33% (LM3480IM3-3.3/NOPB: 269.6 °C/W p.4 vs TPS7A0233PDBVR: 181.9 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
   "engineering_verdict": "LM3480IM3-3.3/NOPB (Texas Instruments, SOT-23-3) and TPS7A0233PDBVR (Texas Instruments, SOT-23-5) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (VOUT vs VIN), Pin 2 (VIN vs GND), Pin 3 (GND vs EN), Pin 4 (NONE vs NC), Pin 5 (NONE vs VOUT). Key datasheet deltas: Iq is 2000 µA (p.5) vs 0.025 µA (p.6), max output current is 100 mA (p.5) vs 200 mA (p.5), recommended Vin,max is 30 V (p.4) vs 6 V (p.5), typical dropout is 900 mV (p.5) vs 270 mV (p.6), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 269.6 vs 181.9 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

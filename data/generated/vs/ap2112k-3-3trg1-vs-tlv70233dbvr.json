@@ -161,5 +161,5 @@
     "CAUTION THERMAL MARGIN: Package θJA differs by 26% (AP2112K-3.3TRG1: 184 °C/W p.3 vs TLV70233DBVR: 249.2 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
   "engineering_verdict": "AP2112K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and TLV70233DBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to Iout,max rating drops >20%. Key datasheet deltas: Iq is 55 µA (p.8) vs 35 µA (p.5), max output current is 600 mA (p.8) vs 300 mA (p.4), recommended Vin,max is 6 V (p.3) vs 5.5 V (p.4), typical dropout is 250 mV (p.8) vs 260 mV (p.5), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 184 vs 249.2 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

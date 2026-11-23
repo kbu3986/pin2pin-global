@@ -161,5 +161,5 @@
     "DATASHEET REVISION CHECK (AUD-04): Verify latest official manufacturer datasheets (DS39724 Rev. 2 - 2 (June 2017) vs SBVS320D (November 2017 – Revised September 2024)) for part-marking codes, transient load response, and qualification status before production release."
   ],
   "engineering_verdict": "AP2112K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and TLV75533PDBVR (Texas Instruments, SOT-23-5) qualify as Level 1 Candidate Drop-In alternatives with matching pin assignments, compatible exposed-pad nets, and aligned core operating ratings. Key datasheet deltas: Iq is 55 µA (p.8) vs 25 µA (p.5), max output current is 600 mA (p.8) vs 500 mA (p.4), recommended Vin,max is 6 V (p.3) vs 5.5 V (p.4), typical dropout is 250 mV (p.8) vs 150 mV (p.6), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 184 vs 231.1 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

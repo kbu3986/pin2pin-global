@@ -249,5 +249,5 @@
     "CAUTION THERMAL MARGIN: Package θJA differs by 71% (TPS61023DRLR: 142.7 °C/W p.4 vs TPS63020DSJR: 41.8 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
   "engineering_verdict": "TPS61023DRLR (Texas Instruments, SOT-563) and TPS63020DSJR (Texas Instruments, VSON-14) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (FB vs VIN), Pin 2 (EN vs GND), Pin 3 (VIN vs FB), Pin 4 (GND vs VOUT), Pin 5 (SW vs VOUT), Pin 6 (VOUT vs SW), Pin 7 (NONE vs SW), Pin 8 (NONE vs SW), Pin 9 (NONE vs SW), Pin 10 (NONE vs VIN), Pin 11 (NONE vs VIN), Pin 12 (NONE vs EN), Pin 13 (NONE vs PS), Pin 14 (NONE vs PG); exposed pad / thermal tab net mismatch. Key datasheet deltas: topology is boost (sync) vs buck-boost (sync), switching frequency is 1000 kHz (p.5) vs 2400 kHz (p.6), rated current is 3700 mA (p.5) vs 3000 mA (p.1), typical inductor is 1 µH (p.4) vs 1.5 µH (p.13), and Iq is 20 µA (p.5) vs 25 µA (p.6). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.4), thermal margin (θJA 142.7 vs 41.8 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

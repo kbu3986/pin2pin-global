@@ -162,5 +162,5 @@
     "HIGH LOAD CURRENT DERATING: TPS7A0233PDBVR supplies up to 200 mA (p.5) compared to AP7333-33SAG-7 at 300 mA (p.4); confirm peak inrush and thermal dissipation margin."
   ],
   "engineering_verdict": "AP7333-33SAG-7 (Diodes Incorporated, SOT-23-3) and TPS7A0233PDBVR (Texas Instruments, SOT-23-5) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 2 (VOUT vs GND), Pin 3 (GND vs EN), Pin 4 (NONE vs NC), Pin 5 (NONE vs VOUT). Key datasheet deltas: Iq is 55 µA (p.5) vs 0.025 µA (p.6), max output current is 300 mA (p.4) vs 200 mA (p.5), recommended Vin,max is 6 V (p.4) vs 6 V (p.5), typical dropout is 300 mV (p.5) vs 270 mV (p.6), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.2 vs TOP_VIEW p.3), thermal margin (θJA 207 vs 181.9 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

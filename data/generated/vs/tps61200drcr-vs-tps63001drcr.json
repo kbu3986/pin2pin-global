@@ -208,5 +208,5 @@
     "CAUTION CURRENT RATING BASIS: TPS61200DRCR specifies 1350 mA (switch current limit Isw, p.6) vs TPS63001DRCR 1200 mA (continuous Iout, p.1). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling."
   ],
   "engineering_verdict": "TPS61200DRCR (Texas Instruments, VSON-10) and TPS63001DRCR (Texas Instruments, VSON-10) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to pinout mismatch on Pin 1 (BYPASS vs VOUT), Pin 2 (VOUT vs SW), Pin 3 (SW vs GND), Pin 4 (GND vs SW), Pin 7 (OTHER vs PS), Pin 8 (PS vs VIN). Key datasheet deltas: topology is boost (sync) vs buck-boost (sync), switching frequency is 1450 kHz (p.6) vs 1500 kHz (p.5), rated current is 1350 mA (p.6) vs 1200 mA (p.1), typical inductor is 2.2 µH (p.15) vs 2.2 µH (p.1), and Iq is 55 µA (p.6) vs 41 µA (p.5). Always validate pinout orientation (TOP_VIEW p.4 vs TOP_VIEW p.3), thermal margin (θJA 41.2 vs 46.8 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

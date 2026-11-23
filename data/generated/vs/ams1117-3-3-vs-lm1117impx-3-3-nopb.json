@@ -143,5 +143,5 @@
     "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (AMS1117-3.3: 90 °C/W vs LM1117IMPX-3.3/NOPB: 61.6 °C/W) and worst-case ambient temperature (-40..125 °C vs -40..125 °C)."
   ],
   "engineering_verdict": "AMS1117-3.3 (Advanced Monolithic Systems, SOT-223-3) and LM1117IMPX-3.3/NOPB (Texas Instruments, SOT-223-3) qualify as Level 1 Candidate Drop-In alternatives with matching pin assignments, compatible exposed-pad nets, and aligned core operating ratings. Key datasheet deltas: Iq is 5000 µA (p.3) vs 5000 µA (p.8), max output current is 1000 mA (p.1) vs 800 mA (p.7), recommended Vin,max is 15 V (p.2) vs 15 V (p.4), typical dropout is 1100 mV (p.3) vs 1200 mV (p.8), and ceramic capacitor stability is ESR-constrained vs ESR-constrained. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 90 vs 61.6 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

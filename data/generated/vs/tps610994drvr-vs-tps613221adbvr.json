@@ -173,5 +173,5 @@
     "CAUTION THERMAL MARGIN: Package θJA differs by 62% (TPS610994DRVR: 71.7 °C/W p.4 vs TPS613221ADBVR: 189.7 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
   "engineering_verdict": "TPS610994DRVR (Texas Instruments, WSON-6) and TPS613221ADBVR (Texas Instruments, SOT-23-5) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (GND vs SW), Pin 2 (VOUT vs GND), Pin 3 (FB vs NC), Pin 4 (EN vs VOUT), Pin 5 (SW vs NC), Pin 6 (VIN vs NONE); exposed pad / thermal tab net mismatch. Key datasheet deltas: topology is boost (sync) vs boost (sync), switching frequency is 1116 kHz (p.16) vs 1600 kHz (p.9), rated current is 1000 mA (p.5) vs 1200 mA (p.5), typical inductor is 2.2 µH (p.4) vs 2.2 µH (p.4), and Iq is 1 µA (p.5) vs 6.5 µA (p.5). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 71.7 vs 189.7 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

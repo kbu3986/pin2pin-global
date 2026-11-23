@@ -143,5 +143,5 @@
     "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (AP7313-33SAG-7: 207 °C/W vs AP7333-33SAG-7: 207 °C/W) and worst-case ambient temperature (-40..85 °C vs -40..85 °C)."
   ],
   "engineering_verdict": "AP7313-33SAG-7 (Diodes Incorporated, SOT-23-3) and AP7333-33SAG-7 (Diodes Incorporated, SOT-23-3) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to Iout,max rating drops >20%. Key datasheet deltas: Iq is 55 µA (p.5) vs 55 µA (p.5), max output current is 150 mA (p.4) vs 300 mA (p.4), recommended Vin,max is 6 V (p.4) vs 6 V (p.4), typical dropout is 150 mV (p.5) vs 300 mV (p.5), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.2 vs TOP_VIEW p.2), thermal margin (θJA 207 vs 207 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

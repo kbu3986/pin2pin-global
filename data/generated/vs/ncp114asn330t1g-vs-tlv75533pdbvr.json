@@ -161,5 +161,5 @@
     "HIGH LOAD CURRENT DERATING: NCP114ASN330T1G supplies up to 300 mA (p.3) compared to TLV75533PDBVR at 500 mA (p.4); confirm peak inrush and thermal dissipation margin."
   ],
   "engineering_verdict": "NCP114ASN330T1G (onsemi, TSOT-23-5) and TLV75533PDBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to Iout,max rating drops >20%. Key datasheet deltas: Iq is 50 µA (p.3) vs 25 µA (p.5), max output current is 300 mA (p.3) vs 500 mA (p.4), recommended Vin,max is 5.5 V (p.3) vs 5.5 V (p.4), typical dropout is 150 mV (p.3) vs 150 mV (p.6), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 236 vs 231.1 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

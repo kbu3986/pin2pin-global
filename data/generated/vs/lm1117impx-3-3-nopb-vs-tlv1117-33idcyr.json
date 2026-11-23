@@ -143,5 +143,5 @@
     "CAUTION THERMAL MARGIN: Package θJA differs by 35% (LM1117IMPX-3.3/NOPB: 61.6 °C/W p.4 vs TLV1117-33IDCYR: 95.4 °C/W p.6); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
   "engineering_verdict": "LM1117IMPX-3.3/NOPB (Texas Instruments, SOT-223-3) and TLV1117-33IDCYR (Texas Instruments, SOT-223-3) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to ceramic output capacitor ESR stability difference. Key datasheet deltas: Iq is 5000 µA (p.8) vs 65 µA (p.8), max output current is 800 mA (p.7) vs 800 mA (p.5), recommended Vin,max is 15 V (p.4) vs 15 V (p.5), typical dropout is 1200 mV (p.8) vs 800 mV (p.8), and ceramic capacitor stability is ESR-constrained vs supported. Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 61.6 vs 95.4 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

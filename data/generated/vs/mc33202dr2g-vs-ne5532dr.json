@@ -191,5 +191,5 @@
     "CAUTION THERMAL MARGIN: Package θJA differs by 49% (MC33202DR2G: 190 °C/W p.5 vs NE5532DR: 97 °C/W p.3); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
   "engineering_verdict": "MC33202DR2G (onsemi, SOIC-8) and NE5532DR (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to supply voltage Vs,max drops >20%; rail-to-rail input/output swing differs; GBWP differs >= 3x. Key datasheet deltas: device type is opamp (push-pull) vs opamp (push-pull), supply limit is 12 V (p.1) vs 30 V (p.3), max Vos is 8 mV (p.3) vs 4 mV (p.4), input bias current is 80000 pA (p.3) vs 200000 pA (p.4), and Iq/ch is 900 µA (p.4) vs 3000 µA (p.4). Always validate pinout orientation (TOP_VIEW p.2 vs TOP_VIEW p.2), thermal margin (θJA 190 vs 97 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

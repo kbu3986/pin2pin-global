@@ -162,5 +162,5 @@
     "CAUTION THERMAL MARGIN: Package θJA differs by 26% (AP2112K-3.3TRG1: 184 °C/W p.3 vs NCP500SN33T1G: 250 °C/W p.2); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
   "engineering_verdict": "AP2112K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and NCP500SN33T1G (onsemi, TSOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to Iout,max rating drops >20%. Key datasheet deltas: Iq is 55 µA (p.8) vs 195 µA (p.6), max output current is 600 mA (p.8) vs 150 mA (p.6), recommended Vin,max is 6 V (p.3) vs 6 V (p.6), typical dropout is 250 mV (p.8) vs 150 mV (p.6), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.1), thermal margin (θJA 184 vs 250 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

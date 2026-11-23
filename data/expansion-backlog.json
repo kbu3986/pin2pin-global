@@ -1,6 +1,6 @@
 {
   "backlog_version": "2.1.0",
-  "updated_at": "2026-11-22",
+  "updated_at": "2026-11-23",
   "drip_feed_policy": {
     "daily_batch_min": 6,
     "daily_batch_max": 10,

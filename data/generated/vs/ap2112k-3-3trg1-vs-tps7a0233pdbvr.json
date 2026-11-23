@@ -161,5 +161,5 @@
     "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (AP2112K-3.3TRG1: 184 °C/W vs TPS7A0233PDBVR: 181.9 °C/W) and worst-case ambient temperature (-40..85 °C vs -40..125 °C)."
   ],
   "engineering_verdict": "AP2112K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and TPS7A0233PDBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to Iout,max rating drops >20%. Key datasheet deltas: Iq is 55 µA (p.8) vs 0.025 µA (p.6), max output current is 600 mA (p.8) vs 200 mA (p.5), recommended Vin,max is 6 V (p.3) vs 6 V (p.5), typical dropout is 250 mV (p.8) vs 270 mV (p.6), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 184 vs 181.9 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

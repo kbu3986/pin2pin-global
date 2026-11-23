@@ -147,5 +147,5 @@
     "CAUTION THERMAL MARGIN: Package θJA differs by 26% (AP2210N-3.3TRG1: 200 °C/W p.4 vs LM3480IM3-3.3/NOPB: 269.6 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
   "engineering_verdict": "AP2210N-3.3TRG1 (Diodes Incorporated, SOT-23-3) and LM3480IM3-3.3/NOPB (Texas Instruments, SOT-23-3) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to pinout mismatch on Pin 1 (GND vs VOUT), Pin 2 (VOUT vs VIN), Pin 3 (VIN vs GND). Key datasheet deltas: Iq is 100 µA (p.11) vs 2000 µA (p.5), max output current is 300 mA (p.1) vs 100 mA (p.5), recommended Vin,max is 13.2 V (p.4) vs 30 V (p.4), typical dropout is 250 mV (p.11) vs 900 mV (p.5), and ceramic capacitor stability is ESR-constrained vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 200 vs 269.6 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

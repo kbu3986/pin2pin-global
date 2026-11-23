@@ -175,5 +175,5 @@
     "CAUTION THERMAL MARGIN: Package θJA differs by 25% (AP63203WU-7: 89 °C/W p.4 vs TPS54302DDCR: 118.9 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
   "engineering_verdict": "AP63203WU-7 (Diodes Incorporated, TSOT-23-6) and TPS54302DDCR (Texas Instruments, SOT-23-6) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to pinout mismatch on Pin 1 (FB vs GND), Pin 2 (EN vs SW), Pin 4 (GND vs FB), Pin 5 (SW vs EN). Key datasheet deltas: topology is buck (sync) vs buck (sync), switching frequency is 1100 kHz (p.5) vs 400 kHz (p.5), rated current is 2000 mA (p.1) vs 3000 mA (p.1), typical inductor is 3.9 µH (p.13) vs 10 µH (p.18), and Iq is 22 µA (p.5) vs 45 µA (p.5). Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 89 vs 118.9 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

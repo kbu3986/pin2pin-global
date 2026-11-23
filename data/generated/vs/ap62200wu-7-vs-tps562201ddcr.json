@@ -170,5 +170,5 @@
     "HIGH VREF MISMATCH: Feedback reference differs (AP62200WU-7: 0.8 V p.5 vs TPS562201DDCR: 0.768 V p.5); dropping in without recalculating R1/R2 will output the wrong voltage rail."
   ],
   "engineering_verdict": "AP62200WU-7 (Diodes Incorporated, TSOT-23-6) and TPS562201DDCR (Texas Instruments, SOT-23-6) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to feedback reference voltage Vref differs. Key datasheet deltas: topology is buck (sync) vs buck (sync), switching frequency is 750 kHz (p.5) vs 580 kHz (p.5), rated current is 2000 mA (p.1) vs 2000 mA (p.1), typical inductor is 3.3 µH (p.17) vs 3.3 µH (p.13), and Iq is 135 µA (p.5) vs 120 µA (p.5). Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 70 vs 90.8 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }

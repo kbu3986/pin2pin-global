@@ -146,5 +146,5 @@
     "CAUTION DROPOUT HEADROOM: Typical dropout differs by 860 mV (AP7361C-33E-13: 340 mV p.5 vs AZ1117CH-3.3TRG1: 1200 mV p.7); verify Vin,min - Vout >= Vdo at cold/hot corners."
   ],
   "engineering_verdict": "AP7361C-33E-13 (Diodes Incorporated, SOT-223-3) and AZ1117CH-3.3TRG1 (Diodes Incorporated, SOT-223-3) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to pinout mismatch on Pin 1 (VIN vs GND), Pin 2 (GND vs VOUT), Pin 3 (VOUT vs VIN); exposed pad / thermal tab net mismatch. Key datasheet deltas: Iq is 60 µA (p.5) vs 4000 µA (p.7), max output current is 1000 mA (p.4) vs 800 mA (p.7), recommended Vin,max is 6 V (p.4) vs 15 V (p.4), typical dropout is 340 mV (p.5) vs 1200 mV (p.7), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.2), thermal margin (θJA 110 vs 125 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
-  "generated_at": "2026-11-22"
+  "generated_at": "2026-11-23"
 }
