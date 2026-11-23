@@ -2,6 +2,7 @@
   "site_name": "Pin2Pin Global",
   "tagline": "Datasheet-Verified Semiconductor Pinout & Cross-Reference Engineering DB",
   "site_url": "https://pin2pin.dev",
+  "live_site_url": "https://kbu3986.github.io/pin2pin-global",
   "default_locale": "en",
   "supported_locales": [
     "en"

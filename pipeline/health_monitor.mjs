@@ -369,7 +369,7 @@ async function main() {
     `| **Official Manufacturer PDFs Alive** | ${uniquePdfUrls.length - brokenPdfs.length} / ${uniquePdfUrls.length} | ${brokenPdfs.length === 0 ? 'HEALTHY' : 'ACTION_REQUIRED'} |`,
     `| **Datasheet Revision Drifts Detected** | ${changedPdfs.length} | ${changedPdfs.length === 0 ? 'CLEAN' : 'REVERIFY_NEEDED'} |`,
     `| **Live Production CDN (${LIVE_BASE})** | ${live.checked_routes - live.failed_routes.length}/${live.checked_routes} HTTP 200 · _next/static ${live.checked_static_assets - live.failed_static_assets.length}/${live.checked_static_assets} (sitemap=${live.sitemap_live_urls}) | ${live.ok ? 'LIVE_OK' : 'DEGRADED'} |`,
-    `| **Open Reader Audit Issues (`[Pinout/Spec Audit]`)** | ${issueValueCell} | ${issueStatusCell} |`,
+    `| **Open Reader Audit Issues (\`[Pinout/Spec Audit]\`)** | ${issueValueCell} | ${issueStatusCell} |`,
     '',
   ].join('\n');
 
