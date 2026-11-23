@@ -1,0 +1,158 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "ap7365-33yg-13-vs-lm1117impx-3-3-nopb",
+  "category": "ldo",
+  "part_a_slug": "ap7365-33yg-13",
+  "part_b_slug": "lm1117impx-3-3-nopb",
+  "part_a_opn": "AP7365-33YG-13",
+  "part_b_opn": "LM1117IMPX-3.3/NOPB",
+  "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+  "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+  "package_match": false,
+  "pinout_exact_match": false,
+  "exposed_pad_match": false,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "OUT",
+      "part_a_role": "VOUT",
+      "part_b_name": "ADJ/GND",
+      "part_b_role": "GND",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 1: AP7365-33YG-13 assigns OUT (VOUT) whereas LM1117IMPX-3.3/NOPB assigns ADJ/GND (GND) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "GND",
+      "part_a_role": "GND",
+      "part_b_name": "VOUT",
+      "part_b_role": "VOUT",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 2: AP7365-33YG-13 assigns GND (GND) whereas LM1117IMPX-3.3/NOPB assigns VOUT (VOUT) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "IN",
+      "part_a_role": "VIN",
+      "part_b_name": "VIN",
+      "part_b_role": "VIN",
+      "status": "MATCH",
+      "note": "Functionally identical VIN pin (IN vs VIN)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Package & Exposed Pad",
+      "unit": "—",
+      "part_a_value": "SOT-89-3 (Y (SOT89), EP: GND, p.1)",
+      "part_b_value": "SOT-223-3 (DCY, EP: VOUT, p.3)",
+      "winner": "CONTEXT",
+      "note": "Check PCB land pattern & height profile."
+    },
+    {
+      "metric": "Input Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "2 to 6 V (p.3)",
+      "part_b_value": "4.75 to 15 V (p.7/p.4)",
+      "winner": "CONTEXT",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
+    },
+    {
+      "metric": "Absolute Max Input Voltage",
+      "unit": "V",
+      "part_a_value": "6.5 V (p.3)",
+      "part_b_value": "20 V (p.4)",
+      "winner": "B",
+      "note": "Higher Vin,abs improves survivability against hot-plug and inductive bus spikes."
+    },
+    {
+      "metric": "Output Voltage & Accuracy",
+      "unit": "V / %",
+      "part_a_value": "3.3 V ±2% (p.3)",
+      "part_b_value": "3.3 V ±1% (p.7)",
+      "winner": "B",
+      "note": "Tighter Vout tolerance improves ADC reference and digital rail margin."
+    },
+    {
+      "metric": "Max Output Current (Iout)",
+      "unit": "mA",
+      "part_a_value": "600 mA (p.3)",
+      "part_b_value": "800 mA (p.7)",
+      "winner": "B",
+      "note": "Actual usable continuous Iout is also bounded by package θJA thermal derating."
+    },
+    {
+      "metric": "Quiescent Current (Iq, typ)",
+      "unit": "µA",
+      "part_a_value": "35 µA (p.3)",
+      "part_b_value": "5000 µA (p.8)",
+      "winner": "A",
+      "note": "Lower Iq directly extends sleep-mode battery life in always-on IoT/portable rails."
+    },
+    {
+      "metric": "Dropout Voltage (Vdo, typ)",
+      "unit": "mV",
+      "part_a_value": "300 mV (p.3)",
+      "part_b_value": "1200 mV (p.8)",
+      "winner": "A",
+      "note": "Lower dropout allows regulation deeper into Li-ion / 3.7 V discharge curves."
+    },
+    {
+      "metric": "Ceramic Cap Stability & Min Cout",
+      "unit": "µF / Ω",
+      "part_a_value": "Ceramic OK · >=1 µF · Low-ESR MLCC compatible",
+      "part_b_value": "ESR-Sensitive · >=10 µF · 0.3–22 Ω (p.15)",
+      "winner": "A",
+      "note": "Non-ceramic-stable LDOs oscillate with low-ESR MLCCs unless series resistance or tantalum is used."
+    },
+    {
+      "metric": "PSRR (typ)",
+      "unit": "dB",
+      "part_a_value": "65 dB (p.3)",
+      "part_b_value": "75 dB (p.8)",
+      "winner": "B",
+      "note": "Higher PSRR attenuates upstream switching-converter ripple on analog/RF rails."
+    },
+    {
+      "metric": "Output Noise (typ)",
+      "unit": "µVrms",
+      "part_a_value": "Not specified",
+      "part_b_value": "99 µVrms (p.8)",
+      "winner": "B",
+      "note": "Critical for RF VCOs, low-noise ADCs, and precision sensor excitation."
+    },
+    {
+      "metric": "Thermal Resistance (θJA)",
+      "unit": "°C/W",
+      "part_a_value": "133 °C/W (p.4)",
+      "part_b_value": "61.6 °C/W (p.4)",
+      "winner": "B",
+      "note": "Lower θJA yields lower junction temperature rise ΔTj = (Vin - Vout) × Iout × θJA."
+    },
+    {
+      "metric": "Max Junction Temp (Tj,max)",
+      "unit": "°C",
+      "part_a_value": "150 °C (p.3)",
+      "part_b_value": "125 °C (p.4)",
+      "winner": "A",
+      "note": "Keep steady-state Tj at least 15–25 °C below Tj,max for production reliability."
+    }
+  ],
+  "swap_risks": [
+    "CRITICAL PACKAGE MISMATCH: AP7365-33YG-13 uses SOT-89-3 (3-pin, Y (SOT89)) while LM1117IMPX-3.3/NOPB uses SOT-223-3 (3-pin, DCY); PCB footprint redesign is mandatory.",
+    "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (VOUT vs GND), Pin 2 (GND vs VOUT). Soldering LM1117IMPX-3.3/NOPB onto a AP7365-33YG-13 footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
+    "CRITICAL SHORT-CIRCUIT HAZARD: Exposed thermal pad/tab net conflict (GND vs VOUT) — direct swap will short power rails.",
+    "CRITICAL CAPACITOR ESR OSCILLATION RISK: AP7365-33YG-13 is stable with low-ESR ceramic MLCCs (>= 1 µF, p.1), whereas LM1117IMPX-3.3/NOPB is NOT ceramic-cap stable (ESR window: 0.3–22 Ω (p.15)). Using an ultra-low-ESR MLCC on LM1117IMPX-3.3/NOPB can trigger control-loop oscillation.",
+    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs by 10x (AP7365-33YG-13: 1 µF p.1 vs LM1117IMPX-3.3/NOPB: 10 µF p.15); account for MLCC DC-bias derating.",
+    "HIGH INPUT VOLTAGE RATING DROP: AP7365-33YG-13 is rated to only 6 V rec. (6.5 V abs max, p.3) vs LM1117IMPX-3.3/NOPB at 15 V rec. (20 V abs max, p.4). Verify worst-case input transient spikes.",
+    "HIGH LOAD CURRENT DERATING: AP7365-33YG-13 supplies up to 600 mA (p.3) compared to LM1117IMPX-3.3/NOPB at 800 mA (p.7); confirm peak inrush and thermal dissipation margin.",
+    "CAUTION DROPOUT HEADROOM: Typical dropout differs (AP7365-33YG-13: 300 mV p.3 vs LM1117IMPX-3.3/NOPB: 1200 mV p.8); verify Vin,min - Vout >= Vdo across temperature and load corners.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: AP7365-33YG-13 has a lower Vin,abs,max rating (6.5 V, p.3) than LM1117IMPX-3.3/NOPB (20 V, p.4); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 6.5 V.",
+    "HIGH THERMAL MARGIN: Package θJA is 116% higher on AP7365-33YG-13 (AP7365-33YG-13: 133 °C/W p.4 vs LM1117IMPX-3.3/NOPB: 61.6 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH MINIMUM SUPPLY FLOOR: LM1117IMPX-3.3/NOPB requires Vin,min >= 4.75 V (p.7) vs 2 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (AP7365-33YG-13: -40..85 °C Industrial (-40°C to +85°C TA; TJ max +150°C, TSD +145°C) vs LM1117IMPX-3.3/NOPB: -40..125 °C Industrial (-40°C to +125°C TJ, LM1117I grade)); AP7365-33YG-13 hot limit only 85 °C — verify product ambient qualification before swapping.",
+    "CAUTION LIFECYCLE STATUS (NRND): AP7365-33YG-13 is flagged NRND by Diodes Incorporated; do not design into new production layouts — evaluate Active alternatives."
+  ],
+  "engineering_verdict": "AP7365-33YG-13 (Diodes Incorporated, SOT-89-3) and LM1117IMPX-3.3/NOPB (Texas Instruments, SOT-223-3) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (VOUT vs GND), Pin 2 (GND vs VOUT); exposed pad / thermal tab net mismatch. Specific pin conflicts: Pin 1 (VOUT vs GND), Pin 2 (GND vs VOUT). Under a representative 5 V → 3.3 V rail at 150 mA (255 mW), estimated self-heating is ΔTj ≈ 33.9 °C on AP7365-33YG-13 (θJA 133 °C/W) vs 15.7 °C on LM1117IMPX-3.3/NOPB (θJA 61.6 °C/W), while quiescent draw spans a 142.9x ratio (35 µA (p.3) vs 5000 µA (p.8)). Primary bench gotchas to watch: AP7365-33YG-13 \"NRND Lifecycle Banner on Page 1 — Diodes Inc Directs New Designs to AP7366\" (p.1) and LM1117IMPX-3.3/NOPB \"Strict 0.3–22 Ohm ESR Window — Unstable With Direct MLCC Ceramic Output Capacitors\" (p.15). BOM decision: Choose AP7365-33YG-13 when battery sleep budget demands 35 µA Iq or your BOM standardizes on low-ESR MLCC ceramic output capacitors; choose LM1117IMPX-3.3/NOPB when load current exceeds 600 mA (up to 800 mA) or input rails climb above 6 V (rated to 15 V). Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
+  "generated_at": "2026-11-23"
+}

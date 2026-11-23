@@ -4,7 +4,7 @@
   "target_slug": "tlv73333pdbvr",
   "target_opn": "TLV73333PDBVR",
   "category": "ldo",
-  "summary": "Datasheet-verified cross-reference alternatives for TLV73333PDBVR (Texas Instruments, SOT-23-5, fixed-ldo): evaluated 34 same-category OPNs and shortlisted the top 9 ranked replacements (0 Level 1 Candidate Drop-In, 9 Level 2 Tuning Required, and 0 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for TLV73333PDBVR (Texas Instruments, SOT-23-5, fixed-ldo): evaluated 37 same-category OPNs and shortlisted the top 10 ranked replacements (0 Level 1 Candidate Drop-In, 10 Level 2 Tuning Required, and 0 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "tps7a2033pdbvr",
@@ -47,6 +47,20 @@
       "key_advantage": "Diodes Incorporated multi-source option in SOT-23-5",
       "key_tradeoff": "Higher Iq (60 µA vs 34 µA); Higher dropout (170 mV vs 125 mV)",
       "vs_slug": "ap2127k-3-3trg1-vs-tlv73333pdbvr"
+    },
+    {
+      "alt_slug": "tlv74333pdbvr",
+      "alt_opn": "TLV74333PDBVR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOT-23-5",
+      "lifecycle_status": "Active",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Value / Second-Source",
+      "score": 71,
+      "key_advantage": "Texas Instruments multi-source option in SOT-23-5",
+      "key_tradeoff": "Verify θJA (228.4 °C/W) and latest Texas Instruments datasheet revision",
+      "vs_slug": "tlv73333pdbvr-vs-tlv74333pdbvr"
     },
     {
       "alt_slug": "tlv70233dbvr",

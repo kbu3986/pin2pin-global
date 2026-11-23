@@ -4,7 +4,7 @@
   "target_slug": "az1117ch-3-3trg1",
   "target_opn": "AZ1117CH-3.3TRG1",
   "category": "ldo",
-  "summary": "Datasheet-verified cross-reference alternatives for AZ1117CH-3.3TRG1 (Diodes Incorporated, SOT-223-3, fixed-ldo): evaluated 34 same-category OPNs and shortlisted the top 9 ranked replacements (1 Level 1 Candidate Drop-In, 4 Level 2 Tuning Required, and 4 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for AZ1117CH-3.3TRG1 (Diodes Incorporated, SOT-223-3, fixed-ldo): evaluated 37 same-category OPNs and shortlisted the top 9 ranked replacements (1 Level 1 Candidate Drop-In, 4 Level 2 Tuning Required, and 4 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "tlv1117-33idcyr",

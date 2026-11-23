@@ -4,7 +4,7 @@
   "target_slug": "tps7a0233pdbvr",
   "target_opn": "TPS7A0233PDBVR",
   "category": "ldo",
-  "summary": "Datasheet-verified cross-reference alternatives for TPS7A0233PDBVR (Texas Instruments, SOT-23-5, fixed-ldo): evaluated 34 same-category OPNs and shortlisted the top 11 ranked replacements (2 Level 1 Candidate Drop-In, 7 Level 2 Tuning Required, and 2 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for TPS7A0233PDBVR (Texas Instruments, SOT-23-5, fixed-ldo): evaluated 37 same-category OPNs and shortlisted the top 11 ranked replacements (2 Level 1 Candidate Drop-In, 7 Level 2 Tuning Required, and 2 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "tps7a2033pdbvr",

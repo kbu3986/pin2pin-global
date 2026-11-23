@@ -1,0 +1,196 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "lm2904dr-vs-tlv2372idr",
+  "category": "opamp",
+  "part_a_slug": "lm2904dr",
+  "part_b_slug": "tlv2372idr",
+  "part_a_opn": "LM2904DR",
+  "part_b_opn": "TLV2372IDR",
+  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+  "package_match": true,
+  "pinout_exact_match": true,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "OUT1",
+      "part_a_role": "OUT_A",
+      "part_b_name": "1OUT",
+      "part_b_role": "OUT_A",
+      "status": "MATCH",
+      "note": "Functionally identical OUT_A pin (OUT1 vs 1OUT)."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "IN1-",
+      "part_a_role": "IN_NEG_A",
+      "part_b_name": "1IN-",
+      "part_b_role": "IN_NEG_A",
+      "status": "MATCH",
+      "note": "Functionally identical IN_NEG_A pin (IN1- vs 1IN-)."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "IN1+",
+      "part_a_role": "IN_POS_A",
+      "part_b_name": "1IN+",
+      "part_b_role": "IN_POS_A",
+      "status": "MATCH",
+      "note": "Functionally identical IN_POS_A pin (IN1+ vs 1IN+)."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "V-",
+      "part_a_role": "VEE",
+      "part_b_name": "GND",
+      "part_b_role": "VEE",
+      "status": "MATCH",
+      "note": "Functionally identical VEE pin (V- vs GND)."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "IN2+",
+      "part_a_role": "IN_POS_B",
+      "part_b_name": "2IN+",
+      "part_b_role": "IN_POS_B",
+      "status": "MATCH",
+      "note": "Functionally identical IN_POS_B pin (IN2+ vs 2IN+)."
+    },
+    {
+      "pin": 6,
+      "part_a_name": "IN2-",
+      "part_a_role": "IN_NEG_B",
+      "part_b_name": "2IN-",
+      "part_b_role": "IN_NEG_B",
+      "status": "MATCH",
+      "note": "Functionally identical IN_NEG_B pin (IN2- vs 2IN-)."
+    },
+    {
+      "pin": 7,
+      "part_a_name": "OUT2",
+      "part_a_role": "OUT_B",
+      "part_b_name": "2OUT",
+      "part_b_role": "OUT_B",
+      "status": "MATCH",
+      "note": "Functionally identical OUT_B pin (OUT2 vs 2OUT)."
+    },
+    {
+      "pin": 8,
+      "part_a_name": "V+",
+      "part_a_role": "VCC",
+      "part_b_name": "VDD",
+      "part_b_role": "VCC",
+      "status": "MATCH",
+      "note": "Functionally identical VCC pin (V+ vs VDD)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Device Kind & Output Stage",
+      "unit": "—",
+      "part_a_value": "opamp (push-pull)",
+      "part_b_value": "opamp (push-pull)",
+      "winner": "TIE",
+      "note": "Op-amps (internally compensated for linear feedback) and comparators (uncompensated open-loop switching) are NOT drop-in interchangeable."
+    },
+    {
+      "metric": "Package & Channel Count",
+      "unit": "—",
+      "part_a_value": "SOIC-8 · 2 ch (D (8-Pin SOIC), p.3)",
+      "part_b_value": "SOIC-8 · 2 ch (D (8-Pin SOIC), p.4)",
+      "winner": "TIE",
+      "note": "Single SOT-23-5 op-amps vary in pin ordering across vendors; verify Pin 1–5."
+    },
+    {
+      "metric": "Supply Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "3 to 26 V (p.5)",
+      "part_b_value": "2.7 to 16 V (p.8)",
+      "winner": "CONTEXT",
+      "note": "A part wins only if its recommended Vs range strictly encompasses the counterpart on both ends."
+    },
+    {
+      "metric": "Absolute Max Supply (Vs,abs)",
+      "unit": "V",
+      "part_a_value": "26 V (p.4)",
+      "part_b_value": "16.5 V (p.8)",
+      "winner": "A",
+      "note": "Exceeding Vs,abs causes immediate gate-oxide or junction breakdown."
+    },
+    {
+      "metric": "Gain-Bandwidth Product (GBWP)",
+      "unit": "MHz",
+      "part_a_value": "0.7 MHz (p.11)",
+      "part_b_value": "3 MHz (p.13)",
+      "winner": "B",
+      "note": "Closed-loop -3 dB bandwidth scales as f_-3dB = GBWP / Acl."
+    },
+    {
+      "metric": "Slew Rate / Propagation Delay",
+      "unit": "V/µs · ns",
+      "part_a_value": "SR: 0.3 V/µs (p.11)",
+      "part_b_value": "SR: 2.4 V/µs (p.13)",
+      "winner": "B",
+      "note": "Controls large-signal full-power bandwidth SR / (2π·Vpeak) or comparator switching speed."
+    },
+    {
+      "metric": "Input Offset Voltage (Vos, max)",
+      "unit": "mV",
+      "part_a_value": "7 mV (p.11)",
+      "part_b_value": "4.5 mV (p.11)",
+      "winner": "B",
+      "note": "Lower Vos minimizes DC error in current-shunt and sensor bridge amplifiers."
+    },
+    {
+      "metric": "Input Bias Current (Ib, typ)",
+      "unit": "pA",
+      "part_a_value": "20000 pA (p.11)",
+      "part_b_value": "1 pA (p.11)",
+      "winner": "B",
+      "note": "CMOS/JFET pA-class inputs avoid offset voltage drops across high-impedance (>100 kΩ) sensors."
+    },
+    {
+      "metric": "Quiescent Current / Ch (Iq)",
+      "unit": "µA/ch",
+      "part_a_value": "350 µA/ch (p.11)",
+      "part_b_value": "550 µA/ch (p.13)",
+      "winner": "A",
+      "note": "Multiply by channel count for total IC standby current draw."
+    },
+    {
+      "metric": "Rail-to-Rail Input / Output",
+      "unit": "—",
+      "part_a_value": "IN: No · OUT: No",
+      "part_b_value": "IN: Yes · OUT: Yes",
+      "winner": "B",
+      "note": "RRIO prevents clipping on low-voltage 3.3 V single-supply ADC buffers."
+    },
+    {
+      "metric": "CMRR (typ) & Input Noise",
+      "unit": "dB · nV/√Hz",
+      "part_a_value": "80 dB (p.11) · 40 nV/√Hz (p.11)",
+      "part_b_value": "72 dB (p.11) · 39 nV/√Hz (p.14)",
+      "winner": "A",
+      "note": "Winner requires superiority on both CMRR (higher) and input voltage noise (lower); mixed tradeoffs stay CONTEXT."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "124.7 °C/W (p.5) · 150 °C",
+      "part_b_value": "138.4 °C/W (p.9) · 150 °C",
+      "winner": "A",
+      "note": "Important when driving heavy resistive loads or high supply rails."
+    }
+  ],
+  "swap_risks": [
+    "CRITICAL SUPPLY VOLTAGE RATING: TLV2372IDR is limited to 16 V max (16.5 V abs max, p.8) whereas LM2904DR supports up to 26 V (26 V abs max, p.4). Installing a 5.5 V CMOS part on a 12 V–24 V rail causes instant breakdown.",
+    "HIGH HEADROOM / CLIPPING RISK: Rail-to-rail capability differs (LM2904DR: IN=Non-RR, OUT=Non-RR vs TLV2372IDR: IN=RR, OUT=RR); verify input common-mode range (Vicm) and output voltage swing against ADC full-scale range.",
+    "CAUTION BANDWIDTH & PHASE MARGIN: GBWP differs by 4.3x (LM2904DR: 0.7 MHz p.11 vs TLV2372IDR: 3 MHz p.13); higher-bandwidth replacements can oscillate with capacitive loads or stray feedback capacitance without an isolation resistor.",
+    "CAUTION SLEW RATE DIFFERENCE: Slew rate differs by 8x (LM2904DR: 0.3 V/µs p.11 vs TLV2372IDR: 2.4 V/µs p.13); check full-power bandwidth SR / (2π·Vpeak).",
+    "HIGH INPUT BIAS CURRENT SHIFT: Typical Ib differs by 20000x (LM2904DR: 20000 pA p.11 vs TLV2372IDR: 1 pA p.11); high-impedance sensor dividers (>100 kΩ) suffer severe Ib·R DC offset error when swapping from CMOS/JFET to bipolar inputs.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: TLV2372IDR has a lower Vs,abs,max rating (16.5 V, p.8) than LM2904DR (26 V, p.4); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 16.5 V."
+  ],
+  "engineering_verdict": "LM2904DR (Texas Instruments, SOIC-8) and TLV2372IDR (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because supply voltage Vs,max drops >=20%; rail-to-rail input/output swing differs; GBWP differs 4.3x. Signal-chain deltas: GBWP 0.7 MHz (p.11) vs 3 MHz (p.13), supply ceiling 26 V (p.5) vs 16 V (p.8), Vos 7 mV (p.11) vs 4.5 mV (p.11), Ib 20000x gap (20000 vs 1 pA), voltage noise 40 vs 39 nV/√Hz. Primary bench gotchas to watch: LM2904DR \"Hidden 26 V Supply Ceiling Trap When Swapping From 30 V/32 V LM358DR to 'Extended-Temp' LM2904DR!\" (p.4) and TLV2372IDR \"Razor-Thin 0.5 V Supply Margin (16.5 V Abs Max vs 16 V Rec Max) — Unsafe on ±8 V Ripple or 24 V Rails\" (p.8). BOM decision: Choose LM2904DR when supply rails exceed 16 V (rated up to 26 V); choose TLV2372IDR when closed-loop signal bandwidth requires 3 MHz GBWP or high-impedance sensors require pA-class input bias (1 pA). Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.4) and official datasheets on hardware prototypes prior to production.",
+  "generated_at": "2026-11-23"
+}

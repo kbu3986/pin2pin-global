@@ -4,7 +4,7 @@
   "target_slug": "tps61200drcr",
   "target_opn": "TPS61200DRCR",
   "category": "dcdc",
-  "summary": "Datasheet-verified cross-reference alternatives for TPS61200DRCR (Texas Instruments, VSON-10, boost): evaluated 22 same-category OPNs and shortlisted the top 9 ranked replacements (0 Level 1 Candidate Drop-In, 0 Level 2 Tuning Required, and 9 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for TPS61200DRCR (Texas Instruments, VSON-10, boost): evaluated 25 same-category OPNs and shortlisted the top 9 ranked replacements (0 Level 1 Candidate Drop-In, 0 Level 2 Tuning Required, and 9 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "lm27313xmf-nopb",

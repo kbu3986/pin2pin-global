@@ -4,7 +4,7 @@
   "target_slug": "ap7361c-33e-13",
   "target_opn": "AP7361C-33E-13",
   "category": "ldo",
-  "summary": "Datasheet-verified cross-reference alternatives for AP7361C-33E-13 (Diodes Incorporated, SOT-223-3, fixed-ldo): evaluated 34 same-category OPNs and shortlisted the top 9 ranked replacements (0 Level 1 Candidate Drop-In, 1 Level 2 Tuning Required, and 8 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for AP7361C-33E-13 (Diodes Incorporated, SOT-223-3, fixed-ldo): evaluated 37 same-category OPNs and shortlisted the top 10 ranked replacements (0 Level 1 Candidate Drop-In, 1 Level 2 Tuning Required, and 9 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "lm2937imp-3-3-nopb",
@@ -131,6 +131,20 @@
       "key_advantage": "Higher Vin,max (15 V vs 6 V)",
       "key_tradeoff": "Pinout or exposed-pad mismatch requires PCB rerouting; Higher Iq (5000 µA vs 60 µA)",
       "vs_slug": "ap7361c-33e-13-vs-lm1117impx-3-3-nopb"
+    },
+    {
+      "alt_slug": "ap7365-33yg-13",
+      "alt_opn": "AP7365-33YG-13",
+      "manufacturer": "Diodes Incorporated",
+      "package_code": "SOT-89-3",
+      "lifecycle_status": "NRND",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+      "tier_tag": "Lifecycle Warning (EOL/NRND)",
+      "score": 18,
+      "key_advantage": "Lower Iq (35 µA vs 60 µA)",
+      "key_tradeoff": "[NRND] Not recommended for new production designs; Package change (SOT-223-3 → SOT-89-3) requires PCB layout mod",
+      "vs_slug": "ap7361c-33e-13-vs-ap7365-33yg-13"
     }
   ],
   "selection_checklist": [

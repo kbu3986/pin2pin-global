@@ -4,7 +4,7 @@
   "target_slug": "ap63300wu-7",
   "target_opn": "AP63300WU-7",
   "category": "dcdc",
-  "summary": "Datasheet-verified cross-reference alternatives for AP63300WU-7 (Diodes Incorporated, TSOT-23-6, buck): evaluated 22 same-category OPNs and shortlisted the top 9 ranked replacements (0 Level 1 Candidate Drop-In, 0 Level 2 Tuning Required, and 9 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for AP63300WU-7 (Diodes Incorporated, TSOT-23-6, buck): evaluated 25 same-category OPNs and shortlisted the top 9 ranked replacements (0 Level 1 Candidate Drop-In, 0 Level 2 Tuning Required, and 9 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "ap62200wu-7",
@@ -49,6 +49,20 @@
       "vs_slug": null
     },
     {
+      "alt_slug": "ap63205wu-7",
+      "alt_opn": "AP63205WU-7",
+      "manufacturer": "Diodes Incorporated",
+      "package_code": "TSOT-23-6",
+      "lifecycle_status": "Active",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+      "tier_tag": "Functional Alternative (Layout Change)",
+      "score": 45,
+      "key_advantage": "Diodes Incorporated multi-source option in TSOT-23-6",
+      "key_tradeoff": "Not drop-in: fixed vs adjustable output feedback footprint mismatch (R1/R2 divider); Lower Iout rating (2000 mA vs 3000 mA)",
+      "vs_slug": null
+    },
+    {
       "alt_slug": "lm2596sx-5-0-nopb",
       "alt_opn": "LM2596SX-5.0/NOPB",
       "manufacturer": "Texas Instruments",
@@ -60,6 +74,20 @@
       "score": 45,
       "key_advantage": "Wider Vin,max (40 V vs 32 V)",
       "key_tradeoff": "Not drop-in: synchronous vs non-synchronous rectification mismatch (external Schottky footprint); Higher Iq (5000 µA vs 22 µA)",
+      "vs_slug": null
+    },
+    {
+      "alt_slug": "lmr33630addar",
+      "alt_opn": "LMR33630ADDAR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOIC-8E",
+      "lifecycle_status": "Active",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+      "tier_tag": "Functional Alternative (Layout Change)",
+      "score": 45,
+      "key_advantage": "Texas Instruments multi-source option in SOIC-8E",
+      "key_tradeoff": "Package change (TSOT-23-6 → SOIC-8E) requires PCB layout mod",
       "vs_slug": null
     },
     {
@@ -77,45 +105,17 @@
       "vs_slug": null
     },
     {
-      "alt_slug": "tps54331dr",
-      "alt_opn": "TPS54331DR",
+      "alt_slug": "tps5430ddar",
+      "alt_opn": "TPS5430DDAR",
       "manufacturer": "Texas Instruments",
-      "package_code": "SOIC-8",
+      "package_code": "SOIC-8E",
       "lifecycle_status": "Active",
       "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
       "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
       "tier_tag": "Functional Alternative (Layout Change)",
       "score": 45,
-      "key_advantage": "Texas Instruments multi-source option in SOIC-8",
-      "key_tradeoff": "Not drop-in: synchronous vs non-synchronous rectification mismatch (external Schottky footprint); Higher Iq (110 µA vs 22 µA)",
-      "vs_slug": null
-    },
-    {
-      "alt_slug": "tps563201ddcr",
-      "alt_opn": "TPS563201DDCR",
-      "manufacturer": "Texas Instruments",
-      "package_code": "SOT-23-6",
-      "lifecycle_status": "Active",
-      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
-      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
-      "tier_tag": "Functional Alternative (Layout Change)",
-      "score": 45,
-      "key_advantage": "Texas Instruments multi-source option in SOT-23-6",
-      "key_tradeoff": "Package change (TSOT-23-6 → SOT-23-6) requires PCB layout mod; Higher Iq (120 µA vs 22 µA)",
-      "vs_slug": null
-    },
-    {
-      "alt_slug": "tps563208ddcr",
-      "alt_opn": "TPS563208DDCR",
-      "manufacturer": "Texas Instruments",
-      "package_code": "SOT-23-6",
-      "lifecycle_status": "Active",
-      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
-      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
-      "tier_tag": "Functional Alternative (Layout Change)",
-      "score": 45,
-      "key_advantage": "Texas Instruments multi-source option in SOT-23-6",
-      "key_tradeoff": "Package change (TSOT-23-6 → SOT-23-6) requires PCB layout mod; Higher Iq (350 µA vs 22 µA)",
+      "key_advantage": "Texas Instruments multi-source option in SOIC-8E",
+      "key_tradeoff": "Not drop-in: synchronous vs non-synchronous rectification mismatch (external Schottky footprint); Higher Iq (2000 µA vs 22 µA)",
       "vs_slug": null
     },
     {

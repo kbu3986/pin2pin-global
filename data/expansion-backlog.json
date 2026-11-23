@@ -226,7 +226,7 @@
     },
     {
       "wave": "2B",
-      "status": "pending",
+      "status": "completed",
       "batch_dir": "wave2b-ldo",
       "category": "ldo",
       "opn": "AP7365-33YG-13",
@@ -235,7 +235,8 @@
       "manufacturer": "Diodes Incorporated",
       "expected_package": "SOT-89-3",
       "hint_pdf_url": "https://www.diodes.com/assets/Datasheets/AP7365.pdf",
-      "hint_product_url": "https://www.diodes.com/part/view/AP7365"
+      "hint_product_url": "https://www.diodes.com/part/view/AP7365",
+      "completed_at": "2026-11-23"
     },
     {
       "wave": "2B",
@@ -252,7 +253,7 @@
     },
     {
       "wave": "2B",
-      "status": "pending",
+      "status": "completed",
       "batch_dir": "wave2b-ldo",
       "category": "ldo",
       "opn": "TPS76333DBVR",
@@ -261,11 +262,12 @@
       "manufacturer": "Texas Instruments",
       "expected_package": "SOT-23-5",
       "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tps763.pdf",
-      "hint_product_url": "https://www.ti.com/product/TPS763"
+      "hint_product_url": "https://www.ti.com/product/TPS763",
+      "completed_at": "2026-11-23"
     },
     {
       "wave": "2B",
-      "status": "pending",
+      "status": "completed",
       "batch_dir": "wave2b-ldo",
       "category": "ldo",
       "opn": "TLV74333PDBVR",
@@ -274,7 +276,8 @@
       "manufacturer": "Texas Instruments",
       "expected_package": "SOT-23-5",
       "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tlv743p.pdf",
-      "hint_product_url": "https://www.ti.com/product/TLV743P"
+      "hint_product_url": "https://www.ti.com/product/TLV743P",
+      "completed_at": "2026-11-23"
     },
     {
       "wave": "2B",
@@ -347,7 +350,7 @@
     },
     {
       "wave": "2C",
-      "status": "pending",
+      "status": "completed",
       "batch_dir": "wave2c-dcdc",
       "category": "dcdc",
       "opn": "TPS5430DDAR",
@@ -356,7 +359,8 @@
       "manufacturer": "Texas Instruments",
       "expected_package": "SOIC-8E",
       "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tps5430.pdf",
-      "hint_product_url": "https://www.ti.com/product/TPS5430"
+      "hint_product_url": "https://www.ti.com/product/TPS5430",
+      "completed_at": "2026-11-23"
     },
     {
       "wave": "2C",
@@ -386,7 +390,7 @@
     },
     {
       "wave": "2C",
-      "status": "pending",
+      "status": "completed",
       "batch_dir": "wave2c-dcdc",
       "category": "dcdc",
       "opn": "LMR33630ADDAR",
@@ -395,11 +399,12 @@
       "manufacturer": "Texas Instruments",
       "expected_package": "SOIC-8E",
       "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/lmr33630.pdf",
-      "hint_product_url": "https://www.ti.com/product/LMR33630"
+      "hint_product_url": "https://www.ti.com/product/LMR33630",
+      "completed_at": "2026-11-23"
     },
     {
       "wave": "2C",
-      "status": "pending",
+      "status": "completed",
       "batch_dir": "wave2c-dcdc",
       "category": "dcdc",
       "opn": "AP63205WU-7",
@@ -408,7 +413,8 @@
       "manufacturer": "Diodes Incorporated",
       "expected_package": "TSOT-23-6",
       "hint_pdf_url": "https://www.diodes.com/assets/Datasheets/AP63200-AP63201-AP63203-AP63205.pdf",
-      "hint_product_url": "https://www.diodes.com/part/view/AP63205"
+      "hint_product_url": "https://www.diodes.com/part/view/AP63205",
+      "completed_at": "2026-11-23"
     },
     {
       "wave": "2C",
@@ -465,7 +471,7 @@
     },
     {
       "wave": "2D",
-      "status": "pending",
+      "status": "completed",
       "batch_dir": "wave2d-opamp",
       "category": "opamp",
       "opn": "TLV2372IDR",
@@ -474,7 +480,8 @@
       "manufacturer": "Texas Instruments",
       "expected_package": "SOIC-8",
       "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tlv2372.pdf",
-      "hint_product_url": "https://www.ti.com/product/TLV2372"
+      "hint_product_url": "https://www.ti.com/product/TLV2372",
+      "completed_at": "2026-11-23"
     },
     {
       "wave": "2D",
@@ -505,7 +512,7 @@
     },
     {
       "wave": "2D",
-      "status": "pending",
+      "status": "completed",
       "batch_dir": "wave2d-opamp",
       "category": "opamp",
       "opn": "LM2904DR",
@@ -514,7 +521,8 @@
       "manufacturer": "Texas Instruments",
       "expected_package": "SOIC-8",
       "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/lm2904.pdf",
-      "hint_product_url": "https://www.ti.com/product/LM2904"
+      "hint_product_url": "https://www.ti.com/product/LM2904",
+      "completed_at": "2026-11-23"
     },
     {
       "wave": "2D",
@@ -557,6 +565,201 @@
       "hint_pdf_url": "https://www.onsemi.com/pdf/datasheet/lm393-d.pdf",
       "hint_product_url": "https://www.onsemi.com/products/amplifiers-comparators/comparators/lm393",
       "completed_at": "2026-11-23"
+    },
+    {
+      "wave": "3A",
+      "status": "pending",
+      "batch_dir": "wave3a-ldo",
+      "category": "ldo",
+      "opn": "TLV70433DBVR",
+      "slug": "tlv70433dbvr",
+      "family": "TLV704",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOT-23-5",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tlv704.pdf",
+      "hint_product_url": "https://www.ti.com/product/TLV704"
+    },
+    {
+      "wave": "3A",
+      "status": "pending",
+      "batch_dir": "wave3a-ldo",
+      "category": "ldo",
+      "opn": "TPS73133DBVR",
+      "slug": "tps73133dbvr",
+      "family": "TPS731",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOT-23-5",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tps731.pdf",
+      "hint_product_url": "https://www.ti.com/product/TPS731"
+    },
+    {
+      "wave": "3A",
+      "status": "pending",
+      "batch_dir": "wave3a-ldo",
+      "category": "ldo",
+      "opn": "AP2114H-3.3TRG1",
+      "slug": "ap2114h-3-3trg1",
+      "family": "AP2114",
+      "manufacturer": "Diodes Incorporated",
+      "expected_package": "SOT-223-3",
+      "hint_pdf_url": "https://www.diodes.com/assets/Datasheets/AP2114.pdf",
+      "hint_product_url": "https://www.diodes.com/part/view/AP2114"
+    },
+    {
+      "wave": "3A",
+      "status": "pending",
+      "batch_dir": "wave3a-ldo",
+      "category": "ldo",
+      "opn": "AP7370-33SA-7",
+      "slug": "ap7370-33sa-7",
+      "family": "AP7370",
+      "manufacturer": "Diodes Incorporated",
+      "expected_package": "SOT-23-3",
+      "hint_pdf_url": "https://www.diodes.com/assets/Datasheets/AP7370.pdf",
+      "hint_product_url": "https://www.diodes.com/part/view/AP7370"
+    },
+    {
+      "wave": "3A",
+      "status": "pending",
+      "batch_dir": "wave3a-ldo",
+      "category": "ldo",
+      "opn": "NCP718ASN330T1G",
+      "slug": "ncp718asn330t1g",
+      "family": "NCP718",
+      "manufacturer": "onsemi",
+      "expected_package": "TSOT-23-5",
+      "hint_pdf_url": "https://www.onsemi.com/pdf/datasheet/ncp718-d.pdf",
+      "hint_product_url": "https://www.onsemi.com/products/power-management/linear-regulators-ldo/ncp718"
+    },
+    {
+      "wave": "3B",
+      "status": "pending",
+      "batch_dir": "wave3b-dcdc",
+      "category": "dcdc",
+      "opn": "TPS563200DDCR",
+      "slug": "tps563200ddcr",
+      "family": "TPS563200",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOT-23-6",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tps563200.pdf",
+      "hint_product_url": "https://www.ti.com/product/TPS563200"
+    },
+    {
+      "wave": "3B",
+      "status": "pending",
+      "batch_dir": "wave3b-dcdc",
+      "category": "dcdc",
+      "opn": "TPS54308DDCR",
+      "slug": "tps54308ddcr",
+      "family": "TPS54308",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOT-23-6",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tps54308.pdf",
+      "hint_product_url": "https://www.ti.com/product/TPS54308"
+    },
+    {
+      "wave": "3B",
+      "status": "pending",
+      "batch_dir": "wave3b-dcdc",
+      "category": "dcdc",
+      "opn": "TPS5450DDAR",
+      "slug": "tps5450ddar",
+      "family": "TPS5450",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOIC-8E",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tps5450.pdf",
+      "hint_product_url": "https://www.ti.com/product/TPS5450"
+    },
+    {
+      "wave": "3B",
+      "status": "pending",
+      "batch_dir": "wave3b-dcdc",
+      "category": "dcdc",
+      "opn": "LMR16030PDDAR",
+      "slug": "lmr16030pddar",
+      "family": "LMR16030",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOIC-8E",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/lmr16030.pdf",
+      "hint_product_url": "https://www.ti.com/product/LMR16030"
+    },
+    {
+      "wave": "3B",
+      "status": "pending",
+      "batch_dir": "wave3b-dcdc",
+      "category": "dcdc",
+      "opn": "AP64350SP-13",
+      "slug": "ap64350sp-13",
+      "family": "AP64350",
+      "manufacturer": "Diodes Incorporated",
+      "expected_package": "SOIC-8E",
+      "hint_pdf_url": "https://www.diodes.com/assets/Datasheets/AP64350.pdf",
+      "hint_product_url": "https://www.diodes.com/part/view/AP64350"
+    },
+    {
+      "wave": "3C",
+      "status": "pending",
+      "batch_dir": "wave3c-opamp",
+      "category": "opamp",
+      "opn": "OPA2197IDR",
+      "slug": "opa2197idr",
+      "family": "OPA2197",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOIC-8",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/opa2197.pdf",
+      "hint_product_url": "https://www.ti.com/product/OPA2197"
+    },
+    {
+      "wave": "3C",
+      "status": "pending",
+      "batch_dir": "wave3c-opamp",
+      "category": "opamp",
+      "opn": "OPA2376AIDR",
+      "slug": "opa2376aidr",
+      "family": "OPA2376",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOIC-8",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/opa2376.pdf",
+      "hint_product_url": "https://www.ti.com/product/OPA2376"
+    },
+    {
+      "wave": "3C",
+      "status": "pending",
+      "batch_dir": "wave3c-opamp",
+      "category": "opamp",
+      "opn": "TLV3501AIDBVR",
+      "slug": "tlv3501aidbvr",
+      "family": "TLV3501",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOT-23-5",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tlv3501.pdf",
+      "hint_product_url": "https://www.ti.com/product/TLV3501"
+    },
+    {
+      "wave": "3C",
+      "status": "pending",
+      "batch_dir": "wave3c-opamp",
+      "category": "opamp",
+      "opn": "TLV1701AIDBVR",
+      "slug": "tlv1701aidbvr",
+      "family": "TLV1701",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOT-23-5",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tlv1701.pdf",
+      "hint_product_url": "https://www.ti.com/product/TLV1701"
+    },
+    {
+      "wave": "3C",
+      "status": "pending",
+      "batch_dir": "wave3c-opamp",
+      "category": "opamp",
+      "opn": "NCS20072DR2G",
+      "slug": "ncs20072dr2g",
+      "family": "NCS20072",
+      "manufacturer": "onsemi",
+      "expected_package": "SOIC-8",
+      "hint_pdf_url": "https://www.onsemi.com/pdf/datasheet/ncs20071-d.pdf",
+      "hint_product_url": "https://www.onsemi.com/products/amplifiers-comparators/operational-amplifiers-op-amps/ncs20072"
     }
   ]
 }

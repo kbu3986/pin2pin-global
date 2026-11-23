@@ -4,7 +4,7 @@
   "target_slug": "tps562201ddcr",
   "target_opn": "TPS562201DDCR",
   "category": "dcdc",
-  "summary": "Datasheet-verified cross-reference alternatives for TPS562201DDCR (Texas Instruments, SOT-23-6, buck): evaluated 22 same-category OPNs and shortlisted the top 8 ranked replacements (0 Level 1 Candidate Drop-In, 6 Level 2 Tuning Required, and 2 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for TPS562201DDCR (Texas Instruments, SOT-23-6, buck): evaluated 25 same-category OPNs and shortlisted the top 8 ranked replacements (0 Level 1 Candidate Drop-In, 6 Level 2 Tuning Required, and 2 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "tps54202ddcr",
@@ -105,8 +105,8 @@
       "vs_slug": null
     },
     {
-      "alt_slug": "ap63300wu-7",
-      "alt_opn": "AP63300WU-7",
+      "alt_slug": "ap63205wu-7",
+      "alt_opn": "AP63205WU-7",
       "manufacturer": "Diodes Incorporated",
       "package_code": "TSOT-23-6",
       "lifecycle_status": "Active",
@@ -114,8 +114,8 @@
       "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
       "tier_tag": "Functional Alternative (Layout Change)",
       "score": 45,
-      "key_advantage": "Lower Iq (22 µA vs 120 µA); Higher Iout rating (3000 mA vs 2000 mA)",
-      "key_tradeoff": "Package change (SOT-23-6 → TSOT-23-6) requires PCB layout mod",
+      "key_advantage": "Lower Iq (22 µA vs 120 µA); Wider Vin,max (32 V vs 17 V)",
+      "key_tradeoff": "Not drop-in: fixed vs adjustable output feedback footprint mismatch (R1/R2 divider)",
       "vs_slug": null
     }
   ],

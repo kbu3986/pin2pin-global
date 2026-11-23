@@ -1,0 +1,180 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "ap62200wu-7-vs-ap63205wu-7",
+  "category": "dcdc",
+  "part_a_slug": "ap62200wu-7",
+  "part_b_slug": "ap63205wu-7",
+  "part_a_opn": "AP62200WU-7",
+  "part_b_opn": "AP63205WU-7",
+  "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+  "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+  "package_match": true,
+  "pinout_exact_match": false,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "GND",
+      "part_a_role": "GND",
+      "part_b_name": "FB",
+      "part_b_role": "FB",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 1: AP62200WU-7 assigns GND (GND) whereas AP63205WU-7 assigns FB (FB) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "SW",
+      "part_a_role": "SW",
+      "part_b_name": "EN",
+      "part_b_role": "EN",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 2: AP62200WU-7 assigns SW (SW) whereas AP63205WU-7 assigns EN (EN) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "VIN",
+      "part_a_role": "VIN",
+      "part_b_name": "VIN",
+      "part_b_role": "VIN",
+      "status": "MATCH",
+      "note": "Identical pin assignment (VIN / VIN)."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "FB",
+      "part_a_role": "FB",
+      "part_b_name": "GND",
+      "part_b_role": "GND",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 4: AP62200WU-7 assigns FB (FB) whereas AP63205WU-7 assigns GND (GND) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "EN",
+      "part_a_role": "EN",
+      "part_b_name": "SW",
+      "part_b_role": "SW",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 5: AP62200WU-7 assigns EN (EN) whereas AP63205WU-7 assigns SW (SW) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 6,
+      "part_a_name": "BST",
+      "part_a_role": "BOOT",
+      "part_b_name": "BST",
+      "part_b_role": "BOOT",
+      "status": "MATCH",
+      "note": "Identical pin assignment (BST / BOOT)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Topology & Rectification",
+      "unit": "—",
+      "part_a_value": "buck (Synchronous)",
+      "part_b_value": "buck (Synchronous)",
+      "winner": "TIE",
+      "note": "Synchronous rectification eliminates external Schottky diode loss and PCB area."
+    },
+    {
+      "metric": "Package & Exposed Pad",
+      "unit": "—",
+      "part_a_value": "TSOT-23-6 (TSOT26, EP: None, p.1)",
+      "part_b_value": "TSOT-23-6 (TSOT26 (WU), EP: None, p.1)",
+      "winner": "TIE",
+      "note": "Compact WSON/VSON/SOT-563 packages demand tight hot-loop layout and thermal vias."
+    },
+    {
+      "metric": "Input Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "4.2 to 18 V (p.4)",
+      "part_b_value": "3.8 to 32 V (p.4)",
+      "winner": "B",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
+    },
+    {
+      "metric": "Absolute Max Input Voltage",
+      "unit": "V",
+      "part_a_value": "20 V (p.4)",
+      "part_b_value": "35 V (p.4)",
+      "winner": "B",
+      "note": "Provides transient overshoot margin above nominal DC supply bus."
+    },
+    {
+      "metric": "Output Voltage Range",
+      "unit": "V",
+      "part_a_value": "0.8 to 7 V (p.1) (Adj)",
+      "part_b_value": "4.95 to 5.05 V (p.5) (Fixed)",
+      "winner": "CONTEXT",
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
+    },
+    {
+      "metric": "Max Current (Iout or Isw Limit)",
+      "unit": "mA",
+      "part_a_value": "2000 mA (p.1) [Iout max]",
+      "part_b_value": "2000 mA (p.1) [Iout max]",
+      "winner": "TIE",
+      "note": "Continuous DC output current rating; verify inductor Isat >= Iout + ΔIL/2 and thermal margin."
+    },
+    {
+      "metric": "Quiescent Current (Iq, typ)",
+      "unit": "µA",
+      "part_a_value": "135 µA (p.5)",
+      "part_b_value": "22 µA (p.5)",
+      "winner": "B",
+      "note": "Dominates light-load efficiency and standby battery runtime."
+    },
+    {
+      "metric": "Switching Frequency (fsw, typ)",
+      "unit": "kHz",
+      "part_a_value": "750 kHz (p.5)",
+      "part_b_value": "1100 kHz (p.5)",
+      "winner": "CONTEXT",
+      "note": "Higher fsw shrinks inductor footprint; lower fsw reduces switching losses & high-band EMI."
+    },
+    {
+      "metric": "Peak Efficiency",
+      "unit": "%",
+      "part_a_value": "94 % (p.2)",
+      "part_b_value": "94.5 % (p.2)",
+      "winner": "TIE",
+      "note": "Check datasheet efficiency curve at your exact Vin/Vout/Iout operating point."
+    },
+    {
+      "metric": "Recommended Inductor (L, typ)",
+      "unit": "µH",
+      "part_a_value": "3.3 µH (p.17)",
+      "part_b_value": "4.7 µH (p.13)",
+      "winner": "CONTEXT",
+      "note": "Ensure inductor Isat exceeds worst-case peak switch current by >= 20–30%."
+    },
+    {
+      "metric": "Feedback Reference (Vref)",
+      "unit": "V",
+      "part_a_value": "0.8 V (p.5)",
+      "part_b_value": "N/A (Fixed)",
+      "winner": "CONTEXT",
+      "note": "Any Vref discrepancy requires recalculating feedback divider R1/R2."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "70 °C/W (p.4) · 125 °C",
+      "part_b_value": "89 °C/W (p.4) · 125 °C",
+      "winner": "A",
+      "note": "Lower θJA improves continuous load thermal headroom on compact 2-layer PCBs."
+    }
+  ],
+  "swap_risks": [
+    "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (GND vs FB), Pin 2 (SW vs EN), Pin 4 (FB vs GND), Pin 5 (EN vs SW). Soldering AP63205WU-7 onto a AP62200WU-7 footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
+    "CRITICAL FEEDBACK LAYOUT DIFFERENCE: One converter is fixed-output while the other is adjustable; adding or removing the external R1/R2 feedback divider and feedforward capacitor requires a PCB layout change.",
+    "HIGH SWITCHING FREQUENCY SHIFT: fsw differs by 32% (AP62200WU-7: 750 kHz p.5 vs AP63205WU-7: 1100 kHz p.5); re-evaluate inductor core loss, ripple current ΔIL, output capacitor ESR ripple, and EMI harmonics.",
+    "CAUTION INDUCTOR RETUNING: Typical inductor differs (AP62200WU-7: 3.3 µH p.17 vs AP63205WU-7: 4.7 µH p.13); check inductor Isat against peak switch current limit.",
+    "HIGH INPUT VOLTAGE RANGE SHIFT: Recommended Vin,max differs (AP62200WU-7: 18 V p.4 vs AP63205WU-7: 32 V p.4); verify line transients stay below Vin,abs,max.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: AP62200WU-7 has a lower Vin,abs,max rating (20 V, p.4) than AP63205WU-7 (35 V, p.4); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 20 V.",
+    "HIGH THERMAL MARGIN: Package θJA is 27% higher on AP63205WU-7 (AP62200WU-7: 70 °C/W p.4 vs AP63205WU-7: 89 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (AP62200WU-7: -40..125 °C Industrial / Extended (-40°C to 125°C TJ) vs AP63205WU-7: -40..85 °C Industrial (-40°C to +85°C TA; TJ max +125°C rec / +160°C abs max)); AP63205WU-7 hot limit only 85 °C — verify product ambient qualification before swapping."
+  ],
+  "engineering_verdict": "AP62200WU-7 (Diodes Incorporated, TSOT-23-6) and AP63205WU-7 (Diodes Incorporated, TSOT-23-6) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to pinout mismatch on Pin 1 (GND vs FB), Pin 2 (SW vs EN), Pin 4 (FB vs GND), Pin 5 (EN vs SW); fixed vs adjustable output feedback footprint mismatch (R1/R2 divider). Specific pin conflicts: Pin 1 (GND vs FB), Pin 2 (SW vs EN), Pin 4 (FB vs GND), Pin 5 (EN vs SW). Power-stage deltas: buck (sync) vs buck (sync), switching frequency 750 kHz (p.5) vs 1100 kHz (p.5) (1.5x ratio), typical inductor 3.3 µH (p.17) vs 4.7 µH (p.13), output mode adjustable vs fixed, and package θJA 70 vs 89 °C/W. Primary bench gotchas to watch: AP62200WU-7 \"CRITICAL: EN Pin Abs Max Is ONLY 8.0 V — NEVER Tie Directly to 12 V / 18 V VIN!\" (p.4) and AP63205WU-7 \"Pin-Identical Fixed 5.0 V vs 3.3 V Overvoltage Hazard — AP63205WU-7 ('T5') vs AP63203WU-7 ('T4')\" (p.2). BOM decision: Choose AP62200WU-7 when matching your existing Diodes Incorporated TSOT-23-6 (TSOT26) qualification and -40..125 °C grade; choose AP63205WU-7 when bus voltage exceeds 18 V (rated to 32 V) or light-load battery standby needs 22 µA Iq. Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.1) and official datasheets on hardware prototypes prior to production.",
+  "generated_at": "2026-11-23"
+}

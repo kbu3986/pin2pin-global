@@ -3,11 +3,11 @@
   "locale": "en",
   "updated_at": "2026-11-23",
   "page_budget": {
-    "part_pages": 80,
-    "alt_pages": 80,
-    "vs_pages": 178,
+    "part_pages": 88,
+    "alt_pages": 88,
+    "vs_pages": 203,
     "static_hub_tool_guide_trust_pages": 30,
-    "total_en_pages": 368
+    "total_en_pages": 409
   },
   "parts": [
     {
@@ -969,6 +969,102 @@
       "expected_package": "SOT-23-5",
       "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tps7a24.pdf",
       "hint_product_url": "https://www.ti.com/product/TPS7A24"
+    },
+    {
+      "idx": 81,
+      "batch": "wave2c-dcdc",
+      "category": "dcdc",
+      "opn": "AP63205WU-7",
+      "slug": "ap63205wu-7",
+      "family": "AP63205",
+      "manufacturer": "Diodes Incorporated",
+      "expected_package": "TSOT-23-6",
+      "hint_pdf_url": "https://www.diodes.com/assets/Datasheets/AP63200-AP63201-AP63203-AP63205.pdf",
+      "hint_product_url": "https://www.diodes.com/part/view/AP63205"
+    },
+    {
+      "idx": 82,
+      "batch": "wave2b-ldo",
+      "category": "ldo",
+      "opn": "AP7365-33YG-13",
+      "slug": "ap7365-33yg-13",
+      "family": "AP7365",
+      "manufacturer": "Diodes Incorporated",
+      "expected_package": "SOT-89-3",
+      "hint_pdf_url": "https://www.diodes.com/assets/Datasheets/AP7365.pdf",
+      "hint_product_url": "https://www.diodes.com/part/view/AP7365"
+    },
+    {
+      "idx": 83,
+      "batch": "wave2d-opamp",
+      "category": "opamp",
+      "opn": "LM2904DR",
+      "slug": "lm2904dr",
+      "family": "LM2904",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOIC-8",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/lm2904.pdf",
+      "hint_product_url": "https://www.ti.com/product/LM2904"
+    },
+    {
+      "idx": 84,
+      "batch": "wave2c-dcdc",
+      "category": "dcdc",
+      "opn": "LMR33630ADDAR",
+      "slug": "lmr33630addar",
+      "family": "LMR33630",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOIC-8E",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/lmr33630.pdf",
+      "hint_product_url": "https://www.ti.com/product/LMR33630"
+    },
+    {
+      "idx": 85,
+      "batch": "wave2d-opamp",
+      "category": "opamp",
+      "opn": "TLV2372IDR",
+      "slug": "tlv2372idr",
+      "family": "TLV2372",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOIC-8",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tlv2372.pdf",
+      "hint_product_url": "https://www.ti.com/product/TLV2372"
+    },
+    {
+      "idx": 86,
+      "batch": "wave2b-ldo",
+      "category": "ldo",
+      "opn": "TLV74333PDBVR",
+      "slug": "tlv74333pdbvr",
+      "family": "TLV743P",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOT-23-5",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tlv743p.pdf",
+      "hint_product_url": "https://www.ti.com/product/TLV743P"
+    },
+    {
+      "idx": 87,
+      "batch": "wave2c-dcdc",
+      "category": "dcdc",
+      "opn": "TPS5430DDAR",
+      "slug": "tps5430ddar",
+      "family": "TPS5430",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOIC-8E",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tps5430.pdf",
+      "hint_product_url": "https://www.ti.com/product/TPS5430"
+    },
+    {
+      "idx": 88,
+      "batch": "wave2b-ldo",
+      "category": "ldo",
+      "opn": "TPS76333DBVR",
+      "slug": "tps76333dbvr",
+      "family": "TPS763",
+      "manufacturer": "Texas Instruments",
+      "expected_package": "SOT-23-5",
+      "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tps763.pdf",
+      "hint_product_url": "https://www.ti.com/product/TPS763"
     }
   ],
   "vs_pairs": [
@@ -2039,6 +2135,156 @@
       "category": "ldo",
       "part_a": "ap2127k-3-3trg1",
       "part_b": "tps7a2433dbvr"
+    },
+    {
+      "slug": "tlv74333pdbvr-vs-tps7a2033pdbvr",
+      "category": "ldo",
+      "part_a": "tlv74333pdbvr",
+      "part_b": "tps7a2033pdbvr"
+    },
+    {
+      "slug": "ap63203wu-7-vs-ap63205wu-7",
+      "category": "dcdc",
+      "part_a": "ap63203wu-7",
+      "part_b": "ap63205wu-7"
+    },
+    {
+      "slug": "ap62200wu-7-vs-ap63205wu-7",
+      "category": "dcdc",
+      "part_a": "ap62200wu-7",
+      "part_b": "ap63205wu-7"
+    },
+    {
+      "slug": "ap62300wu-7-vs-ap63205wu-7",
+      "category": "dcdc",
+      "part_a": "ap62300wu-7",
+      "part_b": "ap63205wu-7"
+    },
+    {
+      "slug": "ap7365-33yg-13-vs-lm2937imp-3-3-nopb",
+      "category": "ldo",
+      "part_a": "ap7365-33yg-13",
+      "part_b": "lm2937imp-3-3-nopb"
+    },
+    {
+      "slug": "ap7361c-33e-13-vs-ap7365-33yg-13",
+      "category": "ldo",
+      "part_a": "ap7361c-33e-13",
+      "part_b": "ap7365-33yg-13"
+    },
+    {
+      "slug": "ap7365-33yg-13-vs-lm1117impx-3-3-nopb",
+      "category": "ldo",
+      "part_a": "ap7365-33yg-13",
+      "part_b": "lm1117impx-3-3-nopb"
+    },
+    {
+      "slug": "lm2904dr-vs-lm358dr2g",
+      "category": "opamp",
+      "part_a": "lm2904dr",
+      "part_b": "lm358dr2g"
+    },
+    {
+      "slug": "lm2904dr-vs-mc33202dr2g",
+      "category": "opamp",
+      "part_a": "lm2904dr",
+      "part_b": "mc33202dr2g"
+    },
+    {
+      "slug": "lm2904dr-vs-lm358dr",
+      "category": "opamp",
+      "part_a": "lm2904dr",
+      "part_b": "lm358dr"
+    },
+    {
+      "slug": "lmr33630addar-vs-tps5430ddar",
+      "category": "dcdc",
+      "part_a": "lmr33630addar",
+      "part_b": "tps5430ddar"
+    },
+    {
+      "slug": "lmr33630addar-vs-tps54231dr",
+      "category": "dcdc",
+      "part_a": "lmr33630addar",
+      "part_b": "tps54231dr"
+    },
+    {
+      "slug": "lmr33630addar-vs-tps54331dr",
+      "category": "dcdc",
+      "part_a": "lmr33630addar",
+      "part_b": "tps54331dr"
+    },
+    {
+      "slug": "lm358dr2g-vs-tlv2372idr",
+      "category": "opamp",
+      "part_a": "lm358dr2g",
+      "part_b": "tlv2372idr"
+    },
+    {
+      "slug": "mc33202dr2g-vs-tlv2372idr",
+      "category": "opamp",
+      "part_a": "mc33202dr2g",
+      "part_b": "tlv2372idr"
+    },
+    {
+      "slug": "lm2904dr-vs-tlv2372idr",
+      "category": "opamp",
+      "part_a": "lm2904dr",
+      "part_b": "tlv2372idr"
+    },
+    {
+      "slug": "ap2127k-3-3trg1-vs-tlv74333pdbvr",
+      "category": "ldo",
+      "part_a": "ap2127k-3-3trg1",
+      "part_b": "tlv74333pdbvr"
+    },
+    {
+      "slug": "tlv70233dbvr-vs-tlv74333pdbvr",
+      "category": "ldo",
+      "part_a": "tlv70233dbvr",
+      "part_b": "tlv74333pdbvr"
+    },
+    {
+      "slug": "tlv73333pdbvr-vs-tlv74333pdbvr",
+      "category": "ldo",
+      "part_a": "tlv73333pdbvr",
+      "part_b": "tlv74333pdbvr"
+    },
+    {
+      "slug": "tps54231dr-vs-tps5430ddar",
+      "category": "dcdc",
+      "part_a": "tps54231dr",
+      "part_b": "tps5430ddar"
+    },
+    {
+      "slug": "tps5430ddar-vs-tps54331dr",
+      "category": "dcdc",
+      "part_a": "tps5430ddar",
+      "part_b": "tps54331dr"
+    },
+    {
+      "slug": "lm2596sx-5-0-nopb-vs-tps5430ddar",
+      "category": "dcdc",
+      "part_a": "lm2596sx-5-0-nopb",
+      "part_b": "tps5430ddar"
+    },
+    {
+      "slug": "tps76333dbvr-vs-tps7a2433dbvr",
+      "category": "ldo",
+      "part_a": "tps76333dbvr",
+      "part_b": "tps7a2433dbvr"
+    },
+    {
+      "slug": "ap2204k-3-3trg1-vs-tps76333dbvr",
+      "category": "ldo",
+      "part_a": "ap2204k-3-3trg1",
+      "part_b": "tps76333dbvr"
+    },
+    {
+      "slug": "ap2127k-3-3trg1-vs-tps76333dbvr",
+      "category": "ldo",
+      "part_a": "ap2127k-3-3trg1",
+      "part_b": "tps76333dbvr"
     }
   ],
   "static_routes": {

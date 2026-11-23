@@ -1,0 +1,226 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TLV2372IDR",
+  "slug": "tlv2372idr",
+  "family": "TLV2372",
+  "manufacturer": "Texas Instruments",
+  "category": "opamp",
+  "sub_topology": "opamp-dual",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to +125°C TA)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tlv2372.pdf",
+    "product_page_url": "https://www.ti.com/product/TLV2372",
+    "source_domain": "www.ti.com",
+    "revision": "SLOS270F (March 2001 – Revised August 2016)",
+    "verified_at": "2026-11-24",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 67
+  },
+  "package": {
+    "code": "SOIC-8",
+    "mfg_package_code": "D (8-Pin SOIC)",
+    "pin_count": 8,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE"
+    },
+    "theta_ja_c_per_w": {
+      "value": 138.4,
+      "page": 9,
+      "condition": "D (8-pin SOIC) package, JEDEC High-K board for TLV2372 (Low-K test PCB is 176 °C/W, p.28)",
+      "table_ref": "Section 7.5 Thermal Information: TLV2372"
+    },
+    "theta_jc_c_per_w": {
+      "value": 89.5,
+      "page": 9,
+      "condition": "RθJC(top), D (8-pin SOIC) package for TLV2372",
+      "table_ref": "Section 7.5 Thermal Information: TLV2372"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 8,
+      "condition": "Maximum junction temperature TJ = 150°C",
+      "table_ref": "Section 7.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "1OUT",
+        "role": "OUT_A",
+        "description": "Rail-to-rail push-pull output, channel 1."
+      },
+      {
+        "pin": 2,
+        "name": "1IN-",
+        "role": "IN_NEG_A",
+        "description": "Inverting CMOS input, channel 1 (abs max -0.2 V to VDD + 0.2 V, ±10 mA max clamp current)."
+      },
+      {
+        "pin": 3,
+        "name": "1IN+",
+        "role": "IN_POS_A",
+        "description": "Noninverting CMOS input, channel 1 (rail-to-rail VCM = 0 to VDD)."
+      },
+      {
+        "pin": 4,
+        "name": "GND",
+        "role": "VEE",
+        "description": "Negative supply / ground connection."
+      },
+      {
+        "pin": 5,
+        "name": "2IN+",
+        "role": "IN_POS_B",
+        "description": "Noninverting CMOS input, channel 2 (rail-to-rail VCM = 0 to VDD)."
+      },
+      {
+        "pin": 6,
+        "name": "2IN-",
+        "role": "IN_NEG_B",
+        "description": "Inverting CMOS input, channel 2 (abs max -0.2 V to VDD + 0.2 V)."
+      },
+      {
+        "pin": 7,
+        "name": "2OUT",
+        "role": "OUT_B",
+        "description": "Rail-to-rail push-pull output, channel 2."
+      },
+      {
+        "pin": 8,
+        "name": "VDD",
+        "role": "VCC",
+        "description": "Positive power supply (2.7 V to 16 V recommended; STRICT 16.5 V ABS MAX!)."
+      }
+    ],
+    "pinout_source_page": 4,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "device_kind": "opamp",
+    "channels": 2,
+    "vs_abs_max_v": {
+      "value": 16.5,
+      "page": 8,
+      "condition": "Supply voltage VDD abs max is ONLY 16.5 V (just 0.5 V margin above 16 V recommended max!)",
+      "table_ref": "Section 7.1 Absolute Maximum Ratings"
+    },
+    "vs_min_v": {
+      "value": 2.7,
+      "page": 8,
+      "condition": "Minimum recommended operating supply voltage (2.7 V single or ±1.35 V split)",
+      "table_ref": "Section 7.2 Recommended Operating Conditions"
+    },
+    "vs_max_v": {
+      "value": 16.0,
+      "page": 8,
+      "condition": "Maximum recommended operating supply voltage (16 V single or ±8 V split; Section 10 specifies electrical tests up to 15 V)",
+      "table_ref": "Section 7.2 Recommended Operating Conditions"
+    },
+    "gbwp_mhz": {
+      "value": 3.0,
+      "page": 13,
+      "condition": "3.0 MHz typ at VDD = 5 V to 15 V, RL = 2 kOhm, CL = 10 pF (2.4 MHz typ at VDD = 2.7 V)",
+      "table_ref": "Section 7.9 Electrical Characteristics (continued)"
+    },
+    "slew_rate_v_per_us": {
+      "value": 2.4,
+      "page": 13,
+      "condition": "2.4 V/us typ (1.6 min @ 25°C, 1.2 min over temp) at VDD = 5 V, CL = 50 pF, RL = 10 kOhm (2.1 V/us typ at 15 V; 2.0 V/us at 2.7 V)",
+      "table_ref": "Section 7.9 Electrical Characteristics (continued)"
+    },
+    "prop_delay_ns": null,
+    "vos_max_mv": {
+      "value": 4.5,
+      "page": 11,
+      "condition": "2 mV typ / 4.5 mV max at TA = 25°C, VIC = VDD/2 (6.0 mV max over -40°C to +125°C)",
+      "table_ref": "Section 7.9 Electrical Characteristics"
+    },
+    "ib_typ_pa": {
+      "value": 1,
+      "page": 11,
+      "condition": "1 pA typ / 60 pA max at TA = 25°C, VDD = 15 V (rises to 100 pA max @ 70°C and 1000 pA max @ 125°C)",
+      "table_ref": "Section 7.9 Electrical Characteristics"
+    },
+    "iq_per_ch_typ_ua": {
+      "value": 550,
+      "page": 13,
+      "condition": "550 uA/ch typ (660 max) at VDD = 5 V; 470 uA/ch typ at 2.7 V; rises to 750 uA/ch typ (900 max @ 25°C / 1200 max over temp) at VDD = 15 V",
+      "table_ref": "Section 7.9 Electrical Characteristics (continued)"
+    },
+    "rail_to_rail_in": true,
+    "rail_to_rail_out": true,
+    "output_type": "push-pull",
+    "cmrr_typ_db": {
+      "value": 72,
+      "page": 11,
+      "condition": "72 dB typ / 55 dB min at VDD = 5 V across full VIC = 0 to VDD (80 dB typ / 67 min when VIC <= VDD - 1.35 V; 82 dB typ at VDD = 15 V)",
+      "table_ref": "Section 7.9 Electrical Characteristics"
+    },
+    "input_noise_nv_rt_hz": {
+      "value": 39,
+      "page": 14,
+      "condition": "39 nV/rtHz typ at f = 1 kHz (35 nV/rtHz at f = 10 kHz; In = 0.6 fA/rtHz)",
+      "table_ref": "Section 7.9 Electrical Characteristics (continued)"
+    },
+    "iout_short_ma": {
+      "value": 16,
+      "page": 12,
+      "condition": "Output drive at VO = 0.5 V from rail: 16 mA source / 15 mA sink at VDD = 15 V; ONLY 7 mA source / 8 mA sink at 5 V and 4–5 mA at 2.7 V (abs max IO ±100 mA p.8)",
+      "table_ref": "Section 7.9 Electrical Characteristics (continued)"
+    }
+  },
+  "design_gotchas": [
+    {
+      "title": "Razor-Thin 0.5 V Supply Margin (16.5 V Abs Max vs 16 V Rec Max) — Unsafe on ±8 V Ripple or 24 V Rails",
+      "severity": "CRITICAL",
+      "detail": "Section 7.1 (p.8) and Section 10 CAUTION (p.27) cap VDD Abs Max at strictly 16.5 V—only 0.5 V above the 16 V operating ceiling! Even ±5% tolerance on a 16 V rail or inductive transients on ±8 V split supplies exceed 16.5 V, and swapping TLV2372IDR into 24 V/30 V LM358DR or ±15 V TL072IDR sockets causes instant destruction.",
+      "page": 8
+    },
+    {
+      "title": "Tight -0.2 V to VDD + 0.2 V Input Abs Max Clamp Limit (Earlier Fault Conduction Than Standard ±0.3 V)",
+      "severity": "CRITICAL",
+      "detail": "Input voltage Abs Max is -0.2 V to VDD + 0.2 V (with ±10 mA max input current, p.8)—tighter than the typical ±0.3 V–0.5 V spec on most CMOS op-amps. Add series current-limiting resistors whenever sensor signals can arrive before VDD powers up or swing slightly below GND.",
+      "page": 8
+    },
+    {
+      "title": "Weak Output Drive (4–8 mA at 2.7–5 V) & Rail-to-Rail Crossover CMRR Drop (55 dB Min @ 5 V)",
+      "severity": "WARNING",
+      "detail": "At VO = 0.5 V from either rail, TLV2372IDR delivers only 4–5 mA at 2.7 V and 7–8 mA at 5 V (p.12), so heavy loads (<1 kOhm) rapidly collapse output swing. Furthermore, full rail-to-rail input operation crosses the NMOS/PMOS transition near VDD - 1.35 V, dropping CMRR from 80 dB down to 72 dB typ / 55 dB min (54 dB over temp, p.11) and raising 15 V open-loop gain loss (AVD drops to 83 dB typ / 79 dB min at 15 V).",
+      "page": 12
+    },
+    {
+      "title": "No Shutdown Pin on TLV2372 (Only TLV2370/2373/2375) & 4.5–6.0 mV Offset Limits Precision DC",
+      "severity": "INFO",
+      "detail": "Although the datasheet title advertises 'With Shutdown,' the 8-pin dual TLV2372IDR has NO shutdown pin (shutdown exists only on 10/14-pin TLV2373 and 6-pin TLV2370, Table 2 p.3). With 4.5 mV max VOS @ 25°C (6 mV over temp) and 39 nV/rtHz noise, step up to OPA2333AIDR or OPA2197IDR for precision low-offset loops.",
+      "page": 3
+    }
+  ],
+  "typical_use_cases": [
+    "Single-supply 2.7 V to 15 V (±1.35 V to ±7.5 V) high-impedance pA-bias CMOS sensor interfaces and portable blood-glucose/medical meters",
+    "Pin-compatible RRIO upgrade over LM358DR / LMV358IDR on 3.3 V–15 V rails where ground-to-VDD input/output swing and 3 MHz / 2.4 V/us speed are required",
+    "Extended industrial (-40°C to +125°C) 12 V active filters, white goods, and remote battery-powered telemetry buffers"
+  ],
+  "engineering_summary": "The Texas Instruments TLV2372IDR is a 2.7 V to 16 V (±1.35 V to ±8 V), 3 MHz GBWP, 2.4 V/us rail-to-rail input and output (RRIO) dual CMOS operational amplifier in an 8-pin SOIC (D) package rated from -40°C to +125°C (RθJA = 138.4 °C/W). Featuring 1 pA typ input bias current at 550 uA/ch (5 V; 750 uA/ch at 15 V), it bridges the gap between 5.5 V RRIO amps (TLV9002/LMV358) and higher-voltage 12 V–15 V industrial rails on the standard dual SOIC-8 pinout—but engineers must guard its razor-thin 16.5 V abs max supply rating, tight ±0.2 V input rail clamps, modest 7–8 mA (5 V) output drive, and 4.5 mV max offset.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [4, 8, 9, 11, 12, 13, 14],
+    "audit_notes": [
+      "300 DPI PNG Vision on p.4 confirmed TLV2372 D (SOIC-8) Top View pinout (1=1OUT, 2=1IN-, 3=1IN+, 4=GND, 5=2IN+, 6=2IN-, 7=2OUT, 8=VDD; Rev F corrected pins 2 & 3 diagram).",
+      "300 DPI PNG Vision on p.8–9 confirmed Abs Max (VDD=16.5 V, VI=-0.2..VDD+0.2 V, IIN=±10 mA, IO=±100 mA, TJ=150°C), Rec Op (VDD=2.7–16 V, VCM=0..VDD, TA=-40..125°C), and Sec. 7.5 TLV2372 D-pkg Thermal Info (RθJA=138.4 °C/W, RθJC(top)=89.5 °C/W).",
+      "300 DPI PNG Vision on p.11–14 confirmed VOS=2 mV typ / 4.5 mV max (6 mV over temp), CMRR=72 dB typ / 55 min full-rail @ 5 V (80 dB below VDD-1.35 V), IB=1 pA typ / 60 max @ 25°C (1000 pA @ 125°C), IO=7–8 mA @ 5 V / 15–16 mA @ 15 V, IDD=550 uA/ch @ 5 V / 750 uA/ch @ 15 V, UGBW=3 MHz, SR=2.4 V/us @ 5 V, and Vn=39 nV/rtHz @ 1 kHz.",
+      "Path A verified Active Production OPN TLV2372IDR (marking '2372I', p.32), Sec. 10 >16 V permanent-damage CAUTION (p.27), and absence of SHDN pin on TLV2372 (Table 2, p.3)."
+    ]
+  }
+}

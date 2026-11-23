@@ -2,18 +2,18 @@
   "schema_version": "2.0.0",
   "generated_at": "2026-11-23",
   "counts": {
-    "parts_verified": 80,
-    "vs_comparisons": 178,
-    "alt_hubs": 80,
+    "parts_verified": 88,
+    "vs_comparisons": 203,
+    "alt_hubs": 88,
     "by_category": {
-      "ldo": 35,
-      "dcdc": 23,
-      "opamp": 22
+      "ldo": 38,
+      "dcdc": 26,
+      "opamp": 24
     },
     "vs_by_compatibility_level": {
-      "LEVEL_1_CANDIDATE_DROP_IN": 3,
-      "LEVEL_2_TUNING_REQUIRED": 107,
-      "LEVEL_3_LAYOUT_CHANGE": 68
+      "LEVEL_1_CANDIDATE_DROP_IN": 4,
+      "LEVEL_2_TUNING_REQUIRED": 119,
+      "LEVEL_3_LAYOUT_CHANGE": 80
     }
   },
   "vs_index": [
@@ -2152,6 +2152,306 @@
       "package_match": true,
       "pinout_exact_match": true,
       "exposed_pad_match": true
+    },
+    {
+      "slug": "tlv74333pdbvr-vs-tps7a2033pdbvr",
+      "category": "ldo",
+      "part_a_slug": "tlv74333pdbvr",
+      "part_b_slug": "tps7a2033pdbvr",
+      "part_a_opn": "TLV74333PDBVR",
+      "part_b_opn": "TPS7A2033PDBVR",
+      "compatibility_level": "LEVEL_1_CANDIDATE_DROP_IN",
+      "package_match": true,
+      "pinout_exact_match": true,
+      "exposed_pad_match": true
+    },
+    {
+      "slug": "ap63203wu-7-vs-ap63205wu-7",
+      "category": "dcdc",
+      "part_a_slug": "ap63203wu-7",
+      "part_b_slug": "ap63205wu-7",
+      "part_a_opn": "AP63203WU-7",
+      "part_b_opn": "AP63205WU-7",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "package_match": true,
+      "pinout_exact_match": true,
+      "exposed_pad_match": true
+    },
+    {
+      "slug": "ap62200wu-7-vs-ap63205wu-7",
+      "category": "dcdc",
+      "part_a_slug": "ap62200wu-7",
+      "part_b_slug": "ap63205wu-7",
+      "part_a_opn": "AP62200WU-7",
+      "part_b_opn": "AP63205WU-7",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "package_match": true,
+      "pinout_exact_match": false,
+      "exposed_pad_match": true
+    },
+    {
+      "slug": "ap62300wu-7-vs-ap63205wu-7",
+      "category": "dcdc",
+      "part_a_slug": "ap62300wu-7",
+      "part_b_slug": "ap63205wu-7",
+      "part_a_opn": "AP62300WU-7",
+      "part_b_opn": "AP63205WU-7",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "package_match": true,
+      "pinout_exact_match": false,
+      "exposed_pad_match": true
+    },
+    {
+      "slug": "ap7365-33yg-13-vs-lm2937imp-3-3-nopb",
+      "category": "ldo",
+      "part_a_slug": "ap7365-33yg-13",
+      "part_b_slug": "lm2937imp-3-3-nopb",
+      "part_a_opn": "AP7365-33YG-13",
+      "part_b_opn": "LM2937IMP-3.3/NOPB",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "package_match": false,
+      "pinout_exact_match": false,
+      "exposed_pad_match": true
+    },
+    {
+      "slug": "ap7361c-33e-13-vs-ap7365-33yg-13",
+      "category": "ldo",
+      "part_a_slug": "ap7361c-33e-13",
+      "part_b_slug": "ap7365-33yg-13",
+      "part_a_opn": "AP7361C-33E-13",
+      "part_b_opn": "AP7365-33YG-13",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "package_match": false,
+      "pinout_exact_match": false,
+      "exposed_pad_match": true
+    },
+    {
+      "slug": "ap7365-33yg-13-vs-lm1117impx-3-3-nopb",
+      "category": "ldo",
+      "part_a_slug": "ap7365-33yg-13",
+      "part_b_slug": "lm1117impx-3-3-nopb",
+      "part_a_opn": "AP7365-33YG-13",
+      "part_b_opn": "LM1117IMPX-3.3/NOPB",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "package_match": false,
+      "pinout_exact_match": false,
+      "exposed_pad_match": false
+    },
+    {
+      "slug": "lm2904dr-vs-lm358dr2g",
+      "category": "opamp",
+      "part_a_slug": "lm2904dr",
+      "part_b_slug": "lm358dr2g",
+      "part_a_opn": "LM2904DR",
+      "part_b_opn": "LM358DR2G",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "package_match": true,
+      "pinout_exact_match": true,
+      "exposed_pad_match": true
+    },
+    {
+      "slug": "lm2904dr-vs-mc33202dr2g",
+      "category": "opamp",
+      "part_a_slug": "lm2904dr",
+      "part_b_slug": "mc33202dr2g",
+      "part_a_opn": "LM2904DR",
+      "part_b_opn": "MC33202DR2G",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "package_match": true,
+      "pinout_exact_match": true,
+      "exposed_pad_match": true
+    },
+    {
+      "slug": "lm2904dr-vs-lm358dr",
+      "category": "opamp",
+      "part_a_slug": "lm2904dr",
+      "part_b_slug": "lm358dr",
+      "part_a_opn": "LM2904DR",
+      "part_b_opn": "LM358DR",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "package_match": true,
+      "pinout_exact_match": true,
+      "exposed_pad_match": true
+    },
+    {
+      "slug": "lmr33630addar-vs-tps5430ddar",
+      "category": "dcdc",
+      "part_a_slug": "lmr33630addar",
+      "part_b_slug": "tps5430ddar",
+      "part_a_opn": "LMR33630ADDAR",
+      "part_b_opn": "TPS5430DDAR",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "package_match": true,
+      "pinout_exact_match": false,
+      "exposed_pad_match": true
+    },
+    {
+      "slug": "lmr33630addar-vs-tps54231dr",
+      "category": "dcdc",
+      "part_a_slug": "lmr33630addar",
+      "part_b_slug": "tps54231dr",
+      "part_a_opn": "LMR33630ADDAR",
+      "part_b_opn": "TPS54231DR",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "package_match": false,
+      "pinout_exact_match": false,
+      "exposed_pad_match": false
+    },
+    {
+      "slug": "lmr33630addar-vs-tps54331dr",
+      "category": "dcdc",
+      "part_a_slug": "lmr33630addar",
+      "part_b_slug": "tps54331dr",
+      "part_a_opn": "LMR33630ADDAR",
+      "part_b_opn": "TPS54331DR",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "package_match": false,
+      "pinout_exact_match": false,
+      "exposed_pad_match": false
+    },
+    {
+      "slug": "lm358dr2g-vs-tlv2372idr",
+      "category": "opamp",
+      "part_a_slug": "lm358dr2g",
+      "part_b_slug": "tlv2372idr",
+      "part_a_opn": "LM358DR2G",
+      "part_b_opn": "TLV2372IDR",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "package_match": true,
+      "pinout_exact_match": true,
+      "exposed_pad_match": true
+    },
+    {
+      "slug": "mc33202dr2g-vs-tlv2372idr",
+      "category": "opamp",
+      "part_a_slug": "mc33202dr2g",
+      "part_b_slug": "tlv2372idr",
+      "part_a_opn": "MC33202DR2G",
+      "part_b_opn": "TLV2372IDR",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "package_match": true,
+      "pinout_exact_match": true,
+      "exposed_pad_match": true
+    },
+    {
+      "slug": "lm2904dr-vs-tlv2372idr",
+      "category": "opamp",
+      "part_a_slug": "lm2904dr",
+      "part_b_slug": "tlv2372idr",
+      "part_a_opn": "LM2904DR",
+      "part_b_opn": "TLV2372IDR",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "package_match": true,
+      "pinout_exact_match": true,
+      "exposed_pad_match": true
+    },
+    {
+      "slug": "ap2127k-3-3trg1-vs-tlv74333pdbvr",
+      "category": "ldo",
+      "part_a_slug": "ap2127k-3-3trg1",
+      "part_b_slug": "tlv74333pdbvr",
+      "part_a_opn": "AP2127K-3.3TRG1",
+      "part_b_opn": "TLV74333PDBVR",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "package_match": true,
+      "pinout_exact_match": true,
+      "exposed_pad_match": true
+    },
+    {
+      "slug": "tlv70233dbvr-vs-tlv74333pdbvr",
+      "category": "ldo",
+      "part_a_slug": "tlv70233dbvr",
+      "part_b_slug": "tlv74333pdbvr",
+      "part_a_opn": "TLV70233DBVR",
+      "part_b_opn": "TLV74333PDBVR",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "package_match": true,
+      "pinout_exact_match": true,
+      "exposed_pad_match": true
+    },
+    {
+      "slug": "tlv73333pdbvr-vs-tlv74333pdbvr",
+      "category": "ldo",
+      "part_a_slug": "tlv73333pdbvr",
+      "part_b_slug": "tlv74333pdbvr",
+      "part_a_opn": "TLV73333PDBVR",
+      "part_b_opn": "TLV74333PDBVR",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "package_match": true,
+      "pinout_exact_match": true,
+      "exposed_pad_match": true
+    },
+    {
+      "slug": "tps54231dr-vs-tps5430ddar",
+      "category": "dcdc",
+      "part_a_slug": "tps54231dr",
+      "part_b_slug": "tps5430ddar",
+      "part_a_opn": "TPS54231DR",
+      "part_b_opn": "TPS5430DDAR",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "package_match": false,
+      "pinout_exact_match": false,
+      "exposed_pad_match": false
+    },
+    {
+      "slug": "tps5430ddar-vs-tps54331dr",
+      "category": "dcdc",
+      "part_a_slug": "tps5430ddar",
+      "part_b_slug": "tps54331dr",
+      "part_a_opn": "TPS5430DDAR",
+      "part_b_opn": "TPS54331DR",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "package_match": false,
+      "pinout_exact_match": false,
+      "exposed_pad_match": false
+    },
+    {
+      "slug": "lm2596sx-5-0-nopb-vs-tps5430ddar",
+      "category": "dcdc",
+      "part_a_slug": "lm2596sx-5-0-nopb",
+      "part_b_slug": "tps5430ddar",
+      "part_a_opn": "LM2596SX-5.0/NOPB",
+      "part_b_opn": "TPS5430DDAR",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "package_match": false,
+      "pinout_exact_match": false,
+      "exposed_pad_match": true
+    },
+    {
+      "slug": "tps76333dbvr-vs-tps7a2433dbvr",
+      "category": "ldo",
+      "part_a_slug": "tps76333dbvr",
+      "part_b_slug": "tps7a2433dbvr",
+      "part_a_opn": "TPS76333DBVR",
+      "part_b_opn": "TPS7A2433DBVR",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "package_match": true,
+      "pinout_exact_match": true,
+      "exposed_pad_match": true
+    },
+    {
+      "slug": "ap2204k-3-3trg1-vs-tps76333dbvr",
+      "category": "ldo",
+      "part_a_slug": "ap2204k-3-3trg1",
+      "part_b_slug": "tps76333dbvr",
+      "part_a_opn": "AP2204K-3.3TRG1",
+      "part_b_opn": "TPS76333DBVR",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "package_match": true,
+      "pinout_exact_match": true,
+      "exposed_pad_match": true
+    },
+    {
+      "slug": "ap2127k-3-3trg1-vs-tps76333dbvr",
+      "category": "ldo",
+      "part_a_slug": "ap2127k-3-3trg1",
+      "part_b_slug": "tps76333dbvr",
+      "part_a_opn": "AP2127K-3.3TRG1",
+      "part_b_opn": "TPS76333DBVR",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "package_match": true,
+      "pinout_exact_match": true,
+      "exposed_pad_match": true
     }
   ],
   "alt_index": [
@@ -2178,7 +2478,7 @@
       "target_slug": "ap2127k-3-3trg1",
       "target_opn": "AP2127K-3.3TRG1",
       "category": "ldo",
-      "candidate_count": 10,
+      "candidate_count": 11,
       "top_candidate": "TPS7A2033PDBVR",
       "top_level": "LEVEL_1_CANDIDATE_DROP_IN"
     },
@@ -2187,7 +2487,7 @@
       "target_slug": "ap2204k-3-3trg1",
       "target_opn": "AP2204K-3.3TRG1",
       "category": "ldo",
-      "candidate_count": 10,
+      "candidate_count": 11,
       "top_candidate": "TPS70933DBVR",
       "top_level": "LEVEL_2_TUNING_REQUIRED"
     },
@@ -2214,7 +2514,7 @@
       "target_slug": "ap62200wu-7",
       "target_opn": "AP62200WU-7",
       "category": "dcdc",
-      "candidate_count": 10,
+      "candidate_count": 11,
       "top_candidate": "AP62300WU-7",
       "top_level": "LEVEL_2_TUNING_REQUIRED"
     },
@@ -2231,6 +2531,15 @@
       "slug": "ap63203wu-7-alternatives",
       "target_slug": "ap63203wu-7",
       "target_opn": "AP63203WU-7",
+      "category": "dcdc",
+      "candidate_count": 8,
+      "top_candidate": "AP62200WU-7",
+      "top_level": "LEVEL_3_LAYOUT_CHANGE"
+    },
+    {
+      "slug": "ap63205wu-7-alternatives",
+      "target_slug": "ap63205wu-7",
+      "target_opn": "AP63205WU-7",
       "category": "dcdc",
       "candidate_count": 8,
       "top_candidate": "AP62200WU-7",
@@ -2277,9 +2586,18 @@
       "target_slug": "ap7361c-33e-13",
       "target_opn": "AP7361C-33E-13",
       "category": "ldo",
-      "candidate_count": 9,
+      "candidate_count": 10,
       "top_candidate": "LM2937IMP-3.3/NOPB",
       "top_level": "LEVEL_2_TUNING_REQUIRED"
+    },
+    {
+      "slug": "ap7365-33yg-13-alternatives",
+      "target_slug": "ap7365-33yg-13",
+      "target_opn": "AP7365-33YG-13",
+      "category": "ldo",
+      "candidate_count": 10,
+      "top_candidate": "AP7361C-33E-13",
+      "top_level": "LEVEL_3_LAYOUT_CHANGE"
     },
     {
       "slug": "az1117ch-3-3trg1-alternatives",
@@ -2304,7 +2622,7 @@
       "target_slug": "lm1117impx-3-3-nopb",
       "target_opn": "LM1117IMPX-3.3/NOPB",
       "category": "ldo",
-      "candidate_count": 8,
+      "candidate_count": 9,
       "top_candidate": "TLV1117-33IDCYR",
       "top_level": "LEVEL_2_TUNING_REQUIRED"
     },
@@ -2363,11 +2681,20 @@
       "top_level": "LEVEL_2_TUNING_REQUIRED"
     },
     {
+      "slug": "lm2904dr-alternatives",
+      "target_slug": "lm2904dr",
+      "target_opn": "LM2904DR",
+      "category": "opamp",
+      "candidate_count": 9,
+      "top_candidate": "TLV2372IDR",
+      "top_level": "LEVEL_2_TUNING_REQUIRED"
+    },
+    {
       "slug": "lm2937imp-3-3-nopb-alternatives",
       "target_slug": "lm2937imp-3-3-nopb",
       "target_opn": "LM2937IMP-3.3/NOPB",
       "category": "ldo",
-      "candidate_count": 10,
+      "candidate_count": 11,
       "top_candidate": "AP7361C-33E-13",
       "top_level": "LEVEL_2_TUNING_REQUIRED"
     },
@@ -2385,7 +2712,7 @@
       "target_slug": "lm358dr",
       "target_opn": "LM358DR",
       "category": "opamp",
-      "candidate_count": 12,
+      "candidate_count": 14,
       "top_candidate": "NE5532DR",
       "top_level": "LEVEL_2_TUNING_REQUIRED"
     },
@@ -2415,6 +2742,15 @@
       "candidate_count": 8,
       "top_candidate": "LM393DR",
       "top_level": "LEVEL_1_CANDIDATE_DROP_IN"
+    },
+    {
+      "slug": "lmr33630addar-alternatives",
+      "target_slug": "lmr33630addar",
+      "target_opn": "LMR33630ADDAR",
+      "category": "dcdc",
+      "candidate_count": 9,
+      "top_candidate": "TPS5430DDAR",
+      "top_level": "LEVEL_3_LAYOUT_CHANGE"
     },
     {
       "slug": "lmv321idbvr-alternatives",
@@ -2457,8 +2793,8 @@
       "target_slug": "mc33202dr2g",
       "target_opn": "MC33202DR2G",
       "category": "opamp",
-      "candidate_count": 10,
-      "top_candidate": "LM358DR",
+      "candidate_count": 12,
+      "top_candidate": "TLV2372IDR",
       "top_level": "LEVEL_2_TUNING_REQUIRED"
     },
     {
@@ -2561,6 +2897,15 @@
       "top_level": "LEVEL_2_TUNING_REQUIRED"
     },
     {
+      "slug": "tlv2372idr-alternatives",
+      "target_slug": "tlv2372idr",
+      "target_opn": "TLV2372IDR",
+      "category": "opamp",
+      "candidate_count": 8,
+      "top_candidate": "NE5532DR",
+      "top_level": "LEVEL_2_TUNING_REQUIRED"
+    },
+    {
       "slug": "tlv3201aidbvr-alternatives",
       "target_slug": "tlv3201aidbvr",
       "target_opn": "TLV3201AIDBVR",
@@ -2601,9 +2946,18 @@
       "target_slug": "tlv73333pdbvr",
       "target_opn": "TLV73333PDBVR",
       "category": "ldo",
-      "candidate_count": 9,
+      "candidate_count": 10,
       "top_candidate": "TPS7A2033PDBVR",
       "top_level": "LEVEL_2_TUNING_REQUIRED"
+    },
+    {
+      "slug": "tlv74333pdbvr-alternatives",
+      "target_slug": "tlv74333pdbvr",
+      "target_opn": "TLV74333PDBVR",
+      "category": "ldo",
+      "candidate_count": 8,
+      "top_candidate": "TPS7A2033PDBVR",
+      "top_level": "LEVEL_1_CANDIDATE_DROP_IN"
     },
     {
       "slug": "tlv75533pdbvr-alternatives",
@@ -2694,6 +3048,15 @@
       "candidate_count": 9,
       "top_candidate": "TPS54202DDCR",
       "top_level": "LEVEL_2_TUNING_REQUIRED"
+    },
+    {
+      "slug": "tps5430ddar-alternatives",
+      "target_slug": "tps5430ddar",
+      "target_opn": "TPS5430DDAR",
+      "category": "dcdc",
+      "candidate_count": 8,
+      "top_candidate": "LM2596SX-5.0/NOPB",
+      "top_level": "LEVEL_3_LAYOUT_CHANGE"
     },
     {
       "slug": "tps54331dr-alternatives",
@@ -2831,6 +3194,15 @@
       "top_level": "LEVEL_2_TUNING_REQUIRED"
     },
     {
+      "slug": "tps76333dbvr-alternatives",
+      "target_slug": "tps76333dbvr",
+      "target_opn": "TPS76333DBVR",
+      "category": "ldo",
+      "candidate_count": 10,
+      "top_candidate": "TPS7A2433DBVR",
+      "top_level": "LEVEL_1_CANDIDATE_DROP_IN"
+    },
+    {
       "slug": "tps79333dbvr-alternatives",
       "target_slug": "tps79333dbvr",
       "target_opn": "TPS79333DBVR",
@@ -2863,7 +3235,7 @@
       "target_opn": "TPS7A2033PDBVR",
       "category": "ldo",
       "candidate_count": 9,
-      "top_candidate": "TLV73333PDBVR",
+      "top_candidate": "TLV74333PDBVR",
       "top_level": "LEVEL_1_CANDIDATE_DROP_IN"
     },
     {
@@ -2871,7 +3243,7 @@
       "target_slug": "tps7a2433dbvr",
       "target_opn": "TPS7A2433DBVR",
       "category": "ldo",
-      "candidate_count": 9,
+      "candidate_count": 10,
       "top_candidate": "TPS70933DBVR",
       "top_level": "LEVEL_2_TUNING_REQUIRED"
     }

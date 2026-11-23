@@ -4,7 +4,7 @@
   "target_slug": "ap2210k-3-3trg1",
   "target_opn": "AP2210K-3.3TRG1",
   "category": "ldo",
-  "summary": "Datasheet-verified cross-reference alternatives for AP2210K-3.3TRG1 (Diodes Incorporated, SOT-23-5, fixed-ldo): evaluated 34 same-category OPNs and shortlisted the top 12 ranked replacements (0 Level 1 Candidate Drop-In, 11 Level 2 Tuning Required, and 1 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for AP2210K-3.3TRG1 (Diodes Incorporated, SOT-23-5, fixed-ldo): evaluated 37 same-category OPNs and shortlisted the top 12 ranked replacements (0 Level 1 Candidate Drop-In, 11 Level 2 Tuning Required, and 1 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "lp2985-33dbvr",
@@ -37,6 +37,20 @@
     {
       "alt_slug": "tlv73333pdbvr",
       "alt_opn": "TLV73333PDBVR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOT-23-5",
+      "lifecycle_status": "Active",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Ultra-Low Iq Upgrade",
+      "score": 67,
+      "key_advantage": "Lower Iq (34 µA vs 100 µA); Lower dropout (125 mV vs 250 mV)",
+      "key_tradeoff": "Lower Vin,max (5.5 V vs 13.2 V)",
+      "vs_slug": null
+    },
+    {
+      "alt_slug": "tlv74333pdbvr",
+      "alt_opn": "TLV74333PDBVR",
       "manufacturer": "Texas Instruments",
       "package_code": "SOT-23-5",
       "lifecycle_status": "Active",
@@ -103,20 +117,6 @@
       "key_advantage": "Lower Iq (35 µA vs 100 µA); Ceramic MLCC stable (no tantalum ESR floor)",
       "key_tradeoff": "Lower Vin,max (5.5 V vs 13.2 V)",
       "vs_slug": "ap2210k-3-3trg1-vs-tlv70233dbvr"
-    },
-    {
-      "alt_slug": "tlv75733pdbvr",
-      "alt_opn": "TLV75733PDBVR",
-      "manufacturer": "Texas Instruments",
-      "package_code": "SOT-23-5",
-      "lifecycle_status": "Active",
-      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
-      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
-      "tier_tag": "Ultra-Low Iq Upgrade",
-      "score": 65,
-      "key_advantage": "Lower Iq (25 µA vs 100 µA); Higher Iout (1000 mA vs 300 mA)",
-      "key_tradeoff": "Lower Vin,max (5.5 V vs 13.2 V)",
-      "vs_slug": null
     },
     {
       "alt_slug": "ap2112k-3-3trg1",

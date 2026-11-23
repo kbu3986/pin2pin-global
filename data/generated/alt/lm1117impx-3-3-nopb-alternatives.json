@@ -4,7 +4,7 @@
   "target_slug": "lm1117impx-3-3-nopb",
   "target_opn": "LM1117IMPX-3.3/NOPB",
   "category": "ldo",
-  "summary": "Datasheet-verified cross-reference alternatives for LM1117IMPX-3.3/NOPB (Texas Instruments, SOT-223-3, fixed-ldo): evaluated 34 same-category OPNs and shortlisted the top 8 ranked replacements (0 Level 1 Candidate Drop-In, 5 Level 2 Tuning Required, and 3 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for LM1117IMPX-3.3/NOPB (Texas Instruments, SOT-223-3, fixed-ldo): evaluated 37 same-category OPNs and shortlisted the top 9 ranked replacements (0 Level 1 Candidate Drop-In, 5 Level 2 Tuning Required, and 4 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "tlv1117-33idcyr",
@@ -117,6 +117,20 @@
       "key_advantage": "Texas Instruments multi-source option in SOT-223-3",
       "key_tradeoff": "Not drop-in: fixed LDO output voltage rail mismatch (3.3 V vs 5 V)",
       "vs_slug": null
+    },
+    {
+      "alt_slug": "ap7365-33yg-13",
+      "alt_opn": "AP7365-33YG-13",
+      "manufacturer": "Diodes Incorporated",
+      "package_code": "SOT-89-3",
+      "lifecycle_status": "NRND",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+      "tier_tag": "Lifecycle Warning (EOL/NRND)",
+      "score": 23,
+      "key_advantage": "Lower Iq (35 µA vs 5000 µA); Lower dropout (300 mV vs 1200 mV)",
+      "key_tradeoff": "[NRND] Not recommended for new production designs; Package change (SOT-223-3 → SOT-89-3) requires PCB layout mod",
+      "vs_slug": "ap7365-33yg-13-vs-lm1117impx-3-3-nopb"
     }
   ],
   "selection_checklist": [

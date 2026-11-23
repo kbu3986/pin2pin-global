@@ -1,0 +1,203 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "tps54231dr-vs-tps5430ddar",
+  "category": "dcdc",
+  "part_a_slug": "tps54231dr",
+  "part_b_slug": "tps5430ddar",
+  "part_a_opn": "TPS54231DR",
+  "part_b_opn": "TPS5430DDAR",
+  "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+  "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+  "package_match": false,
+  "pinout_exact_match": false,
+  "exposed_pad_match": false,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "BOOT",
+      "part_a_role": "BOOT",
+      "part_b_name": "BOOT",
+      "part_b_role": "BOOT",
+      "status": "MATCH",
+      "note": "Identical pin assignment (BOOT / BOOT)."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "VIN",
+      "part_a_role": "VIN",
+      "part_b_name": "NC",
+      "part_b_role": "NC",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 2: TPS54231DR assigns VIN (VIN) whereas TPS5430DDAR assigns NC (NC) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "EN",
+      "part_a_role": "EN",
+      "part_b_name": "NC",
+      "part_b_role": "NC",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 3: TPS54231DR assigns EN (EN) whereas TPS5430DDAR assigns NC (NC) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "SS",
+      "part_a_role": "SS",
+      "part_b_name": "VSENSE",
+      "part_b_role": "FB",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 4: TPS54231DR assigns SS (SS) whereas TPS5430DDAR assigns VSENSE (FB) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "VSENSE",
+      "part_a_role": "FB",
+      "part_b_name": "ENA",
+      "part_b_role": "EN",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 5: TPS54231DR assigns VSENSE (FB) whereas TPS5430DDAR assigns ENA (EN) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 6,
+      "part_a_name": "COMP",
+      "part_a_role": "COMP",
+      "part_b_name": "GND",
+      "part_b_role": "GND",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 6: TPS54231DR assigns COMP (COMP) whereas TPS5430DDAR assigns GND (GND) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 7,
+      "part_a_name": "GND",
+      "part_a_role": "GND",
+      "part_b_name": "VIN",
+      "part_b_role": "VIN",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 7: TPS54231DR assigns GND (GND) whereas TPS5430DDAR assigns VIN (VIN) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 8,
+      "part_a_name": "PH",
+      "part_a_role": "SW",
+      "part_b_name": "PH",
+      "part_b_role": "SW",
+      "status": "MATCH",
+      "note": "Identical pin assignment (PH / SW)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Topology & Rectification",
+      "unit": "—",
+      "part_a_value": "buck (Non-Sync Diode)",
+      "part_b_value": "buck (Non-Sync Diode)",
+      "winner": "TIE",
+      "note": "Synchronous rectification eliminates external Schottky diode loss and PCB area."
+    },
+    {
+      "metric": "Package & Exposed Pad",
+      "unit": "—",
+      "part_a_value": "SOIC-8 (D, EP: None, p.4)",
+      "part_b_value": "SOIC-8E (DDA (8-Pin HSOIC PowerPAD), EP: GND, p.3)",
+      "winner": "CONTEXT",
+      "note": "Compact WSON/VSON/SOT-563 packages demand tight hot-loop layout and thermal vias."
+    },
+    {
+      "metric": "Input Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "3.5 to 28 V (p.5)",
+      "part_b_value": "5.5 to 36 V (p.4)",
+      "winner": "CONTEXT",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
+    },
+    {
+      "metric": "Absolute Max Input Voltage",
+      "unit": "V",
+      "part_a_value": "30 V (p.5)",
+      "part_b_value": "40 V (p.4)",
+      "winner": "B",
+      "note": "Provides transient overshoot margin above nominal DC supply bus."
+    },
+    {
+      "metric": "Output Voltage Range",
+      "unit": "V",
+      "part_a_value": "0.8 to 25.2 V (p.1/p.6) (Adj)",
+      "part_b_value": "1.221 to 31.3 V (p.5) (Adj)",
+      "winner": "CONTEXT",
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
+    },
+    {
+      "metric": "Max Current (Iout or Isw Limit)",
+      "unit": "mA",
+      "part_a_value": "2000 mA (p.1) [Iout max]",
+      "part_b_value": "3000 mA (p.1) [Iout max]",
+      "winner": "B",
+      "note": "Continuous DC output current rating; verify inductor Isat >= Iout + ΔIL/2 and thermal margin."
+    },
+    {
+      "metric": "Quiescent Current (Iq, typ)",
+      "unit": "µA",
+      "part_a_value": "75 µA (p.6)",
+      "part_b_value": "2000 µA (p.5)",
+      "winner": "A",
+      "note": "Dominates light-load efficiency and standby battery runtime."
+    },
+    {
+      "metric": "Switching Frequency (fsw, typ)",
+      "unit": "kHz",
+      "part_a_value": "570 kHz (p.6)",
+      "part_b_value": "500 kHz (p.5)",
+      "winner": "CONTEXT",
+      "note": "Higher fsw shrinks inductor footprint; lower fsw reduces switching losses & high-band EMI."
+    },
+    {
+      "metric": "Peak Efficiency",
+      "unit": "%",
+      "part_a_value": "94 % (p.1)",
+      "part_b_value": "92.5 % (p.1)",
+      "winner": "A",
+      "note": "Check datasheet efficiency curve at your exact Vin/Vout/Iout operating point."
+    },
+    {
+      "metric": "Recommended Inductor (L, typ)",
+      "unit": "µH",
+      "part_a_value": "10 µH (p.14)",
+      "part_b_value": "15 µH (p.14)",
+      "winner": "CONTEXT",
+      "note": "Ensure inductor Isat exceeds worst-case peak switch current by >= 20–30%."
+    },
+    {
+      "metric": "Feedback Reference (Vref)",
+      "unit": "V",
+      "part_a_value": "0.8 V (p.6)",
+      "part_b_value": "1.221 V (p.5)",
+      "winner": "CONTEXT",
+      "note": "Any Vref discrepancy requires recalculating feedback divider R1/R2."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "116.3 °C/W (p.5) · 150 °C",
+      "part_b_value": "42.3 °C/W (p.4) · 150 °C",
+      "winner": "B",
+      "note": "Lower θJA improves continuous load thermal headroom on compact 2-layer PCBs."
+    }
+  ],
+  "swap_risks": [
+    "CRITICAL PACKAGE MISMATCH: TPS54231DR uses SOIC-8 (8-pin, D) while TPS5430DDAR uses SOIC-8E (8-pin, DDA (8-Pin HSOIC PowerPAD)); PCB footprint redesign is mandatory.",
+    "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 2 (VIN vs NC), Pin 3 (EN vs NC), Pin 4 (SS vs FB), Pin 5 (FB vs EN), Pin 6 (COMP vs GND), Pin 7 (GND vs VIN). Soldering TPS5430DDAR onto a TPS54231DR footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
+    "Exposed thermal pad/tab mismatch (SOIC-8: NONE vs SOIC-8E: GND); PCB land pattern & solder-mask change required.",
+    "HIGH MINIMUM OUTPUT VOLTAGE FLOOR: TPS5430DDAR cannot regulate below 1.221 V (p.5) vs TPS54231DR down to 0.8 V (p.1); verify your target rail sits above the higher Vout,min floor.",
+    "HIGH VREF MISMATCH: Feedback reference differs (TPS54231DR: 0.8 V p.6 vs TPS5430DDAR: 1.221 V p.5); dropping in without recalculating R1/R2 will output the wrong voltage rail.",
+    "CAUTION INDUCTOR RETUNING: Typical inductor differs (TPS54231DR: 10 µH p.14 vs TPS5430DDAR: 15 µH p.14); check inductor Isat against peak switch current limit.",
+    "HIGH INPUT VOLTAGE RANGE SHIFT: Recommended Vin,max differs (TPS54231DR: 28 V p.5 vs TPS5430DDAR: 36 V p.4); verify line transients stay below Vin,abs,max.",
+    "CAUTION CURRENT RATING BASIS: TPS54231DR specifies 2000 mA (continuous Iout, p.1) vs TPS5430DDAR 3000 mA (continuous Iout, p.1). Verify continuous load current and peak inductor saturation margin (Isat >= Iout + ΔIL/2).",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: TPS54231DR has a lower Vin,abs,max rating (30 V, p.5) than TPS5430DDAR (40 V, p.4); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 30 V.",
+    "HIGH THERMAL MARGIN: Package θJA is 175% higher on TPS54231DR (TPS54231DR: 116.3 °C/W p.5 vs TPS5430DDAR: 42.3 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH MINIMUM SUPPLY FLOOR: TPS5430DDAR requires Vin,min >= 5.5 V (p.4) vs 3.5 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (TPS54231DR: -40..150 °C Extended Industrial (-40°C to +150°C TJ) vs TPS5430DDAR: -40..125 °C Extended Industrial (-40°C to +125°C TJ)); TPS5430DDAR hot limit only 125 °C — verify product ambient qualification before swapping.",
+    "CAUTION EN ABS MAX: EN pin absolute maximum differs (TPS54231DR: 6 V vs TPS5430DDAR: 7 V); tying EN directly to VIN may exceed the lower rating."
+  ],
+  "engineering_verdict": "TPS54231DR (Texas Instruments, SOIC-8) and TPS5430DDAR (Texas Instruments, SOIC-8E) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to package/footprint mismatch; pinout mismatch on Pin 2 (VIN vs NC), Pin 3 (EN vs NC), Pin 4 (SS vs FB), Pin 5 (FB vs EN), Pin 6 (COMP vs GND), Pin 7 (GND vs VIN); exposed pad / thermal tab net mismatch. Specific pin conflicts: Pin 2 (VIN vs NC), Pin 3 (EN vs NC), Pin 4 (SS vs FB), Pin 5 (FB vs EN). Power-stage deltas: buck (non-sync) vs buck (non-sync), switching frequency 570 kHz (p.6) vs 500 kHz (p.5) (1.1x ratio), typical inductor 10 µH (p.14) vs 15 µH (p.14), feedback Vref 0.8 V (p.6) vs 1.221 V (p.5), and package θJA 116.3 vs 42.3 °C/W. Primary bench gotchas to watch: TPS54231DR \"EN Pin Abs Max Is Strictly 6.0 V — NEVER Tie Directly to 12 V or 24 V VIN\" (p.5) and TPS5430DDAR \"7 V Abs Max ENA Pin Trap & Float-to-Enable — Tying ENA to 12 V/24 V VIN Destroys TPS5430DDAR\" (p.4). BOM decision: Choose TPS54231DR when light-load battery standby needs 75 µA Iq; choose TPS5430DDAR when bus voltage exceeds 28 V (rated to 36 V) or higher load current capacity (3000 mA) is required. Always verify Pin 1 orientation (TOP_VIEW p.4 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
+  "generated_at": "2026-11-23"
+}

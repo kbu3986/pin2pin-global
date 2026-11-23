@@ -4,7 +4,7 @@
   "target_slug": "tlv3201aidbvr",
   "target_opn": "TLV3201AIDBVR",
   "category": "opamp",
-  "summary": "Datasheet-verified cross-reference alternatives for TLV3201AIDBVR (Texas Instruments, SOT-23-5, comparator-single): evaluated 21 same-category OPNs and shortlisted the top 8 ranked replacements (0 Level 1 Candidate Drop-In, 1 Level 2 Tuning Required, and 7 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for TLV3201AIDBVR (Texas Instruments, SOT-23-5, comparator-single): evaluated 23 same-category OPNs and shortlisted the top 8 ranked replacements (0 Level 1 Candidate Drop-In, 1 Level 2 Tuning Required, and 7 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "tlv7011dbvr",

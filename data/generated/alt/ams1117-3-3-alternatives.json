@@ -4,7 +4,7 @@
   "target_slug": "ams1117-3-3",
   "target_opn": "AMS1117-3.3",
   "category": "ldo",
-  "summary": "Datasheet-verified cross-reference alternatives for AMS1117-3.3 (Advanced Monolithic Systems, SOT-223-3, fixed-ldo): evaluated 34 same-category OPNs and shortlisted the top 9 ranked replacements (0 Level 1 Candidate Drop-In, 5 Level 2 Tuning Required, and 4 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for AMS1117-3.3 (Advanced Monolithic Systems, SOT-223-3, fixed-ldo): evaluated 37 same-category OPNs and shortlisted the top 9 ranked replacements (0 Level 1 Candidate Drop-In, 5 Level 2 Tuning Required, and 4 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "tlv1117-33idcyr",

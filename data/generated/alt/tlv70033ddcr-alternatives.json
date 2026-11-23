@@ -4,7 +4,7 @@
   "target_slug": "tlv70033ddcr",
   "target_opn": "TLV70033DDCR",
   "category": "ldo",
-  "summary": "Datasheet-verified cross-reference alternatives for TLV70033DDCR (Texas Instruments, SOT-23-5, fixed-ldo): evaluated 34 same-category OPNs and shortlisted the top 10 ranked replacements (8 Level 1 Candidate Drop-In, 2 Level 2 Tuning Required, and 0 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for TLV70033DDCR (Texas Instruments, SOT-23-5, fixed-ldo): evaluated 37 same-category OPNs and shortlisted the top 10 ranked replacements (8 Level 1 Candidate Drop-In, 2 Level 2 Tuning Required, and 0 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "tps7a0233pdbvr",
@@ -77,6 +77,20 @@
       "vs_slug": "tlv70033ddcr-vs-tlv73333pdbvr"
     },
     {
+      "alt_slug": "tlv74333pdbvr",
+      "alt_opn": "TLV74333PDBVR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOT-23-5",
+      "lifecycle_status": "Active",
+      "compatibility_level": "LEVEL_1_CANDIDATE_DROP_IN",
+      "compatibility_badge": "Candidate Drop-In (Verify Datasheet Before Production)",
+      "tier_tag": "Higher Current / Margin",
+      "score": 97,
+      "key_advantage": "Higher Iout (300 mA vs 200 mA); Lower dropout (125 mV vs 175 mV)",
+      "key_tradeoff": "Verify θJA (228.4 °C/W) and latest Texas Instruments datasheet revision",
+      "vs_slug": null
+    },
+    {
       "alt_slug": "tlv75733pdbvr",
       "alt_opn": "TLV75733PDBVR",
       "manufacturer": "Texas Instruments",
@@ -102,20 +116,6 @@
       "score": 95,
       "key_advantage": "Higher Iout (300 mA vs 200 mA)",
       "key_tradeoff": "Higher dropout (260 mV vs 175 mV)",
-      "vs_slug": null
-    },
-    {
-      "alt_slug": "tlv75533pdbvr",
-      "alt_opn": "TLV75533PDBVR",
-      "manufacturer": "Texas Instruments",
-      "package_code": "SOT-23-5",
-      "lifecycle_status": "Active",
-      "compatibility_level": "LEVEL_1_CANDIDATE_DROP_IN",
-      "compatibility_badge": "Candidate Drop-In (Verify Datasheet Before Production)",
-      "tier_tag": "Higher Current / Margin",
-      "score": 95,
-      "key_advantage": "Higher Iout (500 mA vs 200 mA)",
-      "key_tradeoff": "Verify θJA (231.1 °C/W) and latest Texas Instruments datasheet revision",
       "vs_slug": null
     },
     {

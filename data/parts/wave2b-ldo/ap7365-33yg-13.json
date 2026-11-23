@@ -1,0 +1,197 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "AP7365-33YG-13",
+  "slug": "ap7365-33yg-13",
+  "family": "AP7365",
+  "manufacturer": "Diodes Incorporated",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "NRND",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 85,
+    "grade_label": "Industrial (-40°C to +85°C TA; TJ max +150°C, TSD +145°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.diodes.com/assets/Datasheets/AP7365.pdf",
+    "product_page_url": "https://www.diodes.com/part/view/AP7365",
+    "source_domain": "www.diodes.com",
+    "revision": "DS32260 Rev. 11 - 3 (March 2020)",
+    "verified_at": "2026-11-24",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 18
+  },
+  "package": {
+    "code": "SOT-89-3",
+    "mfg_package_code": "Y (SOT89)",
+    "pin_count": 3,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": true,
+      "net": "GND",
+      "note": "SOT-89 center pin 2 is electrically continuous with the rear thermal tab (GND) on Y package; YR suffix swaps Pin 2/TAB to IN."
+    },
+    "theta_ja_c_per_w": {
+      "value": 133,
+      "page": 4,
+      "condition": "SOT89 mounted on FR-4 substrate PCB, 1 oz copper, minimum recommended pad layout (Note 7)",
+      "table_ref": "Electrical Characteristics (continued)"
+    },
+    "theta_jc_c_per_w": {
+      "value": 30,
+      "page": 4,
+      "condition": "Thermal resistance junction-to-case for SOT89 package (Note 7)",
+      "table_ref": "Electrical Characteristics (continued)"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 3,
+      "condition": "Absolute maximum junction temperature +150°C (thermal shutdown triggers at +145°C typ with +15°C hysteresis, p.3 & p.10)",
+      "table_ref": "Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "OUT",
+        "role": "VOUT",
+        "description": "Fixed 3.3 V regulated output pin; bypass to GND with >= 1 uF low-ESR ceramic MLCC capacitor."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Ground reference pin electrically connected to the SOT-89 rear thermal tab (Y package only)."
+      },
+      {
+        "pin": 3,
+        "name": "IN",
+        "role": "VIN",
+        "description": "Input supply pin (2.0 V to 6.0 V recommended, 6.5 V abs max); bypass to GND with >= 1 uF MLCC capacitor."
+      }
+    ],
+    "pinout_source_page": 1,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 6.5,
+      "page": 3,
+      "condition": "VIN absolute maximum rating 6.5 V (OUT capped at VIN + 0.3 V)",
+      "table_ref": "Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 2.0,
+      "page": 3,
+      "condition": "Family recommended operating VIN minimum (maintain VIN >= 3.3 V + VDO for 3.3 V regulation)",
+      "table_ref": "Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 6.0,
+      "page": 3,
+      "condition": "Recommended operating input voltage maximum",
+      "table_ref": "Recommended Operating Conditions"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 10,
+      "condition": "Fixed 3.3 V option ('33') in SOT89 Y package (top marking ID code 'VM', p.12)",
+      "table_ref": "Ordering Information"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 2.0,
+      "page": 3,
+      "condition": "±2% output voltage accuracy over TA = -40°C to +85°C at IOUT = 10% of IOUT-Max (60 mA)",
+      "table_ref": "Electrical Characteristics"
+    },
+    "iout_max_ma": {
+      "value": 600,
+      "page": 3,
+      "condition": "600 mA continuous rated output current (ILIMIT 0.8 A min / 1.4 A typ; foldback ISHORT 240 mA typ)",
+      "table_ref": "Recommended Operating Conditions & Electrical Characteristics"
+    },
+    "iq_typ_ua": {
+      "value": 35,
+      "page": 3,
+      "condition": "35 uA typ / 80 uA max quiescent current at IOUT = 0 mA",
+      "table_ref": "Electrical Characteristics"
+    },
+    "ishdn_typ_ua": null,
+    "dropout_typ_mv": {
+      "value": 300,
+      "page": 3,
+      "condition": "300 mV typ / 400 mV max at IOUT = 600 mA for VOUT >= 2.5 V (VOUT drops 2% below nominal, Note 5)",
+      "table_ref": "Electrical Characteristics"
+    },
+    "psrr_db": {
+      "value": 65,
+      "page": 3,
+      "condition": "65 dB typ at f = 1 kHz, VIN = VOUT + 1 V + 0.5 VppAC, IOUT = 50 mA (degrades below VIN = 2.3 V, Note 6)",
+      "table_ref": "Electrical Characteristics"
+    },
+    "output_noise_uvrms": null,
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 1.0,
+      "page": 1,
+      "condition": "Stable with low-ESR >= 1 uF ceramic MLCC output capacitor (no minimum load required, p.9)",
+      "table_ref": "Features & Pin Descriptions"
+    },
+    "esr_min_ohm": null,
+    "esr_max_ohm": null,
+    "en_active_high": null,
+    "reverse_current_protection": false,
+    "en_abs_max_v": null,
+    "en_default_floating": null,
+    "max_cout_uf": null,
+    "active_discharge": null
+  },
+  "design_gotchas": [
+    {
+      "title": "NRND Lifecycle Banner on Page 1 — Diodes Inc Directs New Designs to AP7366",
+      "severity": "CRITICAL",
+      "detail": "Page 1 of DS32260 Rev. 11-3 carries a red 'NOT RECOMMENDED FOR NEW DESIGN — USE AP7366' banner across the entire AP7365 datasheet. Do not design AP7365-33YG-13 into new production BOMs; qualify AP7366 or an Active 3-pin SOT-89/SOT-223 second source after verifying pinout parity.",
+      "page": 1
+    },
+    {
+      "title": "Destructive SOT-89 Suffix Pinout Trap: Y Package (1=OUT, 2=GND/TAB, 3=IN) vs YR Package (1=GND, 2=IN/TAB, 3=OUT)",
+      "severity": "CRITICAL",
+      "detail": "Within the exact same datasheet (p.1–2, p.12), AP7365-33YG-13 (Y package, marking 'VM') assigns Pin 1=OUT, Pin 2=GND(TAB), Pin 3=IN, whereas AP7365-33YRG-13 (YR package, marking 'TM') scrambles the pins to Pin 1=GND, Pin 2=IN(TAB), Pin 3=OUT. Populating YR onto a Y footprint directly shorts VIN into the PCB ground plane through the thermal tab.",
+      "page": 1
+    },
+    {
+      "title": "133 °C/W Minimum-Pad Thermal Limit & +145 °C Thermal Shutdown Cap 5 V -> 3.3 V Load",
+      "severity": "WARNING",
+      "detail": "At θJA = 133 °C/W (FR-4 1 oz copper min pad, p.4), running full 600 mA from 5.0 V to 3.3 V dissipates 1.02 W and raises die temperature by 135.7 °C—immediately tripping the +145 °C thermal shutdown (p.3, p.10) even at room temperature. Expand copper area on the GND tab or derate 5 V-to-3.3 V continuous current below ~450 mA at 25 °C (lower at 85 °C ambient).",
+      "page": 4
+    },
+    {
+      "title": "No EN Pin on SOT-89-3 Variant & Foldback Short-Circuit Limit (240 mA Typ)",
+      "severity": "INFO",
+      "detail": "Unlike the 5-pin SOT25 (W) and 6-pin U-DFN2020-6 (SN) variants, the 3-pin SOT-89-3 Y package omits the EN pin (always on whenever VIN is applied) and is fixed-output only (Note 8, p.10). Short-circuit protection folds back to 240 mA typ when VOUT < 0.2 V (p.3), which can slow startup into heavy constant-current loads.",
+      "page": 2
+    }
+  ],
+  "typical_use_cases": [
+    "Legacy BOM maintenance and replacement sourcing for existing 3-pin SOT-89-3 (1=OUT, 2=GND/TAB, 3=IN) 3.3 V 600 mA LDO layouts",
+    "Fast-transient (200 us startup) 3.8 V–5.0 V to 3.3 V point-of-load post-regulation with 1 uF ceramic stability",
+    "Low-quiescent-current (35 uA typ) consumer and industrial 3.3 V rails needing 65 dB PSRR at 1 kHz without an EN pin"
+  ],
+  "engineering_summary": "The Diodes Incorporated AP7365-33YG-13 is a 600 mA, fixed 3.3 V (±2% over -40°C to +85°C), 35 uA IQ ceramic-stable LDO in a 3-pin SOT-89 (Y) package with 300 mV typ / 400 mV max dropout at 600 mA and 65 dB PSRR at 1 kHz (2.0 V to 6.0 V operating, 6.5 V abs max). CRITICAL WARNINGS: The official datasheet (DS32260 Rev. 11-3) marks AP7365 as NRND ('USE AP7366'), and its Y-package pinout (1=OUT, 2=GND/TAB, 3=IN, marking 'VM') is completely incompatible with the YR suffix (1=GND, 2=IN/TAB, 3=OUT, marking 'TM') and 1117-style SOT-223 parts (1=GND, 2=OUT/TAB, 3=IN).",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [1, 2, 3, 4, 10],
+    "audit_notes": [
+      "300 DPI PNG Vision on p.1 confirmed red NRND banner ('NOT RECOMMENDED FOR NEW DESIGN — USE AP7366') and SOT89 Y-package Top View pinout (1=OUT, 2=GND(TAB), 3=IN), explicitly contrasted with YR package (1=GND, 2=IN(TAB), 3=OUT).",
+      "300 DPI PNG Vision on p.2 confirmed Pin Descriptions table for SOT89 Y package (IN=3, GND=2, OUT=1, no EN/ADJ pin) and >= 1 uF MLCC input/output capacitors.",
+      "300 DPI PNG Vision on p.3 confirmed Abs Max (VIN=6.5 V, OUT=VIN+0.3 V, TJ=+150°C), Rec Op (VIN=2–6 V, IOUT=600 mA, TA=-40..+85°C), VOUT ±2%, VDROPOUT=300 mV typ / 400 mV max @ 600 mA, IQ=35/80 uA, PSRR=65 dB @ 1 kHz, ILIMIT=0.8 A min / 1.4 A typ, ISHORT=240 mA typ, and TSHDN=+145°C.",
+      "300 DPI PNG Vision on p.4 & p.10 confirmed SOT89 θJA=133 °C/W, θJC=30 °C/W (FR-4 1 oz min pad), and Ordering Info AP7365-XXYG-13 (fixed-only Note 8; Path A p.12 confirmed exact OPN AP7365-33YG-13 with ID code 'VM')."
+    ]
+  }
+}

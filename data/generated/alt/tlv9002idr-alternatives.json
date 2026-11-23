@@ -4,7 +4,7 @@
   "target_slug": "tlv9002idr",
   "target_opn": "TLV9002IDR",
   "category": "opamp",
-  "summary": "Datasheet-verified cross-reference alternatives for TLV9002IDR (Texas Instruments, SOIC-8, opamp-dual): evaluated 21 same-category OPNs and shortlisted the top 8 ranked replacements (0 Level 1 Candidate Drop-In, 8 Level 2 Tuning Required, and 0 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for TLV9002IDR (Texas Instruments, SOIC-8, opamp-dual): evaluated 23 same-category OPNs and shortlisted the top 8 ranked replacements (0 Level 1 Candidate Drop-In, 8 Level 2 Tuning Required, and 0 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "opa2333aidr",
@@ -33,6 +33,20 @@
       "key_advantage": "Higher GBWP (2.2 MHz vs 1 MHz); Higher Vs,max (12 V vs 5.5 V)",
       "key_tradeoff": "Wider Vos (8 mV vs 1.6 mV)",
       "vs_slug": "mc33202dr2g-vs-tlv9002idr"
+    },
+    {
+      "alt_slug": "tlv2372idr",
+      "alt_opn": "TLV2372IDR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOIC-8",
+      "lifecycle_status": "Active",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Higher Voltage Margin",
+      "score": 76,
+      "key_advantage": "Higher GBWP (3 MHz vs 1 MHz); Higher Vs,max (16 V vs 5.5 V)",
+      "key_tradeoff": "Wider Vos (4.5 mV vs 1.6 mV)",
+      "vs_slug": null
     },
     {
       "alt_slug": "tlv9062idr",
@@ -91,22 +105,8 @@
       "vs_slug": "tl072idr-vs-tlv9002idr"
     },
     {
-      "alt_slug": "lm358dr2g",
-      "alt_opn": "LM358DR2G",
-      "manufacturer": "onsemi",
-      "package_code": "SOIC-8",
-      "lifecycle_status": "Active",
-      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
-      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
-      "tier_tag": "Higher Voltage Margin",
-      "score": 74,
-      "key_advantage": "Higher Vs,max (30 V vs 5.5 V)",
-      "key_tradeoff": "Wider Vos (7 mV vs 1.6 mV)",
-      "vs_slug": null
-    },
-    {
-      "alt_slug": "ne5532dr",
-      "alt_opn": "NE5532DR",
+      "alt_slug": "lm2904dr",
+      "alt_opn": "LM2904DR",
       "manufacturer": "Texas Instruments",
       "package_code": "SOIC-8",
       "lifecycle_status": "Active",
@@ -114,8 +114,8 @@
       "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
       "tier_tag": "Higher Voltage Margin",
       "score": 74,
-      "key_advantage": "Higher GBWP (12 MHz vs 1 MHz); Higher Vs,max (30 V vs 5.5 V)",
-      "key_tradeoff": "Wider Vos (4 mV vs 1.6 mV)",
+      "key_advantage": "Higher Vs,max (26 V vs 5.5 V)",
+      "key_tradeoff": "Wider Vos (7 mV vs 1.6 mV)",
       "vs_slug": null
     }
   ],

@@ -4,7 +4,7 @@
   "target_slug": "lp2985-33dbvr",
   "target_opn": "LP2985-33DBVR",
   "category": "ldo",
-  "summary": "Datasheet-verified cross-reference alternatives for LP2985-33DBVR (Texas Instruments, SOT-23-5, fixed-ldo): evaluated 34 same-category OPNs and shortlisted the top 11 ranked replacements (0 Level 1 Candidate Drop-In, 11 Level 2 Tuning Required, and 0 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for LP2985-33DBVR (Texas Instruments, SOT-23-5, fixed-ldo): evaluated 37 same-category OPNs and shortlisted the top 11 ranked replacements (0 Level 1 Candidate Drop-In, 11 Level 2 Tuning Required, and 0 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "tps70933dbvr",
@@ -77,6 +77,20 @@
       "vs_slug": null
     },
     {
+      "alt_slug": "tlv74333pdbvr",
+      "alt_opn": "TLV74333PDBVR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOT-23-5",
+      "lifecycle_status": "Active",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Higher Current / Margin",
+      "score": 64,
+      "key_advantage": "Lower Iq (34 µA vs 69 µA); Higher Iout (300 mA vs 150 mA)",
+      "key_tradeoff": "Lower Vin,max (5.5 V vs 16 V)",
+      "vs_slug": null
+    },
+    {
       "alt_slug": "ap2210k-3-3trg1",
       "alt_opn": "AP2210K-3.3TRG1",
       "manufacturer": "Diodes Incorporated",
@@ -101,20 +115,6 @@
       "tier_tag": "Higher Current / Margin",
       "score": 62,
       "key_advantage": "Lower Iq (31 µA vs 69 µA); Higher Iout (200 mA vs 150 mA)",
-      "key_tradeoff": "Lower Vin,max (5.5 V vs 16 V)",
-      "vs_slug": null
-    },
-    {
-      "alt_slug": "tlv75533pdbvr",
-      "alt_opn": "TLV75533PDBVR",
-      "manufacturer": "Texas Instruments",
-      "package_code": "SOT-23-5",
-      "lifecycle_status": "Active",
-      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
-      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
-      "tier_tag": "Higher Current / Margin",
-      "score": 62,
-      "key_advantage": "Lower Iq (25 µA vs 69 µA); Higher Iout (500 mA vs 150 mA)",
       "key_tradeoff": "Lower Vin,max (5.5 V vs 16 V)",
       "vs_slug": null
     },

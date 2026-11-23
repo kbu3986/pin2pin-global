@@ -1,0 +1,224 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TLV74333PDBVR",
+  "slug": "tlv74333pdbvr",
+  "family": "TLV743P",
+  "manufacturer": "Texas Instruments",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to +125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tlv743p.pdf",
+    "product_page_url": "https://www.ti.com/product/TLV743P",
+    "source_domain": "www.ti.com",
+    "revision": "SBVS310C (July 2017 – Revised June 2019)",
+    "verified_at": "2026-11-24",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 39
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "DBV (SOT-23-5)",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "5-pin DBV SOT-23 package has no exposed thermal pad (RθJC(bot) = N/A, p.5; unlike 4-pin DQN X2SON which has a GND thermal pad)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 228.4,
+      "page": 5,
+      "condition": "JEDEC high-K board for DBV 5-pin SOT-23 (DQN 4-pin X2SON is 218.6 °C/W)",
+      "table_ref": "Section 6.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 151.5,
+      "page": 5,
+      "condition": "RθJC(top), DBV 5-pin SOT-23 package",
+      "table_ref": "Section 6.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 5,
+      "condition": "Absolute maximum operating junction temperature TJ (-40°C to +150°C; recommended continuous TJ -40°C to +125°C, TSD 160°C typ p.7)",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "IN",
+        "role": "VIN",
+        "description": "Input supply pin (1.4 V to 5.5 V recommended, 6.0 V abs max); 0.1–1 uF ceramic decoupling recommended."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Ground reference pin."
+      },
+      {
+        "pin": 3,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high enable (>= 0.9 V ON, <= 0.35 V OFF; NO internal pulldown—do not float; abs max capped at VIN + 0.3 V)."
+      },
+      {
+        "pin": 4,
+        "name": "NC",
+        "role": "NC",
+        "description": "No internal connection (check PCB wiring before swapping to Pin-4 BYP/NR/FB SOT-23-5 LDOs)."
+      },
+      {
+        "pin": 5,
+        "name": "OUT",
+        "role": "VOUT",
+        "description": "Fixed 3.3 V output with 120 Ohm active discharge ('P' suffix); abs max strictly 3.6 V; stable with >= 1 uF X5R/X7R ceramic cap."
+      }
+    ],
+    "pinout_source_page": 4,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 6.0,
+      "page": 5,
+      "condition": "VIN abs max -0.3 V to 6.0 V (NOTE: VEN abs max is VIN + 0.3 V and VOUT abs max is strictly 3.6 V!)",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 1.4,
+      "page": 5,
+      "condition": "Family recommended operating VIN minimum (UVLO rising 1.4 V max; maintain VIN >= 3.3 V + VDO for 3.3 V regulation)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 5.5,
+      "page": 5,
+      "condition": "Recommended operating VIN maximum",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 26,
+      "condition": "Fixed 3.3 V active-discharge ('P') option in DBV SOT-23-5 (Active Production, marking '1CBT')",
+      "table_ref": "Package Option Addendum"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 1.4,
+      "page": 6,
+      "condition": "±1.4% max over -40°C <= TJ <= +125°C (±1.0% max at TJ = 25°C)",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "iout_max_ma": {
+      "value": 300,
+      "page": 5,
+      "condition": "300 mA continuous rated output current (ILIM 360 mA min / 700 mA max; foldback IOS 170 mA typ at 3.3 V, p.7)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "iq_typ_ua": {
+      "value": 34,
+      "page": 6,
+      "condition": "34 uA typ / 60 uA max ground pin current at IOUT = 0 mA",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "ishdn_typ_ua": {
+      "value": 0.1,
+      "page": 6,
+      "condition": "0.1 uA typ / 1.0 uA max at VEN <= 0.35 V, 2 V <= VIN <= 5.5 V, TJ = 25°C",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "dropout_typ_mv": {
+      "value": 125,
+      "page": 6,
+      "condition": "125 mV typ / 220 mV max (-40°C..85°C) or 270 mV max (-40°C..125°C) at VOUT = 3.3 V, IOUT = 300 mA",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "psrr_db": {
+      "value": 50,
+      "page": 1,
+      "condition": "50 dB typ at f = 1 kHz (p.1 Features); Table 6.5 (p.6) specifies 68 dB @ 100 Hz, 35 dB @ 10 kHz, 28 dB @ 100 kHz at VOUT = 1.8 V, 300 mA",
+      "table_ref": "Section 1 Features & Section 6.5 Electrical Characteristics"
+    },
+    "output_noise_uvrms": {
+      "value": 120,
+      "page": 6,
+      "condition": "120 uVRMS typ at VOUT = 1.8 V, IOUT = 10 mA, BW = 10 Hz–100 kHz (higher proportionally at VOUT = 3.3 V)",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 1.0,
+      "page": 16,
+      "condition": "Stable with >= 1 uF X5R/X7R ceramic output cap (Sec. 8.1.1 notes capacitor-less loop stability, 1 uF recommended for transient response)",
+      "table_ref": "Section 8.1.1 Input and Output Capacitor Selection"
+    },
+    "esr_min_ohm": null,
+    "esr_max_ohm": null,
+    "en_active_high": true,
+    "reverse_current_protection": false,
+    "en_abs_max_v": {
+      "value": 5.8,
+      "page": 5,
+      "condition": "EN abs max is strictly VIN + 0.3 V (5.8 V at VIN = 5.5 V; NOT 6 V independent of VIN—driving EN while VIN = 0 V violates Abs Max!)",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings"
+    },
+    "en_default_floating": "forbidden",
+    "max_cout_uf": null,
+    "active_discharge": true
+  },
+  "design_gotchas": [
+    {
+      "title": "EN Abs Max Strictly Capped at VIN + 0.3 V & No Internal EN Pulldown (Unlike TLV755P / TLV757P)",
+      "severity": "CRITICAL",
+      "detail": "Table 6.1 (p.5) limits VEN to -0.3 V to VIN + 0.3 V (rec op 0 to VIN), and Section 7.3.2 (p.14) confirms there is NO internal pulldown resistor on EN. Driving EN from an always-on 3.3 V GPIO before VIN rises forward-biases internal clamps—a hidden trap when replacing 6 V-EN-tolerant TLV75533PDBVR or TLV75733PDBVR.",
+      "page": 5
+    },
+    {
+      "title": "Ultra-Tight 3.6 V Abs Max Rating on VOUT (Cannot Survive 5 V Back-Feed or Mis-Wiring)",
+      "severity": "CRITICAL",
+      "detail": "Unlike peer 5.5 V LDOs whose VOUT survives up to 6.0 V, TLV74333PDBVR restricts VOUT Abs Max to -0.3 V to 3.6 V (p.5) and has an unblocked PMOS body diode from OUT to IN (Sec. 7.3.3, p.14). Any 5 V bus short, programmer back-powering, or VIN collapse with a charged rail risks instant damage.",
+      "page": 5
+    },
+    {
+      "title": "High 228.4 °C/W DBV Thermal Resistance Restricts 5 V -> 3.3 V Full 300 mA Load",
+      "severity": "WARNING",
+      "detail": "At JEDEC RθJA = 228.4 °C/W (p.5), 300 mA from 5.0 V to 3.3 V dissipates 0.51 W and produces ΔT = 116.5 °C (TJ = 141.5 °C at 25 °C ambient, exceeding the 125 °C continuous rating). Limit 5 V -> 3.3 V continuous current to ~200 mA at 25 °C (or ~170 mA at 85 °C with high-K copper, Fig. 31 p.17) or feed from a 3.8 V rail.",
+      "page": 5
+    },
+    {
+      "title": "Foldback Startup Limit (170 mA Typ) & 800 us Slow 3.3 V Startup Time",
+      "severity": "INFO",
+      "detail": "Short-circuit foldback reduces current to 170 mA typ when VOUT is near 0 V (p.7, p.14), which can prevent constant-current loads from rising into regulation unless enabled after VOUT settles. Also note 3.3 V startup time from EN is 800 us typ (3.2x slower than 1 V option's 250 us, p.7) and PSRR rolls off to 35 dB at 10 kHz.",
+      "page": 7
+    }
+  ],
+  "typical_use_cases": [
+    "Cost-optimized 300 mA 3.8 V–4.2 V Li-Ion to 3.3 V point-of-load LDO rails in standard SOT-23-5 footprints",
+    "DC-DC buck post-regulation (3.8 V -> 3.3 V) needing low 125 mV typ dropout, ±1.4% full-temp accuracy, and 120 Ohm active output discharge",
+    "Space-constrained consumer/WLAN modules replacing TLV73333PDBVR where 1 uF ceramic (or cap-less) stability and 0.1 uA shutdown are needed"
+  ],
+  "engineering_summary": "The Texas Instruments TLV74333PDBVR is a 300 mA, fixed 3.3 V (±1.0% @ 25°C, ±1.4% over -40°C..125°C), 34 uA IQ ceramic-stable LDO in a standard 5-pin DBV SOT-23-5 package (1=IN, 2=GND, 3=EN, 4=NC, 5=OUT) featuring 125 mV typ dropout at 300 mA and a 120 Ohm active discharge pulldown. Operating from 1.4 V to 5.5 V (6.0 V abs max), it is a popular low-cost peer to TLV73333PDBVR and TLV75533PDBVR, but engineers must watch its strict VOUT <= 3.6 V abs max, EN <= VIN + 0.3 V (no internal pulldown), unblocked reverse-current body diode, and 228.4 °C/W thermal limit.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [4, 5, 6, 7],
+    "audit_notes": [
+      "300 DPI PNG Vision on p.4 confirmed DBV 5-pin SOT-23 Top View pinout (1=IN, 2=GND, 3=EN, 4=NC, 5=OUT; no thermal pad, distinct from 4-pin DQN X2SON).",
+      "300 DPI PNG Vision on p.5 confirmed Abs Max (VIN=6 V, VEN=VIN+0.3 V, VOUT=3.6 V, TJ=-40..150°C), Rec Op (VIN=1.4–5.5 V, IOUT=300 mA, VEN=0..VIN, TJ=-40..125°C), and DBV Thermal Info (RθJA=228.4 °C/W, RθJC(top)=151.5 °C/W).",
+      "300 DPI PNG Vision on p.6–7 confirmed ±1.0%/±1.4% accuracy, VDO=125 mV typ / 220 mV max (85°C) / 270 mV max (125°C) at 3.3 V/300 mA, IGND=34/60 uA, ISHDN=0.1/1 uA, Vn=120 uVRMS (@1.8 V), PSRR 68/35/28 dB (100 Hz/10 kHz/100 kHz; 50 dB @ 1 kHz p.1), tSTR=800 us (@3.3 V), 120 Ohm pulldown, ILIM=360–700 mA, and IOS=170 mA.",
+      "Path A verified no internal EN pulldown & unblocked PMOS body diode (p.14), cap-less/1 uF ceramic stability (p.16), and Active Production OPN TLV74333PDBVR (marking '1CBT', p.26)."
+    ]
+  }
+}

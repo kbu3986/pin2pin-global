@@ -4,7 +4,7 @@
   "target_slug": "lmv321idbvr",
   "target_opn": "LMV321IDBVR",
   "category": "opamp",
-  "summary": "Datasheet-verified cross-reference alternatives for LMV321IDBVR (Texas Instruments, SOT-23-5, opamp-single): evaluated 21 same-category OPNs and shortlisted the top 10 ranked replacements (1 Level 1 Candidate Drop-In, 0 Level 2 Tuning Required, and 9 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for LMV321IDBVR (Texas Instruments, SOT-23-5, opamp-single): evaluated 23 same-category OPNs and shortlisted the top 10 ranked replacements (1 Level 1 Candidate Drop-In, 0 Level 2 Tuning Required, and 9 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "tlv9001uidbvr",
@@ -77,6 +77,20 @@
       "vs_slug": null
     },
     {
+      "alt_slug": "tlv2372idr",
+      "alt_opn": "TLV2372IDR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOIC-8",
+      "lifecycle_status": "Active",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+      "tier_tag": "Functional Alternative (Layout Change)",
+      "score": 42,
+      "key_advantage": "Tighter Vos (4.5 mV vs 7 mV); Higher GBWP (3 MHz vs 1 MHz)",
+      "key_tradeoff": "Package change (SOT-23-5 → SOIC-8) requires PCB layout mod",
+      "vs_slug": null
+    },
+    {
       "alt_slug": "tlv9002idr",
       "alt_opn": "TLV9002IDR",
       "manufacturer": "Texas Instruments",
@@ -101,20 +115,6 @@
       "tier_tag": "Functional Alternative (Layout Change)",
       "score": 42,
       "key_advantage": "Tighter Vos (1.6 mV vs 7 mV); Higher GBWP (10 MHz vs 1 MHz)",
-      "key_tradeoff": "Package change (SOT-23-5 → SOIC-8) requires PCB layout mod",
-      "vs_slug": null
-    },
-    {
-      "alt_slug": "mc33202dr2g",
-      "alt_opn": "MC33202DR2G",
-      "manufacturer": "onsemi",
-      "package_code": "SOIC-8",
-      "lifecycle_status": "Active",
-      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
-      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
-      "tier_tag": "Functional Alternative (Layout Change)",
-      "score": 40,
-      "key_advantage": "Higher GBWP (2.2 MHz vs 1 MHz); Full Rail-to-Rail I/O swing",
       "key_tradeoff": "Package change (SOT-23-5 → SOIC-8) requires PCB layout mod",
       "vs_slug": null
     },

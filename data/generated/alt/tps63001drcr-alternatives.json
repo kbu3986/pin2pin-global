@@ -4,7 +4,7 @@
   "target_slug": "tps63001drcr",
   "target_opn": "TPS63001DRCR",
   "category": "dcdc",
-  "summary": "Datasheet-verified cross-reference alternatives for TPS63001DRCR (Texas Instruments, VSON-10, buck-boost): evaluated 22 same-category OPNs and shortlisted the top 8 ranked replacements (0 Level 1 Candidate Drop-In, 0 Level 2 Tuning Required, and 8 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for TPS63001DRCR (Texas Instruments, VSON-10, buck-boost): evaluated 25 same-category OPNs and shortlisted the top 8 ranked replacements (0 Level 1 Candidate Drop-In, 0 Level 2 Tuning Required, and 8 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "tps63020dsjr",
@@ -105,8 +105,8 @@
       "vs_slug": null
     },
     {
-      "alt_slug": "ap63300wu-7",
-      "alt_opn": "AP63300WU-7",
+      "alt_slug": "ap63205wu-7",
+      "alt_opn": "AP63205WU-7",
       "manufacturer": "Diodes Incorporated",
       "package_code": "TSOT-23-6",
       "lifecycle_status": "Active",
@@ -114,7 +114,7 @@
       "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
       "tier_tag": "Functional Alternative (Layout Change)",
       "score": 28,
-      "key_advantage": "Lower Iq (22 µA vs 41 µA); Higher Iout rating (3000 mA vs 1200 mA)",
+      "key_advantage": "Lower Iq (22 µA vs 41 µA); Higher Iout rating (2000 mA vs 1200 mA)",
       "key_tradeoff": "Not drop-in: DC-DC topology mismatch (buck-boost vs buck); Different topology (buck vs buck-boost)",
       "vs_slug": null
     }

@@ -1,0 +1,193 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "lm2904dr-vs-lm358dr2g",
+  "category": "opamp",
+  "part_a_slug": "lm2904dr",
+  "part_b_slug": "lm358dr2g",
+  "part_a_opn": "LM2904DR",
+  "part_b_opn": "LM358DR2G",
+  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+  "package_match": true,
+  "pinout_exact_match": true,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "OUT1",
+      "part_a_role": "OUT_A",
+      "part_b_name": "Output A",
+      "part_b_role": "OUT_A",
+      "status": "MATCH",
+      "note": "Functionally identical OUT_A pin (OUT1 vs Output A)."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "IN1-",
+      "part_a_role": "IN_NEG_A",
+      "part_b_name": "Input A-",
+      "part_b_role": "IN_NEG_A",
+      "status": "MATCH",
+      "note": "Functionally identical IN_NEG_A pin (IN1- vs Input A-)."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "IN1+",
+      "part_a_role": "IN_POS_A",
+      "part_b_name": "Input A+",
+      "part_b_role": "IN_POS_A",
+      "status": "MATCH",
+      "note": "Functionally identical IN_POS_A pin (IN1+ vs Input A+)."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "V-",
+      "part_a_role": "VEE",
+      "part_b_name": "VEE/Gnd",
+      "part_b_role": "VEE",
+      "status": "MATCH",
+      "note": "Functionally identical VEE pin (V- vs VEE/Gnd)."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "IN2+",
+      "part_a_role": "IN_POS_B",
+      "part_b_name": "Input B+",
+      "part_b_role": "IN_POS_B",
+      "status": "MATCH",
+      "note": "Functionally identical IN_POS_B pin (IN2+ vs Input B+)."
+    },
+    {
+      "pin": 6,
+      "part_a_name": "IN2-",
+      "part_a_role": "IN_NEG_B",
+      "part_b_name": "Input B-",
+      "part_b_role": "IN_NEG_B",
+      "status": "MATCH",
+      "note": "Functionally identical IN_NEG_B pin (IN2- vs Input B-)."
+    },
+    {
+      "pin": 7,
+      "part_a_name": "OUT2",
+      "part_a_role": "OUT_B",
+      "part_b_name": "Output B",
+      "part_b_role": "OUT_B",
+      "status": "MATCH",
+      "note": "Functionally identical OUT_B pin (OUT2 vs Output B)."
+    },
+    {
+      "pin": 8,
+      "part_a_name": "V+",
+      "part_a_role": "VCC",
+      "part_b_name": "VCC",
+      "part_b_role": "VCC",
+      "status": "MATCH",
+      "note": "Functionally identical VCC pin (V+ vs VCC)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Device Kind & Output Stage",
+      "unit": "—",
+      "part_a_value": "opamp (push-pull)",
+      "part_b_value": "opamp (push-pull)",
+      "winner": "TIE",
+      "note": "Op-amps (internally compensated for linear feedback) and comparators (uncompensated open-loop switching) are NOT drop-in interchangeable."
+    },
+    {
+      "metric": "Package & Channel Count",
+      "unit": "—",
+      "part_a_value": "SOIC-8 · 2 ch (D (8-Pin SOIC), p.3)",
+      "part_b_value": "SOIC-8 · 2 ch (CASE 751 (D), p.1)",
+      "winner": "TIE",
+      "note": "Single SOT-23-5 op-amps vary in pin ordering across vendors; verify Pin 1–5."
+    },
+    {
+      "metric": "Supply Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "3 to 26 V (p.5)",
+      "part_b_value": "3 to 30 V (p.1/p.4)",
+      "winner": "B",
+      "note": "A part wins only if its recommended Vs range strictly encompasses the counterpart on both ends."
+    },
+    {
+      "metric": "Absolute Max Supply (Vs,abs)",
+      "unit": "V",
+      "part_a_value": "26 V (p.4)",
+      "part_b_value": "32 V (p.3)",
+      "winner": "B",
+      "note": "Exceeding Vs,abs causes immediate gate-oxide or junction breakdown."
+    },
+    {
+      "metric": "Gain-Bandwidth Product (GBWP)",
+      "unit": "MHz",
+      "part_a_value": "0.7 MHz (p.11)",
+      "part_b_value": "1 MHz (p.6)",
+      "winner": "B",
+      "note": "Closed-loop -3 dB bandwidth scales as f_-3dB = GBWP / Acl."
+    },
+    {
+      "metric": "Slew Rate / Propagation Delay",
+      "unit": "V/µs · ns",
+      "part_a_value": "SR: 0.3 V/µs (p.11)",
+      "part_b_value": "SR: 0.6 V/µs (p.6)",
+      "winner": "B",
+      "note": "Controls large-signal full-power bandwidth SR / (2π·Vpeak) or comparator switching speed."
+    },
+    {
+      "metric": "Input Offset Voltage (Vos, max)",
+      "unit": "mV",
+      "part_a_value": "7 mV (p.11)",
+      "part_b_value": "7 mV (p.4)",
+      "winner": "TIE",
+      "note": "Lower Vos minimizes DC error in current-shunt and sensor bridge amplifiers."
+    },
+    {
+      "metric": "Input Bias Current (Ib, typ)",
+      "unit": "pA",
+      "part_a_value": "20000 pA (p.11)",
+      "part_b_value": "45000 pA (p.4)",
+      "winner": "A",
+      "note": "CMOS/JFET pA-class inputs avoid offset voltage drops across high-impedance (>100 kΩ) sensors."
+    },
+    {
+      "metric": "Quiescent Current / Ch (Iq)",
+      "unit": "µA/ch",
+      "part_a_value": "350 µA/ch (p.11)",
+      "part_b_value": "350 µA/ch (p.4)",
+      "winner": "TIE",
+      "note": "Multiply by channel count for total IC standby current draw."
+    },
+    {
+      "metric": "Rail-to-Rail Input / Output",
+      "unit": "—",
+      "part_a_value": "IN: No · OUT: No",
+      "part_b_value": "IN: No · OUT: No",
+      "winner": "TIE",
+      "note": "RRIO prevents clipping on low-voltage 3.3 V single-supply ADC buffers."
+    },
+    {
+      "metric": "CMRR (typ) & Input Noise",
+      "unit": "dB · nV/√Hz",
+      "part_a_value": "80 dB (p.11) · 40 nV/√Hz (p.11)",
+      "part_b_value": "70 dB (p.4) · Not specified",
+      "winner": "A",
+      "note": "Winner requires superiority on both CMRR (higher) and input voltage noise (lower); mixed tradeoffs stay CONTEXT."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "124.7 °C/W (p.5) · 150 °C",
+      "part_b_value": "212 °C/W (p.3) · 150 °C",
+      "winner": "A",
+      "note": "Important when driving heavy resistive loads or high supply rails."
+    }
+  ],
+  "swap_risks": [
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: LM2904DR has a lower Vs,abs,max rating (26 V, p.4) than LM358DR2G (32 V, p.3); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 26 V.",
+    "HIGH THERMAL MARGIN: Package θJA is 70% higher on LM358DR2G (LM2904DR: 124.7 °C/W p.5 vs LM358DR2G: 212 °C/W p.3); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (LM2904DR: -40..125 °C Extended Industrial / Automotive Temp (-40°C to +125°C TA) vs LM358DR2G: 0..70 °C Commercial (0°C to +70°C)); LM358DR2G cold limit only 0 °C, LM358DR2G hot limit only 70 °C — verify product ambient qualification before swapping."
+  ],
+  "engineering_verdict": "LM2904DR (Texas Instruments, SOIC-8) and LM358DR2G (onsemi, SOIC-8) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because Vs,abs,max drops >=15% (26 V vs 32 V); θJA worsens 70% (thermal derating verification required); ambient temperature grade differs (-40..125 °C vs 0..70 °C). Signal-chain deltas: GBWP 0.7 MHz (p.11) vs 1 MHz (p.6), supply ceiling 26 V (p.5) vs 30 V (p.4), Vos 7 mV (p.11) vs 7 mV (p.4), Ib 2x gap (20000 vs 45000 pA). Primary bench gotchas to watch: LM2904DR \"Hidden 26 V Supply Ceiling Trap When Swapping From 30 V/32 V LM358DR to 'Extended-Temp' LM2904DR!\" (p.4) and LM358DR2G \"CRITICAL ESD Trap: Standard onsemi LM358DR2G Is Rated ONLY 250 V HBM / 100 V MM (p.3)!\" (p.3). BOM decision: Choose LM2904DR when matching your existing Texas Instruments SOIC-8 (D (8-Pin SOIC)) qualification and -40..125 °C grade; choose LM358DR2G when supply rails exceed 26 V (rated up to 30 V). Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.1) and official datasheets on hardware prototypes prior to production.",
+  "generated_at": "2026-11-23"
+}

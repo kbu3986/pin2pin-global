@@ -1,0 +1,226 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "LM2904DR",
+  "slug": "lm2904dr",
+  "family": "LM2904",
+  "manufacturer": "Texas Instruments",
+  "category": "opamp",
+  "sub_topology": "opamp-dual",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial / Automotive Temp (-40°C to +125°C TA)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/lm2904.pdf",
+    "product_page_url": "https://www.ti.com/product/LM2904",
+    "source_domain": "www.ti.com",
+    "revision": "SLOS068AB (June 1976 – Revised October 2024)",
+    "verified_at": "2026-11-24",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 68
+  },
+  "package": {
+    "code": "SOIC-8",
+    "mfg_package_code": "D (8-Pin SOIC)",
+    "pin_count": 8,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE"
+    },
+    "theta_ja_c_per_w": {
+      "value": 124.7,
+      "page": 5,
+      "condition": "D (8-pin SOIC) package, JEDEC High-K board",
+      "table_ref": "Section 5.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 66.9,
+      "page": 5,
+      "condition": "RθJC(top), D (8-pin SOIC) package",
+      "table_ref": "Section 5.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 4,
+      "condition": "Operating virtual-junction temperature TJ max = 150°C",
+      "table_ref": "Section 5.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "OUT1",
+        "role": "OUT_A",
+        "description": "Class-B push-pull output, channel 1 (positive swing stops >= 1.5–4 V below V+)."
+      },
+      {
+        "pin": 2,
+        "name": "IN1-",
+        "role": "IN_NEG_A",
+        "description": "Inverting PNP input, channel 1 (senses down to V-, upper VCM capped at V+ - 2 V over temp)."
+      },
+      {
+        "pin": 3,
+        "name": "IN1+",
+        "role": "IN_POS_A",
+        "description": "Noninverting PNP input, channel 1."
+      },
+      {
+        "pin": 4,
+        "name": "V-",
+        "role": "VEE",
+        "description": "Negative (lowest) supply or ground for single-supply operation."
+      },
+      {
+        "pin": 5,
+        "name": "IN2+",
+        "role": "IN_POS_B",
+        "description": "Noninverting PNP input, channel 2."
+      },
+      {
+        "pin": 6,
+        "name": "IN2-",
+        "role": "IN_NEG_B",
+        "description": "Inverting PNP input, channel 2."
+      },
+      {
+        "pin": 7,
+        "name": "OUT2",
+        "role": "OUT_B",
+        "description": "Class-B push-pull output, channel 2."
+      },
+      {
+        "pin": 8,
+        "name": "V+",
+        "role": "VCC",
+        "description": "Positive (highest) supply (STRICT 26 V MAX operating & abs max on non-V/non-B LM2904DR!)."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "device_kind": "opamp",
+    "channels": 2,
+    "vs_abs_max_v": {
+      "value": 26,
+      "page": 4,
+      "condition": "Plain LM2904 is capped at ONLY ±13 V or 26 V abs max (vs 32 V on LM358/LM2904V and 40 V on LM2904B/LM358B!)",
+      "table_ref": "Section 5.1 Absolute Maximum Ratings"
+    },
+    "vs_min_v": {
+      "value": 3,
+      "page": 5,
+      "condition": "Minimum recommended single-supply voltage (3 V)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "vs_max_v": {
+      "value": 26,
+      "page": 5,
+      "condition": "Maximum recommended single-supply voltage for plain LM2904 (ZERO margin below 26 V abs max; use LM2904V for 30 V or LM2904B for 36 V)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "gbwp_mhz": {
+      "value": 0.7,
+      "page": 11,
+      "condition": "0.7 MHz typ at VS = 5 V, TA = 25°C for legacy LM2904 (next-gen LM2904B is 1.2 MHz)",
+      "table_ref": "Section 5.8 Electrical Characteristics: LM2904, LM2904V"
+    },
+    "slew_rate_v_per_us": {
+      "value": 0.3,
+      "page": 11,
+      "condition": "0.3 V/us typ at G = +1, TA = 25°C (next-gen LM2904B is 0.5 V/us)",
+      "table_ref": "Section 5.8 Electrical Characteristics: LM2904, LM2904V"
+    },
+    "prop_delay_ns": null,
+    "vos_max_mv": {
+      "value": 7,
+      "page": 11,
+      "condition": "Non-A LM2904: 3 mV typ / 7 mV max @ 25°C, 10 mV max over -40°C..+125°C (VS = 5–26 V; LM2904B is 3 mV max @ 25°C)",
+      "table_ref": "Section 5.8 Electrical Characteristics: LM2904, LM2904V"
+    },
+    "ib_typ_pa": {
+      "value": 20000,
+      "page": 11,
+      "condition": "20 nA (20,000 pA) typ magnitude (-20 nA typ, -250 nA max @ 25°C, -500 nA max over -40°C..+125°C)",
+      "table_ref": "Section 5.8 Electrical Characteristics: LM2904, LM2904V"
+    },
+    "iq_per_ch_typ_ua": {
+      "value": 350,
+      "page": 11,
+      "condition": "350 uA/ch typ (600 max) at VS = 5 V, VO = 2.5 V; rises to 500 uA/ch typ (1000 max) at VS = 26 V",
+      "table_ref": "Section 5.8 Electrical Characteristics: LM2904, LM2904V"
+    },
+    "rail_to_rail_in": false,
+    "rail_to_rail_out": false,
+    "output_type": "push-pull",
+    "cmrr_typ_db": {
+      "value": 80,
+      "page": 11,
+      "condition": "80 dB typ / 65 dB min at VS = 5–26 V, VCM = 0 V, TA = 25°C",
+      "table_ref": "Section 5.8 Electrical Characteristics: LM2904, LM2904V"
+    },
+    "input_noise_nv_rt_hz": {
+      "value": 40,
+      "page": 11,
+      "condition": "40 nV/rtHz typ at f = 1 kHz, TA = 25°C",
+      "table_ref": "Section 5.8 Electrical Characteristics: LM2904, LM2904V"
+    },
+    "iout_short_ma": {
+      "value": 40,
+      "page": 11,
+      "condition": "±40 mA typ / ±60 mA max at VS = 10 V, VO = VS/2, TA = 25°C",
+      "table_ref": "Section 5.8 Electrical Characteristics: LM2904, LM2904V"
+    }
+  },
+  "design_gotchas": [
+    {
+      "title": "Hidden 26 V Supply Ceiling Trap When Swapping From 30 V/32 V LM358DR to 'Extended-Temp' LM2904DR!",
+      "severity": "CRITICAL",
+      "detail": "Engineers routinely swap commercial LM358DR (0..70°C, 30 V op / 32 V abs max) to LM2904DR (-40..125°C) assuming identical voltage ratings—YET plain TI LM2904DR drops BOTH recommended and abs max supply to ONLY 26 V (±13 V, p.4–5) with zero overvoltage headroom! On 24 V+ industrial/±15 V rails, specify LM2904VDR (30 V/32 V) or next-gen LM2904BIDR (36 V/40 V).",
+      "page": 4
+    },
+    {
+      "title": "Legacy LM2904DR vs Next-Gen LM2904BIDR Confusion in Shared Datasheet (500 V vs 2000 V ESD, 7 mV vs 3 mV VOS)",
+      "severity": "CRITICAL",
+      "detail": "Page 1 headlines 36 V supply, 300 uA/ch IQ, 1.2 MHz GBW, 3 mV VOS, ±2 kV HBM ESD, and internal EMI filters—ALL of which belong ONLY to the newer B/BA suffix (LM2904BIDR/LM2904BAIDR)! Legacy LM2904DR (Section 5.8, p.11) remains 26 V max, 0.7 MHz, 0.3 V/us, 7 mV max VOS (10 mV over temp), ±500 V HBM ESD, and no EMI filter.",
+      "page": 11
+    },
+    {
+      "title": "Pin-Identical SOIC-8 Swap Hazard Against Open-Collector LM2903DR / LM393DR Comparators",
+      "severity": "CRITICAL",
+      "detail": "LM2904DR shares the exact 8-pin SOIC pinout (1=OUT1, 2=IN1-, 3=IN1+, 4=V-, 5=IN2+, 6=IN2-, 7=OUT2, 8=V+) with the dual comparator LM2903DR (-40..125°C, 36 V open-collector). Swapping LM2903DR into an LM2904DR linear op-amp socket causes oscillation and missing high-side drive; using LM2904DR as a fast comparator suffers slow 0.3 V/us recovery.",
+      "page": 3
+    },
+    {
+      "title": "Non-Rail-to-Rail Positive Ceiling (V+ - 2 V) & Weak 30 uA Sink Near Ground + Class-B Crossover",
+      "severity": "WARNING",
+      "detail": "While PNP inputs sense down to V-, upper VCM stops at V+ - 2.0 V over -40°C..125°C (p.5, p.11) and positive output swing drops 2–4 V below V+ under load. Near ground (VO = 200 mV), non-V LM2904DR sinks only 30 uA typ (no guaranteed min listed on p.11 vs 12 uA min on V-suffix!) and exhibits classic Class-B crossover distortion.",
+      "page": 11
+    }
+  ],
+  "typical_use_cases": [
+    "Extended-temperature (-40°C to +125°C) 5 V–24 V low-side current sensing and ground-referenced DC control loops (strictly <= 26 V max including transients)",
+    "Industrial motor control, power supply feedback, and battery charger stages upgrading commercial 0..70°C LM358DR boards operating <= 24 V",
+    "Cost-sensitive legacy dual bipolar op-amp maintenance where designers should evaluate drop-in upgrade to 36 V / ±2 kV ESD LM2904BIDR"
+  ],
+  "engineering_summary": "The Texas Instruments LM2904DR is the extended-temperature (-40°C to +125°C) industrial dual bipolar operational amplifier sibling of LM358DR in an 8-pin SOIC (D) package (RθJA = 124.7 °C/W), featuring ground-sensing PNP inputs, 0.7 MHz GBWP, 0.3 V/us slew rate, 350 uA/ch IQ, 20 nA input bias, and 7 mV max VOS (10 mV over temp). CRITICAL TRAP: Plain TI LM2904DR is strictly capped at 26 V (±13 V) for BOTH operating and absolute maximum supply—6 V lower than LM358DR (32 V) and 14 V lower than next-gen LM2904BIDR (40 V)—with only ±500 V HBM ESD; specify LM2904VDR (30 V) or LM2904BIDR (36 V) for 24 V+ or ±15 V rails.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 4, 5, 8, 11],
+    "audit_notes": [
+      "300 DPI PNG Vision on p.3 confirmed Figure 4-1 D (SOIC-8) Top View pinout (1=OUT1, 2=IN1-, 3=IN1+, 4=V-, 5=IN2+, 6=IN2-, 7=OUT2, 8=V+).",
+      "300 DPI PNG Vision on p.4–5 confirmed critical legacy LM2904 rating limits: VS abs max = 26 V (±13 V) and rec op = 3–26 V (vs 30/32 V on LM358/LM2904V and 36/40 V on LM2904B), HBM ESD = ±500 V (vs ±2000 V on B), TA = -40..125°C, TJ = 150°C, and D-pkg Thermal Info (RθJA = 124.7 °C/W, RθJC(top) = 66.9 °C/W).",
+      "300 DPI PNG Vision on p.11 confirmed Section 5.8 legacy LM2904 specs (explicitly separated from Section 5.6 LM2904B p.8): VOS = 3/7 mV @ 25°C (10 mV over temp), CMRR = 80/65 dB, IB = -20/-250 nA (-500 nA over temp), en = 40 nV/rtHz, GBW = 0.7 MHz, SR = 0.3 V/us, ISC = ±40/±60 mA, and IQ = 350/600 uA/ch @ 5 V (500/1000 uA/ch @ 26 V).",
+      "Path A verified Active Production OPN LM2904DR (marking 'LM2904', p.36; note LM2904DRG3/DRG4 are Obsolete)."
+    ]
+  }
+}

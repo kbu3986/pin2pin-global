@@ -4,7 +4,7 @@
   "target_slug": "tps7a2433dbvr",
   "target_opn": "TPS7A2433DBVR",
   "category": "ldo",
-  "summary": "Datasheet-verified cross-reference alternatives for TPS7A2433DBVR (Texas Instruments, SOT-23-5, fixed-ldo): evaluated 34 same-category OPNs and shortlisted the top 9 ranked replacements (0 Level 1 Candidate Drop-In, 9 Level 2 Tuning Required, and 0 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for TPS7A2433DBVR (Texas Instruments, SOT-23-5, fixed-ldo): evaluated 37 same-category OPNs and shortlisted the top 10 ranked replacements (0 Level 1 Candidate Drop-In, 10 Level 2 Tuning Required, and 0 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "tps70933dbvr",
@@ -37,6 +37,20 @@
     {
       "alt_slug": "tlv73333pdbvr",
       "alt_opn": "TLV73333PDBVR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOT-23-5",
+      "lifecycle_status": "Active",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Higher Current / Margin",
+      "score": 65,
+      "key_advantage": "Higher Iout (300 mA vs 200 mA)",
+      "key_tradeoff": "Higher Iq (34 µA vs 2 µA); Lower Vin,max (5.5 V vs 18 V)",
+      "vs_slug": null
+    },
+    {
+      "alt_slug": "tlv74333pdbvr",
+      "alt_opn": "TLV74333PDBVR",
       "manufacturer": "Texas Instruments",
       "package_code": "SOT-23-5",
       "lifecycle_status": "Active",
@@ -105,18 +119,18 @@
       "vs_slug": null
     },
     {
-      "alt_slug": "tlv75533pdbvr",
-      "alt_opn": "TLV75533PDBVR",
+      "alt_slug": "tps76333dbvr",
+      "alt_opn": "TPS76333DBVR",
       "manufacturer": "Texas Instruments",
       "package_code": "SOT-23-5",
       "lifecycle_status": "Active",
       "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
       "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
-      "tier_tag": "Higher Current / Margin",
-      "score": 63,
-      "key_advantage": "Higher Iout (500 mA vs 200 mA)",
-      "key_tradeoff": "Higher Iq (25 µA vs 2 µA); Lower Vin,max (5.5 V vs 18 V)",
-      "vs_slug": null
+      "tier_tag": "Value / Second-Source",
+      "score": 55,
+      "key_advantage": "Texas Instruments multi-source option in SOT-23-5",
+      "key_tradeoff": "Higher Iq (65 µA vs 2 µA); Lower Iout (150 mA vs 200 mA)",
+      "vs_slug": "tps76333dbvr-vs-tps7a2433dbvr"
     },
     {
       "alt_slug": "ap2204k-3-3trg1",

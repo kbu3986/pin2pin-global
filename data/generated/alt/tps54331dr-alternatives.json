@@ -4,7 +4,7 @@
   "target_slug": "tps54331dr",
   "target_opn": "TPS54331DR",
   "category": "dcdc",
-  "summary": "Datasheet-verified cross-reference alternatives for TPS54331DR (Texas Instruments, SOIC-8, buck): evaluated 22 same-category OPNs and shortlisted the top 8 ranked replacements (0 Level 1 Candidate Drop-In, 1 Level 2 Tuning Required, and 7 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for TPS54331DR (Texas Instruments, SOIC-8, buck): evaluated 25 same-category OPNs and shortlisted the top 8 ranked replacements (0 Level 1 Candidate Drop-In, 1 Level 2 Tuning Required, and 7 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "tps54231dr",
@@ -63,6 +63,20 @@
       "vs_slug": "lm2596sx-5-0-nopb-vs-tps54331dr"
     },
     {
+      "alt_slug": "lmr33630addar",
+      "alt_opn": "LMR33630ADDAR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOIC-8E",
+      "lifecycle_status": "Active",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+      "tier_tag": "Functional Alternative (Layout Change)",
+      "score": 45,
+      "key_advantage": "Lower Iq (24 µA vs 110 µA); Synchronous rectification (no external Schottky)",
+      "key_tradeoff": "Not drop-in: synchronous vs non-synchronous rectification mismatch (external Schottky footprint)",
+      "vs_slug": "lmr33630addar-vs-tps54331dr"
+    },
+    {
       "alt_slug": "tps54302ddcr",
       "alt_opn": "TPS54302DDCR",
       "manufacturer": "Texas Instruments",
@@ -77,6 +91,20 @@
       "vs_slug": "tps54302ddcr-vs-tps54331dr"
     },
     {
+      "alt_slug": "tps5430ddar",
+      "alt_opn": "TPS5430DDAR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOIC-8E",
+      "lifecycle_status": "Active",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+      "tier_tag": "Functional Alternative (Layout Change)",
+      "score": 45,
+      "key_advantage": "Wider Vin,max (36 V vs 28 V)",
+      "key_tradeoff": "Package change (SOIC-8 → SOIC-8E) requires PCB layout mod; Higher Iq (2000 µA vs 110 µA)",
+      "vs_slug": "tps5430ddar-vs-tps54331dr"
+    },
+    {
       "alt_slug": "ap62300wu-7",
       "alt_opn": "AP62300WU-7",
       "manufacturer": "Diodes Incorporated",
@@ -88,34 +116,6 @@
       "score": 45,
       "key_advantage": "Synchronous rectification (no external Schottky)",
       "key_tradeoff": "Not drop-in: synchronous vs non-synchronous rectification mismatch (external Schottky footprint); Higher Iq (155 µA vs 110 µA)",
-      "vs_slug": null
-    },
-    {
-      "alt_slug": "ap63300wu-7",
-      "alt_opn": "AP63300WU-7",
-      "manufacturer": "Diodes Incorporated",
-      "package_code": "TSOT-23-6",
-      "lifecycle_status": "Active",
-      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
-      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
-      "tier_tag": "Functional Alternative (Layout Change)",
-      "score": 45,
-      "key_advantage": "Lower Iq (22 µA vs 110 µA); Synchronous rectification (no external Schottky)",
-      "key_tradeoff": "Not drop-in: synchronous vs non-synchronous rectification mismatch (external Schottky footprint)",
-      "vs_slug": null
-    },
-    {
-      "alt_slug": "tps54202ddcr",
-      "alt_opn": "TPS54202DDCR",
-      "manufacturer": "Texas Instruments",
-      "package_code": "SOT-23-6",
-      "lifecycle_status": "Active",
-      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
-      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
-      "tier_tag": "Functional Alternative (Layout Change)",
-      "score": 45,
-      "key_advantage": "Lower Iq (45 µA vs 110 µA); Synchronous rectification (no external Schottky)",
-      "key_tradeoff": "Not drop-in: synchronous vs non-synchronous rectification mismatch (external Schottky footprint); Lower Iout rating (2000 mA vs 3000 mA)",
       "vs_slug": null
     }
   ],

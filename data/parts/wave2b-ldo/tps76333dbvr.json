@@ -1,0 +1,239 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TPS76333DBVR",
+  "slug": "tps76333dbvr",
+  "family": "TPS763",
+  "manufacturer": "Texas Instruments",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to +125°C TJ; new chip TJ rec up to +150°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tps763.pdf",
+    "product_page_url": "https://www.ti.com/product/TPS763",
+    "source_domain": "www.ti.com",
+    "revision": "SLVS181K (December 1998 – Revised December 2025)",
+    "verified_at": "2026-11-24",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 43
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "DBV (SOT-23-5)",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "5-pin DBV SOT-23 package has no exposed bottom thermal pad (RθJC(bot) = N/A, p.5)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 178.6,
+      "page": 5,
+      "condition": "New chip (CSO: RFAB) JEDEC RθJA = 178.6 °C/W; Legacy chip (CSO: SFB) is higher at 205.3 °C/W",
+      "table_ref": "Section 5.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 77.9,
+      "page": 5,
+      "condition": "RθJC(top) for New chip DBV SOT-23-5 (Legacy chip is 125.1 °C/W)",
+      "table_ref": "Section 5.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 4,
+      "condition": "Absolute maximum operating junction temperature TJ = -40°C to +150°C (Legacy rec max 125°C; New chip rec max 150°C)",
+      "table_ref": "Section 5.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "IN",
+        "role": "VIN",
+        "description": "Input supply pin (2.7 V to 10 V recommended; abs max 10 V legacy / 18 V new chip); bypass with >= 1 uF cap."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Ground reference pin."
+      },
+      {
+        "pin": 3,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high enable pin (tie to VIN if unused on new chip; abs max VIN+0.3 V legacy / 18 V new chip)."
+      },
+      {
+        "pin": 4,
+        "name": "NC",
+        "role": "NC",
+        "description": "No internal connection on fixed 3.3 V TPS76333 (Pin 4 is FB on adjustable TPS76301 only)."
+      },
+      {
+        "pin": 5,
+        "name": "OUT",
+        "role": "VOUT",
+        "description": "Fixed 3.3 V regulated output; legacy chip requires >= 4.7 uF with 0.3–10 Ohm ESR, new chip supports 1–220 uF with 0–1 Ohm ESR."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 10.0,
+      "page": 4,
+      "condition": "Conservative Legacy chip (CSO: SFB) VIN abs max = 10 V; New chip (CSO: RFAB) raises abs max to 18 V (VOUT abs max 7 V for both)",
+      "table_ref": "Section 5.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 2.7,
+      "page": 4,
+      "condition": "Family recommended operating VIN minimum (maintain VIN >= 3.3 V + VDO for 3.3 V regulation)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 10.0,
+      "page": 4,
+      "condition": "Recommended operating VIN maximum (10 V across both Legacy and New chip tables)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 7,
+      "condition": "Fixed 3.3 V option (Active Production OPN TPS76333DBVR, top marking 'PBEI', p.34)",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 2.0,
+      "page": 7,
+      "condition": "New chip TPS76333 is ±2.0% max (3.234–3.366 V) over -40°C..125°C at 1–150 mA (±1.5% @ 25°C); Legacy chip is ±3.75% (3.177–3.423 V)",
+      "table_ref": "Section 5.5 Electrical Characteristics (continued)"
+    },
+    "iout_max_ma": {
+      "value": 150,
+      "page": 4,
+      "condition": "150 mA continuous rated output current (ICL 0.8 A typ / 1.05 A max new chip; 0.5–1.5 A legacy, p.7)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "iq_typ_ua": {
+      "value": 65,
+      "page": 7,
+      "condition": "New chip 65 uA typ / 125 uA max at IOUT = 0 mA, BUT jumps to 765 uA typ / 1060 uA max at 1–150 mA (Legacy stays 85 uA typ / 140 uA max across 1–150 mA!)",
+      "table_ref": "Section 5.5 Electrical Characteristics (continued)"
+    },
+    "ishdn_typ_ua": {
+      "value": 1.12,
+      "page": 8,
+      "condition": "New chip standby current 1.12 uA typ / 2.75 uA max over temp at EN < 0.15 V (Legacy 0.5 uA typ / 1 uA max @ 25°C at EN < 0.5 V)",
+      "table_ref": "Section 5.5 Electrical Characteristics (continued)"
+    },
+    "dropout_typ_mv": {
+      "value": 180,
+      "page": 9,
+      "condition": "New chip 180 mV typ / 198 mV max @ 25°C (254 mV max over temp) at IOUT = 150 mA; Legacy TPS76333 is 300 mV typ / 500 mV max (p.8)",
+      "table_ref": "Section 5.5 Electrical Characteristics (continued)"
+    },
+    "psrr_db": {
+      "value": 58,
+      "page": 8,
+      "condition": "New chip 58 dB typ at f = 1 kHz, COUT = 4.7 uF, TJ = 25°C (Legacy is 60 dB at COUT = 10 uF)",
+      "table_ref": "Section 5.5 Electrical Characteristics (continued)"
+    },
+    "output_noise_uvrms": {
+      "value": 165,
+      "page": 7,
+      "condition": "New chip 165 uVRMS (BW = 300 Hz–50 kHz, VOUT = 3.3 V, COUT = 4.7 uF); Legacy is 140 uVRMS (COUT = 10 uF)",
+      "table_ref": "Section 5.5 Electrical Characteristics (continued)"
+    },
+    "ceramic_cap_stable": false,
+    "min_cout_uf": {
+      "value": 4.7,
+      "page": 4,
+      "condition": "Legacy chip requires >= 4.7 uF (New chip supports 1 uF min / 2.2 uF nom to 220 uF max; 4.7 uF satisfies both dies)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "esr_min_ohm": {
+      "value": 0.3,
+      "page": 4,
+      "condition": "Legacy chip requires ESR >= 0.3 Ohm (0.3–10 Ohm) and oscillates with bare MLCCs; New chip accepts 0–1 Ohm (0.3–1.0 Ohm is the safe overlap window)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "esr_max_ohm": {
+      "value": 1.0,
+      "page": 4,
+      "condition": "New chip ESR ceiling is 1.0 Ohm (Legacy allows up to 10 Ohm; keep ESR within 0.3–1.0 Ohm if mixed SFB/RFAB reels can occur)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "en_active_high": true,
+    "reverse_current_protection": false,
+    "en_abs_max_v": {
+      "value": 10.3,
+      "page": 4,
+      "condition": "Legacy chip EN abs max is VIN + 0.3 V (up to 10.3 V at VIN = 10 V); New chip raises EN abs max to 18 V independent of VIN",
+      "table_ref": "Section 5.1 Absolute Maximum Ratings"
+    },
+    "en_default_floating": "forbidden",
+    "max_cout_uf": {
+      "value": 220,
+      "page": 4,
+      "condition": "New chip maximum recommended COUT is 220 uF",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "active_discharge": null
+  },
+  "design_gotchas": [
+    {
+      "title": "Silent Legacy (CSO: SFB) vs New Chip (CSO: RFAB) Die Split Under Identical OPN — Conflicting ESR Windows!",
+      "severity": "CRITICAL",
+      "detail": "Rev K (Dec 2025, p.4 & p.31) reveals TPS76333DBVR (marking 'PBEI') ships with two distinct dies identifiable only on the reel label (CSO: SFB Legacy vs CSO: RFAB New). Legacy requires COUT >= 4.7 uF with 0.3–10 Ohm ESR (unstable on bare MLCCs), whereas New chip accepts 0–1 Ohm ESR (unstable above 1 Ohm!). Designs exposed to mixed inventory must constrain COUT >= 4.7 uF with 0.3–1.0 Ohm ESR.",
+      "page": 4
+    },
+    {
+      "title": "New Chip Ground Current (IQ) Jumps 9x Under Load (765 uA Typ / 1060 uA Max vs 85 uA Legacy)",
+      "severity": "CRITICAL",
+      "detail": "While New chip lowers no-load IQ to 65 uA typ (p.7), its ground current jumps to 765 uA typ / 890 uA max at 25°C (1060 uA max over temp) for any load from 1 mA to 150 mA—nearly 9x higher than Legacy chip's flat 85 uA typ (140 uA max). Battery-powered meters or sensors idling at 1–5 mA lose substantial battery life after transitioning to RFAB lots.",
+      "page": 7
+    },
+    {
+      "title": "New Chip Brief Line-Transient Shutdown & Tighter EN Low Threshold (0.15 V vs 0.5 V)",
+      "severity": "WARNING",
+      "detail": "Section 7.1.9 (p.25) warns that very large or fast VIN steps on the New chip can trigger a brief output shutdown lasting up to a few hundred microseconds unless slew rate stays below Figure 7-3. Furthermore, New chip lowers EN guaranteed-OFF threshold from 0.5 V down to 0.15 V (p.8)—noisy MCU GPIO lows at 0.3 V can fail to disable RFAB parts.",
+      "page": 25
+    },
+    {
+      "title": "No Reverse-Current Protection & 10 V Legacy Input/EN Ceiling",
+      "severity": "WARNING",
+      "detail": "TPS76333DBVR lacks internal reverse-current blocking (Figure 7-2, p.23 recommends an external series diode on VIN when VOUT can exceed VIN). Do not rely on the New chip's 18 V abs max rating on VIN/EN unless incoming QA strictly gates reels to CSO: RFAB; Legacy SFB lots remain capped at 10 V VIN and VIN + 0.3 V on EN (p.4).",
+      "page": 23
+    }
+  ],
+  "typical_use_cases": [
+    "Legacy 5 V–10 V industrial, smoke detector, thermostat, and smart-meter 3.3 V / 150 mA LDO sockets requiring standard SOT-23-5 pinout",
+    "Medium-voltage (up to 10 V operating) battery pack and cordless tool auxiliary 3.3 V regulators",
+    "Pin-compatible migration target when auditing older tantalum-compensated SOT-23-5 LDOs against modern ceramic-stable alternatives like TPS7A2433DBVR"
+  ],
+  "engineering_summary": "The Texas Instruments TPS76333DBVR is a 2.7 V to 10 V input, 150 mA fixed 3.3 V LDO in a standard 5-pin DBV SOT-23-5 package (1=IN, 2=GND, 3=EN, 4=NC, 5=OUT). Revision K (Dec 2025) introduces a major split between Legacy (CSO: SFB) and New (CSO: RFAB) dies under the exact same OPN: New chip improves dropout (180 vs 300 mV typ), accuracy (±2.0% vs ±3.75%), and RθJA (178.6 vs 205.3 °C/W) and enables ceramic stability (0–1 Ohm ESR), but raises 1–150 mA ground current 9x to 765 uA typ (1060 uA max), drops EN-low to 0.15 V, and introduces a line-transient brief-shutdown boundary.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 4, 5, 6, 7, 8, 9],
+    "audit_notes": [
+      "300 DPI PNG Vision on p.3 confirmed Figure 4-1 DBV SOT-23-5 Top View pinout (1=IN, 2=GND, 3=EN, 4=NC on fixed TPS76333 / FB on adjustable TPS76301, 5=OUT).",
+      "300 DPI PNG Vision on p.4–5 confirmed Rev K (Dec 2025) Legacy vs New chip split: Abs Max VIN/EN (10 V / VIN+0.3 V legacy vs 18 V / 18 V new), COUT/ESR (4.7 uF & 0.3–10 Ohm legacy vs 1–220 uF & 0–1 Ohm new), and DBV RθJA (205.3 legacy vs 178.6 °C/W new).",
+      "300 DPI PNG Vision on p.7–9 confirmed TPS76333 accuracy (±2.0% new vs ±3.75% legacy), IQ (65 uA @ 0 mA / 765 uA typ @ 1–150 mA new vs 85 uA legacy), Vn (165 vs 140 uVRMS), ISTANDBY (1.12/2.75 uA new at EN<0.15 V vs 0.5/1 uA legacy at EN<0.5 V), PSRR (58 vs 60 dB @ 1 kHz), and VDO @ 150 mA (180 mV typ / 254 mV max new vs 300/500 mV legacy).",
+      "Path A verified Table 8-1 (p.31) CSO: SFB vs RFAB reel labeling, Sec. 7.1.9 (p.25) new-chip line-transient brief shutdown warning, Fig. 7-2 (p.23) reverse-current diode requirement, and Active Production OPN TPS76333DBVR (marking 'PBEI', p.34)."
+    ]
+  }
+}

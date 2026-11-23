@@ -4,7 +4,7 @@
   "target_slug": "tps54202ddcr",
   "target_opn": "TPS54202DDCR",
   "category": "dcdc",
-  "summary": "Datasheet-verified cross-reference alternatives for TPS54202DDCR (Texas Instruments, SOT-23-6, buck): evaluated 22 same-category OPNs and shortlisted the top 8 ranked replacements (0 Level 1 Candidate Drop-In, 6 Level 2 Tuning Required, and 2 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for TPS54202DDCR (Texas Instruments, SOT-23-6, buck): evaluated 25 same-category OPNs and shortlisted the top 8 ranked replacements (0 Level 1 Candidate Drop-In, 6 Level 2 Tuning Required, and 2 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "tps54302ddcr",

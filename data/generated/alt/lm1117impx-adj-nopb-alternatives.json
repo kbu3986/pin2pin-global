@@ -4,7 +4,7 @@
   "target_slug": "lm1117impx-adj-nopb",
   "target_opn": "LM1117IMPX-ADJ/NOPB",
   "category": "ldo",
-  "summary": "Datasheet-verified cross-reference alternatives for LM1117IMPX-ADJ/NOPB (Texas Instruments, SOT-223-3, adj-ldo): evaluated 34 same-category OPNs and shortlisted the top 8 ranked replacements (0 Level 1 Candidate Drop-In, 0 Level 2 Tuning Required, and 8 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for LM1117IMPX-ADJ/NOPB (Texas Instruments, SOT-223-3, adj-ldo): evaluated 37 same-category OPNs and shortlisted the top 8 ranked replacements (0 Level 1 Candidate Drop-In, 0 Level 2 Tuning Required, and 8 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "az1117ch-3-3trg1",

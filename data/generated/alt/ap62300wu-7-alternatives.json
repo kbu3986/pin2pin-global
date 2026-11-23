@@ -4,7 +4,7 @@
   "target_slug": "ap62300wu-7",
   "target_opn": "AP62300WU-7",
   "category": "dcdc",
-  "summary": "Datasheet-verified cross-reference alternatives for AP62300WU-7 (Diodes Incorporated, TSOT-23-6, buck): evaluated 22 same-category OPNs and shortlisted the top 8 ranked replacements (0 Level 1 Candidate Drop-In, 6 Level 2 Tuning Required, and 2 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for AP62300WU-7 (Diodes Incorporated, TSOT-23-6, buck): evaluated 25 same-category OPNs and shortlisted the top 8 ranked replacements (0 Level 1 Candidate Drop-In, 6 Level 2 Tuning Required, and 2 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "ap62200wu-7",
@@ -91,6 +91,20 @@
       "vs_slug": null
     },
     {
+      "alt_slug": "ap63205wu-7",
+      "alt_opn": "AP63205WU-7",
+      "manufacturer": "Diodes Incorporated",
+      "package_code": "TSOT-23-6",
+      "lifecycle_status": "Active",
+      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+      "tier_tag": "Functional Alternative (Layout Change)",
+      "score": 45,
+      "key_advantage": "Lower Iq (22 µA vs 155 µA); Wider Vin,max (32 V vs 18 V)",
+      "key_tradeoff": "Not drop-in: fixed vs adjustable output feedback footprint mismatch (R1/R2 divider); Lower Iout rating (2000 mA vs 3000 mA)",
+      "vs_slug": "ap62300wu-7-vs-ap63205wu-7"
+    },
+    {
       "alt_slug": "tps54231dr",
       "alt_opn": "TPS54231DR",
       "manufacturer": "Texas Instruments",
@@ -103,20 +117,6 @@
       "key_advantage": "Lower Iq (75 µA vs 155 µA); Wider Vin,max (28 V vs 18 V)",
       "key_tradeoff": "Not drop-in: synchronous vs non-synchronous rectification mismatch (external Schottky footprint); Lower Iout rating (2000 mA vs 3000 mA)",
       "vs_slug": "ap62300wu-7-vs-tps54231dr"
-    },
-    {
-      "alt_slug": "ap63203wu-7",
-      "alt_opn": "AP63203WU-7",
-      "manufacturer": "Diodes Incorporated",
-      "package_code": "TSOT-23-6",
-      "lifecycle_status": "Active",
-      "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
-      "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
-      "tier_tag": "Functional Alternative (Layout Change)",
-      "score": 45,
-      "key_advantage": "Lower Iq (22 µA vs 155 µA); Wider Vin,max (32 V vs 18 V)",
-      "key_tradeoff": "Not drop-in: fixed vs adjustable output feedback footprint mismatch (R1/R2 divider); Lower Iout rating (2000 mA vs 3000 mA)",
-      "vs_slug": null
     }
   ],
   "selection_checklist": [

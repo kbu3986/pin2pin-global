@@ -1,0 +1,241 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TPS5430DDAR",
+  "slug": "tps5430ddar",
+  "family": "TPS5430",
+  "manufacturer": "Texas Instruments",
+  "category": "dcdc",
+  "sub_topology": "buck",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to +125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tps5430.pdf",
+    "product_page_url": "https://www.ti.com/product/TPS5430",
+    "source_domain": "www.ti.com",
+    "revision": "SLVS632L (January 2006 – Revised April 2026)",
+    "verified_at": "2026-11-24",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 39
+  },
+  "package": {
+    "code": "SOIC-8E",
+    "mfg_package_code": "DDA (8-Pin HSOIC PowerPAD)",
+    "pin_count": 8,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": true,
+      "net": "GND",
+      "note": "Exposed PowerPAD (DAP) MUST be soldered to GND and tied directly to Pin 6 (GND) for proper electrical and thermal operation (p.3, p.23)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 42.3,
+      "page": 4,
+      "condition": "JESD 51-7 4-layer JEDEC board for DDA 8-pin HSOIC PowerPAD (TPS5430EVM real-world RθJA = 45 °C/W)",
+      "table_ref": "Section 5.4 Thermal Information (DDA Package)"
+    },
+    "theta_jc_c_per_w": {
+      "value": 6.0,
+      "page": 5,
+      "condition": "RθJC(bot) through exposed PowerPAD = 6.0 °C/W (RθJC(top) = 46 °C/W, p.4)",
+      "table_ref": "Section 5.4 Thermal Information (DDA Package) (continued)"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 4,
+      "condition": "Absolute maximum virtual junction temperature -40°C to +150°C (recommended continuous TJ -40°C to +125°C; TSD 135°C min / 162°C typ p.5)",
+      "table_ref": "Section 5.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "BOOT",
+        "role": "BOOT",
+        "description": "High-side NFET gate-drive bootstrap capacitor pin; connect 0.01 uF (10 nF, >= 10 V rated per footnote 3) ceramic cap to PH."
+      },
+      {
+        "pin": 2,
+        "name": "NC",
+        "role": "NC",
+        "description": "No internal connection."
+      },
+      {
+        "pin": 3,
+        "name": "NC",
+        "role": "NC",
+        "description": "No internal connection."
+      },
+      {
+        "pin": 4,
+        "name": "VSENSE",
+        "role": "FB",
+        "description": "Feedback input to external resistor divider (VFB = 1.221 V typ, 1.196–1.245 V over temp; abs max 3 V)."
+      },
+      {
+        "pin": 5,
+        "name": "ENA",
+        "role": "EN",
+        "description": "Active-high enable with internal 1.5 MOhm pullup (float = ON; <0.5 V OFF, >1.3 V ON; STRICT 7 V ABS MAX—never tie to 12/24 V VIN!)."
+      },
+      {
+        "pin": 6,
+        "name": "GND",
+        "role": "GND",
+        "description": "Power/analog ground; must connect directly to the exposed PowerPAD (DAP)."
+      },
+      {
+        "pin": 7,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Wide input power supply (5.5 V to 36 V recommended, 40 V abs max; bypass within 1 mm with >= 4.7–10 uF ceramic cap)."
+      },
+      {
+        "pin": 8,
+        "name": "PH",
+        "role": "SW",
+        "description": "High-side 100 mOhm NFET source switch node; requires external Schottky catch diode (e.g. B340A) to GND and inductor."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "topology": "buck",
+    "vin_abs_max_v": {
+      "value": 40.0,
+      "page": 4,
+      "condition": "TPS5430 VIN and PH steady-state abs max -0.3 V to 40 V (TPS5431 sibling is capped at 25 V)",
+      "table_ref": "Section 5.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 5.5,
+      "page": 4,
+      "condition": "Recommended minimum operating input voltage (VIN UVLO rising 5.3 V typ / 5.5 V max, p.5)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 36.0,
+      "page": 4,
+      "condition": "Recommended maximum operating input voltage for TPS5430 (23 V for TPS5431)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "vout_min_v": {
+      "value": 1.221,
+      "page": 5,
+      "condition": "Adjustable down to VFB = 1.221 V (subject to 200 ns max tON(min) at high VIN, Eq. 14 p.17)",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "vout_max_v": {
+      "value": 31.3,
+      "page": 5,
+      "condition": "Constrained by 87% min / 89% typ max duty cycle (Eq. 13 p.16: ~31.3 V theoretical ceiling at 36 V VIN minus FET/diode drops)",
+      "table_ref": "Section 5.5 Electrical Characteristics & Sec. 7.2.1.2.8.1"
+    },
+    "vout_fixed": false,
+    "vout_nom_v": null,
+    "vref_v": {
+      "value": 1.221,
+      "page": 5,
+      "condition": "1.221 V typ (1.202–1.239 V @ 25°C ±1.5%; 1.196–1.245 V over -40°C..125°C)",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "iout_or_isw_max_ma": {
+      "value": 3000,
+      "page": 1,
+      "condition": "3 A continuous (4 A peak) output current; HS peak overcurrent limit IHS(OC) = 4.0 A min / 5.0 A typ / 6.0 A max (p.5)",
+      "table_ref": "Section 1 Features & Section 5.5"
+    },
+    "is_switch_limit": false,
+    "iq_typ_ua": {
+      "value": 2000,
+      "page": 5,
+      "condition": "High 2.0 mA typ / 4.4 mA max non-switching VIN quiescent current (shutdown ISD = 15 uA typ / 50 uA max at ENA = 0 V)",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "fsw_typ_khz": {
+      "value": 500,
+      "page": 5,
+      "condition": "Fixed 500 kHz typ (400–600 kHz min/max) internal oscillator",
+      "table_ref": "Section 5.5 Electrical Characteristics"
+    },
+    "efficiency_peak_pct": {
+      "value": 92.5,
+      "page": 1,
+      "condition": "Peak ~92.5% on p.1 plot at VIN = 12 V, VOUT = 5 V, fSW = 500 kHz, TA = 25°C (up to 95% headline at higher VOUT)",
+      "table_ref": "Page 1 Efficiency vs Output Current Plot (300 DPI Vision verified)"
+    },
+    "inductor_typ_uh": {
+      "value": 15.0,
+      "page": 14,
+      "condition": "15 uH chosen in 12 V/24 V design examples (22 uH for 10–35 V -> 5 V; recommended family range 10–100 uH, p.14 & p.19)",
+      "table_ref": "Section 7.2.1.2.4.1 Inductor Selection"
+    },
+    "synchronous": false,
+    "min_cout_uf": {
+      "value": 100.0,
+      "page": 22,
+      "condition": "220 uF POSCAP (<=40 mOhm ESR) in standard internal-comp design (p.15); all-ceramic design requires >= 34 uF min / 100 uF typ PLUS external Type-III RC compensation (p.21–22)",
+      "table_ref": "Section 7.2.1.2.4.2 & 7.2.3.2.1 Capacitor Selection"
+    },
+    "en_active_high": true,
+    "en_abs_max_v": {
+      "value": 7.0,
+      "page": 4,
+      "condition": "ENA to GND abs max is strictly -0.3 V to 7.0 V (DO NOT connect ENA directly to 12 V/24 V VIN!)",
+      "table_ref": "Section 5.1 Absolute Maximum Ratings"
+    },
+    "en_default_floating": "enable",
+    "max_cout_uf": null
+  },
+  "design_gotchas": [
+    {
+      "title": "7 V Abs Max ENA Pin Trap & Float-to-Enable — Tying ENA to 12 V/24 V VIN Destroys TPS5430DDAR",
+      "severity": "CRITICAL",
+      "detail": "Although VIN survives 40 V abs max, Pin 5 (ENA) is capped at ONLY 7.0 V abs max (p.4)! ENA has an internal 1.5 MOhm pullup so leaving it floating enables the part; Table 4-1 (p.3) also warns 'Do not connect this pin with a resistor to ground.' Use an open-drain transistor or <= 5 V logic to pull ENA below 0.5 V for shutdown.",
+      "page": 4
+    },
+    {
+      "title": "Non-Synchronous Architecture Requires External 40 V/3 A Schottky Diode & Draws 2 mA Quiescent Current",
+      "severity": "CRITICAL",
+      "detail": "TPS5430DDAR integrates only the 100 mOhm high-side NFET and requires an external Schottky catch diode (e.g., B340A, p.16) on Pin 8 (PH). Its 2.0 mA typ (4.4 mA max) non-switching IQ is 80x higher than modern synchronous LMR33630ADDAR (24 uA), making TPS5430 unsuitable for battery standby rails.",
+      "page": 5
+    },
+    {
+      "title": "Internal Voltage-Mode Compensation Unstable With Bare MLCC Output Caps Without Extra 4-Part RC Network",
+      "severity": "WARNING",
+      "detail": "TPS5430's internal Type-III compensation expects a polymer/tantalum capacitor's ESR zero (~40 mOhm, e.g. 220 uF POSCAP, p.15). Swapping to ultra-low-ESR ceramic MLCCs without adding the 4-component external compensation network (R3, C4, C6, C7 on Sec. 7.2.3 p.21–22) causes loop oscillation.",
+      "page": 22
+    },
+    {
+      "title": "Unique SOIC-8E Pinout (Incompatible With TPS54331 / LMR33630) & >= 10 V BOOT Cap Rating",
+      "severity": "WARNING",
+      "detail": "TPS5430DDAR uses 1=BOOT, 2=NC, 3=NC, 4=VSENSE, 5=ENA, 6=GND, 7=VIN, 8=PH (DAP=GND)—completely incompatible with TPS54331DR (2=VIN, 8=PH) and LMR33630ADDAR (1=PGND, 2=VIN, 7=BOOT, 8=SW). Also note Footnote 3 (p.4): the 0.01 uF BOOT-to-PH cap MUST be rated >= 10 V despite the 6 V table listing.",
+      "page": 3
+    }
+  ],
+  "typical_use_cases": [
+    "Legacy 12 V and 24 V industrial/telecom distributed power buses requiring rugged 5.5–36 V to 5 V/12 V 3 A step-down regulation",
+    "Pin-compatible higher-voltage upgrade over 23 V-capped TPS5431DDAR on existing 8-pin DDA PowerPAD boards",
+    "Cost-driven non-synchronous 3 A buck converters where external Schottky catch diodes and POSCAP/electrolytic bulk caps are already standard"
+  ],
+  "engineering_summary": "The Texas Instruments TPS5430DDAR is a classic 5.5 V to 36 V (40 V abs max), 3 A continuous (4 A peak) non-synchronous step-down converter in an 8-pin DDA HSOIC PowerPAD package (RθJA = 42.3 °C/W JEDEC / 45 °C/W EVM) with a 100 mOhm high-side NFET, fixed 500 kHz switching, and 1.221 V feedback reference (~92.5% peak at 12 V->5 V). Unlike modern synchronous SOIC-8E peers such as LMR33630ADDAR, it has a unique pinout (1=BOOT, 4=VSENSE, 5=ENA, 6=GND, 7=VIN, 8=PH, DAP=GND), requires an external Schottky catch diode and ESR-matched output cap (or 4-part RC network for MLCCs), draws 2 mA IQ, and strictly caps ENA at 7 V abs max.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [1, 3, 4, 5, 6],
+    "audit_notes": [
+      "300 DPI PNG Vision on p.1 confirmed Simplified Schematic (external catch diode on PH), 5.5–36 V TPS5430 vs 5.5–23 V TPS5431, and ~92.5% peak efficiency curve at 12 V->5 V, 500 kHz.",
+      "300 DPI PNG Vision on p.3 confirmed Figure 4-1 DDA 8-pin HSOIC Top View pinout (1=BOOT, 2=NC, 3=NC, 4=VSENSE, 5=ENA, 6=GND, 7=VIN, 8=PH, DAP=GND) and ENA 1.5 MOhm internal pullup warning.",
+      "300 DPI PNG Vision on p.4–5 confirmed Abs Max (VIN/PH=40 V TPS5430, ENA=7 V, VSENSE=3 V, BOOT-PH 6 V with >=10 V cap Footnote 3, TJ=-40..150°C), Rec Op (5.5–36 V, TJ=-40..125°C), DDA Thermal Info (RθJA=42.3 JEDEC / 45 EVM, RθJC(bot)=6 °C/W), IQ=2/4.4 mA, ISD=15/50 uA, VFB=1.221 V, fSW=500 kHz, DMAX=87/89%, and IHS(OC)=4–6 A.",
+      "Path A verified 15–22 uH inductor selection (p.14, p.19), POSCAP ESR vs ceramic 4-part compensation network (p.15, p.21–22), and Active Production OPN TPS5430DDAR (marking '5430', p.28)."
+    ]
+  }
+}

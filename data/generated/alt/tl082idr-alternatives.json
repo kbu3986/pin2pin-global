@@ -4,7 +4,7 @@
   "target_slug": "tl082idr",
   "target_opn": "TL082IDR",
   "category": "opamp",
-  "summary": "Datasheet-verified cross-reference alternatives for TL082IDR (Texas Instruments, SOIC-8, opamp-dual): evaluated 21 same-category OPNs and shortlisted the top 9 ranked replacements (1 Level 1 Candidate Drop-In, 8 Level 2 Tuning Required, and 0 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for TL082IDR (Texas Instruments, SOIC-8, opamp-dual): evaluated 23 same-category OPNs and shortlisted the top 9 ranked replacements (1 Level 1 Candidate Drop-In, 8 Level 2 Tuning Required, and 0 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "tl072idr",
@@ -77,6 +77,20 @@
       "vs_slug": "lm358dr2g-vs-tl082idr"
     },
     {
+      "alt_slug": "lm2904dr",
+      "alt_opn": "LM2904DR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOIC-8",
+      "lifecycle_status": "Active",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Ultra-Low Iq Upgrade",
+      "score": 72,
+      "key_advantage": "Lower Iq/ch (350 µA vs 1400 µA)",
+      "key_tradeoff": "Lower Vs,max (26 V vs 40 V)",
+      "vs_slug": null
+    },
+    {
       "alt_slug": "opa2333aidr",
       "alt_opn": "OPA2333AIDR",
       "manufacturer": "Texas Instruments",
@@ -91,22 +105,8 @@
       "vs_slug": null
     },
     {
-      "alt_slug": "tlv9002idr",
-      "alt_opn": "TLV9002IDR",
-      "manufacturer": "Texas Instruments",
-      "package_code": "SOIC-8",
-      "lifecycle_status": "Active",
-      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
-      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
-      "tier_tag": "Ultra-Low Iq Upgrade",
-      "score": 70,
-      "key_advantage": "Tighter Vos (1.6 mV vs 6 mV); Full Rail-to-Rail I/O swing",
-      "key_tradeoff": "Lower Vs,max (5.5 V vs 40 V)",
-      "vs_slug": null
-    },
-    {
-      "alt_slug": "tlv9062idr",
-      "alt_opn": "TLV9062IDR",
+      "alt_slug": "tlv2372idr",
+      "alt_opn": "TLV2372IDR",
       "manufacturer": "Texas Instruments",
       "package_code": "SOIC-8",
       "lifecycle_status": "Active",
@@ -114,8 +114,8 @@
       "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
       "tier_tag": "Value / Second-Source",
       "score": 70,
-      "key_advantage": "Tighter Vos (1.6 mV vs 6 mV); Higher GBWP (10 MHz vs 5.25 MHz)",
-      "key_tradeoff": "Lower Vs,max (5.5 V vs 40 V)",
+      "key_advantage": "Full Rail-to-Rail I/O swing; Lower Iq/ch (550 µA vs 1400 µA)",
+      "key_tradeoff": "Lower Vs,max (16 V vs 40 V)",
       "vs_slug": null
     },
     {

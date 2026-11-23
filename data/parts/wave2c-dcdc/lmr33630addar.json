@@ -1,0 +1,246 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "LMR33630ADDAR",
+  "slug": "lmr33630addar",
+  "family": "LMR33630",
+  "manufacturer": "Texas Instruments",
+  "category": "dcdc",
+  "sub_topology": "buck",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to +125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/lmr33630.pdf",
+    "product_page_url": "https://www.ti.com/product/LMR33630",
+    "source_domain": "www.ti.com",
+    "revision": "SNVSAN3F (August 2017 – Revised November 2020)",
+    "verified_at": "2026-11-24",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 60
+  },
+  "package": {
+    "code": "SOIC-8E",
+    "mfg_package_code": "DDA (8-Pin HSOIC PowerPAD)",
+    "pin_count": 8,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": true,
+      "net": "GND",
+      "note": "CRITICAL: On 8-pin DDA HSOIC, the bottom exposed PowerPAD is the SOLE AGND electrical connection for internal reference/logic AND the primary heat sink (must solder to PCB ground plane, p.5)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 42.9,
+      "page": 7,
+      "condition": "JESD 51-7 4-layer JEDEC board for DDA 8-pin HSOIC PowerPAD (RNX 12-pin VQFN is 72.5 °C/W)",
+      "table_ref": "Section 7.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 4.3,
+      "page": 7,
+      "condition": "RθJC(bot) through DDA exposed PowerPAD = 4.3 °C/W (RθJC(top) = 54 °C/W)",
+      "table_ref": "Section 7.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 6,
+      "condition": "Absolute maximum junction temperature -40°C to +150°C (recommended continuous TJ -40°C to +125°C, Footnote 3)",
+      "table_ref": "Section 7.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "PGND",
+        "role": "GND",
+        "description": "Power ground terminal; tie to PCB system ground and exposed pad (AGND) with short wide traces (|AGND-PGND| <= 0.3 V)."
+      },
+      {
+        "pin": 2,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Wide input supply (3.8 V to 36 V recommended, 38 V abs max); bypass directly to PGND with >= 10 uF + 220 nF ceramic caps."
+      },
+      {
+        "pin": 3,
+        "name": "EN",
+        "role": "EN",
+        "description": "Precision active-high enable (1.231 V typ rising, 100 mV hyst); may tie to VIN, DO NOT FLOAT, must not exceed VIN + 0.3 V."
+      },
+      {
+        "pin": 4,
+        "name": "PG",
+        "role": "PG",
+        "description": "Open-drain power-good flag output (max 18 V rec / 22 V abs max, must not exceed VIN + 0.3 V); leave open if unused."
+      },
+      {
+        "pin": 5,
+        "name": "FB",
+        "role": "FB",
+        "description": "Feedback input to external divider (VFB = 1.000 V ±1.5%, RFBT = 100 kOhm typ); do not float or ground."
+      },
+      {
+        "pin": 6,
+        "name": "VCC",
+        "role": "BYPASS",
+        "description": "Internal 5 V LDO output for control circuits; requires 1 uF/16 V ceramic cap to GND (do not drive external loads except PG pullup)."
+      },
+      {
+        "pin": 7,
+        "name": "BOOT",
+        "role": "BOOT",
+        "description": "High-side gate-drive bootstrap capacitor pin; connect 100 nF (>= 10 V) ceramic cap to SW."
+      },
+      {
+        "pin": 8,
+        "name": "SW",
+        "role": "SW",
+        "description": "Synchronous switch node between integrated 95 mOhm HS and 66 mOhm LS MOSFETs (DDA package)."
+      }
+    ],
+    "pinout_source_page": 5,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "topology": "buck",
+    "vin_abs_max_v": {
+      "value": 38.0,
+      "page": 6,
+      "condition": "VIN to PGND and SW (<100 ns transient) abs max 38 V (EN and PG must not exceed VIN + 0.3 V per Footnote 2)",
+      "table_ref": "Section 7.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 3.8,
+      "page": 6,
+      "condition": "Minimum recommended operating input voltage",
+      "table_ref": "Section 7.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 36.0,
+      "page": 6,
+      "condition": "Maximum recommended operating input voltage",
+      "table_ref": "Section 7.3 Recommended Operating Conditions"
+    },
+    "vout_min_v": {
+      "value": 1.0,
+      "page": 6,
+      "condition": "Minimum recommended adjustable output voltage (= VFB = 1.0 V)",
+      "table_ref": "Section 7.3 Recommended Operating Conditions"
+    },
+    "vout_max_v": {
+      "value": 24.0,
+      "page": 6,
+      "condition": "Maximum recommended adjustable output voltage (Footnote 3 notes extension up to 95% of VIN)",
+      "table_ref": "Section 7.3 Recommended Operating Conditions"
+    },
+    "vout_fixed": false,
+    "vout_nom_v": null,
+    "vref_v": {
+      "value": 1.0,
+      "page": 7,
+      "condition": "1.000 V typ (0.985 V min to 1.015 V max, ±1.5% over -40°C..+125°C TJ)",
+      "table_ref": "Section 7.5 Electrical Characteristics"
+    },
+    "iout_or_isw_max_ma": {
+      "value": 3000,
+      "page": 6,
+      "condition": "3 A continuous output current (HS limit ISC = 3.85–5.05 A, 4.5 A typ; LS valley limit ILIMIT = 2.9–4.1 A, 3.5 A typ, p.7)",
+      "table_ref": "Section 7.3 & Section 7.5"
+    },
+    "is_switch_limit": false,
+    "iq_typ_ua": {
+      "value": 24,
+      "page": 7,
+      "condition": "24 uA typ / 34 uA max non-switching VIN quiescent current at VFB = 1.2 V (shutdown ISD = 5 uA typ / 10 uA max at EN = 0 V)",
+      "table_ref": "Section 7.5 Electrical Characteristics"
+    },
+    "fsw_typ_khz": {
+      "value": 400,
+      "page": 8,
+      "condition": "400 kHz typ (340–460 kHz) for 'A' Version (LMR33630ADDAR); 'B' is 1.4 MHz and 'C' is 2.1 MHz (p.4, p.8)",
+      "table_ref": "Section 7.5 Electrical Characteristics & Table 5"
+    },
+    "efficiency_peak_pct": {
+      "value": 95.0,
+      "page": 1,
+      "condition": "Peak >95% at 400 kHz, VOUT = 5 V (~95% at VIN = 12 V, ~96.5% at VIN = 8 V on VQFN p.1 plot; DDA slightly lower due to 95/66 mOhm RDS-ON)",
+      "table_ref": "Section 1 Features & Page 1 Efficiency Curve (300 DPI Vision verified)"
+    },
+    "inductor_typ_uh": {
+      "value": 8.0,
+      "page": 20,
+      "condition": "Table 9-2 recommends 8 uH for 400 kHz 5 V output (6.8 uH for 3.3 V output; 15 uH for 12 V output)",
+      "table_ref": "Table 9-2 Typical External Component Values"
+    },
+    "synchronous": true,
+    "min_cout_uf": {
+      "value": 52.0,
+      "page": 22,
+      "condition": "52 uF min effective / 72 uF derated (Table 9-2 uses 4 x 22 uF = 88 uF rated ceramic bank for 400 kHz 3.3 V–12 V designs)",
+      "table_ref": "Table 9-2 & Section 9.2.2.5 Output Capacitor Selection"
+    },
+    "en_active_high": true,
+    "en_abs_max_v": {
+      "value": 38.0,
+      "page": 6,
+      "condition": "EN to AGND rated up to VIN + 0.3 V (up to 38 V abs max when VIN is present; NEVER exceed VIN + 0.3 V per Footnote 2)",
+      "table_ref": "Section 7.1 Absolute Maximum Ratings"
+    },
+    "en_default_floating": "forbidden",
+    "max_cout_uf": {
+      "value": 1000,
+      "page": 23,
+      "condition": "Maximum total output capacitance limited to ~10x design value or 1000 uF (whichever is smaller) for startup and loop stability",
+      "table_ref": "Section 9.2.2.5 Output Capacitor Selection"
+    }
+  },
+  "design_gotchas": [
+    {
+      "title": "Exposed PowerPAD IS the ONLY AGND Pin on 8-Pin DDA Package (Not Optional Heat Sink!)",
+      "severity": "CRITICAL",
+      "detail": "Unlike 12-pin RNX VQFN (which has a dedicated Pin 6 AGND), the 8-pin DDA HSOIC uses its bottom exposed PowerPAD as the sole analog ground reference for internal regulator logic and feedback (Table 6-1, p.5). Failing to solder the PowerPAD solidly to ground breaks regulation and violates the ±0.3 V AGND-to-PGND abs max (p.6).",
+      "page": 5
+    },
+    {
+      "title": "DDA HSOIC Has Higher RDS-ON (95/66 mOhm) & Slower tON-MIN (75/108 ns) Than Page-1 RNX Headlines",
+      "severity": "WARNING",
+      "detail": "Page 1 advertises 75/50 mOhm MOSFETs and 68 ns tON-MIN—those specs apply ONLY to the HotRod VQFN-12 (RNX) package! Per Table 7.5 & 7.6 (p.8), LMR33630ADDAR (DDA HSOIC-8) runs 95 mOhm typ (160 max) HS, 66 mOhm typ (110 max) LS, and 75 ns typ (108 ns max) tON-MIN, raising conduction loss slightly while offering much better 42.9 °C/W RθJA than RNX (72.5 °C/W).",
+      "page": 8
+    },
+    {
+      "title": "EN Cannot Float & Both EN/PG Must Never Exceed VIN + 0.3 V During Sequencing",
+      "severity": "CRITICAL",
+      "detail": "Pin 3 (EN) has no pullup—floating EN causes indeterminate behavior (Table 6-1, p.5). Although EN can tie directly to VIN up to 36 V, Footnote 2 (p.6) prohibits pulling EN or open-drain PG above VIN + 0.3 V (for instance, from an always-on 3.3 V MCU rail while VIN is 0 V). Also never load Pin 6 (VCC, 5 V internal LDO) externally beyond a 100 kOhm PG pullup.",
+      "page": 6
+    },
+    {
+      "title": "Incompatible SOIC-8E Pinout vs Legacy TPS5430DDAR / TPS54331DR & 'A' (400 kHz) vs 'B'/'C' Suffixes",
+      "severity": "WARNING",
+      "detail": "LMR33630ADDAR (1=PGND, 2=VIN, 3=EN, 4=PG, 5=FB, 6=VCC, 7=BOOT, 8=SW) cannot drop onto TPS5430DDAR or TPS54331DR pads. Also verify the frequency suffix on BOM orders: 'A' = 400 kHz (needs 6.8–8 uH inductor, marking '33630A'), 'B' = 1.4 MHz (2.2 uH), and 'C' = 2.1 MHz (1.2–1.5 uH).",
+      "page": 4
+    }
+  ],
+  "typical_use_cases": [
+    "24 V industrial PLC, HVAC, motor-drive, and factory automation 3 A rails needing 3.8–36 V input, >95% efficiency, and 24 uA low-IQ light-load PFM",
+    "Modern synchronous SOIC-8E redesign replacing legacy non-synchronous TPS5430DDAR or TPS54331DR to eliminate the external Schottky diode and slash IQ 80x",
+    "High-conversion-ratio 24 V/36 V to 3.3 V/5 V step-down converters benefiting from 400 kHz ('A' suffix) low switching loss and integrated Power-Good flag"
+  ],
+  "engineering_summary": "The Texas Instruments LMR33630ADDAR is a rugged 3.8 V to 36 V input (38 V abs max), 3 A continuous synchronous buck converter in an 8-pin DDA HSOIC PowerPAD package (RθJA = 42.9 °C/W, RθJC(bot) = 4.3 °C/W) operating at 400 kHz ('A' suffix) with 24 uA typ PFM IQ, 1.000 V (±1.5%) VFB, precision 1.231 V EN, and an open-drain Power-Good flag. Compared with HotRod RNX VQFN-12, DDA trades slightly higher 95/66 mOhm RDS-ON and 75 ns tON-MIN for easier inspection and superior thermal resistance, while requiring its exposed PowerPAD to be soldered solidly as the sole AGND pin and keeping EN/PG <= VIN + 0.3 V.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [1, 5, 6, 7, 8],
+    "audit_notes": [
+      "300 DPI PNG Vision on p.1 confirmed >95% peak efficiency curve at 400 kHz VOUT=5 V (~95% @ 12 V, ~96.5% @ 8 V) and 3.8–36 V / 3 A SIMPLE SWITCHER summary.",
+      "300 DPI PNG Vision on p.5 confirmed Figure 6-1 DDA 8-pin HSOIC Top View pinout (1=PGND, 2=VIN, 3=EN, 4=PG, 5=FB, 6=VCC, 7=BOOT, 8=SW) and that Thermal Pad serves as the sole AGND connection on DDA.",
+      "300 DPI PNG Vision on p.6–8 confirmed Abs Max (VIN=38 V, EN/SW<=VIN+0.3 V, PG<=22 V & <=VIN+0.3 V, TJ=-40..150°C), Rec Op (VIN=3.8–36 V, VOUT=1–24 V, IOUT=3 A), DDA Thermal Info (RθJA=42.9 °C/W, RθJC(bot)=4.3 °C/W), IQ=24/34 uA, ISD=5/10 uA, VFB=1.000 V ±1.5%, 'A' fSW=400 kHz, and DDA-specific RDS-ON=95/66 mOhm & tON-MIN=75/108 ns.",
+      "Path A verified Table 9-2 (p.20) 6.8–8 uH / 4x22 uF ceramic values, 52 uF min effective / 1000 uF max COUT (p.22–23), and Active Production OPN LMR33630ADDAR (marking '33630A', p.41)."
+    ]
+  }
+}

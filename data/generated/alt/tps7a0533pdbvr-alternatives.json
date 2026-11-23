@@ -4,7 +4,7 @@
   "target_slug": "tps7a0533pdbvr",
   "target_opn": "TPS7A0533PDBVR",
   "category": "ldo",
-  "summary": "Datasheet-verified cross-reference alternatives for TPS7A0533PDBVR (Texas Instruments, SOT-23-5, fixed-ldo): evaluated 34 same-category OPNs and shortlisted the top 10 ranked replacements (1 Level 1 Candidate Drop-In, 9 Level 2 Tuning Required, and 0 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for TPS7A0533PDBVR (Texas Instruments, SOT-23-5, fixed-ldo): evaluated 37 same-category OPNs and shortlisted the top 10 ranked replacements (1 Level 1 Candidate Drop-In, 9 Level 2 Tuning Required, and 0 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "tlv73333pdbvr",
@@ -63,6 +63,20 @@
       "vs_slug": null
     },
     {
+      "alt_slug": "tlv74333pdbvr",
+      "alt_opn": "TLV74333PDBVR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOT-23-5",
+      "lifecycle_status": "Active",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Higher Current / Margin",
+      "score": 73,
+      "key_advantage": "Higher Iout (300 mA vs 200 mA); Lower dropout (125 mV vs 235 mV)",
+      "key_tradeoff": "Higher Iq (34 µA vs 1 µA)",
+      "vs_slug": null
+    },
+    {
       "alt_slug": "tlv75533pdbvr",
       "alt_opn": "TLV75533PDBVR",
       "manufacturer": "Texas Instruments",
@@ -102,20 +116,6 @@
       "score": 73,
       "key_advantage": "Higher Vin,max (18 V vs 5.5 V); Lower dropout (160 mV vs 235 mV)",
       "key_tradeoff": "Higher Iq (2 µA vs 1 µA)",
-      "vs_slug": null
-    },
-    {
-      "alt_slug": "ap2112k-3-3trg1",
-      "alt_opn": "AP2112K-3.3TRG1",
-      "manufacturer": "Diodes Incorporated",
-      "package_code": "SOT-23-5",
-      "lifecycle_status": "Active",
-      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
-      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
-      "tier_tag": "Higher Current / Margin",
-      "score": 71,
-      "key_advantage": "Higher Iout (600 mA vs 200 mA)",
-      "key_tradeoff": "Higher Iq (55 µA vs 1 µA)",
       "vs_slug": null
     },
     {

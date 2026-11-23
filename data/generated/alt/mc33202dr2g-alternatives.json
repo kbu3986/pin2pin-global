@@ -4,8 +4,36 @@
   "target_slug": "mc33202dr2g",
   "target_opn": "MC33202DR2G",
   "category": "opamp",
-  "summary": "Datasheet-verified cross-reference alternatives for MC33202DR2G (onsemi, SOIC-8, opamp-dual): evaluated 21 same-category OPNs and shortlisted the top 10 ranked replacements (0 Level 1 Candidate Drop-In, 10 Level 2 Tuning Required, and 0 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for MC33202DR2G (onsemi, SOIC-8, opamp-dual): evaluated 23 same-category OPNs and shortlisted the top 12 ranked replacements (0 Level 1 Candidate Drop-In, 12 Level 2 Tuning Required, and 0 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
+    {
+      "alt_slug": "tlv2372idr",
+      "alt_opn": "TLV2372IDR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOIC-8",
+      "lifecycle_status": "Active",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Higher Voltage Margin",
+      "score": 78,
+      "key_advantage": "Tighter Vos (4.5 mV vs 8 mV); Higher GBWP (3 MHz vs 2.2 MHz)",
+      "key_tradeoff": "Verify θJA (138.4 °C/W) and latest Texas Instruments datasheet revision",
+      "vs_slug": "mc33202dr2g-vs-tlv2372idr"
+    },
+    {
+      "alt_slug": "lm2904dr",
+      "alt_opn": "LM2904DR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOIC-8",
+      "lifecycle_status": "Active",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Higher Voltage Margin",
+      "score": 76,
+      "key_advantage": "Lower Iq/ch (350 µA vs 900 µA); Higher Vs,max (26 V vs 12 V)",
+      "key_tradeoff": "Verify θJA (124.7 °C/W) and latest Texas Instruments datasheet revision",
+      "vs_slug": "lm2904dr-vs-mc33202dr2g"
+    },
     {
       "alt_slug": "lm358dr",
       "alt_opn": "LM358DR",

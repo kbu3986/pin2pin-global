@@ -4,7 +4,7 @@
   "target_slug": "lm358dr",
   "target_opn": "LM358DR",
   "category": "opamp",
-  "summary": "Datasheet-verified cross-reference alternatives for LM358DR (Texas Instruments, SOIC-8, opamp-dual): evaluated 21 same-category OPNs and shortlisted the top 12 ranked replacements (0 Level 1 Candidate Drop-In, 10 Level 2 Tuning Required, and 2 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for LM358DR (Texas Instruments, SOIC-8, opamp-dual): evaluated 23 same-category OPNs and shortlisted the top 14 ranked replacements (0 Level 1 Candidate Drop-In, 12 Level 2 Tuning Required, and 2 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "ne5532dr",
@@ -63,6 +63,20 @@
       "vs_slug": null
     },
     {
+      "alt_slug": "tlv2372idr",
+      "alt_opn": "TLV2372IDR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOIC-8",
+      "lifecycle_status": "Active",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Value / Second-Source",
+      "score": 76,
+      "key_advantage": "Tighter Vos (4.5 mV vs 7 mV); Higher GBWP (3 MHz vs 0.7 MHz)",
+      "key_tradeoff": "Lower Vs,max (16 V vs 30 V)",
+      "vs_slug": null
+    },
+    {
       "alt_slug": "lm358dr2g",
       "alt_opn": "LM358DR2G",
       "manufacturer": "onsemi",
@@ -75,6 +89,20 @@
       "key_advantage": "Higher GBWP (1 MHz vs 0.7 MHz)",
       "key_tradeoff": "Verify θJA (212 °C/W) and latest onsemi datasheet revision",
       "vs_slug": "lm358dr-vs-lm358dr2g"
+    },
+    {
+      "alt_slug": "lm2904dr",
+      "alt_opn": "LM2904DR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOIC-8",
+      "lifecycle_status": "Active",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Value / Second-Source",
+      "score": 72,
+      "key_advantage": "Texas Instruments multi-source option in SOIC-8",
+      "key_tradeoff": "Verify θJA (124.7 °C/W) and latest Texas Instruments datasheet revision",
+      "vs_slug": "lm2904dr-vs-lm358dr"
     },
     {
       "alt_slug": "opa2333aidr",

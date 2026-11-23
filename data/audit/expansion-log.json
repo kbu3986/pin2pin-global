@@ -54,6 +54,23 @@
         "Upgraded PackagePinoutSvg (TO-263-5 fix, EP/Tab red conflict badge, Top/Bottom PCB mirror, synchronized VS hover, Copy MD/Download SVG), all 3 calculators (full-DB search, shareable URL state, SVG plots, Comparator RC mode), and BOM Checker v2 (RFC-4180 parser, column mapper, footprint mismatch alert, 0-100 Readiness Score)",
         "Fixed critical SEO & AdSense defects: removed robots.txt /_next/ disallow, moved AdSense script out of 404/redirect, gated empty AdSense <ins>, generated OG/ICO/Apple-Touch PNGs, added IndexNow key, per-record lastmod, and 100% reciprocal guide/tool internal linking across all part/vs/alt pages"
       ]
+    },
+    {
+      "run_id": "2026-11-24-wave2cd-daily-expansion",
+      "date": "2026-11-24",
+      "wave": "Wave 2B/2C/2D Daily Autonomous Expansion + Wave 3 Backlog Refill",
+      "parts_added": 8,
+      "total_parts": 88,
+      "total_vs": 203,
+      "total_guides": 11,
+      "total_tools": 7,
+      "total_en_pages": 409,
+      "qa_gates_passed": "7/7",
+      "highlights": [
+        "Added 8 official-PDF Dual-Path 300 DPI PNG Vision-verified OPNs (80 -> 88 parts, 178 -> 203 VS, 368 -> 409 EN pages): AP7365-33YG-13, TPS76333DBVR, TLV74333PDBVR (LDO), TPS5430DDAR, LMR33630ADDAR, AP63205WU-7 (DC-DC), TLV2372IDR, LM2904DR (Op-Amp)",
+        "Uncovered critical real-world engineering traps via 300 DPI Vision: AP7365 Page-1 NRND banner + destructive Y vs YR SOT-89 pinout swap; TPS763 Rev K (Dec 2025) silent Legacy (SFB) vs New (RFAB) die split with conflicting ESR windows (0.3-10 vs 0-1 Ohm) and 9x load IQ jump (765 vs 85 uA); TLV743P 3.6 V VOUT abs max & VIN+0.3 V EN ceiling; TPS5430 7 V ENA abs max vs 40 V VIN & MLCC compensation trap; LMR33630A DDA PowerPAD sole-AGND & 95/66 mOhm RDS-ON downgrade vs RNX; LM2904DR 26 V supply ceiling vs 30/32 V LM358DR",
+        "Auto-refilled expansion-backlog.json with 15 live-verified (HTTP 200 %PDF + exact OPN present) Wave 3A/3B/3C high-demand OPNs (5 LDO + 5 DC-DC + 5 Op-Amp/Comparator across TI, Diodes Inc, onsemi), leaving 23 pending OPNs"
+      ]
     }
   ]
 }

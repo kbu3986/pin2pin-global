@@ -4,7 +4,7 @@
   "target_slug": "ap7333-33sag-7",
   "target_opn": "AP7333-33SAG-7",
   "category": "ldo",
-  "summary": "Datasheet-verified cross-reference alternatives for AP7333-33SAG-7 (Diodes Incorporated, SOT-23-3, fixed-ldo): evaluated 34 same-category OPNs and shortlisted the top 11 ranked replacements (0 Level 1 Candidate Drop-In, 1 Level 2 Tuning Required, and 10 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for AP7333-33SAG-7 (Diodes Incorporated, SOT-23-3, fixed-ldo): evaluated 37 same-category OPNs and shortlisted the top 11 ranked replacements (0 Level 1 Candidate Drop-In, 1 Level 2 Tuning Required, and 10 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "ap7313-33sag-7",

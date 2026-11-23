@@ -1,0 +1,197 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "lm2596sx-5-0-nopb-vs-tps5430ddar",
+  "category": "dcdc",
+  "part_a_slug": "lm2596sx-5-0-nopb",
+  "part_b_slug": "tps5430ddar",
+  "part_a_opn": "LM2596SX-5.0/NOPB",
+  "part_b_opn": "TPS5430DDAR",
+  "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+  "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+  "package_match": false,
+  "pinout_exact_match": false,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "VIN",
+      "part_a_role": "VIN",
+      "part_b_name": "BOOT",
+      "part_b_role": "BOOT",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 1: LM2596SX-5.0/NOPB assigns VIN (VIN) whereas TPS5430DDAR assigns BOOT (BOOT) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "Output",
+      "part_a_role": "SW",
+      "part_b_name": "NC",
+      "part_b_role": "NC",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 2: LM2596SX-5.0/NOPB assigns Output (SW) whereas TPS5430DDAR assigns NC (NC) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "Ground",
+      "part_a_role": "GND",
+      "part_b_name": "NC",
+      "part_b_role": "NC",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 3: LM2596SX-5.0/NOPB assigns Ground (GND) whereas TPS5430DDAR assigns NC (NC) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "Feedback",
+      "part_a_role": "FB",
+      "part_b_name": "VSENSE",
+      "part_b_role": "FB",
+      "status": "CAUTION",
+      "note": "Feedback network difference: one device has fixed internal divider while the other requires external R1/R2 feedback resistors (PCB divider footprint change)."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "ON/OFF",
+      "part_a_role": "EN",
+      "part_b_name": "ENA",
+      "part_b_role": "EN",
+      "status": "CAUTION",
+      "note": "Enable polarity inverted: LM2596SX-5.0/NOPB is Active-Low while TPS5430DDAR is Active-High."
+    },
+    {
+      "pin": 6,
+      "part_a_name": "— (No Pin)",
+      "part_a_role": "NONE",
+      "part_b_name": "GND",
+      "part_b_role": "GND",
+      "status": "MISMATCH",
+      "note": "Package pin-count mismatch (5-pin TO-263-5 vs 8-pin SOIC-8E)."
+    },
+    {
+      "pin": 7,
+      "part_a_name": "— (No Pin)",
+      "part_a_role": "NONE",
+      "part_b_name": "VIN",
+      "part_b_role": "VIN",
+      "status": "MISMATCH",
+      "note": "Package pin-count mismatch (5-pin TO-263-5 vs 8-pin SOIC-8E)."
+    },
+    {
+      "pin": 8,
+      "part_a_name": "— (No Pin)",
+      "part_a_role": "NONE",
+      "part_b_name": "PH",
+      "part_b_role": "SW",
+      "status": "MISMATCH",
+      "note": "Package pin-count mismatch (5-pin TO-263-5 vs 8-pin SOIC-8E)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Topology & Rectification",
+      "unit": "—",
+      "part_a_value": "buck (Non-Sync Diode)",
+      "part_b_value": "buck (Non-Sync Diode)",
+      "winner": "TIE",
+      "note": "Synchronous rectification eliminates external Schottky diode loss and PCB area."
+    },
+    {
+      "metric": "Package & Exposed Pad",
+      "unit": "—",
+      "part_a_value": "TO-263-5 (KTT, EP: GND, p.4)",
+      "part_b_value": "SOIC-8E (DDA (8-Pin HSOIC PowerPAD), EP: GND, p.3)",
+      "winner": "CONTEXT",
+      "note": "Compact WSON/VSON/SOT-563 packages demand tight hot-loop layout and thermal vias."
+    },
+    {
+      "metric": "Input Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "7 to 40 V (p.6)",
+      "part_b_value": "5.5 to 36 V (p.4)",
+      "winner": "CONTEXT",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
+    },
+    {
+      "metric": "Absolute Max Input Voltage",
+      "unit": "V",
+      "part_a_value": "45 V (p.5)",
+      "part_b_value": "40 V (p.4)",
+      "winner": "A",
+      "note": "Provides transient overshoot margin above nominal DC supply bus."
+    },
+    {
+      "metric": "Output Voltage Range",
+      "unit": "V",
+      "part_a_value": "4.75 to 5.25 V (p.6) (Fixed)",
+      "part_b_value": "1.221 to 31.3 V (p.5) (Adj)",
+      "winner": "CONTEXT",
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
+    },
+    {
+      "metric": "Max Current (Iout or Isw Limit)",
+      "unit": "mA",
+      "part_a_value": "3000 mA (p.1) [Iout max]",
+      "part_b_value": "3000 mA (p.1) [Iout max]",
+      "winner": "TIE",
+      "note": "Continuous DC output current rating; verify inductor Isat >= Iout + ΔIL/2 and thermal margin."
+    },
+    {
+      "metric": "Quiescent Current (Iq, typ)",
+      "unit": "µA",
+      "part_a_value": "5000 µA (p.7)",
+      "part_b_value": "2000 µA (p.5)",
+      "winner": "B",
+      "note": "Dominates light-load efficiency and standby battery runtime."
+    },
+    {
+      "metric": "Switching Frequency (fsw, typ)",
+      "unit": "kHz",
+      "part_a_value": "150 kHz (p.7)",
+      "part_b_value": "500 kHz (p.5)",
+      "winner": "CONTEXT",
+      "note": "Higher fsw shrinks inductor footprint; lower fsw reduces switching losses & high-band EMI."
+    },
+    {
+      "metric": "Peak Efficiency",
+      "unit": "%",
+      "part_a_value": "80 % (p.6)",
+      "part_b_value": "92.5 % (p.1)",
+      "winner": "B",
+      "note": "Check datasheet efficiency curve at your exact Vin/Vout/Iout operating point."
+    },
+    {
+      "metric": "Recommended Inductor (L, typ)",
+      "unit": "µH",
+      "part_a_value": "33 µH (p.25)",
+      "part_b_value": "15 µH (p.14)",
+      "winner": "CONTEXT",
+      "note": "Ensure inductor Isat exceeds worst-case peak switch current by >= 20–30%."
+    },
+    {
+      "metric": "Feedback Reference (Vref)",
+      "unit": "V",
+      "part_a_value": "N/A (Fixed)",
+      "part_b_value": "1.221 V (p.5)",
+      "winner": "CONTEXT",
+      "note": "Any Vref discrepancy requires recalculating feedback divider R1/R2."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "50 °C/W (p.5) · 125 °C",
+      "part_b_value": "42.3 °C/W (p.4) · 150 °C",
+      "winner": "B",
+      "note": "Lower θJA improves continuous load thermal headroom on compact 2-layer PCBs."
+    }
+  ],
+  "swap_risks": [
+    "CRITICAL PACKAGE MISMATCH: LM2596SX-5.0/NOPB uses TO-263-5 (5-pin, KTT) while TPS5430DDAR uses SOIC-8E (8-pin, DDA (8-Pin HSOIC PowerPAD)); PCB footprint redesign is mandatory.",
+    "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (VIN vs BOOT), Pin 2 (SW vs NC), Pin 3 (GND vs NC), Pin 6 (NONE vs GND), Pin 7 (NONE vs VIN), Pin 8 (NONE vs SW). Soldering TPS5430DDAR onto a LM2596SX-5.0/NOPB footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
+    "CRITICAL ENABLE POLARITY: Active-High vs Active-Low EN pin mismatch — existing MCU GPIO or pull-up/pull-down resistor will invert regulator ON/OFF state.",
+    "CRITICAL FEEDBACK LAYOUT DIFFERENCE: One converter is fixed-output while the other is adjustable; adding or removing the external R1/R2 feedback divider and feedforward capacitor requires a PCB layout change.",
+    "HIGH SWITCHING FREQUENCY SHIFT: fsw differs by 70% (LM2596SX-5.0/NOPB: 150 kHz p.7 vs TPS5430DDAR: 500 kHz p.5); re-evaluate inductor core loss, ripple current ΔIL, output capacitor ESR ripple, and EMI harmonics.",
+    "CAUTION INDUCTOR RETUNING: Typical inductor differs (LM2596SX-5.0/NOPB: 33 µH p.25 vs TPS5430DDAR: 15 µH p.14); check inductor Isat against peak switch current limit.",
+    "HIGH MINIMUM SUPPLY FLOOR: LM2596SX-5.0/NOPB requires Vin,min >= 7 V (p.6) vs 5.5 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor."
+  ],
+  "engineering_verdict": "LM2596SX-5.0/NOPB (Texas Instruments, TO-263-5) and TPS5430DDAR (Texas Instruments, SOIC-8E) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (VIN vs BOOT), Pin 2 (SW vs NC), Pin 3 (GND vs NC), Pin 6 (NONE vs GND), Pin 7 (NONE vs VIN), Pin 8 (NONE vs SW); fixed vs adjustable output feedback footprint mismatch (R1/R2 divider). Specific pin conflicts: Pin 1 (VIN vs BOOT), Pin 2 (SW vs NC), Pin 3 (GND vs NC), Pin 6 (NONE vs GND). Power-stage deltas: buck (non-sync) vs buck (non-sync), switching frequency 150 kHz (p.7) vs 500 kHz (p.5) (3.3x ratio), typical inductor 33 µH (p.25) vs 15 µH (p.14), output mode fixed vs adjustable, and package θJA 50 vs 42.3 °C/W. Primary bench gotchas to watch: LM2596SX-5.0/NOPB \"INVERTED LOGIC: Pin 5 (ON/OFF) Is ACTIVE-LOW Enable (Opposite of Modern Bucks!)\" (p.4) and TPS5430DDAR \"7 V Abs Max ENA Pin Trap & Float-to-Enable — Tying ENA to 12 V/24 V VIN Destroys TPS5430DDAR\" (p.4). BOM decision: Choose LM2596SX-5.0/NOPB when matching your existing Texas Instruments TO-263-5 (KTT) qualification and -40..125 °C grade; choose TPS5430DDAR when light-load battery standby needs 2000 µA Iq. Always verify Pin 1 orientation (TOP_VIEW p.4 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
+  "generated_at": "2026-11-23"
+}

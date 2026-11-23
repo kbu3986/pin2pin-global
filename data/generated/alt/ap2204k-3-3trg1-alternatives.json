@@ -4,7 +4,7 @@
   "target_slug": "ap2204k-3-3trg1",
   "target_opn": "AP2204K-3.3TRG1",
   "category": "ldo",
-  "summary": "Datasheet-verified cross-reference alternatives for AP2204K-3.3TRG1 (Diodes Incorporated, SOT-23-5, fixed-ldo): evaluated 34 same-category OPNs and shortlisted the top 10 ranked replacements (0 Level 1 Candidate Drop-In, 10 Level 2 Tuning Required, and 0 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for AP2204K-3.3TRG1 (Diodes Incorporated, SOT-23-5, fixed-ldo): evaluated 37 same-category OPNs and shortlisted the top 11 ranked replacements (0 Level 1 Candidate Drop-In, 11 Level 2 Tuning Required, and 0 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "tps70933dbvr",
@@ -145,6 +145,20 @@
       "key_advantage": "Higher Iout (200 mA vs 150 mA); Lower dropout (112 mV vs 360 mV)",
       "key_tradeoff": "Higher Iq (250 µA vs 20 µA); Lower Vin,max (5.5 V vs 24 V)",
       "vs_slug": "ap2204k-3-3trg1-vs-tps79333dbvr"
+    },
+    {
+      "alt_slug": "tps76333dbvr",
+      "alt_opn": "TPS76333DBVR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOT-23-5",
+      "lifecycle_status": "Active",
+      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+      "tier_tag": "Value / Second-Source",
+      "score": 60,
+      "key_advantage": "Lower dropout (180 mV vs 360 mV)",
+      "key_tradeoff": "Higher Iq (65 µA vs 20 µA); Lower Vin,max (10 V vs 24 V)",
+      "vs_slug": "ap2204k-3-3trg1-vs-tps76333dbvr"
     }
   ],
   "selection_checklist": [

@@ -4,7 +4,7 @@
   "target_slug": "tps79333dbvr",
   "target_opn": "TPS79333DBVR",
   "category": "ldo",
-  "summary": "Datasheet-verified cross-reference alternatives for TPS79333DBVR (Texas Instruments, SOT-23-5, fixed-ldo): evaluated 34 same-category OPNs and shortlisted the top 10 ranked replacements (1 Level 1 Candidate Drop-In, 9 Level 2 Tuning Required, and 0 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for TPS79333DBVR (Texas Instruments, SOT-23-5, fixed-ldo): evaluated 37 same-category OPNs and shortlisted the top 10 ranked replacements (1 Level 1 Candidate Drop-In, 9 Level 2 Tuning Required, and 0 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "tps73633dbvr",
@@ -105,8 +105,8 @@
       "vs_slug": null
     },
     {
-      "alt_slug": "tlv75533pdbvr",
-      "alt_opn": "TLV75533PDBVR",
+      "alt_slug": "tlv74333pdbvr",
+      "alt_opn": "TLV74333PDBVR",
       "manufacturer": "Texas Instruments",
       "package_code": "SOT-23-5",
       "lifecycle_status": "Active",
@@ -114,8 +114,8 @@
       "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
       "tier_tag": "Ultra-Low Iq Upgrade",
       "score": 70,
-      "key_advantage": "Lower Iq (25 µA vs 250 µA); Higher Iout (500 mA vs 200 mA)",
-      "key_tradeoff": "Verify θJA (231.1 °C/W) and latest Texas Instruments datasheet revision",
+      "key_advantage": "Lower Iq (34 µA vs 250 µA); Higher Iout (300 mA vs 200 mA)",
+      "key_tradeoff": "Verify θJA (228.4 °C/W) and latest Texas Instruments datasheet revision",
       "vs_slug": null
     },
     {

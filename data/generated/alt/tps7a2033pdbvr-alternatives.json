@@ -4,8 +4,22 @@
   "target_slug": "tps7a2033pdbvr",
   "target_opn": "TPS7A2033PDBVR",
   "category": "ldo",
-  "summary": "Datasheet-verified cross-reference alternatives for TPS7A2033PDBVR (Texas Instruments, SOT-23-5, fixed-ldo): evaluated 34 same-category OPNs and shortlisted the top 9 ranked replacements (2 Level 1 Candidate Drop-In, 7 Level 2 Tuning Required, and 0 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for TPS7A2033PDBVR (Texas Instruments, SOT-23-5, fixed-ldo): evaluated 37 same-category OPNs and shortlisted the top 9 ranked replacements (3 Level 1 Candidate Drop-In, 6 Level 2 Tuning Required, and 0 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
+    {
+      "alt_slug": "tlv74333pdbvr",
+      "alt_opn": "TLV74333PDBVR",
+      "manufacturer": "Texas Instruments",
+      "package_code": "SOT-23-5",
+      "lifecycle_status": "Active",
+      "compatibility_level": "LEVEL_1_CANDIDATE_DROP_IN",
+      "compatibility_badge": "Candidate Drop-In (Verify Datasheet Before Production)",
+      "tier_tag": "Candidate Drop-In",
+      "score": 92,
+      "key_advantage": "Matching SOT-23-5 pinout & ratings for second-sourcing",
+      "key_tradeoff": "Higher Iq (34 µA vs 6.5 µA)",
+      "vs_slug": "tlv74333pdbvr-vs-tps7a2033pdbvr"
+    },
     {
       "alt_slug": "tlv73333pdbvr",
       "alt_opn": "TLV73333PDBVR",
@@ -103,20 +117,6 @@
       "key_advantage": "Lower Iq (0.025 µA vs 6.5 µA)",
       "key_tradeoff": "Lower Iout (200 mA vs 300 mA); Higher dropout (270 mV vs 145 mV)",
       "vs_slug": "tps7a0233pdbvr-vs-tps7a2033pdbvr"
-    },
-    {
-      "alt_slug": "tps70933dbvr",
-      "alt_opn": "TPS70933DBVR",
-      "manufacturer": "Texas Instruments",
-      "package_code": "SOT-23-5",
-      "lifecycle_status": "Active",
-      "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
-      "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
-      "tier_tag": "Ultra-Low Iq Upgrade",
-      "score": 66,
-      "key_advantage": "Lower Iq (1.3 µA vs 6.5 µA); Higher Vin,max (30 V vs 6 V)",
-      "key_tradeoff": "Lower Iout (150 mA vs 300 mA); Higher dropout (960 mV vs 145 mV)",
-      "vs_slug": null
     },
     {
       "alt_slug": "ncp500sn33t1g",

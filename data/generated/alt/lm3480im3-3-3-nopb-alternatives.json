@@ -4,7 +4,7 @@
   "target_slug": "lm3480im3-3-3-nopb",
   "target_opn": "LM3480IM3-3.3/NOPB",
   "category": "ldo",
-  "summary": "Datasheet-verified cross-reference alternatives for LM3480IM3-3.3/NOPB (Texas Instruments, SOT-23-3, fixed-ldo): evaluated 34 same-category OPNs and shortlisted the top 9 ranked replacements (0 Level 1 Candidate Drop-In, 0 Level 2 Tuning Required, and 9 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for LM3480IM3-3.3/NOPB (Texas Instruments, SOT-23-3, fixed-ldo): evaluated 37 same-category OPNs and shortlisted the top 9 ranked replacements (0 Level 1 Candidate Drop-In, 0 Level 2 Tuning Required, and 9 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "ap7313-33sag-7",

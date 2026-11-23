@@ -4,7 +4,7 @@
   "target_slug": "tps61221dckr",
   "target_opn": "TPS61221DCKR",
   "category": "dcdc",
-  "summary": "Datasheet-verified cross-reference alternatives for TPS61221DCKR (Texas Instruments, SC-70-6, boost): evaluated 22 same-category OPNs and shortlisted the top 8 ranked replacements (0 Level 1 Candidate Drop-In, 0 Level 2 Tuning Required, and 8 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
+  "summary": "Datasheet-verified cross-reference alternatives for TPS61221DCKR (Texas Instruments, SC-70-6, boost): evaluated 25 same-category OPNs and shortlisted the top 8 ranked replacements (0 Level 1 Candidate Drop-In, 0 Level 2 Tuning Required, and 8 Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.",
   "candidates": [
     {
       "alt_slug": "tps610994drvr",
