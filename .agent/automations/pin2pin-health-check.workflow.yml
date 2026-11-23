@@ -1,0 +1,51 @@
+name: Pin2Pin Global 12h Health Check
+
+on:
+  schedule:
+    # 09:15 KST (00:15 UTC) and 21:15 KST (12:15 UTC) daily
+    - cron: '15 0,12 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: read
+
+concurrency:
+  group: pin2pin-health-check
+  cancel-in-progress: false
+
+jobs:
+  health-monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Run 12h Health Monitor (PDFs, Live CDN, Sitemap, Audit Issues)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LIVE_SITE_URL: https://kbu3986.github.io/pin2pin-global
+        run: npm run health:check
+
+      - name: Commit & push updated health status if changed
+        run: |
+          git config user.name "pin2pin-health-bot[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet data/audit/health-latest.json docs/OPS-STATUS.md; then
+            git add data/audit/health-latest.json docs/OPS-STATUS.md
+            git commit -m "chore(ops): automated 12h cloud health check status update"
+            git push origin HEAD:main
+          else
+            echo "No status delta to commit."
+          fi

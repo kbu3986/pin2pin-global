@@ -17,12 +17,15 @@ import {
   getAllAltHubs,
   getAllParts,
   getPartBySlug,
+  getQuickCompareOptions,
   getRelatedGuidesForPart,
   getSiteConfig,
   getVsComparisonsForPart,
 } from '@/lib/data-loader';
 import type { GoldenPartV2 } from '@/types/schema';
 import { PackagePinoutSvg } from '@/components/PackagePinoutSvg';
+import { CopyOpnButton } from '@/components/CopyOpnButton';
+import { QuickComparePicker } from '@/components/QuickComparePicker';
 import { DisclaimerStrip } from '@/components/DisclaimerStrip';
 import { ErrorReportButton } from '@/components/ErrorReportButton';
 import { DistributorLinks } from '@/components/DistributorLinks';
@@ -238,6 +241,7 @@ export default async function PartDetailPage({
   const siteConfig = getSiteConfig();
   const relatedVs = getVsComparisonsForPart(part.slug);
   const relatedGuides = getRelatedGuidesForPart(part, 3);
+  const quickCompareOptions = getQuickCompareOptions();
   const altHub = getAllAltHubs().find((a) => a.target_slug === part.slug) ?? null;
   const specRows = buildSpecRows(part);
   const keyKpis = buildKeyKpis(part);
@@ -318,6 +322,7 @@ export default async function PartDetailPage({
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
+          <CopyOpnButton opn={part.opn} />
           <ErrorReportButton
             siteConfig={siteConfig}
             subject={`${part.opn} (${part.package.code})`}
@@ -332,8 +337,14 @@ export default async function PartDetailPage({
 
       {/* ABOVE-THE-FOLD WORKBENCH: SVG PINOUT + KEY SPECS & ACTIONS */}
       <section aria-label="Pinout Diagram and Key Specifications" className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
-        <div className="lg:col-span-6">
+        <div className="lg:col-span-6 space-y-4">
           <PackagePinoutSvg opn={part.opn} pkg={part.package} interactive />
+          <QuickComparePicker
+            currentSlug={part.slug}
+            currentOpn={part.opn}
+            currentCategory={part.category}
+            options={quickCompareOptions}
+          />
         </div>
 
         <div className="lg:col-span-6 space-y-4">
