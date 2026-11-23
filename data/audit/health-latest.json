@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-23T01:19:03.792Z",
+  "checked_at": "2026-11-23T23:14:28.007Z",
   "summary": {
     "total_parts": 80,
     "total_vs_pairs": 178,
@@ -342,9 +342,9 @@
         "status": 200,
         "contentType": "application/pdf",
         "pdfVerified": true,
-        "contentLength": "2605821",
-        "etag": "\"27c2fd-65d112da301b5\"",
-        "lastModified": "Mon, 05 Oct 2026 05:30:21 GMT"
+        "contentLength": "2605711",
+        "etag": "\"27c28f-660d79cfe6c1b\"",
+        "lastModified": "Sun, 22 Nov 2026 06:30:28 GMT"
       },
       {
         "url": "https://www.ti.com/lit/ds/symlink/lp2985.pdf",
@@ -583,8 +583,8 @@
         "contentType": "application/pdf",
         "pdfVerified": true,
         "contentLength": "1691692",
-        "etag": "\"19d02c-660d7c8f2a88a\"",
-        "lastModified": "Sun, 22 Nov 2026 06:42:45 GMT"
+        "etag": "\"19d02c-660ebbf3527c2\"",
+        "lastModified": "Mon, 23 Nov 2026 06:31:41 GMT"
       },
       {
         "url": "https://www.ti.com/lit/ds/symlink/tps563201.pdf",
@@ -593,8 +593,8 @@
         "contentType": "application/pdf",
         "pdfVerified": true,
         "contentLength": "1527700",
-        "etag": "\"174f94-660d7c552b7ee\"",
-        "lastModified": "Sun, 22 Nov 2026 06:41:45 GMT"
+        "etag": "\"174f94-660ebbbd6eb5d\"",
+        "lastModified": "Mon, 23 Nov 2026 06:30:45 GMT"
       },
       {
         "url": "https://www.ti.com/lit/ds/symlink/tps563208.pdf",
@@ -603,8 +603,8 @@
         "contentType": "application/pdf",
         "pdfVerified": true,
         "contentLength": "1527700",
-        "etag": "\"174f94-660d7c552b7ee\"",
-        "lastModified": "Sun, 22 Nov 2026 06:41:45 GMT"
+        "etag": "\"174f94-660ebbbd6eb5d\"",
+        "lastModified": "Mon, 23 Nov 2026 06:30:45 GMT"
       },
       {
         "url": "https://www.ti.com/lit/ds/symlink/tps61023.pdf",

@@ -17,7 +17,7 @@
     "product_page_url": "https://www.ti.com/product/LMV358",
     "source_domain": "www.ti.com",
     "revision": "SLOS263Y (Rev. August 2023)",
-    "verified_at": "2026-11-22",
+    "verified_at": "2026-11-24",
     "parse_source_mode": "DUAL_PATH_TEXT_VISION",
     "page_count": 53
   },
@@ -211,11 +211,12 @@
     "auditor_passed": true,
     "human_reviewed": false,
     "needs_human_review": false,
-    "vision_pages_checked": [3, 5, 6, 7],
+    "vision_pages_checked": [1, 3, 5, 6, 7, 24],
     "audit_notes": [
       "Verified SOIC-8 (D) Top View pinout on 300 DPI PNG page 3 (Figure 5-1 & Table 5-1; note Pin 1 literal name is 'OUT' and Pin 4 is 'GND').",
       "Verified total ICC = 210 µA for both amplifiers at VCC+ = 5 V on page 7 PNG and normalized iq_per_ch_typ_ua to 105 µA/ch.",
-      "Confirmed RθJA = 207.9 °C/W for LMV358 D (SOIC-8) on page 6 PNG and 5.5 V abs max on page 5 PNG."
+      "Confirmed RθJA = 207.9 °C/W for LMV358 D (SOIC-8) on page 6 PNG and 5.5 V abs max on page 5 PNG.",
+      "2026-11-24 drift re-verification: re-ingested official TI PDF after CDN content-length/ETag drift (2605821 -> 2605711 B) and visually verified 300 DPI PNG pages 1, 3, 5, 6, 7, and 24; SLOS263Y (Rev. August 2023) revision, SOIC-8 pinout, electrical/thermal ratings, and Active Production status unchanged."
     ]
   }
 }
