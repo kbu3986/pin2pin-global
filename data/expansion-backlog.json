@@ -278,7 +278,7 @@
     },
     {
       "wave": "2B",
-      "status": "pending",
+      "status": "completed",
       "batch_dir": "wave2b-ldo",
       "category": "ldo",
       "opn": "TLV75733PDBVR",
@@ -287,11 +287,12 @@
       "manufacturer": "Texas Instruments",
       "expected_package": "SOT-23-5",
       "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tlv757p.pdf",
-      "hint_product_url": "https://www.ti.com/product/TLV757P"
+      "hint_product_url": "https://www.ti.com/product/TLV757P",
+      "completed_at": "2026-11-23"
     },
     {
       "wave": "2B",
-      "status": "pending",
+      "status": "completed",
       "batch_dir": "wave2b-ldo",
       "category": "ldo",
       "opn": "TPS7A2433DBVR",
@@ -300,7 +301,8 @@
       "manufacturer": "Texas Instruments",
       "expected_package": "SOT-23-5",
       "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tps7a24.pdf",
-      "hint_product_url": "https://www.ti.com/product/TPS7A24"
+      "hint_product_url": "https://www.ti.com/product/TPS7A24",
+      "completed_at": "2026-11-23"
     },
     {
       "wave": "2B",
@@ -317,7 +319,7 @@
     },
     {
       "wave": "2B",
-      "status": "pending",
+      "status": "completed",
       "batch_dir": "wave2b-ldo",
       "category": "ldo",
       "opn": "NCP1117LPST33T3G",
@@ -326,11 +328,12 @@
       "manufacturer": "onsemi",
       "expected_package": "SOT-223-3",
       "hint_pdf_url": "https://www.onsemi.com/pdf/datasheet/ncp1117lp-d.pdf",
-      "hint_product_url": "https://www.onsemi.com/products/power-management/linear-regulators-ldo/ncp1117lp"
+      "hint_product_url": "https://www.onsemi.com/products/power-management/linear-regulators-ldo/ncp1117lp",
+      "completed_at": "2026-11-23"
     },
     {
       "wave": "2C",
-      "status": "pending",
+      "status": "completed",
       "batch_dir": "wave2c-dcdc",
       "category": "dcdc",
       "opn": "TPS563208DDCR",
@@ -339,7 +342,8 @@
       "manufacturer": "Texas Instruments",
       "expected_package": "SOT-23-6",
       "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tps563208.pdf",
-      "hint_product_url": "https://www.ti.com/product/TPS563208"
+      "hint_product_url": "https://www.ti.com/product/TPS563208",
+      "completed_at": "2026-11-23"
     },
     {
       "wave": "2C",
@@ -408,7 +412,7 @@
     },
     {
       "wave": "2C",
-      "status": "pending",
+      "status": "completed",
       "batch_dir": "wave2c-dcdc",
       "category": "dcdc",
       "opn": "AP62300WU-7",
@@ -417,7 +421,8 @@
       "manufacturer": "Diodes Incorporated",
       "expected_package": "TSOT-23-6",
       "hint_pdf_url": "https://www.diodes.com/assets/Datasheets/AP62300_AP62301_AP62300T.pdf",
-      "hint_product_url": "https://www.diodes.com/part/view/AP62300"
+      "hint_product_url": "https://www.diodes.com/part/view/AP62300",
+      "completed_at": "2026-11-23"
     },
     {
       "wave": "2C",
@@ -486,7 +491,7 @@
     },
     {
       "wave": "2D",
-      "status": "pending",
+      "status": "completed",
       "batch_dir": "wave2d-opamp",
       "category": "opamp",
       "opn": "TL082IDR",
@@ -495,7 +500,8 @@
       "manufacturer": "Texas Instruments",
       "expected_package": "SOIC-8",
       "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/tl082.pdf",
-      "hint_product_url": "https://www.ti.com/product/TL082"
+      "hint_product_url": "https://www.ti.com/product/TL082",
+      "completed_at": "2026-11-23"
     },
     {
       "wave": "2D",
@@ -512,7 +518,7 @@
     },
     {
       "wave": "2D",
-      "status": "pending",
+      "status": "completed",
       "batch_dir": "wave2d-opamp",
       "category": "opamp",
       "opn": "LM2903DR",
@@ -521,11 +527,12 @@
       "manufacturer": "Texas Instruments",
       "expected_package": "SOIC-8",
       "hint_pdf_url": "https://www.ti.com/lit/ds/symlink/lm2903.pdf",
-      "hint_product_url": "https://www.ti.com/product/LM2903"
+      "hint_product_url": "https://www.ti.com/product/LM2903",
+      "completed_at": "2026-11-23"
     },
     {
       "wave": "2D",
-      "status": "pending",
+      "status": "completed",
       "batch_dir": "wave2d-opamp",
       "category": "opamp",
       "opn": "LM358DR2G",
@@ -534,11 +541,12 @@
       "manufacturer": "onsemi",
       "expected_package": "SOIC-8",
       "hint_pdf_url": "https://www.onsemi.com/pdf/datasheet/lm358-d.pdf",
-      "hint_product_url": "https://www.onsemi.com/products/amplifiers-comparators/operational-amplifiers-op-amps/lm358"
+      "hint_product_url": "https://www.onsemi.com/products/amplifiers-comparators/operational-amplifiers-op-amps/lm358",
+      "completed_at": "2026-11-23"
     },
     {
       "wave": "2D",
-      "status": "pending",
+      "status": "completed",
       "batch_dir": "wave2d-opamp",
       "category": "opamp",
       "opn": "LM393DR2G",
@@ -547,7 +555,8 @@
       "manufacturer": "onsemi",
       "expected_package": "SOIC-8",
       "hint_pdf_url": "https://www.onsemi.com/pdf/datasheet/lm393-d.pdf",
-      "hint_product_url": "https://www.onsemi.com/products/amplifiers-comparators/comparators/lm393"
+      "hint_product_url": "https://www.onsemi.com/products/amplifiers-comparators/comparators/lm393",
+      "completed_at": "2026-11-23"
     }
   ]
 }

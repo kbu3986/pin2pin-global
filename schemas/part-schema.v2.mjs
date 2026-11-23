@@ -87,6 +87,12 @@ export const PinRoleEnum = z.enum([
   'OUT_B',
   'IN_POS_B',
   'IN_NEG_B',
+  'IN_POS_C',
+  'IN_NEG_C',
+  'OUT_C',
+  'IN_POS_D',
+  'IN_NEG_D',
+  'OUT_D',
   'VCC',
   'VEE',
   'VREF',
@@ -212,6 +218,11 @@ export const LdoSpecsSchema = z.object({
   esr_max_ohm: NullableCitedNumberSchema,
   en_active_high: z.boolean().nullable(),
   reverse_current_protection: z.boolean().nullable(),
+  // v2.1 optional trap fields (backwards-compatible)
+  en_abs_max_v: NullableCitedNumberSchema.optional(),
+  en_default_floating: z.enum(['enable', 'disable', 'forbidden']).nullable().optional(),
+  max_cout_uf: NullableCitedNumberSchema.optional(),
+  active_discharge: z.boolean().nullable().optional(),
 });
 
 export const DcdcSpecsSchema = z.object({
@@ -233,6 +244,11 @@ export const DcdcSpecsSchema = z.object({
   synchronous: z.boolean(),
   min_cout_uf: CitedNumberSchema,
   en_active_high: z.boolean().nullable(),
+  // v2.1 optional trap fields (backwards-compatible)
+  en_abs_max_v: NullableCitedNumberSchema.optional(),
+  en_default_floating: z.enum(['enable', 'disable', 'forbidden']).nullable().optional(),
+  max_cout_uf: NullableCitedNumberSchema.optional(),
+  active_discharge: z.boolean().nullable().optional(),
 });
 
 export const OpampSpecsSchema = z.object({
@@ -292,6 +308,8 @@ export const OpampPartSchema = BasePartSchema.extend({
     'opamp-dual',
     'comparator-single',
     'comparator-dual',
+    'opamp-quad',
+    'comparator-quad',
   ]),
   specs: OpampSpecsSchema,
 });
@@ -309,47 +327,87 @@ export const CompatibilityLevelEnum = z.enum([
   'LEVEL_3_LAYOUT_CHANGE',
 ]);
 
-export const VsComparisonSchema = z.object({
-  schema_version: z.literal('2.0.0'),
-  slug: z.string().regex(/^[a-z0-9-]+-vs-[a-z0-9-]+$/),
-  category: z.enum(['ldo', 'dcdc', 'opamp']),
-  part_a_slug: z.string().min(2),
-  part_b_slug: z.string().min(2),
-  part_a_opn: z.string().min(3),
-  part_b_opn: z.string().min(3),
+export const CompatibilityBadgeEnum = z.enum([
+  'Candidate Drop-In (Verify Datasheet Before Production)',
+  'Functional / Tuning Required (Check Passives & Ratings)',
+  'PCB Layout Change Required (Pinout or Package Mismatch)',
+]);
+
+export const LifecycleStatusEnum = z.enum(['Active', 'NRND', 'EOL', 'Unknown']);
+
+export const AltTierTagEnum = z.enum([
+  'Candidate Drop-In',
+  'Ultra-Low Iq Upgrade',
+  'Higher Current / Margin',
+  'Higher Voltage Margin',
+  'Value / Second-Source',
+  'Functional Alternative (Layout Change)',
+  'Lifecycle Warning (EOL/NRND)',
+]);
+
+export const VsComparisonSchema = z
+  .object({
+    schema_version: z.literal('2.0.0'),
+    slug: z.string().regex(/^[a-z0-9-]+-vs-[a-z0-9-]+$/),
+    category: z.enum(['ldo', 'dcdc', 'opamp']),
+    part_a_slug: z.string().min(2),
+    part_b_slug: z.string().min(2),
+    part_a_opn: z.string().min(3),
+    part_b_opn: z.string().min(3),
+    compatibility_level: CompatibilityLevelEnum,
+    compatibility_badge: CompatibilityBadgeEnum,
+    package_match: z.boolean(),
+    pinout_exact_match: z.boolean(),
+    exposed_pad_match: z.boolean(),
+    pin_diff: z.array(
+      z.object({
+        pin: z.number().int().min(1),
+        part_a_name: z.string(),
+        part_a_role: z.string(),
+        part_b_name: z.string(),
+        part_b_role: z.string(),
+        status: z.enum(['MATCH', 'MISMATCH', 'CAUTION']),
+        note: z.string(),
+      }),
+    ),
+    parameter_matrix: z
+      .array(
+        z.object({
+          metric: z.string(),
+          unit: z.string(),
+          part_a_value: z.string(),
+          part_b_value: z.string(),
+          winner: z.enum(['A', 'B', 'TIE', 'CONTEXT']),
+          note: z.string(),
+        }),
+      )
+      .min(6),
+    swap_risks: z.array(z.string().min(12)).min(2),
+    engineering_verdict: z.string().min(80),
+    generated_at: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  })
+  .refine((d) => d.part_a_slug < d.part_b_slug, {
+    message: 'part_a_slug must be alphabetically smaller than part_b_slug (AUD-06)',
+    path: ['part_a_slug'],
+  })
+  .refine((d) => d.slug === `${d.part_a_slug}-vs-${d.part_b_slug}`, {
+    message: 'slug must equal "<part_a_slug>-vs-<part_b_slug>" (AUD-06)',
+    path: ['slug'],
+  });
+
+export const AltCandidateSchema = z.object({
+  alt_slug: z.string(),
+  alt_opn: z.string(),
+  manufacturer: z.string(),
+  package_code: PackageCodeEnum,
+  lifecycle_status: LifecycleStatusEnum.default('Active'),
   compatibility_level: CompatibilityLevelEnum,
-  compatibility_badge: z.enum([
-    'Candidate Drop-In (Verify Datasheet Before Production)',
-    'Functional / Tuning Required (Check Passives & Ratings)',
-    'PCB Layout Change Required (Pinout or Package Mismatch)',
-  ]),
-  package_match: z.boolean(),
-  pinout_exact_match: z.boolean(),
-  exposed_pad_match: z.boolean(),
-  pin_diff: z.array(
-    z.object({
-      pin: z.number().int().min(1),
-      part_a_name: z.string(),
-      part_a_role: z.string(),
-      part_b_name: z.string(),
-      part_b_role: z.string(),
-      status: z.enum(['MATCH', 'MISMATCH', 'CAUTION']),
-      note: z.string(),
-    }),
-  ),
-  parameter_matrix: z.array(
-    z.object({
-      metric: z.string(),
-      unit: z.string(),
-      part_a_value: z.string(),
-      part_b_value: z.string(),
-      winner: z.enum(['A', 'B', 'TIE', 'CONTEXT']),
-      note: z.string(),
-    }),
-  ).min(6),
-  swap_risks: z.array(z.string().min(12)).min(2),
-  engineering_verdict: z.string().min(80),
-  generated_at: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  compatibility_badge: CompatibilityBadgeEnum,
+  tier_tag: AltTierTagEnum,
+  score: z.number().min(0).max(100),
+  key_advantage: z.string(),
+  key_tradeoff: z.string(),
+  vs_slug: z.string().nullable(),
 });
 
 export const AltHubSchema = z.object({
@@ -359,27 +417,61 @@ export const AltHubSchema = z.object({
   target_opn: z.string().min(3),
   category: z.enum(['ldo', 'dcdc', 'opamp']),
   summary: z.string().min(60),
-  candidates: z.array(
-    z.object({
-      alt_slug: z.string(),
-      alt_opn: z.string(),
-      manufacturer: z.string(),
-      package_code: PackageCodeEnum,
-      compatibility_level: CompatibilityLevelEnum,
-      compatibility_badge: z.string(),
-      tier_tag: z.enum([
-        'Candidate Drop-In',
-        'Ultra-Low Iq Upgrade',
-        'Higher Current / Margin',
-        'Value / Second-Source',
-        'Functional Alternative (Layout Change)',
-      ]),
-      score: z.number().min(0).max(100),
-      key_advantage: z.string(),
-      key_tradeoff: z.string(),
-      vs_slug: z.string().nullable(),
-    }),
-  ).min(3),
+  candidates: z.array(AltCandidateSchema).min(3),
   selection_checklist: z.array(z.string().min(10)).min(3),
   generated_at: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+});
+
+export const EngineeringGuideSchema = z.object({
+  slug: z
+    .string()
+    .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Guide slug must be lowercase kebab-case'),
+  title: z.string().min(10).max(200),
+  subtitle: z.string().min(10).max(400),
+  category: z.enum(['ldo', 'dcdc', 'opamp', 'general']),
+  reading_time_min: z.number().int().min(1).max(60),
+  published_at: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  updated_at: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  author_role: z.string().min(3).max(120),
+  summary: z.string().min(40).max(1000),
+  key_takeaways: z.array(z.string().min(10)).min(2).max(10),
+  related_parts: z.array(z.string().min(2)).default([]),
+  related_vs: z.array(z.string().min(5)).default([]),
+  sections: z
+    .array(
+      z.object({
+        heading: z.string().min(3).max(200),
+        body: z.array(z.string().min(10)).min(1),
+        callout: z
+          .object({
+            type: z.enum(['CRITICAL', 'WARNING', 'TIP']),
+            title: z.string().min(3).max(200),
+            text: z.string().min(10),
+          })
+          .optional(),
+        table: z
+          .object({
+            headers: z.array(z.string().min(1)).min(2),
+            rows: z.array(z.array(z.string())).min(1),
+          })
+          .optional(),
+      }),
+    )
+    .min(2),
+});
+
+export const TrustPageDocSchema = z.object({
+  slug: z.enum(['about', 'methodology', 'disclaimer', 'privacy', 'contact']),
+  title: z.string().min(4).max(160),
+  description: z.string().min(20).max(400),
+  updated_at: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  sections: z
+    .array(
+      z.object({
+        heading: z.string().min(3).max(200),
+        paragraphs: z.array(z.string().min(10)).min(1),
+        bullets: z.array(z.string().min(5)).optional(),
+      }),
+    )
+    .min(1),
 });

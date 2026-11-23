@@ -89,8 +89,8 @@
       "unit": "V",
       "part_a_value": "3.8 to 32 V (p.4)",
       "part_b_value": "7 to 40 V (p.6)",
-      "winner": "B",
-      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+      "winner": "CONTEXT",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -106,7 +106,7 @@
       "part_a_value": "3.27 to 3.33 V (p.5) (Fixed)",
       "part_b_value": "4.75 to 5.25 V (p.6) (Fixed)",
       "winner": "CONTEXT",
-      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
     },
     {
       "metric": "Max Current (Iout or Isw Limit)",
@@ -114,7 +114,7 @@
       "part_a_value": "2000 mA (p.1) [Iout max]",
       "part_b_value": "3000 mA (p.1) [Iout max]",
       "winner": "B",
-      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+      "note": "Continuous DC output current rating; verify inductor Isat >= Iout + ΔIL/2 and thermal margin."
     },
     {
       "metric": "Quiescent Current (Iq, typ)",
@@ -169,12 +169,18 @@
     "CRITICAL PACKAGE MISMATCH: AP63203WU-7 uses TSOT-23-6 (6-pin, TSOT26) while LM2596SX-5.0/NOPB uses TO-263-5 (5-pin, KTT); PCB footprint redesign is mandatory.",
     "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (FB vs VIN), Pin 2 (EN vs SW), Pin 3 (VIN vs GND), Pin 4 (GND vs FB), Pin 5 (SW vs EN), Pin 6 (BOOT vs NONE). Soldering LM2596SX-5.0/NOPB onto a AP63203WU-7 footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
     "Exposed thermal pad/tab mismatch (TSOT-23-6: NONE vs TO-263-5: GND); PCB land pattern & solder-mask change required.",
-    "HIGH RECTIFICATION DIFFERENCE: LM2596SX-5.0/NOPB is non-synchronous and requires an external Schottky catch/freewheeling diode, whereas the counterpart integrates a synchronous low-side MOSFET.",
+    "CRITICAL RECTIFICATION LAYOUT DIFFERENCE: LM2596SX-5.0/NOPB is non-synchronous and requires an external Schottky catch/freewheeling diode footprint near SW, whereas the counterpart integrates a synchronous low-side MOSFET.",
+    "CRITICAL OUTPUT VOLTAGE RAIL MISMATCH: AP63203WU-7 is a fixed 3.3 V converter (vout_nom_v, p.5) whereas LM2596SX-5.0/NOPB is a fixed 5 V converter (vout_nom_v, p.6); swapping delivers the wrong rail voltage and can destroy downstream loads.",
+    "CRITICAL ENABLE POLARITY: AP63203WU-7 EN is active-high whereas LM2596SX-5.0/NOPB EN is active-low; the existing enable drive will invert converter ON/OFF state.",
     "HIGH SWITCHING FREQUENCY SHIFT: fsw differs by 86% (AP63203WU-7: 1100 kHz p.5 vs LM2596SX-5.0/NOPB: 150 kHz p.7); re-evaluate inductor core loss, ripple current ΔIL, output capacitor ESR ripple, and EMI harmonics.",
     "CAUTION INDUCTOR RETUNING: Typical inductor differs (AP63203WU-7: 3.9 µH p.13 vs LM2596SX-5.0/NOPB: 33 µH p.25); check inductor Isat against peak switch current limit.",
-    "CAUTION CURRENT RATING BASIS: AP63203WU-7 specifies 2000 mA (continuous Iout, p.1) vs LM2596SX-5.0/NOPB 3000 mA (continuous Iout, p.1). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling.",
-    "CAUTION THERMAL MARGIN: Package θJA differs by 44% (AP63203WU-7: 89 °C/W p.4 vs LM2596SX-5.0/NOPB: 50 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max."
+    "HIGH INPUT VOLTAGE RANGE SHIFT: Recommended Vin,max differs (AP63203WU-7: 32 V p.4 vs LM2596SX-5.0/NOPB: 40 V p.6); verify line transients stay below Vin,abs,max.",
+    "CAUTION CURRENT RATING BASIS: AP63203WU-7 specifies 2000 mA (continuous Iout, p.1) vs LM2596SX-5.0/NOPB 3000 mA (continuous Iout, p.1). Verify continuous load current and peak inductor saturation margin (Isat >= Iout + ΔIL/2).",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: AP63203WU-7 has a lower Vin,abs,max rating (35 V, p.4) than LM2596SX-5.0/NOPB (45 V, p.5); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 35 V.",
+    "HIGH THERMAL MARGIN: Package θJA is 78% higher on AP63203WU-7 (AP63203WU-7: 89 °C/W p.4 vs LM2596SX-5.0/NOPB: 50 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH MINIMUM SUPPLY FLOOR: LM2596SX-5.0/NOPB requires Vin,min >= 7 V (p.6) vs 3.8 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (AP63203WU-7: -40..85 °C Industrial (-40°C to 85°C TA, TJ max 125°C) vs LM2596SX-5.0/NOPB: -40..125 °C Industrial / Extended (-40°C to 125°C TJ)); AP63203WU-7 hot limit only 85 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "AP63203WU-7 (Diodes Incorporated, TSOT-23-6) and LM2596SX-5.0/NOPB (Texas Instruments, TO-263-5) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (FB vs VIN), Pin 2 (EN vs SW), Pin 3 (VIN vs GND), Pin 4 (GND vs FB), Pin 5 (SW vs EN), Pin 6 (BOOT vs NONE); exposed pad / thermal tab net mismatch. Key datasheet deltas: topology is buck (sync) vs buck (non-sync), switching frequency is 1100 kHz (p.5) vs 150 kHz (p.7), rated current is 2000 mA (p.1) vs 3000 mA (p.1), typical inductor is 3.9 µH (p.13) vs 33 µH (p.25), and Iq is 22 µA (p.5) vs 5000 µA (p.7). Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.4), thermal margin (θJA 89 vs 50 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AP63203WU-7 (Diodes Incorporated, TSOT-23-6) and LM2596SX-5.0/NOPB (Texas Instruments, TO-263-5) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (FB vs VIN), Pin 2 (EN vs SW), Pin 3 (VIN vs GND), Pin 4 (GND vs FB), Pin 5 (SW vs EN), Pin 6 (BOOT vs NONE); exposed pad / thermal tab net mismatch. Specific pin conflicts: Pin 1 (FB vs VIN), Pin 2 (EN vs SW), Pin 3 (VIN vs GND), Pin 4 (GND vs FB). Power-stage deltas: buck (sync) vs buck (non-sync), switching frequency 1100 kHz (p.5) vs 150 kHz (p.7) (7.3x ratio), typical inductor 3.9 µH (p.13) vs 33 µH (p.25), output mode fixed vs fixed, and package θJA 89 vs 50 °C/W. Primary bench gotchas to watch: AP63203WU-7 \"CRITICAL PINOUT TRAP: Completely Incompatible With TPS54302DDCR, TPS563201DDCR & AP62200WU-7!\" (p.1) and LM2596SX-5.0/NOPB \"INVERTED LOGIC: Pin 5 (ON/OFF) Is ACTIVE-LOW Enable (Opposite of Modern Bucks!)\" (p.4). BOM decision: Choose AP63203WU-7 when you want synchronous rectification without an external Schottky diode or light-load battery standby needs 22 µA Iq; choose LM2596SX-5.0/NOPB when bus voltage exceeds 32 V (rated to 40 V) or higher load current capacity (3000 mA) is required. Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.4) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

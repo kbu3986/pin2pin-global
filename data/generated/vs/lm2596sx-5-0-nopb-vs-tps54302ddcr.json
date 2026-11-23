@@ -46,7 +46,7 @@
       "part_b_name": "FB",
       "part_b_role": "FB",
       "status": "CAUTION",
-      "note": "Feedback network difference: one device has fixed internal divider while the other requires external R1/R2 feedback resistors."
+      "note": "Feedback network difference: one device has fixed internal divider while the other requires external R1/R2 feedback resistors (PCB divider footprint change)."
     },
     {
       "pin": 5,
@@ -89,8 +89,8 @@
       "unit": "V",
       "part_a_value": "7 to 40 V (p.6)",
       "part_b_value": "4.5 to 28 V (p.4)",
-      "winner": "A",
-      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+      "winner": "CONTEXT",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -106,7 +106,7 @@
       "part_a_value": "4.75 to 5.25 V (p.6) (Fixed)",
       "part_b_value": "0.596 to 28 V (p.5/p.12) (Adj)",
       "winner": "CONTEXT",
-      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
     },
     {
       "metric": "Max Current (Iout or Isw Limit)",
@@ -114,7 +114,7 @@
       "part_a_value": "3000 mA (p.1) [Iout max]",
       "part_b_value": "3000 mA (p.1) [Iout max]",
       "winner": "TIE",
-      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+      "note": "Continuous DC output current rating; verify inductor Isat >= Iout + ΔIL/2 and thermal margin."
     },
     {
       "metric": "Quiescent Current (Iq, typ)",
@@ -170,13 +170,15 @@
     "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (VIN vs GND), Pin 3 (GND vs VIN), Pin 6 (NONE vs BOOT). Soldering TPS54302DDCR onto a LM2596SX-5.0/NOPB footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
     "Exposed thermal pad/tab mismatch (TO-263-5: GND vs SOT-23-6: NONE); PCB land pattern & solder-mask change required.",
     "CRITICAL ENABLE POLARITY: Active-High vs Active-Low EN pin mismatch — existing MCU GPIO or pull-up/pull-down resistor will invert regulator ON/OFF state.",
-    "HIGH RECTIFICATION DIFFERENCE: LM2596SX-5.0/NOPB is non-synchronous and requires an external Schottky catch/freewheeling diode, whereas the counterpart integrates a synchronous low-side MOSFET.",
+    "CRITICAL RECTIFICATION LAYOUT DIFFERENCE: LM2596SX-5.0/NOPB is non-synchronous and requires an external Schottky catch/freewheeling diode footprint near SW, whereas the counterpart integrates a synchronous low-side MOSFET.",
+    "CRITICAL FEEDBACK LAYOUT DIFFERENCE: One converter is fixed-output while the other is adjustable; adding or removing the external R1/R2 feedback divider and feedforward capacitor requires a PCB layout change.",
     "HIGH SWITCHING FREQUENCY SHIFT: fsw differs by 63% (LM2596SX-5.0/NOPB: 150 kHz p.7 vs TPS54302DDCR: 400 kHz p.5); re-evaluate inductor core loss, ripple current ΔIL, output capacitor ESR ripple, and EMI harmonics.",
     "CAUTION INDUCTOR RETUNING: Typical inductor differs (LM2596SX-5.0/NOPB: 33 µH p.25 vs TPS54302DDCR: 10 µH p.18); check inductor Isat against peak switch current limit.",
-    "HIGH FEEDBACK CONFIGURATION: One converter is fixed-output while the other is adjustable; external R1/R2 feedback resistors and feedforward capacitor must be updated.",
     "HIGH INPUT VOLTAGE RANGE SHIFT: Recommended Vin,max differs (LM2596SX-5.0/NOPB: 40 V p.6 vs TPS54302DDCR: 28 V p.4); verify line transients stay below Vin,abs,max.",
-    "CAUTION THERMAL MARGIN: Package θJA differs by 58% (LM2596SX-5.0/NOPB: 50 °C/W p.5 vs TPS54302DDCR: 118.9 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max."
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: TPS54302DDCR has a lower Vin,abs,max rating (30 V, p.4) than LM2596SX-5.0/NOPB (45 V, p.5); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 30 V.",
+    "HIGH THERMAL MARGIN: Package θJA is 138% higher on TPS54302DDCR (LM2596SX-5.0/NOPB: 50 °C/W p.5 vs TPS54302DDCR: 118.9 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH MINIMUM SUPPLY FLOOR: LM2596SX-5.0/NOPB requires Vin,min >= 7 V (p.6) vs 4.5 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor."
   ],
-  "engineering_verdict": "LM2596SX-5.0/NOPB (Texas Instruments, TO-263-5) and TPS54302DDCR (Texas Instruments, SOT-23-6) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (VIN vs GND), Pin 3 (GND vs VIN), Pin 6 (NONE vs BOOT); exposed pad / thermal tab net mismatch. Key datasheet deltas: topology is buck (non-sync) vs buck (sync), switching frequency is 150 kHz (p.7) vs 400 kHz (p.5), rated current is 3000 mA (p.1) vs 3000 mA (p.1), typical inductor is 33 µH (p.25) vs 10 µH (p.18), and Iq is 5000 µA (p.7) vs 45 µA (p.5). Always validate pinout orientation (TOP_VIEW p.4 vs TOP_VIEW p.3), thermal margin (θJA 50 vs 118.9 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "LM2596SX-5.0/NOPB (Texas Instruments, TO-263-5) and TPS54302DDCR (Texas Instruments, SOT-23-6) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (VIN vs GND), Pin 3 (GND vs VIN), Pin 6 (NONE vs BOOT); exposed pad / thermal tab net mismatch. Specific pin conflicts: Pin 1 (VIN vs GND), Pin 3 (GND vs VIN), Pin 6 (NONE vs BOOT). Power-stage deltas: buck (non-sync) vs buck (sync), switching frequency 150 kHz (p.7) vs 400 kHz (p.5) (2.7x ratio), typical inductor 33 µH (p.25) vs 10 µH (p.18), output mode fixed vs adjustable, and package θJA 50 vs 118.9 °C/W. Primary bench gotchas to watch: LM2596SX-5.0/NOPB \"INVERTED LOGIC: Pin 5 (ON/OFF) Is ACTIVE-LOW Enable (Opposite of Modern Bucks!)\" (p.4) and TPS54302DDCR \"CRITICAL: EN Pin Abs Max Is ONLY 7.0 V (Rec 5.5 V) — NEVER Tie Directly to 12 V / 24 V VIN\" (p.4). BOM decision: Choose LM2596SX-5.0/NOPB when bus voltage exceeds 28 V (rated to 40 V); choose TPS54302DDCR when you want synchronous rectification without an external Schottky diode or light-load battery standby needs 45 µA Iq. Always verify Pin 1 orientation (TOP_VIEW p.4 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

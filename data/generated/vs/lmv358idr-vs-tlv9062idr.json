@@ -92,7 +92,7 @@
       "part_a_value": "opamp (push-pull)",
       "part_b_value": "opamp (push-pull)",
       "winner": "TIE",
-      "note": "Op-amps (compensated push-pull) and comparators (uncompensated open-collector) are NOT drop-in interchangeable."
+      "note": "Op-amps (internally compensated for linear feedback) and comparators (uncompensated open-loop switching) are NOT drop-in interchangeable."
     },
     {
       "metric": "Package & Channel Count",
@@ -108,7 +108,7 @@
       "part_a_value": "2.7 to 5.5 V (p.5)",
       "part_b_value": "1.8 to 5.5 V (p.10)",
       "winner": "B",
-      "note": "Confirm total supply span (V+ - V-) stays within recommended limits."
+      "note": "A part wins only if its recommended Vs range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Supply (Vs,abs)",
@@ -172,7 +172,7 @@
       "part_a_value": "65 dB (p.7) · 39 nV/√Hz (p.7)",
       "part_b_value": "87 dB (p.13) · 16 nV/√Hz (p.13)",
       "winner": "B",
-      "note": "Higher CMRR rejects common-mode noise; lower voltage noise improves SNR."
+      "note": "Winner requires superiority on both CMRR (higher) and input voltage noise (lower); mixed tradeoffs stay CONTEXT."
     },
     {
       "metric": "Thermal Resistance (θJA) & Tj,max",
@@ -186,8 +186,12 @@
   "swap_risks": [
     "HIGH HEADROOM / CLIPPING RISK: Rail-to-rail capability differs (LMV358IDR: IN=Non-RR, OUT=RR vs TLV9062IDR: IN=RR, OUT=RR); verify input common-mode range (Vicm) and output voltage swing against ADC full-scale range.",
     "CAUTION BANDWIDTH & PHASE MARGIN: GBWP differs by 10x (LMV358IDR: 1 MHz p.7 vs TLV9062IDR: 10 MHz p.13); higher-bandwidth replacements can oscillate with capacitive loads or stray feedback capacitance without an isolation resistor.",
-    "CAUTION SLEW RATE DIFFERENCE: Slew rate differs by 6.5x (LMV358IDR: 1 V/µs p.7 vs TLV9062IDR: 6.5 V/µs p.13); check full-power bandwidth SR / (2π·Vpeak)."
+    "CAUTION SLEW RATE DIFFERENCE: Slew rate differs by 6.5x (LMV358IDR: 1 V/µs p.7 vs TLV9062IDR: 6.5 V/µs p.13); check full-power bandwidth SR / (2π·Vpeak).",
+    "HIGH INPUT BIAS CURRENT SHIFT: Typical Ib differs by 30000x (LMV358IDR: 15000 pA p.7 vs TLV9062IDR: 0.5 pA p.13); high-impedance sensor dividers (>100 kΩ) suffer severe Ib·R DC offset error when swapping from CMOS/JFET to bipolar inputs.",
+    "CAUTION QUIESCENT CURRENT SHIFT: Supply current per channel differs by 5.1x (LMV358IDR: 105 µA/ch p.7 vs TLV9062IDR: 538 µA/ch p.14); verify battery budget and total power dissipation across all channels.",
+    "HIGH THERMAL MARGIN: Package θJA is 32% higher on LMV358IDR (LMV358IDR: 207.9 °C/W p.6 vs TLV9062IDR: 157.6 °C/W p.11); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH MINIMUM SUPPLY FLOOR: LMV358IDR requires Vs,min >= 2.7 V (p.5) vs 1.8 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor."
   ],
-  "engineering_verdict": "LMV358IDR (Texas Instruments, SOIC-8) and TLV9062IDR (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to rail-to-rail input/output swing differs; GBWP differs >= 3x; slew rate differs >= 3x. Key datasheet deltas: device type is opamp (push-pull) vs opamp (push-pull), supply limit is 5.5 V (p.5) vs 5.5 V (p.10), max Vos is 7 mV (p.7) vs 1.6 mV (p.13), input bias current is 15000 pA (p.7) vs 0.5 pA (p.13), and Iq/ch is 105 µA (p.7) vs 538 µA (p.14). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.6), thermal margin (θJA 207.9 vs 157.6 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "LMV358IDR (Texas Instruments, SOIC-8) and TLV9062IDR (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because rail-to-rail input/output swing differs; GBWP differs 10x; slew rate differs 6.5x. Signal-chain deltas: GBWP 1 MHz (p.7) vs 10 MHz (p.13), supply ceiling 5.5 V (p.5) vs 5.5 V (p.10), Vos 7 mV (p.7) vs 1.6 mV (p.13), Ib 30000x gap (15000 vs 0.5 pA), voltage noise 39 vs 16 nV/√Hz. Primary bench gotchas to watch: LMV358IDR \"5.5 V Absolute Maximum Ceiling — Destructive If Swapped into LM358 High-Voltage Boards\" (p.5) and TLV9062IDR \"6.0 V Absolute Maximum Supply Limit — Destructive in 12 V / 24 V LM358 or TL072 SOIC-8 Sockets\" (p.10). BOM decision: Choose LMV358IDR when ultra-low supply current (105 µA/ch) is prioritized; choose TLV9062IDR when closed-loop signal bandwidth requires 10 MHz GBWP or DC precision demands <= 1.6 mV max Vos. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.6) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

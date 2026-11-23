@@ -54,8 +54,8 @@
       "unit": "V",
       "part_a_value": "2.5 to 13.2 V (p.4)",
       "part_b_value": "4.8 to 30 V (p.5/p.4)",
-      "winner": "B",
-      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+      "winner": "CONTEXT",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -141,11 +141,15 @@
   "swap_risks": [
     "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (GND vs VOUT), Pin 2 (VOUT vs VIN), Pin 3 (VIN vs GND). Soldering LM3480IM3-3.3/NOPB onto a AP2210N-3.3TRG1 footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
     "CRITICAL CAPACITOR ESR OSCILLATION RISK: LM3480IM3-3.3/NOPB is stable with low-ESR ceramic MLCCs (>= 0.1 µF, p.11), whereas AP2210N-3.3TRG1 is NOT ceramic-cap stable (ESR window: 0.025–15 Ω (p.22)). Using an ultra-low-ESR MLCC on AP2210N-3.3TRG1 can trigger control-loop oscillation.",
+    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs by 10x (AP2210N-3.3TRG1: 1 µF p.23 vs LM3480IM3-3.3/NOPB: 0.1 µF p.11); account for MLCC DC-bias derating.",
     "HIGH INPUT VOLTAGE RATING DROP: AP2210N-3.3TRG1 is rated to only 13.2 V rec. (15 V abs max, p.4) vs LM3480IM3-3.3/NOPB at 30 V rec. (35 V abs max, p.4). Verify worst-case input transient spikes.",
     "HIGH LOAD CURRENT DERATING: LM3480IM3-3.3/NOPB supplies up to 100 mA (p.5) compared to AP2210N-3.3TRG1 at 300 mA (p.1); confirm peak inrush and thermal dissipation margin.",
-    "CAUTION DROPOUT HEADROOM: Typical dropout differs by 650 mV (AP2210N-3.3TRG1: 250 mV p.11 vs LM3480IM3-3.3/NOPB: 900 mV p.5); verify Vin,min - Vout >= Vdo at cold/hot corners.",
-    "CAUTION THERMAL MARGIN: Package θJA differs by 26% (AP2210N-3.3TRG1: 200 °C/W p.4 vs LM3480IM3-3.3/NOPB: 269.6 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max."
+    "CAUTION DROPOUT HEADROOM: Typical dropout differs (AP2210N-3.3TRG1: 250 mV p.11 vs LM3480IM3-3.3/NOPB: 900 mV p.5); verify Vin,min - Vout >= Vdo across temperature and load corners.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: AP2210N-3.3TRG1 has a lower Vin,abs,max rating (15 V, p.4) than LM3480IM3-3.3/NOPB (35 V, p.4); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 15 V.",
+    "HIGH THERMAL MARGIN: Package θJA is 35% higher on LM3480IM3-3.3/NOPB (AP2210N-3.3TRG1: 200 °C/W p.4 vs LM3480IM3-3.3/NOPB: 269.6 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH MINIMUM SUPPLY FLOOR: LM3480IM3-3.3/NOPB requires Vin,min >= 4.8 V (p.5) vs 2.5 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (AP2210N-3.3TRG1: -40..85 °C Industrial (-40°C to +85°C ambient; -40°C to +125°C TJ) vs LM3480IM3-3.3/NOPB: -40..125 °C Extended Industrial (-40°C to +125°C TJ)); AP2210N-3.3TRG1 hot limit only 85 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "AP2210N-3.3TRG1 (Diodes Incorporated, SOT-23-3) and LM3480IM3-3.3/NOPB (Texas Instruments, SOT-23-3) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to pinout mismatch on Pin 1 (GND vs VOUT), Pin 2 (VOUT vs VIN), Pin 3 (VIN vs GND). Key datasheet deltas: Iq is 100 µA (p.11) vs 2000 µA (p.5), max output current is 300 mA (p.1) vs 100 mA (p.5), recommended Vin,max is 13.2 V (p.4) vs 30 V (p.4), typical dropout is 250 mV (p.11) vs 900 mV (p.5), and ceramic capacitor stability is ESR-constrained vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 200 vs 269.6 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AP2210N-3.3TRG1 (Diodes Incorporated, SOT-23-3) and LM3480IM3-3.3/NOPB (Texas Instruments, SOT-23-3) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to pinout mismatch on Pin 1 (GND vs VOUT), Pin 2 (VOUT vs VIN), Pin 3 (VIN vs GND). Specific pin conflicts: Pin 1 (GND vs VOUT), Pin 2 (VOUT vs VIN), Pin 3 (VIN vs GND). Under a representative 5 V → 3.3 V rail at 100 mA (170 mW), estimated self-heating is ΔTj ≈ 34 °C on AP2210N-3.3TRG1 (θJA 200 °C/W) vs 45.8 °C on LM3480IM3-3.3/NOPB (θJA 269.6 °C/W), while quiescent draw spans a 20x ratio (100 µA (p.11) vs 2000 µA (p.5)). Primary bench gotchas to watch: AP2210N-3.3TRG1 \"SOT-23-3 Pinout (1=GND, 2=VOUT, 3=VIN) Reversed vs AP7333-SA, AP7313-SA, and LM3480\" (p.1) and LM3480IM3-3.3/NOPB \"Unique SOT-23-3 Pinout (1=OUT, 2=IN, 3=GND) Incompatible With ALL Other SOT-23-3 LDOs in Batch\" (p.3). BOM decision: Choose AP2210N-3.3TRG1 when load current exceeds 100 mA (up to 300 mA) or battery sleep budget demands 100 µA Iq; choose LM3480IM3-3.3/NOPB when input rails climb above 13.2 V (rated to 30 V) or your BOM standardizes on low-ESR MLCC ceramic output capacitors. Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

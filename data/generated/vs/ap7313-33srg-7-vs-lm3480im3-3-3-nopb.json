@@ -54,8 +54,8 @@
       "unit": "V",
       "part_a_value": "2 to 6 V (p.4)",
       "part_b_value": "4.8 to 30 V (p.5/p.4)",
-      "winner": "B",
-      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+      "winner": "CONTEXT",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -140,11 +140,14 @@
   ],
   "swap_risks": [
     "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (GND vs VOUT), Pin 2 (VOUT vs VIN), Pin 3 (VIN vs GND). Soldering LM3480IM3-3.3/NOPB onto a AP7313-33SRG-7 footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
-    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs significantly (AP7313-33SRG-7: 1 µF p.10 vs LM3480IM3-3.3/NOPB: 0.1 µF p.11); account for MLCC DC-bias derating.",
+    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs by 10x (AP7313-33SRG-7: 1 µF p.10 vs LM3480IM3-3.3/NOPB: 0.1 µF p.11); account for MLCC DC-bias derating.",
     "HIGH INPUT VOLTAGE RATING DROP: AP7313-33SRG-7 is rated to only 6 V rec. (7 V abs max, p.4) vs LM3480IM3-3.3/NOPB at 30 V rec. (35 V abs max, p.4). Verify worst-case input transient spikes.",
     "HIGH LOAD CURRENT DERATING: LM3480IM3-3.3/NOPB supplies up to 100 mA (p.5) compared to AP7313-33SRG-7 at 150 mA (p.4); confirm peak inrush and thermal dissipation margin.",
-    "CAUTION DROPOUT HEADROOM: Typical dropout differs by 750 mV (AP7313-33SRG-7: 150 mV p.5 vs LM3480IM3-3.3/NOPB: 900 mV p.5); verify Vin,min - Vout >= Vdo at cold/hot corners."
+    "CAUTION DROPOUT HEADROOM: Typical dropout differs (AP7313-33SRG-7: 150 mV p.5 vs LM3480IM3-3.3/NOPB: 900 mV p.5); verify Vin,min - Vout >= Vdo across temperature and load corners.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: AP7313-33SRG-7 has a lower Vin,abs,max rating (7 V, p.4) than LM3480IM3-3.3/NOPB (35 V, p.4); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 7 V.",
+    "HIGH MINIMUM SUPPLY FLOOR: LM3480IM3-3.3/NOPB requires Vin,min >= 4.8 V (p.5) vs 2 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (AP7313-33SRG-7: -40..85 °C Industrial (-40°C to +85°C) vs LM3480IM3-3.3/NOPB: -40..125 °C Extended Industrial (-40°C to +125°C TJ)); AP7313-33SRG-7 hot limit only 85 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "AP7313-33SRG-7 (Diodes Incorporated, SOT-23-3) and LM3480IM3-3.3/NOPB (Texas Instruments, SOT-23-3) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to pinout mismatch on Pin 1 (GND vs VOUT), Pin 2 (VOUT vs VIN), Pin 3 (VIN vs GND). Key datasheet deltas: Iq is 55 µA (p.5) vs 2000 µA (p.5), max output current is 150 mA (p.4) vs 100 mA (p.5), recommended Vin,max is 6 V (p.4) vs 30 V (p.4), typical dropout is 150 mV (p.5) vs 900 mV (p.5), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.2 vs TOP_VIEW p.3), thermal margin (θJA 230 vs 269.6 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AP7313-33SRG-7 (Diodes Incorporated, SOT-23-3) and LM3480IM3-3.3/NOPB (Texas Instruments, SOT-23-3) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to pinout mismatch on Pin 1 (GND vs VOUT), Pin 2 (VOUT vs VIN), Pin 3 (VIN vs GND). Specific pin conflicts: Pin 1 (GND vs VOUT), Pin 2 (VOUT vs VIN), Pin 3 (VIN vs GND). Under a representative 5 V → 3.3 V rail at 100 mA (170 mW), estimated self-heating is ΔTj ≈ 39.1 °C on AP7313-33SRG-7 (θJA 230 °C/W) vs 45.8 °C on LM3480IM3-3.3/NOPB (θJA 269.6 °C/W), while quiescent draw spans a 36.4x ratio (55 µA (p.5) vs 2000 µA (p.5)). Primary bench gotchas to watch: AP7313-33SRG-7 \"Reversed SOT23R Pinout Matches AP2210N (1=GND, 2=OUT, 3=IN), NOT AP7313-SA or LM3480\" (p.2) and LM3480IM3-3.3/NOPB \"Unique SOT-23-3 Pinout (1=OUT, 2=IN, 3=GND) Incompatible With ALL Other SOT-23-3 LDOs in Batch\" (p.3). BOM decision: Choose AP7313-33SRG-7 when load current exceeds 100 mA (up to 150 mA) or battery sleep budget demands 55 µA Iq; choose LM3480IM3-3.3/NOPB when input rails climb above 6 V (rated to 30 V). Always verify Pin 1 orientation (TOP_VIEW p.2 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

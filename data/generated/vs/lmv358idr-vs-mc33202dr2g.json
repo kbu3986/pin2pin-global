@@ -92,7 +92,7 @@
       "part_a_value": "opamp (push-pull)",
       "part_b_value": "opamp (push-pull)",
       "winner": "TIE",
-      "note": "Op-amps (compensated push-pull) and comparators (uncompensated open-collector) are NOT drop-in interchangeable."
+      "note": "Op-amps (internally compensated for linear feedback) and comparators (uncompensated open-loop switching) are NOT drop-in interchangeable."
     },
     {
       "metric": "Package & Channel Count",
@@ -108,7 +108,7 @@
       "part_a_value": "2.7 to 5.5 V (p.5)",
       "part_b_value": "1.8 to 12 V (p.1)",
       "winner": "B",
-      "note": "Confirm total supply span (V+ - V-) stays within recommended limits."
+      "note": "A part wins only if its recommended Vs range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Supply (Vs,abs)",
@@ -172,7 +172,7 @@
       "part_a_value": "65 dB (p.7) · 39 nV/√Hz (p.7)",
       "part_b_value": "90 dB (p.4) · 20 nV/√Hz (p.4)",
       "winner": "B",
-      "note": "Higher CMRR rejects common-mode noise; lower voltage noise improves SNR."
+      "note": "Winner requires superiority on both CMRR (higher) and input voltage noise (lower); mixed tradeoffs stay CONTEXT."
     },
     {
       "metric": "Thermal Resistance (θJA) & Tj,max",
@@ -184,9 +184,13 @@
     }
   ],
   "swap_risks": [
-    "CRITICAL SUPPLY VOLTAGE RATING: LMV358IDR is limited to 5.5 V max (5.5 V abs max, p.5) whereas MC33202DR2G supports up to 12 V (13 V abs max, p.3). Installing a 5.5 V CMOS op-amp on a 12 V–24 V rail causes instant breakdown.",
-    "HIGH HEADROOM / CLIPPING RISK: Rail-to-rail capability differs (LMV358IDR: IN=Non-RR, OUT=RR vs MC33202DR2G: IN=RR, OUT=RR); verify input common-mode range (Vicm) and output voltage swing against ADC full-scale range."
+    "CRITICAL SUPPLY VOLTAGE RATING: LMV358IDR is limited to 5.5 V max (5.5 V abs max, p.5) whereas MC33202DR2G supports up to 12 V (13 V abs max, p.3). Installing a 5.5 V CMOS part on a 12 V–24 V rail causes instant breakdown.",
+    "HIGH HEADROOM / CLIPPING RISK: Rail-to-rail capability differs (LMV358IDR: IN=Non-RR, OUT=RR vs MC33202DR2G: IN=RR, OUT=RR); verify input common-mode range (Vicm) and output voltage swing against ADC full-scale range.",
+    "CAUTION QUIESCENT CURRENT SHIFT: Supply current per channel differs by 8.6x (LMV358IDR: 105 µA/ch p.7 vs MC33202DR2G: 900 µA/ch p.4); verify battery budget and total power dissipation across all channels.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: LMV358IDR has a lower Vs,abs,max rating (5.5 V, p.5) than MC33202DR2G (13 V, p.3); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 5.5 V.",
+    "HIGH MINIMUM SUPPLY FLOOR: LMV358IDR requires Vs,min >= 2.7 V (p.5) vs 1.8 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (LMV358IDR: -40..125 °C Extended Industrial (-40°C to 125°C) vs MC33202DR2G: -40..105 °C Extended Industrial (-40°C to 105°C)); MC33202DR2G hot limit only 105 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "LMV358IDR (Texas Instruments, SOIC-8) and MC33202DR2G (onsemi, SOIC-8) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to supply voltage Vs,max drops >20%; rail-to-rail input/output swing differs. Key datasheet deltas: device type is opamp (push-pull) vs opamp (push-pull), supply limit is 5.5 V (p.5) vs 12 V (p.1), max Vos is 7 mV (p.7) vs 8 mV (p.3), input bias current is 15000 pA (p.7) vs 80000 pA (p.3), and Iq/ch is 105 µA (p.7) vs 900 µA (p.4). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.2), thermal margin (θJA 207.9 vs 190 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "LMV358IDR (Texas Instruments, SOIC-8) and MC33202DR2G (onsemi, SOIC-8) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because supply voltage Vs,max drops >=20%; rail-to-rail input/output swing differs; quiescent supply current Iq/ch differs 8.6x. Signal-chain deltas: GBWP 1 MHz (p.7) vs 2.2 MHz (p.4), supply ceiling 5.5 V (p.5) vs 12 V (p.1), Vos 7 mV (p.7) vs 8 mV (p.3), Ib 5x gap (15000 vs 80000 pA), voltage noise 39 vs 20 nV/√Hz. Primary bench gotchas to watch: LMV358IDR \"5.5 V Absolute Maximum Ceiling — Destructive If Swapped into LM358 High-Voltage Boards\" (p.5) and MC33202DR2G \"Internal Back-to-Back Differential Input Clamp Diodes Limit Comparator Use\" (p.3). BOM decision: Choose LMV358IDR when ultra-low supply current (105 µA/ch) is prioritized; choose MC33202DR2G when supply rails exceed 5.5 V (rated up to 12 V) or closed-loop signal bandwidth requires 2.2 MHz GBWP. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.2) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

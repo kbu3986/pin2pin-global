@@ -6,10 +6,10 @@
   "part_b_slug": "ap63300wu-7",
   "part_a_opn": "AP63203WU-7",
   "part_b_opn": "AP63300WU-7",
-  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
-  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+  "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+  "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
   "package_match": true,
-  "pinout_exact_match": true,
+  "pinout_exact_match": false,
   "exposed_pad_match": true,
   "pin_diff": [
     {
@@ -19,7 +19,7 @@
       "part_b_name": "FB",
       "part_b_role": "FB",
       "status": "CAUTION",
-      "note": "Feedback network difference: one device has fixed internal divider while the other requires external R1/R2 feedback resistors."
+      "note": "Feedback network difference: one device has fixed internal divider while the other requires external R1/R2 feedback resistors (PCB divider footprint change)."
     },
     {
       "pin": 2,
@@ -90,7 +90,7 @@
       "part_a_value": "3.8 to 32 V (p.4)",
       "part_b_value": "3.8 to 32 V (p.5)",
       "winner": "TIE",
-      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -106,7 +106,7 @@
       "part_a_value": "3.27 to 3.33 V (p.5) (Fixed)",
       "part_b_value": "0.8 to 31 V (p.5) (Adj)",
       "winner": "CONTEXT",
-      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
     },
     {
       "metric": "Max Current (Iout or Isw Limit)",
@@ -114,7 +114,7 @@
       "part_a_value": "2000 mA (p.1) [Iout max]",
       "part_b_value": "3000 mA (p.1) [Iout max]",
       "winner": "B",
-      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+      "note": "Continuous DC output current rating; verify inductor Isat >= Iout + ΔIL/2 and thermal margin."
     },
     {
       "metric": "Quiescent Current (Iq, typ)",
@@ -166,11 +166,11 @@
     }
   ],
   "swap_risks": [
+    "CRITICAL FEEDBACK LAYOUT DIFFERENCE: One converter is fixed-output while the other is adjustable; adding or removing the external R1/R2 feedback divider and feedforward capacitor requires a PCB layout change.",
     "HIGH SWITCHING FREQUENCY SHIFT: fsw differs by 55% (AP63203WU-7: 1100 kHz p.5 vs AP63300WU-7: 500 kHz p.6); re-evaluate inductor core loss, ripple current ΔIL, output capacitor ESR ripple, and EMI harmonics.",
     "CAUTION INDUCTOR RETUNING: Typical inductor differs (AP63203WU-7: 3.9 µH p.13 vs AP63300WU-7: 6.8 µH p.2); check inductor Isat against peak switch current limit.",
-    "HIGH FEEDBACK CONFIGURATION: One converter is fixed-output while the other is adjustable; external R1/R2 feedback resistors and feedforward capacitor must be updated.",
-    "CAUTION CURRENT RATING BASIS: AP63203WU-7 specifies 2000 mA (continuous Iout, p.1) vs AP63300WU-7 3000 mA (continuous Iout, p.1). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling."
+    "CAUTION CURRENT RATING BASIS: AP63203WU-7 specifies 2000 mA (continuous Iout, p.1) vs AP63300WU-7 3000 mA (continuous Iout, p.1). Verify continuous load current and peak inductor saturation margin (Isat >= Iout + ΔIL/2)."
   ],
-  "engineering_verdict": "AP63203WU-7 (Diodes Incorporated, TSOT-23-6) and AP63300WU-7 (Diodes Incorporated, TSOT-23-6) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to switching frequency differs >30%; recommended inductor value differs >20%; fixed vs adjustable output configuration differs. Key datasheet deltas: topology is buck (sync) vs buck (sync), switching frequency is 1100 kHz (p.5) vs 500 kHz (p.6), rated current is 2000 mA (p.1) vs 3000 mA (p.1), typical inductor is 3.9 µH (p.13) vs 6.8 µH (p.2), and Iq is 22 µA (p.5) vs 22 µA (p.6). Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.1), thermal margin (θJA 89 vs 89 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AP63203WU-7 (Diodes Incorporated, TSOT-23-6) and AP63300WU-7 (Diodes Incorporated, TSOT-23-6) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to fixed vs adjustable output feedback footprint mismatch (R1/R2 divider). Power-stage deltas: buck (sync) vs buck (sync), switching frequency 1100 kHz (p.5) vs 500 kHz (p.6) (2.2x ratio), typical inductor 3.9 µH (p.13) vs 6.8 µH (p.2), output mode fixed vs adjustable, and package θJA 89 vs 89 °C/W. Primary bench gotchas to watch: AP63203WU-7 \"CRITICAL PINOUT TRAP: Completely Incompatible With TPS54302DDCR, TPS563201DDCR & AP62200WU-7!\" (p.1) and AP63300WU-7 \"CRITICAL PINOUT TRAP: Completely Incompatible With TI TPS54302/TPS54202/TPS563201/TPS562201 & AP62200!\" (p.1). BOM decision: Choose AP63203WU-7 when matching your existing Diodes Incorporated TSOT-23-6 (TSOT26) qualification and -40..85 °C grade; choose AP63300WU-7 when higher load current capacity (3000 mA) is required. Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.1) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

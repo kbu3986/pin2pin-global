@@ -1,0 +1,204 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "NCP1117LPST33T3G",
+  "slug": "ncp1117lpst33t3g",
+  "family": "NCP1117LP",
+  "manufacturer": "onsemi",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": 0,
+    "ta_max_c": 125,
+    "grade_label": "Commercial (0°C to +125°C TA/TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.onsemi.com/pdf/datasheet/ncp1117lp-d.pdf",
+    "product_page_url": "https://www.onsemi.com/products/power-management/linear-regulators-ldo/ncp1117lp",
+    "source_domain": "www.onsemi.com",
+    "revision": "Rev. 6 (January 2024)",
+    "verified_at": "2026-11-23",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 15
+  },
+  "package": {
+    "code": "SOT-223-3",
+    "mfg_package_code": "CASE 318H (ST)",
+    "pin_count": 3,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": true,
+      "net": "VOUT",
+      "note": "SOT-223 heatsink tab (Pin 4) is internally connected to Pin 2 (Vout); NEVER connect the thermal tab to GND (p.1)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 108,
+      "page": 2,
+      "condition": "CASE 318H (SOT-223) on 100 x 100 mm 1 oz Cu PCB at TA = 25°C (Table 2 p.2; rises to ~122 °C/W at ~40 mm² and drops to ~74 °C/W at 500 mm² 2 oz Cu per Fig. 32 p.9)",
+      "table_ref": "Table 2. MAXIMUM RATINGS"
+    },
+    "theta_jc_c_per_w": {
+      "value": 15,
+      "page": 2,
+      "condition": "RθJC junction-to-case, CASE 318H (SOT-223)",
+      "table_ref": "Table 2. MAXIMUM RATINGS"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 2,
+      "condition": "Maximum junction temperature range TJ(max) -55°C to +150°C (operating junction TOP 0°C to +125°C, Tshdn 165°C typ, p.2–3)",
+      "table_ref": "Table 2. MAXIMUM RATINGS"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "Adj (GND)",
+        "role": "GND",
+        "description": "Ground reference pin on fixed 3.3 V NCP1117LPST33T3G (Adjust feedback terminal on adjustable version, p.1–2)."
+      },
+      {
+        "pin": 2,
+        "name": "Vout",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output internally tied to SOT-223 heatsink tab (Pin 4); requires >= 10 uF (Table 1; 4.7 uF min p.10) with 20 mOhm–20 Ohm ESR."
+      },
+      {
+        "pin": 3,
+        "name": "Vin",
+        "role": "VIN",
+        "description": "Input supply pin (4.8 V to 12 V EC characterization range; 18 V maximum DC input rating, p.1–3)."
+      }
+    ],
+    "pinout_source_page": 1,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 18,
+      "page": 2,
+      "condition": "Maximum Ratings DC Input Voltage -0.3 V to 18 V (2 V lower than standard NCP1117's 20 V rating)",
+      "table_ref": "Table 2. MAXIMUM RATINGS"
+    },
+    "vin_min_v": {
+      "value": 4.8,
+      "page": 3,
+      "condition": "NCP1117-3.3 minimum input voltage in output accuracy test (4.8 V <= Vin <= 12 V; 4.7 V in load reg test; must exceed Vout + 1.3 V typ)",
+      "table_ref": "Table 3. ELECTRICAL CHARACTERISTICS"
+    },
+    "vin_max_v": {
+      "value": 12,
+      "page": 3,
+      "condition": "NCP1117-3.3 Electrical Characteristics maximum tested input voltage (4.8 V to 12 V; p.1–2 permit DC operation up to 18 V max)",
+      "table_ref": "Table 3. ELECTRICAL CHARACTERISTICS"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 3,
+      "condition": "Fixed 3.3 V SOT-223 ordering option NCP1117LPST33T3G (marking '17L33', Active p.12)",
+      "table_ref": "Table 3. ELECTRICAL CHARACTERISTICS"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 2.0,
+      "page": 3,
+      "condition": "3.235 V to 3.365 V (±1.97%, nominal ±2.0%) at TJ = 25°C, 4.8 V <= Vin <= 12 V, Io = 10 mA",
+      "table_ref": "Table 3. ELECTRICAL CHARACTERISTICS"
+    },
+    "iout_max_ma": {
+      "value": 1000,
+      "page": 1,
+      "condition": "1.0 A continuous output capability (current limit Iout >= 1.1 A min at Vin = 7 V, TA = 25°C, p.3)",
+      "table_ref": "Features p.1 & Table 3 p.3"
+    },
+    "iq_typ_ua": {
+      "value": 550,
+      "page": 3,
+      "condition": "550 uA typ / 700 uA max at Vin = 12 V, Io = 10 mA for fixed-output versions (~10x lower than standard NCP1117's 6 mA)",
+      "table_ref": "Table 3. ELECTRICAL CHARACTERISTICS"
+    },
+    "ishdn_typ_ua": null,
+    "dropout_typ_mv": {
+      "value": 1300,
+      "page": 3,
+      "condition": "1.3 V typ / 1.4 V max at Iout = 1 A, TA = 25°C, ΔVout = Vout - 100 mV (higher than standard NCP1117's 1.07 V @ 800 mA)",
+      "table_ref": "Table 3. ELECTRICAL CHARACTERISTICS"
+    },
+    "psrr_db": {
+      "value": 60,
+      "page": 3,
+      "condition": "60 dB typ at f = 120 Hz, Cout = 25 uF tantalum, Iout = 1 A, Vin = Vout + 3 V",
+      "table_ref": "Table 3. ELECTRICAL CHARACTERISTICS"
+    },
+    "output_noise_uvrms": null,
+    "ceramic_cap_stable": false,
+    "min_cout_uf": {
+      "value": 10,
+      "page": 2,
+      "condition": "Table 1 (p.2) mandates minimum 10 uF capacitor with 20 mOhm <= ESR <= 20 Ohm (p.10 text notes 4.7 uF min within the same ESR window)",
+      "table_ref": "Table 1. PIN FUNCTION DESCRIPTION"
+    },
+    "esr_min_ohm": {
+      "value": 0.02,
+      "page": 2,
+      "condition": "20 mOhm (0.02 Ohm) minimum ESR floor for loop stability (Table 1 p.2 & Applications p.10) — standard MLCCs (<10 mOhm) risk oscillation",
+      "table_ref": "Table 1. PIN FUNCTION DESCRIPTION"
+    },
+    "esr_max_ohm": {
+      "value": 20,
+      "page": 2,
+      "condition": "20 Ohm maximum ESR ceiling across operating temperature range (Table 1 p.2 & p.10)",
+      "table_ref": "Table 1. PIN FUNCTION DESCRIPTION"
+    },
+    "en_active_high": null,
+    "reverse_current_protection": false
+  },
+  "design_gotchas": [
+    {
+      "title": "20 mOhm Minimum ESR Floor Still Blocks Bare Low-ESR MLCCs Despite Modern 'LP' Label",
+      "severity": "CRITICAL",
+      "detail": "Although NCP1117LP slashes quiescent current 10x versus classic 1117s, Table 1 (p.2) and Applications (p.10) still require 20 mOhm <= ESR <= 20 Ohm on COUT (min 10 uF per Table 1 / 4.7 uF per p.10). Typical 10 uF X5R/X7R MLCCs have 2–5 mOhm ESR and can trigger loop oscillation unless paired with a 0.1–0.5 Ohm series resistor or tantalum/electrolytic capacitor.",
+      "page": 2
+    },
+    {
+      "title": "High 1.3 V Typ / 1.4 V Max Dropout Leaves Tight Margin on 5.0 V ±5% (4.75 V) Rails at 1 A",
+      "severity": "CRITICAL",
+      "detail": "Full-load dropout at 1 A is 1.3 V typ / 1.4 V max (Table 3 p.3), requiring VIN >= 4.70 V worst-case for a 3.3 V output—leaving just 50 mV margin on a 5 V -5% (4.75 V) bus and worse than standard NCP1117 (1.07 V typ / 1.20 V max at 800 mA) or true low-dropout AP7361C (360 mV typ). Also note VIN max is 18 V (2 V lower than NCP1117's 20 V).",
+      "page": 3
+    },
+    {
+      "title": "Commercial 0°C to +125°C Grade Only & Pin 4 Thermal Tab Tied to VOUT (Not GND)",
+      "severity": "WARNING",
+      "detail": "NCP1117LPST33T3G is strictly rated 0°C to +125°C (no -40°C industrial rating, p.1–2) and ties its SOT-223 thermal tab internally to Pin 2 (VOUT)—shorting if populated on a GND-tab LM2937 or AP7361C-GND layout. On minimal copper (<40 mm²), RθJA climbs above 120 °C/W (Fig. 32 p.9), limiting 5 V->3.3 V dissipation to ~0.8 W.",
+      "page": 1
+    },
+    {
+      "title": "Table 3 Lists 1–5 mA Minimum Load & Crowbar Diode Needed Above 50 uF COUT",
+      "severity": "INFO",
+      "detail": "While Page 1 claims 'No Minimum Load Requirement for Fixed Voltage Output Devices', Table 3 (p.3) lists ILmin = 1 mA typ / 5 mA max for NCP1117-XXX (fixed variants consume 550 uA internally). Also add an external VOUT-to-VIN protection diode if COUT > 50 uF and VIN can be shorted to ground (p.11).",
+      "page": 3
+    }
+  ],
+  "typical_use_cases": [
+    "Drop-in standby-power upgrade on existing 1117 SOT-223 boards (550 uA IQ vs 5–6 mA on AMS1117/LM1117/NCP1117)",
+    "Consumer TV, monitor, set-top box, and game-console 5 V-to-3.3 V post-regulators needing lower idle drain",
+    "Commercial (0°C–125°C) 12 V-to-3.3 V moderate-current linear rails using tantalum or electrolytic output capacitors",
+    "Energy-Star standby-compliant 1 A linear sub-rails on standard 1=GND, 2/Tab=VOUT, 3=VIN SOT-223 footprints"
+  ],
+  "engineering_summary": "The onsemi NCP1117LPST33T3G is a commercial-grade (0°C to +125°C), low-quiescent-current (550 uA typ vs 6 mA on standard NCP1117) 1.0 A fixed 3.3 V (±2.0%) linear regulator in SOT-223-3 (CASE 318H) with standard 1117 pinout (1=GND, 2/Tab=VOUT, 3=VIN). It serves as a pin-compatible standby-power upgrade for AMS1117/LM1117/NCP1117 footprints in indoor equipment, but engineers must verify its 20 mOhm–20 Ohm ESR stability window (not bare MLCC-safe), higher 1.3 V typ / 1.4 V max dropout at 1 A, 18 V abs max VIN ceiling, and VOUT-connected thermal tab before production.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [1, 2, 3, 9],
+    "audit_notes": [
+      "300 DPI PNG Vision on p.1 confirmed SOT-223 ST suffix (CASE 318H) Top View pinout (1=Adjust/Ground, 2=Output, 3=Input), heatsink tab connected to Pin 2 (VOUT), marking '17L33', and Rev. 6 (January 2024).",
+      "300 DPI PNG Vision on p.2 confirmed Table 1 mandatory 10 uF COUT with 20 mOhm <= ESR <= 20 Ohm, Table 2 Vin abs max 18 V, TA/TOP 0..125°C, TJ(max) 150°C, RθJA = 108 °C/W (100x100 mm 1 oz Cu), and RθJC = 15 °C/W.",
+      "300 DPI PNG Vision on p.3 confirmed Table 3 NCP1117-3.3 Vout = 3.235–3.365 V (4.8–12 V), VDO = 1.3 V typ / 1.4 V max @ 1 A, Iout limit >= 1.1 A, IQFIX = 550 uA typ / 700 uA max, ILmin = 1 mA typ / 5 mA max, RR = 60 dB @ 120 Hz, and Tshdn = 165°C.",
+      "300 DPI PNG Vision on p.9 confirmed Fig. 32 SOT-223 RθJA vs copper area (~122 °C/W at ~40 mm² 1 oz Cu down to ~74 °C/W at 500 mm² 2 oz Cu); Path A confirmed Active ordering code NCP1117LPST33T3G on p.12."
+    ]
+  }
+}

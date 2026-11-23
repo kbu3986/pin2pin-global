@@ -73,7 +73,7 @@
       "part_a_value": "1.45 to 5.5 V (p.4)",
       "part_b_value": "1.7 to 5.5 V (p.4)",
       "winner": "A",
-      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -158,8 +158,10 @@
   ],
   "swap_risks": [
     "HIGH PIN 4 (NC vs BYPASS/NR) CHECK: One device uses Pin 4 as an internal bandgap bypass/noise-reduction node while the other is NC. Verify Pin 4 is NOT tied to GND or VIN on the existing PCB before swapping; add a 10 nF bypass cap if low noise is required.",
-    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs significantly (TLV75533PDBVR: 1 µF p.4 vs TPS73633DBVR: 0 µF p.1); account for MLCC DC-bias derating."
+    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs by 100x (TLV75533PDBVR: 1 µF p.4 vs TPS73633DBVR: 0 µF p.1); account for MLCC DC-bias derating.",
+    "HIGH LOAD CURRENT DERATING: TPS73633DBVR supplies up to 400 mA (p.4) compared to TLV75533PDBVR at 500 mA (p.4); confirm peak inrush and thermal dissipation margin.",
+    "CAUTION DROPOUT HEADROOM: Typical dropout differs (TLV75533PDBVR: 150 mV p.6 vs TPS73633DBVR: 75 mV p.6); verify Vin,min - Vout >= Vdo across temperature and load corners."
   ],
-  "engineering_verdict": "TLV75533PDBVR (Texas Instruments, SOT-23-5) and TPS73633DBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to Pin 4 NC vs BYPASS difference; minimum output capacitance requirement differs >= 2.5x. Key datasheet deltas: Iq is 25 µA (p.5) vs 400 µA (p.6), max output current is 500 mA (p.4) vs 400 mA (p.4), recommended Vin,max is 5.5 V (p.4) vs 5.5 V (p.4), typical dropout is 150 mV (p.6) vs 75 mV (p.6), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 231.1 vs 185.2 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "TLV75533PDBVR (Texas Instruments, SOT-23-5) and TPS73633DBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because Pin 4 NC vs BYPASS difference; minimum output capacitance requirement differs 100x; Iout,max rating drops >=20%. Under a representative 5 V → 3.3 V rail at 150 mA (255 mW), estimated self-heating is ΔTj ≈ 58.9 °C on TLV75533PDBVR (θJA 231.1 °C/W) vs 47.2 °C on TPS73633DBVR (θJA 185.2 °C/W), while quiescent draw spans a 16x ratio (25 µA (p.5) vs 400 µA (p.6)). Primary bench gotchas to watch: TLV75533PDBVR \"DBV Thermal Resistance (231.1 C/W JEDEC) vs Page-1 Headline 60.3 C/W (DYD Exposed-Pad Only)\" (p.5) and TPS73633DBVR \"Mixed New vs. Legacy Silicon Shipments Change Thermal Resistance\" (p.5). BOM decision: Choose TLV75533PDBVR when load current exceeds 400 mA (up to 500 mA) or battery sleep budget demands 25 µA Iq; choose TPS73633DBVR when low Vin-Vout headroom requires 75 mV dropout or lower package θJA (185.2 °C/W) is needed for thermal margin. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

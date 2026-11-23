@@ -1,0 +1,222 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TL082IDR",
+  "slug": "tl082idr",
+  "family": "TL082",
+  "manufacturer": "Texas Instruments",
+  "category": "opamp",
+  "sub_topology": "opamp-dual",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 85,
+    "grade_label": "Industrial (-40°C to +85°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tl082.pdf",
+    "product_page_url": "https://www.ti.com/product/TL082",
+    "source_domain": "www.ti.com",
+    "revision": "SLOS081O (February 1977 – Revised September 2025)",
+    "verified_at": "2026-11-23",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 78
+  },
+  "package": {
+    "code": "SOIC-8",
+    "mfg_package_code": "D",
+    "pin_count": 8,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE"
+    },
+    "theta_ja_c_per_w": {
+      "value": 147.8,
+      "page": 10,
+      "condition": "D (SOIC-8) package, TL082xx dual channel",
+      "table_ref": "Section 5.5 Thermal Information for Dual Channel"
+    },
+    "theta_jc_c_per_w": {
+      "value": 88.2,
+      "page": 10,
+      "condition": "RθJC(top), D (SOIC-8) package, TL082xx",
+      "table_ref": "Section 5.5 Thermal Information for Dual Channel"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 9,
+      "condition": "Junction temperature TJ, max",
+      "table_ref": "Section 5.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "1OUT",
+        "role": "OUT_A",
+        "description": "Output, channel 1"
+      },
+      {
+        "pin": 2,
+        "name": "1IN-",
+        "role": "IN_NEG_A",
+        "description": "Inverting input, channel 1"
+      },
+      {
+        "pin": 3,
+        "name": "1IN+",
+        "role": "IN_POS_A",
+        "description": "Noninverting input, channel 1"
+      },
+      {
+        "pin": 4,
+        "name": "VCC-",
+        "role": "VEE",
+        "description": "Negative power supply"
+      },
+      {
+        "pin": 5,
+        "name": "2IN+",
+        "role": "IN_POS_B",
+        "description": "Noninverting input, channel 2"
+      },
+      {
+        "pin": 6,
+        "name": "2IN-",
+        "role": "IN_NEG_B",
+        "description": "Inverting input, channel 2"
+      },
+      {
+        "pin": 7,
+        "name": "2OUT",
+        "role": "OUT_B",
+        "description": "Output, channel 2"
+      },
+      {
+        "pin": 8,
+        "name": "VCC+",
+        "role": "VCC",
+        "description": "Positive power supply"
+      }
+    ],
+    "pinout_source_page": 5,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "device_kind": "opamp",
+    "channels": 2,
+    "vs_abs_max_v": {
+      "value": 42,
+      "page": 9,
+      "condition": "All other devices including D (SOIC-8) TL082IDR (legacy NS/PS packages and TL08xM are 36 V)",
+      "table_ref": "Section 5.1 Absolute Maximum Ratings"
+    },
+    "vs_min_v": {
+      "value": 4.5,
+      "page": 9,
+      "condition": "All other devices including D (SOIC-8) TL082IDR (legacy NS/PS/M is 10 V)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "vs_max_v": {
+      "value": 40,
+      "page": 9,
+      "condition": "All other devices including D (SOIC-8) TL082IDR (±2.25 V to ±20 V; legacy NS/PS/M is 30 V)",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "gbwp_mhz": {
+      "value": 5.25,
+      "page": 14,
+      "condition": "All other devices including D (SOIC-8), VS = ±15 V, TA = 25°C (legacy NS/PS/M is 3 MHz)",
+      "table_ref": "Section 5.8 Electrical Characteristics (DC)"
+    },
+    "slew_rate_v_per_us": {
+      "value": 20,
+      "page": 16,
+      "condition": "TL08xI, VS = ±15 V, VI = 10 V, CL = 100 pF, RL = 2 kOhm, TA = 25°C (8 V/us min)",
+      "table_ref": "Section 5.9 Electrical Characteristics (AC)"
+    },
+    "prop_delay_ns": null,
+    "vos_max_mv": {
+      "value": 6,
+      "page": 14,
+      "condition": "TL08xI, VS = ±15 V, VO = 0 V, RS = 50 Ohm, TA = 25°C (3 mV typ; 8 mV max over -40°C to +85°C)",
+      "table_ref": "Section 5.8 Electrical Characteristics (DC)"
+    },
+    "ib_typ_pa": {
+      "value": 65,
+      "page": 14,
+      "condition": "TL08xI, VS = ±15 V, VO = 0 V, TA = 25°C (65 pA typ, 200 pA max; 7 nA max over -40°C to +85°C)",
+      "table_ref": "Section 5.8 Electrical Characteristics (DC)"
+    },
+    "iq_per_ch_typ_ua": {
+      "value": 1400,
+      "page": 15,
+      "condition": "VS = ±15 V, VO = 0 V, no load, TA = 25°C, per amplifier (1.4 mA typ, 2.5 mA max)",
+      "table_ref": "Section 5.8 Electrical Characteristics (DC) (continued)"
+    },
+    "rail_to_rail_in": false,
+    "rail_to_rail_out": false,
+    "output_type": "push-pull",
+    "cmrr_typ_db": {
+      "value": 100,
+      "page": 14,
+      "condition": "TL08xI, VS = ±15 V, VIC = VICR(min), VO = 0 V, RS = 50 Ohm, TA = 25°C (75 dB min)",
+      "table_ref": "Section 5.8 Electrical Characteristics (DC)"
+    },
+    "input_noise_nv_rt_hz": {
+      "value": 37,
+      "page": 16,
+      "condition": "All other devices (D SOIC-8), f = 1 kHz, TA = 25°C (21 nV/rtHz at 10 kHz; legacy PS/NS/M is 18 nV/rtHz)",
+      "table_ref": "Section 5.9 Electrical Characteristics (AC)"
+    },
+    "iout_short_ma": null
+  },
+  "design_gotchas": [
+    {
+      "title": "Mixed Legacy SFAB vs Modern RFB Silicon Lottery Under Non-H TL082IDR (Table 9-1, p.28)",
+      "severity": "CRITICAL",
+      "detail": "Per Rev O (Sep 2025) Table 9-1 (p.28), non-H TL082IDR reels may contain EITHER legacy CSO:SFAB die (10–30 V, 3 MHz, 18 nV/rtHz, negative-rail phase reversal) OR modern CSO:RFB die (4.5–40 V, 42 V abs max, 5.25 MHz, 37 nV/rtHz at 1 kHz, ±10 mA ESD rail clamps, 0.00012% THD+N). Specify TL082HIDR (-40..125°C, 937.5 uA/ch) for deterministic new-die performance.",
+      "page": 28
+    },
+    {
+      "title": "Negative-Rail Input Headroom ((VCC-) + 4 V) & Phase Reversal Risk on Legacy Lots",
+      "severity": "CRITICAL",
+      "detail": "Common-mode input includes VCC+ but stops at (VCC-) + 4 V on D-package recommended specs (±11 V guaranteed on ±15 V, p.9, p.14). TL082IDR cannot sense near ground in 5 V single-supply LM358DR sockets, and legacy SFAB lots suffer output phase inversion if inputs approach VCC-.",
+      "page": 9
+    },
+    {
+      "title": "Modern TL082IDR vs TL072IDR Convergence — Both Shift to 37 nV/rtHz (2x Higher Than Legacy 18 nV)",
+      "severity": "WARNING",
+      "detail": "Historically TL072 was noise-screened while TL082 was general-purpose; in TI's unified modern RFB silicon (SLOS081O Rev O p.16, p.28), BOTH TL082IDR and TL072IDR specify 37 nV/rtHz at 1 kHz (21 nV/rtHz at 10 kHz)—over 2x noisier at 1 kHz than legacy 18 nV/rtHz JFET lots and 4.6x noisier than OPA2134UA (8 nV/rtHz). Verify noise budgets before pro-audio swaps.",
+      "page": 16
+    },
+    {
+      "title": "Rev O Lowered HBM ESD to ±1500 V & Added ±10 mA Input Clamp Current Ceiling",
+      "severity": "INFO",
+      "detail": "Revision O (Sep 2025, p.9 & p.29) lowered HBM ESD from 2000 V to ±1500 V, and modern RFB silicon adds input-to-rail ESD clamp diodes requiring external series resistors to limit fault current <= 10 mA when inputs swing > 0.5 V beyond supply rails (Footnote 3, p.9).",
+      "page": 9
+    }
+  ],
+  "typical_use_cases": [
+    "General-purpose split-supply (±12 V / ±15 V) industrial integrators, active filters, and high-Z buffers",
+    "Pin-compatible JFET second source for TL072IDR on non-noise-critical ±15 V analog and solar/UPS stages",
+    "High-slew-rate (20 V/us) dual instrumentation and motor-drive feedback amplifiers up to 40 V rails",
+    "Guitar effects pedals, active crossovers, and pro-audio line buffers where 65 pA input bias is required"
+  ],
+  "engineering_summary": "The Texas Instruments TL082IDR is an industrial-grade (-40°C to +85°C) dual high-voltage FET-input operational amplifier in an 8-pin SOIC (D) package rated up to 40 V operating (42 V abs max) on current production specs (Rev O, Sep 2025). Delivering 65 pA typ input bias current, 5.25 MHz GBWP, 20 V/us slew rate, and 100 dB CMRR at 1.4 mA/ch Iq, it closely mirrors TL072IDR on the standard dual SOIC-8 pinout. Engineers must account for TI's mixed SFAB/RFB die shipping under non-H TL082IDR (shifting 1 kHz noise to 37 nV/rtHz — specify TL082HIDR for deterministic RFB silicon), its (VCC-) + 4 V negative input headroom, and incompatibility with 5 V ground-sensing LM358 circuits.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [5, 9, 10, 14, 15, 16, 28],
+    "audit_notes": [
+      "300 DPI PNG Vision on p.5 confirmed Figure 4-5 & Table 4-3 TL082x SOIC-8 (D) Top View pinout (1=1OUT, 2=1IN-, 3=1IN+, 4=VCC-, 5=2IN+, 6=2IN-, 7=2OUT, 8=VCC+).",
+      "300 DPI PNG Vision on p.9–10 confirmed Rev O (Sep 2025) Abs Max (42 V D-pkg / 36 V NS/PS/M, ±10 mA input clamp, TJ = 150°C), HBM ESD ±1500 V, Rec Op (4.5–40 V, VI = (VCC-)+4 V to (VCC+)+0.1 V, TL08xI TA = -40..85°C), and Section 5.5 TL082 D thermal info (RθJA = 147.8 °C/W, RθJC(top) = 88.2 °C/W).",
+      "300 DPI PNG Vision on p.14–16 confirmed Section 5.8/5.9 TL08xI specs: VOS = 3 mV typ / 6 mV max @ 25°C, IB = 65 pA typ / 200 pA max, GBW = 5.25 MHz (D-pkg) / 3 MHz (NS/PS/M), CMRR = 100 dB typ / 75 dB min, IQ = 1.4 mA/ch typ / 2.5 mA max, SR = 20 V/us typ (8 min), and eN = 37 nV/rtHz @ 1 kHz (21 @ 10 kHz; legacy 18 nV/rtHz).",
+      "300 DPI PNG Vision on p.28 confirmed Table 9-1 SFAB vs RFB die nomenclature for non-H TL082IDR and Rev O change history; Path A verified Active Production OPN TL082IDR (marking 'TL082I', p.32)."
+    ]
+  }
+}

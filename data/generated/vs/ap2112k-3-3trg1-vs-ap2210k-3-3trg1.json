@@ -73,7 +73,7 @@
       "part_a_value": "2.5 to 6 V (p.3)",
       "part_b_value": "2.5 to 13.2 V (p.4)",
       "winner": "B",
-      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -159,9 +159,11 @@
   "swap_risks": [
     "HIGH PIN 4 (NC vs BYPASS/NR) CHECK: One device uses Pin 4 as an internal bandgap bypass/noise-reduction node while the other is NC. Verify Pin 4 is NOT tied to GND or VIN on the existing PCB before swapping; add a 10 nF bypass cap if low noise is required.",
     "CRITICAL CAPACITOR ESR OSCILLATION RISK: AP2112K-3.3TRG1 is stable with low-ESR ceramic MLCCs (>= 1 µF, p.2), whereas AP2210K-3.3TRG1 is NOT ceramic-cap stable (ESR window: 0.025–15 Ω (p.22)). Using an ultra-low-ESR MLCC on AP2210K-3.3TRG1 can trigger control-loop oscillation.",
+    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs by 2.2x (AP2112K-3.3TRG1: 1 µF p.2 vs AP2210K-3.3TRG1: 2.2 µF p.23); account for MLCC DC-bias derating.",
     "HIGH INPUT VOLTAGE RATING DROP: AP2112K-3.3TRG1 is rated to only 6 V rec. (6.5 V abs max, p.3) vs AP2210K-3.3TRG1 at 13.2 V rec. (15 V abs max, p.4). Verify worst-case input transient spikes.",
-    "HIGH LOAD CURRENT DERATING: AP2210K-3.3TRG1 supplies up to 300 mA (p.1) compared to AP2112K-3.3TRG1 at 600 mA (p.8); confirm peak inrush and thermal dissipation margin."
+    "HIGH LOAD CURRENT DERATING: AP2210K-3.3TRG1 supplies up to 300 mA (p.1) compared to AP2112K-3.3TRG1 at 600 mA (p.8); confirm peak inrush and thermal dissipation margin.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: AP2112K-3.3TRG1 has a lower Vin,abs,max rating (6.5 V, p.3) than AP2210K-3.3TRG1 (15 V, p.4); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 6.5 V."
   ],
-  "engineering_verdict": "AP2112K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and AP2210K-3.3TRG1 (Diodes Incorporated, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to Pin 4 NC vs BYPASS difference; ceramic output capacitor ESR stability difference; Vin,max rating drops >20%. Key datasheet deltas: Iq is 55 µA (p.8) vs 100 µA (p.11), max output current is 600 mA (p.8) vs 300 mA (p.1), recommended Vin,max is 6 V (p.3) vs 13.2 V (p.4), typical dropout is 250 mV (p.8) vs 250 mV (p.11), and ceramic capacitor stability is supported vs ESR-constrained. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.1), thermal margin (θJA 184 vs 200 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AP2112K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and AP2210K-3.3TRG1 (Diodes Incorporated, SOT-23-5) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because Pin 4 NC vs BYPASS difference; ceramic output capacitor ESR stability difference; minimum output capacitance requirement differs 2.2x. Under a representative 5 V → 3.3 V rail at 150 mA (255 mW), estimated self-heating is ΔTj ≈ 46.9 °C on AP2112K-3.3TRG1 (θJA 184 °C/W) vs 51 °C on AP2210K-3.3TRG1 (θJA 200 °C/W), while quiescent draw spans a 1.8x ratio (55 µA (p.8) vs 100 µA (p.11)). Primary bench gotchas to watch: AP2112K-3.3TRG1 \"6.5 V Abs Max & SOT25 Thermal Limit at 600 mA From 5 V Input\" (p.3) and AP2210K-3.3TRG1 \"Pin 4 Is Active BYP (Internal Reference), NOT NC — CBYP Must Not Exceed 100 pF\" (p.23). BOM decision: Choose AP2112K-3.3TRG1 when load current exceeds 300 mA (up to 600 mA) or battery sleep budget demands 55 µA Iq; choose AP2210K-3.3TRG1 when input rails climb above 6 V (rated to 13.2 V). Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.1) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

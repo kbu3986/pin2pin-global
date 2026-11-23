@@ -6,8 +6,8 @@
   "part_b_slug": "tl072idr",
   "part_a_opn": "OPA2134UA",
   "part_b_opn": "TL072IDR",
-  "compatibility_level": "LEVEL_1_CANDIDATE_DROP_IN",
-  "compatibility_badge": "Candidate Drop-In (Verify Datasheet Before Production)",
+  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
   "package_match": true,
   "pinout_exact_match": true,
   "exposed_pad_match": true,
@@ -92,7 +92,7 @@
       "part_a_value": "opamp (push-pull)",
       "part_b_value": "opamp (push-pull)",
       "winner": "TIE",
-      "note": "Op-amps (compensated push-pull) and comparators (uncompensated open-collector) are NOT drop-in interchangeable."
+      "note": "Op-amps (internally compensated for linear feedback) and comparators (uncompensated open-loop switching) are NOT drop-in interchangeable."
     },
     {
       "metric": "Package & Channel Count",
@@ -108,7 +108,7 @@
       "part_a_value": "5 to 36 V (p.5)",
       "part_b_value": "4.5 to 40 V (p.11)",
       "winner": "B",
-      "note": "Confirm total supply span (V+ - V-) stays within recommended limits."
+      "note": "A part wins only if its recommended Vs range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Supply (Vs,abs)",
@@ -171,8 +171,8 @@
       "unit": "dB · nV/√Hz",
       "part_a_value": "100 dB (p.7) · 8 nV/√Hz (p.7)",
       "part_b_value": "100 dB (p.15) · 37 nV/√Hz (p.16)",
-      "winner": "TIE",
-      "note": "Higher CMRR rejects common-mode noise; lower voltage noise improves SNR."
+      "winner": "A",
+      "note": "Winner requires superiority on both CMRR (higher) and input voltage noise (lower); mixed tradeoffs stay CONTEXT."
     },
     {
       "metric": "Thermal Resistance (θJA) & Tj,max",
@@ -184,9 +184,10 @@
     }
   ],
   "swap_risks": [
-    "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (OPA2134UA: 160 °C/W vs TL072IDR: 147.8 °C/W) and worst-case ambient temperature (-40..85 °C vs -40..85 °C).",
-    "DATASHEET REVISION CHECK (AUD-04): Verify latest official manufacturer datasheets (SBOS058B (Rev. November 2024) vs SLOS080W (Rev. July 2025)) for part-marking codes, transient load response, and qualification status before production release."
+    "HIGH INPUT BIAS CURRENT SHIFT: Typical Ib differs by 13x (OPA2134UA: 5 pA p.7 vs TL072IDR: 65 pA p.15); high-impedance sensor dividers (>100 kΩ) suffer severe Ib·R DC offset error when swapping from CMOS/JFET to bipolar inputs.",
+    "CAUTION QUIESCENT CURRENT SHIFT: Supply current per channel differs by 2.9x (OPA2134UA: 4000 µA/ch p.8 vs TL072IDR: 1400 µA/ch p.16); verify battery budget and total power dissipation across all channels.",
+    "HIGH MINIMUM SUPPLY FLOOR: OPA2134UA requires Vs,min >= 5 V (p.5) vs 4.5 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor."
   ],
-  "engineering_verdict": "OPA2134UA (Texas Instruments, SOIC-8) and TL072IDR (Texas Instruments, SOIC-8) qualify as Level 1 Candidate Drop-In alternatives with matching pin assignments, compatible exposed-pad nets, and aligned core operating ratings. Key datasheet deltas: device type is opamp (push-pull) vs opamp (push-pull), supply limit is 36 V (p.5) vs 40 V (p.11), max Vos is 3.5 mV (p.7) vs 6 mV (p.15), input bias current is 5 pA (p.7) vs 65 pA (p.15), and Iq/ch is 4000 µA (p.8) vs 1400 µA (p.16). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.5), thermal margin (θJA 160 vs 147.8 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "OPA2134UA (Texas Instruments, SOIC-8) and TL072IDR (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because input bias current Ib differs 13x (CMOS vs bipolar input stage); quiescent supply current Iq/ch differs 2.9x; Vs,min floor rises 0.5 V. Signal-chain deltas: GBWP 8 MHz (p.7) vs 5.25 MHz (p.15), supply ceiling 36 V (p.5) vs 40 V (p.11), Vos 3.5 mV (p.7) vs 6 mV (p.15), Ib 13x gap (5 vs 65 pA), voltage noise 8 vs 37 nV/√Hz. Primary bench gotchas to watch: OPA2134UA \"High 4 mA/ch Quiescent Current Causes 38°C–48°C Self-Heating in SOIC-8 at ±15 V\" (p.8) and TL072IDR \"Negative-Rail Input Headroom Limit and Legacy Phase Reversal Trap\" (p.11). BOM decision: Choose OPA2134UA when closed-loop signal bandwidth requires 8 MHz GBWP or high-impedance sensors require pA-class input bias (5 pA); choose TL072IDR when ultra-low supply current (1400 µA/ch) is prioritized. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.5) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

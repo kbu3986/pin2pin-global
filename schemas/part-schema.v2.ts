@@ -44,6 +44,12 @@ export type PinRole =
   | 'OUT_B'
   | 'IN_POS_B'
   | 'IN_NEG_B'
+  | 'IN_POS_C'
+  | 'IN_NEG_C'
+  | 'OUT_C'
+  | 'IN_POS_D'
+  | 'IN_NEG_D'
+  | 'OUT_D'
   | 'VCC'
   | 'VEE'
   | 'VREF'
@@ -148,6 +154,11 @@ export interface LdoSpecs {
   esr_max_ohm: CitedNumber | null;
   en_active_high: boolean | null;
   reverse_current_protection: boolean | null;
+  // v2.1 optional trap fields
+  en_abs_max_v?: CitedNumber | null;
+  en_default_floating?: 'enable' | 'disable' | 'forbidden' | null;
+  max_cout_uf?: CitedNumber | null;
+  active_discharge?: boolean | null;
 }
 
 export interface DcdcSpecs {
@@ -169,6 +180,11 @@ export interface DcdcSpecs {
   synchronous: boolean;
   min_cout_uf: CitedNumber;
   en_active_high: boolean | null;
+  // v2.1 optional trap fields
+  en_abs_max_v?: CitedNumber | null;
+  en_default_floating?: 'enable' | 'disable' | 'forbidden' | null;
+  max_cout_uf?: CitedNumber | null;
+  active_discharge?: boolean | null;
 }
 
 export interface OpampSpecs {
@@ -191,13 +207,15 @@ export interface OpampSpecs {
   iout_short_ma: CitedNumber | null;
 }
 
+export type LifecycleStatus = 'Active' | 'NRND' | 'EOL' | 'Unknown';
+
 interface BaseGoldenPart {
   schema_version: '2.0.0';
   opn: string;
   slug: string;
   family: string;
   manufacturer: string;
-  lifecycle_status: 'Active' | 'NRND' | 'EOL' | 'Unknown';
+  lifecycle_status: LifecycleStatus;
   temp_grade: TempGrade;
   datasheet: DatasheetMeta;
   package: PackageInfo;
@@ -221,7 +239,13 @@ export interface DcdcGoldenPart extends BaseGoldenPart {
 
 export interface OpampGoldenPart extends BaseGoldenPart {
   category: 'opamp';
-  sub_topology: 'opamp-single' | 'opamp-dual' | 'comparator-single' | 'comparator-dual';
+  sub_topology:
+    | 'opamp-single'
+    | 'opamp-dual'
+    | 'opamp-quad'
+    | 'comparator-single'
+    | 'comparator-dual'
+    | 'comparator-quad';
   specs: OpampSpecs;
 }
 
@@ -274,19 +298,24 @@ export interface VsComparisonV2 {
   generated_at: string;
 }
 
+export type AltTierTag =
+  | 'Candidate Drop-In'
+  | 'Ultra-Low Iq Upgrade'
+  | 'Higher Current / Margin'
+  | 'Higher Voltage Margin'
+  | 'Value / Second-Source'
+  | 'Functional Alternative (Layout Change)'
+  | 'Lifecycle Warning (EOL/NRND)';
+
 export interface AltCandidate {
   alt_slug: string;
   alt_opn: string;
   manufacturer: string;
   package_code: PackageCode;
+  lifecycle_status?: LifecycleStatus;
   compatibility_level: CompatibilityLevel;
   compatibility_badge: string;
-  tier_tag:
-    | 'Candidate Drop-In'
-    | 'Ultra-Low Iq Upgrade'
-    | 'Higher Current / Margin'
-    | 'Value / Second-Source'
-    | 'Functional Alternative (Layout Change)';
+  tier_tag: AltTierTag;
   score: number;
   key_advantage: string;
   key_tradeoff: string;

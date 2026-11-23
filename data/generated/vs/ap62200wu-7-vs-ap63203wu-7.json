@@ -90,7 +90,7 @@
       "part_a_value": "4.2 to 18 V (p.4)",
       "part_b_value": "3.8 to 32 V (p.4)",
       "winner": "B",
-      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -106,7 +106,7 @@
       "part_a_value": "0.8 to 7 V (p.1) (Adj)",
       "part_b_value": "3.27 to 3.33 V (p.5) (Fixed)",
       "winner": "CONTEXT",
-      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
     },
     {
       "metric": "Max Current (Iout or Isw Limit)",
@@ -114,7 +114,7 @@
       "part_a_value": "2000 mA (p.1) [Iout max]",
       "part_b_value": "2000 mA (p.1) [Iout max]",
       "winner": "TIE",
-      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+      "note": "Continuous DC output current rating; verify inductor Isat >= Iout + ΔIL/2 and thermal margin."
     },
     {
       "metric": "Quiescent Current (Iq, typ)",
@@ -167,10 +167,13 @@
   ],
   "swap_risks": [
     "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (GND vs FB), Pin 2 (SW vs EN), Pin 4 (FB vs GND), Pin 5 (EN vs SW). Soldering AP63203WU-7 onto a AP62200WU-7 footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
+    "CRITICAL FEEDBACK LAYOUT DIFFERENCE: One converter is fixed-output while the other is adjustable; adding or removing the external R1/R2 feedback divider and feedforward capacitor requires a PCB layout change.",
     "HIGH SWITCHING FREQUENCY SHIFT: fsw differs by 32% (AP62200WU-7: 750 kHz p.5 vs AP63203WU-7: 1100 kHz p.5); re-evaluate inductor core loss, ripple current ΔIL, output capacitor ESR ripple, and EMI harmonics.",
-    "HIGH FEEDBACK CONFIGURATION: One converter is fixed-output while the other is adjustable; external R1/R2 feedback resistors and feedforward capacitor must be updated.",
-    "HIGH INPUT VOLTAGE RANGE SHIFT: Recommended Vin,max differs (AP62200WU-7: 18 V p.4 vs AP63203WU-7: 32 V p.4); verify line transients stay below Vin,abs,max."
+    "HIGH INPUT VOLTAGE RANGE SHIFT: Recommended Vin,max differs (AP62200WU-7: 18 V p.4 vs AP63203WU-7: 32 V p.4); verify line transients stay below Vin,abs,max.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: AP62200WU-7 has a lower Vin,abs,max rating (20 V, p.4) than AP63203WU-7 (35 V, p.4); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 20 V.",
+    "HIGH THERMAL MARGIN: Package θJA is 27% higher on AP63203WU-7 (AP62200WU-7: 70 °C/W p.4 vs AP63203WU-7: 89 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (AP62200WU-7: -40..125 °C Industrial / Extended (-40°C to 125°C TJ) vs AP63203WU-7: -40..85 °C Industrial (-40°C to 85°C TA, TJ max 125°C)); AP63203WU-7 hot limit only 85 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "AP62200WU-7 (Diodes Incorporated, TSOT-23-6) and AP63203WU-7 (Diodes Incorporated, TSOT-23-6) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to pinout mismatch on Pin 1 (GND vs FB), Pin 2 (SW vs EN), Pin 4 (FB vs GND), Pin 5 (EN vs SW). Key datasheet deltas: topology is buck (sync) vs buck (sync), switching frequency is 750 kHz (p.5) vs 1100 kHz (p.5), rated current is 2000 mA (p.1) vs 2000 mA (p.1), typical inductor is 3.3 µH (p.17) vs 3.9 µH (p.13), and Iq is 135 µA (p.5) vs 22 µA (p.5). Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.1), thermal margin (θJA 70 vs 89 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AP62200WU-7 (Diodes Incorporated, TSOT-23-6) and AP63203WU-7 (Diodes Incorporated, TSOT-23-6) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to pinout mismatch on Pin 1 (GND vs FB), Pin 2 (SW vs EN), Pin 4 (FB vs GND), Pin 5 (EN vs SW); fixed vs adjustable output feedback footprint mismatch (R1/R2 divider). Specific pin conflicts: Pin 1 (GND vs FB), Pin 2 (SW vs EN), Pin 4 (FB vs GND), Pin 5 (EN vs SW). Power-stage deltas: buck (sync) vs buck (sync), switching frequency 750 kHz (p.5) vs 1100 kHz (p.5) (1.5x ratio), typical inductor 3.3 µH (p.17) vs 3.9 µH (p.13), output mode adjustable vs fixed, and package θJA 70 vs 89 °C/W. Primary bench gotchas to watch: AP62200WU-7 \"CRITICAL: EN Pin Abs Max Is ONLY 8.0 V — NEVER Tie Directly to 12 V / 18 V VIN!\" (p.4) and AP63203WU-7 \"CRITICAL PINOUT TRAP: Completely Incompatible With TPS54302DDCR, TPS563201DDCR & AP62200WU-7!\" (p.1). BOM decision: Choose AP62200WU-7 when matching your existing Diodes Incorporated TSOT-23-6 (TSOT26) qualification and -40..125 °C grade; choose AP63203WU-7 when bus voltage exceeds 18 V (rated to 32 V) or light-load battery standby needs 22 µA Iq. Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.1) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

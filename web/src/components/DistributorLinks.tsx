@@ -35,15 +35,19 @@ export function DistributorLinks({
   ];
 
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-4">
+    <section
+      data-no-print="true"
+      aria-label={`Distributor stock links for ${opn}`}
+      className="print:hidden rounded-lg border border-slate-200 bg-white p-4"
+    >
       <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
         <div>
-          <h3 className="text-sm font-bold text-slate-900">
-            {label ?? `Check Live Stock & Pricing: `}
+          <h2 className="text-sm font-bold text-slate-900">
+            {label ?? 'Check Live Stock & Pricing: '}
             <span className="font-mono text-slate-950">{opn}</span>
-          </h3>
-          <p className="text-xs text-slate-500 mt-0.5 flex items-center gap-1">
-            <ShieldCheck className="h-3.5 w-3.5 text-emerald-600 shrink-0" aria-hidden="true" />
+          </h2>
+          <p className="text-xs text-slate-600 mt-0.5 flex items-center gap-1">
+            <ShieldCheck className="h-3.5 w-3.5 text-emerald-700 shrink-0" aria-hidden="true" />
             Direct outbound search deeplinks only — zero distributor scraping or stale cached pricing.
           </p>
         </div>
@@ -62,10 +66,10 @@ export function DistributorLinks({
             className={`flex items-center justify-between rounded-md border border-slate-300 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-800 transition-colors ${item.accent}`}
           >
             <span>{item.name}</span>
-            <ExternalLink className="h-3.5 w-3.5 text-slate-500" aria-hidden="true" />
+            <ExternalLink className="h-3.5 w-3.5 text-slate-600" aria-hidden="true" />
           </TrackedOutboundLink>
         ))}
       </div>
-    </div>
+    </section>
   );
 }

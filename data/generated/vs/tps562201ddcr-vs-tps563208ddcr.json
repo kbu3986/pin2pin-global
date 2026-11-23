@@ -1,0 +1,174 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "tps562201ddcr-vs-tps563208ddcr",
+  "category": "dcdc",
+  "part_a_slug": "tps562201ddcr",
+  "part_b_slug": "tps563208ddcr",
+  "part_a_opn": "TPS562201DDCR",
+  "part_b_opn": "TPS563208DDCR",
+  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+  "package_match": true,
+  "pinout_exact_match": true,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "GND",
+      "part_a_role": "GND",
+      "part_b_name": "GND",
+      "part_b_role": "GND",
+      "status": "MATCH",
+      "note": "Identical pin assignment (GND / GND)."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "SW",
+      "part_a_role": "SW",
+      "part_b_name": "SW",
+      "part_b_role": "SW",
+      "status": "MATCH",
+      "note": "Identical pin assignment (SW / SW)."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "VIN",
+      "part_a_role": "VIN",
+      "part_b_name": "VIN",
+      "part_b_role": "VIN",
+      "status": "MATCH",
+      "note": "Identical pin assignment (VIN / VIN)."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "VFB",
+      "part_a_role": "FB",
+      "part_b_name": "VFB",
+      "part_b_role": "FB",
+      "status": "MATCH",
+      "note": "Identical pin assignment (VFB / FB)."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "EN",
+      "part_a_role": "EN",
+      "part_b_name": "EN",
+      "part_b_role": "EN",
+      "status": "MATCH",
+      "note": "Identical pin assignment (EN / EN)."
+    },
+    {
+      "pin": 6,
+      "part_a_name": "VBST",
+      "part_a_role": "BOOT",
+      "part_b_name": "VBST",
+      "part_b_role": "BOOT",
+      "status": "MATCH",
+      "note": "Identical pin assignment (VBST / BOOT)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Topology & Rectification",
+      "unit": "—",
+      "part_a_value": "buck (Synchronous)",
+      "part_b_value": "buck (Synchronous)",
+      "winner": "TIE",
+      "note": "Synchronous rectification eliminates external Schottky diode loss and PCB area."
+    },
+    {
+      "metric": "Package & Exposed Pad",
+      "unit": "—",
+      "part_a_value": "SOT-23-6 (DDC, EP: None, p.3)",
+      "part_b_value": "SOT-23-6 (DDC, EP: None, p.3)",
+      "winner": "TIE",
+      "note": "Compact WSON/VSON/SOT-563 packages demand tight hot-loop layout and thermal vias."
+    },
+    {
+      "metric": "Input Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "4.5 to 17 V (p.4)",
+      "part_b_value": "4.5 to 17 V (p.4)",
+      "winner": "TIE",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
+    },
+    {
+      "metric": "Absolute Max Input Voltage",
+      "unit": "V",
+      "part_a_value": "19 V (p.4)",
+      "part_b_value": "19 V (p.4)",
+      "winner": "TIE",
+      "note": "Provides transient overshoot margin above nominal DC supply bus."
+    },
+    {
+      "metric": "Output Voltage Range",
+      "unit": "V",
+      "part_a_value": "0.76 to 7 V (p.1) (Adj)",
+      "part_b_value": "0.76 to 7 V (p.1) (Adj)",
+      "winner": "TIE",
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
+    },
+    {
+      "metric": "Max Current (Iout or Isw Limit)",
+      "unit": "mA",
+      "part_a_value": "2000 mA (p.1) [Iout max]",
+      "part_b_value": "3000 mA (p.1) [Iout max]",
+      "winner": "B",
+      "note": "Continuous DC output current rating; verify inductor Isat >= Iout + ΔIL/2 and thermal margin."
+    },
+    {
+      "metric": "Quiescent Current (Iq, typ)",
+      "unit": "µA",
+      "part_a_value": "120 µA (p.5)",
+      "part_b_value": "350 µA (p.6)",
+      "winner": "A",
+      "note": "Dominates light-load efficiency and standby battery runtime."
+    },
+    {
+      "metric": "Switching Frequency (fsw, typ)",
+      "unit": "kHz",
+      "part_a_value": "580 kHz (p.5)",
+      "part_b_value": "580 kHz (p.6)",
+      "winner": "CONTEXT",
+      "note": "Higher fsw shrinks inductor footprint; lower fsw reduces switching losses & high-band EMI."
+    },
+    {
+      "metric": "Peak Efficiency",
+      "unit": "%",
+      "part_a_value": "93 % (p.1)",
+      "part_b_value": "96 % (p.9)",
+      "winner": "B",
+      "note": "Check datasheet efficiency curve at your exact Vin/Vout/Iout operating point."
+    },
+    {
+      "metric": "Recommended Inductor (L, typ)",
+      "unit": "µH",
+      "part_a_value": "3.3 µH (p.13)",
+      "part_b_value": "2.2 µH (p.15)",
+      "winner": "CONTEXT",
+      "note": "Ensure inductor Isat exceeds worst-case peak switch current by >= 20–30%."
+    },
+    {
+      "metric": "Feedback Reference (Vref)",
+      "unit": "V",
+      "part_a_value": "0.768 V (p.5)",
+      "part_b_value": "0.768 V (p.6)",
+      "winner": "CONTEXT",
+      "note": "Any Vref discrepancy requires recalculating feedback divider R1/R2."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "90.8 °C/W (p.4) · 125 °C",
+      "part_b_value": "92.6 °C/W (p.5) · 125 °C",
+      "winner": "TIE",
+      "note": "Lower θJA improves continuous load thermal headroom on compact 2-layer PCBs."
+    }
+  ],
+  "swap_risks": [
+    "CAUTION INDUCTOR RETUNING: Typical inductor differs (TPS562201DDCR: 3.3 µH p.13 vs TPS563208DDCR: 2.2 µH p.15); check inductor Isat against peak switch current limit.",
+    "CAUTION CURRENT RATING BASIS: TPS562201DDCR specifies 2000 mA (continuous Iout, p.1) vs TPS563208DDCR 3000 mA (continuous Iout, p.1). Verify continuous load current and peak inductor saturation margin (Isat >= Iout + ΔIL/2)."
+  ],
+  "engineering_verdict": "TPS562201DDCR (Texas Instruments, SOT-23-6) and TPS563208DDCR (Texas Instruments, SOT-23-6) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because recommended inductor value differs >20%; current rating or switch-limit basis differs. Power-stage deltas: buck (sync) vs buck (sync), switching frequency 580 kHz (p.5) vs 580 kHz (p.6) (1x ratio), typical inductor 3.3 µH (p.13) vs 2.2 µH (p.15), feedback Vref 0.768 V (p.5) vs 0.768 V (p.6), and package θJA 90.8 vs 92.6 °C/W. Primary bench gotchas to watch: TPS562201DDCR \"Pin-Identical 2 A Sibling of TPS563201DDCR — Verify Current Limit & Inductor Sizing\" (p.5) and TPS563208DDCR \"FCCM Light-Load Efficiency Collapse (~12% at 5 mA) & 2.9x Higher IQ vs Pin-Identical TPS563201DDCR\" (p.9). BOM decision: Choose TPS562201DDCR when light-load battery standby needs 120 µA Iq; choose TPS563208DDCR when higher load current capacity (3000 mA) is required. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
+  "generated_at": "2026-11-23"
+}

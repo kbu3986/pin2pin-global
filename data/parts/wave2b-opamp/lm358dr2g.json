@@ -1,0 +1,222 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "LM358DR2G",
+  "slug": "lm358dr2g",
+  "family": "LM358",
+  "manufacturer": "onsemi",
+  "category": "opamp",
+  "sub_topology": "opamp-dual",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": 0,
+    "ta_max_c": 70,
+    "grade_label": "Commercial (0°C to +70°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.onsemi.com/pdf/datasheet/lm358-d.pdf",
+    "product_page_url": "https://www.onsemi.com/products/amplifiers-comparators/operational-amplifiers-op-amps/lm358",
+    "source_domain": "www.onsemi.com",
+    "revision": "Rev. 36 (September 2024)",
+    "verified_at": "2026-11-23",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 16
+  },
+  "package": {
+    "code": "SOIC-8",
+    "mfg_package_code": "CASE 751 (D)",
+    "pin_count": 8,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE"
+    },
+    "theta_ja_c_per_w": {
+      "value": 212,
+      "page": 3,
+      "condition": "CASE 751 (SOIC-8) on evaluation board with 1 oz Cu minimum pad size, all outputs active (significantly higher than TI LM358DR JEDEC 124.7 °C/W)",
+      "table_ref": "MAXIMUM RATINGS p.3"
+    },
+    "theta_jc_c_per_w": {
+      "value": 72,
+      "page": 3,
+      "condition": "RθJC, CASE 751 (SOIC-8) package",
+      "table_ref": "MAXIMUM RATINGS p.3"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 3,
+      "condition": "Maximum junction temperature TJ = 150°C",
+      "table_ref": "MAXIMUM RATINGS p.3"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "Output A",
+        "role": "OUT_A",
+        "description": "Push-pull output, amplifier channel A"
+      },
+      {
+        "pin": 2,
+        "name": "Input A-",
+        "role": "IN_NEG_A",
+        "description": "Inverting input, amplifier channel A"
+      },
+      {
+        "pin": 3,
+        "name": "Input A+",
+        "role": "IN_POS_A",
+        "description": "Noninverting input, amplifier channel A"
+      },
+      {
+        "pin": 4,
+        "name": "VEE/Gnd",
+        "role": "VEE",
+        "description": "Negative power supply or ground for single-supply operation"
+      },
+      {
+        "pin": 5,
+        "name": "Input B+",
+        "role": "IN_POS_B",
+        "description": "Noninverting input, amplifier channel B"
+      },
+      {
+        "pin": 6,
+        "name": "Input B-",
+        "role": "IN_NEG_B",
+        "description": "Inverting input, amplifier channel B"
+      },
+      {
+        "pin": 7,
+        "name": "Output B",
+        "role": "OUT_B",
+        "description": "Push-pull output, amplifier channel B"
+      },
+      {
+        "pin": 8,
+        "name": "VCC",
+        "role": "VCC",
+        "description": "Positive power supply (3.0 V to 32 V single supply or ±1.5 V to ±16 V split)"
+      }
+    ],
+    "pinout_source_page": 1,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "device_kind": "opamp",
+    "channels": 2,
+    "vs_abs_max_v": {
+      "value": 32,
+      "page": 3,
+      "condition": "Power Supply Voltage VCC = 32 Vdc single supply or ±16 Vdc split supplies",
+      "table_ref": "MAXIMUM RATINGS p.3"
+    },
+    "vs_min_v": {
+      "value": 3.0,
+      "page": 1,
+      "condition": "Single-supply operating minimum (3.0 Vdc single or ±1.5 Vdc split, p.1–2)",
+      "table_ref": "Features p.1 & Figure 1 p.2"
+    },
+    "vs_max_v": {
+      "value": 30,
+      "page": 4,
+      "condition": "Electrical Characteristics tested up to VCC = 30 V (p.1/p.3 allow up to 32 V max single supply / ±16 V split)",
+      "table_ref": "ELECTRICAL CHARACTERISTICS p.4"
+    },
+    "gbwp_mhz": {
+      "value": 1.0,
+      "page": 6,
+      "condition": "Unity-gain (0 dB) open-loop crossing at 1.0 MHz typ (VCC = 15 V, VEE = Gnd, TA = 25°C; not tabulated in p.4 table)",
+      "table_ref": "Figure 5. Large-Signal Open Loop Voltage Gain (300 DPI Vision verified)"
+    },
+    "slew_rate_v_per_us": {
+      "value": 0.6,
+      "page": 6,
+      "condition": "Approx. 0.6 V/us typ (~3.0 V swing over ~5.0 us / 1 div at VCC = 15 Vdc, RL = 2.0 kOhm, TA = 25°C; not tabulated in p.4 table)",
+      "table_ref": "Figure 3. Large Signal Voltage Follower Response (300 DPI Vision verified)"
+    },
+    "prop_delay_ns": null,
+    "vos_max_mv": {
+      "value": 7.0,
+      "page": 4,
+      "condition": "LM358 at TA = 25°C, VCC = 5–30 V (2.0 mV typ; 9.0 mV max over 0°C to +70°C; LM358A is 3.0 mV max)",
+      "table_ref": "ELECTRICAL CHARACTERISTICS p.4"
+    },
+    "ib_typ_pa": {
+      "value": 45000,
+      "page": 4,
+      "condition": "45 nA magnitude at TA = 25°C (datasheet specifies -45 nA typ / -250 nA max at 25°C; -50 nA typ / -500 nA max over 0..70°C — 2.25x TI LM358DR's 20 nA typ)",
+      "table_ref": "ELECTRICAL CHARACTERISTICS p.4"
+    },
+    "iq_per_ch_typ_ua": {
+      "value": 350,
+      "page": 4,
+      "condition": "Derived from total device ICC = 0.7 mA typ / 1.2 mA max at VCC = 5 V (1.5 mA typ / 3.0 mA max at VCC = 30 V, both amplifiers)",
+      "table_ref": "ELECTRICAL CHARACTERISTICS p.4"
+    },
+    "rail_to_rail_in": false,
+    "rail_to_rail_out": false,
+    "output_type": "push-pull",
+    "cmrr_typ_db": {
+      "value": 70,
+      "page": 4,
+      "condition": "LM358 CMR = 70 dB typ / 65 dB min, RS <= 10 kOhm (lower than TI LM358DR 80 dB typ)",
+      "table_ref": "ELECTRICAL CHARACTERISTICS p.4"
+    },
+    "input_noise_nv_rt_hz": null,
+    "iout_short_ma": {
+      "value": 40,
+      "page": 4,
+      "condition": "Output short circuit to ground 40 mA typ / 60 mA max (Note 6: short to VCC can destroy device)",
+      "table_ref": "ELECTRICAL CHARACTERISTICS p.4"
+    }
+  },
+  "design_gotchas": [
+    {
+      "title": "CRITICAL ESD Trap: Standard onsemi LM358DR2G Is Rated ONLY 250 V HBM / 100 V MM (p.3)!",
+      "severity": "CRITICAL",
+      "detail": "Page 3 ESD Ratings explicitly single out LM358DG/DR2G and LM2904DG/DR2G at ONLY 250 V HBM / 100 V MM—8x lower than the 2000 V HBM on LM358EDR2G, NCV2904, and all other variants in the same datasheet (and 2x lower than TI LM358DR's 500 V HBM). Exposed connector or field-serviceable inputs MUST use LM358EDR2G (2000 V HBM) or external ESD clamping.",
+      "page": 3
+    },
+    {
+      "title": "Higher 212 °C/W Minimum-Pad RθJA, 45 nA Input Bias & Lower 70 dB CMRR vs TI LM358DR",
+      "severity": "WARNING",
+      "detail": "Although pin-for-pin second-source compatible with TI LM358DR, onsemi LM358DR2G specifies 212 °C/W min-pad RθJA (vs TI 124.7 °C/W JEDEC), 2.25x higher typical input bias current (45 nA vs 20 nA), lower typical CMRR (70 dB vs 80 dB), and tighter upper CM limit at 25°C (VCC - 1.7 V vs VCC - 1.5 V; both VCC - 2.0 V over temp).",
+      "page": 4
+    },
+    {
+      "title": "Identical SOIC-8 Pinout Trap vs Open-Collector LM393DR2G Comparator & Commercial 0–70°C Cap",
+      "severity": "CRITICAL",
+      "detail": "LM358DR2G shares the exact SOIC-8 pinout of onsemi LM393DR2G comparator (1=OUT_A, 2=IN-_A, 3=IN+_A, 4=VEE/GND, 5=IN+_B, 6=IN-_B, 7=OUT_B, 8=VCC) yet is a compensated push-pull op-amp—never cross-swap with comparators. Also note 0°C to +70°C commercial temp rating (use LM2904DR2G for -40..105°C or LM2904VDR2G for -40..125°C).",
+      "page": 1
+    },
+    {
+      "title": "Non-RRIO Upper Headroom (VCC - 1.7 V / -2.0 V), Class-B Crossover & Output-to-VCC Short Hazard",
+      "severity": "WARNING",
+      "detail": "Output high swings only to ~3.5 V typ (3.3 V min) on a 5 V rail into 2 kOhm, low-side sink collapses to 12 uA min / 50 uA typ at VO = 200 mV (Class-B crossover distortion), and Footnote 6 (p.4) warns that output shorts to VCC (or simultaneous shorts on both channels) can thermally destroy the package.",
+      "page": 4
+    }
+  ],
+  "typical_use_cases": [
+    "Drop-in multi-source second source for TI LM358DR in commercial (0°C–70°C) 5 V–30 V industrial/consumer boards",
+    "Low-side current sensing and ground-referenced DC control loops leveraging 0 V negative common-mode inclusion",
+    "Cost-optimized power-supply regulation loops, battery chargers, and slow (<10 kHz) active filters",
+    "Legacy single-supply or split-supply (±15 V) analog signal conditioning where 250 V HBM ESD handling is controlled"
+  ],
+  "engineering_summary": "The onsemi LM358DR2G is a commercial-grade (0°C to +70°C) dual general-purpose bipolar operational amplifier in SOIC-8 (CASE 751) operating from 3.0 V to 30 V/32 V (±16 V split) with ground-sensing PNP inputs, ~1.0 MHz GBWP, ~0.6 V/us slew rate, 350 uA/ch typ Iq, and ±40 mA short-circuit output drive. While pin-identical to TI LM358DR, engineers auditing a BOM second source MUST catch its critical 250 V HBM ESD rating on standard LM358DR2G (vs 2000 V HBM on LM358EDR2G), higher 212 °C/W minimum-pad RθJA, 45 nA typ input bias current, 70 dB typ CMRR, and non-interchangeability with pin-identical LM393DR2G comparators.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [1, 3, 4, 6],
+    "audit_notes": [
+      "300 DPI PNG Vision on p.1 confirmed Rev. 36 (September 2024), SOIC-8 CASE 751 Top View pinout (1=Output A, 2=IN- A, 3=IN+ A, 4=VEE/Gnd, 5=IN+ B, 6=IN- B, 7=Output B, 8=VCC).",
+      "300 DPI PNG Vision on p.3 confirmed Maximum Ratings (VCC = 32 V / ±16 V, TJ = 150°C, CASE 751 RθJA = 212 °C/W, RθJC = 72 °C/W, TA = 0..70°C for LM358) and caught the critical ESD table trap: LM358DG/DR2G = 250 V HBM / 100 V MM vs 2000 V HBM on LM358E/NCV2904.",
+      "300 DPI PNG Vision on p.4 confirmed LM358 Electrical Characteristics (VIO = 2 mV typ / 7 mV max @ 25°C, IIB = -45 nA typ / -250 nA max -> 45000 pA, CMR = 70 dB typ / 65 dB min, ISC = 40 mA typ / 60 mA max, total ICC = 0.7 mA typ at 5 V -> 350 uA/ch).",
+      "300 DPI PNG Vision on p.6 verified typical AC curves absent from p.4 table: Fig. 5 open-loop gain crosses 0 dB at 1.0 MHz (gbwp_mhz = 1.0) and Fig. 3 large-signal voltage follower swings ~3.0 V per ~5.0 us division (~0.6 V/us); Path A confirmed Active ordering OPN LM358DR2G on p.10."
+    ]
+  }
+}

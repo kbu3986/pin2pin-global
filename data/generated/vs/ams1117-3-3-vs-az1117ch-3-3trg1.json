@@ -55,7 +55,7 @@
       "part_a_value": "4.8 to 15 V (p.2)",
       "part_b_value": "4.8 to 15 V (p.7/p.4)",
       "winner": "TIE",
-      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -140,8 +140,12 @@
   ],
   "swap_risks": [
     "CRITICAL CAPACITOR ESR OSCILLATION RISK: AZ1117CH-3.3TRG1 is stable with low-ESR ceramic MLCCs (>= 10 µF, p.3), whereas AMS1117-3.3 is NOT ceramic-cap stable (ESR window: See datasheet ESR curve). Using an ultra-low-ESR MLCC on AMS1117-3.3 can trigger control-loop oscillation.",
-    "CAUTION THERMAL MARGIN: Package θJA differs by 28% (AMS1117-3.3: 90 °C/W p.2 vs AZ1117CH-3.3TRG1: 125 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max."
+    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs by 2.2x (AMS1117-3.3: 22 µF p.4 vs AZ1117CH-3.3TRG1: 10 µF p.3); account for MLCC DC-bias derating.",
+    "HIGH LOAD CURRENT DERATING: AZ1117CH-3.3TRG1 supplies up to 800 mA (p.7) compared to AMS1117-3.3 at 1000 mA (p.1); confirm peak inrush and thermal dissipation margin.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: AMS1117-3.3 has a lower Vin,abs,max rating (15 V, p.2) than AZ1117CH-3.3TRG1 (18 V, p.4); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 15 V.",
+    "HIGH THERMAL MARGIN: Package θJA is 39% higher on AZ1117CH-3.3TRG1 (AMS1117-3.3: 90 °C/W p.2 vs AZ1117CH-3.3TRG1: 125 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (AMS1117-3.3: -40..125 °C Industrial (-40°C to +125°C TJ) vs AZ1117CH-3.3TRG1: -20..125 °C Extended Commercial (-20°C to +125°C TJ — NOT -40°C Industrial)); AZ1117CH-3.3TRG1 cold limit only -20 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "AMS1117-3.3 (Advanced Monolithic Systems, SOT-223-3) and AZ1117CH-3.3TRG1 (Diodes Incorporated, SOT-223-3) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to ceramic output capacitor ESR stability difference. Key datasheet deltas: Iq is 5000 µA (p.3) vs 4000 µA (p.7), max output current is 1000 mA (p.1) vs 800 mA (p.7), recommended Vin,max is 15 V (p.2) vs 15 V (p.4), typical dropout is 1100 mV (p.3) vs 1200 mV (p.7), and ceramic capacitor stability is ESR-constrained vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.2), thermal margin (θJA 90 vs 125 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AMS1117-3.3 (Advanced Monolithic Systems, SOT-223-3) and AZ1117CH-3.3TRG1 (Diodes Incorporated, SOT-223-3) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because ceramic output capacitor ESR stability difference; minimum output capacitance requirement differs 2.2x; Iout,max rating drops >=20%. Under a representative 5 V → 3.3 V rail at 150 mA (255 mW), estimated self-heating is ΔTj ≈ 22.9 °C on AMS1117-3.3 (θJA 90 °C/W) vs 31.9 °C on AZ1117CH-3.3TRG1 (θJA 125 °C/W), while quiescent draw spans a 1.3x ratio (5000 µA (p.3) vs 4000 µA (p.7)). Primary bench gotchas to watch: AMS1117-3.3 \"NOT Ceramic-Cap Stable — Requires 22 uF Solid Tantalum (No Numeric ESR Window Published)\" (p.4) and AZ1117CH-3.3TRG1 \"Operating Temperature Stops at -20°C — NOT Rated for -40°C Industrial Grade\" (p.4). BOM decision: Choose AMS1117-3.3 when load current exceeds 800 mA (up to 1000 mA) or lower package θJA (90 °C/W) is needed for thermal margin; choose AZ1117CH-3.3TRG1 when your BOM standardizes on low-ESR MLCC ceramic output capacitors. Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.2) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

@@ -73,7 +73,7 @@
       "part_a_value": "2 to 6 V (p.4)",
       "part_b_value": "1.5 to 6 V (p.5)",
       "winner": "B",
-      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -159,8 +159,10 @@
   "swap_risks": [
     "CRITICAL PACKAGE MISMATCH: AP7333-33SAG-7 uses SOT-23-3 (3-pin, SA (SOT23)) while TPS7A0233PDBVR uses SOT-23-5 (5-pin, DBV (SOT-23-5)); PCB footprint redesign is mandatory.",
     "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 2 (VOUT vs GND), Pin 3 (GND vs EN), Pin 4 (NONE vs NC), Pin 5 (NONE vs VOUT). Soldering TPS7A0233PDBVR onto a AP7333-33SAG-7 footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
-    "HIGH LOAD CURRENT DERATING: TPS7A0233PDBVR supplies up to 200 mA (p.5) compared to AP7333-33SAG-7 at 300 mA (p.4); confirm peak inrush and thermal dissipation margin."
+    "HIGH LOAD CURRENT DERATING: TPS7A0233PDBVR supplies up to 200 mA (p.5) compared to AP7333-33SAG-7 at 300 mA (p.4); confirm peak inrush and thermal dissipation margin.",
+    "HIGH MINIMUM SUPPLY FLOOR: AP7333-33SAG-7 requires Vin,min >= 2 V (p.4) vs 1.5 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (AP7333-33SAG-7: -40..85 °C Industrial (-40°C to +85°C) vs TPS7A0233PDBVR: -40..125 °C Extended Industrial (-40°C to +125°C TJ)); AP7333-33SAG-7 hot limit only 85 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "AP7333-33SAG-7 (Diodes Incorporated, SOT-23-3) and TPS7A0233PDBVR (Texas Instruments, SOT-23-5) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 2 (VOUT vs GND), Pin 3 (GND vs EN), Pin 4 (NONE vs NC), Pin 5 (NONE vs VOUT). Key datasheet deltas: Iq is 55 µA (p.5) vs 0.025 µA (p.6), max output current is 300 mA (p.4) vs 200 mA (p.5), recommended Vin,max is 6 V (p.4) vs 6 V (p.5), typical dropout is 300 mV (p.5) vs 270 mV (p.6), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.2 vs TOP_VIEW p.3), thermal margin (θJA 207 vs 181.9 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AP7333-33SAG-7 (Diodes Incorporated, SOT-23-3) and TPS7A0233PDBVR (Texas Instruments, SOT-23-5) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to package/footprint mismatch; pinout mismatch on Pin 2 (VOUT vs GND), Pin 3 (GND vs EN), Pin 4 (NONE vs NC), Pin 5 (NONE vs VOUT). Specific pin conflicts: Pin 2 (VOUT vs GND), Pin 3 (GND vs EN), Pin 4 (NONE vs NC), Pin 5 (NONE vs VOUT). Under a representative 5 V → 3.3 V rail at 150 mA (255 mW), estimated self-heating is ΔTj ≈ 52.8 °C on AP7333-33SAG-7 (θJA 207 °C/W) vs 46.4 °C on TPS7A0233PDBVR (θJA 181.9 °C/W), while quiescent draw spans a 2200x ratio (55 µA (p.5) vs 0.025 µA (p.6)). Primary bench gotchas to watch: AP7333-33SAG-7 \"SOT23 (SA) Pinout (1=IN, 2=OUT, 3=GND) Conflicts With SOT23R (SR), AP2210N, and LM3480\" (p.2) and TPS7A0233PDBVR \"Strict 22 uF Maximum Output Capacitance Limit for Loop Stability\" (p.5). BOM decision: Choose AP7333-33SAG-7 when load current exceeds 200 mA (up to 300 mA); choose TPS7A0233PDBVR when battery sleep budget demands 0.025 µA Iq. Always verify Pin 1 orientation (TOP_VIEW p.2 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

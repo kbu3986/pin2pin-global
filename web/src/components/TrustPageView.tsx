@@ -1,10 +1,17 @@
 import Link from 'next/link';
 import { ChevronRight, Mail } from 'lucide-react';
 import type { SiteConfig, TrustPageDoc } from '@/types/schema';
+import {
+  getAllAltHubs,
+  getAllGuides,
+  getAllParts,
+  getAllVsComparisons,
+  getLatestVerifiedDate,
+} from '@/lib/data-loader';
 import { DisclaimerStrip } from '@/components/DisclaimerStrip';
 import { ErrorReportButton } from '@/components/ErrorReportButton';
 import { JsonLd } from '@/components/JsonLd';
-import { buildBreadcrumbJsonLd, buildTechArticleJsonLd } from '@/lib/format';
+import { SITE_TOOLS, buildBreadcrumbJsonLd, buildWebPageJsonLd } from '@/lib/format';
 
 export function TrustPageView({
   doc,
@@ -13,19 +20,30 @@ export function TrustPageView({
   doc: TrustPageDoc;
   siteConfig: SiteConfig;
 }) {
+  const partsCount = getAllParts().length;
+  const vsCount = getAllVsComparisons().length;
+  const altCount = getAllAltHubs().length;
+  const guidesCount = getAllGuides().length;
+  const toolsCount = SITE_TOOLS.length;
+  const latestVerified = getLatestVerifiedDate();
+
   const pagePath = `/en/${doc.slug}`;
+  const webPageType =
+    doc.slug === 'about' ? 'AboutPage' : doc.slug === 'contact' ? 'ContactPage' : 'WebPage';
+
   const jsonLd = [
     buildBreadcrumbJsonLd(siteConfig.site_url, [
       { name: 'Home', path: '/en' },
       { name: doc.title, path: pagePath },
     ]),
-    buildTechArticleJsonLd({
+    buildWebPageJsonLd({
       siteUrl: siteConfig.site_url,
       siteName: siteConfig.site_name,
       path: pagePath,
-      headline: doc.title,
+      name: doc.title,
       description: doc.description,
-      dateModified: doc.updated_at,
+      dateModified: doc.updated_at || latestVerified,
+      type: webPageType,
     }),
   ];
 
@@ -33,25 +51,66 @@ export function TrustPageView({
     <div className="mx-auto max-w-4xl space-y-6">
       <JsonLd data={jsonLd} />
 
-      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-slate-500">
-        <Link href="/en" className="hover:text-slate-900">
+      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-slate-600">
+        <Link href="/en/" className="hover:text-slate-900">
           Home
         </Link>
         <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
         <span className="font-medium text-slate-900">{doc.title}</span>
       </nav>
 
-      <header className="rounded-lg border border-slate-300 bg-white p-6">
-        <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-          <span className="rounded bg-slate-900 px-2 py-0.5 font-mono text-[11px] font-bold uppercase text-emerald-300">
-            Trust &amp; Governance
-          </span>
-          <span className="font-mono text-xs text-slate-500">Last Updated: {doc.updated_at}</span>
+      <header className="rounded-lg border border-slate-300 bg-white p-6 space-y-4">
+        <div>
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+            <span className="rounded bg-slate-900 px-2 py-0.5 font-mono text-[11px] font-bold uppercase text-emerald-300">
+              Trust &amp; Governance
+            </span>
+            <span className="font-mono text-xs text-slate-600">
+              Updated: {doc.updated_at} · DB Verified: {latestVerified}
+            </span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-950">
+            {doc.title}
+          </h1>
+          <p className="mt-2 text-sm text-slate-600 leading-relaxed">{doc.description}</p>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-950">
-          {doc.title}
-        </h1>
-        <p className="mt-2 text-sm text-slate-600 leading-relaxed">{doc.description}</p>
+
+        {/* Live Database Coverage Strip (dynamically computed at build time — never stale) */}
+        <div
+          aria-label="Live database coverage statistics"
+          className="grid grid-cols-2 sm:grid-cols-5 gap-2.5 pt-4 border-t border-slate-200"
+        >
+          <div className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2">
+            <div className="text-[11px] text-slate-600">Verified OPNs</div>
+            <div className="font-mono text-lg font-bold tabular-nums text-slate-950">
+              {partsCount}
+            </div>
+          </div>
+          <div className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2">
+            <div className="text-[11px] text-slate-600">1:1 VS Diffs</div>
+            <div className="font-mono text-lg font-bold tabular-nums text-emerald-800">
+              {vsCount}
+            </div>
+          </div>
+          <div className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2">
+            <div className="text-[11px] text-slate-600">Alt Hubs</div>
+            <div className="font-mono text-lg font-bold tabular-nums text-slate-950">
+              {altCount}
+            </div>
+          </div>
+          <div className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2">
+            <div className="text-[11px] text-slate-600">Browser Tools</div>
+            <div className="font-mono text-lg font-bold tabular-nums text-sky-800">
+              {toolsCount}
+            </div>
+          </div>
+          <div className="rounded-md border border-slate-200 bg-slate-50 px-3 py-2">
+            <div className="text-[11px] text-slate-600">Field Guides</div>
+            <div className="font-mono text-lg font-bold tabular-nums text-slate-950">
+              {guidesCount}
+            </div>
+          </div>
+        </div>
       </header>
 
       <DisclaimerStrip siteConfig={siteConfig} />
@@ -89,13 +148,14 @@ export function TrustPageView({
             Direct Error Reporting &amp; Audit Channels
           </h2>
           <p className="text-sm text-slate-700">
-            Report any datasheet citation, pinout numbering, exposed pad net, or thermal rating issue directly via GitHub Issues or email:
+            Report any datasheet citation, pinout numbering, exposed pad net, or thermal rating
+            issue directly via GitHub Issues or email:
           </p>
           <div className="flex flex-wrap items-center gap-3 pt-1">
             <ErrorReportButton
               siteConfig={siteConfig}
               subject="General Pinout / Spec Report"
-              pagePath="/en/contact"
+              pagePath="/en/contact/"
             />
             <a
               href={`mailto:${siteConfig.contact_email}`}

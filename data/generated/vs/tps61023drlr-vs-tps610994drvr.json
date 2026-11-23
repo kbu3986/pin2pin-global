@@ -89,8 +89,8 @@
       "unit": "V",
       "part_a_value": "0.5 to 5.5 V (p.4)",
       "part_b_value": "0.7 to 5.5 V (p.4)",
-      "winner": "TIE",
-      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+      "winner": "A",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -106,7 +106,7 @@
       "part_a_value": "2.2 to 5.5 V (p.4) (Adj)",
       "part_b_value": "3.23 to 3.37 V (p.5) (Fixed)",
       "winner": "CONTEXT",
-      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
     },
     {
       "metric": "Max Current (Iout or Isw Limit)",
@@ -114,7 +114,7 @@
       "part_a_value": "3700 mA (p.5) [Isw limit]",
       "part_b_value": "1000 mA (p.5) [Isw limit]",
       "winner": "A",
-      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+      "note": "For boost/switch-limited converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
     },
     {
       "metric": "Quiescent Current (Iq, typ)",
@@ -169,11 +169,11 @@
     "CRITICAL PACKAGE MISMATCH: TPS61023DRLR uses SOT-563 (6-pin, DRL) while TPS610994DRVR uses WSON-6 (6-pin, DRV); PCB footprint redesign is mandatory.",
     "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (FB vs GND), Pin 2 (EN vs VOUT), Pin 3 (VIN vs FB), Pin 4 (GND vs EN), Pin 6 (VOUT vs VIN). Soldering TPS610994DRVR onto a TPS61023DRLR footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
     "Exposed thermal pad/tab mismatch (SOT-563: NONE vs WSON-6: GND); PCB land pattern & solder-mask change required.",
+    "CRITICAL FEEDBACK LAYOUT DIFFERENCE: One converter is fixed-output while the other is adjustable; adding or removing the external R1/R2 feedback divider and feedforward capacitor requires a PCB layout change.",
     "CAUTION INDUCTOR RETUNING: Typical inductor differs (TPS61023DRLR: 1 µH p.4 vs TPS610994DRVR: 2.2 µH p.4); check inductor Isat against peak switch current limit.",
-    "HIGH FEEDBACK CONFIGURATION: One converter is fixed-output while the other is adjustable; external R1/R2 feedback resistors and feedforward capacitor must be updated.",
-    "CAUTION CURRENT RATING BASIS: TPS61023DRLR specifies 3700 mA (switch current limit Isw, p.5) vs TPS610994DRVR 1000 mA (switch current limit Isw, p.5). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling.",
-    "CAUTION THERMAL MARGIN: Package θJA differs by 50% (TPS61023DRLR: 142.7 °C/W p.4 vs TPS610994DRVR: 71.7 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max."
+    "CAUTION CURRENT RATING BASIS: TPS61023DRLR specifies 3700 mA (switch current limit Isw, p.5) vs TPS610994DRVR 1000 mA (switch current limit Isw, p.5). Remember boost/switch-limited Iout,max is strictly less than Isw due to duty-cycle and inductor ripple scaling.",
+    "HIGH THERMAL MARGIN: Package θJA is 99% higher on TPS61023DRLR (TPS61023DRLR: 142.7 °C/W p.4 vs TPS610994DRVR: 71.7 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
-  "engineering_verdict": "TPS61023DRLR (Texas Instruments, SOT-563) and TPS610994DRVR (Texas Instruments, WSON-6) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (FB vs GND), Pin 2 (EN vs VOUT), Pin 3 (VIN vs FB), Pin 4 (GND vs EN), Pin 6 (VOUT vs VIN); exposed pad / thermal tab net mismatch. Key datasheet deltas: topology is boost (sync) vs boost (sync), switching frequency is 1000 kHz (p.5) vs 1116 kHz (p.16), rated current is 3700 mA (p.5) vs 1000 mA (p.5), typical inductor is 1 µH (p.4) vs 2.2 µH (p.4), and Iq is 20 µA (p.5) vs 1 µA (p.5). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 142.7 vs 71.7 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "TPS61023DRLR (Texas Instruments, SOT-563) and TPS610994DRVR (Texas Instruments, WSON-6) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (FB vs GND), Pin 2 (EN vs VOUT), Pin 3 (VIN vs FB), Pin 4 (GND vs EN), Pin 6 (VOUT vs VIN); exposed pad / thermal tab net mismatch. Specific pin conflicts: Pin 1 (FB vs GND), Pin 2 (EN vs VOUT), Pin 3 (VIN vs FB), Pin 4 (GND vs EN). Power-stage deltas: boost (sync) vs boost (sync), switching frequency 1000 kHz (p.5) vs 1116 kHz (p.16) (1.1x ratio), typical inductor 1 µH (p.4) vs 2.2 µH (p.4), output mode adjustable vs fixed, and package θJA 142.7 vs 71.7 °C/W. Primary bench gotchas to watch: TPS61023DRLR \"1.8 V Minimum Startup Voltage Despite 0.5 V Running Floor\" (p.5) and TPS610994DRVR \"Pin 3 (FB) MUST Connect to GND on Fixed 3.3 V TPS610994 (Opposite of TPS61221)\" (p.3). BOM decision: Choose TPS61023DRLR when higher switch current capacity (3700 mA) is required; choose TPS610994DRVR when light-load battery standby needs 1 µA Iq. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

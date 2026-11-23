@@ -125,8 +125,8 @@
       "unit": "V",
       "part_a_value": "2.7 to 14 V (p.4)",
       "part_b_value": "0.3 to 5.5 V (p.5)",
-      "winner": "A",
-      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+      "winner": "CONTEXT",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -142,7 +142,7 @@
       "part_a_value": "5 to 28 V (p.1) (Adj)",
       "part_b_value": "1.8 to 5.5 V (p.6) (Adj)",
       "winner": "CONTEXT",
-      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
     },
     {
       "metric": "Max Current (Iout or Isw Limit)",
@@ -150,7 +150,7 @@
       "part_a_value": "800 mA (p.5) [Isw limit]",
       "part_b_value": "1350 mA (p.6) [Isw limit]",
       "winner": "B",
-      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+      "note": "For boost/switch-limited converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
     },
     {
       "metric": "Quiescent Current (Iq, typ)",
@@ -205,13 +205,18 @@
     "CRITICAL PACKAGE MISMATCH: LM27313XMF/NOPB uses SOT-23-5 (5-pin, DBV) while TPS61200DRCR uses VSON-10 (10-pin, DRC); PCB footprint redesign is mandatory.",
     "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (SW vs BYPASS), Pin 2 (GND vs VOUT), Pin 3 (FB vs SW), Pin 4 (EN vs GND), Pin 6 (NONE vs EN), Pin 7 (NONE vs OTHER), Pin 8 (NONE vs PS), Pin 9 (NONE vs GND), Pin 10 (NONE vs FB). Soldering TPS61200DRCR onto a LM27313XMF/NOPB footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
     "Exposed thermal pad/tab mismatch (SOT-23-5: NONE vs VSON-10: GND); PCB land pattern & solder-mask change required.",
-    "HIGH RECTIFICATION DIFFERENCE: LM27313XMF/NOPB is non-synchronous and requires an external Schottky catch/freewheeling diode, whereas the counterpart integrates a synchronous low-side MOSFET.",
-    "CAUTION INDUCTOR RETUNING: Typical inductor differs (LM27313XMF/NOPB: 10 µH p.1 vs TPS61200DRCR: 2.2 µH p.15); check inductor Isat against peak switch current limit.",
+    "CRITICAL RECTIFICATION LAYOUT DIFFERENCE: LM27313XMF/NOPB is non-synchronous and requires an external Schottky catch/freewheeling diode footprint near SW, whereas the counterpart integrates a synchronous low-side MOSFET.",
+    "CRITICAL SWITCH-VOLTAGE OVERSTRESS RISK: TPS61200DRCR is rated up to only 5.5 V output (p.6) vs LM27313XMF/NOPB up to 28 V (p.1); exceeding the internal switch BVdss ceiling destroys the SW MOSFET.",
+    "HIGH MINIMUM OUTPUT VOLTAGE FLOOR: LM27313XMF/NOPB cannot regulate below 5 V (p.1) vs TPS61200DRCR down to 1.8 V (p.6); verify your target rail sits above the higher Vout,min floor.",
     "HIGH VREF MISMATCH: Feedback reference differs (LM27313XMF/NOPB: 1.23 V p.5 vs TPS61200DRCR: 0.5 V p.6); dropping in without recalculating R1/R2 will output the wrong voltage rail.",
+    "CAUTION INDUCTOR RETUNING: Typical inductor differs (LM27313XMF/NOPB: 10 µH p.1 vs TPS61200DRCR: 2.2 µH p.15); check inductor Isat against peak switch current limit.",
     "HIGH INPUT VOLTAGE RANGE SHIFT: Recommended Vin,max differs (LM27313XMF/NOPB: 14 V p.4 vs TPS61200DRCR: 5.5 V p.5); verify line transients stay below Vin,abs,max.",
-    "CAUTION CURRENT RATING BASIS: LM27313XMF/NOPB specifies 800 mA (switch current limit Isw, p.5) vs TPS61200DRCR 1350 mA (switch current limit Isw, p.6). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling.",
-    "CAUTION THERMAL MARGIN: Package θJA differs by 75% (LM27313XMF/NOPB: 166.3 °C/W p.4 vs TPS61200DRCR: 41.2 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max."
+    "CAUTION CURRENT RATING BASIS: LM27313XMF/NOPB specifies 800 mA (switch current limit Isw, p.5) vs TPS61200DRCR 1350 mA (switch current limit Isw, p.6). Remember boost/switch-limited Iout,max is strictly less than Isw due to duty-cycle and inductor ripple scaling.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: TPS61200DRCR has a lower Vin,abs,max rating (7 V, p.5) than LM27313XMF/NOPB (14.5 V, p.3); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 7 V.",
+    "HIGH THERMAL MARGIN: Package θJA is 304% higher on LM27313XMF/NOPB (LM27313XMF/NOPB: 166.3 °C/W p.4 vs TPS61200DRCR: 41.2 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH MINIMUM SUPPLY FLOOR: LM27313XMF/NOPB requires Vin,min >= 2.7 V (p.4) vs 0.3 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (LM27313XMF/NOPB: -40..125 °C Industrial / Extended (-40°C to 125°C TJ) vs TPS61200DRCR: -40..85 °C Industrial (-40°C to 85°C TA, TJ max 125°C)); TPS61200DRCR hot limit only 85 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "LM27313XMF/NOPB (Texas Instruments, SOT-23-5) and TPS61200DRCR (Texas Instruments, VSON-10) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (SW vs BYPASS), Pin 2 (GND vs VOUT), Pin 3 (FB vs SW), Pin 4 (EN vs GND), Pin 6 (NONE vs EN), Pin 7 (NONE vs OTHER), Pin 8 (NONE vs PS), Pin 9 (NONE vs GND), Pin 10 (NONE vs FB); exposed pad / thermal tab net mismatch. Key datasheet deltas: topology is boost (non-sync) vs boost (sync), switching frequency is 1600 kHz (p.5) vs 1450 kHz (p.6), rated current is 800 mA (p.5) vs 1350 mA (p.6), typical inductor is 10 µH (p.1) vs 2.2 µH (p.15), and Iq is 400 µA (p.5) vs 55 µA (p.6). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.4), thermal margin (θJA 166.3 vs 41.2 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "LM27313XMF/NOPB (Texas Instruments, SOT-23-5) and TPS61200DRCR (Texas Instruments, VSON-10) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (SW vs BYPASS), Pin 2 (GND vs VOUT), Pin 3 (FB vs SW), Pin 4 (EN vs GND), Pin 6 (NONE vs EN), Pin 7 (NONE vs OTHER), Pin 8 (NONE vs PS), Pin 9 (NONE vs GND), Pin 10 (NONE vs FB); exposed pad / thermal tab net mismatch. Specific pin conflicts: Pin 1 (SW vs BYPASS), Pin 2 (GND vs VOUT), Pin 3 (FB vs SW), Pin 4 (EN vs GND). Power-stage deltas: boost (non-sync) vs boost (sync), switching frequency 1600 kHz (p.5) vs 1450 kHz (p.6) (1.1x ratio), typical inductor 10 µH (p.1) vs 2.2 µH (p.15), feedback Vref 1.23 V (p.5) vs 0.5 V (p.6), and package θJA 166.3 vs 41.2 °C/W. Primary bench gotchas to watch: LM27313XMF/NOPB \"Feedforward Capacitor Cf Across R1 Is Mandatory for Loop Stability\" (p.11) and TPS61200DRCR \"Inverted PS Polarity (Fixed in Rev D) & Mandatory UVLO-to-VAUX / VAUX-Snubber Connections\" (p.4). BOM decision: Choose LM27313XMF/NOPB when bus voltage exceeds 5.5 V (rated to 14 V) or programmed output rails exceed 5.5 V (up to 28 V); choose TPS61200DRCR when you want synchronous rectification without an external Schottky diode or higher switch current capacity (1350 mA) is required. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.4) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

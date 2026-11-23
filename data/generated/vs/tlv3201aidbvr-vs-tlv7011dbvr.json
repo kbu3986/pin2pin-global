@@ -1,0 +1,167 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "tlv3201aidbvr-vs-tlv7011dbvr",
+  "category": "opamp",
+  "part_a_slug": "tlv3201aidbvr",
+  "part_b_slug": "tlv7011dbvr",
+  "part_a_opn": "TLV3201AIDBVR",
+  "part_b_opn": "TLV7011DBVR",
+  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+  "package_match": true,
+  "pinout_exact_match": true,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "OUT",
+      "part_a_role": "OUT",
+      "part_b_name": "OUT",
+      "part_b_role": "OUT",
+      "status": "MATCH",
+      "note": "Identical pin assignment (OUT / OUT)."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "GND",
+      "part_a_role": "VEE",
+      "part_b_name": "VEE",
+      "part_b_role": "VEE",
+      "status": "MATCH",
+      "note": "Functionally identical VEE pin (GND vs VEE)."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "IN+",
+      "part_a_role": "IN_POS",
+      "part_b_name": "IN+",
+      "part_b_role": "IN_POS",
+      "status": "MATCH",
+      "note": "Identical pin assignment (IN+ / IN_POS)."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "IN-",
+      "part_a_role": "IN_NEG",
+      "part_b_name": "IN-",
+      "part_b_role": "IN_NEG",
+      "status": "MATCH",
+      "note": "Identical pin assignment (IN- / IN_NEG)."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "VCC",
+      "part_a_role": "VCC",
+      "part_b_name": "VCC",
+      "part_b_role": "VCC",
+      "status": "MATCH",
+      "note": "Identical pin assignment (VCC / VCC)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Device Kind & Output Stage",
+      "unit": "—",
+      "part_a_value": "comparator (push-pull)",
+      "part_b_value": "comparator (push-pull)",
+      "winner": "TIE",
+      "note": "Op-amps (internally compensated for linear feedback) and comparators (uncompensated open-loop switching) are NOT drop-in interchangeable."
+    },
+    {
+      "metric": "Package & Channel Count",
+      "unit": "—",
+      "part_a_value": "SOT-23-5 · 1 ch (DBV, p.3)",
+      "part_b_value": "SOT-23-5 · 1 ch (DBV, p.3)",
+      "winner": "TIE",
+      "note": "Single SOT-23-5 op-amps vary in pin ordering across vendors; verify Pin 1–5."
+    },
+    {
+      "metric": "Supply Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "2.7 to 5.5 V (p.4)",
+      "part_b_value": "1.6 to 5.5 V (p.5)",
+      "winner": "B",
+      "note": "A part wins only if its recommended Vs range strictly encompasses the counterpart on both ends."
+    },
+    {
+      "metric": "Absolute Max Supply (Vs,abs)",
+      "unit": "V",
+      "part_a_value": "7 V (p.4)",
+      "part_b_value": "6 V (p.5)",
+      "winner": "A",
+      "note": "Exceeding Vs,abs causes immediate gate-oxide or junction breakdown."
+    },
+    {
+      "metric": "Gain-Bandwidth Product (GBWP)",
+      "unit": "MHz",
+      "part_a_value": "N/A (Comparator)",
+      "part_b_value": "N/A (Comparator)",
+      "winner": "CONTEXT",
+      "note": "Closed-loop -3 dB bandwidth scales as f_-3dB = GBWP / Acl."
+    },
+    {
+      "metric": "Slew Rate / Propagation Delay",
+      "unit": "V/µs · ns",
+      "part_a_value": "tpd: 43 ns (p.5)",
+      "part_b_value": "tpd: 310 ns (p.7)",
+      "winner": "A",
+      "note": "Controls large-signal full-power bandwidth SR / (2π·Vpeak) or comparator switching speed."
+    },
+    {
+      "metric": "Input Offset Voltage (Vos, max)",
+      "unit": "mV",
+      "part_a_value": "3 mV (p.5)",
+      "part_b_value": "8 mV (p.7)",
+      "winner": "A",
+      "note": "Lower Vos minimizes DC error in current-shunt and sensor bridge amplifiers."
+    },
+    {
+      "metric": "Input Bias Current (Ib, typ)",
+      "unit": "pA",
+      "part_a_value": "1 pA (p.5)",
+      "part_b_value": "5 pA (p.7)",
+      "winner": "A",
+      "note": "CMOS/JFET pA-class inputs avoid offset voltage drops across high-impedance (>100 kΩ) sensors."
+    },
+    {
+      "metric": "Quiescent Current / Ch (Iq)",
+      "unit": "µA/ch",
+      "part_a_value": "40 µA/ch (p.5)",
+      "part_b_value": "5 µA/ch (p.7)",
+      "winner": "B",
+      "note": "Multiply by channel count for total IC standby current draw."
+    },
+    {
+      "metric": "Rail-to-Rail Input / Output",
+      "unit": "—",
+      "part_a_value": "IN: Yes · OUT: Yes",
+      "part_b_value": "IN: Yes · OUT: Yes",
+      "winner": "TIE",
+      "note": "RRIO prevents clipping on low-voltage 3.3 V single-supply ADC buffers."
+    },
+    {
+      "metric": "CMRR (typ) & Input Noise",
+      "unit": "dB · nV/√Hz",
+      "part_a_value": "70 dB (p.5) · Not specified",
+      "part_b_value": "78 dB (p.7) · Not specified",
+      "winner": "B",
+      "note": "Winner requires superiority on both CMRR (higher) and input voltage noise (lower); mixed tradeoffs stay CONTEXT."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "237.8 °C/W (p.4) · 150 °C",
+      "part_b_value": "306.3 °C/W (p.6) · 150 °C",
+      "winner": "A",
+      "note": "Important when driving heavy resistive loads or high supply rails."
+    }
+  ],
+  "swap_risks": [
+    "HIGH SWITCHING TIMING SHIFT: Propagation delay differs by 7.2x (TLV3201AIDBVR: 43 ns p.5 vs TLV7011DBVR: 310 ns p.7); verify overcurrent/zero-crossing trip latency and hysteresis timing.",
+    "CAUTION QUIESCENT CURRENT SHIFT: Supply current per channel differs by 8x (TLV3201AIDBVR: 40 µA/ch p.5 vs TLV7011DBVR: 5 µA/ch p.7); verify battery budget and total power dissipation across all channels.",
+    "HIGH THERMAL MARGIN: Package θJA is 29% higher on TLV7011DBVR (TLV3201AIDBVR: 237.8 °C/W p.4 vs TLV7011DBVR: 306.3 °C/W p.6); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH MINIMUM SUPPLY FLOOR: TLV3201AIDBVR requires Vs,min >= 2.7 V (p.4) vs 1.6 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor."
+  ],
+  "engineering_verdict": "TLV3201AIDBVR (Texas Instruments, SOT-23-5) and TLV7011DBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because comparator propagation delay differs 7.2x; quiescent supply current Iq/ch differs 8x; θJA worsens 29% (thermal derating verification required). Signal-chain deltas: propagation delay 43 ns (p.5) vs 310 ns (p.7), supply ceiling 5.5 V (p.4) vs 5.5 V (p.5), Vos 3 mV (p.5) vs 8 mV (p.7), Ib 5x gap (1 vs 5 pA). Primary bench gotchas to watch: TLV3201AIDBVR \"Push-Pull Output — Do NOT Wired-AND or Pull Up to a Different Logic Rail\" (p.5) and TLV7011DBVR \"Push-Pull Output Cannot Be Wired-AND or Pulled Up to a Higher Logic Rail\" (p.5). BOM decision: Choose TLV3201AIDBVR when DC precision demands <= 3 mV max Vos or fast trip response requires 43 ns propagation delay; choose TLV7011DBVR when ultra-low supply current (5 µA/ch) is prioritized. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
+  "generated_at": "2026-11-23"
+}

@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowRight, CheckSquare, ChevronRight } from 'lucide-react';
+import { ArrowRight, CheckSquare, ChevronRight, GitCompareArrows } from 'lucide-react';
 import {
   getAllAltHubs,
   getAllVsComparisons,
   getAltHubBySlug,
   getPartBySlug,
+  getRelatedGuidesForAlt,
   getSiteConfig,
 } from '@/lib/data-loader';
 import { PackagePinoutSvg } from '@/components/PackagePinoutSvg';
@@ -16,9 +17,13 @@ import { DistributorLinks } from '@/components/DistributorLinks';
 import { LabGearAffiliate } from '@/components/LabGearAffiliate';
 import { AdSenseSlot } from '@/components/AdSenseSlot';
 import { JsonLd } from '@/components/JsonLd';
+import { RelatedGuidesToolsSection } from '@/app/en/_components/RelatedGuidesToolsSection';
 import {
   buildBreadcrumbJsonLd,
   buildDatasetJsonLd,
+  buildMetaDescription,
+  buildMetaTitle,
+  buildPageMetadata,
   buildTechArticleJsonLd,
   categoryLabel,
   getCompatibilityStyle,
@@ -40,13 +45,27 @@ export async function generateMetadata({
   const siteConfig = getSiteConfig();
   if (!alt) return { title: 'Alternatives Not Found' };
 
-  return {
-    title: `${alt.target_opn} Alternatives, Equivalents & Pin-Compatible Replacements`,
-    description: `Ranked candidate drop-in and functional replacements for ${alt.target_opn} with pinout compatibility tiers, key engineering tradeoffs, and 1:1 pin-diff links.`,
-    alternates: {
-      canonical: `${siteConfig.site_url}/en/alt/${alt.slug}/`,
-    },
-  };
+  const title = buildMetaTitle(
+    [
+      `${alt.target_opn} Alternatives & Replacements`,
+      `${alt.target_opn} Pin-Compatible Alternatives`,
+      `${alt.target_opn} Alternatives`,
+    ],
+    siteConfig.site_name,
+    65,
+  );
+  const description = buildMetaDescription(
+    `Ranked candidate drop-in and functional replacements for ${alt.target_opn} with pinout compatibility tiers, key engineering tradeoffs, and 1:1 pin-diff links.`,
+  );
+
+  return buildPageMetadata({
+    siteUrl: siteConfig.site_url,
+    siteName: siteConfig.site_name,
+    path: `/en/alt/${alt.slug}`,
+    title,
+    description,
+    ogType: 'article',
+  });
 }
 
 export default async function AlternativesHubPage({
@@ -61,6 +80,7 @@ export default async function AlternativesHubPage({
   const siteConfig = getSiteConfig();
   const targetPart = getPartBySlug(alt.target_slug);
   const existingVsSet = new Set(getAllVsComparisons().map((v) => v.slug));
+  const relatedGuides = getRelatedGuidesForAlt(alt, 3);
   const pagePath = `/en/alt/${alt.slug}`;
 
   const jsonLd = [
@@ -138,7 +158,7 @@ export default async function AlternativesHubPage({
           <p className="text-sm text-slate-600 leading-relaxed">{alt.summary}</p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="print:hidden flex flex-wrap items-center gap-2">
           {targetPart && (
             <Link
               href={`/en/part/${targetPart.slug}`}
@@ -147,6 +167,13 @@ export default async function AlternativesHubPage({
               ← View {targetPart.opn} Datasheet Specs
             </Link>
           )}
+          <Link
+            href={`/en/compare?a=${encodeURIComponent(alt.target_slug)}`}
+            className="inline-flex items-center gap-1.5 rounded-md border border-sky-600 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-950 hover:bg-sky-100"
+          >
+            <GitCompareArrows className="h-3.5 w-3.5" aria-hidden="true" />
+            Compare in Workbench
+          </Link>
           <ErrorReportButton
             siteConfig={siteConfig}
             subject={`${alt.target_opn} Alternatives Matrix`}
@@ -270,10 +297,11 @@ export default async function AlternativesHubPage({
                         </Link>
                       ) : (
                         <Link
-                          href={`/en/part/${c.alt_slug}`}
-                          className="inline-flex items-center gap-1 rounded-md border border-slate-300 bg-white px-2.5 py-1.5 text-[11px] font-semibold text-slate-700 hover:bg-slate-100"
+                          href={`/en/compare?a=${encodeURIComponent(alt.target_slug)}&b=${encodeURIComponent(c.alt_slug)}`}
+                          className="inline-flex items-center gap-1 rounded-md border border-sky-300 bg-sky-50 px-2.5 py-1.5 text-[11px] font-semibold text-sky-900 hover:bg-sky-100"
                         >
-                          View Spec
+                          Compare
+                          <ArrowRight className="h-3 w-3" aria-hidden="true" />
                         </Link>
                       )}
                     </td>
@@ -299,6 +327,13 @@ export default async function AlternativesHubPage({
           ))}
         </ul>
       </section>
+
+      <RelatedGuidesToolsSection
+        category={alt.category}
+        guides={relatedGuides}
+        compareSlugA={alt.target_slug}
+        calculatorOpn={alt.target_opn}
+      />
 
       <DistributorLinks
         siteConfig={siteConfig}

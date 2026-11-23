@@ -1,0 +1,154 @@
+{
+  "slug": "bom-second-sourcing-eol-nrnd-playbook",
+  "title": "BOM Second-Sourcing & EOL/NRND Power IC Migration Playbook: From Legacy LDOs & Bucks to Active Drop-In Candidates",
+  "subtitle": "A practical engineering workflow for replacing EOL/NRND LDOs (CAT6219, AP2204K), migrating legacy TO-263/SOIC-8 non-synchronous bucks (LM2596, TPS54331), and managing 3.3 V / 5.0 V / Adjustable SOT-223 LDO second sources without PCB respins.",
+  "category": "general",
+  "reading_time_min": 13,
+  "published_at": "2026-11-23",
+  "updated_at": "2026-11-23",
+  "author_role": "Principal Power Systems & Supply-Chain Hardware Engineer",
+  "summary": "When a semiconductor vendor issues an End-of-Life (EOL) or Not Recommended for New Designs (NRND) notice on a power IC, naive parametric substitutions frequently break boards via hidden Pin 4 shorts, EN pin overvoltage, ESR oscillation, or VOUT-tab reversals. This playbook walks through real EOL/NRND migrations from our verified dataset and shows how to execute confidential, zero-upload BOM qualification.",
+  "key_takeaways": [
+    "Lifecycle alerts on verified parts like CAT6219-330TD-GT3 (EOL) and AP2204K-3.3TRG1 (NRND) cannot be solved by voltage/current filtering alone — you must check Pin 4 BYPASS vs NC, TSOT-23-5 vs SOT-23-5 height, and 24 V vs 6 V VIN limits.",
+    "Migrating legacy non-synchronous bucks (LM2596SX-5.0/NOPB TO-263-5 or TPS54331DR/TPS54231DR SOIC-8) to modern synchronous SOT-23-6 converters (TPS54302DDCR, AP63203WU-7, AP63300WU-7) eliminates the external Schottky diode and COMP network while lifting efficiency from ~80–88% to ~94–95%.",
+    "Within the exact same SOT-223-3 LM1117 family, fixed 3.3 V (LM1117IMPX-3.3/NOPB), fixed 5.0 V (LM1117IMPX-5.0/NOPB), and adjustable (LM1117IMPX-ADJ/NOPB) are NEVER mutually interchangeable — Pin 1 changes from GND to ADJ and ADJ requires >= 5 mA minimum load.",
+    "Use Pin2Pin's browser-local Zero-Upload BOM Checker v2, Reverse Pinout Finder, E96 Feedback Divider, and Live Comparator to screen up to 100 IC rows locally without leaking proprietary BOMs to cloud servers."
+  ],
+  "related_parts": [
+    "cat6219-330td-gt3",
+    "ap2204k-3-3trg1",
+    "lm2596sx-5-0-nopb",
+    "tps54331dr",
+    "tps54231dr",
+    "tps54302ddcr",
+    "ap63300wu-7",
+    "lm1117impx-3-3-nopb",
+    "lm1117impx-5-0-nopb",
+    "lm1117impx-adj-nopb"
+  ],
+  "related_vs": [
+    "ap2112k-3-3trg1-vs-cat6219-330td-gt3",
+    "cat6219-330td-gt3-vs-lp2985-33dbvr",
+    "ap2204k-3-3trg1-vs-tps70933dbvr",
+    "lm2596sx-5-0-nopb-vs-tps54302ddcr",
+    "tps54302ddcr-vs-tps54331dr",
+    "ap63203wu-7-vs-ap63300wu-7"
+  ],
+  "sections": [
+    {
+      "heading": "1. Why Power-Management EOL & NRND Notices Break More Production Lines Than MCU Shortages",
+      "body": [
+        "When a microcontroller goes End-of-Life, everyone in the company notices immediately and schedules a formal firmware and PCB redesign. When a $0.12 linear regulator or $0.45 buck converter quietly flips to NRND or EOL during a routine manufacturing run, procurement teams often assume a distributor parametric match is a harmless drop-in swap. That assumption accounts for an astonishing share of factory rework, dead-on-arrival prototypes, and field reliability recalls.",
+        "Power ICs are uniquely hostile to casual substitution because every pin interacts directly with energy storage passives, copper thermal planes, and high-voltage rails. Two regulators can share an identical 3.3 V output, 300 mA rating, and 5-pin SOT-23 outline yet still fail catastrophically when swapped: one expects a 10 nF noise-bypass capacitor on Pin 4 while the other leaves Pin 4 NC; one tolerates 24 V input transients while the other explodes at 6.5 V; one stabilizes on 1 µF low-ESR ceramic MLCCs while the other oscillates violently below 0.3 Ω ESR; or one uses a 0.6 V feedback reference while the other uses 0.8 V, driving VOUT 33% high into downstream silicon.",
+        "In our verified dataset, two active real-world lifecycle alerts — onsemi's CAT6219-330TD-GT3 (officially EOL) and Diodes Incorporated's AP2204K-3.3TRG1 (officially NRND) — alongside legacy high-loss switching architectures like TI's LM2596SX-5.0/NOPB and non-synchronous SOIC-8 bucks (TPS54331DR / TPS54231DR) provide textbook blueprints for how disciplined hardware engineers qualify second sources without risking a blind BOM swap."
+      ],
+      "callout": {
+        "type": "WARNING",
+        "title": "Treat Every Lifecycle Substitution as a Two-Gate Audit: Footprint First, Physics Second",
+        "text": "Never approve an ECO based on family name or distributor 'similar part' suggestions. Lock both the retiring OPN and every candidate replacement to exact package-specific OPNs, verify every pin role and exposed thermal pad net at 300 DPI, and classify the swap honestly into Level 1 Candidate Drop-In, Level 2 Tuning Required, or Level 3 PCB Layout Change."
+      }
+    },
+    {
+      "heading": "2. Case Study A: Replacing EOL CAT6219-330TD-GT3 and NRND AP2204K-3.3TRG1 Without Board Respins",
+      "body": [
+        "Consider first onsemi's CAT6219-330TD-GT3 — a widely deployed 500 mA, 3.3 V LDO in a 5-pin TSOT-23-5 package that has reached End-of-Life (EOL). Its pinout is the standard 5-pin power map (1 VIN, 2 GND, 3 EN active-high, 4 BYPASS, 5 VOUT) with 2.3–5.5 V operating input (6.5 V abs max), 55 µA typical Iq, and ceramic capacitor stability down to 1 µF. What happens when an engineer screens active candidates? Two distinct tiers immediately emerge.",
+        "First, AP2112K-3.3TRG1 (Diodes Inc., Active, 600 mA, 6.0 V max VIN, 55 µA Iq, ceramic-stable) offers a 100 mA higher current rating and matches Pins 1, 2, 3, and 5 identically. Yet Pin2Pin's cross-reference rules flag two mandatory Level 2 checks before calling it a blind drop-in: (1) Pin 4 on AP2112K-3.3TRG1 is NC rather than BYPASS — if the existing PCB already populated a 10 nF bypass cap from Pin 4 to GND, leaving that cap on an NC pin is electrically benign (check datasheet to confirm true internal NC, never test-pin!), whereas removing it loses CAT6219's low-noise bandgap filtering if RF/ADC noise floor is tight; and (2) CAT6219 uses a 1.00 mm-tall TSOT-23-5 package while AP2112K uses a 1.45 mm-tall SOT-23-5 package, requiring a mechanical Z-height clearance check under RF shields or thin enclosures. Second, if your load is <= 150 mA and you specifically need Pin 4 BYPASS noise filtering, TI's LP2985-33DBVR (150 mA, 16 V max, Pin 4 BYPASS) or TPS79333DBVR (200 mA, 5.5 V max, Pin 4 NR/BYPASS, 32 µVRMS noise) preserve Pin 4 functionality — while TLV75533PDBVR (500 mA, 5.5 V max, Pin 4 NC, 25 µA Iq) matches CAT6219's full 500 mA rating at half the quiescent current.",
+        "Now contrast that with Diodes Inc.'s AP2204K-3.3TRG1 (officially NRND). It sits in the EXACT same 5-pin SOT-23-5 outline (1 VIN, 2 GND, 3 EN active-high, 4 NC, 5 VOUT) at 150 mA, which tricks naive buyers into replacing it with a cheap 5.5 V LDO like TLV70233DBVR or AP2112K-3.3TRG1. That swap can explode instantly in the field! Why? Because AP2204K-3.3TRG1 is a HIGH-VOLTAGE 24 V LDO (24 V recommended max, 26 V abs max) commonly powered directly from 12 V automotive/industrial buses or 20 V USB-PD adapters. Dropping a 5.5 V-rated LDO onto a 12 V AP2204K socket exceeds its absolute maximum input rating by 2×. True high-voltage Active candidates must preserve the wide VIN envelope: TI's TPS70933DBVR (150 mA, 30 V operating / 32 V abs max, ultra-low 1 µA Iq, Pin 4 NC, active-high EN — verify 150 mA thermal dissipation at high VIN!) or, for 12 V rails up to 16 V max, TI's LP2985-33DBVR (150 mA, 16 V max, verify Pin 4 is not grounded on the PCB)."
+      ]
+    },
+    {
+      "heading": "3. Case Study B: Migrating Legacy Non-Synchronous Bucks (LM2596 & TPS54331/TPS54231) to Modern Synchronous Converters",
+      "body": [
+        "Legacy non-synchronous buck converters remain entrenched on thousands of industrial schematics despite huge efficiency, board-area, and BOM penalties. TI's iconic LM2596SX-5.0/NOPB (TO-263-5, 4.5–40 V in, fixed 5.0 V / 3 A out, 150 kHz switching frequency) requires a massive 33 µH–68 µH inductor, bulky electrolytic capacitors, and an external 40 V / 5 A Schottky catch diode, topping out around ~80% efficiency while dissipating several watts across the IC and diode. Similarly, TI's classic SOIC-8 non-synchronous sibling pair — 3 A TPS54331DR and 2 A TPS54231DR (3.5–28 V in, 570 kHz, 0.800 V VREF, 80 mΩ high-side FET, non-PowerPAD RθJA = 116.3 °C/W) — offers a clean, pin-for-pin intra-family cost/current scaling path (TPS54231DR can directly second-source TPS54331DR on <= 1.8 A rails, or TPS54331DR can upgrade TPS54231DR for higher current margin), yet both still require an external Schottky catch diode and an external Type-II RC network on Pin 6 (COMP).",
+        "When executing a Level 3 PCB respin to modernize either LM2596SX-5.0/NOPB or TPS54331DR/TPS54231DR, moving to modern synchronous SOT-23-6 / TSOT-23-6 Eco-mode bucks delivers dramatic gains in efficiency, thermal margin, and BOM reduction. Verified Active migration targets in our database include TI's TPS54302DDCR (4.5–28 V in, 3 A, 400 kHz, 0.596 V VREF, ~95% peak efficiency) and its 2 A sibling TPS54202DDCR (4.5–28 V in, 2 A, 500 kHz, 0.596 V VREF), as well as Diodes Inc.'s AP63203WU-7 (fixed 3.3 V, 3.8–32 V in, 2 A, 1.1 MHz) and AP63300WU-7 (adjustable 0.8 V VREF, 3.8–32 V in, 3 A, 500 kHz). Eliminating the external catch diode alone cuts ~0.8–1.5 W of board heat at 12 V–24 V / 2–3 A and shrinks total converter area by over 70%.",
+        "However, every DC-DC migration — even between two SOT-23-6 / TSOT-23-6 synchronous bucks — MUST pass four critical parameter traps before schematic sign-off: (1) Feedback Reference Voltage VREF: TPS54302DDCR/TPS54202DDCR regulate to 0.596 V, TPS563201DDCR/TPS562201DDCR regulate to 0.768 V, while TPS54331DR/TPS54231DR and AP63300WU-7 regulate to 0.800 V — keeping the old divider resistors shifts VOUT by up to 34%! (2) Enable Pin Absolute Maximum Voltage: TPS54231DR and TPS54331DR cap Pin 3 (EN) at strictly 6.0 V abs max despite 28 V VIN (tying EN directly to 12 V/24 V VIN destroys the chip), whereas TPS54302DDCR and AP63300WU-7 tolerate high-voltage EN (still verify exact datasheet abs max!). (3) Switching Frequency & Inductor Scaling: jumping from 150 kHz (LM2596) to 400–570 kHz drops typical inductance from 33–47 µH down to 6.8–10 µH, requiring fresh ripple and saturation-current calculations. (4) Package Thermal Limits: moving from a TO-263-5 power tab to SOT-23-6 only stays thermally safe because synchronous efficiency climbs above 92–95% — always verify worst-case dissipation at 24 V VIN and high ambient temperature."
+      ],
+      "table": {
+        "headers": [
+          "Retiring / Legacy OPN",
+          "Lifecycle / Issue",
+          "Active Candidate Path",
+          "Swap Level",
+          "Mandatory Engineering Checks"
+        ],
+        "rows": [
+          [
+            "CAT6219-330TD-GT3",
+            "EOL (TSOT-23-5, 500 mA)",
+            "AP2112K-3.3TRG1 / TLV75533PDBVR",
+            "Level 2 (Tuning)",
+            "Pin 4 BYPASS -> NC; TSOT 1.0 mm -> SOT 1.45 mm height"
+          ],
+          [
+            "AP2204K-3.3TRG1",
+            "NRND (SOT-23-5, 24 V)",
+            "TPS70933DBVR (30 V, 150 mA)",
+            "Level 1–2",
+            "Preserve >= 24 V VIN rating; verify 1 µA Iq & EN hysteresis"
+          ],
+          [
+            "TPS54331DR (3 A)",
+            "Non-Sync SOIC-8",
+            "TPS54231DR (2 A SOIC-8) / TPS54302DDCR",
+            "Level 2 / Level 3",
+            "2.3 A min ILIM on TPS54231; 0.596 V VREF on TPS54302"
+          ],
+          [
+            "LM2596SX-5.0/NOPB",
+            "Legacy 150 kHz TO-263",
+            "TPS54302DDCR / AP63300WU-7",
+            "Level 3 (Layout)",
+            "Re-spin PCB; drop catch diode; resize L (6.8–10 µH) & FB"
+          ],
+          [
+            "LM1117IMPX-3.3/NOPB",
+            "Tantalum ESR (0.3–22 Ω)",
+            "AZ1117CH-3.3TRG1 / TLV1117-33IDCYR",
+            "Level 1–2",
+            "Verify VOUT tab net; AZ1117CH adds ceramic MLCC stability"
+          ]
+        ]
+      }
+    },
+    {
+      "heading": "4. Case Study C: Managing Fixed 3.3 V, Fixed 5.0 V, and Adjustable SOT-223-3 LDO Second Sources (LM1117 Family)",
+      "body": [
+        "Even when a part family is completely Active — such as Texas Instruments' industrial-grade LM1117I SOT-223-3 (DCY) series — supply-chain and BOM consolidation errors erupt whenever teams mix voltage suffixes or migrate from fixed to adjustable regulators. Our verified database now spans all three industrial LM1117I SOT-223 archetypes: fixed 3.3 V LM1117IMPX-3.3/NOPB (marking N05B), fixed 5.0 V LM1117IMPX-5.0/NOPB (marking N06B), and adjustable LM1117IMPX-ADJ/NOPB (marking N03B, 1.25 V VREF adjustable from 1.25 V to 13.8 V).",
+        "All three share identical mechanical outlines (SOT-223-3 DCY, RθJA = 61.6 °C/W high-K, Pin 2 + Tab = VOUT, Pin 3 = VIN), 800 mA output current, 1.2 V typical / 1.4 V max dropout at 800 mA, 15 V operating max (20 V abs max), and the classic 0.3 Ω to 22 Ω tantalum output-capacitor ESR stability window. Yet swapping ANY two of them onto the wrong PCB causes immediate circuit failure. Populating LM1117IMPX-5.0/NOPB onto a 3.3 V rail blasts 5.0 V into 3.3 V logic (and requires VIN >= 6.5 V instead of 4.75 V); populating LM1117IMPX-ADJ/NOPB onto a fixed 3.3 V or 5.0 V board where Pin 1 ties straight to GND collapses the output rail to 1.25 V.",
+        "When teams intentionally consolidate multiple fixed 1117 SKUs onto a single adjustable LM1117IMPX-ADJ/NOPB to simplify inventory and volume pricing, two datasheet rules from Section 7.6 (pages 7–8 of SNOS412Q) are non-negotiable. First, unlike fixed variants that shunt 5 mA typical quiescent current out through their GND pin, the adjustable LM1117I-ADJ has no GND pin — its internal operating bias current (1.7 mA typ, 5.0 mA max over -40°C to +125°C) exits through VOUT! You MUST size the top feedback resistor R1 between VOUT and ADJ small enough to sink >= 5 mA worst case: R1 <= 1.25 V / 5 mA = 250 Ω (standard practice uses E96 R1 = 121 Ω for ~10.3 mA divider bleed, or 240 Ω for ~5.2 mA). If a designer mistakenly reuses 10 kΩ/20 kΩ CMOS feedback resistors on an LM1117-ADJ, an unloaded rail floats uncontrollably upward toward VIN! Second, account for the adjust-pin current I_ADJ (60 µA typ, 120 µA max) in V_OUT = 1.25 V × (1 + R2/R1) + I_ADJ × R2; keeping R1 at 121 Ω–240 Ω simultaneously satisfies the minimum load rule and keeps the I_ADJ × R2 error term tiny (< 30 mV). Finally, if upgrading a legacy LM1117/AMS1117 socket to ceramic-capacitor stability, choose a VOUT-tab ceramic-stable part like AZ1117CH-3.3TRG1 — NEVER drop a GND-tab SOT-223 like AP7361C-33E-13 or LM2937IMP-3.3/NOPB onto a VOUT-tab copper pour."
+      ],
+      "callout": {
+        "type": "CRITICAL",
+        "title": "LM1117IMPX-ADJ/NOPB Requires R1 <= 249 Ω for Guaranteed 5 mA Minimum Load",
+        "text": "Never use high-ohm (10 kΩ–100 kΩ) feedback dividers with LM1117IMPX-ADJ/NOPB. Because up to 5 mA of internal bias current exits via VOUT over -40°C to +125°C, the VOUT-to-ADJ resistor R1 must be <= 249 Ω (121 Ω recommended) to keep the rail in regulation at zero external load."
+      }
+    },
+    {
+      "heading": "5. The Five-Dimension Thermal, ESR & Electrical Qualification Checklist",
+      "body": [
+        "Whenever an ECO proposes a second source or lifecycle replacement — even one flagged Level 1 Candidate Drop-In — run the candidate across these five physical dimensions before ordering production reels:",
+        "1. Thermal Budget (ΔT and Tj Margin): Calculate P_d = (V_IN(max) − V_OUT) × I_OUT(max) + V_IN × I_Q for LDOs, or conduction + switching loss for DC-DCs, and multiply by the REAL package RθJA (accounting for copper pour area, not just optimistic JEDEC 2s2p values). For instance, LM1117IMPX-5.0/NOPB dropping 12 V to 5.0 V at 350 mA dissipates 2.45 W — at 61.6 °C/W, ΔT reaches 151 °C, smashing right through the 125 °C recommended TJ ceiling even at 25 °C ambient! Always maintain >= 25 °C junction margin at worst-case enclosure ambient.",
+        "2. Output Capacitor ESR & DC-Bias Derating: Confirm whether the replacement requires an explicit minimum ESR floor (0.3–22 Ω on LM1117/AMS1117/LM2937) or is ceramic MLCC stable down to < 5 mΩ (AZ1117CH, AP2112K, TLV755P, TPS7A02). On modern synchronous bucks and tiny 0402/0603 MLCCs, always derate X5R/X7R effective capacitance at operating DC voltage (a 10 µF / 6.3 V 0402 cap can lose 60–75% capacitance at 3.3 V–5.0 V bias).",
+        "3. Voltage Headroom & Transient Margin: Check VIN_abs_max, VIN_rec_max, EN_abs_max, and dropout voltage at max load and max junction temperature (LM1117I dropout widens from 1.2 V typ at 25°C to 1.4 V max over -40°C to 125°C). On 12 V/24 V systems, verify line-surge and hot-plug ceramic ringing headroom.",
+        "4. Control Pin Semantics (EN, PG, SS, BYPASS/NC): Verify active-high vs active-low enable polarity, internal pull-up vs pull-down vs forbidden floating EN state, soft-start ramp time (which governs inrush current into bulk capacitance), and Pin 4 NC vs BYPASS isolation on SOT-23-5 LDOs.",
+        "5. Package Outline, Pin 1 Indexing & Top Marking: Confirm JEDEC body dimensions, seated height (TSOT-23-5 vs SOT-23-5), exposed thermal pad net (VOUT vs GND vs NONE), tape-and-reel Pin 1 quadrant orientation, and laser part-marking code (e.g., N05B vs N06B vs N03B, or 1OGF vs 1ODF) for incoming QC inspection."
+      ]
+    },
+    {
+      "heading": "6. End-to-End Confidential Second-Sourcing Workflow Using Pin2Pin's Zero-Upload Engineering Suite",
+      "body": [
+        "Most enterprise hardware teams are strictly forbidden by NDA from uploading pre-release KiCad, Altium, or OrCAD Bills of Materials to third-party cloud SaaS portals. Pin2Pin Global's entire interactive tool suite runs 100% locally inside your browser JavaScript runtime with zero server uploads, letting you triage and qualify BOM second sources in minutes without leaking a single part number over the network.",
+        "Step 1 — Screen Your Entire Exported BOM Locally (/en/tools/bom-checker/): Paste or drop your raw Altium, KiCad, or EasyEDA CSV/TSV BOM directly into the Zero-Upload BOM Checker v2. Smart passive-skip automatically strips resistors, capacitors, inductors, connectors, and test points before processing up to 100 active IC rows. Voltage-aware matching prevents dangerous cross-voltage false matches (e.g., flagging 5.0 V vs 3.3 V mismatches automatically), footprint conflict detection warns if your BOM lists DIP-8 against SOIC-8, and EOL/NRND lifecycle alerts (like CAT6219-330TD-GT3 and AP2204K-3.3TRG1) surface immediately with one-click Markdown and CSV audit exports.",
+        "Step 2 — Verify Unknown Footprints & Pinout Permutations (/en/tools/pinout-finder/): When you need an active second source that physically fits an existing PCB land pattern — whether a 3-pin SOT-23-3, a VOUT-tab SOT-223-3, or a U-pinout SOT-23-5 — open the Reverse Pinout Finder, select your package and pin-by-pin net assignments (e.g., Pin 1 = IN+, Pin 2 = GND, Pin 3 = IN−, Pin 4 = OUT, Pin 5 = VCC), and instantly filter only exact physical matches.",
+        "Step 3 — Compare Any Two Candidates Live (/en/tools/compare/): Click 'Compare' directly from BOM Checker results or pick any two of our 73 verified OPNs in the Live Side-by-Side Comparator to inspect a full pin-by-pin SVG diff, exposed-pad check, parametric winner matrix, and deterministic Level 1 / Level 2 / Level 3 swap risks.",
+        "Step 4 — Recalculate Feedback Dividers & Thermal Margin (/en/tools/feedback-divider/ & /en/tools/ldo-thermal/): If a DC-DC swap changes VREF (0.800 V -> 0.596 V) or you are consolidating onto LM1117IMPX-ADJ/NOPB, use the E96 1% Feedback Resistor Divider Calculator to pick exact standard resistor pairs with worst-case tolerance error bounds. Then verify junction temperature headroom side-by-side in the LDO Thermal Margin Calculator (Dual-Part Delta mode) or DC-DC Efficiency & Ripple Calculator.",
+        "Step 5 — Bench Sign-Off Against Official PDFs: Export your shortlisted Candidate Drop-In alternatives, open the linked official manufacturer PDFs directly from each part page to confirm the latest revision and PCN status, and complete a current-limited thermal & transient bench test on reworked boards before releasing the production ECO."
+      ],
+      "callout": {
+        "type": "TIP",
+        "title": "Build Dual-Source Resilience Before Allocation Strikes",
+        "text": "Qualifying at least one Level 1 Candidate Drop-In (or documented Level 2 DNP-ready alternate) during initial schematic capture costs ten minutes of engineering time and eliminates months of crisis redesigns when EOL or NRND notices arrive."
+      }
+    }
+  ]
+}

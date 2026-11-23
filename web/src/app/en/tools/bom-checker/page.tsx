@@ -4,38 +4,51 @@ import { ChevronRight, Lock, ShieldCheck } from 'lucide-react';
 import { getBomIndexParts, getSiteConfig } from '@/lib/data-loader';
 import { BomCheckerClient } from '@/components/tools/BomCheckerClient';
 import { DisclaimerStrip } from '@/components/DisclaimerStrip';
+import { ErrorReportButton } from '@/components/ErrorReportButton';
 import { LabGearAffiliate } from '@/components/LabGearAffiliate';
 import { JsonLd } from '@/components/JsonLd';
-import { buildBreadcrumbJsonLd, buildSoftwareAppJsonLd } from '@/lib/format';
+import {
+  buildBreadcrumbJsonLd,
+  buildPageMetadata,
+  buildSoftwareAppJsonLd,
+} from '@/lib/format';
 
 const siteConfig = getSiteConfig();
 
-export const metadata: Metadata = {
-  title: 'Zero-Upload Client-Side BOM CSV Alternative & EOL Risk Checker',
+export const metadata: Metadata = buildPageMetadata({
+  siteUrl: siteConfig.site_url,
+  siteName: siteConfig.site_name,
+  path: '/en/tools/bom-checker',
+  title: 'Zero-Upload BOM CSV Alternative & EOL Checker',
   description:
-    'Audit KiCad, Altium, PADS, and EasyEDA BOM CSV files 100% locally in your browser with zero server upload. Detect EOL/NRND parts, ESR and pinout traps, and candidate drop-in replacements.',
-  alternates: {
-    canonical: `${siteConfig.site_url}/en/tools/bom-checker/`,
-  },
-};
+    'Audit KiCad, Altium, PADS, and JLCPCB BOM CSVs locally in browser memory. Flag EOL parts, footprint conflicts, ESR/pinout traps, and drop-in candidates.',
+});
 
 export default function BomCheckerPage() {
   const bomParts = getBomIndexParts();
   const proWaitlistUrl =
     siteConfig.monetization.bom_pro_waitlist_url || siteConfig.error_report_issue_url;
+  const pagePath = '/en/tools/bom-checker';
 
   const jsonLd = [
     buildBreadcrumbJsonLd(siteConfig.site_url, [
       { name: 'Home', path: '/en' },
-      { name: 'Zero-Upload BOM Checker', path: '/en/tools/bom-checker' },
+      { name: 'Tools', path: '/en/tools' },
+      { name: 'Zero-Upload BOM Checker', path: pagePath },
     ]),
     buildSoftwareAppJsonLd({
       siteUrl: siteConfig.site_url,
       siteName: siteConfig.site_name,
-      path: '/en/tools/bom-checker',
+      path: pagePath,
       name: 'Pin2Pin Zero-Upload Client-Side BOM CSV Alternative & EOL Risk Checker',
       description:
-        'Browser-local semiconductor BOM CSV auditing tool that detects EOL/NRND lifecycle alerts, pinout reversals, ceramic-cap ESR traps, and datasheet-verified candidate alternatives without uploading files to any server.',
+        'Browser-local semiconductor BOM CSV auditing tool that detects EOL/NRND lifecycle alerts, footprint mismatches, pinout reversals, ceramic-cap ESR traps, and datasheet-verified candidate alternatives without uploading files.',
+      featureList: [
+        '100% browser-local CSV parsing (KiCad, Altium, PADS, JLCPCB)',
+        'Footprint vs datasheet package conflict detection',
+        'EOL/NRND lifecycle and critical pinout gotcha flags',
+        'Candidate Drop-In ranking and printable/CSV audit export',
+      ],
     }),
   ];
 
@@ -43,30 +56,42 @@ export default function BomCheckerPage() {
     <div className="space-y-6">
       <JsonLd data={jsonLd} />
 
-      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-slate-500">
+      <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs text-slate-500">
         <Link href="/en" className="hover:text-slate-900">
           Home
+        </Link>
+        <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
+        <Link href="/en/tools" className="hover:text-slate-900">
+          Tools
         </Link>
         <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
         <span className="font-medium text-slate-900">Zero-Upload BOM Checker</span>
       </nav>
 
-      <header className="space-y-2 max-w-3xl">
-        <div className="flex flex-wrap items-center gap-2 font-mono text-[11px] font-bold uppercase">
-          <span className="text-emerald-700">Engineering Tool 04 · BOM Risk Audit</span>
-          <span className="inline-flex items-center gap-1 rounded border border-emerald-300 bg-emerald-50 px-2 py-0.5 text-emerald-900 normal-case">
-            <Lock className="h-3 w-3" aria-hidden="true" />
-            100% Client-Side • Zero-Upload Privacy
-          </span>
+      <header className="flex flex-wrap items-start justify-between gap-4 border-b border-slate-200 pb-4">
+        <div className="space-y-2 max-w-3xl">
+          <div className="flex flex-wrap items-center gap-2 font-mono text-[11px] font-bold uppercase">
+            <span className="text-emerald-700">Engineering Tool 04 · BOM Risk Audit</span>
+            <span className="inline-flex items-center gap-1 rounded border border-emerald-300 bg-emerald-50 px-2 py-0.5 text-emerald-900 normal-case">
+              <Lock className="h-3 w-3" aria-hidden="true" />
+              100% Client-Side • Zero-Upload Privacy
+            </span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-950">
+            Zero-Upload Client-Side BOM CSV Alternative &amp; EOL Risk Checker
+          </h1>
+          <p className="text-sm text-slate-600 leading-relaxed">
+            Drop your KiCad, Altium, PADS, or JLCPCB BOM CSV directly into browser memory to flag
+            EOL/NRND lifecycle hazards, footprint mismatches, reversed-pinout SOT-23 traps, non-MLCC
+            ESR stability risks, and ranked candidate drop-in replacements — with zero server upload.
+          </p>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-950">
-          Zero-Upload Client-Side BOM CSV Alternative &amp; EOL Risk Checker
-        </h1>
-        <p className="text-sm text-slate-600 leading-relaxed">
-          Drop your KiCad, Altium, PADS, or EasyEDA BOM CSV directly into browser memory to flag
-          EOL/NRND lifecycle hazards, reversed-pinout SOT-23 traps, non-MLCC ESR stability risks,
-          and ranked candidate drop-in replacements — with zero server upload.
-        </p>
+
+        <ErrorReportButton
+          siteConfig={siteConfig}
+          subject="Zero-Upload BOM Checker"
+          pagePath={pagePath}
+        />
       </header>
 
       <DisclaimerStrip siteConfig={siteConfig} />
@@ -107,11 +132,13 @@ export default function BomCheckerPage() {
           <h2 className="text-sm font-bold text-slate-950">Related Tools &amp; Field Guides</h2>
           <ul className="space-y-2 text-xs">
             <li>
-              <Link
-                href="/en/catalog"
-                className="font-semibold text-sky-700 hover:underline"
-              >
-                Browse Full Parametric OPN Catalog →
+              <Link href="/en/compare" className="font-semibold text-emerald-700 hover:underline">
+                Freeform 2-OPN Pinout &amp; Spec Comparator →
+              </Link>
+            </li>
+            <li>
+              <Link href="/en/packages" className="font-semibold text-sky-700 hover:underline">
+                Package Pinout Trap Matrix (SOT-23 / SOT-223 / SOIC-8) →
               </Link>
             </li>
             <li>

@@ -1,47 +1,48 @@
 {
   "slug": "about",
   "title": "About Pin2Pin Global",
-  "description": "Mission, dataset scope, and engineering philosophy behind Pin2Pin Global — a datasheet-verified semiconductor pinout and cross-reference database for hardware engineers.",
-  "updated_at": "2026-11-22",
+  "description": "Mission, growing verified dataset scope, and engineering philosophy behind Pin2Pin Global — a datasheet-verified semiconductor pinout and cross-reference database for hardware engineers.",
+  "updated_at": "2026-11-23",
   "sections": [
     {
       "heading": "Why We Built Pin2Pin Global",
       "paragraphs": [
         "Hardware engineers, PCB layout designers, and electronics sourcing teams lose hours every week opening multiple manufacturer PDF datasheets side by side to answer one deceptively dangerous question: can Component B safely replace Component A on an existing PCB?",
-        "Traditional distributor catalogs and datasheet aggregators return raw parametric filters or links to 40-page PDFs, but they rarely surface the physical and electrical traps that actually ruin prototypes — such as SOT-23-3 pinout reversals within the same product family, exposed thermal tabs tied to VOUT instead of GND on SOT-223-3 regulators, ceramic capacitor ESR oscillation on legacy 1117 LDOs, or identical SOIC-8 pinouts shared by push-pull op-amps and open-collector comparators.",
+        "Traditional distributor catalogs and datasheet aggregators return raw parametric filters or links to 40-page PDFs, but they rarely surface the physical and electrical traps that actually ruin prototypes — such as SOT-23-3 and SOT-23-5 pinout reversals within the same product family, exposed thermal tabs tied to VOUT instead of GND on SOT-223-3 regulators, ceramic capacitor ESR oscillation on legacy 1117 LDOs, 7–8 V enable-pin breakdown on 18–28 V buck converters, or identical SOIC-8 pinouts shared by push-pull op-amps and open-collector comparators.",
         "Pin2Pin Global bridges that gap with a strictly structured, page-cited engineering cross-reference database. Every part profile, side-by-side comparison, and alternative hub is anchored to an exact, package-locked Orderable Part Number (OPN) verified directly against official manufacturer PDFs."
       ]
     },
     {
-      "heading": "Phase 1 Engineering Scope (High-Density Analog & Power Pilot)",
+      "heading": "Growing Verified Engineering Database Scope",
       "paragraphs": [
         "Rather than diluting accuracy across tens of thousands of unverified parts or 1,000-page multiplexed microcontrollers where pin-to-pin drop-in replacement rarely holds, Pin2Pin Global intentionally concentrates on <=24-pin analog, power management, and signal-chain devices where package footprints and electrical ratings govern drop-in feasibility.",
-        "Our English-language pilot baseline covers 50 high-demand, verified OPNs across three foundational categories, generating 85 canonically normalized 1:1 comparisons, 50 ranked alternative hubs, 3 interactive client-side engineering calculators, and 5 deep hardware failure-mode guides."
+        "Our continuously expanding English-language catalog currently spans 73+ Dual-Path Vision-verified OPNs (growing steadily via audited drip-feed expansion waves), generating canonically normalized 1:1 comparisons, ranked alternative hubs, 9 deep hardware failure-mode field guides, and 6 interactive browser-local engineering tools."
       ],
       "bullets": [
-        "25 Low-Dropout (LDO) Regulators spanning SOT-23-3, SOT-23-5, TSOT-23-5, and SOT-223-3 packages (fixed 3.3 V rails, ultra-low Iq battery rails, high-voltage 30 V inputs, and 1117-class thermal tabs).",
-        "15 Switching DC-DC Converters across synchronous and non-synchronous Boost, Buck, and Buck-Boost topologies (SOT-23-5, SOT-23-6, TSOT-23-6, SOT-563, SC-70-6, WSON-6, SOIC-8, VSON-10, VSON-14, and TO-263-5).",
-        "10 Operational Amplifiers & Comparators covering single SOT-23-5 and dual SOIC-8 packages, spanning legacy bipolar, JFET audio, low-voltage CMOS rail-to-rail, zero-drift chopper, and open-collector comparator architectures."
+        "Low-Dropout (LDO) Regulators: 33+ verified OPNs spanning SOT-23-3, SOT-23-5, TSOT-23-5, and SOT-223-3 packages (fixed 3.3 V rails, 1 A DBV/DYD thermal limits, ultra-low-Iq battery rails, 18–30 V wide-VIN regulators, and 1117-class thermal tabs).",
+        "Switching DC-DC Converters: 22+ verified OPNs across synchronous and non-synchronous Boost, Buck, and Buck-Boost topologies (SOT-23-5, SOT-23-6, TSOT-23-6, SOT-563, SC-70-6, WSON-6, SOIC-8, VSON-10, VSON-14, and TO-263-5), explicitly tracking VREF shifts, FCCM vs Eco-mode, and EN voltage/float traps.",
+        "Operational Amplifiers & Comparators: 18+ verified OPNs covering single SOT-23-5 and dual SOIC-8 packages, spanning legacy bipolar (TI & onsemi second sources), JFET audio (TL072/TL082/OPA2134), low-voltage RRIO CMOS, zero-drift chopper precision (OPA333/OPA2333), push-pull comparators, and open-collector comparators.",
+        "Interactive Client-Side Engineering Tools: Zero-Upload BOM Checker (live local CSV audit), Interactive Freeform Part-vs-Part Comparator, Package Pinout Trap Matrix, LDO Thermal Margin Calculator, DC-DC Efficiency & Inductor Ripple Calculator, and Op-Amp GBWP & Slew-Rate Checker."
       ]
     },
     {
       "heading": "Core Engineering Principles",
       "paragraphs": [
-        "Every record published on pin2pin.dev adheres to five non-negotiable engineering and compliance standards designed to keep signal-to-noise high and hallucination risk near zero."
+        "Every record published on Pin2Pin Global adheres to five non-negotiable engineering and compliance standards designed to keep signal-to-noise high and hallucination risk near zero."
       ],
       "bullets": [
         "Package-Locked OPN Identity: We never mix multiple packages or pinouts inside a single part record. Every comparison evaluates exact orderable part numbers with verified Top/Bottom view orientation and exposed pad electrical nets.",
         "Official Manufacturer Sources Only: Specifications and pinouts are extracted solely from official semiconductor manufacturer datasheets (such as Texas Instruments, Diodes Incorporated, onsemi, and Advanced Monolithic Systems). We never scrape distributor catalogs or re-host copyrighted PDFs.",
         "Dual-Path Text + 300 DPI Vision Verification: Text parsers frequently misread multi-column tables and vector pinout diagrams. Every published part undergoes independent 300 DPI PNG visual verification of its pinout and key rating tables.",
         "Conservative Three-Tier Compatibility Verdicts: We never issue blanket drop-in guarantees. Parts are deterministically classified into Level 1 Candidate Drop-In, Level 2 Functional / Tuning Required, or Level 3 PCB Layout Change Required with explicit swap risks.",
-        "Client-Side Privacy & Practical Tools: Our LDO thermal margin, DC-DC inductor ripple, and Op-Amp GBWP/slew-rate calculators run 100% locally in your browser with zero server uploads."
+        "Client-Side Privacy & Practical Tools: Our Zero-Upload BOM Checker, Freeform Comparator, Package Pinout Trap Matrix, and LDO/DC-DC/Op-Amp calculators run 100% locally in your browser with zero server uploads."
       ]
     },
     {
       "heading": "Editorial Independence & Sustainability",
       "paragraphs": [
         "Pin2Pin Global is an independent engineering reference resource. Component rankings, compatibility levels, and parameter winner matrices are computed purely by deterministic physical rules and verified datasheet specifications — manufacturers and distributors cannot pay to alter a part's compatibility tier or score.",
-        "To keep all cross-reference tables, SVG pinout diff viewers, and engineering calculators free to use, the site is supported by clearly separated display advertising (activated only after custom-domain compliance review) and contextual affiliate links to bench test equipment, SMD capacitor/inductor sample books, and prototyping adapters. Outbound links to DigiKey, Mouser, and LCSC are standard search deeplinks provided solely for engineer convenience without automated price scraping."
+        "To keep all cross-reference tables, SVG pinout diff viewers, BOM auditing utilities, and engineering calculators free to use, the site is supported by clearly separated display advertising (Google AdSense) and contextual affiliate links to bench test equipment, SMD capacitor/inductor sample books, and prototyping adapters through Amazon Associates (tag: kbu3986-20) and Coupang Partners (Partner ID: AF2200875). Outbound links to DigiKey, Mouser, and LCSC are standard search deeplinks provided solely for engineer convenience without automated price scraping."
       ]
     }
   ]

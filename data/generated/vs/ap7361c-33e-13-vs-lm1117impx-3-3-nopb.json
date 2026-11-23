@@ -54,8 +54,8 @@
       "unit": "V",
       "part_a_value": "2.2 to 6 V (p.4)",
       "part_b_value": "4.75 to 15 V (p.7/p.4)",
-      "winner": "B",
-      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+      "winner": "CONTEXT",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -142,10 +142,15 @@
     "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (VIN vs GND), Pin 2 (GND vs VOUT), Pin 3 (VOUT vs VIN). Soldering LM1117IMPX-3.3/NOPB onto a AP7361C-33E-13 footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
     "CRITICAL SHORT-CIRCUIT HAZARD: Exposed thermal pad/tab net conflict (GND vs VOUT) — direct swap will short power rails.",
     "CRITICAL CAPACITOR ESR OSCILLATION RISK: AP7361C-33E-13 is stable with low-ESR ceramic MLCCs (>= 2.2 µF, p.1), whereas LM1117IMPX-3.3/NOPB is NOT ceramic-cap stable (ESR window: 0.3–22 Ω (p.15)). Using an ultra-low-ESR MLCC on LM1117IMPX-3.3/NOPB can trigger control-loop oscillation.",
+    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs by 4.5x (AP7361C-33E-13: 2.2 µF p.1 vs LM1117IMPX-3.3/NOPB: 10 µF p.15); account for MLCC DC-bias derating.",
     "HIGH INPUT VOLTAGE RATING DROP: AP7361C-33E-13 is rated to only 6 V rec. (6.5 V abs max, p.4) vs LM1117IMPX-3.3/NOPB at 15 V rec. (20 V abs max, p.4). Verify worst-case input transient spikes.",
-    "CAUTION DROPOUT HEADROOM: Typical dropout differs by 860 mV (AP7361C-33E-13: 340 mV p.5 vs LM1117IMPX-3.3/NOPB: 1200 mV p.8); verify Vin,min - Vout >= Vdo at cold/hot corners.",
-    "CAUTION THERMAL MARGIN: Package θJA differs by 44% (AP7361C-33E-13: 110 °C/W p.6 vs LM1117IMPX-3.3/NOPB: 61.6 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max."
+    "HIGH LOAD CURRENT DERATING: LM1117IMPX-3.3/NOPB supplies up to 800 mA (p.7) compared to AP7361C-33E-13 at 1000 mA (p.4); confirm peak inrush and thermal dissipation margin.",
+    "CAUTION DROPOUT HEADROOM: Typical dropout differs (AP7361C-33E-13: 340 mV p.5 vs LM1117IMPX-3.3/NOPB: 1200 mV p.8); verify Vin,min - Vout >= Vdo across temperature and load corners.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: AP7361C-33E-13 has a lower Vin,abs,max rating (6.5 V, p.4) than LM1117IMPX-3.3/NOPB (20 V, p.4); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 6.5 V.",
+    "HIGH THERMAL MARGIN: Package θJA is 79% higher on AP7361C-33E-13 (AP7361C-33E-13: 110 °C/W p.6 vs LM1117IMPX-3.3/NOPB: 61.6 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH MINIMUM SUPPLY FLOOR: LM1117IMPX-3.3/NOPB requires Vin,min >= 4.75 V (p.7) vs 2.2 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (AP7361C-33E-13: -40..85 °C Industrial (-40°C to +85°C TA, TJ up to +150°C) vs LM1117IMPX-3.3/NOPB: -40..125 °C Industrial (-40°C to +125°C TJ, LM1117I grade)); AP7361C-33E-13 hot limit only 85 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "AP7361C-33E-13 (Diodes Incorporated, SOT-223-3) and LM1117IMPX-3.3/NOPB (Texas Instruments, SOT-223-3) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to pinout mismatch on Pin 1 (VIN vs GND), Pin 2 (GND vs VOUT), Pin 3 (VOUT vs VIN); exposed pad / thermal tab net mismatch. Key datasheet deltas: Iq is 60 µA (p.5) vs 5000 µA (p.8), max output current is 1000 mA (p.4) vs 800 mA (p.7), recommended Vin,max is 6 V (p.4) vs 15 V (p.4), typical dropout is 340 mV (p.5) vs 1200 mV (p.8), and ceramic capacitor stability is supported vs ESR-constrained. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 110 vs 61.6 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AP7361C-33E-13 (Diodes Incorporated, SOT-223-3) and LM1117IMPX-3.3/NOPB (Texas Instruments, SOT-223-3) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to pinout mismatch on Pin 1 (VIN vs GND), Pin 2 (GND vs VOUT), Pin 3 (VOUT vs VIN); exposed pad / thermal tab net mismatch. Specific pin conflicts: Pin 1 (VIN vs GND), Pin 2 (GND vs VOUT), Pin 3 (VOUT vs VIN). Under a representative 5 V → 3.3 V rail at 150 mA (255 mW), estimated self-heating is ΔTj ≈ 28.1 °C on AP7361C-33E-13 (θJA 110 °C/W) vs 15.7 °C on LM1117IMPX-3.3/NOPB (θJA 61.6 °C/W), while quiescent draw spans a 83.3x ratio (60 µA (p.5) vs 5000 µA (p.8)). Primary bench gotchas to watch: AP7361C-33E-13 \"CRITICAL E vs. ER Suffix Pinout Trap — AP7361C-33E-13 is INCOMPATIBLE with 1117 Pads\" (p.15) and LM1117IMPX-3.3/NOPB \"Strict 0.3–22 Ohm ESR Window — Unstable With Direct MLCC Ceramic Output Capacitors\" (p.15). BOM decision: Choose AP7361C-33E-13 when load current exceeds 800 mA (up to 1000 mA) or battery sleep budget demands 60 µA Iq; choose LM1117IMPX-3.3/NOPB when input rails climb above 6 V (rated to 15 V) or lower package θJA (61.6 °C/W) is needed for thermal margin. Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

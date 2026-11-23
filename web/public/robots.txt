@@ -1,5 +1,4 @@
 User-agent: *
-Allow: /pin2pin-global/en/
-Disallow: /pin2pin-global/_next/
+Allow: /
 
 Sitemap: https://kbu3986.github.io/pin2pin-global/sitemap.xml

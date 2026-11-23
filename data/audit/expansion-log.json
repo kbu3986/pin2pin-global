@@ -35,6 +35,25 @@
         "Enabled AdSense (ca-pub-8587506565277191), Coupang KR (AF2200875) + Amazon US (kbu3986-20), GA4/event tracking hooks",
         "Added 2 deep field guides (DC-DC VREF/EN traps, Op-Amp vs Comparator SOIC-8 traps) & Community Launch Playbook"
       ]
+    },
+    {
+      "run_id": "2026-11-23-wave2b-v3-upgrade",
+      "date": "2026-11-23",
+      "wave": "Wave 2B + v3.0 Workbench, XRef Hardening & Full SEO Architecture",
+      "parts_added": 15,
+      "total_parts": 80,
+      "total_vs": 178,
+      "total_guides": 11,
+      "total_tools": 7,
+      "total_en_pages": 368,
+      "qa_gates_passed": "7/7",
+      "highlights": [
+        "Added 15 Vision-verified OPNs (65 -> 80 total) including LM393DR2G, LM2903DR, LMV331IDBVR, TLV7011DBVR, TLV9001UIDBVR, TL082IDR, LM358DR2G, TLV75733PDBVR, TPS7A2433DBVR, NCP1117LPST33T3G, TPS563208DDCR, AP62300WU-7, TPS54231DR, LM1117IMPX-5.0/ADJ",
+        "Hardened Stage 3 XRef Engine: fixed DC-DC Vout mismatch L1 hazard, OTHER pin guard, push-pull comparator copy fix, Op-Amp vs Comparator & DC-DC topology -> L3 segregation, AUD-02 package parity, theta_JA/ESR/Vin_min guards, and EOL/NRND Alt Hub scoring penalties",
+        "Launched 5 core hubs (/en/compare, /en/packages Pinout Trap Matrix, /en/vs, /en/guides, /en/tools) + Feedback Resistor Divider & Pinout Reverse-Finder tools + Ctrl+K Command Palette + Catalog Sticky Compare Tray + Print CSS",
+        "Upgraded PackagePinoutSvg (TO-263-5 fix, EP/Tab red conflict badge, Top/Bottom PCB mirror, synchronized VS hover, Copy MD/Download SVG), all 3 calculators (full-DB search, shareable URL state, SVG plots, Comparator RC mode), and BOM Checker v2 (RFC-4180 parser, column mapper, footprint mismatch alert, 0-100 Readiness Score)",
+        "Fixed critical SEO & AdSense defects: removed robots.txt /_next/ disallow, moved AdSense script out of 404/redirect, gated empty AdSense <ins>, generated OG/ICO/Apple-Touch PNGs, added IndexNow key, per-record lastmod, and 100% reciprocal guide/tool internal linking across all part/vs/alt pages"
+      ]
     }
   ]
 }

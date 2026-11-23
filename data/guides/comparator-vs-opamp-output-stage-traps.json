@@ -1,0 +1,275 @@
+{
+  "slug": "comparator-vs-opamp-output-stage-traps",
+  "title": "Comparator Output Stages & Op-Amp Misuse Traps: Push-Pull, Open-Collector Pull-Ups, Hysteresis, and SOT-23-5 U-Pinouts",
+  "subtitle": "A datasheet-verified field guide to push-pull versus open-collector comparators, pull-up resistor RC sizing, catastrophic op-amp clamp-diode failures, positive-feedback hysteresis, and reversed SOT-23-5 pinouts.",
+  "category": "opamp",
+  "reading_time_min": 12,
+  "published_at": "2026-11-23",
+  "updated_at": "2026-11-23",
+  "author_role": "Senior Analog & Mixed-Signal Hardware Engineer",
+  "summary": "Swapping between push-pull comparators, open-collector comparators, and general-purpose op-amps causes silent logic contention, floating fault buses, input-stage current runaway, and PCB smoke. This guide breaks down the exact silicon mechanics across verified TI and onsemi comparators and op-amps — from pull-up sizing equations to SOT-23-5 U-pinout reversals.",
+  "key_takeaways": [
+    "Push-pull comparators (TLV3201AIDBVR, TLV7011DBVR) actively source and sink to VCC/VEE — tying their outputs together in a wired-AND bus or pulling them above VCC + 0.3 V causes destructive bus contention.",
+    "Open-collector comparators (LM393DR, LM2903DR, LM393DR2G, LMV331IDBVR) require external pull-up resistors; R_pu sets both worst-case sink saturation current (keep <= 4 mA for VOL <= 400 mV) and rising-edge RC delay (t_r ≈ 2.2 × R_pu × C_load).",
+    "Never repurpose NE5532DR (anti-parallel input protection diodes conducting mA at |Vid| > 0.7 V) or zero-drift chopper OPA333AIDBVR (52 µs overload recovery and 0.16 V/µs slew) as a comparator.",
+    "On 5-pin SOT-23-5 footprints, Pin 1 and Pin 4 are completely inverted between Standard pinout (TLV3201AIDBVR, TLV7011DBVR, TLV9001IDBVR) and U-pinout (LMV331IDBVR, LMV321IDBVR, TLV9001UIDBVR)."
+  ],
+  "related_parts": [
+    "tlv3201aidbvr",
+    "tlv7011dbvr",
+    "lmv331idbvr",
+    "lm393dr",
+    "lm2903dr",
+    "lm393dr2g",
+    "ne5532dr",
+    "opa333aidbvr",
+    "lmv321idbvr",
+    "tlv9001uidbvr"
+  ],
+  "related_vs": [
+    "lm358dr-vs-lm393dr",
+    "lm393dr-vs-lmv358idr",
+    "lm358dr-vs-ne5532dr",
+    "opa333aidbvr-vs-tlv3201aidbvr",
+    "tlv3201aidbvr-vs-tlv9001idbvr",
+    "lmv321idbvr-vs-tlv3201aidbvr"
+  ],
+  "sections": [
+    {
+      "heading": "1. Push-Pull vs Open-Collector Output Stages: The Two Fundamental Comparator Architectures",
+      "body": [
+        "When an engineer selects a voltage comparator for a power-good supervisor, current-limit trip detector, or zero-crossing sensor, the first architectural fork in the road is the output stage topology: push-pull CMOS versus open-collector (or open-drain) sinking. Although both topologies convert a differential analog voltage (IN+ minus IN−) into a binary digital state, their electrical behavior under load, fault conditions, and level translation could not be more different.",
+        "A push-pull comparator such as the Texas Instruments TLV3201AIDBVR (43 ns typical propagation delay, 40 µA Iq) or micropower TLV7011DBVR (260–310 ns typical propagation delay, 5 µA Iq) uses a complementary pair of output MOSFETs — a P-channel FET pulling actively up to VCC and an N-channel FET pulling actively down to VEE/GND. Push-pull outputs deliver symmetric nanosecond rise and fall edges (2.9–5 ns typical), eliminate external pull-up resistors, and draw zero static load current in either logic state when driving high-impedance CMOS MCU inputs. For battery-powered designs where a comparator sits in a logic-low state for 99% of its lifetime, eliminating a pull-up resistor saves hundreds of microamps of wasted bias current.",
+        "However, push-pull outputs carry two strict prohibitions that repeatedly bite hardware teams during late-stage BOM substitutions. First, you can NEVER tie two push-pull outputs together onto a shared fault or reset line (wired-AND). If Comparator A drives logic high (VCC) while Comparator B asserts logic low (GND), the two complementary MOSFETs create a direct low-impedance short across the supply rail limited only by their 44–65 mA short-circuit current ratings, overheating the tiny SOT-23-5 package (RθJA = 306.3 °C/W on TLV7011DBVR) and corrupting the logic bus to an indeterminate mid-rail voltage. Second, a push-pull output is strictly clamped by its high-side P-FET body diode to VCC + 0.3 V. Attempting to pull TLV7011DBVR's output up to a 5 V logic rail while powering the IC from 3.3 V back-powers the 3.3 V rail straight through the output ESD/body diode.",
+        "By contrast, classic open-collector comparators — anchored by the 30–36 V industry-standard dual LM393DR (TI, 0°C to 70°C), extended-temperature LM2903DR (TI, -40°C to 125°C), second-source LM393DR2G (onsemi), and 5.5 V single LMV331IDBVR — omit the upper pull-up transistor entirely. Their output pin is simply the collector of a grounded-emitter NPN transistor. When IN+ < IN−, the NPN turns on and sinks current to GND; when IN+ > IN−, the NPN turns off and the output floats in a high-impedance state until an external pull-up resistor pulls the node to the target logic rail. That architecture enables effortless wired-AND fault aggregation across multiple window comparators and, on high-voltage devices like LM393DR/LM2903DR, clean level translation from a 24 V analog sensing domain down to a 3.3 V MCU GPIO (or vice versa up to 36 V).",
+        "Watch one critical exception on low-voltage open-collector devices: LMV331IDBVR has an absolute maximum VCC rating of 5.5 V and a recommended VOUT ceiling of VCC+ + 0.3 V (page 4 of SLCS136V). Unlike a 36 V LM393DR or an open-drain TLV7021, you cannot pull LMV331IDBVR's output significantly above its own supply rail. Always check the exact VOUT absolute maximum rating in the datasheet rather than assuming every open-collector pin tolerates 24 V or 36 V."
+      ],
+      "callout": {
+        "type": "CRITICAL",
+        "title": "Never Swap Push-Pull Into a Wired-AND Bus — Or Open-Collector Without a Pull-Up",
+        "text": "Dropping push-pull TLV3201AIDBVR or TLV7011DBVR onto an open-collector wired-AND fault bus causes 44–65 mA rail-to-rail contention when outputs disagree. Conversely, dropping open-collector LM393DR, LM2903DR, or LMV331IDBVR onto a push-pull footprint leaves the logic-high state permanently floating unless an external pull-up resistor is fitted."
+      }
+    },
+    {
+      "heading": "2. Pull-Up Resistor (R_pu) Engineering: Sizing for Rise Time, Sink Current, and Static Power",
+      "body": [
+        "When designing with open-collector comparators like LM393DR, LM2903DR, LM393DR2G, or LMV331IDBVR, choosing the external pull-up resistor R_pu is a three-way physics optimization between rising-edge speed, output saturation voltage (VOL), and battery/thermal power budget. Throwing an arbitrary 100 kΩ or 1 kΩ resistor onto a schematic without checking the datasheet numbers is one of the fastest ways to create intermittent logic-threshold failures in production.",
+        "Start with the low-level sink current limit and output saturation voltage VOL. Both TI's LM393DR/LM2903DR and onsemi's LM393DR2G guarantee a minimum sink current I_OL of only 6.0 mA at V_OL = 1.5 V, and specify V_OL <= 400 mV at 25°C (rising to 700 mV max over temperature) ONLY when I_OL <= 4.0 mA. On LMV331IDBVR at 5 V, V_SAT is similarly characterized at I_O <= 4 mA (150 mV typ, 400 mV max at 25°C, 700 mV max over -40°C to 125°C). If a designer uses a stiff 470 Ω pull-up to a 5 V rail, the comparator must sink I_sink ≈ (5.0 V − 0.4 V) / 470 Ω ≈ 9.8 mA whenever the output asserts low — exceeding the 4 mA saturation spec and risking pulling V_OL above a 3.3 V CMOS logic-low threshold (V_IL ≈ 0.8 V–1.0 V). Keeping I_sink strictly between 0.5 mA and 3.0 mA establishes a hard lower bound: R_pu(min) >= (V_pu − 0.4 V) / 3 mA (roughly 1.5 kΩ on 5 V, 1.0 kΩ on 3.3 V, or 8.2 kΩ on 24 V).",
+        "Next, evaluate the rising-edge RC time constant that determines R_pu(max). When an open-collector output releases from low to high, the NPN transistor turns off and the external resistor R_pu alone must charge the total parasitic capacitance C_load (comparator output capacitance + PCB trace + downstream MCU/gate input capacitance + oscilloscope probe, typically 15 pF to 50 pF). The 10%-to-90% rise time obeys t_r ≈ 2.2 × R_pu × C_load, and the 50% logic-transition delay adds roughly 0.69 × R_pu × C_load on top of the comparator's internal propagation delay. For example, with C_load = 30 pF and R_pu = 100 kΩ, the passive rise time balloons to t_r ≈ 2.2 × 100 kΩ × 30 pF = 6.6 µs — five times slower than LM393DR's 1.3 µs intrinsic response time! Worse, slow microsecond transitions linger inside a downstream CMOS gate's indeterminate switching region, triggering shoot-through current spikes or double-clocked interrupts.",
+        "Finally, calculate worst-case static dissipation whenever the comparator output rests in its logic-low state: P_pullup = (V_pu − V_OL)² / R_pu and I_static = (V_pu − V_OL) / R_pu. On a 3.3 V coin-cell sensor running a 26 µA LMV331IDBVR, a 3.3 kΩ pull-up burns 1,000 µA continuously in the low state — nearly 40× the comparator's own quiescent current! In ultra-low-power designs, either invert the comparator sense polarity so the output rests open (high) during normal standby, increase R_pu to 47 kΩ–100 kΩ where slow edges are acceptable, or switch directly to a micropower push-pull comparator like TLV7011DBVR (5 µA Iq, zero pull-up waste, 5 ns symmetric edges). The datasheet switching test condition for LM393DR, LM2903DR, LM393DR2G, and LMV331IDBVR — R_L = 5.1 kΩ to 5 V — hits the classic sweet spot: ~0.95 mA sink current, V_OL < 150 mV, and ~170 ns RC rise time into 15 pF."
+      ],
+      "table": {
+        "headers": [
+          "Comparator OPN",
+          "Output Stage",
+          "Supply Range (Rec / Abs)",
+          "Iq / ch (typ)",
+          "Prop Delay (typ)",
+          "Sink Spec / VOL",
+          "Pull-Up Needed?"
+        ],
+        "rows": [
+          [
+            "TLV3201AIDBVR",
+            "Push-Pull (RRO)",
+            "2.7–5.5 V / 7 V",
+            "40 µA",
+            "43 ns (100 mV OD)",
+            "48 mA ISC sink",
+            "No (NEVER wired-AND)"
+          ],
+          [
+            "TLV7011DBVR",
+            "Push-Pull (RRO)",
+            "1.6–5.5 V / 6 V",
+            "5 µA",
+            "260–310 ns",
+            "44 mA ISC sink",
+            "No (NEVER wired-AND)"
+          ],
+          [
+            "LMV331IDBVR",
+            "Open-Collector",
+            "2.7–5.5 V / 5.5 V",
+            "26 µA",
+            "200–300 ns",
+            "150 mV @ 4 mA",
+            "Yes (<= VCC+ + 0.3 V)"
+          ],
+          [
+            "LM393DR (TI)",
+            "Open-Collector",
+            "2–30 V / 36 V",
+            "225 µA",
+            "1300 ns (5 mV OD)",
+            "130 mV @ 4 mA",
+            "Yes (up to 36 V)"
+          ],
+          [
+            "LM2903DR (TI)",
+            "Open-Collector",
+            "2–30 V / 36 V",
+            "400 µA",
+            "1300 ns (5 mV OD)",
+            "150 mV @ 4 mA",
+            "Yes (up to 36 V)"
+          ],
+          [
+            "LM393DR2G (onsemi)",
+            "Open-Collector",
+            "2–36 V / 36 V",
+            "200 µA",
+            "1300 ns (5 mV OD)",
+            "150 mV @ 4 mA",
+            "Yes (up to 36 V)"
+          ]
+        ]
+      }
+    },
+    {
+      "heading": "3. Why Using an Op-Amp as a Comparator Fails Catastrophically (NE5532DR & OPA333AIDBVR Case Studies)",
+      "body": [
+        "Every hardware engineer eventually encounters a legacy schematic with one spare half of a dual SOIC-8 op-amp pressed into service as a voltage comparator. Because an op-amp is a high-gain differential amplifier, it appears to work on a benign 1 Hz bench test — right up until mass production or a BOM change triggers bizarre system faults. Dedicated comparators are architected from the ground up to operate open-loop with huge differential input voltages and rapid recovery from rail saturation; operational amplifiers are explicitly architected under the assumption that negative feedback keeps V(IN+) ≈ V(IN−) within a few millivolts at all times.",
+        "The single most destructive op-amp-as-comparator trap in our verified dataset is the NE5532DR low-noise dual audio op-amp (and similar bipolar precision op-amps). To protect its high-gain NPN input differential pair from reverse base-emitter breakdown, NE5532DR places back-to-back anti-parallel clamp diodes directly between IN+ and IN−! In linear closed-loop operation, |V(IN+) − V(IN−)| is microvolts so those diodes remain completely off. The instant you run NE5532DR open-loop as a comparator with 2.5 V on IN+ and 0 V on IN−, the internal clamp diode forward-biases hard at ~0.6–0.7 V, shorting your sensor input straight into your reference voltage divider! With 10 mA+ flowing between inputs, your reference voltage collapses, adjacent channels sharing the same VREF drift wildly, and the internal input transistors suffer long-term beta degradation or thermal destruction.",
+        "A second insidious trap occurs when engineers repurpose a precision zero-drift chopper op-amp like OPA333AIDBVR (SOT-23-5) or OPA2333AIDR (SOIC-8) as a low-offset threshold detector. On paper, OPA333's 10 µV max offset looks tempting for millivolt current-shunt fault detection. In reality, OPA333AIDBVR is internally compensated for a sluggish 350 kHz GBWP and 0.16 V/µs slew rate, AND its auto-zeroing chopper correction loop saturates hard whenever driven open-loop against a rail. Its datasheet specifies a 52 µs overload recovery time (nearly 1,200× slower than TLV3201AIDBVR's 43 ns propagation delay!), during which the internal correction capacitors must bleed off charge before the output even begins slewing at 0.16 V/µs (~31 µs just to cross a 5 V rail). A short-circuit MOSFET fault will melt the power stage long before an OPA333 'comparator' ever toggles.",
+        "Even general-purpose op-amps without input clamp diodes — such as LM358DR, LMV358IDR, or TLV9001IDBVR — suffer three fundamental comparator handicaps: (1) their internal Miller compensation capacitor deliberately limits slew rate (0.3–2 V/µs), turning crisp threshold crossings into sluggish multi-microsecond ramps that violate digital logic input rise-time specs; (2) non-rail-to-rail outputs like LM358DR (VOH ≈ VCC − 1.5 V) fail to drive 3.3 V or 5 V CMOS logic high reliably without level shifting; and (3) many op-amps exhibit severe phase reversal or elevated quiescent current spikes when driven into deep open-loop overdrive. Always reserve op-amps for closed-loop linear stages and populate genuine comparators for open-loop threshold decisions."
+      ],
+      "callout": {
+        "type": "CRITICAL",
+        "title": "NE5532DR Input Clamp Diodes Short IN+ to IN− Under Open-Loop Comparator Use",
+        "text": "NE5532DR integrates anti-parallel input protection diodes across IN+ and IN−. Any differential input voltage exceeding ~0.6 V forward-biases these diodes, drawing heavy current between the signal and reference nodes. Never use NE5532DR (or chopper OPA333AIDBVR with 52 µs overload recovery) in an open-loop comparator circuit."
+      }
+    },
+    {
+      "heading": "4. Hysteresis Design, Chatter Immunity, and Input Common-Mode Substrate Traps",
+      "body": [
+        "Even with a genuine comparator, an unprotected open-loop threshold detector driven by a slow-moving battery voltage, NTC thermistor, or noisy shunt amplifier will burst into megahertz output chatter right as the signal crosses the reference threshold. Because comparators boast 50,000–200,000 V/V open-loop gain with zero frequency compensation, microvolts of thermal noise or power-rail bounce coupled back through PCB stray capacitance flip the output back and forth dozens of times per crossing.",
+        "Modern CMOS comparators like TLV7011DBVR build in internal hysteresis — specifically V_HYS = 4.2 mV typical (1.2 mV min, 14 mV max per Section 6.8 of SLVSDM5F) — and TLV3201AIDBVR similarly integrates ~1.2 mV internal hysteresis to suppress thermal noise chatter on clean signals. However, notice two practical consequences: first, TLV7011's internal hysteresis varies up to 14 mV max across process and temperature, which adds directly to its ±8 mV max V_IO when budgeting worst-case threshold accuracy; second, industrial legacy comparators like LM393DR, LM2903DR, LM393DR2G, and LMV331IDBVR have ZERO internal hysteresis and MUST receive external positive feedback whenever inputs slew slower than ~10 V/ms or carry millivolts of switching ripple.",
+        "Implementing deterministic external hysteresis on a non-inverting comparator requires just two resistors: a series input resistor R_in feeding IN+ and a positive-feedback resistor R_fb from OUT back to IN+. For a push-pull comparator (TLV3201AIDBVR or TLV7011DBVR) swinging cleanly from 0 V to VCC, the resulting hysteresis band is simply V_HYS ≈ VCC × (R_in / (R_in + R_fb)). Choosing R_in = 10 kΩ and R_fb = 1 MΩ on a 3.3 V rail yields a crisp ~33 mV deadband that rejects typical DC-DC ripple cleanly. For an open-collector comparator (LM393DR, LM2903DR, LMV331IDBVR), remember that when the output releases high, R_pu sits in series with R_fb! Thus the high-going feedback resistance is (R_fb + R_pu) whereas the low-going resistance is R_fb alone. Keeping R_fb >= 10 × R_pu (for instance, R_pu = 5.1 kΩ and R_fb >= 100 kΩ) preserves symmetric hysteresis thresholds and prevents the feedback network from loading the output pull-up voltage.",
+        "Finally, never overlook two datasheet-cited input traps on LM393/LM2903 and LMV331 comparators. First, while both families sense cleanly down to 0 V (ground), their upper common-mode ceiling stops well short of the positive rail: VCC − 2.0 V over full temperature on LM393DR/LM2903DR/LM393DR2G, and VCC − 0.8 V (4.2 V on a 5 V rail) on LMV331IDBVR. (Thankfully, on LM393/LM2903, only ONE input must remain within 0 to VCC − 2 V for the output polarity to stay valid; if both inputs exceed VCC − 2 V, the output behavior is indeterminate.) Second, NEVER allow either input pin on LM393/LM2903/LMV331 to swing more than 0.3 V below GND: forward-biasing the parasitic substrate diode turns on lateral NPN structures inside the die, spiking ICC and inverting the comparator output state! Always add a series current-limiting resistor (1 kΩ–10 kΩ) and external Schottky clamp diode to GND whenever sensing inductive or negative-going signals."
+      ],
+      "callout": {
+        "type": "WARNING",
+        "title": "Parallel Output-to-IN− Trace Routing Causes Self-Oscillation on LM393 / LM2903",
+        "text": "onsemi's LM393/D datasheet (p.5) explicitly warns that routing Pin 1 (1OUT) parallel to Pin 2 (1IN−) — or Pin 7 (2OUT) parallel to Pin 6 (2IN−) — introduces stray negative-to-positive phase-shifted feedback capacitance that triggers oscillation during transitions. Keep input impedances low, place a grounded guard trace between OUT and IN−, and add a local 0.1 µF ceramic decoupling cap directly across Pins 4 and 8."
+      }
+    },
+    {
+      "heading": "5. The SOT-23-5 Single Comparator & Op-Amp Pinout Minefield (Standard vs U-Pinout)",
+      "body": [
+        "Even when an engineer correctly chooses a dedicated comparator with the right output stage and voltage rating, a deadly physical trap lurks inside the 5-pin SOT-23-5 (TI DBV) package. Unlike 8-pin SOIC dual devices — where LM393DR, LM2903DR, LM393DR2G, LM358DR, LMV358IDR, TLV9002IDR, NE5532DR, and OPA2333AIDR all share the identical 8-pin layout — 5-pin single SOT-23-5 devices split down the middle into TWO incompatible pinout standards: the Standard DBV pinout and the Reversed U-Pinout.",
+        "On Standard SOT-23-5 parts — including push-pull comparators TLV3201AIDBVR and TLV7011DBVR as well as RRIO op-amps TLV9001IDBVR, TLV9061IDBVR, and OPA333AIDBVR — Pin 1 is OUT, Pin 2 is VEE/GND, Pin 3 is IN+, Pin 4 is IN−, and Pin 5 is VCC. By contrast, on U-Pinout SOT-23-5 parts — inherited from the historic National Semiconductor LMV321/LMV331 family and carried forward by LMV331IDBVR (open-collector comparator), LMV321IDBVR (single op-amp), and TLV9001UIDBVR (U-pinout RRIO op-amp upgrade) — Pin 1 is IN+, Pin 2 is GND/V−, Pin 3 is IN−, Pin 4 is OUT, and Pin 5 is VCC+.",
+        "Notice how treacherous this trap is during BOM substitution or SMT kitting: Pin 2 (GND) and Pin 5 (VCC) are in the EXACT same locations on both pinouts! That means a continuity beep test on the power rails passes 100%, and the board won't immediately trip a bench current limit on power-up. Instead, your analog sensor signal drives the IC's output stage (or vice versa), while the inverting and non-inverting inputs sit scrambled across Pins 1, 3, and 4. Even within a single TI datasheet (SBOS833R for TLV9001), a single letter 'U' separates standard TLV9001IDBVR (top mark 1OGF) from U-pinout TLV9001UIDBVR (top mark 1ODF). Always verify Pin 1 and Pin 4 on the 300 DPI datasheet Top View diagram before locking a SOT-23-5 second source."
+      ],
+      "table": {
+        "headers": [
+          "SOT-23-5 OPN",
+          "Device Kind",
+          "Output Stage",
+          "Pin 1",
+          "Pin 2",
+          "Pin 3",
+          "Pin 4",
+          "Pin 5",
+          "Pinout Family"
+        ],
+        "rows": [
+          [
+            "TLV3201AIDBVR",
+            "Comparator",
+            "Push-Pull",
+            "OUT",
+            "GND",
+            "IN+",
+            "IN−",
+            "VCC",
+            "Standard DBV"
+          ],
+          [
+            "TLV7011DBVR",
+            "Comparator",
+            "Push-Pull",
+            "OUT",
+            "VEE",
+            "IN+",
+            "IN−",
+            "VCC",
+            "Standard DBV"
+          ],
+          [
+            "TLV9001IDBVR",
+            "Op-Amp",
+            "Push-Pull",
+            "OUT",
+            "V−",
+            "IN+",
+            "IN−",
+            "V+",
+            "Standard DBV"
+          ],
+          [
+            "OPA333AIDBVR",
+            "Chopper Op-Amp",
+            "Push-Pull",
+            "OUT",
+            "V−",
+            "IN+",
+            "IN−",
+            "V+",
+            "Standard DBV"
+          ],
+          [
+            "LMV331IDBVR",
+            "Comparator",
+            "Open-Collector",
+            "1IN+",
+            "GND",
+            "1IN−",
+            "OUT",
+            "VCC+",
+            "U-Pinout (Reversed)"
+          ],
+          [
+            "LMV321IDBVR",
+            "Op-Amp",
+            "Push-Pull",
+            "1IN+",
+            "GND",
+            "1IN−",
+            "OUT",
+            "VCC+",
+            "U-Pinout (Reversed)"
+          ],
+          [
+            "TLV9001UIDBVR",
+            "Op-Amp",
+            "Push-Pull",
+            "IN+",
+            "V−",
+            "IN−",
+            "OUT",
+            "V+",
+            "U-Pinout (Reversed)"
+          ]
+        ]
+      }
+    },
+    {
+      "heading": "6. Six-Point Pre-Layout & Bench Verification Protocol for Comparator Swaps",
+      "body": [
+        "Before approving any comparator selection, op-amp-to-comparator migration, or dual-source ECO (such as pairing TI LM393DR with onsemi LM393DR2G or industrial TI LM2903DR), run every candidate through this six-point engineering checklist using Pin2Pin Global's zero-upload tools:",
+        "1. Lock Device Kind & Output Stage First: Confirm on Pin2Pin's Live Side-by-Side Comparator (/en/tools/compare/) that both parts are dedicated comparators (never op-amps) and share the same output stage (push-pull vs open-collector). If migrating open-collector to push-pull, verify no wired-AND sharing or pull-up above VCC exists.",
+        "2. Verify Pinout Family Visually: Use the Reverse Pinout Finder (/en/tools/pinout-finder/) and SVG Top View diff to confirm Standard DBV (Pin 1 = OUT) versus U-Pinout (Pin 1 = IN+, Pin 4 = OUT) on SOT-23-5, and confirm exact OPN laser top-mark codes on incoming SMT reels.",
+        "3. Check Both Operating & Absolute-Max Voltage Ceilings: Remember that LMV331IDBVR has ZERO headroom above 5.5 V (abs max = 5.5 V), TLV7011DBVR caps at 6 V abs max, while LM393DR/LM2903DR/LM393DR2G tolerate 36 V. Check both VCC and VOUT pull-up rails against worst-case inductive overshoot.",
+        "4. Validate Pull-Up Sizing & Toggle Rate: Run the Op-Amp & Comparator Checker (/en/tools/opamp-gbwp-slew/) in Comparator Mode to compute R_pu sink current, rise time t_r ≈ 2.2 × R_pu × C_load, and maximum toggle frequency f_max ≈ 1 / (4 × t_pd). Keep sink current <= 4 mA on LM393/LM2903/LMV331 for guaranteed VOL <= 400 mV.",
+        "5. Budget Full-Temperature Offset + Hysteresis + Temperature Grade: Notice that upgrading commercial LM393DR (0°C to 70°C, 5 mV / 9 mV max VIO) to industrial LM2903DR (-40°C to 125°C) widens guaranteed offset to 7 mV at 25°C and 15 mV over full temperature, and increases typical Iq from 225 µA/ch to 400 µA/ch. Confirm your trip threshold tolerance still holds across -40°C to +125°C.",
+        "6. Scope Both Edges Under Worst-Case Slow Ramp: On the first prototype, sweep the analog input slowly across the trip threshold while probing OUT with a low-capacitance 10× probe at 20 ns/div. Confirm a single monotonic transition with zero multi-pulse chatter, verify V_OL meets logic-low margin at max ambient temperature, and confirm neither input dips below −0.3 V during power-up or inductive load dumps."
+      ],
+      "callout": {
+        "type": "TIP",
+        "title": "Run Any Two Parts Through Pin2Pin's Comparator & Pinout Tools Before ECO Sign-Off",
+        "text": "Every classification on Pin2Pin Global — including Level 1 Candidate Drop-In — is an engineering screening candidate, never a production guarantee. Always verify your exact pull-up resistor, hysteresis band, and input common-mode limits against the latest official TI or onsemi PDF datasheet before releasing production Gerbers."
+      }
+    }
+  ]
+}

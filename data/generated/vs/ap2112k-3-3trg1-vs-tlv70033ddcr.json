@@ -72,8 +72,8 @@
       "unit": "V",
       "part_a_value": "2.5 to 6 V (p.3)",
       "part_b_value": "2 to 5.5 V (p.5)",
-      "winner": "TIE",
-      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+      "winner": "CONTEXT",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -158,8 +158,10 @@
   ],
   "swap_risks": [
     "HIGH LOAD CURRENT DERATING: TLV70033DDCR supplies up to 200 mA (p.5) compared to AP2112K-3.3TRG1 at 600 mA (p.8); confirm peak inrush and thermal dissipation margin.",
-    "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (AP2112K-3.3TRG1: 184 °C/W vs TLV70033DDCR: 235.9 °C/W) and worst-case ambient temperature (-40..85 °C vs -40..125 °C)."
+    "HIGH THERMAL MARGIN: Package θJA is 28% higher on TLV70033DDCR (AP2112K-3.3TRG1: 184 °C/W p.3 vs TLV70033DDCR: 235.9 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH MINIMUM SUPPLY FLOOR: AP2112K-3.3TRG1 requires Vin,min >= 2.5 V (p.3) vs 2 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (AP2112K-3.3TRG1: -40..85 °C Industrial (-40°C to +85°C) vs TLV70033DDCR: -40..125 °C Extended Industrial (-40°C to +125°C TJ)); AP2112K-3.3TRG1 hot limit only 85 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "AP2112K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and TLV70033DDCR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to Iout,max rating drops >20%. Key datasheet deltas: Iq is 55 µA (p.8) vs 31 µA (p.6), max output current is 600 mA (p.8) vs 200 mA (p.5), recommended Vin,max is 6 V (p.3) vs 5.5 V (p.5), typical dropout is 250 mV (p.8) vs 175 mV (p.6), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.4), thermal margin (θJA 184 vs 235.9 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AP2112K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and TLV70033DDCR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because Iout,max rating drops >=20%; θJA worsens 28% (thermal derating verification required); Vin,min floor rises 0.5 V. Under a representative 5 V → 3.3 V rail at 150 mA (255 mW), estimated self-heating is ΔTj ≈ 46.9 °C on AP2112K-3.3TRG1 (θJA 184 °C/W) vs 60.2 °C on TLV70033DDCR (θJA 235.9 °C/W), while quiescent draw spans a 1.8x ratio (55 µA (p.8) vs 31 µA (p.6)). Primary bench gotchas to watch: AP2112K-3.3TRG1 \"6.5 V Abs Max & SOT25 Thermal Limit at 600 mA From 5 V Input\" (p.3) and TLV70033DDCR \"VEN Must Never Exceed VIN + 0.3 V (Sequencing Trap vs TPS7A02/TLV755P)\" (p.5). BOM decision: Choose AP2112K-3.3TRG1 when load current exceeds 200 mA (up to 600 mA) or lower package θJA (184 °C/W) is needed for thermal margin; choose TLV70033DDCR when battery sleep budget demands 31 µA Iq. Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.4) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

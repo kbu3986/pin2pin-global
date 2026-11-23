@@ -1,0 +1,206 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "LM393DR2G",
+  "slug": "lm393dr2g",
+  "family": "LM393",
+  "manufacturer": "onsemi",
+  "category": "opamp",
+  "sub_topology": "comparator-dual",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": 0,
+    "ta_max_c": 70,
+    "grade_label": "Commercial (0°C to +70°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.onsemi.com/pdf/datasheet/lm393-d.pdf",
+    "product_page_url": "https://www.onsemi.com/products/amplifiers-comparators/comparators/lm393",
+    "source_domain": "www.onsemi.com",
+    "revision": "Rev. 35 (November 2026)",
+    "verified_at": "2026-11-23",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 13
+  },
+  "package": {
+    "code": "SOIC-8",
+    "mfg_package_code": "CASE 751 (D)",
+    "pin_count": 8,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE"
+    },
+    "theta_ja_c_per_w": {
+      "value": 175.4,
+      "page": 2,
+      "condition": "Derived from Maximum Ratings derating factor 1/RθJA = 5.7 mW/°C above 25°C (1000 / 5.7 = 175.4 °C/W; PD = 570 mW at TA = 25°C)",
+      "table_ref": "MAXIMUM RATINGS p.2"
+    },
+    "theta_jc_c_per_w": null,
+    "tj_max_c": {
+      "value": 150,
+      "page": 2,
+      "condition": "Maximum operating junction temperature TJ(max) = 150°C",
+      "table_ref": "MAXIMUM RATINGS p.2"
+    },
+    "pd_max_mw": {
+      "value": 570,
+      "page": 2,
+      "condition": "Maximum package power dissipation at TA = 25°C (derate 5.7 mW/°C above 25°C)",
+      "table_ref": "MAXIMUM RATINGS p.2"
+    },
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "Output A",
+        "role": "OUT_A",
+        "description": "Open-collector NPN output of comparator A (sinks only; requires external pull-up resistor up to 36 V)"
+      },
+      {
+        "pin": 2,
+        "name": "Input A-",
+        "role": "IN_NEG_A",
+        "description": "Inverting input, comparator A"
+      },
+      {
+        "pin": 3,
+        "name": "Input A+",
+        "role": "IN_POS_A",
+        "description": "Noninverting input, comparator A"
+      },
+      {
+        "pin": 4,
+        "name": "GND",
+        "role": "VEE",
+        "description": "Ground or negative power supply"
+      },
+      {
+        "pin": 5,
+        "name": "Input B+",
+        "role": "IN_POS_B",
+        "description": "Noninverting input, comparator B"
+      },
+      {
+        "pin": 6,
+        "name": "Input B-",
+        "role": "IN_NEG_B",
+        "description": "Inverting input, comparator B"
+      },
+      {
+        "pin": 7,
+        "name": "Output B",
+        "role": "OUT_B",
+        "description": "Open-collector NPN output of comparator B (sinks only; requires external pull-up resistor up to 36 V)"
+      },
+      {
+        "pin": 8,
+        "name": "VCC",
+        "role": "VCC",
+        "description": "Positive power supply (2.0 V to 36 V single supply or ±1.0 V to ±18 V split)"
+      }
+    ],
+    "pinout_source_page": 1,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "device_kind": "comparator",
+    "channels": 2,
+    "vs_abs_max_v": {
+      "value": 36,
+      "page": 2,
+      "condition": "Power Supply Voltage +36 V single or ±18 V split; output VO max = 36 V",
+      "table_ref": "MAXIMUM RATINGS p.2"
+    },
+    "vs_min_v": {
+      "value": 2.0,
+      "page": 1,
+      "condition": "Single-supply operating minimum (2.0 Vdc to 36 Vdc single or ±1.0 Vdc to ±18 Vdc split)",
+      "table_ref": "Features p.1"
+    },
+    "vs_max_v": {
+      "value": 36,
+      "page": 1,
+      "condition": "Wide single-supply range up to 36 Vdc (zero margin above 36 V abs max; EC VIO/ICC tested over 5 V to 30 V, p.3)",
+      "table_ref": "Features p.1 & ELECTRICAL CHARACTERISTICS p.3"
+    },
+    "gbwp_mhz": null,
+    "slew_rate_v_per_us": null,
+    "prop_delay_ns": {
+      "value": 1300,
+      "page": 3,
+      "condition": "Response time tTLH = 1.3 us (1300 ns) typ with 100 mV step / 5.0 mV overdrive, VRL = 5 V, RL = 5.1 kOhm (300 ns typ for TTL swing)",
+      "table_ref": "ELECTRICAL CHARACTERISTICS p.3"
+    },
+    "vos_max_mv": {
+      "value": 5.0,
+      "page": 3,
+      "condition": "LM393 at TA = 25°C, VCC = 5–30 V (±1.0 mV typ, ±5.0 mV max; ±9.0 mV max over 0°C to +70°C)",
+      "table_ref": "ELECTRICAL CHARACTERISTICS p.3"
+    },
+    "ib_typ_pa": {
+      "value": 20000,
+      "page": 3,
+      "condition": "20 nA typ / 250 nA max at TA = 25°C (400 nA max over 0°C to +70°C; p.1 Features headlines 25 nA; flows out of PNP inputs)",
+      "table_ref": "ELECTRICAL CHARACTERISTICS p.3"
+    },
+    "iq_per_ch_typ_ua": {
+      "value": 200,
+      "page": 3,
+      "condition": "Derived from total supply current ICC = 0.4 mA typ / 1.0 mA max for both comparators at VCC = 5 V, RL = ∞ (2.5 mA max at 30 V)",
+      "table_ref": "ELECTRICAL CHARACTERISTICS p.3"
+    },
+    "rail_to_rail_in": false,
+    "rail_to_rail_out": false,
+    "output_type": "open-collector",
+    "cmrr_typ_db": null,
+    "input_noise_nv_rt_hz": null,
+    "iout_short_ma": null
+  },
+  "design_gotchas": [
+    {
+      "title": "Identical SOIC-8 Pinout Trap vs Push-Pull LM358DR2G / LM358DR Op-Amps",
+      "severity": "CRITICAL",
+      "detail": "LM393DR2G shares the exact 8-pin SOIC layout of dual op-amps LM358DR2G, LM358DR, and LMV358IDR, but is an uncompensated open-collector comparator—NEVER swap it into an op-amp socket. Without external pull-ups its high state floats, and closing linear negative feedback triggers multi-MHz oscillation.",
+      "page": 1
+    },
+    {
+      "title": "Mandatory External Pull-Up Resistor & Destructive Short-to-VCC Hazard (20 mA Max Sink)",
+      "severity": "CRITICAL",
+      "detail": "Outputs (Pins 1 and 7) are open-collector NPN transistors guaranteeing ISink >= 6.0 mA min (16 mA typ at VOL <= 1.5 V; 20 mA abs max). While output short-to-ground is continuous, Note 1 (p.2) and Note 3 (p.3) warn that shorting an output directly to VCC causes destructive overheating. Pull-up resistance sets both rise time and logic-high level (up to 36 V).",
+      "page": 2
+    },
+    {
+      "title": "Negative Input Below -0.3 V Risks Substrate Conduction & Stray-Capacitance Oscillation",
+      "severity": "WARNING",
+      "detail": "Valid common-mode range is 0 V to VCC - 1.5 V at 25°C (VCC - 2.0 V over 0–70°C; only one input must stay in range while the other can exceed VCC, Note 8 p.3), but pulling EITHER input below -0.3 V violates ratings and risks output malfunction. Page 5 also warns to avoid routing OUT parallel to IN- and add <10 mV positive-feedback hysteresis.",
+      "page": 5
+    },
+    {
+      "title": "Commercial 0°C–70°C Rating & Zero Surge Margin Above 36 V (Upgraded 2 kV HBM ESD in Rev. 35)",
+      "severity": "INFO",
+      "detail": "Unlike onsemi's 250 V HBM LM358DR2G, Rev. 35 (Nov 2026) rates LM393DR2G at 2000 V HBM / 750 V CDM ESD (p.2), making it a strong pin-for-pin second source to TI LM393DR (175.4 °C/W vs TI 148.5 °C/W). For -40°C industrial designs, select LM2903DR2G (-40..105°C) or LM2903VDR2G (-40..125°C).",
+      "page": 2
+    }
+  ],
+  "typical_use_cases": [
+    "Pin-for-pin second source for TI LM393DR in commercial (0°C–70°C) 2 V–36 V fault supervision and threshold detection",
+    "Wired-AND multi-rail power-good and overvoltage/undervoltage window-comparator buses",
+    "Safe open-collector level shifting from 12 V/24 V analog sensors down to 3.3 V or 5 V MCU GPIOs",
+    "Zero-crossing detectors, relaxation oscillators, and hysteresis Schmitt triggers with 200 uA/ch typ Iq"
+  ],
+  "engineering_summary": "The onsemi LM393DR2G is a commercial-grade (0°C to +70°C) dual open-collector voltage comparator in SOIC-8 (CASE 751, PD = 570 mW, RθJA = 175.4 °C/W) rated for 2.0 V to 36 V single-supply operation (±18 V split) with 2000 V HBM / 750 V CDM ESD (Rev. 35). Delivering 1.3 us typical response time (300 ns TTL swing), ±5 mV max offset, 20 nA typ bias current, and 200 uA/ch typ Iq, it serves as a high-confidence second source to TI LM393DR, while remaining strictly incompatible with pin-identical push-pull op-amps (LM358DR/LM358DR2G) due to its uncompensated open-collector output stage.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [1, 2, 3],
+    "audit_notes": [
+      "300 DPI PNG Vision on p.1 confirmed Rev. 35 (November 2026), SOIC-8 CASE 751 Top View pinout (1=Output A, 2=IN- A, 3=IN+ A, 4=GND, 5=IN+ B, 6=IN- B, 7=Output B, 8=VCC), and open-collector NPN output Q16 in Fig. 1 schematic.",
+      "300 DPI PNG Vision on p.2 confirmed Maximum Ratings (VCC = +36 V / ±18 V, VO = 36 V, ISink = 20 mA, PD = 570 mW at 25°C, 1/RθJA = 5.7 mW/°C -> RθJA = 175.4 °C/W, TA = 0..70°C, TJ(max) = 150°C) and upgraded 2000 V HBM / 750 V CDM ESD ratings on LM393DG/DR2G.",
+      "300 DPI PNG Vision on p.3 confirmed Electrical Characteristics (VIO = ±1.0 mV typ / ±5.0 mV max @ 25°C, IIB = 20 nA typ -> 20000 pA, tTLH = 1.3 us -> 1300 ns / 300 ns TTL, ISink = 6 mA min / 16 mA typ, ICC = 0.4 mA typ total -> 200 uA/ch); Path A verified Active ordering OPN LM393DR2G on p.7."
+    ]
+  }
+}

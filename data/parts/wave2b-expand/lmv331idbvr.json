@@ -1,0 +1,189 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "LMV331IDBVR",
+  "slug": "lmv331idbvr",
+  "family": "LMV331",
+  "manufacturer": "Texas Instruments",
+  "category": "opamp",
+  "sub_topology": "comparator-single",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to 125°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/lmv331.pdf",
+    "product_page_url": "https://www.ti.com/product/LMV331",
+    "source_domain": "www.ti.com",
+    "revision": "SLCS136V (Rev. May 2025)",
+    "verified_at": "2026-11-23",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 47
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "DBV",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE"
+    },
+    "theta_ja_c_per_w": {
+      "value": 224,
+      "page": 4,
+      "condition": "DBV (SOT-23) 5-pin package, LMV331",
+      "table_ref": "Section 5.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": null,
+    "tj_max_c": {
+      "value": 150,
+      "page": 4,
+      "condition": "Operating virtual junction temperature, max",
+      "table_ref": "Section 5.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "1IN+",
+        "role": "IN_POS",
+        "description": "Comparator noninverting input (U-pinout SOT-23-5: Pin 1 is IN+, NOT OUT)"
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "VEE",
+        "description": "Ground / negative power supply"
+      },
+      {
+        "pin": 3,
+        "name": "1IN-",
+        "role": "IN_NEG",
+        "description": "Comparator inverting input"
+      },
+      {
+        "pin": 4,
+        "name": "OUT",
+        "role": "OUT",
+        "description": "Open-collector comparator output (requires external pull-up resistor to <= VCC+ + 0.3 V)"
+      },
+      {
+        "pin": 5,
+        "name": "VCC+",
+        "role": "VCC",
+        "description": "Positive power supply (2.7 V to 5.5 V)"
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "device_kind": "comparator",
+    "channels": 1,
+    "vs_abs_max_v": {
+      "value": 5.5,
+      "page": 4,
+      "condition": "Absolute Maximum Ratings VCC max = 5.5 V (zero headroom above 5.5 V recommended max)",
+      "table_ref": "Section 5.1 Absolute Maximum Ratings"
+    },
+    "vs_min_v": {
+      "value": 2.7,
+      "page": 4,
+      "condition": "Recommended single-supply operating minimum",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "vs_max_v": {
+      "value": 5.5,
+      "page": 4,
+      "condition": "Recommended single-supply operating maximum",
+      "table_ref": "Section 5.3 Recommended Operating Conditions"
+    },
+    "gbwp_mhz": null,
+    "slew_rate_v_per_us": null,
+    "prop_delay_ns": {
+      "value": 300,
+      "page": 6,
+      "condition": "VCC+ = 5 V, RL = 5.1 kΩ, TA = 25°C, 100 mV overdrive, tPLH = 300 ns typ (tPHL = 200 ns typ; 450 ns / 600 ns at 10 mV overdrive)",
+      "table_ref": "Section 5.8 Switching Characteristics, VCC+ = 5V"
+    },
+    "vos_max_mv": {
+      "value": 7,
+      "page": 6,
+      "condition": "VCC+ = 5 V, TA = 25°C (+0.5 mV typ; 9 mV max over -40°C to 125°C)",
+      "table_ref": "Section 5.7 Electrical Characteristics, VCC+ = 5V"
+    },
+    "ib_typ_pa": {
+      "value": 5,
+      "page": 6,
+      "condition": "VCC+ = 5 V, TA = 25°C (0.005 nA = 5 pA typ; 250 nA max at 25°C, 400 nA max over -40°C to 125°C)",
+      "table_ref": "Section 5.7 Electrical Characteristics, VCC+ = 5V"
+    },
+    "iq_per_ch_typ_ua": {
+      "value": 26,
+      "page": 6,
+      "condition": "LMV331 single channel, VCC+ = 5 V, TA = 25°C (120 µA max at 25°C; 150 µA max over -40°C to 125°C)",
+      "table_ref": "Section 5.7 Electrical Characteristics, VCC+ = 5V"
+    },
+    "rail_to_rail_in": false,
+    "rail_to_rail_out": false,
+    "output_type": "open-collector",
+    "cmrr_typ_db": null,
+    "input_noise_nv_rt_hz": null,
+    "iout_short_ma": {
+      "value": 84,
+      "page": 6,
+      "condition": "Output sinking current IO at VO <= 1.5 V, VCC+ = 5 V, TA = 25°C (10 mA min; open-collector output sinks only, short-circuit to GND unlimited at <= 25°C)",
+      "table_ref": "Section 5.7 Electrical Characteristics, VCC+ = 5V"
+    }
+  },
+  "design_gotchas": [
+    {
+      "title": "Reversed U-Pinout SOT-23-5 (Pin 1 = IN+, Pin 4 = OUT) — Incompatible With TLV3201 & TLV7011",
+      "severity": "CRITICAL",
+      "detail": "LMV331IDBVR places 1IN+ on Pin 1 and OUT on Pin 4 (matching LMV321IDBVR and TLV9001UIDBVR), whereas standard SOT-23-5 comparators TLV3201AIDBVR and TLV7011DBVR put OUT on Pin 1 and IN+ on Pin 3. Swapping footprints shorts output to input and breaks the circuit.",
+      "page": 3
+    },
+    {
+      "title": "Zero Headroom Above 5.5 V (Abs Max = 5.5 V) and Open-Collector Output Cannot Pull Above VCC+ + 0.3 V",
+      "severity": "CRITICAL",
+      "detail": "Unlike 36 V LM393 comparators, LMV331 absolute maximum VCC is only 5.5 V (identical to recommended max) and recommended VOUT max is VCC+ + 0.3 V. Do not use LMV331 to level-shift to a rail higher than VCC+, and guard 5 V rails against inductive overshoot.",
+      "page": 4
+    },
+    {
+      "title": "Mandatory External Pull-Up Resistor & No Internal Hysteresis",
+      "severity": "WARNING",
+      "detail": "Open-collector Pin 4 only sinks current (10 mA min / 84 mA typ at VO <= 1.5 V, VSAT = 150 mV typ at 4 mA) and requires an external pull-up resistor. LMV331 has no built-in hysteresis, so add positive feedback for slow or noisy analog inputs.",
+      "page": 6
+    },
+    {
+      "title": "Input Common-Mode Range Includes Ground Only (0 to VCC - 0.8 V, NOT Rail-to-Rail)",
+      "severity": "WARNING",
+      "detail": "VICR at VCC+ = 5 V is -0.1 V to 4.2 V (and -0.1 V to 2.0 V at 2.7 V). Signals approaching VCC+ exceed common-mode headroom; unlike TLV7011 or TLV3201, LMV331 cannot sense high-side near the positive rail.",
+      "page": 6
+    }
+  ],
+  "typical_use_cases": [
+    "Low-cost 3.3 V and 5 V ground-sensing threshold detectors and wired-AND fault buses",
+    "Compact SOT-23-5 single-channel replacement for legacy LM393 circuits on 2.7 V-5.5 V rails",
+    "Appliance, power tool, and server PSU supervisory comparators requiring 26 µA quiescent current",
+    "Single-comparator window detectors where open-collector outputs share a common pull-up node"
+  ],
+  "engineering_summary": "The Texas Instruments LMV331IDBVR is a low-voltage (2.7 V-5.5 V), single-channel open-collector comparator in a 5-pin SOT-23 (DBV) package rated -40°C to 125°C. Drawing just 26 µA typical with 200-300 ns propagation delay and 150 mV saturation voltage at 4 mA, it brings LM393-style open-collector flexibility to compact 3.3 V/5 V boards. Engineers must verify its reversed U-pinout (Pin 1 = IN+, Pin 4 = OUT — incompatible with TLV7011/TLV3201), 5.5 V absolute-maximum supply ceiling, non-RRI upper input headroom (VCC - 0.8 V), and mandatory pull-up resistor.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 4, 6, 16],
+    "audit_notes": [
+      "Vision-verified LMV331 DBV/DCK 5-pin SOT-23 Top View on 300 DPI PNG page 3 (Table 4-1): Pin 1 = 1IN+, Pin 2 = GND, Pin 3 = 1IN-, Pin 4 = OUT, Pin 5 = VCC+ (U-pinout).",
+      "Verified Absolute Maximum VCC = 5.5 V, Recommended 2.7-5.5 V, TA = -40 to 125°C, and DBV RθJA = 224 °C/W on 300 DPI PNG page 4 (Sections 5.1, 5.3, 5.4).",
+      "Verified 5 V Electrical & Switching specs on 300 DPI PNG page 6 (Sections 5.7, 5.8): VIO = 7 mV max (25°C), IIB = 0.005 nA typ (5 pA), ICC = 26 µA typ, tPLH = 300 ns / tPHL = 200 ns at 100 mV overdrive.",
+      "Ordering table PNG page 16 confirms LMV331IDBVR Active, Production, SOT-23 (DBV) 5-pin, 3000 LARGE T&R, -40 to 125°C, marking R1IF/R1IK."
+    ]
+  }
+}

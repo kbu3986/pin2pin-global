@@ -72,8 +72,8 @@
       "unit": "V",
       "part_a_value": "2.5 to 6 V (p.4)",
       "part_b_value": "1.4 to 5.5 V (p.5)",
-      "winner": "B",
-      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+      "winner": "CONTEXT",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -157,9 +157,10 @@
     }
   ],
   "swap_risks": [
-    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs significantly (AP2127K-3.3TRG1: 1 µF p.12 vs TLV73333PDBVR: 0 µF p.16); account for MLCC DC-bias derating.",
-    "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (AP2127K-3.3TRG1: 250 °C/W vs TLV73333PDBVR: 228.4 °C/W) and worst-case ambient temperature (-40..85 °C vs -40..125 °C)."
+    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs by 100x (AP2127K-3.3TRG1: 1 µF p.12 vs TLV73333PDBVR: 0 µF p.16); account for MLCC DC-bias derating.",
+    "HIGH MINIMUM SUPPLY FLOOR: AP2127K-3.3TRG1 requires Vin,min >= 2.5 V (p.4) vs 1.4 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (AP2127K-3.3TRG1: -40..85 °C Industrial (-40°C to +85°C TA) vs TLV73333PDBVR: -40..125 °C Extended Industrial (-40°C to +125°C TJ)); AP2127K-3.3TRG1 hot limit only 85 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "AP2127K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and TLV73333PDBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to minimum output capacitance requirement differs >= 2.5x. Key datasheet deltas: Iq is 60 µA (p.5) vs 34 µA (p.6), max output current is 300 mA (p.5) vs 300 mA (p.5), recommended Vin,max is 6 V (p.4) vs 5.5 V (p.5), typical dropout is 170 mV (p.5) vs 125 mV (p.6), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.4), thermal margin (θJA 250 vs 228.4 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AP2127K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and TLV73333PDBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because minimum output capacitance requirement differs 100x; Vin,min floor rises 1.1 V; ambient temperature grade differs (-40..85 °C vs -40..125 °C). Under a representative 5 V → 3.3 V rail at 150 mA (255 mW), estimated self-heating is ΔTj ≈ 63.8 °C on AP2127K-3.3TRG1 (θJA 250 °C/W) vs 58.2 °C on TLV73333PDBVR (θJA 228.4 °C/W), while quiescent draw spans a 1.8x ratio (60 µA (p.5) vs 34 µA (p.6)). Primary bench gotchas to watch: AP2127K-3.3TRG1 \"High 250 °C/W SOT-23-5 θJA Caps Continuous Power at 400 mW (25°C) — Derate From 5 V\" (p.13) and TLV73333PDBVR \"Tight 3.6 V Absolute Maximum on VOUT & VEN <= VIN + 0.3 V Sequencing Limit\" (p.5). BOM decision: Choose AP2127K-3.3TRG1 when matching your existing Diodes Incorporated SOT-23-5 (K (SOT-23-5)) qualification and -40..85 °C grade; choose TLV73333PDBVR when battery sleep budget demands 34 µA Iq. Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.4) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

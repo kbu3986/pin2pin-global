@@ -6,10 +6,10 @@
   "part_b_slug": "tlv9001idbvr",
   "part_a_opn": "TLV3201AIDBVR",
   "part_b_opn": "TLV9001IDBVR",
-  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
-  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+  "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+  "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
   "package_match": true,
-  "pinout_exact_match": true,
+  "pinout_exact_match": false,
   "exposed_pad_match": true,
   "pin_diff": [
     {
@@ -18,8 +18,8 @@
       "part_a_role": "OUT",
       "part_b_name": "OUT",
       "part_b_role": "OUT",
-      "status": "CAUTION",
-      "note": "CRITICAL OUTPUT STAGE DIFFERENCE: TLV3201AIDBVR is comparator (push-pull) vs TLV9001IDBVR opamp (push-pull); open-collector/drain requires external pull-up and is uncompensated for linear feedback."
+      "status": "MISMATCH",
+      "note": "CRITICAL OUTPUT STAGE DIFFERENCE: TLV3201AIDBVR is comparator (push-pull) vs TLV9001IDBVR opamp (push-pull); a comparator is an uncompensated open-loop switching device (no internal Miller/dominant-pole compensation) and will oscillate or latch in a linear negative-feedback op-amp circuit, while an op-amp used as a comparator suffers slow saturation/overdrive recovery and propagation delay far worse than its slew rate implies; both output stages are push-pull (no pull-up resistor required), so the incompatibility is loop compensation, input clamp behavior, and switching dynamics rather than pull-up drive."
     },
     {
       "pin": 2,
@@ -65,7 +65,7 @@
       "part_a_value": "comparator (push-pull)",
       "part_b_value": "opamp (push-pull)",
       "winner": "CONTEXT",
-      "note": "Op-amps (compensated push-pull) and comparators (uncompensated open-collector) are NOT drop-in interchangeable."
+      "note": "Op-amps (internally compensated for linear feedback) and comparators (uncompensated open-loop switching) are NOT drop-in interchangeable."
     },
     {
       "metric": "Package & Channel Count",
@@ -81,7 +81,7 @@
       "part_a_value": "2.7 to 5.5 V (p.4)",
       "part_b_value": "1.8 to 5.5 V (p.14)",
       "winner": "B",
-      "note": "Confirm total supply span (V+ - V-) stays within recommended limits."
+      "note": "A part wins only if its recommended Vs range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Supply (Vs,abs)",
@@ -145,7 +145,7 @@
       "part_a_value": "70 dB (p.5) · Not specified",
       "part_b_value": "77 dB (p.17) · 30 nV/√Hz (p.17)",
       "winner": "B",
-      "note": "Higher CMRR rejects common-mode noise; lower voltage noise improves SNR."
+      "note": "Winner requires superiority on both CMRR (higher) and input voltage noise (lower); mixed tradeoffs stay CONTEXT."
     },
     {
       "metric": "Thermal Resistance (θJA) & Tj,max",
@@ -157,9 +157,9 @@
     }
   ],
   "swap_risks": [
-    "CRITICAL OP-AMP VS COMPARATOR TRAP: TLV3201AIDBVR is a comparator with push-pull output while TLV9001IDBVR is a opamp with push-pull output. Even with identical pinouts, an open-collector comparator CANNOT pull high without an external pull-up resistor and lacks internal Miller compensation — dropping it into a linear negative-feedback op-amp circuit causes severe oscillation; conversely, using an op-amp as a comparator causes slow overdrive recovery and output saturation lag.",
-    "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (TLV3201AIDBVR: 237.8 °C/W vs TLV9001IDBVR: 232.9 °C/W) and worst-case ambient temperature (-40..125 °C vs -40..125 °C)."
+    "CRITICAL OP-AMP VS COMPARATOR TRAP: TLV3201AIDBVR is a comparator with push-pull output while TLV9001IDBVR is a opamp with push-pull output. Even with identical pinouts, a comparator is an uncompensated switching device: dropping it into a linear negative-feedback op-amp circuit (buffer, gain stage, filter) causes oscillation or latch-up, and an op-amp used as a comparator suffers slow overdrive/saturation recovery. Both outputs are push-pull (no external pull-up required) — the incompatibility is loop compensation and switching behavior, not pull-up drive.",
+    "HIGH MINIMUM SUPPLY FLOOR: TLV3201AIDBVR requires Vs,min >= 2.7 V (p.4) vs 1.8 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor."
   ],
-  "engineering_verdict": "TLV3201AIDBVR (Texas Instruments, SOT-23-5) and TLV9001IDBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to device kind / output stage mismatch (comparator/push-pull vs opamp/push-pull). Key datasheet deltas: device type is comparator (push-pull) vs opamp (push-pull), supply limit is 5.5 V (p.4) vs 5.5 V (p.14), max Vos is 3 mV (p.5) vs 1.6 mV (p.17), input bias current is 1 pA (p.5) vs 5 pA (p.17), and Iq/ch is 40 µA (p.5) vs 60 µA (p.18). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.7), thermal margin (θJA 237.8 vs 232.9 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "TLV3201AIDBVR (Texas Instruments, SOT-23-5) and TLV9001IDBVR (Texas Instruments, SOT-23-5) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to device kind mismatch (comparator/push-pull vs opamp/push-pull) — circuit redesign required. Specific pin conflicts: Pin 1 (OUT vs OUT). Signal-chain deltas: comparator (push-pull) vs opamp (push-pull), supply ceiling 5.5 V (p.4) vs 5.5 V (p.14), Vos 3 mV (p.5) vs 1.6 mV (p.17), Ib 5x gap (1 vs 5 pA). Primary bench gotchas to watch: TLV3201AIDBVR \"Push-Pull Output — Do NOT Wired-AND or Pull Up to a Different Logic Rail\" (p.5) and TLV9001IDBVR \"Critical SOT-23-5 Suffix Trap: TLV9001IDBVR vs TLV9001UIDBVR Pinout Swap\" (p.7). BOM decision: Choose TLV3201AIDBVR when the circuit is an open-loop threshold/window comparator (push-pull output); choose TLV9001IDBVR when the circuit is a linear closed-loop amplifier, buffer, or active filter. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.7) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

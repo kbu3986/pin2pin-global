@@ -90,7 +90,7 @@
       "part_a_value": "4.5 to 28 V (p.4)",
       "part_b_value": "4.5 to 17 V (p.4)",
       "winner": "A",
-      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -105,8 +105,8 @@
       "unit": "V",
       "part_a_value": "0.596 to 28 V (p.5/p.12) (Adj)",
       "part_b_value": "0.76 to 7 V (p.1) (Adj)",
-      "winner": "CONTEXT",
-      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+      "winner": "A",
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
     },
     {
       "metric": "Max Current (Iout or Isw Limit)",
@@ -114,7 +114,7 @@
       "part_a_value": "3000 mA (p.1) [Iout max]",
       "part_b_value": "2000 mA (p.1) [Iout max]",
       "winner": "A",
-      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+      "note": "Continuous DC output current rating; verify inductor Isat >= Iout + ΔIL/2 and thermal margin."
     },
     {
       "metric": "Quiescent Current (Iq, typ)",
@@ -166,12 +166,16 @@
     }
   ],
   "swap_risks": [
+    "CRITICAL SWITCH-VOLTAGE OVERSTRESS RISK: TPS562201DDCR is rated up to only 7 V output (p.1) vs TPS54302DDCR up to 28 V (p.12); exceeding the internal switch BVdss ceiling destroys the SW MOSFET.",
+    "HIGH MINIMUM OUTPUT VOLTAGE FLOOR: TPS562201DDCR cannot regulate below 0.76 V (p.1) vs TPS54302DDCR down to 0.596 V (p.5); verify your target rail sits above the higher Vout,min floor.",
+    "HIGH VREF MISMATCH: Feedback reference differs (TPS54302DDCR: 0.596 V p.5 vs TPS562201DDCR: 0.768 V p.5); dropping in without recalculating R1/R2 will output the wrong voltage rail.",
     "HIGH SWITCHING FREQUENCY SHIFT: fsw differs by 31% (TPS54302DDCR: 400 kHz p.5 vs TPS562201DDCR: 580 kHz p.5); re-evaluate inductor core loss, ripple current ΔIL, output capacitor ESR ripple, and EMI harmonics.",
     "CAUTION INDUCTOR RETUNING: Typical inductor differs (TPS54302DDCR: 10 µH p.18 vs TPS562201DDCR: 3.3 µH p.13); check inductor Isat against peak switch current limit.",
-    "HIGH VREF MISMATCH: Feedback reference differs (TPS54302DDCR: 0.596 V p.5 vs TPS562201DDCR: 0.768 V p.5); dropping in without recalculating R1/R2 will output the wrong voltage rail.",
     "HIGH INPUT VOLTAGE RANGE SHIFT: Recommended Vin,max differs (TPS54302DDCR: 28 V p.4 vs TPS562201DDCR: 17 V p.4); verify line transients stay below Vin,abs,max.",
-    "CAUTION CURRENT RATING BASIS: TPS54302DDCR specifies 3000 mA (continuous Iout, p.1) vs TPS562201DDCR 2000 mA (continuous Iout, p.1). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling."
+    "CAUTION CURRENT RATING BASIS: TPS54302DDCR specifies 3000 mA (continuous Iout, p.1) vs TPS562201DDCR 2000 mA (continuous Iout, p.1). Verify continuous load current and peak inductor saturation margin (Isat >= Iout + ΔIL/2).",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: TPS562201DDCR has a lower Vin,abs,max rating (19 V, p.4) than TPS54302DDCR (30 V, p.4); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 19 V.",
+    "HIGH THERMAL MARGIN: Package θJA is 31% higher on TPS54302DDCR (TPS54302DDCR: 118.9 °C/W p.4 vs TPS562201DDCR: 90.8 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
-  "engineering_verdict": "TPS54302DDCR (Texas Instruments, SOT-23-6) and TPS562201DDCR (Texas Instruments, SOT-23-6) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to switching frequency differs >30%; recommended inductor value differs >20%; feedback reference voltage Vref differs. Key datasheet deltas: topology is buck (sync) vs buck (sync), switching frequency is 400 kHz (p.5) vs 580 kHz (p.5), rated current is 3000 mA (p.1) vs 2000 mA (p.1), typical inductor is 10 µH (p.18) vs 3.3 µH (p.13), and Iq is 45 µA (p.5) vs 120 µA (p.5). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 118.9 vs 90.8 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "TPS54302DDCR (Texas Instruments, SOT-23-6) and TPS562201DDCR (Texas Instruments, SOT-23-6) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because adjustable Vout,max ceiling drops >=20% (7 V vs 28 V — switch-voltage overstress risk); minimum programmable Vout,min rises (0.596 V vs 0.76 V); feedback reference voltage Vref differs. Power-stage deltas: buck (sync) vs buck (sync), switching frequency 400 kHz (p.5) vs 580 kHz (p.5) (1.4x ratio), typical inductor 10 µH (p.18) vs 3.3 µH (p.13), feedback Vref 0.596 V (p.5) vs 0.768 V (p.5), and package θJA 118.9 vs 90.8 °C/W. Primary bench gotchas to watch: TPS54302DDCR \"CRITICAL: EN Pin Abs Max Is ONLY 7.0 V (Rec 5.5 V) — NEVER Tie Directly to 12 V / 24 V VIN\" (p.4) and TPS562201DDCR \"Pin-Identical 2 A Sibling of TPS563201DDCR — Verify Current Limit & Inductor Sizing\" (p.5). BOM decision: Choose TPS54302DDCR when bus voltage exceeds 17 V (rated to 28 V) or higher load current capacity (3000 mA) is required; choose TPS562201DDCR when matching your existing Texas Instruments SOT-23-6 (DDC) qualification and -40..125 °C grade. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

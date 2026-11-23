@@ -1,17 +1,18 @@
 import type { Metadata } from 'next';
 import { getSiteConfig, getTrustDocBySlug } from '@/lib/data-loader';
 import { TrustPageView } from '@/components/TrustPageView';
+import { buildMetaDescription, buildPageMetadata } from '@/lib/format';
 
 export function generateMetadata(): Metadata {
   const siteConfig = getSiteConfig();
   const doc = getTrustDocBySlug('contact');
-  return {
-    title: doc.title,
-    description: doc.description,
-    alternates: {
-      canonical: `${siteConfig.site_url}/en/contact/`,
-    },
-  };
+  return buildPageMetadata({
+    siteUrl: siteConfig.site_url,
+    siteName: siteConfig.site_name,
+    path: '/en/contact',
+    title: 'Contact & Pinout Error Reporting',
+    description: buildMetaDescription(doc.description),
+  });
 }
 
 export default function ContactPage() {

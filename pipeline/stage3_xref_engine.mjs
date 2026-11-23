@@ -4,8 +4,8 @@
  *
  * Loads Golden Parts from `data/parts/**\/*.json`, verifies each part through Stage 2
  * (`verifyGoldenPart`), and deterministically generates:
- *   - 85 normalized 1:1 comparisons (`data/generated/vs/<part_a>-vs-<part_b>.json`)
- *   - 50 alternative hubs (`data/generated/alt/<slug>-alternatives.json`)
+ *   - N normalized 1:1 comparisons from manifest vs_pairs (`data/generated/vs/<part_a>-vs-<part_b>.json`)
+ *   - 1 alternative hub per verified part (`data/generated/alt/<slug>-alternatives.json`)
  *   - 1 summary index (`data/generated/xref-index.json`)
  *
  * Every output record is validated with `VsComparisonSchema` and `AltHubSchema`
@@ -13,10 +13,12 @@
  *
  * Usage:
  *   node pipeline/stage3_xref_engine.mjs
+ *   node pipeline/stage3_xref_engine.mjs --check   (dry-run into a temp dir + invariant assertions; data/generated untouched)
  *   node pipeline/stage3_xref_engine.mjs --parts-dir data/parts --manifest data/pilot-manifest.json --out-dir data/generated
  */
 
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
@@ -42,8 +44,8 @@ const LEVEL_PRIORITY = {
 
 /**
  * Package pairs that share a JEDEC PCB land pattern but differ in body height/profile.
- * `package_match` remains strictly `a.package.code === b.package.code`; these pairs
- * are flagged as footprint-compatible ONLY with an explicit mechanical/SMT height caution.
+ * `package_match` remains strictly `a.package.code === b.package.code`; per AUD-02,
+ * cross-package pairs can NEVER be Level 1 Candidate Drop-In (at best Level 2).
  */
 const FOOTPRINT_COMPATIBLE_PAIRS = new Set([
   'SOT-23-5|TSOT-23-5',
@@ -53,6 +55,75 @@ const FOOTPRINT_COMPATIBLE_PAIRS = new Set([
   'SOT-23-3|SOT-23A-3',
   'SOT-23A-3|SOT-23-3',
 ]);
+
+const OUTPUT_PIN_ROLES = new Set(['OUT', 'OUT_A', 'OUT_B', 'OUT_C', 'OUT_D']);
+
+const LIFECYCLE_PENALTY = { EOL: 35, OBSOLETE: 35, NRND: 20 };
+
+function normalizePinName(name) {
+  return String(name || '')
+    .toUpperCase()
+    .replace(/[^A-Z0-9]/g, '');
+}
+
+function isOpenOutput(outputType) {
+  return outputType === 'open-collector' || outputType === 'open-drain';
+}
+
+function isLifecycleRestricted(status) {
+  const up = String(status || '').toUpperCase();
+  return up === 'EOL' || up === 'OBSOLETE' || up === 'NRND';
+}
+
+/**
+ * Accurately describe an op-amp/comparator output-stage difference.
+ * Only mentions external pull-up requirements when at least one part actually has an
+ * open-collector/open-drain output (push-pull comparators drive both rails actively).
+ */
+function describeOutputStageDifference(sA, sB) {
+  const parts = [];
+  const anyOpen = isOpenOutput(sA.output_type) || isOpenOutput(sB.output_type);
+  if (sA.device_kind !== sB.device_kind) {
+    parts.push(
+      'a comparator is an uncompensated open-loop switching device (no internal Miller/dominant-pole compensation) and will oscillate or latch in a linear negative-feedback op-amp circuit, while an op-amp used as a comparator suffers slow saturation/overdrive recovery and propagation delay far worse than its slew rate implies',
+    );
+  }
+  if (anyOpen) {
+    if (sA.output_type !== sB.output_type) {
+      parts.push(
+        'the open-collector/open-drain output can only sink current and requires an external pull-up resistor to reach logic-high, whereas the push-pull output actively drives both rails (a pull-up tied to a different rail can back-drive a push-pull stage)',
+      );
+    } else {
+      parts.push(
+        'both outputs are open-collector/open-drain and require an external pull-up resistor sized for sink current and RC rise time',
+      );
+    }
+  } else if (sA.device_kind !== sB.device_kind) {
+    parts.push(
+      'both output stages are push-pull (no pull-up resistor required), so the incompatibility is loop compensation, input clamp behavior, and switching dynamics rather than pull-up drive',
+    );
+  }
+  return `${parts.join('; ')}.`;
+}
+
+function vinFloorOf(part) {
+  return part.category === 'opamp' ? part.specs.vs_min_v : part.specs.vin_min_v;
+}
+
+function vinAbsMaxOf(part) {
+  return part.category === 'opamp' ? part.specs.vs_abs_max_v : part.specs.vin_abs_max_v;
+}
+
+function dcdcNominalVout(specs) {
+  if (specs.vout_nom_v && Number.isFinite(specs.vout_nom_v.value)) {
+    return { value: specs.vout_nom_v.value, page: specs.vout_nom_v.page, basis: 'vout_nom_v' };
+  }
+  return {
+    value: (specs.vout_min_v.value + specs.vout_max_v.value) / 2,
+    page: specs.vout_min_v.page,
+    basis: 'midpoint of vout_min_v/vout_max_v',
+  };
+}
 
 function collectJsonFiles(dirPath) {
   const results = [];
@@ -127,6 +198,45 @@ function compareLowerBetter(aVal, bVal, relTieTol = 0.03) {
   const maxAbs = Math.max(Math.abs(aVal), Math.abs(bVal), 1e-9);
   if (Math.abs(aVal - bVal) / maxAbs <= relTieTol) return 'TIE';
   return aVal < bVal ? 'A' : 'B';
+}
+
+/**
+ * Winner for voltage range [min, max]: A wins ONLY if A strictly covers B's full span
+ * (minA <= minB && maxA >= maxB) and is wider on at least one end; B wins symmetrically;
+ * identical ranges tie; crossing ranges return 'CONTEXT'.
+ */
+function compareVoltageRangeCoverage(minA, maxA, minB, maxB) {
+  const tolMin = 0.02;
+  const tolMax = Math.max(Math.max(maxA, maxB) * 0.01, 0.05);
+  const sameMin = Math.abs(minA - minB) <= tolMin;
+  const sameMax = Math.abs(maxA - maxB) <= tolMax;
+  if (sameMin && sameMax) return 'TIE';
+  const aCoversB = minA <= minB + tolMin && maxA >= maxB - tolMax;
+  const bCoversA = minB <= minA + tolMin && maxB >= maxA - tolMax;
+  if (aCoversB && !bCoversA) return 'A';
+  if (bCoversA && !aCoversB) return 'B';
+  return 'CONTEXT';
+}
+
+/**
+ * Combined CMRR (higher better) & Input Noise (lower better) winner:
+ * A wins only if A is better-or-tie on both populated metrics and strictly better on at least one.
+ */
+function compareCmrrAndNoise(sA, sB) {
+  const cmrrW = compareHigherBetter(sA.cmrr_typ_db?.value, sB.cmrr_typ_db?.value);
+  const noiseW = compareLowerBetter(
+    sA.input_noise_nv_rt_hz?.value,
+    sB.input_noise_nv_rt_hz?.value,
+  );
+  const hasCmrr = sA.cmrr_typ_db && sB.cmrr_typ_db;
+  const hasNoise = sA.input_noise_nv_rt_hz && sB.input_noise_nv_rt_hz;
+  if (!hasCmrr && !hasNoise) return 'CONTEXT';
+  if (hasCmrr && !hasNoise) return cmrrW;
+  if (!hasCmrr && hasNoise) return noiseW;
+  if (cmrrW === 'TIE' && noiseW === 'TIE') return 'TIE';
+  if ((cmrrW === 'A' || cmrrW === 'TIE') && (noiseW === 'A' || noiseW === 'TIE')) return 'A';
+  if ((cmrrW === 'B' || cmrrW === 'TIE') && (noiseW === 'B' || noiseW === 'TIE')) return 'B';
+  return 'CONTEXT';
 }
 
 export function normalizeVsPair(slug1, slug2) {
@@ -207,6 +317,40 @@ function evaluateSinglePin(partA, partB, pinNum, pinA, pinB) {
 
   // Exact role match (with electrical caveats checked below)
   if (rA === rB) {
+    // PinRole === 'OTHER': only MATCH if normalized pin names match; otherwise hard MISMATCH
+    if (rA === 'OTHER') {
+      const normA = normalizePinName(pinA.name);
+      const normB = normalizePinName(pinB.name);
+      if (normA && normA === normB) {
+        return {
+          pin: pinNum,
+          part_a_name: pinA.name,
+          part_a_role: rA,
+          part_b_name: pinB.name,
+          part_b_role: rB,
+          status: 'MATCH',
+          note: `Matching specialized pin (${pinA.name} / ${pinB.name}, role OTHER); verify pin electrical threshold in both datasheets.`,
+          roleEquivalent: true,
+          hardMismatch: false,
+          pin4NcBypass: false,
+          enPolarityDiff: false,
+        };
+      }
+      return {
+        pin: pinNum,
+        part_a_name: pinA.name,
+        part_a_role: rA,
+        part_b_name: pinB.name,
+        part_b_role: rB,
+        status: 'MISMATCH',
+        note: `PINOUT CONFLICT on specialized pin ${pinNum}: ${partA.opn} assigns ${pinA.name} (OTHER) whereas ${partB.opn} assigns ${pinB.name} (OTHER) — incompatible auxiliary functions require PCB modification.`,
+        roleEquivalent: false,
+        hardMismatch: true,
+        pin4NcBypass: false,
+        enPolarityDiff: false,
+      };
+    }
+
     // Check EN polarity inversion
     if (rA === 'EN' && (partA.category === 'ldo' || partA.category === 'dcdc')) {
       const enA = partA.specs.en_active_high;
@@ -228,24 +372,25 @@ function evaluateSinglePin(partA, partB, pinNum, pinA, pinB) {
       }
     }
 
-    // Check Op-Amp push-pull vs Comparator open-collector on output pins
+    // Check Op-Amp vs Comparator or output-stage difference on output pins
     if (
       partA.category === 'opamp' &&
       partB.category === 'opamp' &&
-      (rA === 'OUT' || rA === 'OUT_A' || rA === 'OUT_B') &&
+      OUTPUT_PIN_ROLES.has(rA) &&
       (partA.specs.output_type !== partB.specs.output_type ||
         partA.specs.device_kind !== partB.specs.device_kind)
     ) {
+      const kindMismatch = partA.specs.device_kind !== partB.specs.device_kind;
       return {
         pin: pinNum,
         part_a_name: pinA.name,
         part_a_role: rA,
         part_b_name: pinB.name,
         part_b_role: rB,
-        status: 'CAUTION',
-        note: `CRITICAL OUTPUT STAGE DIFFERENCE: ${partA.opn} is ${partA.specs.device_kind} (${partA.specs.output_type}) vs ${partB.opn} ${partB.specs.device_kind} (${partB.specs.output_type}); open-collector/drain requires external pull-up and is uncompensated for linear feedback.`,
-        roleEquivalent: true,
-        hardMismatch: false,
+        status: kindMismatch ? 'MISMATCH' : 'CAUTION',
+        note: `CRITICAL OUTPUT STAGE DIFFERENCE: ${partA.opn} is ${partA.specs.device_kind} (${partA.specs.output_type}) vs ${partB.opn} ${partB.specs.device_kind} (${partB.specs.output_type}); ${describeOutputStageDifference(partA.specs, partB.specs)}`,
+        roleEquivalent: !kindMismatch,
+        hardMismatch: kindMismatch,
         pin4NcBypass: false,
         enPolarityDiff: false,
       };
@@ -261,8 +406,8 @@ function evaluateSinglePin(partA, partB, pinNum, pinA, pinB) {
           part_b_name: pinB.name,
           part_b_role: rB,
           status: 'CAUTION',
-          note: `Feedback network difference: one device has fixed internal divider while the other requires external R1/R2 feedback resistors.`,
-          roleEquivalent: true,
+          note: `Feedback network difference: one device has fixed internal divider while the other requires external R1/R2 feedback resistors (PCB divider footprint change).`,
+          roleEquivalent: false,
           hardMismatch: false,
           pin4NcBypass: false,
           enPolarityDiff: false,
@@ -403,7 +548,7 @@ function evaluateSinglePin(partA, partB, pinNum, pinA, pinB) {
       part_b_name: pinB.name,
       part_b_role: rB,
       status: 'CAUTION',
-      note: `Output sense pin differs (${pinA.name}/${rA} vs ${pinB.name}/${rB}): adjustable variant requires R1/R2 divider whereas fixed variant senses VOUT directly.`,
+      note: `Output sense pin differs (${pinA.name}/${rA} vs ${pinB.name}/${rB}): adjustable variant requires R1/R2 divider footprint whereas fixed variant senses VOUT directly.`,
       roleEquivalent: false,
       hardMismatch: false,
       pin4NcBypass: false,
@@ -429,8 +574,15 @@ function evaluateSinglePin(partA, partB, pinNum, pinA, pinB) {
 
 /**
  * Deterministic compatibility engine enforcing AUD-02 & AUD-04 rules.
+ *
+ * When `directional === false` (default, used for symmetric 1:1 `/en/vs/` comparisons),
+ * downgrades in either direction (A->B or B->A) trigger Level 2 cautions.
+ * When `directional === true` (via `evaluateReplacement(target, cand)` for `/en/alt/` hubs),
+ * strictly superior upgrades (higher Iout/Vin/Vabs, lower θJA/Vdo/Vin_min/Ib/Iq, wider temp
+ * grade, ceramic-stable replacing ESR-sensitive) are NOT falsely penalized into Level 2,
+ * while downgrades ARE penalized.
  */
-export function evaluateCompatibility(partA, partB) {
+export function evaluateCompatibility(partA, partB, { directional = false } = {}) {
   if (partA.category !== partB.category) {
     throw new Error(
       `Cross-category comparison unsupported (${partA.opn}:${partA.category} vs ${partB.opn}:${partB.category}).`,
@@ -473,7 +625,11 @@ export function evaluateCompatibility(partA, partB) {
     if (!res.roleEquivalent) allRolesEquivalent = false;
   }
 
-  const pinoutExactMatch = pinCountMatch && allRolesEquivalent;
+  const isOpampVsComparator =
+    partA.category === 'opamp' && partA.specs.device_kind !== partB.specs.device_kind;
+  // Op-Amp vs Comparator MUST NEVER report pinout_exact_match = true
+  const pinoutExactMatch = pinCountMatch && allRolesEquivalent && !isOpampVsComparator;
+
   const swapRisks = [];
   const level3Reasons = [];
   const level2Reasons = [];
@@ -484,6 +640,11 @@ export function evaluateCompatibility(partA, partB) {
     level3Reasons.push('package/footprint mismatch');
     swapRisks.push(msg);
   } else if (!packageMatch && footprintCompatible) {
+    // AUD-02: different package codes can NEVER be Level 1 Candidate Drop-In, even when
+    // the JEDEC land pattern is shared (e.g. TSOT-23-5 vs SOT-23-5).
+    level2Reasons.push(
+      `package code differs (${pkgA.code} vs ${pkgB.code}; same land pattern, different body profile)`,
+    );
     swapRisks.push(
       `CAUTION PACKAGE HEIGHT/PROFILE: ${partA.opn} (${pkgA.code}) vs ${partB.opn} (${pkgB.code}) share the same JEDEC land pattern pitch, but thin-profile TSOT (~1.0 mm) vs standard SOT (~1.45 mm) differs in body height; verify enclosure Z-clearance, SMT nozzle height, and solder fillet spec.`,
     );
@@ -495,7 +656,7 @@ export function evaluateCompatibility(partA, partB) {
     );
   }
 
-  if (hardPinMismatch) {
+  if (hardPinMismatch && !isOpampVsComparator) {
     const conflicts = pinDiff
       .filter((d) => d.status === 'MISMATCH')
       .map((d) => `Pin ${d.pin} (${d.part_a_role} vs ${d.part_b_role})`)
@@ -504,6 +665,16 @@ export function evaluateCompatibility(partA, partB) {
     swapRisks.push(
       `CRITICAL PINOUT CONFLICT: Incompatible pin assignments on ${conflicts}. Soldering ${partB.opn} onto a ${partA.opn} footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.`,
     );
+  } else if (hardPinMismatch && isOpampVsComparator) {
+    const nonOutputConflicts = pinDiff
+      .filter((d) => d.status === 'MISMATCH' && !OUTPUT_PIN_ROLES.has(d.part_a_role))
+      .map((d) => `Pin ${d.pin} (${d.part_a_role} vs ${d.part_b_role})`);
+    if (nonOutputConflicts.length > 0) {
+      level3Reasons.push(`pinout mismatch on ${nonOutputConflicts.join(', ')}`);
+      swapRisks.push(
+        `CRITICAL PINOUT CONFLICT: Incompatible pin assignments on ${nonOutputConflicts.join(', ')} in addition to the op-amp vs comparator class conflict.`,
+      );
+    }
   }
 
   if (!exposedPadMatch) {
@@ -532,59 +703,120 @@ export function evaluateCompatibility(partA, partB) {
     const sA = partA.specs;
     const sB = partB.specs;
 
-    if (sA.vout_fixed !== sB.vout_fixed || Math.abs(sA.vout_v.value - sB.vout_v.value) > 0.05) {
-      level2Reasons.push('output voltage / fixed-vs-adjustable mismatch');
+    // Fixed-vs-adjustable or fixed Vout rail mismatch (> 0.05 V) -> LEVEL_3_LAYOUT_CHANGE
+    if (sA.vout_fixed !== sB.vout_fixed) {
+      level3Reasons.push('fixed vs adjustable LDO feedback configuration mismatch');
       swapRisks.push(
-        `CRITICAL OUTPUT VOLTAGE DIFFERENCE: ${partA.opn} regulates ${sA.vout_v.value} V (${sA.vout_fixed ? 'fixed' : 'adj'}, p.${sA.vout_v.page}) vs ${partB.opn} ${sB.vout_v.value} V (${sB.vout_fixed ? 'fixed' : 'adj'}, p.${sB.vout_v.page}).`,
+        `CRITICAL OUTPUT CONFIGURATION MISMATCH: ${partA.opn} is ${sA.vout_fixed ? `fixed ${sA.vout_v.value} V` : `adjustable (Vref=${sA.vout_v.value} V)`} (p.${sA.vout_v.page}) whereas ${partB.opn} is ${sB.vout_fixed ? `fixed ${sB.vout_v.value} V` : `adjustable (Vref=${sB.vout_v.value} V)`} (p.${sB.vout_v.page}); PCB resistor-divider footprint change is required.`,
+      );
+    } else if (sA.vout_fixed && sB.vout_fixed && Math.abs(sA.vout_v.value - sB.vout_v.value) > 0.05) {
+      level3Reasons.push(
+        `fixed LDO output voltage rail mismatch (${fmtNum(sA.vout_v.value)} V vs ${fmtNum(sB.vout_v.value)} V)`,
+      );
+      swapRisks.push(
+        `CRITICAL OUTPUT VOLTAGE RAIL MISMATCH: ${partA.opn} is a fixed ${fmtNum(sA.vout_v.value)} V LDO (p.${sA.vout_v.page}) vs ${partB.opn} at fixed ${fmtNum(sB.vout_v.value)} V (p.${sB.vout_v.page}); swapping delivers the wrong rail voltage and risks damaging downstream loads.`,
       );
     }
 
-    if (sA.ceramic_cap_stable !== sB.ceramic_cap_stable) {
+    // Ceramic capacitor stability & Min Cout (>= 2.0x)
+    const ceramicDowngrade = directional
+      ? sA.ceramic_cap_stable && !sB.ceramic_cap_stable
+      : sA.ceramic_cap_stable !== sB.ceramic_cap_stable;
+    if (ceramicDowngrade) {
       level2Reasons.push('ceramic output capacitor ESR stability difference');
       const nonCer = sA.ceramic_cap_stable ? partB : partA;
       const cer = sA.ceramic_cap_stable ? partA : partB;
       swapRisks.push(
         `CRITICAL CAPACITOR ESR OSCILLATION RISK: ${cer.opn} is stable with low-ESR ceramic MLCCs (>= ${cer.specs.min_cout_uf.value} µF, p.${cer.specs.min_cout_uf.page}), whereas ${nonCer.opn} is NOT ceramic-cap stable (ESR window: ${fmtEsrWindow(nonCer.specs)}). Using an ultra-low-ESR MLCC on ${nonCer.opn} can trigger control-loop oscillation.`,
       );
-    } else if (
-      Math.max(sA.min_cout_uf.value, sB.min_cout_uf.value) /
-        Math.max(Math.min(sA.min_cout_uf.value, sB.min_cout_uf.value), 0.01) >=
-      2.5
-    ) {
-      level2Reasons.push('minimum output capacitance requirement differs >= 2.5x');
+    } else if (directional && !sA.ceramic_cap_stable && sB.ceramic_cap_stable) {
       swapRisks.push(
-        `CAUTION OUTPUT CAPACITANCE: Minimum Cout differs significantly (${partA.opn}: ${sA.min_cout_uf.value} µF p.${sA.min_cout_uf.page} vs ${partB.opn}: ${sB.min_cout_uf.value} µF p.${sB.min_cout_uf.page}); account for MLCC DC-bias derating.`,
+        `INFO CAPACITOR UPGRADE: ${partB.opn} is ceramic MLCC stable (>= ${sB.min_cout_uf.value} µF, p.${sB.min_cout_uf.page}); confirm any legacy high-ESR tantalum output capacitor remains within ${partB.opn}'s upper ESR limit (${fmtEsrWindow(sB)}).`,
       );
     }
 
-    const vinRatio =
-      Math.min(sA.vin_max_v.value, sB.vin_max_v.value) /
-      Math.max(sA.vin_max_v.value, sB.vin_max_v.value);
-    if (vinRatio < 0.8) {
+    const coutTriggered = directional
+      ? sB.min_cout_uf.value / Math.max(sA.min_cout_uf.value, 0.01) >= 2.0
+      : Math.max(sA.min_cout_uf.value, sB.min_cout_uf.value) /
+          Math.max(Math.min(sA.min_cout_uf.value, sB.min_cout_uf.value), 0.01) >=
+        2.0;
+    if (coutTriggered) {
+      const coutRatio = directional
+        ? sB.min_cout_uf.value / Math.max(sA.min_cout_uf.value, 0.01)
+        : Math.max(sA.min_cout_uf.value, sB.min_cout_uf.value) /
+          Math.max(Math.min(sA.min_cout_uf.value, sB.min_cout_uf.value), 0.01);
+      level2Reasons.push(`minimum output capacitance requirement differs ${fmtNum(coutRatio, 1)}x`);
+      swapRisks.push(
+        `CAUTION OUTPUT CAPACITANCE: Minimum Cout differs by ${fmtNum(coutRatio, 1)}x (${partA.opn}: ${sA.min_cout_uf.value} µF p.${sA.min_cout_uf.page} vs ${partB.opn}: ${sB.min_cout_uf.value} µF p.${sB.min_cout_uf.page}); account for MLCC DC-bias derating.`,
+      );
+    }
+
+    // Numeric ESR window overlap check whenever BOTH parts publish numeric ESR bounds
+    const hasBoundsA = !!(sA.esr_min_ohm || sA.esr_max_ohm);
+    const hasBoundsB = !!(sB.esr_min_ohm || sB.esr_max_ohm);
+    if (hasBoundsA && hasBoundsB) {
+      const loA = sA.esr_min_ohm?.value ?? 0;
+      const hiA = sA.esr_max_ohm?.value ?? Number.POSITIVE_INFINITY;
+      const loB = sB.esr_min_ohm?.value ?? 0;
+      const hiB = sB.esr_max_ohm?.value ?? Number.POSITIVE_INFINITY;
+      if (Math.max(loA, loB) > Math.min(hiA, hiB)) {
+        level2Reasons.push('output capacitor ESR stability windows do not overlap');
+        swapRisks.push(
+          `CRITICAL ESR STABILITY WINDOW: ${partA.opn} (${fmtEsrWindow(sA)}) and ${partB.opn} (${fmtEsrWindow(sB)}) have non-overlapping ESR stability windows — no single output capacitor satisfies both parts.`,
+        );
+      }
+    } else if (!sA.ceramic_cap_stable && !sB.ceramic_cap_stable && hasBoundsA !== hasBoundsB) {
+      const unpub = hasBoundsA ? partB : partA;
+      level2Reasons.push('ESR-constrained output capacitor window unverified on one part');
+      swapRisks.push(
+        `CAUTION ESR STABILITY WINDOW: Both parts are ESR-constrained, but ${unpub.opn} omits explicit numeric ESR bounds (${fmtEsrWindow(sA)} vs ${fmtEsrWindow(sB)}); verify the datasheet ESR-vs-Iout curve.`,
+      );
+    }
+
+    // Vin,max rating check (<= 0.8)
+    const vinTriggered = directional
+      ? sB.vin_max_v.value / Math.max(sA.vin_max_v.value, 1e-9) <= 0.8
+      : Math.min(sA.vin_max_v.value, sB.vin_max_v.value) /
+          Math.max(sA.vin_max_v.value, sB.vin_max_v.value, 1e-9) <=
+        0.8;
+    if (vinTriggered) {
       const lowerVin = sA.vin_max_v.value < sB.vin_max_v.value ? partA : partB;
-      const higherVin = sA.vin_max_v.value < sB.vin_max_v.value ? partB : partA;
-      level2Reasons.push('Vin,max rating drops >20%');
+      const higherVin = lowerVin === partA ? partB : partA;
+      level2Reasons.push('Vin,max rating drops >=20%');
       swapRisks.push(
         `HIGH INPUT VOLTAGE RATING DROP: ${lowerVin.opn} is rated to only ${lowerVin.specs.vin_max_v.value} V rec. (${lowerVin.specs.vin_abs_max_v.value} V abs max, p.${lowerVin.specs.vin_abs_max_v.page}) vs ${higherVin.opn} at ${higherVin.specs.vin_max_v.value} V rec. (${higherVin.specs.vin_abs_max_v.value} V abs max, p.${higherVin.specs.vin_abs_max_v.page}). Verify worst-case input transient spikes.`,
       );
     }
 
-    const ioutRatio =
-      Math.min(sA.iout_max_ma.value, sB.iout_max_ma.value) /
-      Math.max(sA.iout_max_ma.value, sB.iout_max_ma.value);
-    if (ioutRatio < 0.8) {
+    // Iout,max rating check (<= 0.8)
+    const ioutTriggered = directional
+      ? sB.iout_max_ma.value / Math.max(sA.iout_max_ma.value, 1e-9) <= 0.8
+      : Math.min(sA.iout_max_ma.value, sB.iout_max_ma.value) /
+          Math.max(sA.iout_max_ma.value, sB.iout_max_ma.value, 1e-9) <=
+        0.8;
+    if (ioutTriggered) {
       const lowerI = sA.iout_max_ma.value < sB.iout_max_ma.value ? partA : partB;
-      const higherI = sA.iout_max_ma.value < sB.iout_max_ma.value ? partB : partA;
-      level2Reasons.push('Iout,max rating drops >20%');
+      const higherI = lowerI === partA ? partB : partA;
+      level2Reasons.push('Iout,max rating drops >=20%');
       swapRisks.push(
         `HIGH LOAD CURRENT DERATING: ${lowerI.opn} supplies up to ${lowerI.specs.iout_max_ma.value} mA (p.${lowerI.specs.iout_max_ma.page}) compared to ${higherI.opn} at ${higherI.specs.iout_max_ma.value} mA (p.${higherI.specs.iout_max_ma.page}); confirm peak inrush and thermal dissipation margin.`,
       );
     }
 
-    if (Math.abs(sA.dropout_typ_mv.value - sB.dropout_typ_mv.value) >= 500) {
-      level2Reasons.push('dropout voltage headroom differs >= 500 mV');
+    // Dropout voltage check (>= 150 mV OR >= 1.8x)
+    const dropDiff = directional
+      ? sB.dropout_typ_mv.value - sA.dropout_typ_mv.value
+      : Math.abs(sA.dropout_typ_mv.value - sB.dropout_typ_mv.value);
+    const dropRatio = directional
+      ? sB.dropout_typ_mv.value / Math.max(sA.dropout_typ_mv.value, 1)
+      : Math.max(sA.dropout_typ_mv.value, sB.dropout_typ_mv.value) /
+        Math.max(Math.min(sA.dropout_typ_mv.value, sB.dropout_typ_mv.value), 1);
+    if (dropDiff >= 150 || dropRatio >= 1.8) {
+      level2Reasons.push(
+        `dropout voltage headroom differs (${Math.round(Math.abs(sA.dropout_typ_mv.value - sB.dropout_typ_mv.value))} mV / ${fmtNum(dropRatio, 1)}x)`,
+      );
       swapRisks.push(
-        `CAUTION DROPOUT HEADROOM: Typical dropout differs by ${Math.round(Math.abs(sA.dropout_typ_mv.value - sB.dropout_typ_mv.value))} mV (${partA.opn}: ${sA.dropout_typ_mv.value} mV p.${sA.dropout_typ_mv.page} vs ${partB.opn}: ${sB.dropout_typ_mv.value} mV p.${sB.dropout_typ_mv.page}); verify Vin,min - Vout >= Vdo at cold/hot corners.`,
+        `CAUTION DROPOUT HEADROOM: Typical dropout differs (${partA.opn}: ${sA.dropout_typ_mv.value} mV p.${sA.dropout_typ_mv.page} vs ${partB.opn}: ${sB.dropout_typ_mv.value} mV p.${sB.dropout_typ_mv.page}); verify Vin,min - Vout >= Vdo across temperature and load corners.`,
       );
     }
 
@@ -604,17 +836,96 @@ export function evaluateCompatibility(partA, partB) {
     const sB = partB.specs;
 
     if (sA.topology !== sB.topology) {
-      level2Reasons.push(`topology differs (${sA.topology} vs ${sB.topology})`);
+      level3Reasons.push(`DC-DC topology mismatch (${sA.topology} vs ${sB.topology})`);
       swapRisks.push(
-        `CRITICAL TOPOLOGY DIFFERENCE: ${partA.opn} is a ${sA.topology} converter whereas ${partB.opn} is a ${sB.topology} converter; power-stage architecture, inductor placement, and startup behavior differ fundamentally.`,
+        `CRITICAL TOPOLOGY DIFFERENCE: ${partA.opn} is a ${sA.topology} converter whereas ${partB.opn} is a ${sB.topology} converter; power-stage architecture, inductor placement, and startup behavior differ fundamentally — this is a power-path redesign, not a component swap.`,
       );
     }
 
+    // Synchronous vs non-synchronous -> LEVEL_3_LAYOUT_CHANGE (external Schottky diode footprint)
     if (sA.synchronous !== sB.synchronous) {
-      level2Reasons.push('synchronous vs non-synchronous rectification differs');
       const asyncPart = sA.synchronous ? partB : partA;
+      level3Reasons.push('synchronous vs non-synchronous rectification mismatch (external Schottky footprint)');
       swapRisks.push(
-        `HIGH RECTIFICATION DIFFERENCE: ${asyncPart.opn} is non-synchronous and requires an external Schottky catch/freewheeling diode, whereas the counterpart integrates a synchronous low-side MOSFET.`,
+        `CRITICAL RECTIFICATION LAYOUT DIFFERENCE: ${asyncPart.opn} is non-synchronous and requires an external Schottky catch/freewheeling diode footprint near SW, whereas the counterpart integrates a synchronous low-side MOSFET.`,
+      );
+    }
+
+    // Fixed vs adjustable output configuration -> LEVEL_3_LAYOUT_CHANGE (R1/R2 divider footprint)
+    if (sA.vout_fixed !== sB.vout_fixed) {
+      level3Reasons.push('fixed vs adjustable output feedback footprint mismatch (R1/R2 divider)');
+      swapRisks.push(
+        `CRITICAL FEEDBACK LAYOUT DIFFERENCE: One converter is fixed-output while the other is adjustable; adding or removing the external R1/R2 feedback divider and feedforward capacitor requires a PCB layout change.`,
+      );
+    } else if (sA.vout_fixed && sB.vout_fixed) {
+      // Fixed DC-DC Vout diff > 0.05 V -> LEVEL_3_LAYOUT_CHANGE
+      const vA = dcdcNominalVout(sA);
+      const vB = dcdcNominalVout(sB);
+      if (Math.abs(vA.value - vB.value) > 0.05) {
+        level3Reasons.push(
+          `fixed DC-DC output voltage rail mismatch (${fmtNum(vA.value)} V vs ${fmtNum(vB.value)} V)`,
+        );
+        swapRisks.push(
+          `CRITICAL OUTPUT VOLTAGE RAIL MISMATCH: ${partA.opn} is a fixed ${fmtNum(vA.value)} V converter (${vA.basis}, p.${vA.page}) whereas ${partB.opn} is a fixed ${fmtNum(vB.value)} V converter (${vB.basis}, p.${vB.page}); swapping delivers the wrong rail voltage and can destroy downstream loads.`,
+        );
+      }
+    } else if (!sA.vout_fixed && !sB.vout_fixed) {
+      // Adjustable DC-DC: Vout,max drop (<= 0.8) -> L2 + explicit switch-voltage overstress risk
+      const voutMaxTriggered = directional
+        ? sB.vout_max_v.value / Math.max(sA.vout_max_v.value, 1e-9) <= 0.8
+        : Math.min(sA.vout_max_v.value, sB.vout_max_v.value) /
+            Math.max(sA.vout_max_v.value, sB.vout_max_v.value, 1e-9) <=
+          0.8;
+      if (voutMaxTriggered) {
+        const lowP = sA.vout_max_v.value < sB.vout_max_v.value ? partA : partB;
+        const highP = lowP === partA ? partB : partA;
+        level2Reasons.push(
+          `adjustable Vout,max ceiling drops >=20% (${fmtNum(lowP.specs.vout_max_v.value)} V vs ${fmtNum(highP.specs.vout_max_v.value)} V — switch-voltage overstress risk)`,
+        );
+        swapRisks.push(
+          `CRITICAL SWITCH-VOLTAGE OVERSTRESS RISK: ${lowP.opn} is rated up to only ${fmtNum(lowP.specs.vout_max_v.value)} V output (p.${lowP.specs.vout_max_v.page}) vs ${highP.opn} up to ${fmtNum(highP.specs.vout_max_v.value)} V (p.${highP.specs.vout_max_v.page}); exceeding the internal switch BVdss ceiling destroys the SW MOSFET.`,
+        );
+      }
+
+      // Adjustable DC-DC: Vout,min increase (>= 0.1 V)
+      const voutMinTriggered = directional
+        ? sB.vout_min_v.value - sA.vout_min_v.value >= 0.1
+        : Math.abs(sA.vout_min_v.value - sB.vout_min_v.value) >= 0.1;
+      if (voutMinTriggered) {
+        const hiMinP = sA.vout_min_v.value > sB.vout_min_v.value ? partA : partB;
+        const loMinP = hiMinP === partA ? partB : partA;
+        level2Reasons.push(
+          `minimum programmable Vout,min rises (${fmtNum(loMinP.specs.vout_min_v.value)} V vs ${fmtNum(hiMinP.specs.vout_min_v.value)} V)`,
+        );
+        swapRisks.push(
+          `HIGH MINIMUM OUTPUT VOLTAGE FLOOR: ${hiMinP.opn} cannot regulate below ${fmtNum(hiMinP.specs.vout_min_v.value)} V (p.${hiMinP.specs.vout_min_v.page}) vs ${loMinP.opn} down to ${fmtNum(loMinP.specs.vout_min_v.value)} V (p.${loMinP.specs.vout_min_v.page}); verify your target rail sits above the higher Vout,min floor.`,
+        );
+      }
+
+      // Adjustable Vref mismatch (> 2%)
+      if (
+        sA.vref_v &&
+        sB.vref_v &&
+        Math.abs(sA.vref_v.value - sB.vref_v.value) /
+          Math.max(sA.vref_v.value, sB.vref_v.value) >
+          0.02
+      ) {
+        level2Reasons.push('feedback reference voltage Vref differs');
+        swapRisks.push(
+          `HIGH VREF MISMATCH: Feedback reference differs (${partA.opn}: ${sA.vref_v.value} V p.${sA.vref_v.page} vs ${partB.opn}: ${sB.vref_v.value} V p.${sB.vref_v.page}); dropping in without recalculating R1/R2 will output the wrong voltage rail.`,
+        );
+      }
+    }
+
+    if (
+      sA.en_active_high !== null &&
+      sB.en_active_high !== null &&
+      sA.en_active_high !== sB.en_active_high &&
+      !hasEnPolarityDiff
+    ) {
+      level2Reasons.push('EN polarity differs');
+      swapRisks.push(
+        `CRITICAL ENABLE POLARITY: ${partA.opn} EN is ${sA.en_active_high ? 'active-high' : 'active-low'} whereas ${partB.opn} EN is ${sB.en_active_high ? 'active-high' : 'active-low'}; the existing enable drive will invert converter ON/OFF state.`,
       );
     }
 
@@ -638,73 +949,80 @@ export function evaluateCompatibility(partA, partB) {
       );
     }
 
-    if (sA.vout_fixed !== sB.vout_fixed) {
-      level2Reasons.push('fixed vs adjustable output configuration differs');
-      swapRisks.push(
-        `HIGH FEEDBACK CONFIGURATION: One converter is fixed-output while the other is adjustable; external R1/R2 feedback resistors and feedforward capacitor must be updated.`,
-      );
-    } else if (
-      sA.vref_v &&
-      sB.vref_v &&
-      Math.abs(sA.vref_v.value - sB.vref_v.value) /
-        Math.max(sA.vref_v.value, sB.vref_v.value) >
-        0.02
-    ) {
-      level2Reasons.push('feedback reference voltage Vref differs');
-      swapRisks.push(
-        `HIGH VREF MISMATCH: Feedback reference differs (${partA.opn}: ${sA.vref_v.value} V p.${sA.vref_v.page} vs ${partB.opn}: ${sB.vref_v.value} V p.${sB.vref_v.page}); dropping in without recalculating R1/R2 will output the wrong voltage rail.`,
-      );
-    }
-
-    const vinRatio =
-      Math.min(sA.vin_max_v.value, sB.vin_max_v.value) /
-      Math.max(sA.vin_max_v.value, sB.vin_max_v.value);
-    if (vinRatio < 0.8) {
-      level2Reasons.push('Vin,max rating drops >20%');
+    const vinTriggered = directional
+      ? sB.vin_max_v.value / Math.max(sA.vin_max_v.value, 1e-9) <= 0.8
+      : Math.min(sA.vin_max_v.value, sB.vin_max_v.value) /
+          Math.max(sA.vin_max_v.value, sB.vin_max_v.value, 1e-9) <=
+        0.8;
+    if (vinTriggered) {
+      level2Reasons.push('Vin,max rating drops >=20%');
       swapRisks.push(
         `HIGH INPUT VOLTAGE RANGE SHIFT: Recommended Vin,max differs (${partA.opn}: ${sA.vin_max_v.value} V p.${sA.vin_max_v.page} vs ${partB.opn}: ${sB.vin_max_v.value} V p.${sB.vin_max_v.page}); verify line transients stay below Vin,abs,max.`,
       );
     }
 
-    const iRatio =
-      Math.min(sA.iout_or_isw_max_ma.value, sB.iout_or_isw_max_ma.value) /
-      Math.max(sA.iout_or_isw_max_ma.value, sB.iout_or_isw_max_ma.value);
-    if (iRatio < 0.8 || sA.is_switch_limit !== sB.is_switch_limit) {
+    const basisMismatch = sA.is_switch_limit !== sB.is_switch_limit;
+    const iTriggered = basisMismatch
+      ? true
+      : directional
+        ? sB.iout_or_isw_max_ma.value / Math.max(sA.iout_or_isw_max_ma.value, 1e-9) <= 0.8
+        : Math.min(sA.iout_or_isw_max_ma.value, sB.iout_or_isw_max_ma.value) /
+            Math.max(sA.iout_or_isw_max_ma.value, sB.iout_or_isw_max_ma.value, 1e-9) <=
+          0.8;
+    if (iTriggered) {
       level2Reasons.push('current rating or switch-limit basis differs');
+      const hasBoostOrIsw =
+        sA.topology === 'boost' ||
+        sB.topology === 'boost' ||
+        sA.is_switch_limit ||
+        sB.is_switch_limit;
+      const boostNote = hasBoostOrIsw
+        ? ' Remember boost/switch-limited Iout,max is strictly less than Isw due to duty-cycle and inductor ripple scaling.'
+        : ' Verify continuous load current and peak inductor saturation margin (Isat >= Iout + ΔIL/2).';
       swapRisks.push(
-        `CAUTION CURRENT RATING BASIS: ${partA.opn} specifies ${sA.iout_or_isw_max_ma.value} mA (${sA.is_switch_limit ? 'switch current limit Isw' : 'continuous Iout'}, p.${sA.iout_or_isw_max_ma.page}) vs ${partB.opn} ${sB.iout_or_isw_max_ma.value} mA (${sB.is_switch_limit ? 'switch current limit Isw' : 'continuous Iout'}, p.${sB.iout_or_isw_max_ma.page}). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling.`,
+        `CAUTION CURRENT RATING BASIS: ${partA.opn} specifies ${sA.iout_or_isw_max_ma.value} mA (${sA.is_switch_limit ? 'switch current limit Isw' : 'continuous Iout'}, p.${sA.iout_or_isw_max_ma.page}) vs ${partB.opn} ${sB.iout_or_isw_max_ma.value} mA (${sB.is_switch_limit ? 'switch current limit Isw' : 'continuous Iout'}, p.${sB.iout_or_isw_max_ma.page}).${boostNote}`,
       );
     }
   } else if (partA.category === 'opamp') {
     const sA = partA.specs;
     const sB = partB.specs;
 
-    // CRITICAL Op-Amp vs Comparator guard (AUD-02/AUD-04)
-    if (sA.device_kind !== sB.device_kind || sA.output_type !== sB.output_type) {
-      level2Reasons.push(
-        `device kind / output stage mismatch (${sA.device_kind}/${sA.output_type} vs ${sB.device_kind}/${sB.output_type})`,
+    // CRITICAL Op-Amp vs Comparator guard (AUD-02/AUD-04) -> LEVEL_3_LAYOUT_CHANGE
+    if (sA.device_kind !== sB.device_kind) {
+      level3Reasons.push(
+        `device kind mismatch (${sA.device_kind}/${sA.output_type} vs ${sB.device_kind}/${sB.output_type}) — circuit redesign required`,
       );
+      const anyOpen = isOpenOutput(sA.output_type) || isOpenOutput(sB.output_type);
       swapRisks.push(
-        `CRITICAL OP-AMP VS COMPARATOR TRAP: ${partA.opn} is a ${sA.device_kind} with ${sA.output_type} output while ${partB.opn} is a ${sB.device_kind} with ${sB.output_type} output. Even with identical pinouts, an open-collector comparator CANNOT pull high without an external pull-up resistor and lacks internal Miller compensation — dropping it into a linear negative-feedback op-amp circuit causes severe oscillation; conversely, using an op-amp as a comparator causes slow overdrive recovery and output saturation lag.`,
+        `CRITICAL OP-AMP VS COMPARATOR TRAP: ${partA.opn} is a ${sA.device_kind} with ${sA.output_type} output while ${partB.opn} is a ${sB.device_kind} with ${sB.output_type} output. Even with identical pinouts, a comparator is an uncompensated switching device: dropping it into a linear negative-feedback op-amp circuit (buffer, gain stage, filter) causes oscillation or latch-up, and an op-amp used as a comparator suffers slow overdrive/saturation recovery.${anyOpen ? ' In addition, the open-collector/open-drain output requires an external pull-up resistor to swing high.' : ' Both outputs are push-pull (no external pull-up required) — the incompatibility is loop compensation and switching behavior, not pull-up drive.'}`,
+      );
+    } else if (sA.output_type !== sB.output_type) {
+      level2Reasons.push(`output stage differs (${sA.output_type} vs ${sB.output_type})`);
+      swapRisks.push(
+        `CRITICAL OUTPUT STAGE DIFFERENCE: ${partA.opn} (${sA.output_type}) vs ${partB.opn} (${sB.output_type}): ${describeOutputStageDifference(sA, sB)}`,
       );
     }
 
-    const vsRatio =
-      Math.min(sA.vs_max_v.value, sB.vs_max_v.value) /
-      Math.max(sA.vs_max_v.value, sB.vs_max_v.value);
-    if (vsRatio < 0.8) {
+    const vsTriggered = directional
+      ? sB.vs_max_v.value / Math.max(sA.vs_max_v.value, 1e-9) <= 0.8
+      : Math.min(sA.vs_max_v.value, sB.vs_max_v.value) /
+          Math.max(sA.vs_max_v.value, sB.vs_max_v.value, 1e-9) <=
+        0.8;
+    if (vsTriggered) {
       const lowV = sA.vs_max_v.value < sB.vs_max_v.value ? partA : partB;
-      const highV = sA.vs_max_v.value < sB.vs_max_v.value ? partB : partA;
-      level2Reasons.push('supply voltage Vs,max drops >20%');
+      const highV = lowV === partA ? partB : partA;
+      level2Reasons.push('supply voltage Vs,max drops >=20%');
       swapRisks.push(
-        `CRITICAL SUPPLY VOLTAGE RATING: ${lowV.opn} is limited to ${lowV.specs.vs_max_v.value} V max (${lowV.specs.vs_abs_max_v.value} V abs max, p.${lowV.specs.vs_abs_max_v.page}) whereas ${highV.opn} supports up to ${highV.specs.vs_max_v.value} V (${highV.specs.vs_abs_max_v.value} V abs max, p.${highV.specs.vs_abs_max_v.page}). Installing a 5.5 V CMOS op-amp on a 12 V–24 V rail causes instant breakdown.`,
+        `CRITICAL SUPPLY VOLTAGE RATING: ${lowV.opn} is limited to ${lowV.specs.vs_max_v.value} V max (${lowV.specs.vs_abs_max_v.value} V abs max, p.${lowV.specs.vs_abs_max_v.page}) whereas ${highV.opn} supports up to ${highV.specs.vs_max_v.value} V (${highV.specs.vs_abs_max_v.value} V abs max, p.${highV.specs.vs_abs_max_v.page}). Installing a 5.5 V CMOS part on a 12 V–24 V rail causes instant breakdown.`,
       );
     }
 
-    if (
-      sA.rail_to_rail_in !== sB.rail_to_rail_in ||
-      sA.rail_to_rail_out !== sB.rail_to_rail_out
-    ) {
+    const rrDowngrade = directional
+      ? (sA.rail_to_rail_in && !sB.rail_to_rail_in) ||
+        (sA.rail_to_rail_out && !sB.rail_to_rail_out)
+      : sA.rail_to_rail_in !== sB.rail_to_rail_in ||
+        sA.rail_to_rail_out !== sB.rail_to_rail_out;
+    if (rrDowngrade) {
       level2Reasons.push('rail-to-rail input/output swing differs');
       swapRisks.push(
         `HIGH HEADROOM / CLIPPING RISK: Rail-to-rail capability differs (${partA.opn}: IN=${sA.rail_to_rail_in ? 'RR' : 'Non-RR'}, OUT=${sA.rail_to_rail_out ? 'RR' : 'Non-RR'} vs ${partB.opn}: IN=${sB.rail_to_rail_in ? 'RR' : 'Non-RR'}, OUT=${sB.rail_to_rail_out ? 'RR' : 'Non-RR'}); verify input common-mode range (Vicm) and output voltage swing against ADC full-scale range.`,
@@ -716,7 +1034,7 @@ export function evaluateCompatibility(partA, partB) {
         Math.max(sA.gbwp_mhz.value, sB.gbwp_mhz.value) /
         Math.max(Math.min(sA.gbwp_mhz.value, sB.gbwp_mhz.value), 0.001);
       if (gbwpRatio >= 3.0) {
-        level2Reasons.push('GBWP differs >= 3x');
+        level2Reasons.push(`GBWP differs ${fmtNum(gbwpRatio, 1)}x`);
         swapRisks.push(
           `CAUTION BANDWIDTH & PHASE MARGIN: GBWP differs by ${fmtNum(gbwpRatio, 1)}x (${partA.opn}: ${sA.gbwp_mhz.value} MHz p.${sA.gbwp_mhz.page} vs ${partB.opn}: ${sB.gbwp_mhz.value} MHz p.${sB.gbwp_mhz.page}); higher-bandwidth replacements can oscillate with capacitive loads or stray feedback capacitance without an isolation resistor.`,
         );
@@ -724,45 +1042,224 @@ export function evaluateCompatibility(partA, partB) {
     }
 
     if (sA.slew_rate_v_per_us && sB.slew_rate_v_per_us) {
-      const srRatio =
-        Math.max(sA.slew_rate_v_per_us.value, sB.slew_rate_v_per_us.value) /
-        Math.max(Math.min(sA.slew_rate_v_per_us.value, sB.slew_rate_v_per_us.value), 0.001);
-      if (srRatio >= 3.0) {
-        level2Reasons.push('slew rate differs >= 3x');
+      const srTriggered = directional
+        ? sA.slew_rate_v_per_us.value / Math.max(sB.slew_rate_v_per_us.value, 0.001) >= 3.0
+        : Math.max(sA.slew_rate_v_per_us.value, sB.slew_rate_v_per_us.value) /
+            Math.max(Math.min(sA.slew_rate_v_per_us.value, sB.slew_rate_v_per_us.value), 0.001) >=
+          3.0;
+      if (srTriggered) {
+        const srRatio =
+          Math.max(sA.slew_rate_v_per_us.value, sB.slew_rate_v_per_us.value) /
+          Math.max(Math.min(sA.slew_rate_v_per_us.value, sB.slew_rate_v_per_us.value), 0.001);
+        level2Reasons.push(`slew rate differs ${fmtNum(srRatio, 1)}x`);
         swapRisks.push(
           `CAUTION SLEW RATE DIFFERENCE: Slew rate differs by ${fmtNum(srRatio, 1)}x (${partA.opn}: ${sA.slew_rate_v_per_us.value} V/µs p.${sA.slew_rate_v_per_us.page} vs ${partB.opn}: ${sB.slew_rate_v_per_us.value} V/µs p.${sB.slew_rate_v_per_us.page}); check full-power bandwidth SR / (2π·Vpeak).`,
         );
       }
     }
 
-    const vosRatio =
-      Math.max(sA.vos_max_mv.value, sB.vos_max_mv.value) /
-      Math.max(Math.min(sA.vos_max_mv.value, sB.vos_max_mv.value), 0.001);
-    if (vosRatio >= 10) {
-      level2Reasons.push('input offset voltage Vos differs >= 10x');
+    // Comparator propagation delay gate (>= 2.0x)
+    if (sA.device_kind === 'comparator' && sB.device_kind === 'comparator' && sA.prop_delay_ns && sB.prop_delay_ns) {
+      const tpdTriggered = directional
+        ? sB.prop_delay_ns.value / Math.max(sA.prop_delay_ns.value, 0.1) >= 2.0
+        : Math.max(sA.prop_delay_ns.value, sB.prop_delay_ns.value) /
+            Math.max(Math.min(sA.prop_delay_ns.value, sB.prop_delay_ns.value), 0.1) >=
+          2.0;
+      if (tpdTriggered) {
+        const tpdRatio =
+          Math.max(sA.prop_delay_ns.value, sB.prop_delay_ns.value) /
+          Math.max(Math.min(sA.prop_delay_ns.value, sB.prop_delay_ns.value), 0.1);
+        level2Reasons.push(`comparator propagation delay differs ${fmtNum(tpdRatio, 1)}x`);
+        swapRisks.push(
+          `HIGH SWITCHING TIMING SHIFT: Propagation delay differs by ${fmtNum(tpdRatio, 1)}x (${partA.opn}: ${sA.prop_delay_ns.value} ns p.${sA.prop_delay_ns.page} vs ${partB.opn}: ${sB.prop_delay_ns.value} ns p.${sB.prop_delay_ns.page}); verify overcurrent/zero-crossing trip latency and hysteresis timing.`,
+        );
+      }
+    }
+
+    const vosTriggered = directional
+      ? sB.vos_max_mv.value / Math.max(sA.vos_max_mv.value, 0.001) >= 10
+      : Math.max(sA.vos_max_mv.value, sB.vos_max_mv.value) /
+          Math.max(Math.min(sA.vos_max_mv.value, sB.vos_max_mv.value), 0.001) >=
+        10;
+    if (vosTriggered) {
+      const vosRatio =
+        Math.max(sA.vos_max_mv.value, sB.vos_max_mv.value) /
+        Math.max(Math.min(sA.vos_max_mv.value, sB.vos_max_mv.value), 0.001);
+      level2Reasons.push(`input offset voltage Vos differs ${fmtNum(vosRatio, 0)}x`);
       swapRisks.push(
         `CAUTION PRECISION OFFSET SHIFT: Maximum Vos differs by ${fmtNum(vosRatio, 0)}x (${partA.opn}: ${sA.vos_max_mv.value} mV p.${sA.vos_max_mv.page} vs ${partB.opn}: ${sB.vos_max_mv.value} mV p.${sB.vos_max_mv.page}); high-gain DC sensor stages may lose accuracy or require zero-drift chopper filtering.`,
       );
     }
+
+    // Input bias current gate (>= 10x — catches CMOS pA vs Bipolar nA!)
+    const ibTriggered = directional
+      ? sB.ib_typ_pa.value / Math.max(sA.ib_typ_pa.value, 0.1) >= 10
+      : Math.max(sA.ib_typ_pa.value, sB.ib_typ_pa.value) /
+          Math.max(Math.min(sA.ib_typ_pa.value, sB.ib_typ_pa.value), 0.1) >=
+        10;
+    if (ibTriggered) {
+      const ibRatio =
+        Math.max(sA.ib_typ_pa.value, sB.ib_typ_pa.value) /
+        Math.max(Math.min(sA.ib_typ_pa.value, sB.ib_typ_pa.value), 0.1);
+      level2Reasons.push(`input bias current Ib differs ${fmtNum(ibRatio, 0)}x (CMOS vs bipolar input stage)`);
+      swapRisks.push(
+        `HIGH INPUT BIAS CURRENT SHIFT: Typical Ib differs by ${fmtNum(ibRatio, 0)}x (${partA.opn}: ${fmtNum(sA.ib_typ_pa.value)} pA p.${sA.ib_typ_pa.page} vs ${partB.opn}: ${fmtNum(sB.ib_typ_pa.value)} pA p.${sB.ib_typ_pa.page}); high-impedance sensor dividers (>100 kΩ) suffer severe Ib·R DC offset error when swapping from CMOS/JFET to bipolar inputs.`,
+      );
+    }
+
+    // Quiescent current per channel gate (>= 2.0x)
+    const iqTriggered = directional
+      ? sB.iq_per_ch_typ_ua.value / Math.max(sA.iq_per_ch_typ_ua.value, 0.01) >= 2.0
+      : Math.max(sA.iq_per_ch_typ_ua.value, sB.iq_per_ch_typ_ua.value) /
+          Math.max(Math.min(sA.iq_per_ch_typ_ua.value, sB.iq_per_ch_typ_ua.value), 0.01) >=
+        2.0;
+    if (iqTriggered) {
+      const iqRatio =
+        Math.max(sA.iq_per_ch_typ_ua.value, sB.iq_per_ch_typ_ua.value) /
+        Math.max(Math.min(sA.iq_per_ch_typ_ua.value, sB.iq_per_ch_typ_ua.value), 0.01);
+      level2Reasons.push(`quiescent supply current Iq/ch differs ${fmtNum(iqRatio, 1)}x`);
+      swapRisks.push(
+        `CAUTION QUIESCENT CURRENT SHIFT: Supply current per channel differs by ${fmtNum(iqRatio, 1)}x (${partA.opn}: ${fmtNum(sA.iq_per_ch_typ_ua.value)} µA/ch p.${sA.iq_per_ch_typ_ua.page} vs ${partB.opn}: ${fmtNum(sB.iq_per_ch_typ_ua.value)} µA/ch p.${sB.iq_per_ch_typ_ua.page}); verify battery budget and total power dissipation across all channels.`,
+      );
+    }
   }
 
-  // Lifecycle status caution (NRND / EOL sourcing risk)
+  // Cross-category engineering gates (applies to LDO, DC-DC, Op-Amp)
+
+  // 1. Absolute maximum input/supply voltage gate (>= 15% diff)
+  const absA = vinAbsMaxOf(partA);
+  const absB = vinAbsMaxOf(partB);
+  if (absA && absB) {
+    const absTriggered = directional
+      ? absB.value / Math.max(absA.value, 1e-9) <= 0.85
+      : Math.min(absA.value, absB.value) / Math.max(absA.value, absB.value, 1e-9) <= 0.85;
+    if (absTriggered) {
+      const lowAbs = absA.value < absB.value ? partA : partB;
+      const highAbs = lowAbs === partA ? partB : partA;
+      const lowCited = lowAbs === partA ? absA : absB;
+      const highCited = highAbs === partA ? absA : absB;
+      const absLabel = partA.category === 'opamp' ? 'Vs,abs,max' : 'Vin,abs,max';
+      level2Reasons.push(
+        `${absLabel} drops >=15% (${fmtNum(lowCited.value)} V vs ${fmtNum(highCited.value)} V)`,
+      );
+      swapRisks.push(
+        `HIGH ABSOLUTE-MAX SURGE MARGIN: ${lowAbs.opn} has a lower ${absLabel} rating (${fmtNum(lowCited.value)} V, p.${lowCited.page}) than ${highAbs.opn} (${fmtNum(highCited.value)} V, p.${highCited.page}); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below ${fmtNum(lowCited.value)} V.`,
+      );
+    }
+  }
+
+  // 2. Thermal resistance gate (>= 25% diff -> Level 2)
+  const thetaA = pkgA.theta_ja_c_per_w.value;
+  const thetaB = pkgB.theta_ja_c_per_w.value;
+  const thetaDiffRatio = directional
+    ? (thetaB - thetaA) / Math.max(thetaA, 1e-9)
+    : (Math.max(thetaA, thetaB) - Math.min(thetaA, thetaB)) /
+      Math.max(Math.min(thetaA, thetaB), 1e-9);
+  if (thetaDiffRatio >= 0.25) {
+    const worseP = thetaA > thetaB ? partA : partB;
+    level2Reasons.push(
+      `θJA worsens ${Math.round(thetaDiffRatio * 100)}% (thermal derating verification required)`,
+    );
+    swapRisks.push(
+      `HIGH THERMAL MARGIN: Package θJA is ${Math.round(thetaDiffRatio * 100)}% higher on ${worseP.opn} (${partA.opn}: ${thetaA} °C/W p.${pkgA.theta_ja_c_per_w.page} vs ${partB.opn}: ${thetaB} °C/W p.${pkgB.theta_ja_c_per_w.page}); re-check Tj = Ta + Pd × θJA against Tj,max.`,
+    );
+  }
+
+  // 3. Minimum supply / input floor gate (Vin,min or Vs,min diff >= 0.5 V -> Level 2)
+  const floorA = vinFloorOf(partA);
+  const floorB = vinFloorOf(partB);
+  if (floorA && floorB) {
+    const floorDelta = directional
+      ? floorB.value - floorA.value
+      : Math.abs(floorA.value - floorB.value);
+    if (floorDelta >= 0.5) {
+      const higherFloorP = floorA.value > floorB.value ? partA : partB;
+      const hf = higherFloorP === partA ? floorA : floorB;
+      const lf = higherFloorP === partA ? floorB : floorA;
+      const label = partA.category === 'opamp' ? 'Vs,min' : 'Vin,min';
+      level2Reasons.push(`${label} floor rises ${fmtNum(floorDelta, 2)} V`);
+      swapRisks.push(
+        `HIGH MINIMUM SUPPLY FLOOR: ${higherFloorP.opn} requires ${label} >= ${fmtNum(hf.value)} V (p.${hf.page}) vs ${fmtNum(lf.value)} V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor.`,
+      );
+    }
+  }
+
+  // 4. Operating ambient temperature grade gate (any ta_min or ta_max diff -> Level 2)
+  const tgA = partA.temp_grade;
+  const tgB = partB.temp_grade;
+  const tempGradeTriggered = directional
+    ? tgB.ta_min_c > tgA.ta_min_c || tgB.ta_max_c < tgA.ta_max_c
+    : tgA.ta_min_c !== tgB.ta_min_c || tgA.ta_max_c !== tgB.ta_max_c;
+  if (tempGradeTriggered) {
+    const narrower = [];
+    if (tgA.ta_min_c !== tgB.ta_min_c) {
+      const p = tgA.ta_min_c > tgB.ta_min_c ? partA : partB;
+      narrower.push(`${p.opn} cold limit only ${p.temp_grade.ta_min_c} °C`);
+    }
+    if (tgA.ta_max_c !== tgB.ta_max_c) {
+      const p = tgA.ta_max_c < tgB.ta_max_c ? partA : partB;
+      narrower.push(`${p.opn} hot limit only ${p.temp_grade.ta_max_c} °C`);
+    }
+    level2Reasons.push(
+      `ambient temperature grade differs (${tgA.ta_min_c}..${tgA.ta_max_c} °C vs ${tgB.ta_min_c}..${tgB.ta_max_c} °C)`,
+    );
+    swapRisks.push(
+      `HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (${partA.opn}: ${tgA.ta_min_c}..${tgA.ta_max_c} °C ${tgA.grade_label} vs ${partB.opn}: ${tgB.ta_min_c}..${tgB.ta_max_c} °C ${tgB.grade_label}); ${narrower.join(', ')} — verify product ambient qualification before swapping.`,
+    );
+  }
+
+  // 5. Lifecycle status caution (NRND / EOL sourcing risk)
   for (const p of [partA, partB]) {
-    if (p.lifecycle_status === 'EOL' || p.lifecycle_status === 'NRND') {
+    if (isLifecycleRestricted(p.lifecycle_status)) {
       swapRisks.push(
         `CAUTION LIFECYCLE STATUS (${p.lifecycle_status}): ${p.opn} is flagged ${p.lifecycle_status} by ${p.manufacturer}; do not design into new production layouts — evaluate Active alternatives.`,
       );
     }
   }
 
-  // Thermal resistance caution (applies to all categories)
-  const thetaDiffRatio =
-    Math.abs(pkgA.theta_ja_c_per_w.value - pkgB.theta_ja_c_per_w.value) /
-    Math.max(pkgA.theta_ja_c_per_w.value, pkgB.theta_ja_c_per_w.value);
-  if (thetaDiffRatio >= 0.25) {
-    swapRisks.push(
-      `CAUTION THERMAL MARGIN: Package θJA differs by ${Math.round(thetaDiffRatio * 100)}% (${partA.opn}: ${pkgA.theta_ja_c_per_w.value} °C/W p.${pkgA.theta_ja_c_per_w.page} vs ${partB.opn}: ${pkgB.theta_ja_c_per_w.value} °C/W p.${pkgB.theta_ja_c_per_w.page}); re-check Tj = Ta + Pd × θJA against Tj,max.`,
-    );
+  // 6. v2.1 optional trap fields (compared when both parts publish them)
+  if (partA.category === 'ldo' || partA.category === 'dcdc') {
+    const sA = partA.specs;
+    const sB = partB.specs;
+    if (
+      sA.en_default_floating &&
+      sB.en_default_floating &&
+      sA.en_default_floating !== sB.en_default_floating
+    ) {
+      level2Reasons.push('EN floating default differs');
+      swapRisks.push(
+        `CRITICAL EN FLOATING BEHAVIOR: An unconnected EN pin defaults to '${sA.en_default_floating}' on ${partA.opn} but '${sB.en_default_floating}' on ${partB.opn}; boards relying on internal EN pull resistors will change power-up state.`,
+      );
+    }
+    if (sA.en_abs_max_v && sB.en_abs_max_v) {
+      const lo = Math.min(sA.en_abs_max_v.value, sB.en_abs_max_v.value);
+      const hi = Math.max(sA.en_abs_max_v.value, sB.en_abs_max_v.value);
+      if (hi - lo >= 0.5) {
+        swapRisks.push(
+          `CAUTION EN ABS MAX: EN pin absolute maximum differs (${partA.opn}: ${fmtNum(sA.en_abs_max_v.value)} V vs ${partB.opn}: ${fmtNum(sB.en_abs_max_v.value)} V); tying EN directly to VIN may exceed the lower rating.`,
+        );
+      }
+    }
+    if (
+      typeof sA.active_discharge === 'boolean' &&
+      typeof sB.active_discharge === 'boolean' &&
+      sA.active_discharge !== sB.active_discharge
+    ) {
+      swapRisks.push(
+        `CAUTION OUTPUT DISCHARGE: Active output discharge is ${sA.active_discharge ? 'present' : 'absent'} on ${partA.opn} vs ${sB.active_discharge ? 'present' : 'absent'} on ${partB.opn}; power-sequencing and shutdown-to-restart timing will differ.`,
+      );
+    }
+    for (const [p, other] of [
+      [partA, partB],
+      [partB, partA],
+    ]) {
+      if (p.specs.max_cout_uf && other.specs.min_cout_uf.value > p.specs.max_cout_uf.value) {
+        level2Reasons.push('output capacitance outside stable Cout window');
+        swapRisks.push(
+          `CRITICAL COUT WINDOW: ${other.opn} requires >= ${fmtNum(other.specs.min_cout_uf.value)} µF but ${p.opn} is only stable up to ${fmtNum(p.specs.max_cout_uf.value)} µF (p.${p.specs.max_cout_uf.page}).`,
+        );
+      }
+    }
   }
 
   // Determine final Compatibility Level (strict AUD-02 & AUD-04 hierarchy)
@@ -801,14 +1298,18 @@ export function evaluateCompatibility(partA, partB) {
   };
 }
 
+/**
+ * Directional replacement evaluator for `/en/alt/` hubs ("replace `target` with `cand`").
+ */
+export function evaluateReplacement(target, cand) {
+  return evaluateCompatibility(target, cand, { directional: true });
+}
+
 function buildLdoParameterMatrix(a, b) {
   const sA = a.specs;
   const sB = b.specs;
   const pA = a.package;
   const pB = b.package;
-
-  const vinSpanA = sA.vin_max_v.value - sA.vin_min_v.value;
-  const vinSpanB = sB.vin_max_v.value - sB.vin_min_v.value;
 
   return [
     {
@@ -824,8 +1325,13 @@ function buildLdoParameterMatrix(a, b) {
       unit: 'V',
       part_a_value: fmtRange(sA.vin_min_v, sA.vin_max_v, 'V'),
       part_b_value: fmtRange(sB.vin_min_v, sB.vin_max_v, 'V'),
-      winner: compareHigherBetter(vinSpanA, vinSpanB, 0.05),
-      note: 'Wider operating Vin window supports broader rail & battery chemistry headroom.',
+      winner: compareVoltageRangeCoverage(
+        sA.vin_min_v.value,
+        sA.vin_max_v.value,
+        sB.vin_min_v.value,
+        sB.vin_max_v.value,
+      ),
+      note: 'A part wins only if its operating Vin range strictly encompasses the counterpart on both ends.',
     },
     {
       metric: 'Absolute Max Input Voltage',
@@ -841,7 +1347,7 @@ function buildLdoParameterMatrix(a, b) {
       part_a_value: `${fmtNum(sA.vout_v.value)} V ±${fmtNum(sA.vout_tolerance_pct.value)}% (p.${sA.vout_tolerance_pct.page})`,
       part_b_value: `${fmtNum(sB.vout_v.value)} V ±${fmtNum(sB.vout_tolerance_pct.value)}% (p.${sB.vout_tolerance_pct.page})`,
       winner:
-        Math.abs(sA.vout_v.value - sB.vout_v.value) <= 0.05
+        sA.vout_fixed === sB.vout_fixed && Math.abs(sA.vout_v.value - sB.vout_v.value) <= 0.05
           ? compareLowerBetter(sA.vout_tolerance_pct.value, sB.vout_tolerance_pct.value)
           : 'CONTEXT',
       note: 'Tighter Vout tolerance improves ADC reference and digital rail margin.',
@@ -923,6 +1429,11 @@ function buildDcdcParameterMatrix(a, b) {
   const sB = b.specs;
   const pA = a.package;
   const pB = b.package;
+  const hasBoostOrIsw =
+    sA.topology === 'boost' ||
+    sB.topology === 'boost' ||
+    sA.is_switch_limit ||
+    sB.is_switch_limit;
 
   return [
     {
@@ -953,12 +1464,13 @@ function buildDcdcParameterMatrix(a, b) {
       unit: 'V',
       part_a_value: fmtRange(sA.vin_min_v, sA.vin_max_v, 'V'),
       part_b_value: fmtRange(sB.vin_min_v, sB.vin_max_v, 'V'),
-      winner: compareHigherBetter(
-        sA.vin_max_v.value - sA.vin_min_v.value,
-        sB.vin_max_v.value - sB.vin_min_v.value,
-        0.05,
+      winner: compareVoltageRangeCoverage(
+        sA.vin_min_v.value,
+        sA.vin_max_v.value,
+        sB.vin_min_v.value,
+        sB.vin_max_v.value,
       ),
-      note: 'Verify cold-start minimum startup voltage and bus surge ceiling.',
+      note: 'A part wins only if its operating Vin range strictly encompasses the counterpart on both ends.',
     },
     {
       metric: 'Absolute Max Input Voltage',
@@ -973,8 +1485,16 @@ function buildDcdcParameterMatrix(a, b) {
       unit: 'V',
       part_a_value: `${fmtRange(sA.vout_min_v, sA.vout_max_v, 'V')} (${sA.vout_fixed ? 'Fixed' : 'Adj'})`,
       part_b_value: `${fmtRange(sB.vout_min_v, sB.vout_max_v, 'V')} (${sB.vout_fixed ? 'Fixed' : 'Adj'})`,
-      winner: 'CONTEXT',
-      note: 'Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning.',
+      winner:
+        !sA.vout_fixed && !sB.vout_fixed
+          ? compareVoltageRangeCoverage(
+              sA.vout_min_v.value,
+              sA.vout_max_v.value,
+              sB.vout_min_v.value,
+              sB.vout_max_v.value,
+            )
+          : 'CONTEXT',
+      note: 'Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits.',
     },
     {
       metric: 'Max Current (Iout or Isw Limit)',
@@ -985,7 +1505,9 @@ function buildDcdcParameterMatrix(a, b) {
         sA.is_switch_limit === sB.is_switch_limit
           ? compareHigherBetter(sA.iout_or_isw_max_ma.value, sB.iout_or_isw_max_ma.value)
           : 'CONTEXT',
-      note: 'For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2.',
+      note: hasBoostOrIsw
+        ? 'For boost/switch-limited converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2.'
+        : 'Continuous DC output current rating; verify inductor Isat >= Iout + ΔIL/2 and thermal margin.',
     },
     {
       metric: 'Quiescent Current (Iq, typ)',
@@ -1072,7 +1594,7 @@ function buildOpampParameterMatrix(a, b) {
         sA.device_kind === sB.device_kind && sA.output_type === sB.output_type
           ? 'TIE'
           : 'CONTEXT',
-      note: 'Op-amps (compensated push-pull) and comparators (uncompensated open-collector) are NOT drop-in interchangeable.',
+      note: 'Op-amps (internally compensated for linear feedback) and comparators (uncompensated open-loop switching) are NOT drop-in interchangeable.',
     },
     {
       metric: 'Package & Channel Count',
@@ -1087,12 +1609,13 @@ function buildOpampParameterMatrix(a, b) {
       unit: 'V',
       part_a_value: fmtRange(sA.vs_min_v, sA.vs_max_v, 'V'),
       part_b_value: fmtRange(sB.vs_min_v, sB.vs_max_v, 'V'),
-      winner: compareHigherBetter(
-        sA.vs_max_v.value - sA.vs_min_v.value,
-        sB.vs_max_v.value - sB.vs_min_v.value,
-        0.05,
+      winner: compareVoltageRangeCoverage(
+        sA.vs_min_v.value,
+        sA.vs_max_v.value,
+        sB.vs_min_v.value,
+        sB.vs_max_v.value,
       ),
-      note: 'Confirm total supply span (V+ - V-) stays within recommended limits.',
+      note: 'A part wins only if its recommended Vs range strictly encompasses the counterpart on both ends.',
     },
     {
       metric: 'Absolute Max Supply (Vs,abs)',
@@ -1167,8 +1690,8 @@ function buildOpampParameterMatrix(a, b) {
       unit: 'dB · nV/√Hz',
       part_a_value: `${fmtCited(sA.cmrr_typ_db, 'dB')} · ${fmtCited(sA.input_noise_nv_rt_hz, 'nV/√Hz')}`,
       part_b_value: `${fmtCited(sB.cmrr_typ_db, 'dB')} · ${fmtCited(sB.input_noise_nv_rt_hz, 'nV/√Hz')}`,
-      winner: compareHigherBetter(sA.cmrr_typ_db?.value, sB.cmrr_typ_db?.value),
-      note: 'Higher CMRR rejects common-mode noise; lower voltage noise improves SNR.',
+      winner: compareCmrrAndNoise(sA, sB),
+      note: 'Winner requires superiority on both CMRR (higher) and input voltage noise (lower); mixed tradeoffs stay CONTEXT.',
     },
     {
       metric: 'Thermal Resistance (θJA) & Tj,max',
@@ -1181,39 +1704,181 @@ function buildOpampParameterMatrix(a, b) {
   ];
 }
 
+function summarizeGotcha(part) {
+  const g = part.design_gotchas?.[0];
+  if (!g) return `${part.opn} datasheet constraints`;
+  const pg = typeof g.page === 'number' ? ` (p.${g.page})` : '';
+  return `${part.opn} "${g.title}"${pg}`;
+}
+
+function chooseWhenClause(part, other) {
+  const reasons = [];
+  if (part.category === 'ldo') {
+    const s = part.specs;
+    const o = other.specs;
+    if (s.iout_max_ma.value > o.iout_max_ma.value * 1.15) {
+      reasons.push(`load current exceeds ${fmtNum(o.iout_max_ma.value)} mA (up to ${fmtNum(s.iout_max_ma.value)} mA)`);
+    }
+    if (s.iq_typ_ua.value < o.iq_typ_ua.value * 0.6) {
+      reasons.push(`battery sleep budget demands ${fmtNum(s.iq_typ_ua.value)} µA Iq`);
+    }
+    if (s.vin_max_v.value > o.vin_max_v.value * 1.15) {
+      reasons.push(`input rails climb above ${fmtNum(o.vin_max_v.value)} V (rated to ${fmtNum(s.vin_max_v.value)} V)`);
+    }
+    if (s.ceramic_cap_stable && !o.ceramic_cap_stable) {
+      reasons.push('your BOM standardizes on low-ESR MLCC ceramic output capacitors');
+    }
+    if (s.dropout_typ_mv.value < o.dropout_typ_mv.value * 0.7) {
+      reasons.push(`low Vin-Vout headroom requires ${fmtNum(s.dropout_typ_mv.value)} mV dropout`);
+    }
+    if (part.package.theta_ja_c_per_w.value < other.package.theta_ja_c_per_w.value * 0.85) {
+      reasons.push(`lower package θJA (${fmtNum(part.package.theta_ja_c_per_w.value)} °C/W) is needed for thermal margin`);
+    }
+  } else if (part.category === 'dcdc') {
+    const s = part.specs;
+    const o = other.specs;
+    if (s.topology !== o.topology) {
+      reasons.push(`your power stage requires a ${s.topology} topology`);
+    }
+    if (s.synchronous && !o.synchronous) {
+      reasons.push('you want synchronous rectification without an external Schottky diode');
+    }
+    if (s.vin_max_v.value > o.vin_max_v.value * 1.15) {
+      reasons.push(`bus voltage exceeds ${fmtNum(o.vin_max_v.value)} V (rated to ${fmtNum(s.vin_max_v.value)} V)`);
+    }
+    if (s.is_switch_limit === o.is_switch_limit && s.iout_or_isw_max_ma.value > o.iout_or_isw_max_ma.value * 1.15) {
+      reasons.push(`higher ${s.is_switch_limit ? 'switch current' : 'load current'} capacity (${fmtNum(s.iout_or_isw_max_ma.value)} mA) is required`);
+    }
+    if (!s.vout_fixed && !o.vout_fixed && s.vout_max_v.value > o.vout_max_v.value * 1.15) {
+      reasons.push(`programmed output rails exceed ${fmtNum(o.vout_max_v.value)} V (up to ${fmtNum(s.vout_max_v.value)} V)`);
+    }
+    if (s.iq_typ_ua.value < o.iq_typ_ua.value * 0.6) {
+      reasons.push(`light-load battery standby needs ${fmtNum(s.iq_typ_ua.value)} µA Iq`);
+    }
+  } else {
+    const s = part.specs;
+    const o = other.specs;
+    if (s.device_kind !== o.device_kind) {
+      reasons.push(
+        s.device_kind === 'opamp'
+          ? 'the circuit is a linear closed-loop amplifier, buffer, or active filter'
+          : `the circuit is an open-loop threshold/window comparator (${s.output_type} output)`,
+      );
+    }
+    if (s.vs_max_v.value > o.vs_max_v.value * 1.15) {
+      reasons.push(`supply rails exceed ${fmtNum(o.vs_max_v.value)} V (rated up to ${fmtNum(s.vs_max_v.value)} V)`);
+    }
+    if (s.gbwp_mhz && o.gbwp_mhz && s.gbwp_mhz.value > o.gbwp_mhz.value * 1.5) {
+      reasons.push(`closed-loop signal bandwidth requires ${fmtNum(s.gbwp_mhz.value)} MHz GBWP`);
+    }
+    if (s.vos_max_mv.value < o.vos_max_mv.value * 0.5) {
+      reasons.push(`DC precision demands <= ${fmtNum(s.vos_max_mv.value)} mV max Vos`);
+    }
+    if (s.ib_typ_pa.value < o.ib_typ_pa.value * 0.1) {
+      reasons.push(`high-impedance sensors require pA-class input bias (${fmtNum(s.ib_typ_pa.value)} pA)`);
+    }
+    if (s.rail_to_rail_in && s.rail_to_rail_out && (!o.rail_to_rail_in || !o.rail_to_rail_out)) {
+      reasons.push('single-supply ADC headroom demands full Rail-to-Rail I/O swing');
+    }
+    if (s.iq_per_ch_typ_ua.value < o.iq_per_ch_typ_ua.value * 0.6) {
+      reasons.push(`ultra-low supply current (${fmtNum(s.iq_per_ch_typ_ua.value)} µA/ch) is prioritized`);
+    }
+    if (s.device_kind === 'comparator' && o.device_kind === 'comparator' && s.prop_delay_ns && o.prop_delay_ns && s.prop_delay_ns.value < o.prop_delay_ns.value * 0.7) {
+      reasons.push(`fast trip response requires ${fmtNum(s.prop_delay_ns.value)} ns propagation delay`);
+    }
+  }
+  if (reasons.length === 0) {
+    reasons.push(
+      `matching your existing ${part.manufacturer} ${part.package.code} (${part.package.mfg_package_code}) qualification and ${part.temp_grade.ta_min_c}..${part.temp_grade.ta_max_c} °C grade`,
+    );
+  }
+  return reasons.slice(0, 2).join(' or ');
+}
+
+/**
+ * Rich, pair-specific engineering analysis (>100 words, zero boilerplate template repetition):
+ * (a) Compatibility class & concrete root cause (exact pin/EP conflict, thermal ΔTj delta at a realistic rail, Iq/GBWP/noise gap),
+ * (b) Primary datasheet gotchas from both parts,
+ * (c) Directional BOM decision ("Choose A when..., choose B when...").
+ */
 function buildEngineeringVerdict(partA, partB, evalRes) {
   const level = evalRes.compatibility_level;
   const pA = partA.package;
   const pB = partB.package;
 
-  let lead = '';
+  // (a) Compatibility class & root cause
+  let rootCause = '';
   if (level === 'LEVEL_1_CANDIDATE_DROP_IN') {
-    lead = `${partA.opn} (${partA.manufacturer}, ${pA.code}) and ${partB.opn} (${partB.manufacturer}, ${pB.code}) qualify as Level 1 Candidate Drop-In alternatives with matching pin assignments, compatible exposed-pad nets, and aligned core operating ratings.`;
+    rootCause = `${partA.opn} (${partA.manufacturer}, ${pA.code}) and ${partB.opn} (${partB.manufacturer}, ${pB.code}) qualify as Level 1 Candidate Drop-In peers: all ${pA.pin_count} pins share identical electrical roles, exposed-pad nets match (${pA.exposed_pad.present ? pA.exposed_pad.net : 'no EP'}), and thermal/voltage/temperature-grade margins remain aligned.`;
   } else if (level === 'LEVEL_2_TUNING_REQUIRED') {
     const reasons = evalRes.level2Reasons.slice(0, 3).join('; ');
-    lead = `${partA.opn} (${partA.manufacturer}, ${pA.code}) and ${partB.opn} (${partB.manufacturer}, ${pB.code}) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to ${reasons}.`;
+    rootCause = `${partA.opn} (${partA.manufacturer}, ${pA.code}) and ${partB.opn} (${partB.manufacturer}, ${pB.code}) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because ${reasons}.`;
   } else {
     const reasons = evalRes.level3Reasons.slice(0, 3).join('; ');
-    lead = `${partA.opn} (${partA.manufacturer}, ${pA.code}) and ${partB.opn} (${partB.manufacturer}, ${pB.code}) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to ${reasons}.`;
+    const conflictPins = evalRes.pin_diff
+      .filter((d) => d.status === 'MISMATCH')
+      .map((d) => `Pin ${d.pin} (${d.part_a_role} vs ${d.part_b_role})`);
+    const pinSummary =
+      conflictPins.length > 0 ? ` Specific pin conflicts: ${conflictPins.slice(0, 4).join(', ')}.` : '';
+    rootCause = `${partA.opn} (${partA.manufacturer}, ${pA.code}) and ${partB.opn} (${partB.manufacturer}, ${pB.code}) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to ${reasons}.${pinSummary}`;
   }
 
-  let detail = '';
+  // Pair-specific quantitative physics & thermal delta
+  let physicsInsight = '';
   if (partA.category === 'ldo') {
     const sA = partA.specs;
     const sB = partB.specs;
-    detail = ` Key datasheet deltas: Iq is ${fmtCited(sA.iq_typ_ua, 'µA')} vs ${fmtCited(sB.iq_typ_ua, 'µA')}, max output current is ${fmtCited(sA.iout_max_ma, 'mA')} vs ${fmtCited(sB.iout_max_ma, 'mA')}, recommended Vin,max is ${fmtCited(sA.vin_max_v, 'V')} vs ${fmtCited(sB.vin_max_v, 'V')}, typical dropout is ${fmtCited(sA.dropout_typ_mv, 'mV')} vs ${fmtCited(sB.dropout_typ_mv, 'mV')}, and ceramic capacitor stability is ${sA.ceramic_cap_stable ? 'supported' : 'ESR-constrained'} vs ${sB.ceramic_cap_stable ? 'supported' : 'ESR-constrained'}.`;
+    const voutRef = Math.min(sA.vout_v.value, sB.vout_v.value);
+    const vinTest = Math.max(
+      Math.min(sA.vin_max_v.value, sB.vin_max_v.value),
+      voutRef + 1.0,
+    );
+    const realisticVin = vinTest >= 5.0 && voutRef <= 3.6 ? 5.0 : Number((voutRef + 1.5).toFixed(1));
+    const iTestMa = Math.min(sA.iout_max_ma.value, sB.iout_max_ma.value, 150);
+    const pdW = Math.max(realisticVin - voutRef, 0.5) * (iTestMa / 1000);
+    const dtA = pdW * pA.theta_ja_c_per_w.value;
+    const dtB = pdW * pB.theta_ja_c_per_w.value;
+    const iqRatio =
+      Math.max(sA.iq_typ_ua.value, sB.iq_typ_ua.value) /
+      Math.max(Math.min(sA.iq_typ_ua.value, sB.iq_typ_ua.value), 0.01);
+    physicsInsight = ` Under a representative ${fmtNum(realisticVin, 1)} V → ${fmtNum(voutRef, 2)} V rail at ${fmtNum(iTestMa, 0)} mA (${fmtNum(pdW * 1000, 0)} mW), estimated self-heating is ΔTj ≈ ${fmtNum(dtA, 1)} °C on ${partA.opn} (θJA ${fmtNum(pA.theta_ja_c_per_w.value)} °C/W) vs ${fmtNum(dtB, 1)} °C on ${partB.opn} (θJA ${fmtNum(pB.theta_ja_c_per_w.value)} °C/W), while quiescent draw spans a ${fmtNum(iqRatio, 1)}x ratio (${fmtCited(sA.iq_typ_ua, 'µA')} vs ${fmtCited(sB.iq_typ_ua, 'µA')}).`;
   } else if (partA.category === 'dcdc') {
     const sA = partA.specs;
     const sB = partB.specs;
-    detail = ` Key datasheet deltas: topology is ${sA.topology} (${sA.synchronous ? 'sync' : 'non-sync'}) vs ${sB.topology} (${sB.synchronous ? 'sync' : 'non-sync'}), switching frequency is ${fmtCited(sA.fsw_typ_khz, 'kHz')} vs ${fmtCited(sB.fsw_typ_khz, 'kHz')}, rated current is ${fmtCited(sA.iout_or_isw_max_ma, 'mA')} vs ${fmtCited(sB.iout_or_isw_max_ma, 'mA')}, typical inductor is ${fmtCited(sA.inductor_typ_uh, 'µH')} vs ${fmtCited(sB.inductor_typ_uh, 'µH')}, and Iq is ${fmtCited(sA.iq_typ_ua, 'µA')} vs ${fmtCited(sB.iq_typ_ua, 'µA')}.`;
+    const fswRatio =
+      Math.max(sA.fsw_typ_khz.value, sB.fsw_typ_khz.value) /
+      Math.max(Math.min(sA.fsw_typ_khz.value, sB.fsw_typ_khz.value), 1);
+    const vrefNote =
+      sA.vref_v && sB.vref_v
+        ? `feedback Vref ${fmtCited(sA.vref_v, 'V')} vs ${fmtCited(sB.vref_v, 'V')}`
+        : `output mode ${sA.vout_fixed ? 'fixed' : 'adjustable'} vs ${sB.vout_fixed ? 'fixed' : 'adjustable'}`;
+    physicsInsight = ` Power-stage deltas: ${sA.topology} (${sA.synchronous ? 'sync' : 'non-sync'}) vs ${sB.topology} (${sB.synchronous ? 'sync' : 'non-sync'}), switching frequency ${fmtCited(sA.fsw_typ_khz, 'kHz')} vs ${fmtCited(sB.fsw_typ_khz, 'kHz')} (${fmtNum(fswRatio, 1)}x ratio), typical inductor ${fmtCited(sA.inductor_typ_uh, 'µH')} vs ${fmtCited(sB.inductor_typ_uh, 'µH')}, ${vrefNote}, and package θJA ${fmtNum(pA.theta_ja_c_per_w.value)} vs ${fmtNum(pB.theta_ja_c_per_w.value)} °C/W.`;
   } else {
     const sA = partA.specs;
     const sB = partB.specs;
-    detail = ` Key datasheet deltas: device type is ${sA.device_kind} (${sA.output_type}) vs ${sB.device_kind} (${sB.output_type}), supply limit is ${fmtCited(sA.vs_max_v, 'V')} vs ${fmtCited(sB.vs_max_v, 'V')}, max Vos is ${fmtCited(sA.vos_max_mv, 'mV')} vs ${fmtCited(sB.vos_max_mv, 'mV')}, input bias current is ${fmtCited(sA.ib_typ_pa, 'pA')} vs ${fmtCited(sB.ib_typ_pa, 'pA')}, and Iq/ch is ${fmtCited(sA.iq_per_ch_typ_ua, 'µA')} vs ${fmtCited(sB.iq_per_ch_typ_ua, 'µA')}.`;
+    const ibRatio =
+      Math.max(sA.ib_typ_pa.value, sB.ib_typ_pa.value) /
+      Math.max(Math.min(sA.ib_typ_pa.value, sB.ib_typ_pa.value), 0.1);
+    const speedPart =
+      sA.device_kind === 'opamp' && sB.device_kind === 'opamp' && sA.gbwp_mhz && sB.gbwp_mhz
+        ? `GBWP ${fmtCited(sA.gbwp_mhz, 'MHz')} vs ${fmtCited(sB.gbwp_mhz, 'MHz')}`
+        : sA.device_kind === 'comparator' && sB.device_kind === 'comparator' && sA.prop_delay_ns && sB.prop_delay_ns
+          ? `propagation delay ${fmtCited(sA.prop_delay_ns, 'ns')} vs ${fmtCited(sB.prop_delay_ns, 'ns')}`
+          : `${sA.device_kind} (${sA.output_type}) vs ${sB.device_kind} (${sB.output_type})`;
+    const noisePart =
+      sA.input_noise_nv_rt_hz && sB.input_noise_nv_rt_hz
+        ? `, voltage noise ${fmtNum(sA.input_noise_nv_rt_hz.value)} vs ${fmtNum(sB.input_noise_nv_rt_hz.value)} nV/√Hz`
+        : '';
+    physicsInsight = ` Signal-chain deltas: ${speedPart}, supply ceiling ${fmtCited(sA.vs_max_v, 'V')} vs ${fmtCited(sB.vs_max_v, 'V')}, Vos ${fmtCited(sA.vos_max_mv, 'mV')} vs ${fmtCited(sB.vos_max_mv, 'mV')}, Ib ${fmtNum(ibRatio, 0)}x gap (${fmtNum(sA.ib_typ_pa.value)} vs ${fmtNum(sB.ib_typ_pa.value)} pA)${noisePart}.`;
   }
 
-  const tail = ` Always validate pinout orientation (${pA.pinout_view} p.${pA.pinout_source_page} vs ${pB.pinout_view} p.${pB.pinout_source_page}), thermal margin (θJA ${pA.theta_ja_c_per_w.value} vs ${pB.theta_ja_c_per_w.value} °C/W), and official manufacturer datasheets on hardware prototypes before production release.`;
-  return `${lead}${detail}${tail}`;
+  // (b) Concrete primary design gotchas
+  const gotchaLine = ` Primary bench gotchas to watch: ${summarizeGotcha(partA)} and ${summarizeGotcha(partB)}.`;
+
+  // (c) Clear directional BOM decision + AUD-04 verification reminder
+  const decisionLine = ` BOM decision: Choose ${partA.opn} when ${chooseWhenClause(partA, partB)}; choose ${partB.opn} when ${chooseWhenClause(partB, partA)}. Always verify Pin 1 orientation (${pA.pinout_view} p.${pA.pinout_source_page} vs ${pB.pinout_view} p.${pB.pinout_source_page}) and official datasheets on hardware prototypes prior to production.`;
+
+  return `${rootCause}${physicsInsight}${gotchaLine}${decisionLine}`;
 }
 
 export function buildVsComparison(partA, partB, generatedAt) {
@@ -1291,12 +1956,20 @@ function scoreCandidate(target, cand, evalRes) {
 
     if (c.synchronous && !t.synchronous) score += 3;
     if (c.vin_max_v.value >= t.vin_max_v.value) score += 2;
-    if (c.iout_or_isw_max_ma.value >= t.iout_or_isw_max_ma.value) score += 2;
+    // Never compare iout_or_isw_max_ma across mismatched is_switch_limit
+    if (
+      c.is_switch_limit === t.is_switch_limit &&
+      c.iout_or_isw_max_ma.value >= t.iout_or_isw_max_ma.value
+    ) {
+      score += 2;
+    }
     if (c.iq_typ_ua.value < t.iq_typ_ua.value * 0.5) score += 2;
   } else {
     const t = target.specs;
     const c = cand.specs;
-    if (c.device_kind !== t.device_kind || c.output_type !== t.output_type) {
+    if (c.device_kind !== t.device_kind) {
+      score -= 45;
+    } else if (c.output_type !== t.output_type) {
       score -= 18;
     } else {
       score += 4;
@@ -1308,11 +1981,29 @@ function scoreCandidate(target, cand, evalRes) {
     if (c.vos_max_mv.value < t.vos_max_mv.value) score += 2;
   }
 
+  // Lifecycle sourcing risk penalty (EOL -35, NRND -20)
+  const lifecyclePenalty = LIFECYCLE_PENALTY[String(cand.lifecycle_status || '').toUpperCase()] || 0;
+  score -= lifecyclePenalty;
+
+  // Level 3 candidates cap at 45 so Active L2 options always outrank L3
+  if (evalRes.compatibility_level === 'LEVEL_3_LAYOUT_CHANGE') {
+    score = Math.min(score, 45);
+  }
+
   return Math.max(10, Math.min(99, Math.round(score)));
 }
 
+function isCrossKind(target, cand) {
+  if (target.category === 'opamp') return target.specs.device_kind !== cand.specs.device_kind;
+  if (target.category === 'dcdc') return target.specs.topology !== cand.specs.topology;
+  return false;
+}
+
 function classifyTierTag(target, cand, evalRes, isTopDropIn) {
-  if (evalRes.compatibility_level === 'LEVEL_3_LAYOUT_CHANGE') {
+  if (isLifecycleRestricted(cand.lifecycle_status)) {
+    return 'Lifecycle Warning (EOL/NRND)';
+  }
+  if (evalRes.compatibility_level === 'LEVEL_3_LAYOUT_CHANGE' || isCrossKind(target, cand)) {
     return 'Functional Alternative (Layout Change)';
   }
   if (evalRes.compatibility_level === 'LEVEL_1_CANDIDATE_DROP_IN' && isTopDropIn) {
@@ -1323,33 +2014,38 @@ function classifyTierTag(target, cand, evalRes, isTopDropIn) {
     if (cand.specs.iq_typ_ua.value <= target.specs.iq_typ_ua.value * 0.35) {
       return 'Ultra-Low Iq Upgrade';
     }
-    if (
-      cand.specs.iout_max_ma.value >= target.specs.iout_max_ma.value * 1.25 ||
-      cand.specs.vin_max_v.value >= target.specs.vin_max_v.value * 1.25
-    ) {
+    if (cand.specs.iout_max_ma.value >= target.specs.iout_max_ma.value * 1.25) {
       return 'Higher Current / Margin';
+    }
+    if (cand.specs.vin_max_v.value >= target.specs.vin_max_v.value * 1.25) {
+      return 'Higher Voltage Margin';
     }
   } else if (target.category === 'dcdc') {
     if (cand.specs.iq_typ_ua.value <= target.specs.iq_typ_ua.value * 0.35) {
       return 'Ultra-Low Iq Upgrade';
     }
     if (
-      cand.specs.iout_or_isw_max_ma.value >= target.specs.iout_or_isw_max_ma.value * 1.25 ||
-      cand.specs.vin_max_v.value >= target.specs.vin_max_v.value * 1.25
+      cand.specs.is_switch_limit === target.specs.is_switch_limit &&
+      cand.specs.iout_or_isw_max_ma.value >= target.specs.iout_or_isw_max_ma.value * 1.25
     ) {
       return 'Higher Current / Margin';
+    }
+    if (cand.specs.vin_max_v.value >= target.specs.vin_max_v.value * 1.25) {
+      return 'Higher Voltage Margin';
     }
   } else {
     if (cand.specs.iq_per_ch_typ_ua.value <= target.specs.iq_per_ch_typ_ua.value * 0.35) {
       return 'Ultra-Low Iq Upgrade';
     }
     if (
-      cand.specs.vs_max_v.value >= target.specs.vs_max_v.value * 1.3 ||
-      (cand.specs.gbwp_mhz &&
-        target.specs.gbwp_mhz &&
-        cand.specs.gbwp_mhz.value >= target.specs.gbwp_mhz.value * 2)
+      cand.specs.iout_short_ma &&
+      target.specs.iout_short_ma &&
+      cand.specs.iout_short_ma.value >= target.specs.iout_short_ma.value * 1.25
     ) {
       return 'Higher Current / Margin';
+    }
+    if (cand.specs.vs_max_v.value >= target.specs.vs_max_v.value * 1.3) {
+      return 'Higher Voltage Margin';
     }
   }
 
@@ -1403,10 +2099,22 @@ function summarizeAdvantageAndTradeoff(target, cand, evalRes) {
       trade.push(`Higher Iq (${fmtNum(c.iq_typ_ua.value)} µA vs ${fmtNum(t.iq_typ_ua.value)} µA)`);
     }
 
-    if (c.iout_or_isw_max_ma.value > t.iout_or_isw_max_ma.value * 1.15) {
-      adv.push(`Higher current rating (${fmtNum(c.iout_or_isw_max_ma.value)} mA vs ${fmtNum(t.iout_or_isw_max_ma.value)} mA)`);
-    } else if (c.iout_or_isw_max_ma.value < t.iout_or_isw_max_ma.value * 0.85) {
-      trade.push(`Lower current rating (${fmtNum(c.iout_or_isw_max_ma.value)} mA vs ${fmtNum(t.iout_or_isw_max_ma.value)} mA)`);
+    // Only compare current ratings when both share the same basis (Iout vs Isw)
+    if (c.is_switch_limit === t.is_switch_limit) {
+      const basis = c.is_switch_limit ? 'Isw limit' : 'Iout rating';
+      if (c.iout_or_isw_max_ma.value > t.iout_or_isw_max_ma.value * 1.15) {
+        adv.push(
+          `Higher ${basis} (${fmtNum(c.iout_or_isw_max_ma.value)} mA vs ${fmtNum(t.iout_or_isw_max_ma.value)} mA)`,
+        );
+      } else if (c.iout_or_isw_max_ma.value < t.iout_or_isw_max_ma.value * 0.85) {
+        trade.push(
+          `Lower ${basis} (${fmtNum(c.iout_or_isw_max_ma.value)} mA vs ${fmtNum(t.iout_or_isw_max_ma.value)} mA)`,
+        );
+      }
+    } else {
+      trade.push(
+        `Different current rating basis (${c.is_switch_limit ? 'Isw limit' : 'Iout max'} vs ${t.is_switch_limit ? 'Isw limit' : 'Iout max'})`,
+      );
     }
 
     if (c.synchronous && !t.synchronous) {
@@ -1454,13 +2162,22 @@ function summarizeAdvantageAndTradeoff(target, cand, evalRes) {
   }
 
   if (evalRes.compatibility_level === 'LEVEL_3_LAYOUT_CHANGE') {
+    const crossReason = evalRes.level3Reasons.find((r) =>
+      /device kind mismatch|topology mismatch|voltage rail mismatch|rectification mismatch|feedback/.test(r),
+    );
     trade.unshift(
-      evalRes.package_match
-        ? 'Pinout or exposed-pad mismatch requires PCB rerouting'
-        : `Package change (${target.package.code} → ${cand.package.code}) requires PCB layout mod`,
+      crossReason
+        ? `Not drop-in: ${crossReason}`
+        : evalRes.package_match
+          ? 'Pinout or exposed-pad mismatch requires PCB rerouting'
+          : `Package change (${target.package.code} → ${cand.package.code}) requires PCB layout mod`,
     );
   } else if (evalRes.compatibility_level === 'LEVEL_1_CANDIDATE_DROP_IN' && adv.length === 0) {
     adv.push(`Matching ${cand.package.code} pinout & ratings for second-sourcing`);
+  }
+
+  if (isLifecycleRestricted(cand.lifecycle_status)) {
+    trade.unshift(`[${cand.lifecycle_status}] Not recommended for new production designs`);
   }
 
   if (adv.length === 0) {
@@ -1496,7 +2213,7 @@ function buildSelectionChecklist(target) {
     ];
   }
   return [
-    `Verify device class (${target.specs.device_kind}) and output stage (${target.specs.output_type}) — never substitute an uncompensated open-collector comparator for a push-pull op-amp without circuit redesign.`,
+    `Verify device class (${target.specs.device_kind}) and output stage (${target.specs.output_type}) — never substitute an uncompensated comparator for a compensated op-amp, or vice versa, without circuit redesign; only open-collector/open-drain outputs require an external pull-up.`,
     `Confirm supply rail span (${target.specs.vs_min_v.value}–${target.specs.vs_max_v.value} V rec, ${target.specs.vs_abs_max_v.value} V abs max) and exact ${target.package.code} pinout (${target.package.pinout.map((p) => `${p.pin}=${p.role}`).join(', ')}).`,
     `Verify input common-mode headroom (${target.specs.rail_to_rail_in ? 'RR-In' : 'Non-RR-In'}), output swing (${target.specs.rail_to_rail_out ? 'RR-Out' : 'Non-RR-Out'}), and Vos (${target.specs.vos_max_mv.value} mV max) against signal chain budget.`,
     `Check closed-loop bandwidth (GBWP / Acl), full-power slew rate (SR / 2π·Vpeak), and capacitive-load phase margin on the bench.`,
@@ -1507,18 +2224,29 @@ export function buildAltHub(target, allCategoryParts, existingVsSlugs, generated
   const scored = [];
   for (const cand of allCategoryParts) {
     if (cand.slug === target.slug) continue;
-    const evalRes = evaluateCompatibility(target, cand);
+    // Directional replacement evaluation: upgrading target -> cand is not falsely penalized
+    const evalRes = evaluateReplacement(target, cand);
     const norm = normalizeVsPair(target.slug, cand.slug);
     const vsSlug = existingVsSlugs.has(norm.slug) ? norm.slug : null;
     const score = scoreCandidate(target, cand, evalRes);
     scored.push({ cand, evalRes, vsSlug, score });
   }
 
+  const hasSameKind = scored.some((s) => !isCrossKind(target, s.cand));
   scored.sort((x, y) => {
+    if (hasSameKind) {
+      const xk = isCrossKind(target, x.cand) ? 1 : 0;
+      const yk = isCrossKind(target, y.cand) ? 1 : 0;
+      if (xk !== yk) return xk - yk;
+    }
     const lp =
       LEVEL_PRIORITY[x.evalRes.compatibility_level] -
       LEVEL_PRIORITY[y.evalRes.compatibility_level];
     if (lp !== 0) return lp;
+    // Active parts rank ahead of EOL/NRND within the same compatibility level
+    const xRestr = isLifecycleRestricted(x.cand.lifecycle_status) ? 1 : 0;
+    const yRestr = isLifecycleRestricted(y.cand.lifecycle_status) ? 1 : 0;
+    if (xRestr !== yRestr) return xRestr - yRestr;
     if (y.score !== x.score) return y.score - x.score;
     const xHasVs = x.vsSlug ? 1 : 0;
     const yHasVs = y.vsSlug ? 1 : 0;
@@ -1526,7 +2254,7 @@ export function buildAltHub(target, allCategoryParts, existingVsSlugs, generated
     return x.cand.slug.localeCompare(y.cand.slug);
   });
 
-  // Include all candidates that have a dedicated /en/vs/ page, plus fill up to 8 top-ranked
+  // Include top 8 ranked candidates plus any additional candidates with a dedicated /en/vs/ page
   const selectedSet = new Set();
   const selected = [];
   for (const item of scored) {
@@ -1553,7 +2281,10 @@ export function buildAltHub(target, allCategoryParts, existingVsSlugs, generated
     else if (lvl === 'LEVEL_2_TUNING_REQUIRED') l2Count++;
     else l3Count++;
 
-    const isTopDropIn = lvl === 'LEVEL_1_CANDIDATE_DROP_IN' && !seenTopDropIn;
+    const isTopDropIn =
+      lvl === 'LEVEL_1_CANDIDATE_DROP_IN' &&
+      !isLifecycleRestricted(item.cand.lifecycle_status) &&
+      !seenTopDropIn;
     if (isTopDropIn) seenTopDropIn = true;
 
     const tierTag = classifyTierTag(target, item.cand, item.evalRes, isTopDropIn);
@@ -1568,6 +2299,7 @@ export function buildAltHub(target, allCategoryParts, existingVsSlugs, generated
       alt_opn: item.cand.opn,
       manufacturer: item.cand.manufacturer,
       package_code: item.cand.package.code,
+      lifecycle_status: item.cand.lifecycle_status,
       compatibility_level: lvl,
       compatibility_badge: item.evalRes.compatibility_badge,
       tier_tag: tierTag,
@@ -1578,7 +2310,7 @@ export function buildAltHub(target, allCategoryParts, existingVsSlugs, generated
     };
   });
 
-  const summary = `Datasheet-verified cross-reference alternatives for ${target.opn} (${target.manufacturer}, ${target.package.code}, ${target.sub_topology}): evaluated ${scored.length} same-category OPNs, surfacing ${l1Count} Level 1 Candidate Drop-In, ${l2Count} Level 2 Tuning Required, and ${l3Count} Level 3 Layout Change options. Verify pinout, thermal margin, and official manufacturer datasheets before production.`;
+  const summary = `Datasheet-verified cross-reference alternatives for ${target.opn} (${target.manufacturer}, ${target.package.code}, ${target.sub_topology}): evaluated ${scored.length} same-category OPNs and shortlisted the top ${candidates.length} ranked replacements (${l1Count} Level 1 Candidate Drop-In, ${l2Count} Level 2 Tuning Required, and ${l3Count} Level 3 Layout Change). Verify pinout, thermal margin, lifecycle status, and official manufacturer datasheets before production.`;
 
   const record = {
     schema_version: '2.0.0',
@@ -1593,6 +2325,123 @@ export function buildAltHub(target, allCategoryParts, existingVsSlugs, generated
   };
 
   return AltHubSchema.parse(record);
+}
+
+/**
+ * Hard engineering invariants (AUD-02/AUD-04). Any violation fails Stage 3.
+ */
+export function checkVsInvariants(partA, partB, doc) {
+  const v = [];
+  const lvl = doc.compatibility_level;
+  const [a, b] = partA.slug === doc.part_a_slug ? [partA, partB] : [partB, partA];
+  if (lvl === 'LEVEL_1_CANDIDATE_DROP_IN') {
+    if (!doc.package_match) v.push(`${doc.slug}: L1 with package mismatch (AUD-02).`);
+    if (doc.pin_diff.some((d) => d.status !== 'MATCH'))
+      v.push(`${doc.slug}: L1 with non-MATCH pin rows.`);
+    if (
+      doc.pin_diff.some(
+        (d) =>
+          d.part_a_role === 'OTHER' &&
+          d.status === 'MATCH' &&
+          normalizePinName(d.part_a_name) !== normalizePinName(d.part_b_name),
+      )
+    ) {
+      v.push(`${doc.slug}: OTHER===OTHER with different pin names counted as MATCH.`);
+    }
+  }
+  if (a.category === 'opamp') {
+    if (a.specs.device_kind !== b.specs.device_kind) {
+      if (lvl !== 'LEVEL_3_LAYOUT_CHANGE')
+        v.push(`${doc.slug}: op-amp vs comparator not Level 3.`);
+      if (doc.pinout_exact_match)
+        v.push(`${doc.slug}: op-amp vs comparator reported pinout_exact_match=true.`);
+    }
+    const anyOpen = isOpenOutput(a.specs.output_type) || isOpenOutput(b.specs.output_type);
+    const text = [...doc.swap_risks, ...doc.pin_diff.map((d) => d.note)].join(' ');
+    if (!anyOpen && /requires external pull-up|CANNOT pull high/i.test(text))
+      v.push(`${doc.slug}: false open-collector/pull-up claim on push-pull pair.`);
+  }
+  if (a.category === 'dcdc') {
+    if (a.specs.topology !== b.specs.topology && lvl !== 'LEVEL_3_LAYOUT_CHANGE')
+      v.push(`${doc.slug}: DC-DC topology mismatch not Level 3.`);
+    if (a.specs.synchronous !== b.specs.synchronous && lvl !== 'LEVEL_3_LAYOUT_CHANGE')
+      v.push(`${doc.slug}: DC-DC sync vs non-sync mismatch not Level 3.`);
+    if (a.specs.vout_fixed !== b.specs.vout_fixed && lvl !== 'LEVEL_3_LAYOUT_CHANGE')
+      v.push(`${doc.slug}: DC-DC fixed vs adj mismatch not Level 3.`);
+    if (a.specs.vout_fixed && b.specs.vout_fixed) {
+      const va = dcdcNominalVout(a.specs).value;
+      const vb = dcdcNominalVout(b.specs).value;
+      if (Math.abs(va - vb) > 0.05 && lvl !== 'LEVEL_3_LAYOUT_CHANGE')
+        v.push(`${doc.slug}: fixed DC-DC Vout mismatch (${va} vs ${vb}) not Level 3.`);
+    }
+    const hasBoostOrIsw =
+      a.specs.topology === 'boost' ||
+      b.specs.topology === 'boost' ||
+      a.specs.is_switch_limit ||
+      b.specs.is_switch_limit;
+    const text = [
+      ...doc.swap_risks,
+      ...doc.parameter_matrix.map((m) => m.note),
+      doc.engineering_verdict,
+    ].join(' ');
+    if (!hasBoostOrIsw && /boost Iout,max|boost\/switch-limited/i.test(text)) {
+      v.push(`${doc.slug}: false boost Iout<Isw text emitted on non-boost continuous-Iout pair.`);
+    }
+  }
+  if (a.category === 'ldo') {
+    if (
+      (a.specs.vout_fixed !== b.specs.vout_fixed ||
+        (a.specs.vout_fixed && Math.abs(a.specs.vout_v.value - b.specs.vout_v.value) > 0.05)) &&
+      lvl !== 'LEVEL_3_LAYOUT_CHANGE'
+    ) {
+      v.push(`${doc.slug}: fixed LDO Vout or fixed/adj mismatch not Level 3.`);
+    }
+  }
+  // Verdict quality & safety invariants
+  const wordCount = doc.engineering_verdict.trim().split(/\s+/).length;
+  if (wordCount < 70) {
+    v.push(`${doc.slug}: engineering_verdict too short (${wordCount} words).`);
+  }
+  if (/\bNaN\b|\bundefined\b/i.test(doc.engineering_verdict)) {
+    v.push(`${doc.slug}: NaN/undefined leaked into engineering_verdict.`);
+  }
+  if (/100%\s*drop-?in|guaranteed\s*drop-?in/i.test(doc.engineering_verdict)) {
+    v.push(`${doc.slug}: AUD-04 banned absolute drop-in guarantee in verdict.`);
+  }
+  return v;
+}
+
+export function checkAltInvariants(target, altDoc, partsBySlug) {
+  const v = [];
+  let maxActiveL2 = -Infinity;
+  let maxL3 = -Infinity;
+  const sameKindExists = altDoc.candidates.some((c) => {
+    const p = partsBySlug.get(c.alt_slug);
+    return p && !isCrossKind(target, p);
+  });
+  for (const c of altDoc.candidates) {
+    const p = partsBySlug.get(c.alt_slug);
+    if (c.compatibility_level === 'LEVEL_2_TUNING_REQUIRED' && !isLifecycleRestricted(c.lifecycle_status)) {
+      maxActiveL2 = Math.max(maxActiveL2, c.score);
+    }
+    if (c.compatibility_level === 'LEVEL_3_LAYOUT_CHANGE') {
+      maxL3 = Math.max(maxL3, c.score);
+      if (c.score > 45) v.push(`${altDoc.slug}: L3 candidate ${c.alt_slug} score ${c.score} > 45.`);
+    }
+    if (p && isCrossKind(target, p)) {
+      if (c.compatibility_level !== 'LEVEL_3_LAYOUT_CHANGE' && sameKindExists)
+        v.push(`${altDoc.slug}: cross-kind ${c.alt_slug} placed in ${c.compatibility_level}.`);
+      if (c.tier_tag === 'Ultra-Low Iq Upgrade')
+        v.push(`${altDoc.slug}: cross-kind ${c.alt_slug} labelled Ultra-Low Iq Upgrade.`);
+    }
+    if (isLifecycleRestricted(c.lifecycle_status) && c.tier_tag !== 'Lifecycle Warning (EOL/NRND)') {
+      v.push(`${altDoc.slug}: EOL/NRND candidate ${c.alt_slug} missing Lifecycle Warning tier_tag.`);
+    }
+  }
+  if (maxL3 > maxActiveL2 && maxActiveL2 !== -Infinity) {
+    v.push(`${altDoc.slug}: L3 score ${maxL3} outranks best Active L2 ${maxActiveL2}.`);
+  }
+  return v;
 }
 
 export function runXrefEngine({
@@ -1639,7 +2488,6 @@ export function runXrefEngine({
     throw new Error(`Stage 2 verification failed for ${validationFailures.length} part(s):\n${msg}`);
   }
 
-  // Ensure every manifest part is present unless allowPartial
   const missingManifestParts = (manifest.parts || [])
     .filter((p) => !partsBySlug.has(p.slug))
     .map((p) => p.slug);
@@ -1655,11 +2503,11 @@ export function runXrefEngine({
   fs.mkdirSync(vsDir, { recursive: true });
   fs.mkdirSync(altDir, { recursive: true });
 
-  // Clean stale generated files in vs/ and alt/ so output matches current manifest cleanly
   for (const existing of collectJsonFiles(vsDir)) fs.unlinkSync(existing);
   for (const existing of collectJsonFiles(altDir)) fs.unlinkSync(existing);
 
   const generatedVsSlugs = new Set();
+  const invariantViolations = [];
   const vsIndex = [];
   const levelCounts = {
     LEVEL_1_CANDIDATE_DROP_IN: 0,
@@ -1695,6 +2543,7 @@ export function runXrefEngine({
     );
     generatedVsSlugs.add(vsDoc.slug);
     levelCounts[vsDoc.compatibility_level]++;
+    invariantViolations.push(...checkVsInvariants(partA, partB, vsDoc));
     vsIndex.push({
       slug: vsDoc.slug,
       category: vsDoc.category,
@@ -1716,6 +2565,7 @@ export function runXrefEngine({
   for (const part of orderedParts) {
     const catParts = partsByCategory[part.category];
     const altDoc = buildAltHub(part, catParts, generatedVsSlugs, generatedAt);
+    invariantViolations.push(...checkAltInvariants(part, altDoc, partsBySlug));
     fs.writeFileSync(
       path.join(altDir, `${altDoc.slug}.json`),
       `${JSON.stringify(altDoc, null, 2)}\n`,
@@ -1750,6 +2600,12 @@ export function runXrefEngine({
     alt_index: altIndex,
   };
 
+  if (invariantViolations.length > 0) {
+    throw new Error(
+      `Stage 3 engineering invariant violation(s) (${invariantViolations.length}):\n  - ${invariantViolations.join('\n  - ')}`,
+    );
+  }
+
   fs.writeFileSync(
     path.join(outDir, 'xref-index.json'),
     `${JSON.stringify(xrefIndex, null, 2)}\n`,
@@ -1765,6 +2621,7 @@ function parseCliArgs(argv) {
     manifestPath: path.resolve('data/pilot-manifest.json'),
     outDir: path.resolve('data/generated'),
     allowPartial: false,
+    check: false,
   };
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
@@ -1776,6 +2633,8 @@ function parseCliArgs(argv) {
       opts.outDir = path.resolve(argv[++i]);
     } else if (arg === '--allow-partial') {
       opts.allowPartial = true;
+    } else if (arg === '--check' || arg === '--dry-run') {
+      opts.check = true;
     }
   }
   return opts;
@@ -1787,7 +2646,20 @@ if (
 ) {
   try {
     const opts = parseCliArgs(process.argv.slice(2));
-    const summary = runXrefEngine(opts);
+    let tmpOut = null;
+    if (opts.check) {
+      tmpOut = fs.mkdtempSync(path.join(os.tmpdir(), 'p2p-xref-check-'));
+      opts.outDir = tmpOut;
+    }
+    let summary;
+    try {
+      summary = runXrefEngine(opts);
+    } finally {
+      if (tmpOut) fs.rmSync(tmpOut, { recursive: true, force: true });
+    }
+    if (opts.check) {
+      console.log('Stage 3 --check (dry-run): all invariants hold; data/generated left untouched.');
+    }
     console.log(
       `Stage 3 XRef Engine PASS: ${summary.counts.parts_verified} parts verified -> ${summary.counts.vs_comparisons} vs comparisons + ${summary.counts.alt_hubs} alt hubs generated.`,
     );

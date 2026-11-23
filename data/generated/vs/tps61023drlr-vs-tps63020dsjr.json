@@ -162,7 +162,7 @@
       "part_a_value": "0.5 to 5.5 V (p.4)",
       "part_b_value": "1.8 to 5.5 V (p.5)",
       "winner": "A",
-      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -177,8 +177,8 @@
       "unit": "V",
       "part_a_value": "2.2 to 5.5 V (p.4) (Adj)",
       "part_b_value": "1.2 to 5.5 V (p.6) (Adj)",
-      "winner": "CONTEXT",
-      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+      "winner": "B",
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
     },
     {
       "metric": "Max Current (Iout or Isw Limit)",
@@ -186,7 +186,7 @@
       "part_a_value": "3700 mA (p.5) [Isw limit]",
       "part_b_value": "3000 mA (p.1) [Iout max]",
       "winner": "CONTEXT",
-      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+      "note": "For boost/switch-limited converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
     },
     {
       "metric": "Quiescent Current (Iq, typ)",
@@ -241,13 +241,16 @@
     "CRITICAL PACKAGE MISMATCH: TPS61023DRLR uses SOT-563 (6-pin, DRL) while TPS63020DSJR uses VSON-14 (14-pin, DSJ); PCB footprint redesign is mandatory.",
     "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (FB vs VIN), Pin 2 (EN vs GND), Pin 3 (VIN vs FB), Pin 4 (GND vs VOUT), Pin 5 (SW vs VOUT), Pin 6 (VOUT vs SW), Pin 7 (NONE vs SW), Pin 8 (NONE vs SW), Pin 9 (NONE vs SW), Pin 10 (NONE vs VIN), Pin 11 (NONE vs VIN), Pin 12 (NONE vs EN), Pin 13 (NONE vs PS), Pin 14 (NONE vs PG). Soldering TPS63020DSJR onto a TPS61023DRLR footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
     "Exposed thermal pad/tab mismatch (SOT-563: NONE vs VSON-14: GND); PCB land pattern & solder-mask change required.",
-    "CRITICAL TOPOLOGY DIFFERENCE: TPS61023DRLR is a boost converter whereas TPS63020DSJR is a buck-boost converter; power-stage architecture, inductor placement, and startup behavior differ fundamentally.",
+    "CRITICAL TOPOLOGY DIFFERENCE: TPS61023DRLR is a boost converter whereas TPS63020DSJR is a buck-boost converter; power-stage architecture, inductor placement, and startup behavior differ fundamentally — this is a power-path redesign, not a component swap.",
+    "HIGH MINIMUM OUTPUT VOLTAGE FLOOR: TPS61023DRLR cannot regulate below 2.2 V (p.4) vs TPS63020DSJR down to 1.2 V (p.6); verify your target rail sits above the higher Vout,min floor.",
+    "HIGH VREF MISMATCH: Feedback reference differs (TPS61023DRLR: 0.595 V p.5 vs TPS63020DSJR: 0.5 V p.6); dropping in without recalculating R1/R2 will output the wrong voltage rail.",
     "HIGH SWITCHING FREQUENCY SHIFT: fsw differs by 58% (TPS61023DRLR: 1000 kHz p.5 vs TPS63020DSJR: 2400 kHz p.6); re-evaluate inductor core loss, ripple current ΔIL, output capacitor ESR ripple, and EMI harmonics.",
     "CAUTION INDUCTOR RETUNING: Typical inductor differs (TPS61023DRLR: 1 µH p.4 vs TPS63020DSJR: 1.5 µH p.13); check inductor Isat against peak switch current limit.",
-    "HIGH VREF MISMATCH: Feedback reference differs (TPS61023DRLR: 0.595 V p.5 vs TPS63020DSJR: 0.5 V p.6); dropping in without recalculating R1/R2 will output the wrong voltage rail.",
-    "CAUTION CURRENT RATING BASIS: TPS61023DRLR specifies 3700 mA (switch current limit Isw, p.5) vs TPS63020DSJR 3000 mA (continuous Iout, p.1). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling.",
-    "CAUTION THERMAL MARGIN: Package θJA differs by 71% (TPS61023DRLR: 142.7 °C/W p.4 vs TPS63020DSJR: 41.8 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max."
+    "CAUTION CURRENT RATING BASIS: TPS61023DRLR specifies 3700 mA (switch current limit Isw, p.5) vs TPS63020DSJR 3000 mA (continuous Iout, p.1). Remember boost/switch-limited Iout,max is strictly less than Isw due to duty-cycle and inductor ripple scaling.",
+    "HIGH THERMAL MARGIN: Package θJA is 241% higher on TPS61023DRLR (TPS61023DRLR: 142.7 °C/W p.4 vs TPS63020DSJR: 41.8 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH MINIMUM SUPPLY FLOOR: TPS63020DSJR requires Vin,min >= 1.8 V (p.5) vs 0.5 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (TPS61023DRLR: -40..125 °C Industrial / Extended (-40°C to 125°C TJ) vs TPS63020DSJR: -40..85 °C Industrial (-40°C to 85°C TA, TJ max 125°C)); TPS63020DSJR hot limit only 85 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "TPS61023DRLR (Texas Instruments, SOT-563) and TPS63020DSJR (Texas Instruments, VSON-14) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (FB vs VIN), Pin 2 (EN vs GND), Pin 3 (VIN vs FB), Pin 4 (GND vs VOUT), Pin 5 (SW vs VOUT), Pin 6 (VOUT vs SW), Pin 7 (NONE vs SW), Pin 8 (NONE vs SW), Pin 9 (NONE vs SW), Pin 10 (NONE vs VIN), Pin 11 (NONE vs VIN), Pin 12 (NONE vs EN), Pin 13 (NONE vs PS), Pin 14 (NONE vs PG); exposed pad / thermal tab net mismatch. Key datasheet deltas: topology is boost (sync) vs buck-boost (sync), switching frequency is 1000 kHz (p.5) vs 2400 kHz (p.6), rated current is 3700 mA (p.5) vs 3000 mA (p.1), typical inductor is 1 µH (p.4) vs 1.5 µH (p.13), and Iq is 20 µA (p.5) vs 25 µA (p.6). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.4), thermal margin (θJA 142.7 vs 41.8 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "TPS61023DRLR (Texas Instruments, SOT-563) and TPS63020DSJR (Texas Instruments, VSON-14) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (FB vs VIN), Pin 2 (EN vs GND), Pin 3 (VIN vs FB), Pin 4 (GND vs VOUT), Pin 5 (SW vs VOUT), Pin 6 (VOUT vs SW), Pin 7 (NONE vs SW), Pin 8 (NONE vs SW), Pin 9 (NONE vs SW), Pin 10 (NONE vs VIN), Pin 11 (NONE vs VIN), Pin 12 (NONE vs EN), Pin 13 (NONE vs PS), Pin 14 (NONE vs PG); exposed pad / thermal tab net mismatch. Specific pin conflicts: Pin 1 (FB vs VIN), Pin 2 (EN vs GND), Pin 3 (VIN vs FB), Pin 4 (GND vs VOUT). Power-stage deltas: boost (sync) vs buck-boost (sync), switching frequency 1000 kHz (p.5) vs 2400 kHz (p.6) (2.4x ratio), typical inductor 1 µH (p.4) vs 1.5 µH (p.13), feedback Vref 0.595 V (p.5) vs 0.5 V (p.6), and package θJA 142.7 vs 41.8 °C/W. Primary bench gotchas to watch: TPS61023DRLR \"1.8 V Minimum Startup Voltage Despite 0.5 V Running Floor\" (p.5) and TPS63020DSJR \"Large Minimum Ceramic Output Capacitance (44 uF Min / 66 uF Recommended)\" (p.13). BOM decision: Choose TPS61023DRLR when your power stage requires a boost topology; choose TPS63020DSJR when your power stage requires a buck-boost topology. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.4) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

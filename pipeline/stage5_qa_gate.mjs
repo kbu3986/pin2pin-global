@@ -103,6 +103,121 @@ function parseSitemapUrls(sitemapXml) {
   return urls;
 }
 
+function inferSiteUrlFromSitemap(sitemapPath) {
+  if (!fs.existsSync(sitemapPath)) return null;
+  try {
+    const urls = parseSitemapUrls(fs.readFileSync(sitemapPath, 'utf8'));
+    for (const u of urls) {
+      try {
+        const parsed = new URL(u);
+        const m = parsed.pathname.match(/^(.*?)\/en(?:\/|$)/);
+        if (m) {
+          const inferredBasePath = m[1].replace(/\/+$/, '');
+          return {
+            siteUrl: `${parsed.origin}${inferredBasePath}`,
+            basePath: inferredBasePath,
+          };
+        }
+      } catch {
+        // ignore unparseable loc
+      }
+    }
+  } catch {
+    return null;
+  }
+  return null;
+}
+
+function auditRobotsTxt(outDir, expectedSiteUrl) {
+  const robotsPath = path.join(outDir, 'robots.txt');
+  const errors = [];
+  if (!fs.existsSync(robotsPath)) {
+    errors.push(`Missing robots.txt at ${robotsPath}`);
+    return { present: false, ok: false, errors, sitemaps: [] };
+  }
+  const content = fs.readFileSync(robotsPath, 'utf8');
+  const lines = content.split(/\r?\n/).map((l) => l.replace(/#.*$/, '').trim()).filter(Boolean);
+  const sitemaps = [];
+  for (const line of lines) {
+    const disallowMatch = line.match(/^disallow\s*:\s*(.*)$/i);
+    if (disallowMatch) {
+      const rule = disallowMatch[1].trim();
+      if (/^\/?_next(?:\/|$)/i.test(rule) || /\/_next(?:\/|$)/i.test(rule)) {
+        errors.push(`robots.txt disallows Next.js static assets ("${line}") — blocks Googlebot JS/CSS rendering`);
+      }
+      if (rule === '/') {
+        errors.push(`robots.txt disallows entire site ("${line}")`);
+      }
+    }
+    const sitemapMatch = line.match(/^sitemap\s*:\s*(\S+)$/i);
+    if (sitemapMatch) {
+      sitemaps.push(sitemapMatch[1].trim());
+    }
+  }
+  if (sitemaps.length === 0) {
+    errors.push('robots.txt is missing a "Sitemap:" directive');
+  } else {
+    const validSitemap = sitemaps.some((u) => {
+      try {
+        const p = new URL(u);
+        return (p.protocol === 'http:' || p.protocol === 'https:') && p.pathname.endsWith('sitemap.xml');
+      } catch {
+        return false;
+      }
+    });
+    if (!validSitemap) {
+      errors.push(`robots.txt Sitemap URL(s) invalid: ${sitemaps.join(', ')}`);
+    } else if (expectedSiteUrl) {
+      const expected = `${expectedSiteUrl.replace(/\/+$/, '')}/sitemap.xml`;
+      if (!sitemaps.includes(expected)) {
+        errors.push(`robots.txt Sitemap URL mismatch (expected "${expected}", found "${sitemaps.join(', ')}")`);
+      }
+    }
+  }
+  return { present: true, ok: errors.length === 0, errors, sitemaps };
+}
+
+function auditSeoHeadTags(html, routePath) {
+  const errors = [];
+
+  // 1. Non-empty <title>
+  const titleMatch = html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i);
+  const titleText = titleMatch ? decodeBasicEntities(titleMatch[1]).replace(/\s+/g, ' ').trim() : '';
+  if (!titleText) {
+    errors.push(`${routePath}: Missing or empty <title> tag`);
+  }
+
+  // 2. Non-empty <meta name="description" content="..."> and 3. no accidental noindex
+  const metaRegex = /<meta\b[^>]*>/gi;
+  let hasDescription = false;
+  let hasNoindex = false;
+  let m;
+  while ((m = metaRegex.exec(html)) !== null) {
+    const tag = m[0];
+    const nameMatch = tag.match(/\bname\s*=\s*["']([^"']+)["']/i);
+    if (!nameMatch) continue;
+    const metaName = nameMatch[1].trim().toLowerCase();
+    const contentMatch = tag.match(/\bcontent\s*=\s*["']([^"']*)["']/i);
+    const metaContent = contentMatch ? decodeBasicEntities(contentMatch[1]).trim() : '';
+
+    if (metaName === 'description' && metaContent.length > 0) {
+      hasDescription = true;
+    }
+    if ((metaName === 'robots' || metaName === 'googlebot') && /\bnoindex\b/i.test(metaContent)) {
+      hasNoindex = true;
+    }
+  }
+
+  if (!hasDescription) {
+    errors.push(`${routePath}: Missing or empty <meta name="description"> tag`);
+  }
+  if (hasNoindex) {
+    errors.push(`${routePath}: Accidental "noindex" detected on canonical EN page`);
+  }
+
+  return errors;
+}
+
 function extractCanonicalHrefs(html) {
   const results = [];
   const linkRegex = /<link\b[^>]*>/gi;
@@ -301,7 +416,8 @@ function collectDiskVsSlugs(outDir) {
   const slugs = [];
   for (const entry of fs.readdirSync(vsDir, { withFileTypes: true })) {
     if (entry.isFile() && entry.name.endsWith('.html')) {
-      slugs.push(entry.name.replace(/\.html$/, ''));
+      const slug = entry.name.replace(/\.html$/, '');
+      if (slug && slug !== 'index') slugs.push(slug);
     } else if (entry.isDirectory()) {
       if (fs.existsSync(path.join(vsDir, entry.name, 'index.html'))) {
         slugs.push(entry.name);
@@ -324,13 +440,28 @@ export function runQaGate({
   }
 
   const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+  const sitemapPath = path.join(outDir, 'sitemap.xml');
+
   let siteUrl = 'https://pin2pin.dev';
+  let siteUrlSource = 'default';
   if (fs.existsSync(siteConfigPath)) {
     const siteCfg = JSON.parse(fs.readFileSync(siteConfigPath, 'utf8'));
-    if (siteCfg.site_url) siteUrl = siteCfg.site_url;
+    if (siteCfg.site_url) {
+      siteUrl = siteCfg.site_url;
+      siteUrlSource = 'site-config';
+    }
   }
   if (process.env.NEXT_PUBLIC_SITE_URL && process.env.NEXT_PUBLIC_SITE_URL.trim()) {
     siteUrl = process.env.NEXT_PUBLIC_SITE_URL.trim();
+    siteUrlSource = 'env';
+  } else {
+    // Automatically infer siteUrl / basePath from built sitemap.xml so local `npm run qa:gate`
+    // matches GitHub Pages / subpath exports without requiring NEXT_PUBLIC_SITE_URL env var.
+    const inferred = inferSiteUrlFromSitemap(sitemapPath);
+    if (inferred) {
+      siteUrl = inferred.siteUrl;
+      siteUrlSource = 'sitemap.xml';
+    }
   }
   siteUrl = siteUrl.replace(/\/+$/, '');
   const rawBasePath = (process.env.NEXT_PUBLIC_BASE_PATH || '').trim().replace(/\/+$/, '');
@@ -355,8 +486,12 @@ export function runQaGate({
     gate7_part_svg_and_spec_rows: { pass: true, part_pages_checked: 0, errors: [] },
   };
 
-  // Gate 1: sitemap.xml exact canonical URL audit
-  const sitemapPath = path.join(outDir, 'sitemap.xml');
+  // Gate 1: sitemap.xml exact canonical URL audit + robots.txt compliance
+  const robotsAudit = auditRobotsTxt(outDir, siteUrl);
+  for (const err of robotsAudit.errors) {
+    gates.gate1_sitemap_urls.errors.push(err);
+  }
+
   let sitemapUrls = [];
   if (!fs.existsSync(sitemapPath)) {
     gates.gate1_sitemap_urls.pass = false;
@@ -416,7 +551,10 @@ export function runQaGate({
 
     const routePath = stripBasePath(parsedUrl.pathname, basePath);
     if (routePath.startsWith('/en/vs/')) {
-      vsSlugsToCheck.add(routePath.replace(/^\/en\/vs\//, '').replace(/\/+$/, ''));
+      const vsSlug = routePath.replace(/^\/en\/vs\//, '').replace(/\/+$/, '');
+      if (vsSlug && vsSlug !== 'index') {
+        vsSlugsToCheck.add(vsSlug);
+      }
     }
 
     // Gate 2: Resolve HTML file
@@ -484,6 +622,11 @@ export function runQaGate({
       gates.gate4_disclaimer_canonical_jsonld.errors.push(`${routePath}: ${err}`);
     }
 
+    const headErrors = auditSeoHeadTags(html, routePath);
+    for (const err of headErrors) {
+      gates.gate4_disclaimer_canonical_jsonld.errors.push(err);
+    }
+
     // Gate 5: Internal /en/... href integrity
     const internalHrefs = extractInternalHrefs(visibleHtml, basePath);
     for (const href of internalHrefs) {
@@ -545,6 +688,13 @@ export function runQaGate({
     }
   }
 
+  // Gate 5 guard: zero links checked means link extraction broke or pages are empty
+  if (gates.gate5_internal_links.links_checked === 0) {
+    gates.gate5_internal_links.errors.push(
+      'Zero internal /en/... links were checked (links_checked === 0); verify basePath inference and HTML rendering.',
+    );
+  }
+
   // Finalize per-gate pass flags
   gates.gate2_html_resolution.pass = gates.gate2_html_resolution.errors.length === 0;
   gates.gate3_clean_render_and_tables.pass = gates.gate3_clean_render_and_tables.errors.length === 0;
@@ -562,7 +712,11 @@ export function runQaGate({
     total_errors: totalErrors,
     out_dir: outDir,
     manifest_path: manifestPath,
-    robots_txt_present: fs.existsSync(path.join(outDir, 'robots.txt')),
+    site_url: siteUrl,
+    site_url_source: siteUrlSource,
+    base_path: basePath,
+    robots_txt_present: robotsAudit.present,
+    robots_txt_ok: robotsAudit.ok,
     audited_at: new Date().toISOString(),
     gates,
   };
@@ -618,7 +772,10 @@ if (
           {
             passed: report.passed,
             total_errors: report.total_errors,
+            site_url: report.site_url,
+            site_url_source: report.site_url_source,
             robots_txt_present: report.robots_txt_present,
+            robots_txt_ok: report.robots_txt_ok,
             sitemap_urls: `${report.gates.gate1_sitemap_urls.actual}/${report.gates.gate1_sitemap_urls.expected}`,
             html_checked: report.gates.gate2_html_resolution.checked,
             internal_links_checked: report.gates.gate5_internal_links.links_checked,

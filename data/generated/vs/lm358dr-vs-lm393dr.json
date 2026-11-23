@@ -6,10 +6,10 @@
   "part_b_slug": "lm393dr",
   "part_a_opn": "LM358DR",
   "part_b_opn": "LM393DR",
-  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
-  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+  "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+  "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
   "package_match": true,
-  "pinout_exact_match": true,
+  "pinout_exact_match": false,
   "exposed_pad_match": true,
   "pin_diff": [
     {
@@ -18,8 +18,8 @@
       "part_a_role": "OUT_A",
       "part_b_name": "1OUT",
       "part_b_role": "OUT_A",
-      "status": "CAUTION",
-      "note": "CRITICAL OUTPUT STAGE DIFFERENCE: LM358DR is opamp (push-pull) vs LM393DR comparator (open-collector); open-collector/drain requires external pull-up and is uncompensated for linear feedback."
+      "status": "MISMATCH",
+      "note": "CRITICAL OUTPUT STAGE DIFFERENCE: LM358DR is opamp (push-pull) vs LM393DR comparator (open-collector); a comparator is an uncompensated open-loop switching device (no internal Miller/dominant-pole compensation) and will oscillate or latch in a linear negative-feedback op-amp circuit, while an op-amp used as a comparator suffers slow saturation/overdrive recovery and propagation delay far worse than its slew rate implies; the open-collector/open-drain output can only sink current and requires an external pull-up resistor to reach logic-high, whereas the push-pull output actively drives both rails (a pull-up tied to a different rail can back-drive a push-pull stage)."
     },
     {
       "pin": 2,
@@ -72,8 +72,8 @@
       "part_a_role": "OUT_B",
       "part_b_name": "2OUT",
       "part_b_role": "OUT_B",
-      "status": "CAUTION",
-      "note": "CRITICAL OUTPUT STAGE DIFFERENCE: LM358DR is opamp (push-pull) vs LM393DR comparator (open-collector); open-collector/drain requires external pull-up and is uncompensated for linear feedback."
+      "status": "MISMATCH",
+      "note": "CRITICAL OUTPUT STAGE DIFFERENCE: LM358DR is opamp (push-pull) vs LM393DR comparator (open-collector); a comparator is an uncompensated open-loop switching device (no internal Miller/dominant-pole compensation) and will oscillate or latch in a linear negative-feedback op-amp circuit, while an op-amp used as a comparator suffers slow saturation/overdrive recovery and propagation delay far worse than its slew rate implies; the open-collector/open-drain output can only sink current and requires an external pull-up resistor to reach logic-high, whereas the push-pull output actively drives both rails (a pull-up tied to a different rail can back-drive a push-pull stage)."
     },
     {
       "pin": 8,
@@ -92,7 +92,7 @@
       "part_a_value": "opamp (push-pull)",
       "part_b_value": "comparator (open-collector)",
       "winner": "CONTEXT",
-      "note": "Op-amps (compensated push-pull) and comparators (uncompensated open-collector) are NOT drop-in interchangeable."
+      "note": "Op-amps (internally compensated for linear feedback) and comparators (uncompensated open-loop switching) are NOT drop-in interchangeable."
     },
     {
       "metric": "Package & Channel Count",
@@ -107,8 +107,8 @@
       "unit": "V",
       "part_a_value": "3 to 30 V (p.5)",
       "part_b_value": "2 to 30 V (p.4)",
-      "winner": "TIE",
-      "note": "Confirm total supply span (V+ - V-) stays within recommended limits."
+      "winner": "B",
+      "note": "A part wins only if its recommended Vs range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Supply (Vs,abs)",
@@ -171,8 +171,8 @@
       "unit": "dB · nV/√Hz",
       "part_a_value": "80 dB (p.10) · 40 nV/√Hz (p.10)",
       "part_b_value": "Not specified · Not specified",
-      "winner": "A",
-      "note": "Higher CMRR rejects common-mode noise; lower voltage noise improves SNR."
+      "winner": "CONTEXT",
+      "note": "Winner requires superiority on both CMRR (higher) and input voltage noise (lower); mixed tradeoffs stay CONTEXT."
     },
     {
       "metric": "Thermal Resistance (θJA) & Tj,max",
@@ -184,9 +184,9 @@
     }
   ],
   "swap_risks": [
-    "CRITICAL OP-AMP VS COMPARATOR TRAP: LM358DR is a opamp with push-pull output while LM393DR is a comparator with open-collector output. Even with identical pinouts, an open-collector comparator CANNOT pull high without an external pull-up resistor and lacks internal Miller compensation — dropping it into a linear negative-feedback op-amp circuit causes severe oscillation; conversely, using an op-amp as a comparator causes slow overdrive recovery and output saturation lag.",
-    "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (LM358DR: 124.7 °C/W vs LM393DR: 148.5 °C/W) and worst-case ambient temperature (0..70 °C vs 0..70 °C)."
+    "CRITICAL OP-AMP VS COMPARATOR TRAP: LM358DR is a opamp with push-pull output while LM393DR is a comparator with open-collector output. Even with identical pinouts, a comparator is an uncompensated switching device: dropping it into a linear negative-feedback op-amp circuit (buffer, gain stage, filter) causes oscillation or latch-up, and an op-amp used as a comparator suffers slow overdrive/saturation recovery. In addition, the open-collector/open-drain output requires an external pull-up resistor to swing high.",
+    "HIGH MINIMUM SUPPLY FLOOR: LM358DR requires Vs,min >= 3 V (p.5) vs 2 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor."
   ],
-  "engineering_verdict": "LM358DR (Texas Instruments, SOIC-8) and LM393DR (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to device kind / output stage mismatch (opamp/push-pull vs comparator/open-collector). Key datasheet deltas: device type is opamp (push-pull) vs comparator (open-collector), supply limit is 30 V (p.5) vs 30 V (p.4), max Vos is 7 mV (p.10) vs 5 mV (p.8), input bias current is 20000 pA (p.10) vs 25000 pA (p.8), and Iq/ch is 350 µA (p.10) vs 225 µA (p.8). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 124.7 vs 148.5 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "LM358DR (Texas Instruments, SOIC-8) and LM393DR (Texas Instruments, SOIC-8) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to device kind mismatch (opamp/push-pull vs comparator/open-collector) — circuit redesign required. Specific pin conflicts: Pin 1 (OUT_A vs OUT_A), Pin 7 (OUT_B vs OUT_B). Signal-chain deltas: opamp (push-pull) vs comparator (open-collector), supply ceiling 30 V (p.5) vs 30 V (p.4), Vos 7 mV (p.10) vs 5 mV (p.8), Ib 1x gap (20000 vs 25000 pA). Primary bench gotchas to watch: LM358DR \"Non-Rail-to-Rail Upper Input and Output Headroom Ceiling\" (p.10) and LM393DR \"Classic LM358DR / LMV358IDR Identical SOIC-8 Pinout Trap (Missing Pull-Up & Oscillation)\" (p.3). BOM decision: Choose LM358DR when the circuit is a linear closed-loop amplifier, buffer, or active filter; choose LM393DR when the circuit is an open-loop threshold/window comparator (open-collector output). Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

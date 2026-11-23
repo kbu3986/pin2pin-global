@@ -1,0 +1,168 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "lmv331idbvr-vs-tlv3201aidbvr",
+  "category": "opamp",
+  "part_a_slug": "lmv331idbvr",
+  "part_b_slug": "tlv3201aidbvr",
+  "part_a_opn": "LMV331IDBVR",
+  "part_b_opn": "TLV3201AIDBVR",
+  "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+  "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+  "package_match": true,
+  "pinout_exact_match": false,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "1IN+",
+      "part_a_role": "IN_POS",
+      "part_b_name": "OUT",
+      "part_b_role": "OUT",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 1: LMV331IDBVR assigns 1IN+ (IN_POS) whereas TLV3201AIDBVR assigns OUT (OUT) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "GND",
+      "part_a_role": "VEE",
+      "part_b_name": "GND",
+      "part_b_role": "VEE",
+      "status": "MATCH",
+      "note": "Identical pin assignment (GND / VEE)."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "1IN-",
+      "part_a_role": "IN_NEG",
+      "part_b_name": "IN+",
+      "part_b_role": "IN_POS",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 3: LMV331IDBVR assigns 1IN- (IN_NEG) whereas TLV3201AIDBVR assigns IN+ (IN_POS) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "OUT",
+      "part_a_role": "OUT",
+      "part_b_name": "IN-",
+      "part_b_role": "IN_NEG",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 4: LMV331IDBVR assigns OUT (OUT) whereas TLV3201AIDBVR assigns IN- (IN_NEG) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "VCC+",
+      "part_a_role": "VCC",
+      "part_b_name": "VCC",
+      "part_b_role": "VCC",
+      "status": "MATCH",
+      "note": "Functionally identical VCC pin (VCC+ vs VCC)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Device Kind & Output Stage",
+      "unit": "—",
+      "part_a_value": "comparator (open-collector)",
+      "part_b_value": "comparator (push-pull)",
+      "winner": "CONTEXT",
+      "note": "Op-amps (internally compensated for linear feedback) and comparators (uncompensated open-loop switching) are NOT drop-in interchangeable."
+    },
+    {
+      "metric": "Package & Channel Count",
+      "unit": "—",
+      "part_a_value": "SOT-23-5 · 1 ch (DBV, p.3)",
+      "part_b_value": "SOT-23-5 · 1 ch (DBV, p.3)",
+      "winner": "TIE",
+      "note": "Single SOT-23-5 op-amps vary in pin ordering across vendors; verify Pin 1–5."
+    },
+    {
+      "metric": "Supply Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "2.7 to 5.5 V (p.4)",
+      "part_b_value": "2.7 to 5.5 V (p.4)",
+      "winner": "TIE",
+      "note": "A part wins only if its recommended Vs range strictly encompasses the counterpart on both ends."
+    },
+    {
+      "metric": "Absolute Max Supply (Vs,abs)",
+      "unit": "V",
+      "part_a_value": "5.5 V (p.4)",
+      "part_b_value": "7 V (p.4)",
+      "winner": "B",
+      "note": "Exceeding Vs,abs causes immediate gate-oxide or junction breakdown."
+    },
+    {
+      "metric": "Gain-Bandwidth Product (GBWP)",
+      "unit": "MHz",
+      "part_a_value": "N/A (Comparator)",
+      "part_b_value": "N/A (Comparator)",
+      "winner": "CONTEXT",
+      "note": "Closed-loop -3 dB bandwidth scales as f_-3dB = GBWP / Acl."
+    },
+    {
+      "metric": "Slew Rate / Propagation Delay",
+      "unit": "V/µs · ns",
+      "part_a_value": "tpd: 300 ns (p.6)",
+      "part_b_value": "tpd: 43 ns (p.5)",
+      "winner": "B",
+      "note": "Controls large-signal full-power bandwidth SR / (2π·Vpeak) or comparator switching speed."
+    },
+    {
+      "metric": "Input Offset Voltage (Vos, max)",
+      "unit": "mV",
+      "part_a_value": "7 mV (p.6)",
+      "part_b_value": "3 mV (p.5)",
+      "winner": "B",
+      "note": "Lower Vos minimizes DC error in current-shunt and sensor bridge amplifiers."
+    },
+    {
+      "metric": "Input Bias Current (Ib, typ)",
+      "unit": "pA",
+      "part_a_value": "5 pA (p.6)",
+      "part_b_value": "1 pA (p.5)",
+      "winner": "B",
+      "note": "CMOS/JFET pA-class inputs avoid offset voltage drops across high-impedance (>100 kΩ) sensors."
+    },
+    {
+      "metric": "Quiescent Current / Ch (Iq)",
+      "unit": "µA/ch",
+      "part_a_value": "26 µA/ch (p.6)",
+      "part_b_value": "40 µA/ch (p.5)",
+      "winner": "A",
+      "note": "Multiply by channel count for total IC standby current draw."
+    },
+    {
+      "metric": "Rail-to-Rail Input / Output",
+      "unit": "—",
+      "part_a_value": "IN: No · OUT: No",
+      "part_b_value": "IN: Yes · OUT: Yes",
+      "winner": "B",
+      "note": "RRIO prevents clipping on low-voltage 3.3 V single-supply ADC buffers."
+    },
+    {
+      "metric": "CMRR (typ) & Input Noise",
+      "unit": "dB · nV/√Hz",
+      "part_a_value": "Not specified · Not specified",
+      "part_b_value": "70 dB (p.5) · Not specified",
+      "winner": "CONTEXT",
+      "note": "Winner requires superiority on both CMRR (higher) and input voltage noise (lower); mixed tradeoffs stay CONTEXT."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "224 °C/W (p.4) · 150 °C",
+      "part_b_value": "237.8 °C/W (p.4) · 150 °C",
+      "winner": "A",
+      "note": "Important when driving heavy resistive loads or high supply rails."
+    }
+  ],
+  "swap_risks": [
+    "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (IN_POS vs OUT), Pin 3 (IN_NEG vs IN_POS), Pin 4 (OUT vs IN_NEG). Soldering TLV3201AIDBVR onto a LMV331IDBVR footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
+    "CRITICAL OUTPUT STAGE DIFFERENCE: LMV331IDBVR (open-collector) vs TLV3201AIDBVR (push-pull): the open-collector/open-drain output can only sink current and requires an external pull-up resistor to reach logic-high, whereas the push-pull output actively drives both rails (a pull-up tied to a different rail can back-drive a push-pull stage).",
+    "HIGH HEADROOM / CLIPPING RISK: Rail-to-rail capability differs (LMV331IDBVR: IN=Non-RR, OUT=Non-RR vs TLV3201AIDBVR: IN=RR, OUT=RR); verify input common-mode range (Vicm) and output voltage swing against ADC full-scale range.",
+    "HIGH SWITCHING TIMING SHIFT: Propagation delay differs by 7x (LMV331IDBVR: 300 ns p.6 vs TLV3201AIDBVR: 43 ns p.5); verify overcurrent/zero-crossing trip latency and hysteresis timing.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: LMV331IDBVR has a lower Vs,abs,max rating (5.5 V, p.4) than TLV3201AIDBVR (7 V, p.4); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 5.5 V."
+  ],
+  "engineering_verdict": "LMV331IDBVR (Texas Instruments, SOT-23-5) and TLV3201AIDBVR (Texas Instruments, SOT-23-5) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to pinout mismatch on Pin 1 (IN_POS vs OUT), Pin 3 (IN_NEG vs IN_POS), Pin 4 (OUT vs IN_NEG). Specific pin conflicts: Pin 1 (IN_POS vs OUT), Pin 3 (IN_NEG vs IN_POS), Pin 4 (OUT vs IN_NEG). Signal-chain deltas: propagation delay 300 ns (p.6) vs 43 ns (p.5), supply ceiling 5.5 V (p.4) vs 5.5 V (p.4), Vos 7 mV (p.6) vs 3 mV (p.5), Ib 5x gap (5 vs 1 pA). Primary bench gotchas to watch: LMV331IDBVR \"Reversed U-Pinout SOT-23-5 (Pin 1 = IN+, Pin 4 = OUT) — Incompatible With TLV3201 & TLV7011\" (p.3) and TLV3201AIDBVR \"Push-Pull Output — Do NOT Wired-AND or Pull Up to a Different Logic Rail\" (p.5). BOM decision: Choose LMV331IDBVR when matching your existing Texas Instruments SOT-23-5 (DBV) qualification and -40..125 °C grade; choose TLV3201AIDBVR when DC precision demands <= 3 mV max Vos or single-supply ADC headroom demands full Rail-to-Rail I/O swing. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
+  "generated_at": "2026-11-23"
+}

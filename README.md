@@ -1,14 +1,18 @@
 # Pin2Pin Global — Datasheet-Verified Semiconductor Pinout & Cross-Reference DB
 
-[![Live Site](https://img.shields.io/badge/Live-278%20Verified%20EN%20Pages-059669?style=flat-square)](https://kbu3986.github.io/pin2pin-global/en/)
+[![Live Site](https://img.shields.io/badge/Live-368%20Verified%20EN%20Pages-059669?style=flat-square)](https://kbu3986.github.io/pin2pin-global/en/)
 [![Zero-Upload BOM Checker](https://img.shields.io/badge/Tool-Zero--Upload%20BOM%20Checker-0284c7?style=flat-square)](https://kbu3986.github.io/pin2pin-global/en/tools/bom-checker/)
-[![Verified OPNs](https://img.shields.io/badge/Verified%20OPNs-65%20Parts%20%7C%20130%20Pin%20Diffs-0f172a?style=flat-square)](https://kbu3986.github.io/pin2pin-global/en/catalog/)
+[![Verified OPNs](https://img.shields.io/badge/Verified%20OPNs-80%20Parts%20%7C%20178%20Pin%20Diffs-0f172a?style=flat-square)](https://kbu3986.github.io/pin2pin-global/en/catalog/)
 [![QA Gate](https://img.shields.io/badge/Stage%205%20QA-7%2F7%20Gates%20PASS-16a34a?style=flat-square)](https://kbu3986.github.io/pin2pin-global/en/methodology/)
 
 **Pin2Pin Global** is an open, datasheet-verified semiconductor cross-reference and pin-compatibility engineering database built to prevent Rev-A PCB power shorts, ESR oscillation, VREF overvoltage, and EOL substitution failures.
 
 - **Live Engineering Workbench**: [https://kbu3986.github.io/pin2pin-global/en/](https://kbu3986.github.io/pin2pin-global/en/)
-- **Zero-Upload Client-Side BOM Checker**: [https://kbu3986.github.io/pin2pin-global/en/tools/bom-checker/](https://kbu3986.github.io/pin2pin-global/en/tools/bom-checker/) *(100% browser memory — zero bytes leave your machine)*
+- **Interactive Freeform Comparator**: [https://kbu3986.github.io/pin2pin-global/en/compare/](https://kbu3986.github.io/pin2pin-global/en/compare/)
+- **Package Pinout Trap Matrix**: [https://kbu3986.github.io/pin2pin-global/en/packages/](https://kbu3986.github.io/pin2pin-global/en/packages/)
+- **Zero-Upload Client-Side BOM Checker v2**: [https://kbu3986.github.io/pin2pin-global/en/tools/bom-checker/](https://kbu3986.github.io/pin2pin-global/en/tools/bom-checker/) *(100% browser memory — zero bytes leave your machine)*
+- **7 Interactive Engineering Tools**: [https://kbu3986.github.io/pin2pin-global/en/tools/](https://kbu3986.github.io/pin2pin-global/en/tools/)
+- **11 Deep Engineering Field Guides**: [https://kbu3986.github.io/pin2pin-global/en/guides/](https://kbu3986.github.io/pin2pin-global/en/guides/)
 - **Dual-Path Verification Methodology**: [https://kbu3986.github.io/pin2pin-global/en/methodology/](https://kbu3986.github.io/pin2pin-global/en/methodology/)
 - **Report a Datasheet / Pinout Discrepancy**: [Open a GitHub Audit Issue](https://github.com/kbu3986/pin2pin-global/issues/new)
 

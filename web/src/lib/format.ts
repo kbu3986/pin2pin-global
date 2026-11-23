@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import type {
   CitedNumber,
   CompatibilityLevel,
@@ -196,10 +197,114 @@ export function buildDistributorUrl(template: string, opn: string): string {
   return template.replace('{OPN}', encodeURIComponent(opn));
 }
 
-function joinCanonical(siteUrl: string, routePath: string): string {
+export function joinCanonical(siteUrl: string, routePath: string): string {
   const base = siteUrl.replace(/\/+$/, '');
   const clean = routePath.replace(/^\/+|\/+$/g, '');
   return clean ? `${base}/${clean}/` : `${base}/`;
+}
+
+/** Absolute URL of the 1200x630 Open Graph card in web/public. */
+export function ogImageUrl(siteUrl: string): string {
+  return `${siteUrl.replace(/\/+$/, '')}/og-image.png`;
+}
+
+/** Absolute URL of the square site logo (apple-touch-icon, 180x180). */
+export function logoUrl(siteUrl: string): string {
+  return `${siteUrl.replace(/\/+$/, '')}/apple-touch-icon.png`;
+}
+
+/**
+ * Compose a meta description that lands in the 125-158 char target window.
+ * Pads with supplemental sentences when too short and trims on a word boundary when too long.
+ */
+export function buildMetaDescription(
+  primary: string,
+  supplements: string[] = [],
+  min = 125,
+  max = 158,
+): string {
+  const clean = (s: string) => s.replace(/\s+/g, ' ').trim();
+  let text = clean(primary);
+  for (const extra of supplements) {
+    if (text.length >= min) break;
+    const next = `${text.replace(/[.\s]+$/, '')}. ${clean(extra)}`;
+    text = next.length <= max ? next : text;
+    if (next.length > max && text.length < min) {
+      text = next;
+    }
+  }
+  if (text.length > max) {
+    const slice = text.slice(0, max - 1);
+    const cut = slice.lastIndexOf(' ');
+    const trimmed = (cut > min - 20 ? slice.slice(0, cut) : slice).replace(/[\s,;:.\-–—]+$/, '');
+    text = `${trimmed}…`;
+  }
+  return text;
+}
+
+/**
+ * Choose the richest title candidate that fits the 65-char budget once the
+ * site template (` | Pin2Pin Global`) is appended. Falls back to the shortest candidate.
+ */
+export function buildMetaTitle(candidates: string[], brand = 'Pin2Pin Global', budget = 65): string {
+  const suffixLen = brand ? brand.length + 3 : 0;
+  const fit = candidates.find((c) => c.length + suffixLen <= budget);
+  if (fit) return fit;
+  return [...candidates].sort((a, b) => a.length - b.length)[0];
+}
+
+export interface PageMetaOptions {
+  siteUrl: string;
+  siteName: string;
+  path: string;
+  title: string;
+  description: string;
+  /** When true the title is rendered verbatim (no `| Brand` template suffix). */
+  absoluteTitle?: boolean;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+}
+
+/** Shared Metadata builder: canonical, OpenGraph (url + 1200x630 image) and Twitter large-image card. */
+export function buildPageMetadata(opts: PageMetaOptions): Metadata {
+  const canonical = joinCanonical(opts.siteUrl, opts.path);
+  const image = ogImageUrl(opts.siteUrl);
+  const ogTitle = opts.absoluteTitle ? opts.title : `${opts.title} | ${opts.siteName}`;
+  return {
+    title: opts.absoluteTitle ? { absolute: opts.title } : opts.title,
+    description: opts.description,
+    alternates: { canonical },
+    ...(opts.noindex ? { robots: { index: false, follow: true } } : {}),
+    openGraph: {
+      type: opts.ogType ?? 'website',
+      url: canonical,
+      siteName: opts.siteName,
+      locale: 'en_US',
+      title: ogTitle,
+      description: opts.description,
+      images: [{ url: image, width: 1200, height: 630, alt: `${opts.siteName} — datasheet-verified pinout and cross-reference database` }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: ogTitle,
+      description: opts.description,
+      images: [image],
+    },
+  };
+}
+
+function organizationNode(siteUrl: string, siteName: string): Record<string, unknown> {
+  return {
+    '@type': 'Organization',
+    name: siteName,
+    url: siteUrl,
+    logo: {
+      '@type': 'ImageObject',
+      url: logoUrl(siteUrl),
+      width: 180,
+      height: 180,
+    },
+  };
 }
 
 export function buildBreadcrumbJsonLd(
@@ -218,6 +323,43 @@ export function buildBreadcrumbJsonLd(
   };
 }
 
+/** WebSite + SearchAction + Organization (with logo) for the /en home page. */
+export function buildWebsiteJsonLd(opts: {
+  siteUrl: string;
+  siteName: string;
+  description: string;
+  searchPath?: string;
+}): Record<string, unknown> {
+  const home = joinCanonical(opts.siteUrl, '/en');
+  const searchBase = joinCanonical(opts.siteUrl, opts.searchPath ?? '/en/catalog');
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${home}#website`,
+        url: home,
+        name: opts.siteName,
+        description: opts.description,
+        inLanguage: 'en',
+        publisher: { '@id': `${home}#organization` },
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: {
+            '@type': 'EntryPoint',
+            urlTemplate: `${searchBase}?q={search_term_string}`,
+          },
+          'query-input': 'required name=search_term_string',
+        },
+      },
+      {
+        ...organizationNode(opts.siteUrl, opts.siteName),
+        '@id': `${home}#organization`,
+      },
+    ],
+  };
+}
+
 export function buildTechArticleJsonLd(opts: {
   siteUrl: string;
   siteName: string;
@@ -227,14 +369,17 @@ export function buildTechArticleJsonLd(opts: {
   dateModified: string;
   datePublished?: string;
   about?: string;
+  wordCount?: number;
 }): Record<string, unknown> {
   const canonical = joinCanonical(opts.siteUrl, opts.path);
   return {
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
-    headline: opts.headline,
+    headline: opts.headline.length > 110 ? `${opts.headline.slice(0, 107)}…` : opts.headline,
     description: opts.description,
     url: canonical,
+    image: [ogImageUrl(opts.siteUrl)],
+    inLanguage: 'en',
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': canonical,
@@ -246,13 +391,73 @@ export function buildTechArticleJsonLd(opts: {
       name: opts.siteName,
       url: opts.siteUrl,
     },
-    publisher: {
-      '@type': 'Organization',
-      name: opts.siteName,
-      url: opts.siteUrl,
-    },
+    publisher: organizationNode(opts.siteUrl, opts.siteName),
     ...(opts.about ? { about: opts.about } : {}),
+    ...(opts.wordCount ? { wordCount: opts.wordCount } : {}),
   };
+}
+
+/** AboutPage / ContactPage / WebPage JSON-LD for trust pages. */
+export function buildWebPageJsonLd(opts: {
+  siteUrl: string;
+  siteName: string;
+  path: string;
+  name: string;
+  description: string;
+  dateModified: string;
+  type?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'CollectionPage';
+}): Record<string, unknown> {
+  const canonical = joinCanonical(opts.siteUrl, opts.path);
+  return {
+    '@context': 'https://schema.org',
+    '@type': opts.type ?? 'WebPage',
+    '@id': canonical,
+    url: canonical,
+    name: opts.name,
+    description: opts.description,
+    inLanguage: 'en',
+    dateModified: opts.dateModified,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: opts.siteName,
+      url: joinCanonical(opts.siteUrl, '/en'),
+    },
+    publisher: organizationNode(opts.siteUrl, opts.siteName),
+  };
+}
+
+/** CollectionPage + ItemList for hub index pages (e.g. field guides). */
+export function buildCollectionPageJsonLd(opts: {
+  siteUrl: string;
+  siteName: string;
+  path: string;
+  name: string;
+  description: string;
+  dateModified: string;
+  items: Array<{ name: string; path: string }>;
+}): Record<string, unknown> {
+  return {
+    ...buildWebPageJsonLd({ ...opts, type: 'CollectionPage' }),
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: opts.items.length,
+      itemListElement: opts.items.map((item, idx) => ({
+        '@type': 'ListItem',
+        position: idx + 1,
+        name: item.name,
+        url: joinCanonical(opts.siteUrl, item.path),
+      })),
+    },
+  };
+}
+
+/** Latest ISO date (YYYY-MM-DD) in a list, falling back to the provided default. */
+export function maxIsoDate(values: Array<string | null | undefined>, fallback = ''): string {
+  const valid = values
+    .filter((v): v is string => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}/.test(v))
+    .map((v) => v.slice(0, 10))
+    .sort();
+  return valid.length ? valid[valid.length - 1] : fallback;
 }
 
 export function buildDatasetJsonLd(opts: {
@@ -263,6 +468,9 @@ export function buildDatasetJsonLd(opts: {
   description: string;
   keywords: string[];
   dateModified: string;
+  identifier?: string;
+  variableMeasured?: string[];
+  license?: string;
 }): Record<string, unknown> {
   const canonical = joinCanonical(opts.siteUrl, opts.path);
   return {
@@ -271,14 +479,24 @@ export function buildDatasetJsonLd(opts: {
     name: opts.name,
     description: opts.description,
     url: canonical,
+    identifier: opts.identifier ?? canonical,
+    // Data originates from official manufacturer PDFs (trademarks remain with owners);
+    // point at the site's legal notice rather than asserting an open license.
+    license: opts.license ?? joinCanonical(opts.siteUrl, '/en/disclaimer'),
+    inLanguage: 'en',
     keywords: opts.keywords,
     dateModified: opts.dateModified,
     isAccessibleForFree: true,
-    creator: {
-      '@type': 'Organization',
-      name: opts.siteName,
-      url: opts.siteUrl,
-    },
+    variableMeasured: (
+      opts.variableMeasured ?? [
+        'Pin number and signal role',
+        'Absolute maximum ratings',
+        'Thermal resistance θJA (°C/W)',
+        'Package code and exposed pad net',
+        'Datasheet page citation',
+      ]
+    ).map((name) => ({ '@type': 'PropertyValue', name })),
+    creator: organizationNode(opts.siteUrl, opts.siteName),
   };
 }
 
@@ -288,6 +506,8 @@ export function buildSoftwareAppJsonLd(opts: {
   path: string;
   name: string;
   description: string;
+  featureList?: string[];
+  screenshot?: string;
 }): Record<string, unknown> {
   const canonical = joinCanonical(opts.siteUrl, opts.path);
   return {
@@ -296,17 +516,157 @@ export function buildSoftwareAppJsonLd(opts: {
     name: opts.name,
     description: opts.description,
     url: canonical,
-    applicationCategory: 'EngineeringApplication',
-    operatingSystem: 'Web Browser',
+    applicationCategory: 'DeveloperApplication',
+    applicationSubCategory: 'Electronic engineering calculator',
+    operatingSystem: 'Any (Web Browser)',
+    softwareVersion: '2.0',
+    inLanguage: 'en',
+    isAccessibleForFree: true,
+    screenshot: opts.screenshot ?? ogImageUrl(opts.siteUrl),
+    ...(opts.featureList && opts.featureList.length > 0 ? { featureList: opts.featureList } : {}),
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
     },
-    publisher: {
-      '@type': 'Organization',
-      name: opts.siteName,
-      url: opts.siteUrl,
-    },
+    publisher: organizationNode(opts.siteUrl, opts.siteName),
   };
+}
+
+/**
+ * Absolute page URL that always honours `trailingSlash: true` (next.config.ts).
+ * File-like paths (with an extension, e.g. `/og-card.svg`) are returned without a trailing slash.
+ */
+export function buildPageUrl(routePath: string, siteUrl: string): string {
+  const base = siteUrl.replace(/\/+$/, '');
+  const clean = routePath.replace(/^\/+|\/+$/g, '').split(/[?#]/)[0];
+  if (!clean) return `${base}/`;
+  if (/\.[a-z0-9]{2,5}$/i.test(clean)) return `${base}/${clean}`;
+  const suffix = routePath.includes('?') || routePath.includes('#') ? routePath.slice(routePath.search(/[?#]/)) : '';
+  return `${base}/${clean}/${suffix}`;
+}
+
+/** Internal route path with guaranteed trailing slash (for Next <Link href>). Keeps ?query / #hash. */
+export function routePath(path: string): string {
+  const idx = path.search(/[?#]/);
+  const pathname = idx === -1 ? path : path.slice(0, idx);
+  const rest = idx === -1 ? '' : path.slice(idx);
+  const withSlash = pathname.endsWith('/') ? pathname : `${pathname}/`;
+  return `${withSlash}${rest}`;
+}
+
+/** Live A-vs-B comparator deep link (`/en/tools/compare/?a=..&b=..`). */
+export function buildCompareHref(a?: string | null, b?: string | null): string {
+  const params = new URLSearchParams();
+  if (a) params.set('a', a);
+  if (b) params.set('b', b);
+  const qs = params.toString();
+  return `/en/tools/compare/${qs ? `?${qs}` : ''}`;
+}
+
+/** Deep link straight to a datasheet PDF page (`#page=N`, honoured by Chrome/Firefox/Acrobat PDF viewers). */
+export function buildPdfPageUrl(pdfUrl: string, page: number | null | undefined): string {
+  if (!page || !Number.isFinite(page) || page < 1) return pdfUrl;
+  return `${pdfUrl.split('#')[0]}#page=${Math.floor(page)}`;
+}
+
+/** Normalize a search string: lowercase and strip spaces, hyphens, slashes, dots and underscores. */
+export function normalizeSearchText(value: string | null | undefined): string {
+  return (value ?? '').toLowerCase().replace(/[\s\-_/.,()]+/g, '');
+}
+
+export interface SiteToolLink {
+  slug: string;
+  href: string;
+  label: string;
+  shortLabel: string;
+  description: string;
+}
+
+/** Single source of truth for the zero-upload engineering tool routes (header, palette, footer, hub). */
+export const SITE_TOOLS: SiteToolLink[] = [
+  {
+    slug: 'compare',
+    href: '/en/tools/compare/',
+    label: 'Live A-vs-B Comparator',
+    shortLabel: 'Live Compare',
+    description: 'Compare any two verified OPNs pin-by-pin with parameter deltas.',
+  },
+  {
+    slug: 'pinout-finder',
+    href: '/en/tools/pinout-finder/',
+    label: 'Reverse Pinout & Footprint Finder',
+    shortLabel: 'Pinout Finder',
+    description: 'Find every verified part that fits an existing footprint / pin map.',
+  },
+  {
+    slug: 'feedback-divider',
+    href: '/en/tools/feedback-divider/',
+    label: 'Feedback Divider Solver (E96/E24)',
+    shortLabel: 'Feedback Divider',
+    description: 'Solve R1/R2 for adjustable LDO and DC-DC Vref with E-series values.',
+  },
+  {
+    slug: 'bom-checker',
+    href: '/en/tools/bom-checker/',
+    label: 'Zero-Upload BOM Checker',
+    shortLabel: 'BOM Checker',
+    description: 'Paste a BOM to flag EOL/NRND parts, gotchas and verified alternates locally.',
+  },
+  {
+    slug: 'ldo-thermal-calculator',
+    href: '/en/tools/ldo-thermal-calculator/',
+    label: 'LDO Thermal & Tj Calculator',
+    shortLabel: 'LDO Thermal',
+    description: 'Power dissipation, junction temperature and derating margin.',
+  },
+  {
+    slug: 'dcdc-efficiency-ripple-calculator',
+    href: '/en/tools/dcdc-efficiency-ripple-calculator/',
+    label: 'DC-DC Efficiency & Ripple Calculator',
+    shortLabel: 'DC-DC Ripple',
+    description: 'Duty cycle, inductor ripple current and output ripple estimates.',
+  },
+  {
+    slug: 'opamp-gbwp-slewrate-checker',
+    href: '/en/tools/opamp-gbwp-slewrate-checker/',
+    label: 'Op-Amp GBWP & Slew-Rate Checker',
+    shortLabel: 'Op-Amp GBWP',
+    description: 'Closed-loop bandwidth and full-power bandwidth sanity check.',
+  },
+];
+
+export const TOOLS_HUB_HREF = '/en/tools/';
+export const GUIDES_HUB_HREF = '/en/guides/';
+
+export type CommandSearchItemType = 'part' | 'tool' | 'guide' | 'vs' | 'alt' | 'page';
+
+/** Compact, serializable search record fed to the client CommandPalette from the server layout. */
+export interface CommandSearchItem {
+  /** Stable unique key. */
+  id: string;
+  type: CommandSearchItemType;
+  /** Primary label (OPN, tool name, guide title, "A vs B"). */
+  label: string;
+  /** Secondary line (manufacturer · package · category, etc.). */
+  sublabel: string;
+  /** Internal route path with trailing slash (no basePath; use Next <Link>/router). */
+  href: string;
+  /** Pre-normalized (normalizeSearchText) haystack: OPN, family, package, mfg package code, keywords. */
+  keywords: string;
+  /** Optional lifecycle badge for parts. */
+  lifecycle?: 'Active' | 'NRND' | 'EOL' | 'Unknown';
+}
+
+export function lifecycleBadgeClass(status: string | null | undefined): string {
+  switch (status) {
+    case 'EOL':
+      return 'bg-rose-600 text-white border-rose-700';
+    case 'NRND':
+      return 'bg-amber-100 text-amber-950 border-amber-400';
+    case 'Active':
+      return 'bg-emerald-50 text-emerald-900 border-emerald-300';
+    default:
+      return 'bg-slate-100 text-slate-700 border-slate-300';
+  }
 }

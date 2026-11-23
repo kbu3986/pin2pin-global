@@ -6,8 +6,8 @@
   "part_b_slug": "tps7a2033pdbvr",
   "part_a_opn": "AP2127K-3.3TRG1",
   "part_b_opn": "TPS7A2033PDBVR",
-  "compatibility_level": "LEVEL_1_CANDIDATE_DROP_IN",
-  "compatibility_badge": "Candidate Drop-In (Verify Datasheet Before Production)",
+  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
   "package_match": true,
   "pinout_exact_match": true,
   "exposed_pad_match": true,
@@ -73,7 +73,7 @@
       "part_a_value": "2.5 to 6 V (p.4)",
       "part_b_value": "1.6 to 6 V (p.5)",
       "winner": "B",
-      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -157,9 +157,10 @@
     }
   ],
   "swap_risks": [
-    "CAUTION THERMAL MARGIN: Package θJA differs by 25% (AP2127K-3.3TRG1: 250 °C/W p.4 vs TPS7A2033PDBVR: 187.1 °C/W p.6); re-check Tj = Ta + Pd × θJA against Tj,max.",
-    "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (AP2127K-3.3TRG1: 250 °C/W vs TPS7A2033PDBVR: 187.1 °C/W) and worst-case ambient temperature (-40..85 °C vs -40..125 °C)."
+    "HIGH THERMAL MARGIN: Package θJA is 34% higher on AP2127K-3.3TRG1 (AP2127K-3.3TRG1: 250 °C/W p.4 vs TPS7A2033PDBVR: 187.1 °C/W p.6); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH MINIMUM SUPPLY FLOOR: AP2127K-3.3TRG1 requires Vin,min >= 2.5 V (p.4) vs 1.6 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (AP2127K-3.3TRG1: -40..85 °C Industrial (-40°C to +85°C TA) vs TPS7A2033PDBVR: -40..125 °C Extended Industrial (-40°C to +125°C TJ)); AP2127K-3.3TRG1 hot limit only 85 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "AP2127K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and TPS7A2033PDBVR (Texas Instruments, SOT-23-5) qualify as Level 1 Candidate Drop-In alternatives with matching pin assignments, compatible exposed-pad nets, and aligned core operating ratings. Key datasheet deltas: Iq is 60 µA (p.5) vs 6.5 µA (p.6), max output current is 300 mA (p.5) vs 300 mA (p.5), recommended Vin,max is 6 V (p.4) vs 6 V (p.5), typical dropout is 170 mV (p.5) vs 145 mV (p.6), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.4), thermal margin (θJA 250 vs 187.1 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AP2127K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and TPS7A2033PDBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because θJA worsens 34% (thermal derating verification required); Vin,min floor rises 0.9 V; ambient temperature grade differs (-40..85 °C vs -40..125 °C). Under a representative 5 V → 3.3 V rail at 150 mA (255 mW), estimated self-heating is ΔTj ≈ 63.8 °C on AP2127K-3.3TRG1 (θJA 250 °C/W) vs 47.7 °C on TPS7A2033PDBVR (θJA 187.1 °C/W), while quiescent draw spans a 9.2x ratio (60 µA (p.5) vs 6.5 µA (p.6)). Primary bench gotchas to watch: AP2127K-3.3TRG1 \"High 250 °C/W SOT-23-5 θJA Caps Continuous Power at 400 mW (25°C) — Derate From 5 V\" (p.13) and TPS7A2033PDBVR \"Output Capacitor ESR Must Stay <= 100 mOhm (Avoid Tantalum/Electrolytic Caps)\" (p.5). BOM decision: Choose AP2127K-3.3TRG1 when matching your existing Diodes Incorporated SOT-23-5 (K (SOT-23-5)) qualification and -40..85 °C grade; choose TPS7A2033PDBVR when battery sleep budget demands 6.5 µA Iq or lower package θJA (187.1 °C/W) is needed for thermal margin. Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.4) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

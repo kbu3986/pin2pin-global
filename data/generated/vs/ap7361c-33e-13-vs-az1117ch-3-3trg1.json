@@ -54,8 +54,8 @@
       "unit": "V",
       "part_a_value": "2.2 to 6 V (p.4)",
       "part_b_value": "4.8 to 15 V (p.7/p.4)",
-      "winner": "B",
-      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+      "winner": "CONTEXT",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -141,10 +141,14 @@
   "swap_risks": [
     "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (VIN vs GND), Pin 2 (GND vs VOUT), Pin 3 (VOUT vs VIN). Soldering AZ1117CH-3.3TRG1 onto a AP7361C-33E-13 footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
     "CRITICAL SHORT-CIRCUIT HAZARD: Exposed thermal pad/tab net conflict (GND vs VOUT) — direct swap will short power rails.",
-    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs significantly (AP7361C-33E-13: 2.2 µF p.1 vs AZ1117CH-3.3TRG1: 10 µF p.3); account for MLCC DC-bias derating.",
+    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs by 4.5x (AP7361C-33E-13: 2.2 µF p.1 vs AZ1117CH-3.3TRG1: 10 µF p.3); account for MLCC DC-bias derating.",
     "HIGH INPUT VOLTAGE RATING DROP: AP7361C-33E-13 is rated to only 6 V rec. (6.5 V abs max, p.4) vs AZ1117CH-3.3TRG1 at 15 V rec. (18 V abs max, p.4). Verify worst-case input transient spikes.",
-    "CAUTION DROPOUT HEADROOM: Typical dropout differs by 860 mV (AP7361C-33E-13: 340 mV p.5 vs AZ1117CH-3.3TRG1: 1200 mV p.7); verify Vin,min - Vout >= Vdo at cold/hot corners."
+    "HIGH LOAD CURRENT DERATING: AZ1117CH-3.3TRG1 supplies up to 800 mA (p.7) compared to AP7361C-33E-13 at 1000 mA (p.4); confirm peak inrush and thermal dissipation margin.",
+    "CAUTION DROPOUT HEADROOM: Typical dropout differs (AP7361C-33E-13: 340 mV p.5 vs AZ1117CH-3.3TRG1: 1200 mV p.7); verify Vin,min - Vout >= Vdo across temperature and load corners.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: AP7361C-33E-13 has a lower Vin,abs,max rating (6.5 V, p.4) than AZ1117CH-3.3TRG1 (18 V, p.4); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 6.5 V.",
+    "HIGH MINIMUM SUPPLY FLOOR: AZ1117CH-3.3TRG1 requires Vin,min >= 4.8 V (p.7) vs 2.2 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (AP7361C-33E-13: -40..85 °C Industrial (-40°C to +85°C TA, TJ up to +150°C) vs AZ1117CH-3.3TRG1: -20..125 °C Extended Commercial (-20°C to +125°C TJ — NOT -40°C Industrial)); AZ1117CH-3.3TRG1 cold limit only -20 °C, AP7361C-33E-13 hot limit only 85 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "AP7361C-33E-13 (Diodes Incorporated, SOT-223-3) and AZ1117CH-3.3TRG1 (Diodes Incorporated, SOT-223-3) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to pinout mismatch on Pin 1 (VIN vs GND), Pin 2 (GND vs VOUT), Pin 3 (VOUT vs VIN); exposed pad / thermal tab net mismatch. Key datasheet deltas: Iq is 60 µA (p.5) vs 4000 µA (p.7), max output current is 1000 mA (p.4) vs 800 mA (p.7), recommended Vin,max is 6 V (p.4) vs 15 V (p.4), typical dropout is 340 mV (p.5) vs 1200 mV (p.7), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.2), thermal margin (θJA 110 vs 125 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AP7361C-33E-13 (Diodes Incorporated, SOT-223-3) and AZ1117CH-3.3TRG1 (Diodes Incorporated, SOT-223-3) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to pinout mismatch on Pin 1 (VIN vs GND), Pin 2 (GND vs VOUT), Pin 3 (VOUT vs VIN); exposed pad / thermal tab net mismatch. Specific pin conflicts: Pin 1 (VIN vs GND), Pin 2 (GND vs VOUT), Pin 3 (VOUT vs VIN). Under a representative 5 V → 3.3 V rail at 150 mA (255 mW), estimated self-heating is ΔTj ≈ 28.1 °C on AP7361C-33E-13 (θJA 110 °C/W) vs 31.9 °C on AZ1117CH-3.3TRG1 (θJA 125 °C/W), while quiescent draw spans a 66.7x ratio (60 µA (p.5) vs 4000 µA (p.7)). Primary bench gotchas to watch: AP7361C-33E-13 \"CRITICAL E vs. ER Suffix Pinout Trap — AP7361C-33E-13 is INCOMPATIBLE with 1117 Pads\" (p.15) and AZ1117CH-3.3TRG1 \"Operating Temperature Stops at -20°C — NOT Rated for -40°C Industrial Grade\" (p.4). BOM decision: Choose AP7361C-33E-13 when load current exceeds 800 mA (up to 1000 mA) or battery sleep budget demands 60 µA Iq; choose AZ1117CH-3.3TRG1 when input rails climb above 6 V (rated to 15 V). Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.2) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

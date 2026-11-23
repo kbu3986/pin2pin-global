@@ -44,6 +44,12 @@ export type PinRole =
   | 'OUT_B'
   | 'IN_POS_B'
   | 'IN_NEG_B'
+  | 'IN_POS_C'
+  | 'IN_NEG_C'
+  | 'OUT_C'
+  | 'IN_POS_D'
+  | 'IN_NEG_D'
+  | 'OUT_D'
   | 'VCC'
   | 'VEE'
   | 'VREF'
@@ -148,6 +154,10 @@ export interface LdoSpecs {
   esr_max_ohm: CitedNumber | null;
   en_active_high: boolean | null;
   reverse_current_protection: boolean | null;
+  en_abs_max_v?: CitedNumber | null;
+  en_default_floating?: 'enable' | 'disable' | 'forbidden' | null;
+  max_cout_uf?: CitedNumber | null;
+  active_discharge?: boolean | null;
 }
 
 export interface DcdcSpecs {
@@ -169,6 +179,10 @@ export interface DcdcSpecs {
   synchronous: boolean;
   min_cout_uf: CitedNumber;
   en_active_high: boolean | null;
+  en_abs_max_v?: CitedNumber | null;
+  en_default_floating?: 'enable' | 'disable' | 'forbidden' | null;
+  max_cout_uf?: CitedNumber | null;
+  active_discharge?: boolean | null;
 }
 
 export interface OpampSpecs {
@@ -221,17 +235,54 @@ export interface DcdcGoldenPart extends BaseGoldenPart {
 
 export interface OpampGoldenPart extends BaseGoldenPart {
   category: 'opamp';
-  sub_topology: 'opamp-single' | 'opamp-dual' | 'comparator-single' | 'comparator-dual';
+  sub_topology:
+    | 'opamp-single'
+    | 'opamp-dual'
+    | 'comparator-single'
+    | 'comparator-dual'
+    | 'opamp-quad'
+    | 'comparator-quad';
   specs: OpampSpecs;
 }
 
 export type GoldenPartV2 = LdoGoldenPart | DcdcGoldenPart | OpampGoldenPart;
 export type PartCategory = 'ldo' | 'dcdc' | 'opamp';
+/** Alias used by client components (CompareWorkbenchClient, PackageTrapMatrixClient). */
+export type PartRecord = GoldenPartV2;
+
+export interface VsDirectoryItem {
+  slug: string;
+  partAOpn: string;
+  partBOpn: string;
+  partAPkg: string;
+  partBPkg: string;
+  category: string;
+  compatibilityLevel: string;
+  pinoutMatch: boolean;
+  exposedPadMatch: boolean;
+  summary: string;
+}
 
 export type CompatibilityLevel =
   | 'LEVEL_1_CANDIDATE_DROP_IN'
   | 'LEVEL_2_TUNING_REQUIRED'
   | 'LEVEL_3_LAYOUT_CHANGE';
+
+export type CompatibilityBadge =
+  | 'Candidate Drop-In (Verify Datasheet Before Production)'
+  | 'Functional / Tuning Required (Check Passives & Ratings)'
+  | 'PCB Layout Change Required (Pinout or Package Mismatch)';
+
+export type LifecycleStatus = 'Active' | 'NRND' | 'EOL' | 'Unknown';
+
+export type AltTierTag =
+  | 'Candidate Drop-In'
+  | 'Ultra-Low Iq Upgrade'
+  | 'Higher Current / Margin'
+  | 'Higher Voltage Margin'
+  | 'Value / Second-Source'
+  | 'Functional Alternative (Layout Change)'
+  | 'Lifecycle Warning (EOL/NRND)';
 
 export interface PinDiffRow {
   pin: number;
@@ -261,10 +312,7 @@ export interface VsComparisonV2 {
   part_a_opn: string;
   part_b_opn: string;
   compatibility_level: CompatibilityLevel;
-  compatibility_badge:
-    | 'Candidate Drop-In (Verify Datasheet Before Production)'
-    | 'Functional / Tuning Required (Check Passives & Ratings)'
-    | 'PCB Layout Change Required (Pinout or Package Mismatch)';
+  compatibility_badge: CompatibilityBadge;
   package_match: boolean;
   pinout_exact_match: boolean;
   exposed_pad_match: boolean;
@@ -280,14 +328,10 @@ export interface AltCandidate {
   alt_opn: string;
   manufacturer: string;
   package_code: PackageCode;
+  lifecycle_status?: LifecycleStatus;
   compatibility_level: CompatibilityLevel;
-  compatibility_badge: string;
-  tier_tag:
-    | 'Candidate Drop-In'
-    | 'Ultra-Low Iq Upgrade'
-    | 'Higher Current / Margin'
-    | 'Value / Second-Source'
-    | 'Functional Alternative (Layout Change)';
+  compatibility_badge: CompatibilityBadge;
+  tier_tag: AltTierTag;
   score: number;
   key_advantage: string;
   key_tradeoff: string;
@@ -360,9 +404,13 @@ export interface SiteConfig {
   site_name: string;
   tagline: string;
   site_url: string;
+  live_site_url?: string;
+  base_path?: string;
   default_locale: string;
   supported_locales: string[];
   contact_email: string;
+  enterprise_contact_email?: string;
+  indexnow_key?: string;
   error_report_issue_url: string;
   monetization: {
     adsense_publisher_id: string;
@@ -390,6 +438,7 @@ export interface SiteConfig {
 export interface PilotManifest {
   manifest_version: string;
   locale: string;
+  updated_at?: string;
   page_budget: {
     part_pages: number;
     alt_pages: number;
@@ -443,6 +492,8 @@ export interface CatalogPartRow {
   ceramic_cap_stable: boolean | null;
   highlight_metric: string;
   has_alt_page: boolean;
+  lifecycle: 'Active' | 'NRND' | 'EOL' | 'Unknown';
+  exposed_pad_present: boolean;
 }
 
 export interface BomIndexAlt {
@@ -467,4 +518,28 @@ export interface BomIndexPart {
   crit: string[];
   warn: string[];
   alts: BomIndexAlt[];
+  /** Official manufacturer datasheet PDF (for per-row Datasheet PDF actions in the BOM checker). */
+  pdf_url?: string;
+}
+
+export type SearchItemType = 'part' | 'vs' | 'guide' | 'tool' | 'package' | 'page';
+
+/** Compact Cmd+K search index entry (served from /en/search-index.json). */
+export interface SearchIndexItem {
+  t: SearchItemType;
+  l: string;
+  s: string;
+  h: string;
+  k?: string;
+}
+
+export interface ToolEntry {
+  slug: string;
+  href: string;
+  title: string;
+  short: string;
+  description: string;
+  category: PartCategory | 'general';
+  badge: string;
+  features: string[];
 }

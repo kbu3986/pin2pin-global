@@ -107,8 +107,8 @@
       "unit": "V",
       "part_a_value": "3.8 to 32 V (p.4)",
       "part_b_value": "3.5 to 28 V (p.4)",
-      "winner": "A",
-      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+      "winner": "CONTEXT",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -124,7 +124,7 @@
       "part_a_value": "3.27 to 3.33 V (p.5) (Fixed)",
       "part_b_value": "0.8 to 25 V (p.1/p.21) (Adj)",
       "winner": "CONTEXT",
-      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
     },
     {
       "metric": "Max Current (Iout or Isw Limit)",
@@ -132,7 +132,7 @@
       "part_a_value": "2000 mA (p.1) [Iout max]",
       "part_b_value": "3000 mA (p.1) [Iout max]",
       "winner": "B",
-      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+      "note": "Continuous DC output current rating; verify inductor Isat >= Iout + ΔIL/2 and thermal margin."
     },
     {
       "metric": "Quiescent Current (Iq, typ)",
@@ -186,12 +186,14 @@
   "swap_risks": [
     "CRITICAL PACKAGE MISMATCH: AP63203WU-7 uses TSOT-23-6 (6-pin, TSOT26) while TPS54331DR uses SOIC-8 (8-pin, D); PCB footprint redesign is mandatory.",
     "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (FB vs BOOT), Pin 2 (EN vs VIN), Pin 3 (VIN vs EN), Pin 4 (GND vs SS), Pin 5 (SW vs FB), Pin 6 (BOOT vs COMP), Pin 7 (NONE vs GND), Pin 8 (NONE vs SW). Soldering TPS54331DR onto a AP63203WU-7 footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
-    "HIGH RECTIFICATION DIFFERENCE: TPS54331DR is non-synchronous and requires an external Schottky catch/freewheeling diode, whereas the counterpart integrates a synchronous low-side MOSFET.",
+    "CRITICAL RECTIFICATION LAYOUT DIFFERENCE: TPS54331DR is non-synchronous and requires an external Schottky catch/freewheeling diode footprint near SW, whereas the counterpart integrates a synchronous low-side MOSFET.",
+    "CRITICAL FEEDBACK LAYOUT DIFFERENCE: One converter is fixed-output while the other is adjustable; adding or removing the external R1/R2 feedback divider and feedforward capacitor requires a PCB layout change.",
     "HIGH SWITCHING FREQUENCY SHIFT: fsw differs by 48% (AP63203WU-7: 1100 kHz p.5 vs TPS54331DR: 570 kHz p.6); re-evaluate inductor core loss, ripple current ΔIL, output capacitor ESR ripple, and EMI harmonics.",
     "CAUTION INDUCTOR RETUNING: Typical inductor differs (AP63203WU-7: 3.9 µH p.13 vs TPS54331DR: 6.8 µH p.16); check inductor Isat against peak switch current limit.",
-    "HIGH FEEDBACK CONFIGURATION: One converter is fixed-output while the other is adjustable; external R1/R2 feedback resistors and feedforward capacitor must be updated.",
-    "CAUTION CURRENT RATING BASIS: AP63203WU-7 specifies 2000 mA (continuous Iout, p.1) vs TPS54331DR 3000 mA (continuous Iout, p.1). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling."
+    "CAUTION CURRENT RATING BASIS: AP63203WU-7 specifies 2000 mA (continuous Iout, p.1) vs TPS54331DR 3000 mA (continuous Iout, p.1). Verify continuous load current and peak inductor saturation margin (Isat >= Iout + ΔIL/2).",
+    "HIGH THERMAL MARGIN: Package θJA is 31% higher on TPS54331DR (AP63203WU-7: 89 °C/W p.4 vs TPS54331DR: 116.3 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (AP63203WU-7: -40..85 °C Industrial (-40°C to 85°C TA, TJ max 125°C) vs TPS54331DR: -40..150 °C Extended Industrial (-40°C to 150°C TJ)); AP63203WU-7 hot limit only 85 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "AP63203WU-7 (Diodes Incorporated, TSOT-23-6) and TPS54331DR (Texas Instruments, SOIC-8) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (FB vs BOOT), Pin 2 (EN vs VIN), Pin 3 (VIN vs EN), Pin 4 (GND vs SS), Pin 5 (SW vs FB), Pin 6 (BOOT vs COMP), Pin 7 (NONE vs GND), Pin 8 (NONE vs SW). Key datasheet deltas: topology is buck (sync) vs buck (non-sync), switching frequency is 1100 kHz (p.5) vs 570 kHz (p.6), rated current is 2000 mA (p.1) vs 3000 mA (p.1), typical inductor is 3.9 µH (p.13) vs 6.8 µH (p.16), and Iq is 22 µA (p.5) vs 110 µA (p.5). Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 89 vs 116.3 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AP63203WU-7 (Diodes Incorporated, TSOT-23-6) and TPS54331DR (Texas Instruments, SOIC-8) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (FB vs BOOT), Pin 2 (EN vs VIN), Pin 3 (VIN vs EN), Pin 4 (GND vs SS), Pin 5 (SW vs FB), Pin 6 (BOOT vs COMP), Pin 7 (NONE vs GND), Pin 8 (NONE vs SW); synchronous vs non-synchronous rectification mismatch (external Schottky footprint). Specific pin conflicts: Pin 1 (FB vs BOOT), Pin 2 (EN vs VIN), Pin 3 (VIN vs EN), Pin 4 (GND vs SS). Power-stage deltas: buck (sync) vs buck (non-sync), switching frequency 1100 kHz (p.5) vs 570 kHz (p.6) (1.9x ratio), typical inductor 3.9 µH (p.13) vs 6.8 µH (p.16), output mode fixed vs adjustable, and package θJA 89 vs 116.3 °C/W. Primary bench gotchas to watch: AP63203WU-7 \"CRITICAL PINOUT TRAP: Completely Incompatible With TPS54302DDCR, TPS563201DDCR & AP62200WU-7!\" (p.1) and TPS54331DR \"Non-Synchronous Architecture Requires External Schottky Catch Diode & External COMP Network\" (p.1). BOM decision: Choose AP63203WU-7 when you want synchronous rectification without an external Schottky diode or light-load battery standby needs 22 µA Iq; choose TPS54331DR when higher load current capacity (3000 mA) is required. Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

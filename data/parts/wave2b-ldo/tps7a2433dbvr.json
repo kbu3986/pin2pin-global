@@ -1,0 +1,231 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TPS7A2433DBVR",
+  "slug": "tps7a2433dbvr",
+  "family": "TPS7A24",
+  "manufacturer": "Texas Instruments",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to +125°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tps7a24.pdf",
+    "product_page_url": "https://www.ti.com/product/TPS7A24",
+    "source_domain": "www.ti.com",
+    "revision": "SBVS386E (August 2019 – Revised September 2022)",
+    "verified_at": "2026-11-23",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 30
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "DBV (SOT-23-5)",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "5-pin DBV SOT-23 package has no exposed thermal pad (RθJC(bot) = n/a, p.5); Pin 4 (NC) may be tied to GND for improved thermal spreading on fixed versions (p.3)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 167.8,
+      "page": 5,
+      "condition": "DBV (SOT-23-5) JEDEC junction-to-ambient thermal resistance",
+      "table_ref": "Section 6.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 86.7,
+      "page": 5,
+      "condition": "RθJC(top), DBV (SOT-23-5) package",
+      "table_ref": "Section 6.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 4,
+      "condition": "Absolute maximum operating junction temperature TJ (-50°C to +150°C; recommended continuous TJ -40°C to +125°C, p.5)",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "IN",
+        "role": "VIN",
+        "description": "Wide input supply pin (2.4 V to 18 V recommended, 20 V abs max); place >= 1 uF nominal ceramic capacitor close to IN and GND."
+      },
+      {
+        "pin": 2,
+        "name": "GND",
+        "role": "GND",
+        "description": "Ground reference pin."
+      },
+      {
+        "pin": 3,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high enable pin (>= 0.9 V ON, <= 0.4 V OFF; 20 V abs max — DO NOT float; tie directly to IN if shutdown is unused)."
+      },
+      {
+        "pin": 4,
+        "name": "NC",
+        "role": "NC",
+        "description": "No internal connection on fixed 3.3 V TPS7A2433DBVR (Pin 4 is FB on adjustable TPS7A2401DBVR); may float or tie to GND for thermal relief."
+      },
+      {
+        "pin": 5,
+        "name": "OUT",
+        "role": "VOUT",
+        "description": "Regulated 3.3 V output (high-impedance in shutdown — no shutdown discharge); requires 1 uF to 100 uF (2.2 uF nom) ceramic capacitor."
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 20.0,
+      "page": 4,
+      "condition": "VIN and VEN abs max -0.3 V to 20 V (VOUT abs max min(VIN + 0.3 V, 20 V))",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 2.4,
+      "page": 5,
+      "condition": "Family recommended operating VIN minimum (maintain VIN >= 3.3 V + VDO for 3.3 V regulation)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 18.0,
+      "page": 5,
+      "condition": "Maximum recommended operating input voltage (NOT 24 V industrial bus compatible)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "page": 22,
+      "condition": "Fixed 3.3 V option in DBV SOT-23-5 (Active Production, top marking '1XHF')",
+      "table_ref": "Package Option Addendum"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 1.25,
+      "page": 6,
+      "condition": "±1.25% max over -40°C to +125°C TJ for fixed output versions (±0.5% max at TJ = 25°C)",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "iout_max_ma": {
+      "value": 200,
+      "page": 5,
+      "condition": "200 mA continuous rated output current (brick-wall ICL 250 mA min / 410 mA typ / 620 mA max, p.6)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "iq_typ_ua": {
+      "value": 2.0,
+      "page": 6,
+      "condition": "2.0 uA typ / 4.5 uA max at IOUT = 0 mA (rises to 15 uA typ at IOUT = 1 mA, ~180 uA at 200 mA per Fig. 6-12 p.8)",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "ishdn_typ_ua": {
+      "value": 0.325,
+      "page": 6,
+      "condition": "325 nA (0.325 uA) typ / 650 nA max at VEN <= 0.4 V, VIN = 2.4 V, IOUT = 0 mA",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "dropout_typ_mv": {
+      "value": 160,
+      "page": 6,
+      "condition": "160 mV typ / 250 mV max at IOUT = 200 mA, VIN = 0.97 * VOUT(nom) (110 mV typ / 160 mV max at 100 mA)",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "psrr_db": {
+      "value": 62,
+      "page": 6,
+      "condition": "f = 1 kHz, IOUT = 1 mA (75 dB at 10 Hz, 70 dB at 100 Hz; drops at higher frequencies per Fig. 6-15 p.9)",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "output_noise_uvrms": {
+      "value": 300,
+      "page": 6,
+      "condition": "300 uVRMS typ at BW = 10 Hz to 100 kHz, VOUT = 1.24 V (scales higher at 3.3 V; ultra-low-Iq trade-off)",
+      "table_ref": "Section 6.5 Electrical Characteristics"
+    },
+    "ceramic_cap_stable": true,
+    "min_cout_uf": {
+      "value": 1.0,
+      "page": 5,
+      "condition": "1 uF min / 2.2 uF nom / 100 uF max low-ESR ceramic output capacitor (50% derating assumed)",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "esr_min_ohm": null,
+    "esr_max_ohm": null,
+    "en_active_high": true,
+    "reverse_current_protection": false,
+    "en_abs_max_v": {
+      "value": 20.0,
+      "page": 4,
+      "condition": "EN rated -0.3 V to 20 V (may tie directly to 18 V VIN, unlike TPS70933DBVR 7 V EN clamp)",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings"
+    },
+    "en_default_floating": "forbidden",
+    "max_cout_uf": {
+      "value": 100,
+      "page": 5,
+      "condition": "Maximum recommended nominal output capacitance is 100 uF",
+      "table_ref": "Section 6.3 Recommended Operating Conditions"
+    },
+    "active_discharge": false
+  },
+  "design_gotchas": [
+    {
+      "title": "Large/Fast VIN Line Transients Trigger Brief Output Shutdown (Section 8.1.8, p.17)",
+      "severity": "CRITICAL",
+      "detail": "Section 8.1.8 (p.17) and Figure 8-3 warn that a large or fast input voltage step can briefly shut down TPS7A24 for up to a few hundred microseconds during the transient. On hot-plugged 12 V/18 V adapters or switched multicell packs, limit VIN slew rate and step size with input RC/TVS filtering so VOUT does not brown out the MCU.",
+      "page": 17
+    },
+    {
+      "title": "167.8 °C/W SOT-23-5 Thermal Limit Severely Derates 12 V–18 V Operation Far Below 200 mA",
+      "severity": "CRITICAL",
+      "detail": "At VIN = 18 V to VOUT = 3.3 V, full 200 mA load dissipates 2.94 W (ΔT = 493 °C at 167.8 °C/W!). Even at 12 V -> 3.3 V and TA = 50 °C (75 °C budget to 125 °C TJ), continuous load is capped at ~51 mA (~16 mA at 18 V, 85 °C ambient). Always run thermal margin checks before replacing 5.5 V LDOs on high-VIN rails.",
+      "page": 5
+    },
+    {
+      "title": "No Shutdown Output Discharge (High-Z When Disabled) & Strict Do-Not-Float EN Rule",
+      "severity": "WARNING",
+      "detail": "Section 7.3.6 (p.12) specifies that the 100 uA / 5.5 kOhm overshoot pulldown turns OFF when VEN < VEN(LOW), leaving VOUT high-impedance in shutdown—unlike active-discharge 'P' LDOs (TPS7A05P, TLV757P). Also Table 5-1 (p.3) explicitly forbids floating EN (tie to IN if unused); unlike TPS70933DBVR (7 V EN abs max), TPS7A24 EN tolerates 20 V.",
+      "page": 12
+    },
+    {
+      "title": "High 300 uVRMS Output Noise & Unlimited PMOS Reverse-Current Body Diode",
+      "severity": "WARNING",
+      "detail": "To achieve 2.0 uA IQ at 18 V VIN, TPS7A24 exhibits 300 uVRMS noise even at VOUT = 1.24 V (p.6)—making it noisy for precision ADC/RF stages compared to TPS7A20 (6.2 uVRMS). Section 8.1.4 (p.15) also warns reverse current is unlimited if VOUT > VIN + 0.3 V; add an external Schottky or series input diode.",
+      "page": 15
+    }
+  ],
+  "typical_use_cases": [
+    "Always-on 2-cell to 4-cell Li-Ion (6 V–16.8 V) or 9 V/12 V battery-pack MCU rails requiring 2.0 uA standby IQ",
+    "Smoke/heat detectors, smart thermostats, PIR motion sensors, and utility meters needing 18 V VIN + ±1.25% accuracy",
+    "Lower-dropout (160 mV typ vs ~960 mV), 20 V-EN SOT-23-5 alternative to TPS70933DBVR on <= 18 V buses",
+    "Cordless power-tool and appliance housekeeping 3.3 V rails with low average standby current"
+  ],
+  "engineering_summary": "The Texas Instruments TPS7A2433DBVR is an 18 V (20 V abs max), 200 mA, ultra-low-IQ (2.0 uA typ at no load, 325 nA shutdown) fixed 3.3 V (±1.25% over -40°C to +125°C) LDO in a 5-pin DBV SOT-23-5 package (1=IN, 2=GND, 3=EN, 4=NC, 5=OUT). With low 160 mV typ / 250 mV max dropout at 200 mA and a 20 V-tolerant EN pin, it excels in multicell battery and 12 V standby rails, outperforming legacy high-VIN LDOs on dropout and EN voltage rating. Designers must respect its 167.8 °C/W thermal ceiling at high VIN, Section 8.1.8 fast-line-transient brief-shutdown hazard, high 300 uVRMS noise, high-Z shutdown output (no discharge), and unblocked reverse current.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 4, 5, 6],
+    "audit_notes": [
+      "300 DPI PNG Vision on p.3 confirmed Figure 5-2 DBV Fixed 5-pin SOT-23 Top View pinout (1=IN, 2=GND, 3=EN, 4=NC, 5=OUT; Figure 5-1 Adjustable uses Pin 4=FB) and 'Do not float EN' requirement.",
+      "300 DPI PNG Vision on p.4 verified Abs Max VIN = 20 V, VEN = 20 V, VOUT = min(VIN+0.3 V, 20 V), TJ = -50..150°C, and ESD ±2000 V HBM / ±1000 V CDM.",
+      "300 DPI PNG Vision on p.5 verified Rec Op (VIN = 2.4–18 V, IOUT = 200 mA, COUT = 1–100 uF, TJ = -40..125°C) and DBV Thermal Info (RθJA = 167.8 °C/W, RθJC(top) = 86.7 °C/W).",
+      "300 DPI PNG Vision on p.6 verified ±1.25% full-temp / ±0.5% 25°C accuracy, IGND = 2.0 uA typ (4.5 uA max @ 0 mA; 15 uA @ 1 mA), ISHUTDOWN = 325 nA typ, VDO = 160 mV typ / 250 mV max @ 200 mA, PSRR = 62 dB @ 1 kHz, Vn = 300 uVRMS @ 1.24 V, and VEN(HI) >= 0.9 V.",
+      "Path A confirmed Active Production status (marking '1XHF', p.22), no shutdown discharge (Sec. 7.3.6 p.12), unlimited reverse current (Sec. 8.1.4 p.15), and fast-line-transient brief-shutdown hazard (Sec. 8.1.8 p.17)."
+    ]
+  }
+}

@@ -73,7 +73,7 @@
       "part_a_value": "2.5 to 6 V (p.4)",
       "part_b_value": "2.7 to 5.5 V (p.4)",
       "winner": "A",
-      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -158,9 +158,11 @@
   ],
   "swap_risks": [
     "HIGH PIN 4 (NC vs BYPASS/NR) CHECK: One device uses Pin 4 as an internal bandgap bypass/noise-reduction node while the other is NC. Verify Pin 4 is NOT tied to GND or VIN on the existing PCB before swapping; add a 10 nF bypass cap if low noise is required.",
+    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs by 2.2x (AP2127K-3.3TRG1: 1 µF p.12 vs TPS79333DBVR: 2.2 µF p.4); account for MLCC DC-bias derating.",
     "HIGH LOAD CURRENT DERATING: TPS79333DBVR supplies up to 200 mA (p.5) compared to AP2127K-3.3TRG1 at 300 mA (p.5); confirm peak inrush and thermal dissipation margin.",
-    "CAUTION THERMAL MARGIN: Package θJA differs by 27% (AP2127K-3.3TRG1: 250 °C/W p.4 vs TPS79333DBVR: 182.3 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max."
+    "HIGH THERMAL MARGIN: Package θJA is 37% higher on AP2127K-3.3TRG1 (AP2127K-3.3TRG1: 250 °C/W p.4 vs TPS79333DBVR: 182.3 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (AP2127K-3.3TRG1: -40..85 °C Industrial (-40°C to +85°C TA) vs TPS79333DBVR: -40..125 °C Extended Industrial (-40°C to +125°C TJ)); AP2127K-3.3TRG1 hot limit only 85 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "AP2127K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and TPS79333DBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to Pin 4 NC vs BYPASS difference; Iout,max rating drops >20%. Key datasheet deltas: Iq is 60 µA (p.5) vs 250 µA (p.5), max output current is 300 mA (p.5) vs 200 mA (p.5), recommended Vin,max is 6 V (p.4) vs 5.5 V (p.4), typical dropout is 170 mV (p.5) vs 112 mV (p.7), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 250 vs 182.3 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AP2127K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and TPS79333DBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because Pin 4 NC vs BYPASS difference; minimum output capacitance requirement differs 2.2x; Iout,max rating drops >=20%. Under a representative 5 V → 3.3 V rail at 150 mA (255 mW), estimated self-heating is ΔTj ≈ 63.8 °C on AP2127K-3.3TRG1 (θJA 250 °C/W) vs 46.5 °C on TPS79333DBVR (θJA 182.3 °C/W), while quiescent draw spans a 4.2x ratio (60 µA (p.5) vs 250 µA (p.5)). Primary bench gotchas to watch: AP2127K-3.3TRG1 \"High 250 °C/W SOT-23-5 θJA Caps Continuous Power at 400 mW (25°C) — Derate From 5 V\" (p.13) and TPS79333DBVR \"CRITICAL Mixed Legacy (CSO:DLN) vs New Chip (CSO:RFB) Silicon Lottery on Non-M3 OPN\" (p.28). BOM decision: Choose AP2127K-3.3TRG1 when load current exceeds 200 mA (up to 300 mA) or battery sleep budget demands 60 µA Iq; choose TPS79333DBVR when low Vin-Vout headroom requires 112 mV dropout or lower package θJA (182.3 °C/W) is needed for thermal margin. Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

@@ -108,7 +108,7 @@
       "part_a_value": "4.2 to 18 V (p.4)",
       "part_b_value": "3.5 to 28 V (p.4)",
       "winner": "B",
-      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -123,8 +123,8 @@
       "unit": "V",
       "part_a_value": "0.8 to 7 V (p.1) (Adj)",
       "part_b_value": "0.8 to 25 V (p.1/p.21) (Adj)",
-      "winner": "CONTEXT",
-      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+      "winner": "B",
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
     },
     {
       "metric": "Max Current (Iout or Isw Limit)",
@@ -132,7 +132,7 @@
       "part_a_value": "2000 mA (p.1) [Iout max]",
       "part_b_value": "3000 mA (p.1) [Iout max]",
       "winner": "B",
-      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+      "note": "Continuous DC output current rating; verify inductor Isat >= Iout + ΔIL/2 and thermal margin."
     },
     {
       "metric": "Quiescent Current (Iq, typ)",
@@ -186,12 +186,16 @@
   "swap_risks": [
     "CRITICAL PACKAGE MISMATCH: AP62200WU-7 uses TSOT-23-6 (6-pin, TSOT26) while TPS54331DR uses SOIC-8 (8-pin, D); PCB footprint redesign is mandatory.",
     "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (GND vs BOOT), Pin 2 (SW vs VIN), Pin 3 (VIN vs EN), Pin 4 (FB vs SS), Pin 5 (EN vs FB), Pin 6 (BOOT vs COMP), Pin 7 (NONE vs GND), Pin 8 (NONE vs SW). Soldering TPS54331DR onto a AP62200WU-7 footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
-    "HIGH RECTIFICATION DIFFERENCE: TPS54331DR is non-synchronous and requires an external Schottky catch/freewheeling diode, whereas the counterpart integrates a synchronous low-side MOSFET.",
+    "CRITICAL RECTIFICATION LAYOUT DIFFERENCE: TPS54331DR is non-synchronous and requires an external Schottky catch/freewheeling diode footprint near SW, whereas the counterpart integrates a synchronous low-side MOSFET.",
+    "CRITICAL SWITCH-VOLTAGE OVERSTRESS RISK: AP62200WU-7 is rated up to only 7 V output (p.1) vs TPS54331DR up to 25 V (p.21); exceeding the internal switch BVdss ceiling destroys the SW MOSFET.",
     "CAUTION INDUCTOR RETUNING: Typical inductor differs (AP62200WU-7: 3.3 µH p.17 vs TPS54331DR: 6.8 µH p.16); check inductor Isat against peak switch current limit.",
     "HIGH INPUT VOLTAGE RANGE SHIFT: Recommended Vin,max differs (AP62200WU-7: 18 V p.4 vs TPS54331DR: 28 V p.4); verify line transients stay below Vin,abs,max.",
-    "CAUTION CURRENT RATING BASIS: AP62200WU-7 specifies 2000 mA (continuous Iout, p.1) vs TPS54331DR 3000 mA (continuous Iout, p.1). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling.",
-    "CAUTION THERMAL MARGIN: Package θJA differs by 40% (AP62200WU-7: 70 °C/W p.4 vs TPS54331DR: 116.3 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max."
+    "CAUTION CURRENT RATING BASIS: AP62200WU-7 specifies 2000 mA (continuous Iout, p.1) vs TPS54331DR 3000 mA (continuous Iout, p.1). Verify continuous load current and peak inductor saturation margin (Isat >= Iout + ΔIL/2).",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: AP62200WU-7 has a lower Vin,abs,max rating (20 V, p.4) than TPS54331DR (30 V, p.4); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 20 V.",
+    "HIGH THERMAL MARGIN: Package θJA is 66% higher on TPS54331DR (AP62200WU-7: 70 °C/W p.4 vs TPS54331DR: 116.3 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH MINIMUM SUPPLY FLOOR: AP62200WU-7 requires Vin,min >= 4.2 V (p.4) vs 3.5 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (AP62200WU-7: -40..125 °C Industrial / Extended (-40°C to 125°C TJ) vs TPS54331DR: -40..150 °C Extended Industrial (-40°C to 150°C TJ)); AP62200WU-7 hot limit only 125 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "AP62200WU-7 (Diodes Incorporated, TSOT-23-6) and TPS54331DR (Texas Instruments, SOIC-8) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (GND vs BOOT), Pin 2 (SW vs VIN), Pin 3 (VIN vs EN), Pin 4 (FB vs SS), Pin 5 (EN vs FB), Pin 6 (BOOT vs COMP), Pin 7 (NONE vs GND), Pin 8 (NONE vs SW). Key datasheet deltas: topology is buck (sync) vs buck (non-sync), switching frequency is 750 kHz (p.5) vs 570 kHz (p.6), rated current is 2000 mA (p.1) vs 3000 mA (p.1), typical inductor is 3.3 µH (p.17) vs 6.8 µH (p.16), and Iq is 135 µA (p.5) vs 110 µA (p.5). Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 70 vs 116.3 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AP62200WU-7 (Diodes Incorporated, TSOT-23-6) and TPS54331DR (Texas Instruments, SOIC-8) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (GND vs BOOT), Pin 2 (SW vs VIN), Pin 3 (VIN vs EN), Pin 4 (FB vs SS), Pin 5 (EN vs FB), Pin 6 (BOOT vs COMP), Pin 7 (NONE vs GND), Pin 8 (NONE vs SW); synchronous vs non-synchronous rectification mismatch (external Schottky footprint). Specific pin conflicts: Pin 1 (GND vs BOOT), Pin 2 (SW vs VIN), Pin 3 (VIN vs EN), Pin 4 (FB vs SS). Power-stage deltas: buck (sync) vs buck (non-sync), switching frequency 750 kHz (p.5) vs 570 kHz (p.6) (1.3x ratio), typical inductor 3.3 µH (p.17) vs 6.8 µH (p.16), feedback Vref 0.8 V (p.5) vs 0.8 V (p.5), and package θJA 70 vs 116.3 °C/W. Primary bench gotchas to watch: AP62200WU-7 \"CRITICAL: EN Pin Abs Max Is ONLY 8.0 V — NEVER Tie Directly to 12 V / 18 V VIN!\" (p.4) and TPS54331DR \"Non-Synchronous Architecture Requires External Schottky Catch Diode & External COMP Network\" (p.1). BOM decision: Choose AP62200WU-7 when you want synchronous rectification without an external Schottky diode; choose TPS54331DR when bus voltage exceeds 18 V (rated to 28 V) or higher load current capacity (3000 mA) is required. Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

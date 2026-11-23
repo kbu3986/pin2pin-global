@@ -6,8 +6,8 @@
   "part_b_slug": "tps7a0233pdbvr",
   "part_a_opn": "TLV70033DDCR",
   "part_b_opn": "TPS7A0233PDBVR",
-  "compatibility_level": "LEVEL_1_CANDIDATE_DROP_IN",
-  "compatibility_badge": "Candidate Drop-In (Verify Datasheet Before Production)",
+  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
   "package_match": true,
   "pinout_exact_match": true,
   "exposed_pad_match": true,
@@ -73,7 +73,7 @@
       "part_a_value": "2 to 5.5 V (p.5)",
       "part_b_value": "1.5 to 6 V (p.5)",
       "winner": "B",
-      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -157,9 +157,9 @@
     }
   ],
   "swap_risks": [
-    "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (TLV70033DDCR: 235.9 °C/W vs TPS7A0233PDBVR: 181.9 °C/W) and worst-case ambient temperature (-40..125 °C vs -40..125 °C).",
-    "DATASHEET REVISION CHECK (AUD-04): Verify latest official manufacturer datasheets (SLVSA00E (September 2009 – Revised April 2015) vs SBVS277C (July 2019 – Revised September 2022)) for part-marking codes, transient load response, and qualification status before production release."
+    "HIGH THERMAL MARGIN: Package θJA is 30% higher on TLV70033DDCR (TLV70033DDCR: 235.9 °C/W p.5 vs TPS7A0233PDBVR: 181.9 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH MINIMUM SUPPLY FLOOR: TLV70033DDCR requires Vin,min >= 2 V (p.5) vs 1.5 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor."
   ],
-  "engineering_verdict": "TLV70033DDCR (Texas Instruments, SOT-23-5) and TPS7A0233PDBVR (Texas Instruments, SOT-23-5) qualify as Level 1 Candidate Drop-In alternatives with matching pin assignments, compatible exposed-pad nets, and aligned core operating ratings. Key datasheet deltas: Iq is 31 µA (p.6) vs 0.025 µA (p.6), max output current is 200 mA (p.5) vs 200 mA (p.5), recommended Vin,max is 5.5 V (p.5) vs 6 V (p.5), typical dropout is 175 mV (p.6) vs 270 mV (p.6), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.4 vs TOP_VIEW p.3), thermal margin (θJA 235.9 vs 181.9 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "TLV70033DDCR (Texas Instruments, SOT-23-5) and TPS7A0233PDBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because θJA worsens 30% (thermal derating verification required); Vin,min floor rises 0.5 V. Under a representative 5 V → 3.3 V rail at 150 mA (255 mW), estimated self-heating is ΔTj ≈ 60.2 °C on TLV70033DDCR (θJA 235.9 °C/W) vs 46.4 °C on TPS7A0233PDBVR (θJA 181.9 °C/W), while quiescent draw spans a 1240x ratio (31 µA (p.6) vs 0.025 µA (p.6)). Primary bench gotchas to watch: TLV70033DDCR \"VEN Must Never Exceed VIN + 0.3 V (Sequencing Trap vs TPS7A02/TLV755P)\" (p.5) and TPS7A0233PDBVR \"Strict 22 uF Maximum Output Capacitance Limit for Loop Stability\" (p.5). BOM decision: Choose TLV70033DDCR when low Vin-Vout headroom requires 175 mV dropout; choose TPS7A0233PDBVR when battery sleep budget demands 0.025 µA Iq or lower package θJA (181.9 °C/W) is needed for thermal margin. Always verify Pin 1 orientation (TOP_VIEW p.4 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

@@ -1,0 +1,204 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TLV7011DBVR",
+  "slug": "tlv7011dbvr",
+  "family": "TLV7011",
+  "manufacturer": "Texas Instruments",
+  "category": "opamp",
+  "sub_topology": "comparator-single",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Extended Industrial (-40°C to 125°C)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tlv7011.pdf",
+    "product_page_url": "https://www.ti.com/product/TLV7011",
+    "source_domain": "www.ti.com",
+    "revision": "SLVSDM5F (Rev. March 2020)",
+    "verified_at": "2026-11-23",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 53
+  },
+  "package": {
+    "code": "SOT-23-5",
+    "mfg_package_code": "DBV",
+    "pin_count": 5,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE"
+    },
+    "theta_ja_c_per_w": {
+      "value": 306.3,
+      "page": 6,
+      "condition": "DBV (SOT-23) 5-pin package, single-channel TLV7011/TLV7021",
+      "table_ref": "Section 6.6 Thermal Information (Single)"
+    },
+    "theta_jc_c_per_w": {
+      "value": 228.4,
+      "page": 6,
+      "condition": "RθJC(top), DBV (SOT-23) 5-pin package",
+      "table_ref": "Section 6.6 Thermal Information (Single)"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 5,
+      "condition": "Junction temperature, TJ, maximum",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings (Single)"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "OUT",
+        "role": "OUT",
+        "description": "Push-pull comparator output (actively drives high to VCC and low to VEE; no pull-up resistor required)"
+      },
+      {
+        "pin": 2,
+        "name": "VEE",
+        "role": "VEE",
+        "description": "Negative (lowest) power supply or ground for single-supply operation"
+      },
+      {
+        "pin": 3,
+        "name": "IN+",
+        "role": "IN_POS",
+        "description": "Noninverting input"
+      },
+      {
+        "pin": 4,
+        "name": "IN-",
+        "role": "IN_NEG",
+        "description": "Inverting input"
+      },
+      {
+        "pin": 5,
+        "name": "VCC",
+        "role": "VCC",
+        "description": "Positive (highest) power supply"
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "device_kind": "comparator",
+    "channels": 1,
+    "vs_abs_max_v": {
+      "value": 6,
+      "page": 5,
+      "condition": "Supply voltage VS = VCC - VEE, max (single-channel TLV7011/TLV7021; dual TLV7012/22 abs max is 7 V)",
+      "table_ref": "Section 6.1 Absolute Maximum Ratings (Single)"
+    },
+    "vs_min_v": {
+      "value": 1.6,
+      "page": 5,
+      "condition": "Recommended operating minimum supply voltage (single-channel)",
+      "table_ref": "Section 6.4 Recommended Operating Conditions (Single)"
+    },
+    "vs_max_v": {
+      "value": 5.5,
+      "page": 5,
+      "condition": "Recommended operating maximum supply voltage (single-channel; dual TLV7012/22 is 6.5 V)",
+      "table_ref": "Section 6.4 Recommended Operating Conditions (Single)"
+    },
+    "gbwp_mhz": null,
+    "slew_rate_v_per_us": null,
+    "prop_delay_ns": {
+      "value": 310,
+      "page": 7,
+      "condition": "VCC = 5 V, CL = 15 pF, 100 mV overdrive, TA = 25°C, low-to-high tPLH = 310 ns typ (high-to-low tPHL = 260 ns typ; 5 ns rise/fall time)",
+      "table_ref": "Section 6.9 Switching Characteristics (Single)"
+    },
+    "vos_max_mv": {
+      "value": 8,
+      "page": 7,
+      "condition": "VS = 1.8 V and 5 V, VCM = VS/2, TA = -40°C to +125°C (±0.5 mV typ; hysteresis VHYS = 4.2 mV typ, 1.2 mV min, 14 mV max)",
+      "table_ref": "Section 6.8 Electrical Characteristics (Single)"
+    },
+    "ib_typ_pa": {
+      "value": 5,
+      "page": 7,
+      "condition": "Input bias current typ (CMOS inputs; no max specified)",
+      "table_ref": "Section 6.8 Electrical Characteristics (Single)"
+    },
+    "iq_per_ch_typ_ua": {
+      "value": 5,
+      "page": 7,
+      "condition": "VS = 1.8 V, no load, VID = -0.1 V (output low), typ 5 µA / 10 µA max over -40°C to +125°C",
+      "table_ref": "Section 6.8 Electrical Characteristics (Single)"
+    },
+    "rail_to_rail_in": true,
+    "rail_to_rail_out": true,
+    "output_type": "push-pull",
+    "cmrr_typ_db": {
+      "value": 78,
+      "page": 7,
+      "condition": "VEE < VCM < VCC, VS = 5 V",
+      "table_ref": "Section 6.8 Electrical Characteristics (Single)"
+    },
+    "input_noise_nv_rt_hz": null,
+    "iout_short_ma": {
+      "value": 44,
+      "page": 7,
+      "condition": "VS = 5 V, sinking (65 mA sourcing); abs max short-circuit duration 10 s, one comparator per package",
+      "table_ref": "Section 6.8 Electrical Characteristics (Single)"
+    }
+  },
+  "design_gotchas": [
+    {
+      "title": "Push-Pull Output Cannot Be Wired-AND or Pulled Up to a Higher Logic Rail",
+      "severity": "CRITICAL",
+      "detail": "TLV7011 actively drives OUT to VCC and VEE (VOH 4.8 V typ at 3 mA, 5 V). Output abs max is VCC + 0.3 V, so tying a pull-up to a higher rail or paralleling outputs as a wired-AND fights the high-side FET. Use the open-drain TLV7021 (same DBV pinout) for level translation or bus sharing.",
+      "page": 5
+    },
+    {
+      "title": "Only 5.5 V Recommended Supply Max (6 V Abs Max) vs 30 V LM393-Class Comparators",
+      "severity": "CRITICAL",
+      "detail": "The single-channel TLV7011 is limited to 1.6 V-5.5 V recommended and 6 V absolute maximum. Dropping it onto a 12 V or 24 V LM393DR/LMV331 board socket destroys the part; it only suits 1.8 V-5 V logic rails (the dual TLV7012/22 has a separate 6.5 V/7 V rating).",
+      "page": 5
+    },
+    {
+      "title": "Internal Hysteresis of 4.2 mV Typ Is Always On — Do Not Double-Count With External Feedback",
+      "severity": "WARNING",
+      "detail": "VHYS = 4.2 mV typ (1.2 mV min, 14 mV max) is built in. Slow inputs get a clean edge without external feedback, but the trip-point shift of up to ±7 mV plus 8 mV max offset must be budgeted in precision thresholds; add external positive feedback only for hysteresis larger than ~14 mV.",
+      "page": 7
+    },
+    {
+      "title": "Input Clamp to VEE: Current-Limit Any Input Swinging 0.3 V Below Ground",
+      "severity": "WARNING",
+      "detail": "Inputs are diode-clamped to VEE, and inputs able to swing 0.3 V below VEE must be limited to 10 mA or less. Series resistors are mandatory when sensing bipolar or connector-exposed signals. Input range extends to VCC + 0.1 V at VS ≥ 2.5 V, so no phase reversal occurs in-range.",
+      "page": 5
+    },
+    {
+      "title": "SOT-23-5 RθJA = 306.3 °C/W and 1.6 V / 20 µs Power-Up Window",
+      "severity": "INFO",
+      "detail": "Package is thermally weak but dissipation is tiny at 5 µA Iq. The output is only valid after VS exceeds 1.6 V for tON = 20 µs; during slow supply ramps the output state is indeterminate, so gate downstream logic with a reset or delay.",
+      "page": 6
+    }
+  ],
+  "typical_use_cases": [
+    "Micropower undervoltage/overvoltage threshold detectors on 1.8 V-5 V battery rails",
+    "IR receiver analog front ends and zero-crossing detectors with clean 5 ns edges",
+    "Window comparators and level discriminators with internal 4.2 mV hysteresis",
+    "Portable and wearable fault monitors needing 5 µA supply current and 260 ns response"
+  ],
+  "engineering_summary": "The Texas Instruments TLV7011DBVR is a single push-pull, rail-to-rail-input comparator in a 5-pin SOT-23 (DBV) package for 1.6 V-5.5 V supplies, rated -40°C to 125°C. It combines 5 µA supply current, 260 ns/310 ns propagation delay, 4.2 mV internal hysteresis and no phase reversal on overdriven inputs. Its pinout (1 OUT, 2 VEE, 3 IN+, 4 IN-, 5 VCC) matches TLV3201, but it is not a supply-compatible replacement for open-collector 30 V LM393/LMV331 parts.",
+  "audit": {
+    "confidence_score": 0.98,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 5, 6, 7, 26],
+    "audit_notes": [
+      "Vision-verified DBV/DCK 5-pin SOT-23 Top View pinout on 300 DPI PNG page 3 (Section 5 Pin Functions): 1 OUT, 2 VEE, 3 IN+, 4 IN-, 5 VCC; X2SON (DPW) uses a different pin map and was excluded.",
+      "Single-channel values taken from Section 6.1/6.4/6.6/6.8/6.9 (PNG pages 5-7); dual TLV7012/22 values (7 V abs max, 6.5 V max) were intentionally not used.",
+      "Ordering table PNG page 26 confirms TLV7011DBVR Active, SOT-23 (DBV) 5-pin, 3000 pcs large T&R, -40 to 125°C, marking 1IC2."
+    ]
+  }
+}

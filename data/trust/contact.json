@@ -1,37 +1,37 @@
 {
   "slug": "contact",
   "title": "Contact & Pinout Error Reporting",
-  "description": "How to report a datasheet pinout or specification error, request new semiconductor cross-references, or contact the Pin2Pin Global engineering team.",
-  "updated_at": "2026-11-22",
+  "description": "How to report a datasheet pinout or specification error, request new semiconductor cross-references, or contact the Pin2Pin Global engineering team via GitHub Issues.",
+  "updated_at": "2026-11-23",
   "sections": [
     {
-      "heading": "Fastest Channel: Report a Pinout or Spec Error (GitHub Issues)",
+      "heading": "Primary & Fastest Channel: Public GitHub Issues Tracker",
       "paragraphs": [
-        "Pinout and absolute-maximum rating accuracy is our top priority. Every part profile, alternative hub, and 1:1 comparison page includes a one-click \"Report Pinout/Spec Error\" button that opens a pre-filled issue on our public repository: https://github.com/kbu3986/pin2pin-global/issues/new.",
-        "Public issue tracking ensures complete transparency: engineers can see when a datasheet erratum was reported, which official PDF page resolved it, and the exact commit that updated the verified Golden Part JSON."
+        "Pinout and absolute-maximum rating accuracy is our top priority. Because Pin2Pin Global operates as a transparent, open-audit engineering database, our public GitHub Issues tracker (https://github.com/kbu3986/pin2pin-global/issues) is the primary, continuously monitored channel for pinout/specification errata, new OPN requests, BOM Pro team inquiries, and technical feedback.",
+        "Every part profile, alternative hub, 1:1 comparison, field guide, and interactive engineering tool includes a one-click \"Report Pinout/Spec Error\" button that opens a pre-filled issue at https://github.com/kbu3986/pin2pin-global/issues/new. Public tracking guarantees full traceability: engineers can see when a datasheet erratum was reported, which official PDF page resolved it, and the exact commit that updated the verified Golden Part JSON."
       ],
       "bullets": [
-        "Include the exact Orderable Part Number (OPN) and pin2pin.dev URL.",
-        "Paste the official semiconductor manufacturer PDF URL and datasheet revision code (for example, SLVSB12C or Rev. 6).",
+        "Include the exact Orderable Part Number (OPN) and page URL.",
+        "Paste the official semiconductor manufacturer PDF URL and datasheet revision code (for example, SLOS081O, SBVS322C, or Rev. 36).",
         "Cite the exact PDF page number and table or pinout figure showing the discrepancy.",
-        "Specify the affected field (pin number/role, exposed pad net, Vin_abs, theta_JA, ESR stability window, or compatibility tier)."
+        "Specify the affected field (pin number/role, exposed pad net, Vin_abs, EN abs max, theta_JA, ESR stability window, or compatibility tier)."
       ]
     },
     {
       "heading": "Defect Response & Re-Audit SLA",
       "paragraphs": [
-        "Every technical error report is verified directly against the latest official manufacturer PDF using our Dual-Path text plus 300 DPI Vision check before a fix is published."
+        "Every technical error report submitted on GitHub Issues is verified directly against the latest official manufacturer PDF using our Dual-Path text plus 300 DPI PNG Vision check before a fix is published."
       ],
       "bullets": [
         "Critical Safety / Pinout / Absolute-Max / Unit Defects: Triaged and patched within 24 hours of confirmation. Any confirmed critical defect triggers a deterministic re-verification of all related comparisons in that category.",
         "Datasheet Revision & Non-Critical Spec Updates (e.g., updated typical curves, lifecycle NRND/EOL transitions, or broken manufacturer PDF URLs): Reviewed and updated within 72 hours.",
-        "New OPN / Cross-Reference Requests: Queued for the next Drip-Feed pilot batch once an official manufacturer PDF URL (non-scanned, non-aggregator) is confirmed."
+        "New OPN / Cross-Reference Requests: Queued into our audited expansion backlog once an official manufacturer PDF URL (non-scanned, non-aggregator) is confirmed."
       ]
     },
     {
-      "heading": "Direct Engineering & Compliance Email",
+      "heading": "Compliance, Legal & Secondary Email Contact",
       "paragraphs": [
-        "For semiconductor manufacturer datasheet updates, trademark or legal notices, privacy inquiries, or B2B technical partnerships, you can reach the Pin2Pin Global engineering team directly at engineering@pin2pin.dev.",
+        "For semiconductor manufacturer datasheet notifications, trademark or legal notices, privacy inquiries, or B2B technical partnerships, we strongly recommend opening a tagged inquiry via GitHub Issues (https://github.com/kbu3986/pin2pin-global/issues/new) for the fastest tracked response. Where private non-public correspondence is required, secondary correspondence can be addressed to engineering@pin2pin.dev (note that custom-domain mail routing may be subject to maintenance windows; use GitHub Issues if you require guaranteed response visibility).",
         "Please note that Pin2Pin Global is an engineering reference database and cannot provide custom PCB design sign-off, regulatory certification consulting, or component procurement/brokerage services."
       ]
     }

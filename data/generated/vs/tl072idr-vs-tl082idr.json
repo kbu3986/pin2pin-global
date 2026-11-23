@@ -1,0 +1,192 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "tl072idr-vs-tl082idr",
+  "category": "opamp",
+  "part_a_slug": "tl072idr",
+  "part_b_slug": "tl082idr",
+  "part_a_opn": "TL072IDR",
+  "part_b_opn": "TL082IDR",
+  "compatibility_level": "LEVEL_1_CANDIDATE_DROP_IN",
+  "compatibility_badge": "Candidate Drop-In (Verify Datasheet Before Production)",
+  "package_match": true,
+  "pinout_exact_match": true,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "1OUT",
+      "part_a_role": "OUT_A",
+      "part_b_name": "1OUT",
+      "part_b_role": "OUT_A",
+      "status": "MATCH",
+      "note": "Identical pin assignment (1OUT / OUT_A)."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "1IN-",
+      "part_a_role": "IN_NEG_A",
+      "part_b_name": "1IN-",
+      "part_b_role": "IN_NEG_A",
+      "status": "MATCH",
+      "note": "Identical pin assignment (1IN- / IN_NEG_A)."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "1IN+",
+      "part_a_role": "IN_POS_A",
+      "part_b_name": "1IN+",
+      "part_b_role": "IN_POS_A",
+      "status": "MATCH",
+      "note": "Identical pin assignment (1IN+ / IN_POS_A)."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "VCC-",
+      "part_a_role": "VEE",
+      "part_b_name": "VCC-",
+      "part_b_role": "VEE",
+      "status": "MATCH",
+      "note": "Identical pin assignment (VCC- / VEE)."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "2IN+",
+      "part_a_role": "IN_POS_B",
+      "part_b_name": "2IN+",
+      "part_b_role": "IN_POS_B",
+      "status": "MATCH",
+      "note": "Identical pin assignment (2IN+ / IN_POS_B)."
+    },
+    {
+      "pin": 6,
+      "part_a_name": "2IN-",
+      "part_a_role": "IN_NEG_B",
+      "part_b_name": "2IN-",
+      "part_b_role": "IN_NEG_B",
+      "status": "MATCH",
+      "note": "Identical pin assignment (2IN- / IN_NEG_B)."
+    },
+    {
+      "pin": 7,
+      "part_a_name": "2OUT",
+      "part_a_role": "OUT_B",
+      "part_b_name": "2OUT",
+      "part_b_role": "OUT_B",
+      "status": "MATCH",
+      "note": "Identical pin assignment (2OUT / OUT_B)."
+    },
+    {
+      "pin": 8,
+      "part_a_name": "VCC+",
+      "part_a_role": "VCC",
+      "part_b_name": "VCC+",
+      "part_b_role": "VCC",
+      "status": "MATCH",
+      "note": "Identical pin assignment (VCC+ / VCC)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Device Kind & Output Stage",
+      "unit": "—",
+      "part_a_value": "opamp (push-pull)",
+      "part_b_value": "opamp (push-pull)",
+      "winner": "TIE",
+      "note": "Op-amps (internally compensated for linear feedback) and comparators (uncompensated open-loop switching) are NOT drop-in interchangeable."
+    },
+    {
+      "metric": "Package & Channel Count",
+      "unit": "—",
+      "part_a_value": "SOIC-8 · 2 ch (D, p.5)",
+      "part_b_value": "SOIC-8 · 2 ch (D, p.5)",
+      "winner": "TIE",
+      "note": "Single SOT-23-5 op-amps vary in pin ordering across vendors; verify Pin 1–5."
+    },
+    {
+      "metric": "Supply Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "4.5 to 40 V (p.11)",
+      "part_b_value": "4.5 to 40 V (p.9)",
+      "winner": "TIE",
+      "note": "A part wins only if its recommended Vs range strictly encompasses the counterpart on both ends."
+    },
+    {
+      "metric": "Absolute Max Supply (Vs,abs)",
+      "unit": "V",
+      "part_a_value": "42 V (p.10)",
+      "part_b_value": "42 V (p.9)",
+      "winner": "TIE",
+      "note": "Exceeding Vs,abs causes immediate gate-oxide or junction breakdown."
+    },
+    {
+      "metric": "Gain-Bandwidth Product (GBWP)",
+      "unit": "MHz",
+      "part_a_value": "5.25 MHz (p.15)",
+      "part_b_value": "5.25 MHz (p.14)",
+      "winner": "TIE",
+      "note": "Closed-loop -3 dB bandwidth scales as f_-3dB = GBWP / Acl."
+    },
+    {
+      "metric": "Slew Rate / Propagation Delay",
+      "unit": "V/µs · ns",
+      "part_a_value": "SR: 20 V/µs (p.16)",
+      "part_b_value": "SR: 20 V/µs (p.16)",
+      "winner": "TIE",
+      "note": "Controls large-signal full-power bandwidth SR / (2π·Vpeak) or comparator switching speed."
+    },
+    {
+      "metric": "Input Offset Voltage (Vos, max)",
+      "unit": "mV",
+      "part_a_value": "6 mV (p.15)",
+      "part_b_value": "6 mV (p.14)",
+      "winner": "TIE",
+      "note": "Lower Vos minimizes DC error in current-shunt and sensor bridge amplifiers."
+    },
+    {
+      "metric": "Input Bias Current (Ib, typ)",
+      "unit": "pA",
+      "part_a_value": "65 pA (p.15)",
+      "part_b_value": "65 pA (p.14)",
+      "winner": "TIE",
+      "note": "CMOS/JFET pA-class inputs avoid offset voltage drops across high-impedance (>100 kΩ) sensors."
+    },
+    {
+      "metric": "Quiescent Current / Ch (Iq)",
+      "unit": "µA/ch",
+      "part_a_value": "1400 µA/ch (p.16)",
+      "part_b_value": "1400 µA/ch (p.15)",
+      "winner": "TIE",
+      "note": "Multiply by channel count for total IC standby current draw."
+    },
+    {
+      "metric": "Rail-to-Rail Input / Output",
+      "unit": "—",
+      "part_a_value": "IN: No · OUT: No",
+      "part_b_value": "IN: No · OUT: No",
+      "winner": "TIE",
+      "note": "RRIO prevents clipping on low-voltage 3.3 V single-supply ADC buffers."
+    },
+    {
+      "metric": "CMRR (typ) & Input Noise",
+      "unit": "dB · nV/√Hz",
+      "part_a_value": "100 dB (p.15) · 37 nV/√Hz (p.16)",
+      "part_b_value": "100 dB (p.14) · 37 nV/√Hz (p.16)",
+      "winner": "TIE",
+      "note": "Winner requires superiority on both CMRR (higher) and input voltage noise (lower); mixed tradeoffs stay CONTEXT."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "147.8 °C/W (p.11) · 150 °C",
+      "part_b_value": "147.8 °C/W (p.10) · 150 °C",
+      "winner": "TIE",
+      "note": "Important when driving heavy resistive loads or high supply rails."
+    }
+  ],
+  "swap_risks": [
+    "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (TL072IDR: 147.8 °C/W vs TL082IDR: 147.8 °C/W) and worst-case ambient temperature (-40..85 °C vs -40..85 °C).",
+    "DATASHEET REVISION CHECK (AUD-04): Verify latest official manufacturer datasheets (SLOS080W (Rev. July 2025) vs SLOS081O (February 1977 – Revised September 2025)) for part-marking codes, transient load response, and qualification status before production release."
+  ],
+  "engineering_verdict": "TL072IDR (Texas Instruments, SOIC-8) and TL082IDR (Texas Instruments, SOIC-8) qualify as Level 1 Candidate Drop-In peers: all 8 pins share identical electrical roles, exposed-pad nets match (no EP), and thermal/voltage/temperature-grade margins remain aligned. Signal-chain deltas: GBWP 5.25 MHz (p.15) vs 5.25 MHz (p.14), supply ceiling 40 V (p.11) vs 40 V (p.9), Vos 6 mV (p.15) vs 6 mV (p.14), Ib 1x gap (65 vs 65 pA), voltage noise 37 vs 37 nV/√Hz. Primary bench gotchas to watch: TL072IDR \"Negative-Rail Input Headroom Limit and Legacy Phase Reversal Trap\" (p.11) and TL082IDR \"Mixed Legacy SFAB vs Modern RFB Silicon Lottery Under Non-H TL082IDR (Table 9-1, p.28)\" (p.28). BOM decision: Choose TL072IDR when matching your existing Texas Instruments SOIC-8 (D) qualification and -40..85 °C grade; choose TL082IDR when matching your existing Texas Instruments SOIC-8 (D) qualification and -40..85 °C grade. Always verify Pin 1 orientation (TOP_VIEW p.5 vs TOP_VIEW p.5) and official datasheets on hardware prototypes prior to production.",
+  "generated_at": "2026-11-23"
+}

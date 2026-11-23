@@ -6,10 +6,10 @@
   "part_b_slug": "tlv3201aidbvr",
   "part_a_opn": "OPA333AIDBVR",
   "part_b_opn": "TLV3201AIDBVR",
-  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
-  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+  "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+  "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
   "package_match": true,
-  "pinout_exact_match": true,
+  "pinout_exact_match": false,
   "exposed_pad_match": true,
   "pin_diff": [
     {
@@ -18,8 +18,8 @@
       "part_a_role": "OUT",
       "part_b_name": "OUT",
       "part_b_role": "OUT",
-      "status": "CAUTION",
-      "note": "CRITICAL OUTPUT STAGE DIFFERENCE: OPA333AIDBVR is opamp (push-pull) vs TLV3201AIDBVR comparator (push-pull); open-collector/drain requires external pull-up and is uncompensated for linear feedback."
+      "status": "MISMATCH",
+      "note": "CRITICAL OUTPUT STAGE DIFFERENCE: OPA333AIDBVR is opamp (push-pull) vs TLV3201AIDBVR comparator (push-pull); a comparator is an uncompensated open-loop switching device (no internal Miller/dominant-pole compensation) and will oscillate or latch in a linear negative-feedback op-amp circuit, while an op-amp used as a comparator suffers slow saturation/overdrive recovery and propagation delay far worse than its slew rate implies; both output stages are push-pull (no pull-up resistor required), so the incompatibility is loop compensation, input clamp behavior, and switching dynamics rather than pull-up drive."
     },
     {
       "pin": 2,
@@ -65,7 +65,7 @@
       "part_a_value": "opamp (push-pull)",
       "part_b_value": "comparator (push-pull)",
       "winner": "CONTEXT",
-      "note": "Op-amps (compensated push-pull) and comparators (uncompensated open-collector) are NOT drop-in interchangeable."
+      "note": "Op-amps (internally compensated for linear feedback) and comparators (uncompensated open-loop switching) are NOT drop-in interchangeable."
     },
     {
       "metric": "Package & Channel Count",
@@ -81,7 +81,7 @@
       "part_a_value": "1.8 to 5.5 V (p.5)",
       "part_b_value": "2.7 to 5.5 V (p.4)",
       "winner": "A",
-      "note": "Confirm total supply span (V+ - V-) stays within recommended limits."
+      "note": "A part wins only if its recommended Vs range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Supply (Vs,abs)",
@@ -145,7 +145,7 @@
       "part_a_value": "130 dB (p.7) · Not specified",
       "part_b_value": "70 dB (p.5) · Not specified",
       "winner": "A",
-      "note": "Higher CMRR rejects common-mode noise; lower voltage noise improves SNR."
+      "note": "Winner requires superiority on both CMRR (higher) and input voltage noise (lower); mixed tradeoffs stay CONTEXT."
     },
     {
       "metric": "Thermal Resistance (θJA) & Tj,max",
@@ -157,9 +157,12 @@
     }
   ],
   "swap_risks": [
-    "CRITICAL OP-AMP VS COMPARATOR TRAP: OPA333AIDBVR is a opamp with push-pull output while TLV3201AIDBVR is a comparator with push-pull output. Even with identical pinouts, an open-collector comparator CANNOT pull high without an external pull-up resistor and lacks internal Miller compensation — dropping it into a linear negative-feedback op-amp circuit causes severe oscillation; conversely, using an op-amp as a comparator causes slow overdrive recovery and output saturation lag.",
-    "CAUTION PRECISION OFFSET SHIFT: Maximum Vos differs by 300x (OPA333AIDBVR: 0.01 mV p.7 vs TLV3201AIDBVR: 3 mV p.5); high-gain DC sensor stages may lose accuracy or require zero-drift chopper filtering."
+    "CRITICAL OP-AMP VS COMPARATOR TRAP: OPA333AIDBVR is a opamp with push-pull output while TLV3201AIDBVR is a comparator with push-pull output. Even with identical pinouts, a comparator is an uncompensated switching device: dropping it into a linear negative-feedback op-amp circuit (buffer, gain stage, filter) causes oscillation or latch-up, and an op-amp used as a comparator suffers slow overdrive/saturation recovery. Both outputs are push-pull (no external pull-up required) — the incompatibility is loop compensation and switching behavior, not pull-up drive.",
+    "CAUTION PRECISION OFFSET SHIFT: Maximum Vos differs by 300x (OPA333AIDBVR: 0.01 mV p.7 vs TLV3201AIDBVR: 3 mV p.5); high-gain DC sensor stages may lose accuracy or require zero-drift chopper filtering.",
+    "HIGH INPUT BIAS CURRENT SHIFT: Typical Ib differs by 70x (OPA333AIDBVR: 70 pA p.7 vs TLV3201AIDBVR: 1 pA p.5); high-impedance sensor dividers (>100 kΩ) suffer severe Ib·R DC offset error when swapping from CMOS/JFET to bipolar inputs.",
+    "CAUTION QUIESCENT CURRENT SHIFT: Supply current per channel differs by 2.4x (OPA333AIDBVR: 17 µA/ch p.7 vs TLV3201AIDBVR: 40 µA/ch p.5); verify battery budget and total power dissipation across all channels.",
+    "HIGH MINIMUM SUPPLY FLOOR: TLV3201AIDBVR requires Vs,min >= 2.7 V (p.4) vs 1.8 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor."
   ],
-  "engineering_verdict": "OPA333AIDBVR (Texas Instruments, SOT-23-5) and TLV3201AIDBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to device kind / output stage mismatch (opamp/push-pull vs comparator/push-pull); input offset voltage Vos differs >= 10x. Key datasheet deltas: device type is opamp (push-pull) vs comparator (push-pull), supply limit is 5.5 V (p.5) vs 5.5 V (p.4), max Vos is 0.01 mV (p.7) vs 3 mV (p.5), input bias current is 70 pA (p.7) vs 1 pA (p.5), and Iq/ch is 17 µA (p.7) vs 40 µA (p.5). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 220.8 vs 237.8 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "OPA333AIDBVR (Texas Instruments, SOT-23-5) and TLV3201AIDBVR (Texas Instruments, SOT-23-5) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to device kind mismatch (opamp/push-pull vs comparator/push-pull) — circuit redesign required. Specific pin conflicts: Pin 1 (OUT vs OUT). Signal-chain deltas: opamp (push-pull) vs comparator (push-pull), supply ceiling 5.5 V (p.5) vs 5.5 V (p.4), Vos 0.01 mV (p.7) vs 3 mV (p.5), Ib 70x gap (70 vs 1 pA). Primary bench gotchas to watch: OPA333AIDBVR \"Weak ±5 mA Output Drive and 350 kHz / 0.16 V/µs Speed Limit vs Pin-Identical TLV9001/TLV9061\" (p.7) and TLV3201AIDBVR \"Push-Pull Output — Do NOT Wired-AND or Pull Up to a Different Logic Rail\" (p.5). BOM decision: Choose OPA333AIDBVR when the circuit is a linear closed-loop amplifier, buffer, or active filter or DC precision demands <= 0.01 mV max Vos; choose TLV3201AIDBVR when the circuit is an open-loop threshold/window comparator (push-pull output) or high-impedance sensors require pA-class input bias (1 pA). Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

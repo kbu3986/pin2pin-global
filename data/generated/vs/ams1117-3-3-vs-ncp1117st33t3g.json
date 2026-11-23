@@ -54,8 +54,8 @@
       "unit": "V",
       "part_a_value": "4.8 to 15 V (p.2)",
       "part_b_value": "4.75 to 15 V (p.3)",
-      "winner": "TIE",
-      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+      "winner": "B",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -139,9 +139,12 @@
     }
   ],
   "swap_risks": [
-    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs significantly (AMS1117-3.3: 22 µF p.4 vs NCP1117ST33T3G: 4.7 µF p.9); account for MLCC DC-bias derating.",
-    "CAUTION THERMAL MARGIN: Package θJA differs by 44% (AMS1117-3.3: 90 °C/W p.2 vs NCP1117ST33T3G: 160 °C/W p.2); re-check Tj = Ta + Pd × θJA against Tj,max."
+    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs by 4.7x (AMS1117-3.3: 22 µF p.4 vs NCP1117ST33T3G: 4.7 µF p.9); account for MLCC DC-bias derating.",
+    "CAUTION ESR STABILITY WINDOW: Both parts are ESR-constrained, but AMS1117-3.3 omits explicit numeric ESR bounds (See datasheet ESR curve vs 0.033–2.2 Ω (p.9)); verify the datasheet ESR-vs-Iout curve.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: AMS1117-3.3 has a lower Vin,abs,max rating (15 V, p.2) than NCP1117ST33T3G (20 V, p.2); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 15 V.",
+    "HIGH THERMAL MARGIN: Package θJA is 78% higher on NCP1117ST33T3G (AMS1117-3.3: 90 °C/W p.2 vs NCP1117ST33T3G: 160 °C/W p.2); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (AMS1117-3.3: -40..125 °C Industrial (-40°C to +125°C TJ) vs NCP1117ST33T3G: 0..125 °C Commercial (0°C to +125°C TJ; use NCP1117IST33T3G for -40°C)); NCP1117ST33T3G cold limit only 0 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "AMS1117-3.3 (Advanced Monolithic Systems, SOT-223-3) and NCP1117ST33T3G (onsemi, SOT-223-3) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to minimum output capacitance requirement differs >= 2.5x. Key datasheet deltas: Iq is 5000 µA (p.3) vs 6000 µA (p.4), max output current is 1000 mA (p.1) vs 1000 mA (p.3), recommended Vin,max is 15 V (p.2) vs 15 V (p.3), typical dropout is 1100 mV (p.3) vs 1070 mV (p.3), and ceramic capacitor stability is ESR-constrained vs ESR-constrained. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.1), thermal margin (θJA 90 vs 160 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AMS1117-3.3 (Advanced Monolithic Systems, SOT-223-3) and NCP1117ST33T3G (onsemi, SOT-223-3) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because minimum output capacitance requirement differs 4.7x; ESR-constrained output capacitor window unverified on one part; Vin,abs,max drops >=15% (15 V vs 20 V). Under a representative 5 V → 3.3 V rail at 150 mA (255 mW), estimated self-heating is ΔTj ≈ 22.9 °C on AMS1117-3.3 (θJA 90 °C/W) vs 40.8 °C on NCP1117ST33T3G (θJA 160 °C/W), while quiescent draw spans a 1.2x ratio (5000 µA (p.3) vs 6000 µA (p.4)). Primary bench gotchas to watch: AMS1117-3.3 \"NOT Ceramic-Cap Stable — Requires 22 uF Solid Tantalum (No Numeric ESR Window Published)\" (p.4) and NCP1117ST33T3G \"Commercial 0°C to +125°C Grade Only — Missing 'I' Prefix Excludes Sub-Zero Operation\" (p.4). BOM decision: Choose AMS1117-3.3 when lower package θJA (90 °C/W) is needed for thermal margin; choose NCP1117ST33T3G when matching your existing onsemi SOT-223-3 (CASE 318H (ST)) qualification and 0..125 °C grade. Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.1) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

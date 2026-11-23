@@ -100,7 +100,7 @@
       "part_b_name": "FB",
       "part_b_role": "FB",
       "status": "CAUTION",
-      "note": "Feedback network difference: one device has fixed internal divider while the other requires external R1/R2 feedback resistors."
+      "note": "Feedback network difference: one device has fixed internal divider while the other requires external R1/R2 feedback resistors (PCB divider footprint change)."
     }
   ],
   "parameter_matrix": [
@@ -126,7 +126,7 @@
       "part_a_value": "0.3 to 5.5 V (p.5)",
       "part_b_value": "1.8 to 5.5 V (p.4)",
       "winner": "A",
-      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -142,7 +142,7 @@
       "part_a_value": "1.8 to 5.5 V (p.6) (Adj)",
       "part_b_value": "3.3 to 3.3 V (p.1) (Fixed)",
       "winner": "CONTEXT",
-      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
     },
     {
       "metric": "Max Current (Iout or Isw Limit)",
@@ -150,7 +150,7 @@
       "part_a_value": "1350 mA (p.6) [Isw limit]",
       "part_b_value": "1200 mA (p.1) [Iout max]",
       "winner": "CONTEXT",
-      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+      "note": "For boost/switch-limited converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
     },
     {
       "metric": "Quiescent Current (Iq, typ)",
@@ -203,10 +203,11 @@
   ],
   "swap_risks": [
     "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (BYPASS vs VOUT), Pin 2 (VOUT vs SW), Pin 3 (SW vs GND), Pin 4 (GND vs SW), Pin 7 (OTHER vs PS), Pin 8 (PS vs VIN). Soldering TPS63001DRCR onto a TPS61200DRCR footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
-    "CRITICAL TOPOLOGY DIFFERENCE: TPS61200DRCR is a boost converter whereas TPS63001DRCR is a buck-boost converter; power-stage architecture, inductor placement, and startup behavior differ fundamentally.",
-    "HIGH FEEDBACK CONFIGURATION: One converter is fixed-output while the other is adjustable; external R1/R2 feedback resistors and feedforward capacitor must be updated.",
-    "CAUTION CURRENT RATING BASIS: TPS61200DRCR specifies 1350 mA (switch current limit Isw, p.6) vs TPS63001DRCR 1200 mA (continuous Iout, p.1). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling."
+    "CRITICAL TOPOLOGY DIFFERENCE: TPS61200DRCR is a boost converter whereas TPS63001DRCR is a buck-boost converter; power-stage architecture, inductor placement, and startup behavior differ fundamentally — this is a power-path redesign, not a component swap.",
+    "CRITICAL FEEDBACK LAYOUT DIFFERENCE: One converter is fixed-output while the other is adjustable; adding or removing the external R1/R2 feedback divider and feedforward capacitor requires a PCB layout change.",
+    "CAUTION CURRENT RATING BASIS: TPS61200DRCR specifies 1350 mA (switch current limit Isw, p.6) vs TPS63001DRCR 1200 mA (continuous Iout, p.1). Remember boost/switch-limited Iout,max is strictly less than Isw due to duty-cycle and inductor ripple scaling.",
+    "HIGH MINIMUM SUPPLY FLOOR: TPS63001DRCR requires Vin,min >= 1.8 V (p.4) vs 0.3 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor."
   ],
-  "engineering_verdict": "TPS61200DRCR (Texas Instruments, VSON-10) and TPS63001DRCR (Texas Instruments, VSON-10) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to pinout mismatch on Pin 1 (BYPASS vs VOUT), Pin 2 (VOUT vs SW), Pin 3 (SW vs GND), Pin 4 (GND vs SW), Pin 7 (OTHER vs PS), Pin 8 (PS vs VIN). Key datasheet deltas: topology is boost (sync) vs buck-boost (sync), switching frequency is 1450 kHz (p.6) vs 1500 kHz (p.5), rated current is 1350 mA (p.6) vs 1200 mA (p.1), typical inductor is 2.2 µH (p.15) vs 2.2 µH (p.1), and Iq is 55 µA (p.6) vs 41 µA (p.5). Always validate pinout orientation (TOP_VIEW p.4 vs TOP_VIEW p.3), thermal margin (θJA 41.2 vs 46.8 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "TPS61200DRCR (Texas Instruments, VSON-10) and TPS63001DRCR (Texas Instruments, VSON-10) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to pinout mismatch on Pin 1 (BYPASS vs VOUT), Pin 2 (VOUT vs SW), Pin 3 (SW vs GND), Pin 4 (GND vs SW), Pin 7 (OTHER vs PS), Pin 8 (PS vs VIN); DC-DC topology mismatch (boost vs buck-boost); fixed vs adjustable output feedback footprint mismatch (R1/R2 divider). Specific pin conflicts: Pin 1 (BYPASS vs VOUT), Pin 2 (VOUT vs SW), Pin 3 (SW vs GND), Pin 4 (GND vs SW). Power-stage deltas: boost (sync) vs buck-boost (sync), switching frequency 1450 kHz (p.6) vs 1500 kHz (p.5) (1x ratio), typical inductor 2.2 µH (p.15) vs 2.2 µH (p.1), output mode adjustable vs fixed, and package θJA 41.2 vs 46.8 °C/W. Primary bench gotchas to watch: TPS61200DRCR \"Inverted PS Polarity (Fixed in Rev D) & Mandatory UVLO-to-VAUX / VAUX-Snubber Connections\" (p.4) and TPS63001DRCR \"Pin 10 (FB) MUST Be Connected Directly to VOUT on Fixed 3.3 V TPS63001\" (p.3). BOM decision: Choose TPS61200DRCR when your power stage requires a boost topology; choose TPS63001DRCR when your power stage requires a buck-boost topology. Always verify Pin 1 orientation (TOP_VIEW p.4 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

@@ -65,7 +65,7 @@
       "part_a_value": "opamp (push-pull)",
       "part_b_value": "opamp (push-pull)",
       "winner": "TIE",
-      "note": "Op-amps (compensated push-pull) and comparators (uncompensated open-collector) are NOT drop-in interchangeable."
+      "note": "Op-amps (internally compensated for linear feedback) and comparators (uncompensated open-loop switching) are NOT drop-in interchangeable."
     },
     {
       "metric": "Package & Channel Count",
@@ -81,7 +81,7 @@
       "part_a_value": "2.7 to 5.5 V (p.5)",
       "part_b_value": "1.8 to 5.5 V (p.14)",
       "winner": "B",
-      "note": "Confirm total supply span (V+ - V-) stays within recommended limits."
+      "note": "A part wins only if its recommended Vs range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Supply (Vs,abs)",
@@ -145,7 +145,7 @@
       "part_a_value": "65 dB (p.7) · 39 nV/√Hz (p.7)",
       "part_b_value": "77 dB (p.17) · 30 nV/√Hz (p.17)",
       "winner": "B",
-      "note": "Higher CMRR rejects common-mode noise; lower voltage noise improves SNR."
+      "note": "Winner requires superiority on both CMRR (higher) and input voltage noise (lower); mixed tradeoffs stay CONTEXT."
     },
     {
       "metric": "Thermal Resistance (θJA) & Tj,max",
@@ -158,8 +158,12 @@
   ],
   "swap_risks": [
     "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (IN_POS vs OUT), Pin 3 (IN_NEG vs IN_POS), Pin 4 (OUT vs IN_NEG). Soldering TLV9001IDBVR onto a LMV321IDBVR footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
-    "HIGH HEADROOM / CLIPPING RISK: Rail-to-rail capability differs (LMV321IDBVR: IN=Non-RR, OUT=RR vs TLV9001IDBVR: IN=RR, OUT=RR); verify input common-mode range (Vicm) and output voltage swing against ADC full-scale range."
+    "HIGH HEADROOM / CLIPPING RISK: Rail-to-rail capability differs (LMV321IDBVR: IN=Non-RR, OUT=RR vs TLV9001IDBVR: IN=RR, OUT=RR); verify input common-mode range (Vicm) and output voltage swing against ADC full-scale range.",
+    "HIGH INPUT BIAS CURRENT SHIFT: Typical Ib differs by 3000x (LMV321IDBVR: 15000 pA p.7 vs TLV9001IDBVR: 5 pA p.17); high-impedance sensor dividers (>100 kΩ) suffer severe Ib·R DC offset error when swapping from CMOS/JFET to bipolar inputs.",
+    "CAUTION QUIESCENT CURRENT SHIFT: Supply current per channel differs by 2.2x (LMV321IDBVR: 130 µA/ch p.7 vs TLV9001IDBVR: 60 µA/ch p.18); verify battery budget and total power dissipation across all channels.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: LMV321IDBVR has a lower Vs,abs,max rating (5.5 V, p.5) than TLV9001IDBVR (7 V, p.14); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 5.5 V.",
+    "HIGH MINIMUM SUPPLY FLOOR: LMV321IDBVR requires Vs,min >= 2.7 V (p.5) vs 1.8 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor."
   ],
-  "engineering_verdict": "LMV321IDBVR (Texas Instruments, SOT-23-5) and TLV9001IDBVR (Texas Instruments, SOT-23-5) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to pinout mismatch on Pin 1 (IN_POS vs OUT), Pin 3 (IN_NEG vs IN_POS), Pin 4 (OUT vs IN_NEG). Key datasheet deltas: device type is opamp (push-pull) vs opamp (push-pull), supply limit is 5.5 V (p.5) vs 5.5 V (p.14), max Vos is 7 mV (p.7) vs 1.6 mV (p.17), input bias current is 15000 pA (p.7) vs 5 pA (p.17), and Iq/ch is 130 µA (p.7) vs 60 µA (p.18). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.7), thermal margin (θJA 232.9 vs 232.9 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "LMV321IDBVR (Texas Instruments, SOT-23-5) and TLV9001IDBVR (Texas Instruments, SOT-23-5) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to pinout mismatch on Pin 1 (IN_POS vs OUT), Pin 3 (IN_NEG vs IN_POS), Pin 4 (OUT vs IN_NEG). Specific pin conflicts: Pin 1 (IN_POS vs OUT), Pin 3 (IN_NEG vs IN_POS), Pin 4 (OUT vs IN_NEG). Signal-chain deltas: GBWP 1 MHz (p.7) vs 1 MHz (p.17), supply ceiling 5.5 V (p.5) vs 5.5 V (p.14), Vos 7 mV (p.7) vs 1.6 mV (p.17), Ib 3000x gap (15000 vs 5 pA), voltage noise 39 vs 30 nV/√Hz. Primary bench gotchas to watch: LMV321IDBVR \"CRITICAL SOT-23-5 Pinout Mismatch vs TLV9001IDBVR, TLV9061IDBVR, OPA333AIDBVR, and TLV3201AIDBVR\" (p.3) and TLV9001IDBVR \"Critical SOT-23-5 Suffix Trap: TLV9001IDBVR vs TLV9001UIDBVR Pinout Swap\" (p.7). BOM decision: Choose LMV321IDBVR when matching your existing Texas Instruments SOT-23-5 (DBV) qualification and -40..125 °C grade; choose TLV9001IDBVR when DC precision demands <= 1.6 mV max Vos or high-impedance sensors require pA-class input bias (5 pA). Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.7) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

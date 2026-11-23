@@ -1,0 +1,242 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "TPS54231DR",
+  "slug": "tps54231dr",
+  "family": "TPS54231",
+  "manufacturer": "Texas Instruments",
+  "category": "dcdc",
+  "sub_topology": "buck",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 150,
+    "grade_label": "Extended Industrial (-40°C to +150°C TJ)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/tps54231.pdf",
+    "product_page_url": "https://www.ti.com/product/TPS54231",
+    "source_domain": "www.ti.com",
+    "revision": "SLUS851D (Rev. October 2014)",
+    "verified_at": "2026-11-23",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 35
+  },
+  "package": {
+    "code": "SOIC-8",
+    "mfg_package_code": "D",
+    "pin_count": 8,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": false,
+      "net": "NONE",
+      "note": "Standard 8-pin SOIC (D) package without exposed thermal pad (p.4-5)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 116.3,
+      "page": 5,
+      "condition": "JEDEC high-K board, D 8-pin SOIC package",
+      "table_ref": "Section 7.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 53.7,
+      "page": 5,
+      "condition": "RθJC(top), D 8-pin SOIC package",
+      "table_ref": "Section 7.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 150,
+      "page": 5,
+      "condition": "Recommended operating junction temperature max 150°C (-40°C to 150°C; TSD = 165°C typ p.6)",
+      "table_ref": "Section 7.3 Recommended Operating Conditions"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "BOOT",
+        "role": "BOOT",
+        "description": "High-side MOSFET gate-drive bootstrap capacitor pin (connect 0.1 µF ceramic cap to PH)"
+      },
+      {
+        "pin": 2,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Wide input supply voltage pin (3.5 V to 28.0 V; 30 V abs max)"
+      },
+      {
+        "pin": 3,
+        "name": "EN",
+        "role": "EN",
+        "description": "Active-high enable with internal pull-up; float to enable (STRICTLY <= 6.0 V abs max!)"
+      },
+      {
+        "pin": 4,
+        "name": "SS",
+        "role": "SS",
+        "description": "External slow-start capacitor pin (2 µA charge current sets soft-start ramp time)"
+      },
+      {
+        "pin": 5,
+        "name": "VSENSE",
+        "role": "FB",
+        "description": "Inverting error-amplifier feedback input (VREF = 0.800 V typ)"
+      },
+      {
+        "pin": 6,
+        "name": "COMP",
+        "role": "COMP",
+        "description": "Error-amplifier output for mandatory external Type-II RC loop compensation network"
+      },
+      {
+        "pin": 7,
+        "name": "GND",
+        "role": "GND",
+        "description": "Ground return pin"
+      },
+      {
+        "pin": 8,
+        "name": "PH",
+        "role": "SW",
+        "description": "Switch node source of integrated 80 mΩ high-side N-FET; requires external Schottky catch diode to GND"
+      }
+    ],
+    "pinout_source_page": 4,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "topology": "buck",
+    "vin_abs_max_v": {
+      "value": 30,
+      "page": 5,
+      "condition": "Absolute Maximum Ratings VIN = -0.3 V to 30 V",
+      "table_ref": "Section 7.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 3.5,
+      "page": 5,
+      "condition": "Recommended operating minimum input voltage (internal UVLO max 3.5 V p.6)",
+      "table_ref": "Section 7.3 Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 28,
+      "page": 5,
+      "condition": "Recommended operating maximum input voltage",
+      "table_ref": "Section 7.3 Recommended Operating Conditions"
+    },
+    "vout_min_v": {
+      "value": 0.8,
+      "page": 1,
+      "condition": "Adjustable output voltage down to 0.8 V reference",
+      "table_ref": "Section 1 Features"
+    },
+    "vout_max_v": {
+      "value": 25.2,
+      "page": 6,
+      "condition": "Limited by 90% min (93% typ) maximum controllable duty ratio at VIN = 28 V (28 V * 0.90 = 25.2 V)",
+      "table_ref": "Section 7.6 Switching Characteristics"
+    },
+    "vout_fixed": false,
+    "vout_nom_v": null,
+    "vref_v": {
+      "value": 0.8,
+      "page": 6,
+      "condition": "0.800 V typ (0.772 V min to 0.828 V max over -40°C to 150°C TJ)",
+      "table_ref": "Section 7.5 Electrical Characteristics"
+    },
+    "iout_or_isw_max_ma": {
+      "value": 2000,
+      "page": 1,
+      "condition": "2 A continuous output current (current limit 2.3 A min, 3.5 A typ, 5.3 A max at VIN = 12 V, p.6)",
+      "table_ref": "Section 1 Features & Section 7.5"
+    },
+    "is_switch_limit": false,
+    "iq_typ_ua": {
+      "value": 75,
+      "page": 6,
+      "condition": "Operating non-switching supply current 75 µA typ (110 µA max; shutdown 1 µA typ / 4 µA max at EN = 0 V, VIN = 12 V)",
+      "table_ref": "Section 7.5 Electrical Characteristics"
+    },
+    "fsw_typ_khz": {
+      "value": 570,
+      "page": 6,
+      "condition": "Fixed 570 kHz typ oscillator (400 kHz to 740 kHz over -40°C to 150°C TJ)",
+      "table_ref": "Section 7.6 Switching Characteristics"
+    },
+    "efficiency_peak_pct": {
+      "value": 94,
+      "page": 1,
+      "condition": "Peak ~94% at VI = 5 V, VO = 3.3 V, IL ~ 0.3 A (~88% peak at VI = 12 V, VO = 3.3 V)",
+      "table_ref": "Page 1 Efficiency Graph (300 DPI Vision verified)"
+    },
+    "inductor_typ_uh": {
+      "value": 10,
+      "page": 14,
+      "condition": "10 µH (L1) in 7-28 V to 3.3 V / 2 A typical application reference design",
+      "table_ref": "Section 9.2 Typical Application (Figure 10)"
+    },
+    "synchronous": false,
+    "min_cout_uf": {
+      "value": 47,
+      "page": 14,
+      "condition": "Typical application uses 2 x 47 µF ceramic output capacitors (C8, C9)",
+      "table_ref": "Section 9.2 Typical Application (Figure 10)"
+    },
+    "en_active_high": true,
+    "en_abs_max_v": {
+      "value": 6,
+      "page": 5,
+      "condition": "Absolute Maximum Rating on EN pin is strictly -0.3 V to 6 V (never tie directly to 12 V / 24 V VIN)",
+      "table_ref": "Section 7.1 Absolute Maximum Ratings"
+    },
+    "en_default_floating": "enable"
+  },
+  "design_gotchas": [
+    {
+      "title": "EN Pin Abs Max Is Strictly 6.0 V — NEVER Tie Directly to 12 V or 24 V VIN",
+      "severity": "CRITICAL",
+      "detail": "Although VIN handles up to 28 V (30 V abs max), Pin 3 (EN) is rated to only 6.0 V absolute maximum. Float EN to auto-enable via internal pull-up or use a resistive UVLO divider from VIN that keeps VEN safely below 5 V at maximum line surge.",
+      "page": 5
+    },
+    {
+      "title": "Pin-for-Pin Match With 3 A TPS54331DR — Check 2.3 A Min Switch Current Limit & Compensation Before Downgrading",
+      "severity": "CRITICAL",
+      "detail": "TPS54231DR shares the exact SOIC-8 pinout, 570 kHz clock, 0.800 V VREF, and 80 mΩ high-side FET of TPS54331DR, making it a cost-optimized 2 A sibling. However, minimum current limit drops from 3.5 A to 2.3 A, so never swap TPS54231DR onto a > 1.8-2.0 A load without checking inductor peak current.",
+      "page": 6
+    },
+    {
+      "title": "Non-Synchronous Buck Requires External Schottky Catch Diode & Type-II COMP Network",
+      "severity": "WARNING",
+      "detail": "Unlike modern synchronous SOT-23-6 bucks (TPS54302DDCR, AP63203WU-7), TPS54231DR requires an external 40 V / 3 A Schottky diode (D1) from GND to PH plus external RC compensation on COMP (Pin 6), limiting 12 V-to-3.3 V efficiency to ~88%.",
+      "page": 1
+    },
+    {
+      "title": "Non-PowerPAD SOIC-8 (116.3 °C/W) Thermal Budget at 24 V-to-3.3 V / 2 A",
+      "severity": "WARNING",
+      "detail": "The D-suffix SOIC-8 package has no exposed thermal pad (RθJA = 116.3 °C/W). Verify IC switching + conduction loss at elevated ambient temperatures and use wide copper pours on VIN, GND, and PH to assist heat spreading.",
+      "page": 5
+    }
+  ],
+  "typical_use_cases": [
+    "Pin-compatible 2 A cost-down second source for 3 A TPS54331DR SOIC-8 designs",
+    "12 V and 24 V industrial, car-audio, and CPE distributed power rails stepping down to 3.3 V or 5.0 V",
+    "Battery-powered wide-VIN systems needing 1 µA shutdown and 75 µA Eco-mode light-load Iq",
+    "Designs requiring programmable UVLO hysteresis and external soft-start ramp control"
+  ],
+  "engineering_summary": "The Texas Instruments TPS54231DR is a 3.5 V to 28 V, 2 A non-synchronous Eco-mode step-down converter in a standard 8-pin SOIC (D) package operating at 570 kHz with an 80 mΩ high-side MOSFET and 0.800 V reference. Pin-for-pin identical to the 3 A TPS54331DR with lower operating Iq (75 µA vs 110 µA typ), it offers direct footprint compatibility for 2 A-class rails. Engineers must respect the strict 6.0 V absolute maximum limit on Pin 3 (EN), include an external Schottky catch diode and Type-II COMP network, and verify peak inductor current stays below its 2.3 A minimum current limit.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [1, 4, 5, 6, 27],
+    "audit_notes": [
+      "Vision-verified page 1 efficiency graph (~94% peak at VI = 5 V, VO = 3.3 V; ~88% at VI = 12 V) and simplified schematic.",
+      "Vision-verified D-package 8-pin SOIC Top View pinout on 300 DPI PNG page 4 (Section 6): exact pin-for-pin match to TPS54331DR.",
+      "Verified Absolute Maximum Ratings (VIN = 30 V, EN = 6 V, TJ = 150°C), Recommended Operating Conditions (3.5-28 V), and Thermal Information (RθJA = 116.3 °C/W, RθJC(top) = 53.7 °C/W) on 300 DPI PNG page 5.",
+      "Verified Electrical & Switching Characteristics on 300 DPI PNG page 6: VREF = 0.800 V, IQ = 75 µA typ, current limit = 2.3 A min / 3.5 A typ / 5.3 A max, fSW = 570 kHz typ, Dmax = 90% min.",
+      "Ordering table PNG page 27 confirms TPS54231DR Active, Production, SOIC (D) 8-pin, 2500 LARGE T&R, -40 to 150°C, marking 54231."
+    ]
+  }
+}

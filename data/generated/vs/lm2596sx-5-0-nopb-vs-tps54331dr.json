@@ -107,8 +107,8 @@
       "unit": "V",
       "part_a_value": "7 to 40 V (p.6)",
       "part_b_value": "3.5 to 28 V (p.4)",
-      "winner": "A",
-      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+      "winner": "CONTEXT",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -124,7 +124,7 @@
       "part_a_value": "4.75 to 5.25 V (p.6) (Fixed)",
       "part_b_value": "0.8 to 25 V (p.1/p.21) (Adj)",
       "winner": "CONTEXT",
-      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
     },
     {
       "metric": "Max Current (Iout or Isw Limit)",
@@ -132,7 +132,7 @@
       "part_a_value": "3000 mA (p.1) [Iout max]",
       "part_b_value": "3000 mA (p.1) [Iout max]",
       "winner": "TIE",
-      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+      "note": "Continuous DC output current rating; verify inductor Isat >= Iout + ΔIL/2 and thermal margin."
     },
     {
       "metric": "Quiescent Current (Iq, typ)",
@@ -187,12 +187,16 @@
     "CRITICAL PACKAGE MISMATCH: LM2596SX-5.0/NOPB uses TO-263-5 (5-pin, KTT) while TPS54331DR uses SOIC-8 (8-pin, D); PCB footprint redesign is mandatory.",
     "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (VIN vs BOOT), Pin 2 (SW vs VIN), Pin 3 (GND vs EN), Pin 4 (FB vs SS), Pin 5 (EN vs FB), Pin 6 (NONE vs COMP), Pin 7 (NONE vs GND), Pin 8 (NONE vs SW). Soldering TPS54331DR onto a LM2596SX-5.0/NOPB footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
     "Exposed thermal pad/tab mismatch (TO-263-5: GND vs SOIC-8: NONE); PCB land pattern & solder-mask change required.",
+    "CRITICAL FEEDBACK LAYOUT DIFFERENCE: One converter is fixed-output while the other is adjustable; adding or removing the external R1/R2 feedback divider and feedforward capacitor requires a PCB layout change.",
+    "CRITICAL ENABLE POLARITY: LM2596SX-5.0/NOPB EN is active-low whereas TPS54331DR EN is active-high; the existing enable drive will invert converter ON/OFF state.",
     "HIGH SWITCHING FREQUENCY SHIFT: fsw differs by 74% (LM2596SX-5.0/NOPB: 150 kHz p.7 vs TPS54331DR: 570 kHz p.6); re-evaluate inductor core loss, ripple current ΔIL, output capacitor ESR ripple, and EMI harmonics.",
     "CAUTION INDUCTOR RETUNING: Typical inductor differs (LM2596SX-5.0/NOPB: 33 µH p.25 vs TPS54331DR: 6.8 µH p.16); check inductor Isat against peak switch current limit.",
-    "HIGH FEEDBACK CONFIGURATION: One converter is fixed-output while the other is adjustable; external R1/R2 feedback resistors and feedforward capacitor must be updated.",
     "HIGH INPUT VOLTAGE RANGE SHIFT: Recommended Vin,max differs (LM2596SX-5.0/NOPB: 40 V p.6 vs TPS54331DR: 28 V p.4); verify line transients stay below Vin,abs,max.",
-    "CAUTION THERMAL MARGIN: Package θJA differs by 57% (LM2596SX-5.0/NOPB: 50 °C/W p.5 vs TPS54331DR: 116.3 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max."
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: TPS54331DR has a lower Vin,abs,max rating (30 V, p.4) than LM2596SX-5.0/NOPB (45 V, p.5); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 30 V.",
+    "HIGH THERMAL MARGIN: Package θJA is 133% higher on TPS54331DR (LM2596SX-5.0/NOPB: 50 °C/W p.5 vs TPS54331DR: 116.3 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH MINIMUM SUPPLY FLOOR: LM2596SX-5.0/NOPB requires Vin,min >= 7 V (p.6) vs 3.5 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (LM2596SX-5.0/NOPB: -40..125 °C Industrial / Extended (-40°C to 125°C TJ) vs TPS54331DR: -40..150 °C Extended Industrial (-40°C to 150°C TJ)); LM2596SX-5.0/NOPB hot limit only 125 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "LM2596SX-5.0/NOPB (Texas Instruments, TO-263-5) and TPS54331DR (Texas Instruments, SOIC-8) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (VIN vs BOOT), Pin 2 (SW vs VIN), Pin 3 (GND vs EN), Pin 4 (FB vs SS), Pin 5 (EN vs FB), Pin 6 (NONE vs COMP), Pin 7 (NONE vs GND), Pin 8 (NONE vs SW); exposed pad / thermal tab net mismatch. Key datasheet deltas: topology is buck (non-sync) vs buck (non-sync), switching frequency is 150 kHz (p.7) vs 570 kHz (p.6), rated current is 3000 mA (p.1) vs 3000 mA (p.1), typical inductor is 33 µH (p.25) vs 6.8 µH (p.16), and Iq is 5000 µA (p.7) vs 110 µA (p.5). Always validate pinout orientation (TOP_VIEW p.4 vs TOP_VIEW p.3), thermal margin (θJA 50 vs 116.3 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "LM2596SX-5.0/NOPB (Texas Instruments, TO-263-5) and TPS54331DR (Texas Instruments, SOIC-8) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (VIN vs BOOT), Pin 2 (SW vs VIN), Pin 3 (GND vs EN), Pin 4 (FB vs SS), Pin 5 (EN vs FB), Pin 6 (NONE vs COMP), Pin 7 (NONE vs GND), Pin 8 (NONE vs SW); exposed pad / thermal tab net mismatch. Specific pin conflicts: Pin 1 (VIN vs BOOT), Pin 2 (SW vs VIN), Pin 3 (GND vs EN), Pin 4 (FB vs SS). Power-stage deltas: buck (non-sync) vs buck (non-sync), switching frequency 150 kHz (p.7) vs 570 kHz (p.6) (3.8x ratio), typical inductor 33 µH (p.25) vs 6.8 µH (p.16), output mode fixed vs adjustable, and package θJA 50 vs 116.3 °C/W. Primary bench gotchas to watch: LM2596SX-5.0/NOPB \"INVERTED LOGIC: Pin 5 (ON/OFF) Is ACTIVE-LOW Enable (Opposite of Modern Bucks!)\" (p.4) and TPS54331DR \"Non-Synchronous Architecture Requires External Schottky Catch Diode & External COMP Network\" (p.1). BOM decision: Choose LM2596SX-5.0/NOPB when bus voltage exceeds 28 V (rated to 40 V); choose TPS54331DR when light-load battery standby needs 110 µA Iq. Always verify Pin 1 orientation (TOP_VIEW p.4 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

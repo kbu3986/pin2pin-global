@@ -19,10 +19,68 @@ const rawBasePath = (process.env.NEXT_PUBLIC_BASE_PATH || '').trim().replace(/\/
 const basePath = rawBasePath && rawBasePath !== '/' ? (rawBasePath.startsWith('/') ? rawBasePath : `/${rawBasePath}`) : '';
 const today = new Date().toISOString().slice(0, 10);
 
+// ---- Real per-record dates (no blanket "today" lastmod) ----
+function collectJson(dir) {
+  if (!fs.existsSync(dir)) return [];
+  const out = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) out.push(...collectJson(full));
+    else if (entry.isFile() && entry.name.endsWith('.json')) out.push(full);
+  }
+  return out;
+}
+
+function toDate(value) {
+  if (typeof value !== 'string') return null;
+  const m = value.match(/^\d{4}-\d{2}-\d{2}/);
+  return m ? m[0] : null;
+}
+
+function maxDate(values, fallback = today) {
+  const valid = values.map(toDate).filter(Boolean).sort();
+  return valid.length ? valid[valid.length - 1] : fallback;
+}
+
+const verifiedBySlug = new Map();
+for (const file of collectJson(path.join(repoRoot, 'data', 'parts'))) {
+  try {
+    const rec = JSON.parse(fs.readFileSync(file, 'utf8'));
+    const d = toDate(rec?.datasheet?.verified_at);
+    if (rec?.slug && d) verifiedBySlug.set(rec.slug, d);
+  } catch {
+    /* ignore malformed file; falls back below */
+  }
+}
+const globalVerified = maxDate([...verifiedBySlug.values()]);
+
+const guideUpdatedBySlug = new Map();
+for (const file of collectJson(path.join(repoRoot, 'data', 'guides'))) {
+  try {
+    const rec = JSON.parse(fs.readFileSync(file, 'utf8'));
+    const d = toDate(rec?.updated_at) ?? toDate(rec?.published_at);
+    if (rec?.slug && d) guideUpdatedBySlug.set(rec.slug, d);
+  } catch {
+    /* ignore */
+  }
+}
+const guidesHubDate = maxDate([...guideUpdatedBySlug.values()], globalVerified);
+
+const trustUpdatedBySlug = new Map();
+for (const file of collectJson(path.join(repoRoot, 'data', 'trust'))) {
+  try {
+    const rec = JSON.parse(fs.readFileSync(file, 'utf8'));
+    const d = toDate(rec?.updated_at);
+    if (rec?.slug && d) trustUpdatedBySlug.set(rec.slug, d);
+  } catch {
+    /* ignore */
+  }
+}
+
 const urlEntries = [];
 const seen = new Set();
 
-function pushRoute(routePath, priority, changefreq) {
+function pushRoute(routePath, priority, changefreq, lastmod) {
   const clean = routePath.replace(/^\/+|\/+$/g, '');
   const normalized = `/${clean}/`;
   if (seen.has(normalized)) {
@@ -31,43 +89,66 @@ function pushRoute(routePath, priority, changefreq) {
   seen.add(normalized);
   urlEntries.push({
     loc: `${baseUrl}${normalized}`,
-    lastmod: today,
+    lastmod: lastmod || globalVerified,
     changefreq,
     priority,
   });
 }
 
-// 1. Static hubs (2)
+// New hub routes added in Track 4 (not yet part of data/pilot-manifest.json)
+const EXTRA_HUBS = [
+  { route: '/en/compare', priority: '0.9', date: globalVerified },
+  { route: '/en/packages', priority: '0.9', date: globalVerified },
+  { route: '/en/tools', priority: '0.9', date: globalVerified },
+  { route: '/en/guides', priority: '0.9', date: guidesHubDate },
+  { route: '/en/vs', priority: '0.85', date: globalVerified },
+];
+const manifestStatic = new Set(
+  [
+    ...manifest.static_routes.hubs,
+    ...manifest.static_routes.tools,
+    ...manifest.static_routes.guides,
+    ...manifest.static_routes.trust_pages,
+  ].map((r) => r.replace(/\/+$/g, '')),
+);
+const extraHubsToAdd = EXTRA_HUBS.filter((h) => !manifestStatic.has(h.route));
+
+// 1. Static hubs
 for (const route of manifest.static_routes.hubs) {
-  pushRoute(route, route === '/en' ? '1.0' : '0.9', 'weekly');
+  pushRoute(route, route === '/en' ? '1.0' : '0.9', 'weekly', globalVerified);
+}
+for (const hub of extraHubsToAdd) {
+  pushRoute(hub.route, hub.priority, 'weekly', hub.date);
 }
 
-// 2. Interactive calculators / tools (3)
+// 2. Interactive calculators / tools
 for (const route of manifest.static_routes.tools) {
-  pushRoute(route, '0.9', 'monthly');
+  pushRoute(route, '0.9', 'monthly', globalVerified);
 }
 
-// 3. Engineering field guides (5)
+// 3. Engineering field guides (updated_at per guide)
 for (const route of manifest.static_routes.guides) {
-  pushRoute(route, '0.85', 'monthly');
+  const slug = route.replace(/^\/en\/guides\//, '').replace(/\/+$/g, '');
+  pushRoute(route, '0.85', 'monthly', guideUpdatedBySlug.get(slug) ?? guidesHubDate);
 }
 
-// 4. Trust & policy pages (5)
+// 4. Trust & policy pages (updated_at per page)
 for (const route of manifest.static_routes.trust_pages) {
-  pushRoute(route, '0.6', 'monthly');
+  const slug = route.replace(/^\/en\//, '').replace(/\/+$/g, '');
+  pushRoute(route, '0.6', 'monthly', trustUpdatedBySlug.get(slug) ?? globalVerified);
 }
 
-// 5. Part datasheet pages (50)
+// 5. Part datasheet pages (verified_at per part)
 for (const part of manifest.parts) {
-  pushRoute(`/en/part/${part.slug}`, '0.9', 'monthly');
+  pushRoute(`/en/part/${part.slug}`, '0.9', 'monthly', verifiedBySlug.get(part.slug) ?? globalVerified);
 }
 
-// 6. Ranked alternatives hub pages (50)
+// 6. Ranked alternatives hub pages (verified_at of the target part)
 for (const part of manifest.parts) {
-  pushRoute(`/en/alt/${part.slug}-alternatives`, '0.85', 'monthly');
+  pushRoute(`/en/alt/${part.slug}-alternatives`, '0.85', 'monthly', verifiedBySlug.get(part.slug) ?? globalVerified);
 }
 
-// 7. 1:1 Pin-diff VS comparison pages (85) — verify canonical alphabetical ordering (AUD-06)
+// 7. 1:1 Pin-diff VS comparison pages - verify canonical alphabetical ordering (AUD-06)
 for (const pair of manifest.vs_pairs) {
   if (pair.part_a >= pair.part_b) {
     throw new Error(
@@ -78,16 +159,16 @@ for (const pair of manifest.vs_pairs) {
   if (pair.slug !== expectedSlug) {
     throw new Error(`VS pair slug mismatch: got ${pair.slug}, expected ${expectedSlug}`);
   }
-  pushRoute(`/en/vs/${pair.slug}`, '0.8', 'monthly');
+  const vsDate = maxDate([verifiedBySlug.get(pair.part_a), verifiedBySlug.get(pair.part_b)], globalVerified);
+  pushRoute(`/en/vs/${pair.slug}`, '0.8', 'monthly', vsDate);
 }
 
-const expectedTotal = manifest.page_budget?.total_en_pages ?? 200;
+const expectedTotal = (manifest.page_budget?.total_en_pages ?? 200) + extraHubsToAdd.length;
 if (urlEntries.length !== expectedTotal) {
   throw new Error(
     `Sitemap URL count mismatch: generated ${urlEntries.length}, expected ${expectedTotal}`,
   );
 }
-
 function escapeXml(str) {
   return str
     .replace(/&/g, '&amp;')
@@ -110,8 +191,7 @@ const xmlLines = [
 
 const robotsTxt = [
   'User-agent: *',
-  `Allow: ${basePath}/en/`,
-  `Disallow: ${basePath}/_next/`,
+  'Allow: /',
   '',
   `Sitemap: ${baseUrl}/sitemap.xml`,
   '',

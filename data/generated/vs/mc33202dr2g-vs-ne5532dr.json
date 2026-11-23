@@ -92,7 +92,7 @@
       "part_a_value": "opamp (push-pull)",
       "part_b_value": "opamp (push-pull)",
       "winner": "TIE",
-      "note": "Op-amps (compensated push-pull) and comparators (uncompensated open-collector) are NOT drop-in interchangeable."
+      "note": "Op-amps (internally compensated for linear feedback) and comparators (uncompensated open-loop switching) are NOT drop-in interchangeable."
     },
     {
       "metric": "Package & Channel Count",
@@ -107,8 +107,8 @@
       "unit": "V",
       "part_a_value": "1.8 to 12 V (p.1)",
       "part_b_value": "10 to 30 V (p.3)",
-      "winner": "B",
-      "note": "Confirm total supply span (V+ - V-) stays within recommended limits."
+      "winner": "CONTEXT",
+      "note": "A part wins only if its recommended Vs range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Supply (Vs,abs)",
@@ -172,7 +172,7 @@
       "part_a_value": "90 dB (p.4) · 20 nV/√Hz (p.4)",
       "part_b_value": "100 dB (p.4) · 5 nV/√Hz (p.4)",
       "winner": "B",
-      "note": "Higher CMRR rejects common-mode noise; lower voltage noise improves SNR."
+      "note": "Winner requires superiority on both CMRR (higher) and input voltage noise (lower); mixed tradeoffs stay CONTEXT."
     },
     {
       "metric": "Thermal Resistance (θJA) & Tj,max",
@@ -184,12 +184,16 @@
     }
   ],
   "swap_risks": [
-    "CRITICAL SUPPLY VOLTAGE RATING: MC33202DR2G is limited to 12 V max (13 V abs max, p.3) whereas NE5532DR supports up to 30 V (36 V abs max, p.3). Installing a 5.5 V CMOS op-amp on a 12 V–24 V rail causes instant breakdown.",
+    "CRITICAL SUPPLY VOLTAGE RATING: MC33202DR2G is limited to 12 V max (13 V abs max, p.3) whereas NE5532DR supports up to 30 V (36 V abs max, p.3). Installing a 5.5 V CMOS part on a 12 V–24 V rail causes instant breakdown.",
     "HIGH HEADROOM / CLIPPING RISK: Rail-to-rail capability differs (MC33202DR2G: IN=RR, OUT=RR vs NE5532DR: IN=Non-RR, OUT=Non-RR); verify input common-mode range (Vicm) and output voltage swing against ADC full-scale range.",
     "CAUTION BANDWIDTH & PHASE MARGIN: GBWP differs by 5.5x (MC33202DR2G: 2.2 MHz p.4 vs NE5532DR: 12 MHz p.4); higher-bandwidth replacements can oscillate with capacitive loads or stray feedback capacitance without an isolation resistor.",
     "CAUTION SLEW RATE DIFFERENCE: Slew rate differs by 5x (MC33202DR2G: 1 V/µs p.4 vs NE5532DR: 5 V/µs p.4); check full-power bandwidth SR / (2π·Vpeak).",
-    "CAUTION THERMAL MARGIN: Package θJA differs by 49% (MC33202DR2G: 190 °C/W p.5 vs NE5532DR: 97 °C/W p.3); re-check Tj = Ta + Pd × θJA against Tj,max."
+    "CAUTION QUIESCENT CURRENT SHIFT: Supply current per channel differs by 3.3x (MC33202DR2G: 900 µA/ch p.4 vs NE5532DR: 3000 µA/ch p.4); verify battery budget and total power dissipation across all channels.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: MC33202DR2G has a lower Vs,abs,max rating (13 V, p.3) than NE5532DR (36 V, p.3); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 13 V.",
+    "HIGH THERMAL MARGIN: Package θJA is 96% higher on MC33202DR2G (MC33202DR2G: 190 °C/W p.5 vs NE5532DR: 97 °C/W p.3); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH MINIMUM SUPPLY FLOOR: NE5532DR requires Vs,min >= 10 V (p.3) vs 1.8 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (MC33202DR2G: -40..105 °C Extended Industrial (-40°C to 105°C) vs NE5532DR: 0..70 °C Commercial (0°C to 70°C)); NE5532DR cold limit only 0 °C, NE5532DR hot limit only 70 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "MC33202DR2G (onsemi, SOIC-8) and NE5532DR (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to supply voltage Vs,max drops >20%; rail-to-rail input/output swing differs; GBWP differs >= 3x. Key datasheet deltas: device type is opamp (push-pull) vs opamp (push-pull), supply limit is 12 V (p.1) vs 30 V (p.3), max Vos is 8 mV (p.3) vs 4 mV (p.4), input bias current is 80000 pA (p.3) vs 200000 pA (p.4), and Iq/ch is 900 µA (p.4) vs 3000 µA (p.4). Always validate pinout orientation (TOP_VIEW p.2 vs TOP_VIEW p.2), thermal margin (θJA 190 vs 97 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "MC33202DR2G (onsemi, SOIC-8) and NE5532DR (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because supply voltage Vs,max drops >=20%; rail-to-rail input/output swing differs; GBWP differs 5.5x. Signal-chain deltas: GBWP 2.2 MHz (p.4) vs 12 MHz (p.4), supply ceiling 12 V (p.1) vs 30 V (p.3), Vos 8 mV (p.3) vs 4 mV (p.4), Ib 3x gap (80000 vs 200000 pA), voltage noise 20 vs 5 nV/√Hz. Primary bench gotchas to watch: MC33202DR2G \"Internal Back-to-Back Differential Input Clamp Diodes Limit Comparator Use\" (p.3) and NE5532DR \"Internal Back-to-Back Input Clamp Diodes Conduct Above ~0.6 V Differential Input\" (p.3). BOM decision: Choose MC33202DR2G when single-supply ADC headroom demands full Rail-to-Rail I/O swing or ultra-low supply current (900 µA/ch) is prioritized; choose NE5532DR when supply rails exceed 12 V (rated up to 30 V) or closed-loop signal bandwidth requires 12 MHz GBWP. Always verify Pin 1 orientation (TOP_VIEW p.2 vs TOP_VIEW p.2) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

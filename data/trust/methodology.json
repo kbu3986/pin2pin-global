@@ -1,8 +1,8 @@
 {
   "slug": "methodology",
   "title": "Verification & Cross-Reference Methodology",
-  "description": "How Pin2Pin Global extracts, Dual-Path Vision-verifies, physics-checks, and deterministically compares semiconductor datasheets from official manufacturer PDFs.",
-  "updated_at": "2026-11-22",
+  "description": "How Pin2Pin Global extracts, Dual-Path 300 DPI Vision-verifies, physics-checks, and deterministically compares semiconductor datasheets from official manufacturer PDFs.",
+  "updated_at": "2026-11-23",
   "sections": [
     {
       "heading": "Stage 0: Official Manufacturer Sourcing & PDF Quality Gate",
@@ -12,21 +12,21 @@
       ],
       "bullets": [
         "Zero distributor scraping: DigiKey, Mouser, LCSC, Octopart, and aggregator domains are hard-blocked in our Zod v2 URL validator.",
-        "Immutable provenance metadata: Every part record stores datasheet revision, page count, official source domain, and verification date.",
+        "Immutable provenance metadata: Every part record stores datasheet revision, SHA-256 audit hash, page count, official source domain, and verification date.",
         "Automatic quarantine: Image-only or degraded PDFs exit with UNSUPPORTED_SCAN and fail the publish gate."
       ]
     },
     {
       "heading": "Stage 1 & Stage 2: Dual-Path Extraction (Text + 300 DPI PNG Vision)",
       "paragraphs": [
-        "Relying on text extraction alone is a well-known failure mode for semiconductor PDFs: pinout diagrams are frequently drawn as vector graphics where text parsers scramble pin numbers, and multi-variant electrical tables suffer from column shifts across temperature grades or package suffixes.",
-        "To eliminate single-path extraction blind spots, Pin2Pin Global enforces a Dual-Path verification architecture. Path A extracts structured text and tables with explicit [PAGE N] citations. In parallel, Path B renders the exact Pin Configuration, Absolute Maximum Ratings, and Thermal Information pages at 300 DPI PNG resolution for direct visual cross-inspection.",
-        "Every numeric specification — from quiescent current (Iq) and dropout voltage (Vdo) to thermal resistance (theta_JA), switching frequency (fsw), and input bias current (Ib) — must carry its exact PDF page number and test condition. Any discrepancy between Path A text and Path B 300 DPI visual inspection triggers re-extraction; parts that cannot reach >= 95% verified confidence are isolated for human review rather than published."
+        "Relying on text extraction alone is a well-known failure mode for semiconductor PDFs: pinout diagrams are frequently drawn as vector graphics where text parsers scramble pin numbers, overbars on active-low shutdown pins disappear, and multi-variant electrical tables suffer from column shifts across temperature grades or package suffixes.",
+        "To eliminate single-path extraction blind spots, Pin2Pin Global enforces a Dual-Path verification architecture. Path A extracts structured text and tables with explicit [PAGE N] citations. In parallel, Path B renders the exact Pin Configuration, Absolute Maximum Ratings, Thermal Information, and Electrical Characteristics pages at 300 DPI PNG resolution for direct visual cross-inspection.",
+        "Every numeric specification — from quiescent current (Iq) and dropout voltage (Vdo) to thermal resistance (theta_JA), switching frequency (fsw), enable-pin absolute maximum ratings, and input bias current (Ib) — must carry its exact PDF page number and test condition. Any discrepancy between Path A text and Path B 300 DPI visual inspection triggers re-extraction; parts that cannot reach >= 95% verified confidence are isolated for human review rather than published."
       ],
       "bullets": [
         "Two-tier Family 1:N OPN schema: Each JSON record locks a single orderable part number to exactly one JEDEC package code, one pinout view (TOP_VIEW or BOTTOM_VIEW), and one exposed thermal pad net.",
         "300 DPI Vision pinout audit: Every pin 1..N (name, functional role, and physical orientation) and every thermal tab net (such as SOT-223-3 VOUT vs GND) is visually confirmed on rendered datasheet drawings.",
-        "Page-bound citation enforcement: Every cited page number is programmatically checked against the PDF's actual total page count."
+        "Page-bound citation enforcement: Every cited page number (including design_gotchas citations and pinout_source_page membership in vision_pages_checked) is programmatically checked against the PDF's actual total page count."
       ]
     },
     {
@@ -35,29 +35,29 @@
         "Before any part enters the cross-reference engine, it must pass our deterministic Stage 2 Physics Consistency Verifier. Automated software rules catch unit-scale mistakes (such as mV vs V, uA vs mA, or kHz vs MHz) and structural inconsistencies that prose review can miss."
       ],
       "bullets": [
-        "Voltage hierarchy checks: Absolute maximum ratings must satisfy V_abs_max >= V_rec_max > V_rec_min >= 0, and LDO output voltage must satisfy Vout < Vin_max.",
+        "Voltage & temperature hierarchy checks: Absolute maximum ratings must satisfy V_abs_max >= V_rec_max > V_rec_min >= 0, LDO output voltage must satisfy Vout < Vin_max, and temp_grade must satisfy ta_min < ta_max <= tj_max.",
         "Package & pin-sequence integrity: pinout.length must exactly equal package.pin_count and the canonical JEDEC pin count for that package code, with contiguous pin indices 1 through N.",
-        "Exposed pad declaration: Packages with exposed_pad.present = true must explicitly declare their electrical net (GND, VOUT, THERMAL_GND_RECOMMENDED, etc.) and cannot default to NONE.",
-        "Thermal & switching bounds: Verifies plausible Tj,max (100–185 °C), theta_JA (10–500 °C/W), DC-DC switching frequency (20 kHz–10 MHz), and distinct comparator propagation delay vs op-amp GBWP/slew-rate fields.",
+        "Exposed pad declaration: Packages with exposed_pad.present = true must explicitly declare their electrical net (GND, VOUT, THERMAL_GND_RECOMMENDED, etc.), while non-EP packages must strictly declare NONE.",
+        "Thermal, ESR & switching bounds: Verifies plausible Tj,max (100–185 °C), theta_JA (10–500 °C/W), valid ESR window ordering (esr_min <= esr_max), DC-DC switching frequency (20 kHz–10 MHz), and distinct comparator propagation delay vs op-amp GBWP/slew-rate fields.",
         "Information-gain floor: Every published part must provide at least 12 distinct, cited electrical and thermal specifications."
       ]
     },
     {
       "heading": "Stage 3: Deterministic Cross-Reference & 3-Tier Compatibility Rules",
       "paragraphs": [
-        "All 1:1 comparison pages (/en/vs/slugA-vs-slugB) are normalized in strict alphabetical order (slugA < slugB) to prevent duplicate mirrored URLs. Compatibility classifications are computed deterministically from verified pinouts, package footprints, exposed pad nets, and electrical ratings — never guessed heuristically."
+        "All 1:1 comparison pages (/en/vs/slugA-vs-slugB) are normalized in strict alphabetical order (slugA < slugB) to prevent duplicate mirrored URLs. Compatibility classifications are computed deterministically from verified pinouts, package footprints, exposed pad nets, and electrical ratings — never guessed heuristically. The same rules power our live Interactive Freeform Comparator and Zero-Upload BOM Checker."
       ],
       "bullets": [
         "Level 3 — PCB Layout Change Required (Pinout or Package Mismatch): Automatically assigned whenever pin counts differ, footprints are physically incompatible (e.g., SOT-23-3 vs SOT-223-3), any power/signal pin role conflicts, or exposed thermal pad/tab nets disagree (e.g., Tab = VOUT vs Tab = GND).",
-        "Level 2 — Functional / Tuning Required (Check Passives & Ratings): Assigned when the PCB footprint is compatible (including SOT-23-5 vs TSOT-23-5 with explicit Z-height caution) but electrical tuning or circuit updates are mandatory — such as LDO ceramic-capacitor ESR stability differences, Pin 4 NC vs BYPASS conflicts, Enable polarity inversion, >20% Vin/Iout rating drops, DC-DC switching frequency shifts >30% or Vref changes, or Op-Amp push-pull vs Comparator open-collector output stages.",
-        "Level 1 — Candidate Drop-In (Verify Datasheet Before Production): Awarded strictly when footprint, pinout, exposed pad net, device topology/output stage, stability class, and core voltage/current ratings align. Even Level 1 pairs display thermal and datasheet-revision verification checks."
+        "Level 2 — Functional / Tuning Required (Check Passives & Ratings): Assigned when the PCB footprint is compatible (including SOT-23-5 vs TSOT-23-5 with explicit Z-height caution) but electrical tuning or circuit updates are mandatory — such as LDO ceramic-capacitor ESR stability differences, Pin 4 NC vs BYPASS conflicts, Enable polarity or EN voltage-ceiling mismatches, >20% Vin/Iout rating drops, DC-DC switching frequency shifts >30% or Vref changes, or Op-Amp push-pull vs Comparator open-collector output stages.",
+        "Level 1 — Candidate Drop-In (Verify Datasheet Before Production): Awarded strictly when footprint, pinout, exposed pad net, device topology/output stage, stability class, and core voltage/current ratings align. Even Level 1 pairs display thermal, ESD, and datasheet-revision verification checks."
       ]
     },
     {
-      "heading": "Senior Hardware Engineer Audit & Stage 5 Build Gate",
+      "heading": "Continuous Automated QA Gate & Public Issue Tracking",
       "paragraphs": [
-        "High-risk packages — particularly 3-pin SOT-23-3 LDOs with standard vs reversed ordering suffixes, SOT-223-3 thermal-tab regulators, and SOT-23-5 single op-amps — undergo targeted 1:1 visual audits by a practicing hardware engineer against the original manufacturer PDFs. We enforce a zero-tolerance defect threshold for pinout, absolute maximum rating, and unit errors.",
-        "Finally, every static release must pass our Stage 5 automated QA gate across all 200 canonical English pages, checking sitemap completeness, zero rendering anomalies (missing numeric values, broken serialization strings, or empty table cells), mandatory engineering disclaimers, valid non-FAQPage JSON-LD structured data, zero broken internal links, and verified SVG pinout diagrams on every part page."
+        "High-risk packages — particularly 3-pin SOT-23-3 LDOs with standard vs reversed ordering suffixes, SOT-223-3 thermal-tab regulators, SOT-23-6 bucks with 7–8 V EN clamps, and SOT-23-5 single op-amps with U-suffix permutations — undergo targeted 1:1 visual audits against official manufacturer PDFs. We enforce a zero-tolerance defect threshold for pinout, absolute maximum rating, and unit errors.",
+        "Before every static release, our 7-gate Stage 5 QA harness validates every canonical English page across our growing catalog (currently 80 verified OPNs, 11 deep engineering field guides, 7 interactive tools, and all generated comparison and alternative hub pages), enforcing sitemap completeness, zero rendering anomalies (zero broken numeric tokens or empty table cells), mandatory AUD-04 disclaimers, valid JSON-LD structured data, zero broken internal links, and verified SVG pinout diagrams. Readers can inspect or report any discrepancy directly via our public GitHub Issues tracker (https://github.com/kbu3986/pin2pin-global/issues)."
       ]
     }
   ]

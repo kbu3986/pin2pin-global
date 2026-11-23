@@ -1,0 +1,168 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "opa333aidbvr-vs-tlv7011dbvr",
+  "category": "opamp",
+  "part_a_slug": "opa333aidbvr",
+  "part_b_slug": "tlv7011dbvr",
+  "part_a_opn": "OPA333AIDBVR",
+  "part_b_opn": "TLV7011DBVR",
+  "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+  "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+  "package_match": true,
+  "pinout_exact_match": false,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "OUT",
+      "part_a_role": "OUT",
+      "part_b_name": "OUT",
+      "part_b_role": "OUT",
+      "status": "MISMATCH",
+      "note": "CRITICAL OUTPUT STAGE DIFFERENCE: OPA333AIDBVR is opamp (push-pull) vs TLV7011DBVR comparator (push-pull); a comparator is an uncompensated open-loop switching device (no internal Miller/dominant-pole compensation) and will oscillate or latch in a linear negative-feedback op-amp circuit, while an op-amp used as a comparator suffers slow saturation/overdrive recovery and propagation delay far worse than its slew rate implies; both output stages are push-pull (no pull-up resistor required), so the incompatibility is loop compensation, input clamp behavior, and switching dynamics rather than pull-up drive."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "V-",
+      "part_a_role": "VEE",
+      "part_b_name": "VEE",
+      "part_b_role": "VEE",
+      "status": "MATCH",
+      "note": "Functionally identical VEE pin (V- vs VEE)."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "+IN",
+      "part_a_role": "IN_POS",
+      "part_b_name": "IN+",
+      "part_b_role": "IN_POS",
+      "status": "MATCH",
+      "note": "Functionally identical IN_POS pin (+IN vs IN+)."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "-IN",
+      "part_a_role": "IN_NEG",
+      "part_b_name": "IN-",
+      "part_b_role": "IN_NEG",
+      "status": "MATCH",
+      "note": "Functionally identical IN_NEG pin (-IN vs IN-)."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "V+",
+      "part_a_role": "VCC",
+      "part_b_name": "VCC",
+      "part_b_role": "VCC",
+      "status": "MATCH",
+      "note": "Functionally identical VCC pin (V+ vs VCC)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Device Kind & Output Stage",
+      "unit": "—",
+      "part_a_value": "opamp (push-pull)",
+      "part_b_value": "comparator (push-pull)",
+      "winner": "CONTEXT",
+      "note": "Op-amps (internally compensated for linear feedback) and comparators (uncompensated open-loop switching) are NOT drop-in interchangeable."
+    },
+    {
+      "metric": "Package & Channel Count",
+      "unit": "—",
+      "part_a_value": "SOT-23-5 · 1 ch (DBV, p.3)",
+      "part_b_value": "SOT-23-5 · 1 ch (DBV, p.3)",
+      "winner": "TIE",
+      "note": "Single SOT-23-5 op-amps vary in pin ordering across vendors; verify Pin 1–5."
+    },
+    {
+      "metric": "Supply Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "1.8 to 5.5 V (p.5)",
+      "part_b_value": "1.6 to 5.5 V (p.5)",
+      "winner": "B",
+      "note": "A part wins only if its recommended Vs range strictly encompasses the counterpart on both ends."
+    },
+    {
+      "metric": "Absolute Max Supply (Vs,abs)",
+      "unit": "V",
+      "part_a_value": "7 V (p.5)",
+      "part_b_value": "6 V (p.5)",
+      "winner": "A",
+      "note": "Exceeding Vs,abs causes immediate gate-oxide or junction breakdown."
+    },
+    {
+      "metric": "Gain-Bandwidth Product (GBWP)",
+      "unit": "MHz",
+      "part_a_value": "0.35 MHz (p.7)",
+      "part_b_value": "N/A (Comparator)",
+      "winner": "CONTEXT",
+      "note": "Closed-loop -3 dB bandwidth scales as f_-3dB = GBWP / Acl."
+    },
+    {
+      "metric": "Slew Rate / Propagation Delay",
+      "unit": "V/µs · ns",
+      "part_a_value": "SR: 0.16 V/µs (p.7)",
+      "part_b_value": "tpd: 310 ns (p.7)",
+      "winner": "CONTEXT",
+      "note": "Controls large-signal full-power bandwidth SR / (2π·Vpeak) or comparator switching speed."
+    },
+    {
+      "metric": "Input Offset Voltage (Vos, max)",
+      "unit": "mV",
+      "part_a_value": "0.01 mV (p.7)",
+      "part_b_value": "8 mV (p.7)",
+      "winner": "A",
+      "note": "Lower Vos minimizes DC error in current-shunt and sensor bridge amplifiers."
+    },
+    {
+      "metric": "Input Bias Current (Ib, typ)",
+      "unit": "pA",
+      "part_a_value": "70 pA (p.7)",
+      "part_b_value": "5 pA (p.7)",
+      "winner": "B",
+      "note": "CMOS/JFET pA-class inputs avoid offset voltage drops across high-impedance (>100 kΩ) sensors."
+    },
+    {
+      "metric": "Quiescent Current / Ch (Iq)",
+      "unit": "µA/ch",
+      "part_a_value": "17 µA/ch (p.7)",
+      "part_b_value": "5 µA/ch (p.7)",
+      "winner": "B",
+      "note": "Multiply by channel count for total IC standby current draw."
+    },
+    {
+      "metric": "Rail-to-Rail Input / Output",
+      "unit": "—",
+      "part_a_value": "IN: Yes · OUT: Yes",
+      "part_b_value": "IN: Yes · OUT: Yes",
+      "winner": "TIE",
+      "note": "RRIO prevents clipping on low-voltage 3.3 V single-supply ADC buffers."
+    },
+    {
+      "metric": "CMRR (typ) & Input Noise",
+      "unit": "dB · nV/√Hz",
+      "part_a_value": "130 dB (p.7) · Not specified",
+      "part_b_value": "78 dB (p.7) · Not specified",
+      "winner": "A",
+      "note": "Winner requires superiority on both CMRR (higher) and input voltage noise (lower); mixed tradeoffs stay CONTEXT."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "220.8 °C/W (p.6) · 150 °C",
+      "part_b_value": "306.3 °C/W (p.6) · 150 °C",
+      "winner": "A",
+      "note": "Important when driving heavy resistive loads or high supply rails."
+    }
+  ],
+  "swap_risks": [
+    "CRITICAL OP-AMP VS COMPARATOR TRAP: OPA333AIDBVR is a opamp with push-pull output while TLV7011DBVR is a comparator with push-pull output. Even with identical pinouts, a comparator is an uncompensated switching device: dropping it into a linear negative-feedback op-amp circuit (buffer, gain stage, filter) causes oscillation or latch-up, and an op-amp used as a comparator suffers slow overdrive/saturation recovery. Both outputs are push-pull (no external pull-up required) — the incompatibility is loop compensation and switching behavior, not pull-up drive.",
+    "CAUTION PRECISION OFFSET SHIFT: Maximum Vos differs by 800x (OPA333AIDBVR: 0.01 mV p.7 vs TLV7011DBVR: 8 mV p.7); high-gain DC sensor stages may lose accuracy or require zero-drift chopper filtering.",
+    "HIGH INPUT BIAS CURRENT SHIFT: Typical Ib differs by 14x (OPA333AIDBVR: 70 pA p.7 vs TLV7011DBVR: 5 pA p.7); high-impedance sensor dividers (>100 kΩ) suffer severe Ib·R DC offset error when swapping from CMOS/JFET to bipolar inputs.",
+    "CAUTION QUIESCENT CURRENT SHIFT: Supply current per channel differs by 3.4x (OPA333AIDBVR: 17 µA/ch p.7 vs TLV7011DBVR: 5 µA/ch p.7); verify battery budget and total power dissipation across all channels.",
+    "HIGH THERMAL MARGIN: Package θJA is 39% higher on TLV7011DBVR (OPA333AIDBVR: 220.8 °C/W p.6 vs TLV7011DBVR: 306.3 °C/W p.6); re-check Tj = Ta + Pd × θJA against Tj,max."
+  ],
+  "engineering_verdict": "OPA333AIDBVR (Texas Instruments, SOT-23-5) and TLV7011DBVR (Texas Instruments, SOT-23-5) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to device kind mismatch (opamp/push-pull vs comparator/push-pull) — circuit redesign required. Specific pin conflicts: Pin 1 (OUT vs OUT). Signal-chain deltas: opamp (push-pull) vs comparator (push-pull), supply ceiling 5.5 V (p.5) vs 5.5 V (p.5), Vos 0.01 mV (p.7) vs 8 mV (p.7), Ib 14x gap (70 vs 5 pA). Primary bench gotchas to watch: OPA333AIDBVR \"Weak ±5 mA Output Drive and 350 kHz / 0.16 V/µs Speed Limit vs Pin-Identical TLV9001/TLV9061\" (p.7) and TLV7011DBVR \"Push-Pull Output Cannot Be Wired-AND or Pulled Up to a Higher Logic Rail\" (p.5). BOM decision: Choose OPA333AIDBVR when the circuit is a linear closed-loop amplifier, buffer, or active filter or DC precision demands <= 0.01 mV max Vos; choose TLV7011DBVR when the circuit is an open-loop threshold/window comparator (push-pull output) or high-impedance sensors require pA-class input bias (5 pA). Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
+  "generated_at": "2026-11-23"
+}

@@ -6,16 +6,20 @@
  * `data/pilot-manifest.json` deterministically:
  *  - Preserves all existing parts and existing `vs_pairs` (zero URL rot / 404).
  *  - Appends newly verified parts in deterministic order.
+ *  - Auto-includes every legitimate symmetric Level 1 Candidate Drop-In pair (and prioritizes
+ *    directional L1 replacements) so true drop-in pairs always have dedicated `/en/vs/` pages.
  *  - For each newly added part, selects up to `max_new_vs_per_part` (default 3) high-value
- *    same-category comparisons (prioritizing same-package / same-pin-count / same-topology swaps)
- *    with strict alphabetical ordering (`part_a < part_b`) per AUD-06.
- *  - Keeps `static_routes` synced with actual guides & tools (including `/en/tools/bom-checker`).
+ *    same-category comparisons (penalizing op-amp vs comparator, boost vs buck, fixed Vout
+ *    mismatch, and pinout mismatch) with strict alphabetical ordering (`part_a < part_b`) per AUD-06.
+ *  - Keeps `static_routes` synced with all hubs (`/en`, `/en/catalog`, `/en/tools`, `/en/guides`),
+ *    all 7 engineering tools, all verified guides, and all trust pages.
  *  - Recalculates `page_budget` accurately and marks completed OPNs in `data/expansion-backlog.json`.
  */
 
 import fs from 'node:fs';
 import path from 'node:path';
 import { verifyGoldenPart } from './stage2_physics_verifier.mjs';
+import { evaluateCompatibility, evaluateReplacement } from './stage3_xref_engine.mjs';
 
 const MANIFEST_PATH = path.resolve('data/pilot-manifest.json');
 const BACKLOG_PATH = path.resolve('data/expansion-backlog.json');
@@ -24,6 +28,26 @@ const GUIDES_DIR = path.resolve('data/guides');
 const TRUST_DIR = path.resolve('data/trust');
 
 const MAX_NEW_VS_PER_PART = 3;
+
+const REQUIRED_HUB_ROUTES = [
+  '/en',
+  '/en/catalog',
+  '/en/compare',
+  '/en/packages',
+  '/en/vs',
+  '/en/tools',
+  '/en/guides',
+];
+
+const REQUIRED_TOOL_ROUTES = [
+  '/en/tools/bom-checker',
+  '/en/tools/compare',
+  '/en/tools/pinout-finder',
+  '/en/tools/feedback-divider',
+  '/en/tools/ldo-thermal-calculator',
+  '/en/tools/dcdc-efficiency-ripple-calculator',
+  '/en/tools/opamp-gbwp-slewrate-checker',
+];
 
 function collectJsonFiles(dir) {
   if (!fs.existsSync(dir)) return [];
@@ -36,30 +60,74 @@ function collectJsonFiles(dir) {
   return out.sort();
 }
 
-function pairSimilarityScore(a, b) {
+export function pairSimilarityScore(a, b) {
+  const evalSym = evaluateCompatibility(a, b);
+  const evalAB = evaluateReplacement(a, b);
+  const evalBA = evaluateReplacement(b, a);
+
   let score = 0;
-  if (a.package.code === b.package.code) score += 50;
-  else if (a.package.pin_count === b.package.pin_count) score += 30;
-  if (a.sub_topology === b.sub_topology) score += 25;
+
+  // Compatibility & physical pinout weighting
+  if (evalSym.compatibility_level === 'LEVEL_1_CANDIDATE_DROP_IN') score += 90;
+  else if (
+    evalAB.compatibility_level === 'LEVEL_1_CANDIDATE_DROP_IN' ||
+    evalBA.compatibility_level === 'LEVEL_1_CANDIDATE_DROP_IN'
+  ) {
+    score += 70;
+  } else if (evalSym.compatibility_level === 'LEVEL_2_TUNING_REQUIRED') {
+    score += 45;
+  } else {
+    score -= 25;
+  }
+
+  if (a.package.code === b.package.code) score += 45;
+  else if (a.package.pin_count === b.package.pin_count) score += 20;
+  else score -= 25;
+
+  if (evalSym.pinout_exact_match) score += 35;
+  else score -= 30;
+
+  if (evalSym.exposed_pad_match) score += 10;
+  else score -= 20;
+
+  if (a.sub_topology === b.sub_topology) score += 20;
   if (a.manufacturer !== b.manufacturer) score += 8; // cross-vendor second-source value
   if (a.family !== b.family) score += 5;
 
   if (a.category === 'ldo' && b.category === 'ldo') {
-    if (Math.abs(a.specs.vout_v.value - b.specs.vout_v.value) < 0.1) score += 12;
+    if (a.specs.vout_fixed && b.specs.vout_fixed) {
+      if (Math.abs(a.specs.vout_v.value - b.specs.vout_v.value) <= 0.05) score += 15;
+      else score -= 50; // penalize fixed Vout mismatch (e.g. 3.3V vs 5.0V)
+    } else if (a.specs.vout_fixed !== b.specs.vout_fixed) {
+      score -= 30;
+    }
     const ratio =
       Math.min(a.specs.iout_max_ma.value, b.specs.iout_max_ma.value) /
       Math.max(a.specs.iout_max_ma.value, b.specs.iout_max_ma.value, 1);
     score += Math.round(ratio * 10);
   } else if (a.category === 'dcdc' && b.category === 'dcdc') {
-    if (a.specs.topology === b.specs.topology) score += 20;
+    if (a.specs.topology === b.specs.topology) score += 25;
+    else score -= 85; // strongly penalize boost vs buck
+    if (a.specs.synchronous === b.specs.synchronous) score += 10;
+    else score -= 20;
+    if (a.specs.vout_fixed && b.specs.vout_fixed) {
+      const va = a.specs.vout_nom_v?.value ?? a.specs.vout_min_v.value;
+      const vb = b.specs.vout_nom_v?.value ?? b.specs.vout_min_v.value;
+      if (Math.abs(va - vb) > 0.05) score -= 50;
+    }
     const vinOverlap =
       Math.min(a.specs.vin_max_v.value, b.specs.vin_max_v.value) >
       Math.max(a.specs.vin_min_v.value, b.specs.vin_min_v.value);
     if (vinOverlap) score += 10;
   } else if (a.category === 'opamp' && b.category === 'opamp') {
     if (a.specs.channels === b.specs.channels) score += 25;
-    if (a.specs.device_kind === b.specs.device_kind) score += 10;
+    else score -= 40;
+    if (a.specs.device_kind === b.specs.device_kind) score += 20;
+    else score -= 90; // strongly penalize op-amp vs comparator
+    if (a.specs.output_type === b.specs.output_type) score += 10;
+    else score -= 15;
   }
+
   return score;
 }
 
@@ -139,8 +207,32 @@ for (const pair of manifest.vs_pairs || []) {
   });
 }
 
-// 4. Deterministically generate up to MAX_NEW_VS_PER_PART pairs for each newly added part
-let addedVsCount = 0;
+// 4a. Auto-include all legitimate symmetric Level 1 Candidate Drop-In pairs across the dataset
+let autoL1VsCount = 0;
+const allEntries = [...loadedParts.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+for (let i = 0; i < allEntries.length; i++) {
+  const [slugA, { part: partA }] = allEntries[i];
+  for (let j = i + 1; j < allEntries.length; j++) {
+    const [slugB, { part: partB }] = allEntries[j];
+    if (partA.category !== partB.category) continue;
+    const vsSlug = `${slugA}-vs-${slugB}`;
+    if (vsSeen.has(vsSlug)) continue;
+    const sym = evaluateCompatibility(partA, partB);
+    if (sym.compatibility_level === 'LEVEL_1_CANDIDATE_DROP_IN') {
+      vsSeen.add(vsSlug);
+      syncedVs.push({
+        slug: vsSlug,
+        category: partA.category,
+        part_a: slugA,
+        part_b: slugB,
+      });
+      autoL1VsCount++;
+    }
+  }
+}
+
+// 4b. Deterministically generate up to MAX_NEW_VS_PER_PART pairs for each newly added part
+let addedVsCount = autoL1VsCount;
 for (const newSlug of newlyAddedSlugs) {
   const newPart = loadedParts.get(newSlug).part;
   const candidates = [];
@@ -170,23 +262,19 @@ for (const newSlug of newlyAddedSlugs) {
   }
 }
 
-// 5. Sync static routes (guides, trust pages, and tools including BOM Checker)
+// 5. Sync static routes (hubs, all 7 tools preserved via toolsSet, guides, trust pages)
 const guideSlugs = collectJsonFiles(GUIDES_DIR).map((f) => path.basename(f, '.json'));
 const trustSlugs = collectJsonFiles(TRUST_DIR).map((f) => path.basename(f, '.json'));
+
+const hubsSet = new Set(manifest.static_routes?.hubs || []);
+for (const hub of REQUIRED_HUB_ROUTES) hubsSet.add(hub);
+
 const toolsSet = new Set(manifest.static_routes?.tools || []);
-toolsSet.add('/en/tools/ldo-thermal-calculator');
-toolsSet.add('/en/tools/dcdc-efficiency-ripple-calculator');
-toolsSet.add('/en/tools/opamp-gbwp-slewrate-checker');
-toolsSet.add('/en/tools/bom-checker');
+for (const tool of REQUIRED_TOOL_ROUTES) toolsSet.add(tool);
 
 const staticRoutes = {
-  hubs: ['/en', '/en/catalog'],
-  tools: [
-    '/en/tools/ldo-thermal-calculator',
-    '/en/tools/dcdc-efficiency-ripple-calculator',
-    '/en/tools/opamp-gbwp-slewrate-checker',
-    '/en/tools/bom-checker',
-  ],
+  hubs: [...hubsSet],
+  tools: [...toolsSet],
   guides: guideSlugs.map((s) => `/en/guides/${s}`),
   trust_pages: ['about', 'methodology', 'disclaimer', 'privacy', 'contact']
     .filter((s) => trustSlugs.includes(s))
@@ -197,7 +285,7 @@ const staticCount = Object.values(staticRoutes).reduce((acc, arr) => acc + arr.l
 const totalPages = syncedParts.length * 2 + syncedVs.length + staticCount;
 
 const nextManifest = {
-  manifest_version: '2.1.0',
+  manifest_version: '2.2.0',
   locale: 'en',
   updated_at: new Date().toISOString().slice(0, 10),
   page_budget: {
@@ -234,5 +322,5 @@ if (fs.existsSync(BACKLOG_PATH)) {
 }
 
 console.log(
-  `Manifest synced PASS: parts=${syncedParts.length} (+${newlyAddedSlugs.length} new), alt=${syncedParts.length}, vs=${syncedVs.length} (+${addedVsCount} new), static=${staticCount}, TOTAL=${totalPages} EN pages.`,
+  `Manifest synced PASS: parts=${syncedParts.length} (+${newlyAddedSlugs.length} new), alt=${syncedParts.length}, vs=${syncedVs.length} (+${addedVsCount} new, incl. ${autoL1VsCount} auto-L1), static=${staticCount} (${staticRoutes.hubs.length} hubs, ${staticRoutes.tools.length} tools, ${staticRoutes.guides.length} guides, ${staticRoutes.trust_pages.length} trust), TOTAL=${totalPages} EN pages.`,
 );

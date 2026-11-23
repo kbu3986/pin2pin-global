@@ -1,0 +1,168 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "lmv321idbvr-vs-tlv9001uidbvr",
+  "category": "opamp",
+  "part_a_slug": "lmv321idbvr",
+  "part_b_slug": "tlv9001uidbvr",
+  "part_a_opn": "LMV321IDBVR",
+  "part_b_opn": "TLV9001UIDBVR",
+  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+  "package_match": true,
+  "pinout_exact_match": true,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "1IN+",
+      "part_a_role": "IN_POS",
+      "part_b_name": "IN+",
+      "part_b_role": "IN_POS",
+      "status": "MATCH",
+      "note": "Functionally identical IN_POS pin (1IN+ vs IN+)."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "GND",
+      "part_a_role": "VEE",
+      "part_b_name": "V-",
+      "part_b_role": "VEE",
+      "status": "MATCH",
+      "note": "Functionally identical VEE pin (GND vs V-)."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "1IN-",
+      "part_a_role": "IN_NEG",
+      "part_b_name": "IN-",
+      "part_b_role": "IN_NEG",
+      "status": "MATCH",
+      "note": "Functionally identical IN_NEG pin (1IN- vs IN-)."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "OUT",
+      "part_a_role": "OUT",
+      "part_b_name": "OUT",
+      "part_b_role": "OUT",
+      "status": "MATCH",
+      "note": "Identical pin assignment (OUT / OUT)."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "VCC+",
+      "part_a_role": "VCC",
+      "part_b_name": "V+",
+      "part_b_role": "VCC",
+      "status": "MATCH",
+      "note": "Functionally identical VCC pin (VCC+ vs V+)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Device Kind & Output Stage",
+      "unit": "—",
+      "part_a_value": "opamp (push-pull)",
+      "part_b_value": "opamp (push-pull)",
+      "winner": "TIE",
+      "note": "Op-amps (internally compensated for linear feedback) and comparators (uncompensated open-loop switching) are NOT drop-in interchangeable."
+    },
+    {
+      "metric": "Package & Channel Count",
+      "unit": "—",
+      "part_a_value": "SOT-23-5 · 1 ch (DBV, p.3)",
+      "part_b_value": "SOT-23-5 · 1 ch (DBV (U-Pinout), p.7)",
+      "winner": "TIE",
+      "note": "Single SOT-23-5 op-amps vary in pin ordering across vendors; verify Pin 1–5."
+    },
+    {
+      "metric": "Supply Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "2.7 to 5.5 V (p.5)",
+      "part_b_value": "1.8 to 5.5 V (p.14)",
+      "winner": "B",
+      "note": "A part wins only if its recommended Vs range strictly encompasses the counterpart on both ends."
+    },
+    {
+      "metric": "Absolute Max Supply (Vs,abs)",
+      "unit": "V",
+      "part_a_value": "5.5 V (p.5)",
+      "part_b_value": "7 V (p.14)",
+      "winner": "B",
+      "note": "Exceeding Vs,abs causes immediate gate-oxide or junction breakdown."
+    },
+    {
+      "metric": "Gain-Bandwidth Product (GBWP)",
+      "unit": "MHz",
+      "part_a_value": "1 MHz (p.7)",
+      "part_b_value": "1 MHz (p.17)",
+      "winner": "TIE",
+      "note": "Closed-loop -3 dB bandwidth scales as f_-3dB = GBWP / Acl."
+    },
+    {
+      "metric": "Slew Rate / Propagation Delay",
+      "unit": "V/µs · ns",
+      "part_a_value": "SR: 1 V/µs (p.7)",
+      "part_b_value": "SR: 2 V/µs (p.17)",
+      "winner": "B",
+      "note": "Controls large-signal full-power bandwidth SR / (2π·Vpeak) or comparator switching speed."
+    },
+    {
+      "metric": "Input Offset Voltage (Vos, max)",
+      "unit": "mV",
+      "part_a_value": "7 mV (p.7)",
+      "part_b_value": "1.6 mV (p.17)",
+      "winner": "B",
+      "note": "Lower Vos minimizes DC error in current-shunt and sensor bridge amplifiers."
+    },
+    {
+      "metric": "Input Bias Current (Ib, typ)",
+      "unit": "pA",
+      "part_a_value": "15000 pA (p.7)",
+      "part_b_value": "5 pA (p.17)",
+      "winner": "B",
+      "note": "CMOS/JFET pA-class inputs avoid offset voltage drops across high-impedance (>100 kΩ) sensors."
+    },
+    {
+      "metric": "Quiescent Current / Ch (Iq)",
+      "unit": "µA/ch",
+      "part_a_value": "130 µA/ch (p.7)",
+      "part_b_value": "60 µA/ch (p.18)",
+      "winner": "B",
+      "note": "Multiply by channel count for total IC standby current draw."
+    },
+    {
+      "metric": "Rail-to-Rail Input / Output",
+      "unit": "—",
+      "part_a_value": "IN: No · OUT: Yes",
+      "part_b_value": "IN: Yes · OUT: Yes",
+      "winner": "B",
+      "note": "RRIO prevents clipping on low-voltage 3.3 V single-supply ADC buffers."
+    },
+    {
+      "metric": "CMRR (typ) & Input Noise",
+      "unit": "dB · nV/√Hz",
+      "part_a_value": "65 dB (p.7) · 39 nV/√Hz (p.7)",
+      "part_b_value": "77 dB (p.17) · 30 nV/√Hz (p.17)",
+      "winner": "B",
+      "note": "Winner requires superiority on both CMRR (higher) and input voltage noise (lower); mixed tradeoffs stay CONTEXT."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "232.9 °C/W (p.5) · 150 °C",
+      "part_b_value": "232.9 °C/W (p.15) · 150 °C",
+      "winner": "TIE",
+      "note": "Important when driving heavy resistive loads or high supply rails."
+    }
+  ],
+  "swap_risks": [
+    "HIGH HEADROOM / CLIPPING RISK: Rail-to-rail capability differs (LMV321IDBVR: IN=Non-RR, OUT=RR vs TLV9001UIDBVR: IN=RR, OUT=RR); verify input common-mode range (Vicm) and output voltage swing against ADC full-scale range.",
+    "HIGH INPUT BIAS CURRENT SHIFT: Typical Ib differs by 3000x (LMV321IDBVR: 15000 pA p.7 vs TLV9001UIDBVR: 5 pA p.17); high-impedance sensor dividers (>100 kΩ) suffer severe Ib·R DC offset error when swapping from CMOS/JFET to bipolar inputs.",
+    "CAUTION QUIESCENT CURRENT SHIFT: Supply current per channel differs by 2.2x (LMV321IDBVR: 130 µA/ch p.7 vs TLV9001UIDBVR: 60 µA/ch p.18); verify battery budget and total power dissipation across all channels.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: LMV321IDBVR has a lower Vs,abs,max rating (5.5 V, p.5) than TLV9001UIDBVR (7 V, p.14); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 5.5 V.",
+    "HIGH MINIMUM SUPPLY FLOOR: LMV321IDBVR requires Vs,min >= 2.7 V (p.5) vs 1.8 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor."
+  ],
+  "engineering_verdict": "LMV321IDBVR (Texas Instruments, SOT-23-5) and TLV9001UIDBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because rail-to-rail input/output swing differs; input bias current Ib differs 3000x (CMOS vs bipolar input stage); quiescent supply current Iq/ch differs 2.2x. Signal-chain deltas: GBWP 1 MHz (p.7) vs 1 MHz (p.17), supply ceiling 5.5 V (p.5) vs 5.5 V (p.14), Vos 7 mV (p.7) vs 1.6 mV (p.17), Ib 3000x gap (15000 vs 5 pA), voltage noise 39 vs 30 nV/√Hz. Primary bench gotchas to watch: LMV321IDBVR \"CRITICAL SOT-23-5 Pinout Mismatch vs TLV9001IDBVR, TLV9061IDBVR, OPA333AIDBVR, and TLV3201AIDBVR\" (p.3) and TLV9001UIDBVR \"Single-Letter 'U' Suffix Reverses SOT-23-5 Pinout (Matches LMV321IDBVR, Breaks TLV9001IDBVR PCBs)\" (p.7). BOM decision: Choose LMV321IDBVR when matching your existing Texas Instruments SOT-23-5 (DBV) qualification and -40..125 °C grade; choose TLV9001UIDBVR when DC precision demands <= 1.6 mV max Vos or high-impedance sensors require pA-class input bias (5 pA). Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.7) and official datasheets on hardware prototypes prior to production.",
+  "generated_at": "2026-11-23"
+}

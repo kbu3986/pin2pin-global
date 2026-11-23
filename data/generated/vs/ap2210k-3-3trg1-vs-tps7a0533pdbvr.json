@@ -72,8 +72,8 @@
       "unit": "V",
       "part_a_value": "2.5 to 13.2 V (p.4)",
       "part_b_value": "1.4 to 5.5 V (p.6)",
-      "winner": "A",
-      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+      "winner": "CONTEXT",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -159,9 +159,13 @@
   "swap_risks": [
     "HIGH PIN 4 (NC vs BYPASS/NR) CHECK: One device uses Pin 4 as an internal bandgap bypass/noise-reduction node while the other is NC. Verify Pin 4 is NOT tied to GND or VIN on the existing PCB before swapping; add a 10 nF bypass cap if low noise is required.",
     "CRITICAL CAPACITOR ESR OSCILLATION RISK: TPS7A0533PDBVR is stable with low-ESR ceramic MLCCs (>= 0.47 µF, p.6), whereas AP2210K-3.3TRG1 is NOT ceramic-cap stable (ESR window: 0.025–15 Ω (p.22)). Using an ultra-low-ESR MLCC on AP2210K-3.3TRG1 can trigger control-loop oscillation.",
+    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs by 4.7x (AP2210K-3.3TRG1: 2.2 µF p.23 vs TPS7A0533PDBVR: 0.47 µF p.6); account for MLCC DC-bias derating.",
     "HIGH INPUT VOLTAGE RATING DROP: TPS7A0533PDBVR is rated to only 5.5 V rec. (6 V abs max, p.6) vs AP2210K-3.3TRG1 at 13.2 V rec. (15 V abs max, p.4). Verify worst-case input transient spikes.",
-    "HIGH LOAD CURRENT DERATING: TPS7A0533PDBVR supplies up to 200 mA (p.6) compared to AP2210K-3.3TRG1 at 300 mA (p.1); confirm peak inrush and thermal dissipation margin."
+    "HIGH LOAD CURRENT DERATING: TPS7A0533PDBVR supplies up to 200 mA (p.6) compared to AP2210K-3.3TRG1 at 300 mA (p.1); confirm peak inrush and thermal dissipation margin.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: TPS7A0533PDBVR has a lower Vin,abs,max rating (6 V, p.6) than AP2210K-3.3TRG1 (15 V, p.4); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 6 V.",
+    "HIGH MINIMUM SUPPLY FLOOR: AP2210K-3.3TRG1 requires Vin,min >= 2.5 V (p.4) vs 1.4 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (AP2210K-3.3TRG1: -40..85 °C Industrial (-40°C to +85°C ambient; -40°C to +125°C TJ) vs TPS7A0533PDBVR: -40..125 °C Extended Industrial (-40°C to +125°C TJ)); AP2210K-3.3TRG1 hot limit only 85 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "AP2210K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and TPS7A0533PDBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to Pin 4 NC vs BYPASS difference; ceramic output capacitor ESR stability difference; Vin,max rating drops >20%. Key datasheet deltas: Iq is 100 µA (p.11) vs 1 µA (p.7), max output current is 300 mA (p.1) vs 200 mA (p.6), recommended Vin,max is 13.2 V (p.4) vs 5.5 V (p.6), typical dropout is 250 mV (p.11) vs 235 mV (p.8), and ceramic capacitor stability is ESR-constrained vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.4), thermal margin (θJA 200 vs 185.6 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AP2210K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and TPS7A0533PDBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because Pin 4 NC vs BYPASS difference; ceramic output capacitor ESR stability difference; minimum output capacitance requirement differs 4.7x. Under a representative 5 V → 3.3 V rail at 150 mA (255 mW), estimated self-heating is ΔTj ≈ 51 °C on AP2210K-3.3TRG1 (θJA 200 °C/W) vs 47.3 °C on TPS7A0533PDBVR (θJA 185.6 °C/W), while quiescent draw spans a 100x ratio (100 µA (p.11) vs 1 µA (p.7)). Primary bench gotchas to watch: AP2210K-3.3TRG1 \"Pin 4 Is Active BYP (Internal Reference), NOT NC — CBYP Must Not Exceed 100 pF\" (p.23) and TPS7A0533PDBVR \"Cold-Temp (< 15°C) Ramp-Down Rate Trap Causes 130 ms Startup Delay or Glitch\" (p.22). BOM decision: Choose AP2210K-3.3TRG1 when load current exceeds 200 mA (up to 300 mA) or input rails climb above 5.5 V (rated to 13.2 V); choose TPS7A0533PDBVR when battery sleep budget demands 1 µA Iq or your BOM standardizes on low-ESR MLCC ceramic output capacitors. Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.4) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

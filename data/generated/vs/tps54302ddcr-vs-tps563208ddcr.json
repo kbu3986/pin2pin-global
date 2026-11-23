@@ -1,0 +1,180 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "tps54302ddcr-vs-tps563208ddcr",
+  "category": "dcdc",
+  "part_a_slug": "tps54302ddcr",
+  "part_b_slug": "tps563208ddcr",
+  "part_a_opn": "TPS54302DDCR",
+  "part_b_opn": "TPS563208DDCR",
+  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+  "package_match": true,
+  "pinout_exact_match": true,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "GND",
+      "part_a_role": "GND",
+      "part_b_name": "GND",
+      "part_b_role": "GND",
+      "status": "MATCH",
+      "note": "Identical pin assignment (GND / GND)."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "SW",
+      "part_a_role": "SW",
+      "part_b_name": "SW",
+      "part_b_role": "SW",
+      "status": "MATCH",
+      "note": "Identical pin assignment (SW / SW)."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "VIN",
+      "part_a_role": "VIN",
+      "part_b_name": "VIN",
+      "part_b_role": "VIN",
+      "status": "MATCH",
+      "note": "Identical pin assignment (VIN / VIN)."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "FB",
+      "part_a_role": "FB",
+      "part_b_name": "VFB",
+      "part_b_role": "FB",
+      "status": "CAUTION",
+      "note": "Reference voltage differs (0.596 V vs 0.768 V): recalculate external R1/R2 divider to maintain target VOUT."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "EN",
+      "part_a_role": "EN",
+      "part_b_name": "EN",
+      "part_b_role": "EN",
+      "status": "MATCH",
+      "note": "Identical pin assignment (EN / EN)."
+    },
+    {
+      "pin": 6,
+      "part_a_name": "BOOT",
+      "part_a_role": "BOOT",
+      "part_b_name": "VBST",
+      "part_b_role": "BOOT",
+      "status": "MATCH",
+      "note": "Functionally identical BOOT pin (BOOT vs VBST)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Topology & Rectification",
+      "unit": "—",
+      "part_a_value": "buck (Synchronous)",
+      "part_b_value": "buck (Synchronous)",
+      "winner": "TIE",
+      "note": "Synchronous rectification eliminates external Schottky diode loss and PCB area."
+    },
+    {
+      "metric": "Package & Exposed Pad",
+      "unit": "—",
+      "part_a_value": "SOT-23-6 (DDC, EP: None, p.3)",
+      "part_b_value": "SOT-23-6 (DDC, EP: None, p.3)",
+      "winner": "TIE",
+      "note": "Compact WSON/VSON/SOT-563 packages demand tight hot-loop layout and thermal vias."
+    },
+    {
+      "metric": "Input Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "4.5 to 28 V (p.4)",
+      "part_b_value": "4.5 to 17 V (p.4)",
+      "winner": "A",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
+    },
+    {
+      "metric": "Absolute Max Input Voltage",
+      "unit": "V",
+      "part_a_value": "30 V (p.4)",
+      "part_b_value": "19 V (p.4)",
+      "winner": "A",
+      "note": "Provides transient overshoot margin above nominal DC supply bus."
+    },
+    {
+      "metric": "Output Voltage Range",
+      "unit": "V",
+      "part_a_value": "0.596 to 28 V (p.5/p.12) (Adj)",
+      "part_b_value": "0.76 to 7 V (p.1) (Adj)",
+      "winner": "A",
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
+    },
+    {
+      "metric": "Max Current (Iout or Isw Limit)",
+      "unit": "mA",
+      "part_a_value": "3000 mA (p.1) [Iout max]",
+      "part_b_value": "3000 mA (p.1) [Iout max]",
+      "winner": "TIE",
+      "note": "Continuous DC output current rating; verify inductor Isat >= Iout + ΔIL/2 and thermal margin."
+    },
+    {
+      "metric": "Quiescent Current (Iq, typ)",
+      "unit": "µA",
+      "part_a_value": "45 µA (p.5)",
+      "part_b_value": "350 µA (p.6)",
+      "winner": "A",
+      "note": "Dominates light-load efficiency and standby battery runtime."
+    },
+    {
+      "metric": "Switching Frequency (fsw, typ)",
+      "unit": "kHz",
+      "part_a_value": "400 kHz (p.5)",
+      "part_b_value": "580 kHz (p.6)",
+      "winner": "CONTEXT",
+      "note": "Higher fsw shrinks inductor footprint; lower fsw reduces switching losses & high-band EMI."
+    },
+    {
+      "metric": "Peak Efficiency",
+      "unit": "%",
+      "part_a_value": "95 % (p.1)",
+      "part_b_value": "96 % (p.9)",
+      "winner": "B",
+      "note": "Check datasheet efficiency curve at your exact Vin/Vout/Iout operating point."
+    },
+    {
+      "metric": "Recommended Inductor (L, typ)",
+      "unit": "µH",
+      "part_a_value": "10 µH (p.18)",
+      "part_b_value": "2.2 µH (p.15)",
+      "winner": "CONTEXT",
+      "note": "Ensure inductor Isat exceeds worst-case peak switch current by >= 20–30%."
+    },
+    {
+      "metric": "Feedback Reference (Vref)",
+      "unit": "V",
+      "part_a_value": "0.596 V (p.5)",
+      "part_b_value": "0.768 V (p.6)",
+      "winner": "CONTEXT",
+      "note": "Any Vref discrepancy requires recalculating feedback divider R1/R2."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "118.9 °C/W (p.4) · 125 °C",
+      "part_b_value": "92.6 °C/W (p.5) · 125 °C",
+      "winner": "B",
+      "note": "Lower θJA improves continuous load thermal headroom on compact 2-layer PCBs."
+    }
+  ],
+  "swap_risks": [
+    "CRITICAL SWITCH-VOLTAGE OVERSTRESS RISK: TPS563208DDCR is rated up to only 7 V output (p.1) vs TPS54302DDCR up to 28 V (p.12); exceeding the internal switch BVdss ceiling destroys the SW MOSFET.",
+    "HIGH MINIMUM OUTPUT VOLTAGE FLOOR: TPS563208DDCR cannot regulate below 0.76 V (p.1) vs TPS54302DDCR down to 0.596 V (p.5); verify your target rail sits above the higher Vout,min floor.",
+    "HIGH VREF MISMATCH: Feedback reference differs (TPS54302DDCR: 0.596 V p.5 vs TPS563208DDCR: 0.768 V p.6); dropping in without recalculating R1/R2 will output the wrong voltage rail.",
+    "HIGH SWITCHING FREQUENCY SHIFT: fsw differs by 31% (TPS54302DDCR: 400 kHz p.5 vs TPS563208DDCR: 580 kHz p.6); re-evaluate inductor core loss, ripple current ΔIL, output capacitor ESR ripple, and EMI harmonics.",
+    "CAUTION INDUCTOR RETUNING: Typical inductor differs (TPS54302DDCR: 10 µH p.18 vs TPS563208DDCR: 2.2 µH p.15); check inductor Isat against peak switch current limit.",
+    "HIGH INPUT VOLTAGE RANGE SHIFT: Recommended Vin,max differs (TPS54302DDCR: 28 V p.4 vs TPS563208DDCR: 17 V p.4); verify line transients stay below Vin,abs,max.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: TPS563208DDCR has a lower Vin,abs,max rating (19 V, p.4) than TPS54302DDCR (30 V, p.4); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 19 V.",
+    "HIGH THERMAL MARGIN: Package θJA is 28% higher on TPS54302DDCR (TPS54302DDCR: 118.9 °C/W p.4 vs TPS563208DDCR: 92.6 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max."
+  ],
+  "engineering_verdict": "TPS54302DDCR (Texas Instruments, SOT-23-6) and TPS563208DDCR (Texas Instruments, SOT-23-6) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because adjustable Vout,max ceiling drops >=20% (7 V vs 28 V — switch-voltage overstress risk); minimum programmable Vout,min rises (0.596 V vs 0.76 V); feedback reference voltage Vref differs. Power-stage deltas: buck (sync) vs buck (sync), switching frequency 400 kHz (p.5) vs 580 kHz (p.6) (1.4x ratio), typical inductor 10 µH (p.18) vs 2.2 µH (p.15), feedback Vref 0.596 V (p.5) vs 0.768 V (p.6), and package θJA 118.9 vs 92.6 °C/W. Primary bench gotchas to watch: TPS54302DDCR \"CRITICAL: EN Pin Abs Max Is ONLY 7.0 V (Rec 5.5 V) — NEVER Tie Directly to 12 V / 24 V VIN\" (p.4) and TPS563208DDCR \"FCCM Light-Load Efficiency Collapse (~12% at 5 mA) & 2.9x Higher IQ vs Pin-Identical TPS563201DDCR\" (p.9). BOM decision: Choose TPS54302DDCR when bus voltage exceeds 17 V (rated to 28 V) or programmed output rails exceed 7 V (up to 28 V); choose TPS563208DDCR when matching your existing Texas Instruments SOT-23-6 (DDC) qualification and -40..125 °C grade. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
+  "generated_at": "2026-11-23"
+}

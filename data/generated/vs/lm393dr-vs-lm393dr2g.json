@@ -1,0 +1,192 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "lm393dr-vs-lm393dr2g",
+  "category": "opamp",
+  "part_a_slug": "lm393dr",
+  "part_b_slug": "lm393dr2g",
+  "part_a_opn": "LM393DR",
+  "part_b_opn": "LM393DR2G",
+  "compatibility_level": "LEVEL_1_CANDIDATE_DROP_IN",
+  "compatibility_badge": "Candidate Drop-In (Verify Datasheet Before Production)",
+  "package_match": true,
+  "pinout_exact_match": true,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "1OUT",
+      "part_a_role": "OUT_A",
+      "part_b_name": "Output A",
+      "part_b_role": "OUT_A",
+      "status": "MATCH",
+      "note": "Functionally identical OUT_A pin (1OUT vs Output A)."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "1IN-",
+      "part_a_role": "IN_NEG_A",
+      "part_b_name": "Input A-",
+      "part_b_role": "IN_NEG_A",
+      "status": "MATCH",
+      "note": "Functionally identical IN_NEG_A pin (1IN- vs Input A-)."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "1IN+",
+      "part_a_role": "IN_POS_A",
+      "part_b_name": "Input A+",
+      "part_b_role": "IN_POS_A",
+      "status": "MATCH",
+      "note": "Functionally identical IN_POS_A pin (1IN+ vs Input A+)."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "GND",
+      "part_a_role": "VEE",
+      "part_b_name": "GND",
+      "part_b_role": "VEE",
+      "status": "MATCH",
+      "note": "Identical pin assignment (GND / VEE)."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "2IN+",
+      "part_a_role": "IN_POS_B",
+      "part_b_name": "Input B+",
+      "part_b_role": "IN_POS_B",
+      "status": "MATCH",
+      "note": "Functionally identical IN_POS_B pin (2IN+ vs Input B+)."
+    },
+    {
+      "pin": 6,
+      "part_a_name": "2IN-",
+      "part_a_role": "IN_NEG_B",
+      "part_b_name": "Input B-",
+      "part_b_role": "IN_NEG_B",
+      "status": "MATCH",
+      "note": "Functionally identical IN_NEG_B pin (2IN- vs Input B-)."
+    },
+    {
+      "pin": 7,
+      "part_a_name": "2OUT",
+      "part_a_role": "OUT_B",
+      "part_b_name": "Output B",
+      "part_b_role": "OUT_B",
+      "status": "MATCH",
+      "note": "Functionally identical OUT_B pin (2OUT vs Output B)."
+    },
+    {
+      "pin": 8,
+      "part_a_name": "VCC",
+      "part_a_role": "VCC",
+      "part_b_name": "VCC",
+      "part_b_role": "VCC",
+      "status": "MATCH",
+      "note": "Identical pin assignment (VCC / VCC)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Device Kind & Output Stage",
+      "unit": "—",
+      "part_a_value": "comparator (open-collector)",
+      "part_b_value": "comparator (open-collector)",
+      "winner": "TIE",
+      "note": "Op-amps (internally compensated for linear feedback) and comparators (uncompensated open-loop switching) are NOT drop-in interchangeable."
+    },
+    {
+      "metric": "Package & Channel Count",
+      "unit": "—",
+      "part_a_value": "SOIC-8 · 2 ch (D, p.3)",
+      "part_b_value": "SOIC-8 · 2 ch (CASE 751 (D), p.1)",
+      "winner": "TIE",
+      "note": "Single SOT-23-5 op-amps vary in pin ordering across vendors; verify Pin 1–5."
+    },
+    {
+      "metric": "Supply Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "2 to 30 V (p.4)",
+      "part_b_value": "2 to 36 V (p.1)",
+      "winner": "B",
+      "note": "A part wins only if its recommended Vs range strictly encompasses the counterpart on both ends."
+    },
+    {
+      "metric": "Absolute Max Supply (Vs,abs)",
+      "unit": "V",
+      "part_a_value": "36 V (p.4)",
+      "part_b_value": "36 V (p.2)",
+      "winner": "TIE",
+      "note": "Exceeding Vs,abs causes immediate gate-oxide or junction breakdown."
+    },
+    {
+      "metric": "Gain-Bandwidth Product (GBWP)",
+      "unit": "MHz",
+      "part_a_value": "N/A (Comparator)",
+      "part_b_value": "N/A (Comparator)",
+      "winner": "CONTEXT",
+      "note": "Closed-loop -3 dB bandwidth scales as f_-3dB = GBWP / Acl."
+    },
+    {
+      "metric": "Slew Rate / Propagation Delay",
+      "unit": "V/µs · ns",
+      "part_a_value": "tpd: 1300 ns (p.10)",
+      "part_b_value": "tpd: 1300 ns (p.3)",
+      "winner": "TIE",
+      "note": "Controls large-signal full-power bandwidth SR / (2π·Vpeak) or comparator switching speed."
+    },
+    {
+      "metric": "Input Offset Voltage (Vos, max)",
+      "unit": "mV",
+      "part_a_value": "5 mV (p.8)",
+      "part_b_value": "5 mV (p.3)",
+      "winner": "TIE",
+      "note": "Lower Vos minimizes DC error in current-shunt and sensor bridge amplifiers."
+    },
+    {
+      "metric": "Input Bias Current (Ib, typ)",
+      "unit": "pA",
+      "part_a_value": "25000 pA (p.8)",
+      "part_b_value": "20000 pA (p.3)",
+      "winner": "B",
+      "note": "CMOS/JFET pA-class inputs avoid offset voltage drops across high-impedance (>100 kΩ) sensors."
+    },
+    {
+      "metric": "Quiescent Current / Ch (Iq)",
+      "unit": "µA/ch",
+      "part_a_value": "225 µA/ch (p.8)",
+      "part_b_value": "200 µA/ch (p.3)",
+      "winner": "B",
+      "note": "Multiply by channel count for total IC standby current draw."
+    },
+    {
+      "metric": "Rail-to-Rail Input / Output",
+      "unit": "—",
+      "part_a_value": "IN: No · OUT: No",
+      "part_b_value": "IN: No · OUT: No",
+      "winner": "TIE",
+      "note": "RRIO prevents clipping on low-voltage 3.3 V single-supply ADC buffers."
+    },
+    {
+      "metric": "CMRR (typ) & Input Noise",
+      "unit": "dB · nV/√Hz",
+      "part_a_value": "Not specified · Not specified",
+      "part_b_value": "Not specified · Not specified",
+      "winner": "CONTEXT",
+      "note": "Winner requires superiority on both CMRR (higher) and input voltage noise (lower); mixed tradeoffs stay CONTEXT."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "148.5 °C/W (p.5) · 150 °C",
+      "part_b_value": "175.4 °C/W (p.2) · 150 °C",
+      "winner": "A",
+      "note": "Important when driving heavy resistive loads or high supply rails."
+    }
+  ],
+  "swap_risks": [
+    "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (LM393DR: 148.5 °C/W vs LM393DR2G: 175.4 °C/W) and worst-case ambient temperature (0..70 °C vs 0..70 °C).",
+    "DATASHEET REVISION CHECK (AUD-04): Verify latest official manufacturer datasheets (SLCS005AH (Rev. April 2025) vs Rev. 35 (November 2026)) for part-marking codes, transient load response, and qualification status before production release."
+  ],
+  "engineering_verdict": "LM393DR (Texas Instruments, SOIC-8) and LM393DR2G (onsemi, SOIC-8) qualify as Level 1 Candidate Drop-In peers: all 8 pins share identical electrical roles, exposed-pad nets match (no EP), and thermal/voltage/temperature-grade margins remain aligned. Signal-chain deltas: propagation delay 1300 ns (p.10) vs 1300 ns (p.3), supply ceiling 30 V (p.4) vs 36 V (p.1), Vos 5 mV (p.8) vs 5 mV (p.3), Ib 1x gap (25000 vs 20000 pA). Primary bench gotchas to watch: LM393DR \"Classic LM358DR / LMV358IDR Identical SOIC-8 Pinout Trap (Missing Pull-Up & Oscillation)\" (p.3) and LM393DR2G \"Identical SOIC-8 Pinout Trap vs Push-Pull LM358DR2G / LM358DR Op-Amps\" (p.1). BOM decision: Choose LM393DR when matching your existing Texas Instruments SOIC-8 (D) qualification and 0..70 °C grade; choose LM393DR2G when supply rails exceed 30 V (rated up to 36 V). Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.1) and official datasheets on hardware prototypes prior to production.",
+  "generated_at": "2026-11-23"
+}

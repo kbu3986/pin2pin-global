@@ -89,8 +89,8 @@
       "unit": "V",
       "part_a_value": "4.2 to 18 V (p.4)",
       "part_b_value": "4.5 to 28 V (p.4)",
-      "winner": "B",
-      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+      "winner": "CONTEXT",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -105,8 +105,8 @@
       "unit": "V",
       "part_a_value": "0.8 to 7 V (p.1) (Adj)",
       "part_b_value": "0.596 to 28 V (p.5/p.12) (Adj)",
-      "winner": "CONTEXT",
-      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+      "winner": "B",
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
     },
     {
       "metric": "Max Current (Iout or Isw Limit)",
@@ -114,7 +114,7 @@
       "part_a_value": "2000 mA (p.1) [Iout max]",
       "part_b_value": "3000 mA (p.1) [Iout max]",
       "winner": "B",
-      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+      "note": "Continuous DC output current rating; verify inductor Isat >= Iout + ΔIL/2 and thermal margin."
     },
     {
       "metric": "Quiescent Current (Iq, typ)",
@@ -167,13 +167,16 @@
   ],
   "swap_risks": [
     "CAUTION PACKAGE HEIGHT/PROFILE: AP62200WU-7 (TSOT-23-6) vs TPS54302DDCR (SOT-23-6) share the same JEDEC land pattern pitch, but thin-profile TSOT (~1.0 mm) vs standard SOT (~1.45 mm) differs in body height; verify enclosure Z-clearance, SMT nozzle height, and solder fillet spec.",
+    "CRITICAL SWITCH-VOLTAGE OVERSTRESS RISK: AP62200WU-7 is rated up to only 7 V output (p.1) vs TPS54302DDCR up to 28 V (p.12); exceeding the internal switch BVdss ceiling destroys the SW MOSFET.",
+    "HIGH MINIMUM OUTPUT VOLTAGE FLOOR: AP62200WU-7 cannot regulate below 0.8 V (p.1) vs TPS54302DDCR down to 0.596 V (p.5); verify your target rail sits above the higher Vout,min floor.",
+    "HIGH VREF MISMATCH: Feedback reference differs (AP62200WU-7: 0.8 V p.5 vs TPS54302DDCR: 0.596 V p.5); dropping in without recalculating R1/R2 will output the wrong voltage rail.",
     "HIGH SWITCHING FREQUENCY SHIFT: fsw differs by 47% (AP62200WU-7: 750 kHz p.5 vs TPS54302DDCR: 400 kHz p.5); re-evaluate inductor core loss, ripple current ΔIL, output capacitor ESR ripple, and EMI harmonics.",
     "CAUTION INDUCTOR RETUNING: Typical inductor differs (AP62200WU-7: 3.3 µH p.17 vs TPS54302DDCR: 10 µH p.18); check inductor Isat against peak switch current limit.",
-    "HIGH VREF MISMATCH: Feedback reference differs (AP62200WU-7: 0.8 V p.5 vs TPS54302DDCR: 0.596 V p.5); dropping in without recalculating R1/R2 will output the wrong voltage rail.",
     "HIGH INPUT VOLTAGE RANGE SHIFT: Recommended Vin,max differs (AP62200WU-7: 18 V p.4 vs TPS54302DDCR: 28 V p.4); verify line transients stay below Vin,abs,max.",
-    "CAUTION CURRENT RATING BASIS: AP62200WU-7 specifies 2000 mA (continuous Iout, p.1) vs TPS54302DDCR 3000 mA (continuous Iout, p.1). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling.",
-    "CAUTION THERMAL MARGIN: Package θJA differs by 41% (AP62200WU-7: 70 °C/W p.4 vs TPS54302DDCR: 118.9 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max."
+    "CAUTION CURRENT RATING BASIS: AP62200WU-7 specifies 2000 mA (continuous Iout, p.1) vs TPS54302DDCR 3000 mA (continuous Iout, p.1). Verify continuous load current and peak inductor saturation margin (Isat >= Iout + ΔIL/2).",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: AP62200WU-7 has a lower Vin,abs,max rating (20 V, p.4) than TPS54302DDCR (30 V, p.4); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 20 V.",
+    "HIGH THERMAL MARGIN: Package θJA is 70% higher on TPS54302DDCR (AP62200WU-7: 70 °C/W p.4 vs TPS54302DDCR: 118.9 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
-  "engineering_verdict": "AP62200WU-7 (Diodes Incorporated, TSOT-23-6) and TPS54302DDCR (Texas Instruments, SOT-23-6) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to switching frequency differs >30%; recommended inductor value differs >20%; feedback reference voltage Vref differs. Key datasheet deltas: topology is buck (sync) vs buck (sync), switching frequency is 750 kHz (p.5) vs 400 kHz (p.5), rated current is 2000 mA (p.1) vs 3000 mA (p.1), typical inductor is 3.3 µH (p.17) vs 10 µH (p.18), and Iq is 135 µA (p.5) vs 45 µA (p.5). Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 70 vs 118.9 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AP62200WU-7 (Diodes Incorporated, TSOT-23-6) and TPS54302DDCR (Texas Instruments, SOT-23-6) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because package code differs (TSOT-23-6 vs SOT-23-6; same land pattern, different body profile); adjustable Vout,max ceiling drops >=20% (7 V vs 28 V — switch-voltage overstress risk); minimum programmable Vout,min rises (0.596 V vs 0.8 V). Power-stage deltas: buck (sync) vs buck (sync), switching frequency 750 kHz (p.5) vs 400 kHz (p.5) (1.9x ratio), typical inductor 3.3 µH (p.17) vs 10 µH (p.18), feedback Vref 0.8 V (p.5) vs 0.596 V (p.5), and package θJA 70 vs 118.9 °C/W. Primary bench gotchas to watch: AP62200WU-7 \"CRITICAL: EN Pin Abs Max Is ONLY 8.0 V — NEVER Tie Directly to 12 V / 18 V VIN!\" (p.4) and TPS54302DDCR \"CRITICAL: EN Pin Abs Max Is ONLY 7.0 V (Rec 5.5 V) — NEVER Tie Directly to 12 V / 24 V VIN\" (p.4). BOM decision: Choose AP62200WU-7 when matching your existing Diodes Incorporated TSOT-23-6 (TSOT26) qualification and -40..125 °C grade; choose TPS54302DDCR when bus voltage exceeds 18 V (rated to 28 V) or higher load current capacity (3000 mA) is required. Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

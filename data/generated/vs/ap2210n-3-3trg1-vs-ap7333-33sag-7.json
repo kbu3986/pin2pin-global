@@ -54,8 +54,8 @@
       "unit": "V",
       "part_a_value": "2.5 to 13.2 V (p.4)",
       "part_b_value": "2 to 6 V (p.4)",
-      "winner": "A",
-      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+      "winner": "CONTEXT",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -141,8 +141,10 @@
   "swap_risks": [
     "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (GND vs VIN), Pin 3 (VIN vs GND). Soldering AP7333-33SAG-7 onto a AP2210N-3.3TRG1 footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
     "CRITICAL CAPACITOR ESR OSCILLATION RISK: AP7333-33SAG-7 is stable with low-ESR ceramic MLCCs (>= 1 µF, p.9), whereas AP2210N-3.3TRG1 is NOT ceramic-cap stable (ESR window: 0.025–15 Ω (p.22)). Using an ultra-low-ESR MLCC on AP2210N-3.3TRG1 can trigger control-loop oscillation.",
-    "HIGH INPUT VOLTAGE RATING DROP: AP7333-33SAG-7 is rated to only 6 V rec. (7 V abs max, p.4) vs AP2210N-3.3TRG1 at 13.2 V rec. (15 V abs max, p.4). Verify worst-case input transient spikes."
+    "HIGH INPUT VOLTAGE RATING DROP: AP7333-33SAG-7 is rated to only 6 V rec. (7 V abs max, p.4) vs AP2210N-3.3TRG1 at 13.2 V rec. (15 V abs max, p.4). Verify worst-case input transient spikes.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: AP7333-33SAG-7 has a lower Vin,abs,max rating (7 V, p.4) than AP2210N-3.3TRG1 (15 V, p.4); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 7 V.",
+    "HIGH MINIMUM SUPPLY FLOOR: AP2210N-3.3TRG1 requires Vin,min >= 2.5 V (p.4) vs 2 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor."
   ],
-  "engineering_verdict": "AP2210N-3.3TRG1 (Diodes Incorporated, SOT-23-3) and AP7333-33SAG-7 (Diodes Incorporated, SOT-23-3) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to pinout mismatch on Pin 1 (GND vs VIN), Pin 3 (VIN vs GND). Key datasheet deltas: Iq is 100 µA (p.11) vs 55 µA (p.5), max output current is 300 mA (p.1) vs 300 mA (p.4), recommended Vin,max is 13.2 V (p.4) vs 6 V (p.4), typical dropout is 250 mV (p.11) vs 300 mV (p.5), and ceramic capacitor stability is ESR-constrained vs supported. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.2), thermal margin (θJA 200 vs 207 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AP2210N-3.3TRG1 (Diodes Incorporated, SOT-23-3) and AP7333-33SAG-7 (Diodes Incorporated, SOT-23-3) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to pinout mismatch on Pin 1 (GND vs VIN), Pin 3 (VIN vs GND). Specific pin conflicts: Pin 1 (GND vs VIN), Pin 3 (VIN vs GND). Under a representative 5 V → 3.3 V rail at 150 mA (255 mW), estimated self-heating is ΔTj ≈ 51 °C on AP2210N-3.3TRG1 (θJA 200 °C/W) vs 52.8 °C on AP7333-33SAG-7 (θJA 207 °C/W), while quiescent draw spans a 1.8x ratio (100 µA (p.11) vs 55 µA (p.5)). Primary bench gotchas to watch: AP2210N-3.3TRG1 \"SOT-23-3 Pinout (1=GND, 2=VOUT, 3=VIN) Reversed vs AP7333-SA, AP7313-SA, and LM3480\" (p.1) and AP7333-33SAG-7 \"SOT23 (SA) Pinout (1=IN, 2=OUT, 3=GND) Conflicts With SOT23R (SR), AP2210N, and LM3480\" (p.2). BOM decision: Choose AP2210N-3.3TRG1 when input rails climb above 6 V (rated to 13.2 V); choose AP7333-33SAG-7 when battery sleep budget demands 55 µA Iq or your BOM standardizes on low-ESR MLCC ceramic output capacitors. Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.2) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

@@ -72,8 +72,8 @@
       "unit": "V",
       "part_a_value": "4.8 to 30 V (p.5/p.4)",
       "part_b_value": "1.5 to 6 V (p.5)",
-      "winner": "A",
-      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+      "winner": "CONTEXT",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -159,12 +159,14 @@
   "swap_risks": [
     "CRITICAL PACKAGE MISMATCH: LM3480IM3-3.3/NOPB uses SOT-23-3 (3-pin, DBZ (SOT-23-3)) while TPS7A0233PDBVR uses SOT-23-5 (5-pin, DBV (SOT-23-5)); PCB footprint redesign is mandatory.",
     "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (VOUT vs VIN), Pin 2 (VIN vs GND), Pin 3 (GND vs EN), Pin 4 (NONE vs NC), Pin 5 (NONE vs VOUT). Soldering TPS7A0233PDBVR onto a LM3480IM3-3.3/NOPB footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
-    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs significantly (LM3480IM3-3.3/NOPB: 0.1 µF p.11 vs TPS7A0233PDBVR: 1 µF p.5); account for MLCC DC-bias derating.",
+    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs by 10x (LM3480IM3-3.3/NOPB: 0.1 µF p.11 vs TPS7A0233PDBVR: 1 µF p.5); account for MLCC DC-bias derating.",
     "HIGH INPUT VOLTAGE RATING DROP: TPS7A0233PDBVR is rated to only 6 V rec. (6.5 V abs max, p.4) vs LM3480IM3-3.3/NOPB at 30 V rec. (35 V abs max, p.4). Verify worst-case input transient spikes.",
     "HIGH LOAD CURRENT DERATING: LM3480IM3-3.3/NOPB supplies up to 100 mA (p.5) compared to TPS7A0233PDBVR at 200 mA (p.5); confirm peak inrush and thermal dissipation margin.",
-    "CAUTION DROPOUT HEADROOM: Typical dropout differs by 630 mV (LM3480IM3-3.3/NOPB: 900 mV p.5 vs TPS7A0233PDBVR: 270 mV p.6); verify Vin,min - Vout >= Vdo at cold/hot corners.",
-    "CAUTION THERMAL MARGIN: Package θJA differs by 33% (LM3480IM3-3.3/NOPB: 269.6 °C/W p.4 vs TPS7A0233PDBVR: 181.9 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max."
+    "CAUTION DROPOUT HEADROOM: Typical dropout differs (LM3480IM3-3.3/NOPB: 900 mV p.5 vs TPS7A0233PDBVR: 270 mV p.6); verify Vin,min - Vout >= Vdo across temperature and load corners.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: TPS7A0233PDBVR has a lower Vin,abs,max rating (6.5 V, p.4) than LM3480IM3-3.3/NOPB (35 V, p.4); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 6.5 V.",
+    "HIGH THERMAL MARGIN: Package θJA is 48% higher on LM3480IM3-3.3/NOPB (LM3480IM3-3.3/NOPB: 269.6 °C/W p.4 vs TPS7A0233PDBVR: 181.9 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH MINIMUM SUPPLY FLOOR: LM3480IM3-3.3/NOPB requires Vin,min >= 4.8 V (p.5) vs 1.5 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor."
   ],
-  "engineering_verdict": "LM3480IM3-3.3/NOPB (Texas Instruments, SOT-23-3) and TPS7A0233PDBVR (Texas Instruments, SOT-23-5) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (VOUT vs VIN), Pin 2 (VIN vs GND), Pin 3 (GND vs EN), Pin 4 (NONE vs NC), Pin 5 (NONE vs VOUT). Key datasheet deltas: Iq is 2000 µA (p.5) vs 0.025 µA (p.6), max output current is 100 mA (p.5) vs 200 mA (p.5), recommended Vin,max is 30 V (p.4) vs 6 V (p.5), typical dropout is 900 mV (p.5) vs 270 mV (p.6), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 269.6 vs 181.9 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "LM3480IM3-3.3/NOPB (Texas Instruments, SOT-23-3) and TPS7A0233PDBVR (Texas Instruments, SOT-23-5) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (VOUT vs VIN), Pin 2 (VIN vs GND), Pin 3 (GND vs EN), Pin 4 (NONE vs NC), Pin 5 (NONE vs VOUT). Specific pin conflicts: Pin 1 (VOUT vs VIN), Pin 2 (VIN vs GND), Pin 3 (GND vs EN), Pin 4 (NONE vs NC). Under a representative 5 V → 3.3 V rail at 100 mA (170 mW), estimated self-heating is ΔTj ≈ 45.8 °C on LM3480IM3-3.3/NOPB (θJA 269.6 °C/W) vs 30.9 °C on TPS7A0233PDBVR (θJA 181.9 °C/W), while quiescent draw spans a 80000x ratio (2000 µA (p.5) vs 0.025 µA (p.6)). Primary bench gotchas to watch: LM3480IM3-3.3/NOPB \"Unique SOT-23-3 Pinout (1=OUT, 2=IN, 3=GND) Incompatible With ALL Other SOT-23-3 LDOs in Batch\" (p.3) and TPS7A0233PDBVR \"Strict 22 uF Maximum Output Capacitance Limit for Loop Stability\" (p.5). BOM decision: Choose LM3480IM3-3.3/NOPB when input rails climb above 6 V (rated to 30 V); choose TPS7A0233PDBVR when load current exceeds 100 mA (up to 200 mA) or battery sleep budget demands 0.025 µA Iq. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

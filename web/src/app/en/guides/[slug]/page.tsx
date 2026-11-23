@@ -15,6 +15,7 @@ import {
   getAllParts,
   getAllVsComparisons,
   getGuideBySlug,
+  getGuideWordCount,
   getSiteConfig,
 } from '@/lib/data-loader';
 import { DisclaimerStrip } from '@/components/DisclaimerStrip';
@@ -22,7 +23,9 @@ import { LabGearAffiliate } from '@/components/LabGearAffiliate';
 import { AdSenseSlot } from '@/components/AdSenseSlot';
 import { JsonLd } from '@/components/JsonLd';
 import {
+  GUIDES_HUB_HREF,
   buildBreadcrumbJsonLd,
+  buildPageMetadata,
   buildTechArticleJsonLd,
   categoryLabel,
 } from '@/lib/format';
@@ -44,13 +47,14 @@ export async function generateMetadata({
   const siteConfig = getSiteConfig();
   if (!guide) return { title: 'Guide Not Found' };
 
-  return {
+  return buildPageMetadata({
+    siteUrl: siteConfig.site_url,
+    siteName: siteConfig.site_name,
+    path: `/en/guides/${guide.slug}`,
     title: guide.title,
     description: guide.summary,
-    alternates: {
-      canonical: `${siteConfig.site_url}/en/guides/${guide.slug}/`,
-    },
-  };
+    ogType: 'article',
+  });
 }
 
 export default async function GuideDetailPage({
@@ -66,6 +70,7 @@ export default async function GuideDetailPage({
   const allParts = getAllParts();
   const allVs = getAllVsComparisons();
   const allGuides = getAllGuides();
+  const wordCount = getGuideWordCount(guide);
 
   const relatedParts = guide.related_parts
     .map((s) => allParts.find((p) => p.slug === s))
@@ -82,6 +87,7 @@ export default async function GuideDetailPage({
   const jsonLd = [
     buildBreadcrumbJsonLd(siteConfig.site_url, [
       { name: 'Home', path: '/en' },
+      { name: 'Field Guides', path: '/en/guides' },
       { name: guide.title, path: pagePath },
     ]),
     buildTechArticleJsonLd({
@@ -92,6 +98,7 @@ export default async function GuideDetailPage({
       description: guide.summary,
       datePublished: guide.published_at,
       dateModified: guide.updated_at,
+      wordCount,
     }),
   ];
 
@@ -99,12 +106,12 @@ export default async function GuideDetailPage({
     <div className="mx-auto max-w-4xl space-y-6">
       <JsonLd data={jsonLd} />
 
-      <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs text-slate-500">
-        <Link href="/en" className="hover:text-slate-900">
+      <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs text-slate-600">
+        <Link href="/en/" className="hover:text-slate-900">
           Home
         </Link>
         <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
-        <Link href="/en#guides" className="hover:text-slate-900">
+        <Link href={GUIDES_HUB_HREF} className="hover:text-slate-900">
           Field Guides
         </Link>
         <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
@@ -118,11 +125,13 @@ export default async function GuideDetailPage({
             <BookOpen className="h-3 w-3" aria-hidden="true" />
             {categoryLabel(guide.category)} Guide
           </span>
-          <span className="text-slate-500">{guide.reading_time_min} min read</span>
-          <span className="text-slate-400">·</span>
-          <span className="text-slate-600">{guide.author_role}</span>
-          <span className="text-slate-400">·</span>
-          <span className="text-slate-500">Updated {guide.updated_at}</span>
+          <span className="text-slate-600">{guide.reading_time_min} min read</span>
+          <span className="text-slate-500">·</span>
+          <span className="text-slate-600">{wordCount.toLocaleString('en-US')} words</span>
+          <span className="text-slate-500">·</span>
+          <span className="text-slate-700">{guide.author_role}</span>
+          <span className="text-slate-500">·</span>
+          <span className="text-slate-600">Updated {guide.updated_at}</span>
         </div>
         <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-950">
           {guide.title}
@@ -230,18 +239,18 @@ export default async function GuideDetailPage({
           </h2>
           {relatedParts.length > 0 && (
             <div className="space-y-2">
-              <h3 className="text-xs font-mono font-semibold uppercase text-slate-500">
+              <h3 className="text-xs font-mono font-semibold uppercase text-slate-600">
                 Verified Part Datasheets
               </h3>
               <div className="flex flex-wrap gap-2">
                 {relatedParts.map((p) => (
                   <Link
                     key={p.slug}
-                    href={`/en/part/${p.slug}`}
+                    href={`/en/part/${p.slug}/`}
                     className="inline-flex items-center gap-1.5 rounded-md border border-slate-300 bg-slate-50 px-3 py-1.5 font-mono text-xs font-bold text-slate-900 hover:border-sky-600 hover:text-sky-800"
                   >
                     {p.opn}
-                    <span className="text-[10px] font-normal text-slate-500">
+                    <span className="text-[11px] font-normal text-slate-600">
                       ({p.package.code})
                     </span>
                   </Link>
@@ -252,14 +261,14 @@ export default async function GuideDetailPage({
 
           {relatedVs.length > 0 && (
             <div className="space-y-2 pt-2 border-t border-slate-100">
-              <h3 className="text-xs font-mono font-semibold uppercase text-slate-500">
+              <h3 className="text-xs font-mono font-semibold uppercase text-slate-600">
                 1:1 Pinout Diff Pages
               </h3>
               <div className="flex flex-wrap gap-2">
                 {relatedVs.map((v) => (
                   <Link
                     key={v.slug}
-                    href={`/en/vs/${v.slug}`}
+                    href={`/en/vs/${v.slug}/`}
                     className="inline-flex items-center gap-1.5 rounded-md border border-sky-200 bg-sky-50 px-3 py-1.5 font-mono text-xs font-bold text-sky-950 hover:bg-sky-100"
                   >
                     {v.part_a_opn} vs {v.part_b_opn}
@@ -272,22 +281,29 @@ export default async function GuideDetailPage({
         </section>
       )}
 
-      {/* Other Guides */}
+      {/* Related Guides Cross-Links */}
       {otherGuides.length > 0 && (
-        <section className="rounded-lg border border-slate-200 bg-white p-5 space-y-2.5">
-          <h2 className="text-sm font-bold text-slate-950">More Engineering Field Guides</h2>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+        <section className="rounded-lg border border-slate-200 bg-white p-5 space-y-3">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h2 className="text-sm font-bold text-slate-950">More Engineering Field Guides</h2>
+            <Link href={GUIDES_HUB_HREF} className="text-xs font-semibold text-sky-700 hover:underline">
+              All {allGuides.length} Guides →
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
             {otherGuides.map((g) => (
-              <li key={g.slug}>
-                <Link
-                  href={`/en/guides/${g.slug}`}
-                  className="font-semibold text-sky-700 hover:underline"
-                >
-                  {g.title} →
-                </Link>
-              </li>
+              <Link
+                key={g.slug}
+                href={`/en/guides/${g.slug}/`}
+                className="rounded-md border border-slate-200 bg-slate-50/70 p-3 hover:border-sky-500 hover:bg-white transition-colors"
+              >
+                <div className="font-mono text-[11px] uppercase text-slate-600">
+                  {categoryLabel(g.category)} · {g.reading_time_min} min
+                </div>
+                <div className="mt-0.5 font-semibold text-sky-800">{g.title} →</div>
+              </Link>
             ))}
-          </ul>
+          </div>
         </section>
       )}
 

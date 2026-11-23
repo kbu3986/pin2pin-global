@@ -90,7 +90,7 @@
       "part_a_value": "4.2 to 18 V (p.4)",
       "part_b_value": "4.5 to 17 V (p.4)",
       "winner": "A",
-      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -105,8 +105,8 @@
       "unit": "V",
       "part_a_value": "0.8 to 7 V (p.1) (Adj)",
       "part_b_value": "0.76 to 7 V (p.1) (Adj)",
-      "winner": "CONTEXT",
-      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+      "winner": "B",
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
     },
     {
       "metric": "Max Current (Iout or Isw Limit)",
@@ -114,7 +114,7 @@
       "part_a_value": "2000 mA (p.1) [Iout max]",
       "part_b_value": "2000 mA (p.1) [Iout max]",
       "winner": "TIE",
-      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+      "note": "Continuous DC output current rating; verify inductor Isat >= Iout + ΔIL/2 and thermal margin."
     },
     {
       "metric": "Quiescent Current (Iq, typ)",
@@ -167,8 +167,9 @@
   ],
   "swap_risks": [
     "CAUTION PACKAGE HEIGHT/PROFILE: AP62200WU-7 (TSOT-23-6) vs TPS562201DDCR (SOT-23-6) share the same JEDEC land pattern pitch, but thin-profile TSOT (~1.0 mm) vs standard SOT (~1.45 mm) differs in body height; verify enclosure Z-clearance, SMT nozzle height, and solder fillet spec.",
-    "HIGH VREF MISMATCH: Feedback reference differs (AP62200WU-7: 0.8 V p.5 vs TPS562201DDCR: 0.768 V p.5); dropping in without recalculating R1/R2 will output the wrong voltage rail."
+    "HIGH VREF MISMATCH: Feedback reference differs (AP62200WU-7: 0.8 V p.5 vs TPS562201DDCR: 0.768 V p.5); dropping in without recalculating R1/R2 will output the wrong voltage rail.",
+    "HIGH THERMAL MARGIN: Package θJA is 30% higher on TPS562201DDCR (AP62200WU-7: 70 °C/W p.4 vs TPS562201DDCR: 90.8 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
-  "engineering_verdict": "AP62200WU-7 (Diodes Incorporated, TSOT-23-6) and TPS562201DDCR (Texas Instruments, SOT-23-6) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to feedback reference voltage Vref differs. Key datasheet deltas: topology is buck (sync) vs buck (sync), switching frequency is 750 kHz (p.5) vs 580 kHz (p.5), rated current is 2000 mA (p.1) vs 2000 mA (p.1), typical inductor is 3.3 µH (p.17) vs 3.3 µH (p.13), and Iq is 135 µA (p.5) vs 120 µA (p.5). Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 70 vs 90.8 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AP62200WU-7 (Diodes Incorporated, TSOT-23-6) and TPS562201DDCR (Texas Instruments, SOT-23-6) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because package code differs (TSOT-23-6 vs SOT-23-6; same land pattern, different body profile); feedback reference voltage Vref differs; θJA worsens 30% (thermal derating verification required). Power-stage deltas: buck (sync) vs buck (sync), switching frequency 750 kHz (p.5) vs 580 kHz (p.5) (1.3x ratio), typical inductor 3.3 µH (p.17) vs 3.3 µH (p.13), feedback Vref 0.8 V (p.5) vs 0.768 V (p.5), and package θJA 70 vs 90.8 °C/W. Primary bench gotchas to watch: AP62200WU-7 \"CRITICAL: EN Pin Abs Max Is ONLY 8.0 V — NEVER Tie Directly to 12 V / 18 V VIN!\" (p.4) and TPS562201DDCR \"Pin-Identical 2 A Sibling of TPS563201DDCR — Verify Current Limit & Inductor Sizing\" (p.5). BOM decision: Choose AP62200WU-7 when matching your existing Diodes Incorporated TSOT-23-6 (TSOT26) qualification and -40..125 °C grade; choose TPS562201DDCR when matching your existing Texas Instruments SOT-23-6 (DDC) qualification and -40..125 °C grade. Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

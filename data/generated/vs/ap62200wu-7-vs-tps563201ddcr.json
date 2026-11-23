@@ -90,7 +90,7 @@
       "part_a_value": "4.2 to 18 V (p.4)",
       "part_b_value": "4.5 to 17 V (p.4)",
       "winner": "A",
-      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -105,8 +105,8 @@
       "unit": "V",
       "part_a_value": "0.8 to 7 V (p.1) (Adj)",
       "part_b_value": "0.76 to 7 V (p.1) (Adj)",
-      "winner": "CONTEXT",
-      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+      "winner": "B",
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
     },
     {
       "metric": "Max Current (Iout or Isw Limit)",
@@ -114,7 +114,7 @@
       "part_a_value": "2000 mA (p.1) [Iout max]",
       "part_b_value": "3000 mA (p.1) [Iout max]",
       "winner": "B",
-      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+      "note": "Continuous DC output current rating; verify inductor Isat >= Iout + ΔIL/2 and thermal margin."
     },
     {
       "metric": "Quiescent Current (Iq, typ)",
@@ -167,10 +167,11 @@
   ],
   "swap_risks": [
     "CAUTION PACKAGE HEIGHT/PROFILE: AP62200WU-7 (TSOT-23-6) vs TPS563201DDCR (SOT-23-6) share the same JEDEC land pattern pitch, but thin-profile TSOT (~1.0 mm) vs standard SOT (~1.45 mm) differs in body height; verify enclosure Z-clearance, SMT nozzle height, and solder fillet spec.",
-    "CAUTION INDUCTOR RETUNING: Typical inductor differs (AP62200WU-7: 3.3 µH p.17 vs TPS563201DDCR: 2.2 µH p.15); check inductor Isat against peak switch current limit.",
     "HIGH VREF MISMATCH: Feedback reference differs (AP62200WU-7: 0.8 V p.5 vs TPS563201DDCR: 0.768 V p.6); dropping in without recalculating R1/R2 will output the wrong voltage rail.",
-    "CAUTION CURRENT RATING BASIS: AP62200WU-7 specifies 2000 mA (continuous Iout, p.1) vs TPS563201DDCR 3000 mA (continuous Iout, p.1). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling."
+    "CAUTION INDUCTOR RETUNING: Typical inductor differs (AP62200WU-7: 3.3 µH p.17 vs TPS563201DDCR: 2.2 µH p.15); check inductor Isat against peak switch current limit.",
+    "CAUTION CURRENT RATING BASIS: AP62200WU-7 specifies 2000 mA (continuous Iout, p.1) vs TPS563201DDCR 3000 mA (continuous Iout, p.1). Verify continuous load current and peak inductor saturation margin (Isat >= Iout + ΔIL/2).",
+    "HIGH THERMAL MARGIN: Package θJA is 32% higher on TPS563201DDCR (AP62200WU-7: 70 °C/W p.4 vs TPS563201DDCR: 92.6 °C/W p.5); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
-  "engineering_verdict": "AP62200WU-7 (Diodes Incorporated, TSOT-23-6) and TPS563201DDCR (Texas Instruments, SOT-23-6) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to recommended inductor value differs >20%; feedback reference voltage Vref differs; current rating or switch-limit basis differs. Key datasheet deltas: topology is buck (sync) vs buck (sync), switching frequency is 750 kHz (p.5) vs 580 kHz (p.6), rated current is 2000 mA (p.1) vs 3000 mA (p.1), typical inductor is 3.3 µH (p.17) vs 2.2 µH (p.15), and Iq is 135 µA (p.5) vs 120 µA (p.6). Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 70 vs 92.6 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AP62200WU-7 (Diodes Incorporated, TSOT-23-6) and TPS563201DDCR (Texas Instruments, SOT-23-6) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because package code differs (TSOT-23-6 vs SOT-23-6; same land pattern, different body profile); feedback reference voltage Vref differs; recommended inductor value differs >20%. Power-stage deltas: buck (sync) vs buck (sync), switching frequency 750 kHz (p.5) vs 580 kHz (p.6) (1.3x ratio), typical inductor 3.3 µH (p.17) vs 2.2 µH (p.15), feedback Vref 0.8 V (p.5) vs 0.768 V (p.6), and package θJA 70 vs 92.6 °C/W. Primary bench gotchas to watch: AP62200WU-7 \"CRITICAL: EN Pin Abs Max Is ONLY 8.0 V — NEVER Tie Directly to 12 V / 18 V VIN!\" (p.4) and TPS563201DDCR \"17 V Max Input (19 V Abs Max) Fails on 24 V Buses Built for Pin-Identical TPS54302DDCR\" (p.4). BOM decision: Choose AP62200WU-7 when matching your existing Diodes Incorporated TSOT-23-6 (TSOT26) qualification and -40..125 °C grade; choose TPS563201DDCR when higher load current capacity (3000 mA) is required. Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

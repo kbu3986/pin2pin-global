@@ -1,25 +1,26 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
-import { getCatalogRows, getSiteConfig } from '@/lib/data-loader';
+import { getCatalogRows, getLatestVerifiedDate, getSiteConfig } from '@/lib/data-loader';
 import { CatalogClient } from '@/components/CatalogClient';
 import { DisclaimerStrip } from '@/components/DisclaimerStrip';
 import { JsonLd } from '@/components/JsonLd';
-import { buildBreadcrumbJsonLd, buildDatasetJsonLd } from '@/lib/format';
+import { buildBreadcrumbJsonLd, buildDatasetJsonLd, buildPageMetadata } from '@/lib/format';
 
 const siteConfig = getSiteConfig();
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  siteUrl: siteConfig.site_url,
+  siteName: siteConfig.site_name,
+  path: '/en/catalog',
   title: 'Parametric Semiconductor Catalog (LDO, DC-DC, Op-Amp OPNs)',
   description:
     'Filter datasheet-verified LDO regulators, DC-DC boost/buck converters, and Op-Amps/Comparators by package, manufacturer, ceramic-cap stability, Iq, and rated current.',
-  alternates: {
-    canonical: `${siteConfig.site_url}/en/catalog/`,
-  },
-};
+});
 
 export default function CatalogPage() {
   const rows = getCatalogRows();
+  const latestVerifiedDate = getLatestVerifiedDate();
 
   const jsonLd = [
     buildBreadcrumbJsonLd(siteConfig.site_url, [
@@ -40,7 +41,7 @@ export default function CatalogPage() {
         'buck boost converter catalog',
         'rail to rail op-amp catalog',
       ],
-      dateModified: '2026-04-01',
+      dateModified: latestVerifiedDate,
     }),
   ];
 
@@ -48,8 +49,8 @@ export default function CatalogPage() {
     <div className="space-y-5">
       <JsonLd data={jsonLd} />
 
-      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-slate-500">
-        <Link href="/en" className="hover:text-slate-900">
+      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-slate-600">
+        <Link href="/en/" className="hover:text-slate-900">
           Home
         </Link>
         <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
@@ -61,7 +62,10 @@ export default function CatalogPage() {
           Parametric Semiconductor OPN Catalog
         </h1>
         <p className="text-sm text-slate-600 max-w-3xl">
-          Every row represents a package-specific Orderable Part Number (OPN) audited against its official manufacturer PDF. Filter by package footprint, quiescent current, output current, or MLCC stability.
+          Every row represents a package-specific Orderable Part Number (OPN) audited against its
+          official manufacturer PDF (last verified {latestVerifiedDate}). Filter by package
+          footprint, quiescent current, output current, or MLCC stability — or check any 2 parts to
+          launch a live pinout diff.
         </p>
       </header>
 

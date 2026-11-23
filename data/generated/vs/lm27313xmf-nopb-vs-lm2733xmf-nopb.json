@@ -6,8 +6,8 @@
   "part_b_slug": "lm2733xmf-nopb",
   "part_a_opn": "LM27313XMF/NOPB",
   "part_b_opn": "LM2733XMF/NOPB",
-  "compatibility_level": "LEVEL_1_CANDIDATE_DROP_IN",
-  "compatibility_badge": "Candidate Drop-In (Verify Datasheet Before Production)",
+  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
   "package_match": true,
   "pinout_exact_match": true,
   "exposed_pad_match": true,
@@ -81,7 +81,7 @@
       "part_a_value": "2.7 to 14 V (p.4)",
       "part_b_value": "2.7 to 14 V (p.4)",
       "winner": "TIE",
-      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -96,8 +96,8 @@
       "unit": "V",
       "part_a_value": "5 to 28 V (p.1) (Adj)",
       "part_b_value": "5 to 38 V (p.12/p.3) (Adj)",
-      "winner": "CONTEXT",
-      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+      "winner": "B",
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
     },
     {
       "metric": "Max Current (Iout or Isw Limit)",
@@ -105,7 +105,7 @@
       "part_a_value": "800 mA (p.5) [Isw limit]",
       "part_b_value": "1000 mA (p.4) [Isw limit]",
       "winner": "B",
-      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+      "note": "For boost/switch-limited converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
     },
     {
       "metric": "Quiescent Current (Iq, typ)",
@@ -157,9 +157,10 @@
     }
   ],
   "swap_risks": [
-    "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (LM27313XMF/NOPB: 166.3 °C/W vs LM2733XMF/NOPB: 210 °C/W) and worst-case ambient temperature (-40..125 °C vs -40..125 °C).",
-    "DATASHEET REVISION CHECK (AUD-04): Verify latest official manufacturer datasheets (SNVS487E (Jan 2015) vs SNVS209G (May 2019)) for part-marking codes, transient load response, and qualification status before production release."
+    "CRITICAL SWITCH-VOLTAGE OVERSTRESS RISK: LM27313XMF/NOPB is rated up to only 28 V output (p.1) vs LM2733XMF/NOPB up to 38 V (p.3); exceeding the internal switch BVdss ceiling destroys the SW MOSFET.",
+    "CAUTION CURRENT RATING BASIS: LM27313XMF/NOPB specifies 800 mA (switch current limit Isw, p.5) vs LM2733XMF/NOPB 1000 mA (switch current limit Isw, p.4). Remember boost/switch-limited Iout,max is strictly less than Isw due to duty-cycle and inductor ripple scaling.",
+    "HIGH THERMAL MARGIN: Package θJA is 26% higher on LM2733XMF/NOPB (LM27313XMF/NOPB: 166.3 °C/W p.4 vs LM2733XMF/NOPB: 210 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max."
   ],
-  "engineering_verdict": "LM27313XMF/NOPB (Texas Instruments, SOT-23-5) and LM2733XMF/NOPB (Texas Instruments, SOT-23-5) qualify as Level 1 Candidate Drop-In alternatives with matching pin assignments, compatible exposed-pad nets, and aligned core operating ratings. Key datasheet deltas: topology is boost (non-sync) vs boost (non-sync), switching frequency is 1600 kHz (p.5) vs 1600 kHz (p.5), rated current is 800 mA (p.5) vs 1000 mA (p.4), typical inductor is 10 µH (p.1) vs 10 µH (p.1), and Iq is 400 µA (p.5) vs 400 µA (p.4). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 166.3 vs 210 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "LM27313XMF/NOPB (Texas Instruments, SOT-23-5) and LM2733XMF/NOPB (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because adjustable Vout,max ceiling drops >=20% (28 V vs 38 V — switch-voltage overstress risk); current rating or switch-limit basis differs; θJA worsens 26% (thermal derating verification required). Power-stage deltas: boost (non-sync) vs boost (non-sync), switching frequency 1600 kHz (p.5) vs 1600 kHz (p.5) (1x ratio), typical inductor 10 µH (p.1) vs 10 µH (p.1), feedback Vref 1.23 V (p.5) vs 1.23 V (p.4), and package θJA 166.3 vs 210 °C/W. Primary bench gotchas to watch: LM27313XMF/NOPB \"Feedforward Capacitor Cf Across R1 Is Mandatory for Loop Stability\" (p.11) and LM2733XMF/NOPB \"Mandatory Feedforward Capacitor Cf Across R1 Prevents Loop Oscillation\" (p.13). BOM decision: Choose LM27313XMF/NOPB when matching your existing Texas Instruments SOT-23-5 (DBV) qualification and -40..125 °C grade; choose LM2733XMF/NOPB when higher switch current capacity (1000 mA) is required or programmed output rails exceed 28 V (up to 38 V). Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

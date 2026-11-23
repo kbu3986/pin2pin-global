@@ -81,7 +81,7 @@
       "part_a_value": "1.8 to 6 V (p.4)",
       "part_b_value": "1.8 to 6 V (p.4)",
       "winner": "TIE",
-      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -96,8 +96,8 @@
       "unit": "V",
       "part_a_value": "1.8 to 28 V (p.5/p.4) (Adj)",
       "part_b_value": "1.8 to 28 V (p.5/p.4) (Adj)",
-      "winner": "CONTEXT",
-      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+      "winner": "TIE",
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
     },
     {
       "metric": "Max Current (Iout or Isw Limit)",
@@ -105,7 +105,7 @@
       "part_a_value": "400 mA (p.5) [Isw limit]",
       "part_b_value": "250 mA (p.5) [Isw limit]",
       "winner": "A",
-      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+      "note": "For boost/switch-limited converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
     },
     {
       "metric": "Quiescent Current (Iq, typ)",
@@ -157,9 +157,9 @@
     }
   ],
   "swap_risks": [
-    "CAUTION CURRENT RATING BASIS: TPS61040DBVR specifies 400 mA (switch current limit Isw, p.5) vs TPS61041DBVR 250 mA (switch current limit Isw, p.5). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling.",
+    "CAUTION CURRENT RATING BASIS: TPS61040DBVR specifies 400 mA (switch current limit Isw, p.5) vs TPS61041DBVR 250 mA (switch current limit Isw, p.5). Remember boost/switch-limited Iout,max is strictly less than Isw due to duty-cycle and inductor ripple scaling.",
     "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (TPS61040DBVR: 205.2 °C/W vs TPS61041DBVR: 205.2 °C/W) and worst-case ambient temperature (-40..85 °C vs -40..85 °C)."
   ],
-  "engineering_verdict": "TPS61040DBVR (Texas Instruments, SOT-23-5) and TPS61041DBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to current rating or switch-limit basis differs. Key datasheet deltas: topology is boost (non-sync) vs boost (non-sync), switching frequency is 1000 kHz (p.1) vs 1000 kHz (p.4), rated current is 400 mA (p.5) vs 250 mA (p.5), typical inductor is 10 µH (p.4) vs 10 µH (p.4), and Iq is 28 µA (p.5) vs 28 µA (p.5). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 205.2 vs 205.2 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "TPS61040DBVR (Texas Instruments, SOT-23-5) and TPS61041DBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because current rating or switch-limit basis differs. Power-stage deltas: boost (non-sync) vs boost (non-sync), switching frequency 1000 kHz (p.1) vs 1000 kHz (p.4) (1x ratio), typical inductor 10 µH (p.4) vs 10 µH (p.4), feedback Vref 1.233 V (p.5) vs 1.233 V (p.5), and package θJA 205.2 vs 205.2 °C/W. Primary bench gotchas to watch: TPS61040DBVR \"VIN Capped at 6.0 V (7.0 V Abs Max) vs Pin-Compatible 14 V LM27313/LM2733\" (p.4) and TPS61041DBVR \"Lower 250 mA Switch Limit (215 mA Min) & Higher 750 mOhm RDS(on) vs Pin-Identical TPS61040DBVR\" (p.5). BOM decision: Choose TPS61040DBVR when higher switch current capacity (400 mA) is required; choose TPS61041DBVR when matching your existing Texas Instruments SOT-23-5 (DBV) qualification and -40..85 °C grade. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

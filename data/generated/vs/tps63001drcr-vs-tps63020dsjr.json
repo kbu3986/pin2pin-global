@@ -162,7 +162,7 @@
       "part_a_value": "1.8 to 5.5 V (p.4)",
       "part_b_value": "1.8 to 5.5 V (p.5)",
       "winner": "TIE",
-      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -178,7 +178,7 @@
       "part_a_value": "3.3 to 3.3 V (p.1) (Fixed)",
       "part_b_value": "1.2 to 5.5 V (p.6) (Adj)",
       "winner": "CONTEXT",
-      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
     },
     {
       "metric": "Max Current (Iout or Isw Limit)",
@@ -186,7 +186,7 @@
       "part_a_value": "1200 mA (p.1) [Iout max]",
       "part_b_value": "3000 mA (p.1) [Iout max]",
       "winner": "B",
-      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+      "note": "Continuous DC output current rating; verify inductor Isat >= Iout + ΔIL/2 and thermal margin."
     },
     {
       "metric": "Quiescent Current (Iq, typ)",
@@ -240,11 +240,11 @@
   "swap_risks": [
     "CRITICAL PACKAGE MISMATCH: TPS63001DRCR uses VSON-10 (10-pin, DRC) while TPS63020DSJR uses VSON-14 (14-pin, DSJ); PCB footprint redesign is mandatory.",
     "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (VOUT vs VIN), Pin 2 (SW vs GND), Pin 3 (GND vs FB), Pin 4 (SW vs VOUT), Pin 5 (VIN vs VOUT), Pin 6 (EN vs SW), Pin 7 (PS vs SW), Pin 8 (VIN vs SW), Pin 9 (GND vs SW), Pin 10 (FB vs VIN), Pin 11 (NONE vs VIN), Pin 12 (NONE vs EN), Pin 13 (NONE vs PS), Pin 14 (NONE vs PG). Soldering TPS63020DSJR onto a TPS63001DRCR footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
+    "CRITICAL FEEDBACK LAYOUT DIFFERENCE: One converter is fixed-output while the other is adjustable; adding or removing the external R1/R2 feedback divider and feedforward capacitor requires a PCB layout change.",
     "HIGH SWITCHING FREQUENCY SHIFT: fsw differs by 38% (TPS63001DRCR: 1500 kHz p.5 vs TPS63020DSJR: 2400 kHz p.6); re-evaluate inductor core loss, ripple current ΔIL, output capacitor ESR ripple, and EMI harmonics.",
     "CAUTION INDUCTOR RETUNING: Typical inductor differs (TPS63001DRCR: 2.2 µH p.1 vs TPS63020DSJR: 1.5 µH p.13); check inductor Isat against peak switch current limit.",
-    "HIGH FEEDBACK CONFIGURATION: One converter is fixed-output while the other is adjustable; external R1/R2 feedback resistors and feedforward capacitor must be updated.",
-    "CAUTION CURRENT RATING BASIS: TPS63001DRCR specifies 1200 mA (continuous Iout, p.1) vs TPS63020DSJR 3000 mA (continuous Iout, p.1). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling."
+    "CAUTION CURRENT RATING BASIS: TPS63001DRCR specifies 1200 mA (continuous Iout, p.1) vs TPS63020DSJR 3000 mA (continuous Iout, p.1). Verify continuous load current and peak inductor saturation margin (Isat >= Iout + ΔIL/2)."
   ],
-  "engineering_verdict": "TPS63001DRCR (Texas Instruments, VSON-10) and TPS63020DSJR (Texas Instruments, VSON-14) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (VOUT vs VIN), Pin 2 (SW vs GND), Pin 3 (GND vs FB), Pin 4 (SW vs VOUT), Pin 5 (VIN vs VOUT), Pin 6 (EN vs SW), Pin 7 (PS vs SW), Pin 8 (VIN vs SW), Pin 9 (GND vs SW), Pin 10 (FB vs VIN), Pin 11 (NONE vs VIN), Pin 12 (NONE vs EN), Pin 13 (NONE vs PS), Pin 14 (NONE vs PG). Key datasheet deltas: topology is buck-boost (sync) vs buck-boost (sync), switching frequency is 1500 kHz (p.5) vs 2400 kHz (p.6), rated current is 1200 mA (p.1) vs 3000 mA (p.1), typical inductor is 2.2 µH (p.1) vs 1.5 µH (p.13), and Iq is 41 µA (p.5) vs 25 µA (p.6). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.4), thermal margin (θJA 46.8 vs 41.8 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "TPS63001DRCR (Texas Instruments, VSON-10) and TPS63020DSJR (Texas Instruments, VSON-14) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (VOUT vs VIN), Pin 2 (SW vs GND), Pin 3 (GND vs FB), Pin 4 (SW vs VOUT), Pin 5 (VIN vs VOUT), Pin 6 (EN vs SW), Pin 7 (PS vs SW), Pin 8 (VIN vs SW), Pin 9 (GND vs SW), Pin 10 (FB vs VIN), Pin 11 (NONE vs VIN), Pin 12 (NONE vs EN), Pin 13 (NONE vs PS), Pin 14 (NONE vs PG); fixed vs adjustable output feedback footprint mismatch (R1/R2 divider). Specific pin conflicts: Pin 1 (VOUT vs VIN), Pin 2 (SW vs GND), Pin 3 (GND vs FB), Pin 4 (SW vs VOUT). Power-stage deltas: buck-boost (sync) vs buck-boost (sync), switching frequency 1500 kHz (p.5) vs 2400 kHz (p.6) (1.6x ratio), typical inductor 2.2 µH (p.1) vs 1.5 µH (p.13), output mode fixed vs adjustable, and package θJA 46.8 vs 41.8 °C/W. Primary bench gotchas to watch: TPS63001DRCR \"Pin 10 (FB) MUST Be Connected Directly to VOUT on Fixed 3.3 V TPS63001\" (p.3) and TPS63020DSJR \"Large Minimum Ceramic Output Capacitance (44 uF Min / 66 uF Recommended)\" (p.13). BOM decision: Choose TPS63001DRCR when matching your existing Texas Instruments VSON-10 (DRC) qualification and -40..85 °C grade; choose TPS63020DSJR when higher load current capacity (3000 mA) is required. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.4) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

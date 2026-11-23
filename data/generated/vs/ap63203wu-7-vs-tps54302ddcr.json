@@ -90,7 +90,7 @@
       "part_a_value": "3.8 to 32 V (p.4)",
       "part_b_value": "4.5 to 28 V (p.4)",
       "winner": "A",
-      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -106,7 +106,7 @@
       "part_a_value": "3.27 to 3.33 V (p.5) (Fixed)",
       "part_b_value": "0.596 to 28 V (p.5/p.12) (Adj)",
       "winner": "CONTEXT",
-      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
     },
     {
       "metric": "Max Current (Iout or Isw Limit)",
@@ -114,7 +114,7 @@
       "part_a_value": "2000 mA (p.1) [Iout max]",
       "part_b_value": "3000 mA (p.1) [Iout max]",
       "winner": "B",
-      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+      "note": "Continuous DC output current rating; verify inductor Isat >= Iout + ΔIL/2 and thermal margin."
     },
     {
       "metric": "Quiescent Current (Iq, typ)",
@@ -168,12 +168,14 @@
   "swap_risks": [
     "CAUTION PACKAGE HEIGHT/PROFILE: AP63203WU-7 (TSOT-23-6) vs TPS54302DDCR (SOT-23-6) share the same JEDEC land pattern pitch, but thin-profile TSOT (~1.0 mm) vs standard SOT (~1.45 mm) differs in body height; verify enclosure Z-clearance, SMT nozzle height, and solder fillet spec.",
     "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (FB vs GND), Pin 2 (EN vs SW), Pin 4 (GND vs FB), Pin 5 (SW vs EN). Soldering TPS54302DDCR onto a AP63203WU-7 footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
+    "CRITICAL FEEDBACK LAYOUT DIFFERENCE: One converter is fixed-output while the other is adjustable; adding or removing the external R1/R2 feedback divider and feedforward capacitor requires a PCB layout change.",
     "HIGH SWITCHING FREQUENCY SHIFT: fsw differs by 64% (AP63203WU-7: 1100 kHz p.5 vs TPS54302DDCR: 400 kHz p.5); re-evaluate inductor core loss, ripple current ΔIL, output capacitor ESR ripple, and EMI harmonics.",
     "CAUTION INDUCTOR RETUNING: Typical inductor differs (AP63203WU-7: 3.9 µH p.13 vs TPS54302DDCR: 10 µH p.18); check inductor Isat against peak switch current limit.",
-    "HIGH FEEDBACK CONFIGURATION: One converter is fixed-output while the other is adjustable; external R1/R2 feedback resistors and feedforward capacitor must be updated.",
-    "CAUTION CURRENT RATING BASIS: AP63203WU-7 specifies 2000 mA (continuous Iout, p.1) vs TPS54302DDCR 3000 mA (continuous Iout, p.1). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling.",
-    "CAUTION THERMAL MARGIN: Package θJA differs by 25% (AP63203WU-7: 89 °C/W p.4 vs TPS54302DDCR: 118.9 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max."
+    "CAUTION CURRENT RATING BASIS: AP63203WU-7 specifies 2000 mA (continuous Iout, p.1) vs TPS54302DDCR 3000 mA (continuous Iout, p.1). Verify continuous load current and peak inductor saturation margin (Isat >= Iout + ΔIL/2).",
+    "HIGH THERMAL MARGIN: Package θJA is 34% higher on TPS54302DDCR (AP63203WU-7: 89 °C/W p.4 vs TPS54302DDCR: 118.9 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH MINIMUM SUPPLY FLOOR: TPS54302DDCR requires Vin,min >= 4.5 V (p.4) vs 3.8 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (AP63203WU-7: -40..85 °C Industrial (-40°C to 85°C TA, TJ max 125°C) vs TPS54302DDCR: -40..125 °C Industrial / Extended (-40°C to 125°C TJ)); AP63203WU-7 hot limit only 85 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "AP63203WU-7 (Diodes Incorporated, TSOT-23-6) and TPS54302DDCR (Texas Instruments, SOT-23-6) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to pinout mismatch on Pin 1 (FB vs GND), Pin 2 (EN vs SW), Pin 4 (GND vs FB), Pin 5 (SW vs EN). Key datasheet deltas: topology is buck (sync) vs buck (sync), switching frequency is 1100 kHz (p.5) vs 400 kHz (p.5), rated current is 2000 mA (p.1) vs 3000 mA (p.1), typical inductor is 3.9 µH (p.13) vs 10 µH (p.18), and Iq is 22 µA (p.5) vs 45 µA (p.5). Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 89 vs 118.9 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AP63203WU-7 (Diodes Incorporated, TSOT-23-6) and TPS54302DDCR (Texas Instruments, SOT-23-6) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to pinout mismatch on Pin 1 (FB vs GND), Pin 2 (EN vs SW), Pin 4 (GND vs FB), Pin 5 (SW vs EN); fixed vs adjustable output feedback footprint mismatch (R1/R2 divider). Specific pin conflicts: Pin 1 (FB vs GND), Pin 2 (EN vs SW), Pin 4 (GND vs FB), Pin 5 (SW vs EN). Power-stage deltas: buck (sync) vs buck (sync), switching frequency 1100 kHz (p.5) vs 400 kHz (p.5) (2.8x ratio), typical inductor 3.9 µH (p.13) vs 10 µH (p.18), output mode fixed vs adjustable, and package θJA 89 vs 118.9 °C/W. Primary bench gotchas to watch: AP63203WU-7 \"CRITICAL PINOUT TRAP: Completely Incompatible With TPS54302DDCR, TPS563201DDCR & AP62200WU-7!\" (p.1) and TPS54302DDCR \"CRITICAL: EN Pin Abs Max Is ONLY 7.0 V (Rec 5.5 V) — NEVER Tie Directly to 12 V / 24 V VIN\" (p.4). BOM decision: Choose AP63203WU-7 when light-load battery standby needs 22 µA Iq; choose TPS54302DDCR when higher load current capacity (3000 mA) is required. Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

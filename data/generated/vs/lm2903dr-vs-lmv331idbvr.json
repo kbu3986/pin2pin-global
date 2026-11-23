@@ -1,0 +1,199 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "lm2903dr-vs-lmv331idbvr",
+  "category": "opamp",
+  "part_a_slug": "lm2903dr",
+  "part_b_slug": "lmv331idbvr",
+  "part_a_opn": "LM2903DR",
+  "part_b_opn": "LMV331IDBVR",
+  "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+  "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+  "package_match": false,
+  "pinout_exact_match": false,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "1OUT",
+      "part_a_role": "OUT_A",
+      "part_b_name": "1IN+",
+      "part_b_role": "IN_POS",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 1: LM2903DR assigns 1OUT (OUT_A) whereas LMV331IDBVR assigns 1IN+ (IN_POS) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "1IN-",
+      "part_a_role": "IN_NEG_A",
+      "part_b_name": "GND",
+      "part_b_role": "VEE",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 2: LM2903DR assigns 1IN- (IN_NEG_A) whereas LMV331IDBVR assigns GND (VEE) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "1IN+",
+      "part_a_role": "IN_POS_A",
+      "part_b_name": "1IN-",
+      "part_b_role": "IN_NEG",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 3: LM2903DR assigns 1IN+ (IN_POS_A) whereas LMV331IDBVR assigns 1IN- (IN_NEG) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "GND",
+      "part_a_role": "VEE",
+      "part_b_name": "OUT",
+      "part_b_role": "OUT",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 4: LM2903DR assigns GND (VEE) whereas LMV331IDBVR assigns OUT (OUT) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "2IN+",
+      "part_a_role": "IN_POS_B",
+      "part_b_name": "VCC+",
+      "part_b_role": "VCC",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 5: LM2903DR assigns 2IN+ (IN_POS_B) whereas LMV331IDBVR assigns VCC+ (VCC) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 6,
+      "part_a_name": "2IN-",
+      "part_a_role": "IN_NEG_B",
+      "part_b_name": "— (No Pin)",
+      "part_b_role": "NONE",
+      "status": "MISMATCH",
+      "note": "Package pin-count mismatch (8-pin SOIC-8 vs 5-pin SOT-23-5)."
+    },
+    {
+      "pin": 7,
+      "part_a_name": "2OUT",
+      "part_a_role": "OUT_B",
+      "part_b_name": "— (No Pin)",
+      "part_b_role": "NONE",
+      "status": "MISMATCH",
+      "note": "Package pin-count mismatch (8-pin SOIC-8 vs 5-pin SOT-23-5)."
+    },
+    {
+      "pin": 8,
+      "part_a_name": "VCC",
+      "part_a_role": "VCC",
+      "part_b_name": "— (No Pin)",
+      "part_b_role": "NONE",
+      "status": "MISMATCH",
+      "note": "Package pin-count mismatch (8-pin SOIC-8 vs 5-pin SOT-23-5)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Device Kind & Output Stage",
+      "unit": "—",
+      "part_a_value": "comparator (open-collector)",
+      "part_b_value": "comparator (open-collector)",
+      "winner": "TIE",
+      "note": "Op-amps (internally compensated for linear feedback) and comparators (uncompensated open-loop switching) are NOT drop-in interchangeable."
+    },
+    {
+      "metric": "Package & Channel Count",
+      "unit": "—",
+      "part_a_value": "SOIC-8 · 2 ch (D, p.3)",
+      "part_b_value": "SOT-23-5 · 1 ch (DBV, p.3)",
+      "winner": "CONTEXT",
+      "note": "Single SOT-23-5 op-amps vary in pin ordering across vendors; verify Pin 1–5."
+    },
+    {
+      "metric": "Supply Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "2 to 30 V (p.4)",
+      "part_b_value": "2.7 to 5.5 V (p.4)",
+      "winner": "A",
+      "note": "A part wins only if its recommended Vs range strictly encompasses the counterpart on both ends."
+    },
+    {
+      "metric": "Absolute Max Supply (Vs,abs)",
+      "unit": "V",
+      "part_a_value": "36 V (p.4)",
+      "part_b_value": "5.5 V (p.4)",
+      "winner": "A",
+      "note": "Exceeding Vs,abs causes immediate gate-oxide or junction breakdown."
+    },
+    {
+      "metric": "Gain-Bandwidth Product (GBWP)",
+      "unit": "MHz",
+      "part_a_value": "N/A (Comparator)",
+      "part_b_value": "N/A (Comparator)",
+      "winner": "CONTEXT",
+      "note": "Closed-loop -3 dB bandwidth scales as f_-3dB = GBWP / Acl."
+    },
+    {
+      "metric": "Slew Rate / Propagation Delay",
+      "unit": "V/µs · ns",
+      "part_a_value": "tpd: 1300 ns (p.10)",
+      "part_b_value": "tpd: 300 ns (p.6)",
+      "winner": "B",
+      "note": "Controls large-signal full-power bandwidth SR / (2π·Vpeak) or comparator switching speed."
+    },
+    {
+      "metric": "Input Offset Voltage (Vos, max)",
+      "unit": "mV",
+      "part_a_value": "7 mV (p.10)",
+      "part_b_value": "7 mV (p.6)",
+      "winner": "TIE",
+      "note": "Lower Vos minimizes DC error in current-shunt and sensor bridge amplifiers."
+    },
+    {
+      "metric": "Input Bias Current (Ib, typ)",
+      "unit": "pA",
+      "part_a_value": "25000 pA (p.10)",
+      "part_b_value": "5 pA (p.6)",
+      "winner": "B",
+      "note": "CMOS/JFET pA-class inputs avoid offset voltage drops across high-impedance (>100 kΩ) sensors."
+    },
+    {
+      "metric": "Quiescent Current / Ch (Iq)",
+      "unit": "µA/ch",
+      "part_a_value": "400 µA/ch (p.10)",
+      "part_b_value": "26 µA/ch (p.6)",
+      "winner": "B",
+      "note": "Multiply by channel count for total IC standby current draw."
+    },
+    {
+      "metric": "Rail-to-Rail Input / Output",
+      "unit": "—",
+      "part_a_value": "IN: No · OUT: No",
+      "part_b_value": "IN: No · OUT: No",
+      "winner": "TIE",
+      "note": "RRIO prevents clipping on low-voltage 3.3 V single-supply ADC buffers."
+    },
+    {
+      "metric": "CMRR (typ) & Input Noise",
+      "unit": "dB · nV/√Hz",
+      "part_a_value": "Not specified · Not specified",
+      "part_b_value": "Not specified · Not specified",
+      "winner": "CONTEXT",
+      "note": "Winner requires superiority on both CMRR (higher) and input voltage noise (lower); mixed tradeoffs stay CONTEXT."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "148.5 °C/W (p.5) · 150 °C",
+      "part_b_value": "224 °C/W (p.4) · 150 °C",
+      "winner": "A",
+      "note": "Important when driving heavy resistive loads or high supply rails."
+    }
+  ],
+  "swap_risks": [
+    "CRITICAL PACKAGE MISMATCH: LM2903DR uses SOIC-8 (8-pin, D) while LMV331IDBVR uses SOT-23-5 (5-pin, DBV); PCB footprint redesign is mandatory.",
+    "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (OUT_A vs IN_POS), Pin 2 (IN_NEG_A vs VEE), Pin 3 (IN_POS_A vs IN_NEG), Pin 4 (VEE vs OUT), Pin 5 (IN_POS_B vs VCC), Pin 6 (IN_NEG_B vs NONE), Pin 7 (OUT_B vs NONE), Pin 8 (VCC vs NONE). Soldering LMV331IDBVR onto a LM2903DR footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
+    "CRITICAL SUPPLY VOLTAGE RATING: LMV331IDBVR is limited to 5.5 V max (5.5 V abs max, p.4) whereas LM2903DR supports up to 30 V (36 V abs max, p.4). Installing a 5.5 V CMOS part on a 12 V–24 V rail causes instant breakdown.",
+    "HIGH SWITCHING TIMING SHIFT: Propagation delay differs by 4.3x (LM2903DR: 1300 ns p.10 vs LMV331IDBVR: 300 ns p.6); verify overcurrent/zero-crossing trip latency and hysteresis timing.",
+    "HIGH INPUT BIAS CURRENT SHIFT: Typical Ib differs by 5000x (LM2903DR: 25000 pA p.10 vs LMV331IDBVR: 5 pA p.6); high-impedance sensor dividers (>100 kΩ) suffer severe Ib·R DC offset error when swapping from CMOS/JFET to bipolar inputs.",
+    "CAUTION QUIESCENT CURRENT SHIFT: Supply current per channel differs by 15.4x (LM2903DR: 400 µA/ch p.10 vs LMV331IDBVR: 26 µA/ch p.6); verify battery budget and total power dissipation across all channels.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: LMV331IDBVR has a lower Vs,abs,max rating (5.5 V, p.4) than LM2903DR (36 V, p.4); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 5.5 V.",
+    "HIGH THERMAL MARGIN: Package θJA is 51% higher on LMV331IDBVR (LM2903DR: 148.5 °C/W p.5 vs LMV331IDBVR: 224 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH MINIMUM SUPPLY FLOOR: LMV331IDBVR requires Vs,min >= 2.7 V (p.4) vs 2 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor."
+  ],
+  "engineering_verdict": "LM2903DR (Texas Instruments, SOIC-8) and LMV331IDBVR (Texas Instruments, SOT-23-5) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (OUT_A vs IN_POS), Pin 2 (IN_NEG_A vs VEE), Pin 3 (IN_POS_A vs IN_NEG), Pin 4 (VEE vs OUT), Pin 5 (IN_POS_B vs VCC), Pin 6 (IN_NEG_B vs NONE), Pin 7 (OUT_B vs NONE), Pin 8 (VCC vs NONE). Specific pin conflicts: Pin 1 (OUT_A vs IN_POS), Pin 2 (IN_NEG_A vs VEE), Pin 3 (IN_POS_A vs IN_NEG), Pin 4 (VEE vs OUT). Signal-chain deltas: propagation delay 1300 ns (p.10) vs 300 ns (p.6), supply ceiling 30 V (p.4) vs 5.5 V (p.4), Vos 7 mV (p.10) vs 7 mV (p.6), Ib 5000x gap (25000 vs 5 pA). Primary bench gotchas to watch: LM2903DR \"Extended -40°C to +125°C Upgrade Over LM393DR, But Wider Offset (7 mV / 15 mV Over Temp)\" (p.10) and LMV331IDBVR \"Reversed U-Pinout SOT-23-5 (Pin 1 = IN+, Pin 4 = OUT) — Incompatible With TLV3201 & TLV7011\" (p.3). BOM decision: Choose LM2903DR when supply rails exceed 5.5 V (rated up to 30 V); choose LMV331IDBVR when high-impedance sensors require pA-class input bias (5 pA) or ultra-low supply current (26 µA/ch) is prioritized. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
+  "generated_at": "2026-11-23"
+}

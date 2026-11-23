@@ -1,0 +1,209 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "LM1117IMPX-ADJ/NOPB",
+  "slug": "lm1117impx-adj-nopb",
+  "family": "LM1117",
+  "manufacturer": "Texas Instruments",
+  "category": "ldo",
+  "sub_topology": "adj-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Industrial (-40°C to +125°C TJ, LM1117I grade)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/lm1117.pdf",
+    "product_page_url": "https://www.ti.com/product/LM1117",
+    "source_domain": "www.ti.com",
+    "revision": "SNOS412Q (January 2023)",
+    "verified_at": "2026-11-23",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 47
+  },
+  "package": {
+    "code": "SOT-223-3",
+    "mfg_package_code": "DCY",
+    "pin_count": 3,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": true,
+      "net": "VOUT",
+      "note": "SOT-223 thermal tab (Pin 4 in TI DCY notation) is internally connected to VOUT (Pin 2); NEVER connect tab to GND (p.3)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 61.6,
+      "page": 4,
+      "condition": "DCY (SOT-223) JEDEC high-K PCB (Sec 7.4, p.4); degrades substantially on minimal copper pads",
+      "table_ref": "Section 7.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 42.5,
+      "page": 4,
+      "condition": "RθJC(top) for DCY SOT-223 package",
+      "table_ref": "Section 7.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 4,
+      "condition": "Recommended operating junction temperature max -40°C to +125°C for LM1117I (abs max TJ = 150°C, Sec 7.1 & 7.3)",
+      "table_ref": "Section 7.3 Recommended Operating Conditions"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "ADJ",
+        "role": "ADJ",
+        "description": "Feedback adjust pin (maintains 1.25 V VREF between VOUT and ADJ; do NOT tie directly to GND unless 1.25 V output is desired)"
+      },
+      {
+        "pin": 2,
+        "name": "VOUT",
+        "role": "VOUT",
+        "description": "Adjustable regulated output (1.25 V to 13.8 V), internally connected to SOT-223 thermal tab (Pin 4); requires >= 10 µF tantalum COUT (0.3-22 Ω ESR)"
+      },
+      {
+        "pin": 3,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Unregulated input supply (VOUT + 1.4 V minimum to 15 V operating; 20 V absolute maximum)"
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 20,
+      "page": 4,
+      "condition": "Absolute Maximum Ratings VIN to GND = 20 V",
+      "table_ref": "Section 7.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 2.65,
+      "page": 7,
+      "condition": "Minimum VIN at VOUT = 1.25 V (requires 1.4 V <= VIN - VOUT <= 10 V for guaranteed VREF regulation across 10-800 mA)",
+      "table_ref": "Section 7.6 LM1117I Electrical Characteristics"
+    },
+    "vin_max_v": {
+      "value": 15,
+      "page": 4,
+      "condition": "Recommended Operating Conditions maximum VIN to GND = 15 V (VOUT adjustable up to 13.8 V)",
+      "table_ref": "Section 7.3 Recommended Operating Conditions"
+    },
+    "vout_v": {
+      "value": 1.25,
+      "page": 7,
+      "condition": "Vref (adjustable 1.25V–13.8V): VOUT = VREF * (1 + R2/R1) + IADJ * R2; LM1117IMPX-ADJ/NOPB Active on p.25 (marking N03B)",
+      "table_ref": "Section 7.6 LM1117I Electrical Characteristics"
+    },
+    "vout_fixed": false,
+    "vout_tolerance_pct": {
+      "value": 1,
+      "page": 7,
+      "condition": "LM1117I-ADJ VREF: 1.238 V to 1.262 V (±0.96%, ~±1%) at TJ = 25°C, IOUT = 10 mA; widens to 1.20 V to 1.29 V over -40°C to +125°C",
+      "table_ref": "Section 7.6 LM1117I Electrical Characteristics"
+    },
+    "iout_max_ma": {
+      "value": 800,
+      "page": 7,
+      "condition": "Rated continuous output current 800 mA (current limit 800 mA min / 1200 mA typ / 1500 mA max, p.8)",
+      "table_ref": "Section 7.6 LM1117I Electrical Characteristics"
+    },
+    "iq_typ_ua": {
+      "value": 1700,
+      "page": 8,
+      "condition": "LM1117I-ADJ minimum load / quiescent current discharged into VOUT = 1.7 mA typ at 25°C (5 mA max over -40°C to +125°C; IADJ = 60 µA typ / 120 µA max)",
+      "table_ref": "Section 7.6 LM1117I Electrical Characteristics (continued)"
+    },
+    "ishdn_typ_ua": null,
+    "dropout_typ_mv": {
+      "value": 1200,
+      "page": 8,
+      "condition": "LM1117I at IOUT = 800 mA, TJ = 25°C (1400 mV max over -40°C to +125°C; 1.1 V typ at 100 mA, 1.15 V typ at 500 mA)",
+      "table_ref": "Section 7.6 LM1117I Electrical Characteristics (continued)"
+    },
+    "psrr_db": {
+      "value": 75,
+      "page": 8,
+      "condition": "f = 120 Hz, VIN - VOUT = 3 V, VRIPPLE = 1 Vpp, TJ = 25°C (60 dB min over -40°C to +125°C; CADJ bypass improves ripple rejection)",
+      "table_ref": "Section 7.6 LM1117I Electrical Characteristics (continued)"
+    },
+    "output_noise_uvrms": {
+      "value": 37.5,
+      "page": 8,
+      "condition": "0.003% of 1.25 V VREF = 37.5 µVRMS (10 Hz to 10 kHz, TJ = 25°C; scales proportionally with programmed VOUT)",
+      "table_ref": "Section 7.6 LM1117I Electrical Characteristics (continued)"
+    },
+    "ceramic_cap_stable": false,
+    "min_cout_uf": {
+      "value": 10,
+      "page": 15,
+      "condition": "Minimum 10 µF solid tantalum output capacitor required (use >= 22 µF if CADJ bypass capacitor is fitted)",
+      "table_ref": "Section 9.2.2.1.1 Output Capacitor"
+    },
+    "esr_min_ohm": {
+      "value": 0.3,
+      "page": 15,
+      "condition": "Strict lower ESR floor of 0.3 Ω — bare low-ESR MLCCs (< 10 mΩ) cause loop oscillation",
+      "table_ref": "Section 9.2.2.1.1 Output Capacitor"
+    },
+    "esr_max_ohm": {
+      "value": 22,
+      "page": 15,
+      "condition": "Upper ESR ceiling of 22 Ω for loop stability across operating range",
+      "table_ref": "Section 9.2.2.1.1 Output Capacitor"
+    },
+    "en_active_high": null,
+    "reverse_current_protection": false
+  },
+  "design_gotchas": [
+    {
+      "title": "Pin 1 Is ADJ (NOT GND) — NEVER Drop Into Fixed 3.3 V / 5.0 V Footprints Without Feedback Resistors",
+      "severity": "CRITICAL",
+      "detail": "LM1117IMPX-ADJ/NOPB (marking N03B) regulates 1.25 V between VOUT (Pin 2) and ADJ (Pin 1). Populating it directly onto a fixed-LDO PCB where Pin 1 is tied to GND collapses the rail to 1.25 V instead of 3.3 V or 5.0 V.",
+      "page": 3
+    },
+    {
+      "title": "Mandatory >= 5 mA Minimum Load Current (Size Top Resistor R1 <= 121 Ω–240 Ω)",
+      "severity": "CRITICAL",
+      "detail": "Because LM1117I-ADJ has no separate GND pin, its internal quiescent current (1.7 mA typ, 5 mA max) exits through VOUT. If the external feedback divider draws less than 5 mA (requiring R1 <= 249 Ω, typically 121 Ω for 10 mA) and load drops to zero, VOUT floats uncontrollably upward toward VIN.",
+      "page": 8
+    },
+    {
+      "title": "Strict 0.3–22 Ω Output Capacitor ESR Window & 22 µF Requirement With CADJ Bypass",
+      "severity": "CRITICAL",
+      "detail": "Requires >= 10 µF tantalum COUT with ESR strictly in 0.3–22 Ω (unstable with direct MLCCs). Adding a 10 µF CADJ bypass capacitor for maximum PSRR increases the minimum required COUT to 22 µF tantalum.",
+      "page": 15
+    },
+    {
+      "title": "IADJ Error Term (60 µA Typ / 120 µA Max) Must Be Accounted for When Choosing R2",
+      "severity": "WARNING",
+      "detail": "VOUT = 1.25 V * (1 + R2/R1) + IADJ * R2. Keeping R1 small (121 Ω–240 Ω) both satisfies the 5 mA–10 mA minimum load rule and keeps the IADJ * R2 error term negligible (< 30 mV).",
+      "page": 8
+    }
+  ],
+  "typical_use_cases": [
+    "Custom non-standard voltage rails (1.25 V to 13.8 V) such as 1.5 V, 2.8 V, 4.2 V, or 9.0 V at up to 800 mA",
+    "Unified single-SKU BOM consolidation replacing multiple fixed 1117 voltage options via E96 feedback dividers",
+    "Constant-current LED or battery pre-charge regulators using the fixed 1.25 V VOUT-to-ADJ reference",
+    "Industrial (-40°C to +125°C TJ) linear post-regulators with optional CADJ ripple-rejection bypass"
+  ],
+  "engineering_summary": "The Texas Instruments LM1117IMPX-ADJ/NOPB is an industrial-grade (-40°C to +125°C TJ) adjustable 800 mA linear regulator in SOT-223 (DCY) supporting output voltages from 1.25 V to 13.8 V via two external resistors around its ±1% 1.25 V VREF. Unlike fixed LM1117 variants, Pin 1 is ADJ (not GND), and internal bias current exits via VOUT, demanding a 5 mA worst-case minimum load (typically set by R1 = 121 Ω–240 Ω). Engineers must also respect the 0.3–22 Ω tantalum COUT ESR window, VOUT-connected thermal tab, and 1.2 V typ (1.4 V max) dropout.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 4, 7, 8, 25],
+    "audit_notes": [
+      "Vision-verified DCY SOT-223 Top View on 300 DPI PNG page 3 (Figure 6-1 & Table 6-1): Pin 1 = ADJ, Pin 2 = VOUT (Tab = VOUT), Pin 3 = VIN.",
+      "Verified Absolute Maximum Ratings (20 V VIN, 150°C TJ), Recommended Operating Conditions (15 V max, -40 to 125°C TJ for LM1117I), and DCY Thermal Metrics (RθJA = 61.6 °C/W, RθJC(top) = 42.5 °C/W) on 300 DPI PNG page 4.",
+      "Verified Section 7.6 LM1117I-ADJ specs on 300 DPI PNG pages 7-8: VREF = 1.25 V (1.238-1.262 V at 25°C, 1.20-1.29 V over temp), VIN-VOUT min = 1.4 V (VIN min 2.65 V at 1.25 V out), minimum load current = 1.7 mA typ / 5 mA max, IADJ = 60 µA typ / 120 µA max, dropout = 1.2 V typ at 800 mA.",
+      "Ordering table PNG page 25 confirms LM1117IMPX-ADJ/NOPB Active, Production, SOT-223 (DCY), 2000 LARGE T&R, -40 to 125°C, marking N03B."
+    ]
+  }
+}

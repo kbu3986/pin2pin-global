@@ -54,8 +54,8 @@
       "unit": "V",
       "part_a_value": "4.8 to 15 V (p.7/p.4)",
       "part_b_value": "4.75 to 15 V (p.3)",
-      "winner": "TIE",
-      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+      "winner": "B",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -140,8 +140,11 @@
   ],
   "swap_risks": [
     "CRITICAL CAPACITOR ESR OSCILLATION RISK: AZ1117CH-3.3TRG1 is stable with low-ESR ceramic MLCCs (>= 10 µF, p.3), whereas NCP1117ST33T3G is NOT ceramic-cap stable (ESR window: 0.033–2.2 Ω (p.9)). Using an ultra-low-ESR MLCC on NCP1117ST33T3G can trigger control-loop oscillation.",
-    "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (AZ1117CH-3.3TRG1: 125 °C/W vs NCP1117ST33T3G: 160 °C/W) and worst-case ambient temperature (-20..125 °C vs 0..125 °C)."
+    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs by 2.1x (AZ1117CH-3.3TRG1: 10 µF p.3 vs NCP1117ST33T3G: 4.7 µF p.9); account for MLCC DC-bias derating.",
+    "HIGH LOAD CURRENT DERATING: AZ1117CH-3.3TRG1 supplies up to 800 mA (p.7) compared to NCP1117ST33T3G at 1000 mA (p.3); confirm peak inrush and thermal dissipation margin.",
+    "HIGH THERMAL MARGIN: Package θJA is 28% higher on NCP1117ST33T3G (AZ1117CH-3.3TRG1: 125 °C/W p.4 vs NCP1117ST33T3G: 160 °C/W p.2); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (AZ1117CH-3.3TRG1: -20..125 °C Extended Commercial (-20°C to +125°C TJ — NOT -40°C Industrial) vs NCP1117ST33T3G: 0..125 °C Commercial (0°C to +125°C TJ; use NCP1117IST33T3G for -40°C)); NCP1117ST33T3G cold limit only 0 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "AZ1117CH-3.3TRG1 (Diodes Incorporated, SOT-223-3) and NCP1117ST33T3G (onsemi, SOT-223-3) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to ceramic output capacitor ESR stability difference. Key datasheet deltas: Iq is 4000 µA (p.7) vs 6000 µA (p.4), max output current is 800 mA (p.7) vs 1000 mA (p.3), recommended Vin,max is 15 V (p.4) vs 15 V (p.3), typical dropout is 1200 mV (p.7) vs 1070 mV (p.3), and ceramic capacitor stability is supported vs ESR-constrained. Always validate pinout orientation (TOP_VIEW p.2 vs TOP_VIEW p.1), thermal margin (θJA 125 vs 160 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AZ1117CH-3.3TRG1 (Diodes Incorporated, SOT-223-3) and NCP1117ST33T3G (onsemi, SOT-223-3) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because ceramic output capacitor ESR stability difference; minimum output capacitance requirement differs 2.1x; Iout,max rating drops >=20%. Under a representative 5 V → 3.3 V rail at 150 mA (255 mW), estimated self-heating is ΔTj ≈ 31.9 °C on AZ1117CH-3.3TRG1 (θJA 125 °C/W) vs 40.8 °C on NCP1117ST33T3G (θJA 160 °C/W), while quiescent draw spans a 1.5x ratio (4000 µA (p.7) vs 6000 µA (p.4)). Primary bench gotchas to watch: AZ1117CH-3.3TRG1 \"Operating Temperature Stops at -20°C — NOT Rated for -40°C Industrial Grade\" (p.4) and NCP1117ST33T3G \"Commercial 0°C to +125°C Grade Only — Missing 'I' Prefix Excludes Sub-Zero Operation\" (p.4). BOM decision: Choose AZ1117CH-3.3TRG1 when your BOM standardizes on low-ESR MLCC ceramic output capacitors or lower package θJA (125 °C/W) is needed for thermal margin; choose NCP1117ST33T3G when load current exceeds 800 mA (up to 1000 mA). Always verify Pin 1 orientation (TOP_VIEW p.2 vs TOP_VIEW p.1) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

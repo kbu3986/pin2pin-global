@@ -6,7 +6,9 @@ export function JsonLd({ data }: { data: Record<string, unknown> | Array<Record<
         <script
           key={idx}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(item).replace(/</g, '\\u003c'),
+          }}
         />
       ))}
     </>

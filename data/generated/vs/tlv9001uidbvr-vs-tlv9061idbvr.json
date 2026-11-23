@@ -1,0 +1,168 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "tlv9001uidbvr-vs-tlv9061idbvr",
+  "category": "opamp",
+  "part_a_slug": "tlv9001uidbvr",
+  "part_b_slug": "tlv9061idbvr",
+  "part_a_opn": "TLV9001UIDBVR",
+  "part_b_opn": "TLV9061IDBVR",
+  "compatibility_level": "LEVEL_3_LAYOUT_CHANGE",
+  "compatibility_badge": "PCB Layout Change Required (Pinout or Package Mismatch)",
+  "package_match": true,
+  "pinout_exact_match": false,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "IN+",
+      "part_a_role": "IN_POS",
+      "part_b_name": "OUT",
+      "part_b_role": "OUT",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 1: TLV9001UIDBVR assigns IN+ (IN_POS) whereas TLV9061IDBVR assigns OUT (OUT) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "V-",
+      "part_a_role": "VEE",
+      "part_b_name": "V-",
+      "part_b_role": "VEE",
+      "status": "MATCH",
+      "note": "Identical pin assignment (V- / VEE)."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "IN-",
+      "part_a_role": "IN_NEG",
+      "part_b_name": "IN+",
+      "part_b_role": "IN_POS",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 3: TLV9001UIDBVR assigns IN- (IN_NEG) whereas TLV9061IDBVR assigns IN+ (IN_POS) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "OUT",
+      "part_a_role": "OUT",
+      "part_b_name": "IN-",
+      "part_b_role": "IN_NEG",
+      "status": "MISMATCH",
+      "note": "PINOUT CONFLICT on Pin 4: TLV9001UIDBVR assigns OUT (OUT) whereas TLV9061IDBVR assigns IN- (IN_NEG) — direct drop-in risks rail short or IC destruction."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "V+",
+      "part_a_role": "VCC",
+      "part_b_name": "V+",
+      "part_b_role": "VCC",
+      "status": "MATCH",
+      "note": "Identical pin assignment (V+ / VCC)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Device Kind & Output Stage",
+      "unit": "—",
+      "part_a_value": "opamp (push-pull)",
+      "part_b_value": "opamp (push-pull)",
+      "winner": "TIE",
+      "note": "Op-amps (internally compensated for linear feedback) and comparators (uncompensated open-loop switching) are NOT drop-in interchangeable."
+    },
+    {
+      "metric": "Package & Channel Count",
+      "unit": "—",
+      "part_a_value": "SOT-23-5 · 1 ch (DBV (U-Pinout), p.7)",
+      "part_b_value": "SOT-23-5 · 1 ch (DBV, p.5)",
+      "winner": "TIE",
+      "note": "Single SOT-23-5 op-amps vary in pin ordering across vendors; verify Pin 1–5."
+    },
+    {
+      "metric": "Supply Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "1.8 to 5.5 V (p.14)",
+      "part_b_value": "1.8 to 5.5 V (p.10)",
+      "winner": "TIE",
+      "note": "A part wins only if its recommended Vs range strictly encompasses the counterpart on both ends."
+    },
+    {
+      "metric": "Absolute Max Supply (Vs,abs)",
+      "unit": "V",
+      "part_a_value": "7 V (p.14)",
+      "part_b_value": "6 V (p.10)",
+      "winner": "A",
+      "note": "Exceeding Vs,abs causes immediate gate-oxide or junction breakdown."
+    },
+    {
+      "metric": "Gain-Bandwidth Product (GBWP)",
+      "unit": "MHz",
+      "part_a_value": "1 MHz (p.17)",
+      "part_b_value": "10 MHz (p.13)",
+      "winner": "B",
+      "note": "Closed-loop -3 dB bandwidth scales as f_-3dB = GBWP / Acl."
+    },
+    {
+      "metric": "Slew Rate / Propagation Delay",
+      "unit": "V/µs · ns",
+      "part_a_value": "SR: 2 V/µs (p.17)",
+      "part_b_value": "SR: 6.5 V/µs (p.13)",
+      "winner": "B",
+      "note": "Controls large-signal full-power bandwidth SR / (2π·Vpeak) or comparator switching speed."
+    },
+    {
+      "metric": "Input Offset Voltage (Vos, max)",
+      "unit": "mV",
+      "part_a_value": "1.6 mV (p.17)",
+      "part_b_value": "1.6 mV (p.13)",
+      "winner": "TIE",
+      "note": "Lower Vos minimizes DC error in current-shunt and sensor bridge amplifiers."
+    },
+    {
+      "metric": "Input Bias Current (Ib, typ)",
+      "unit": "pA",
+      "part_a_value": "5 pA (p.17)",
+      "part_b_value": "0.5 pA (p.13)",
+      "winner": "B",
+      "note": "CMOS/JFET pA-class inputs avoid offset voltage drops across high-impedance (>100 kΩ) sensors."
+    },
+    {
+      "metric": "Quiescent Current / Ch (Iq)",
+      "unit": "µA/ch",
+      "part_a_value": "60 µA/ch (p.18)",
+      "part_b_value": "538 µA/ch (p.14)",
+      "winner": "A",
+      "note": "Multiply by channel count for total IC standby current draw."
+    },
+    {
+      "metric": "Rail-to-Rail Input / Output",
+      "unit": "—",
+      "part_a_value": "IN: Yes · OUT: Yes",
+      "part_b_value": "IN: Yes · OUT: Yes",
+      "winner": "TIE",
+      "note": "RRIO prevents clipping on low-voltage 3.3 V single-supply ADC buffers."
+    },
+    {
+      "metric": "CMRR (typ) & Input Noise",
+      "unit": "dB · nV/√Hz",
+      "part_a_value": "77 dB (p.17) · 30 nV/√Hz (p.17)",
+      "part_b_value": "87 dB (p.13) · 16 nV/√Hz (p.13)",
+      "winner": "B",
+      "note": "Winner requires superiority on both CMRR (higher) and input voltage noise (lower); mixed tradeoffs stay CONTEXT."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "232.9 °C/W (p.15) · 150 °C",
+      "part_b_value": "221.7 °C/W (p.11) · 150 °C",
+      "winner": "B",
+      "note": "Important when driving heavy resistive loads or high supply rails."
+    }
+  ],
+  "swap_risks": [
+    "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (IN_POS vs OUT), Pin 3 (IN_NEG vs IN_POS), Pin 4 (OUT vs IN_NEG). Soldering TLV9061IDBVR onto a TLV9001UIDBVR footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
+    "CAUTION BANDWIDTH & PHASE MARGIN: GBWP differs by 10x (TLV9001UIDBVR: 1 MHz p.17 vs TLV9061IDBVR: 10 MHz p.13); higher-bandwidth replacements can oscillate with capacitive loads or stray feedback capacitance without an isolation resistor.",
+    "CAUTION SLEW RATE DIFFERENCE: Slew rate differs by 3.3x (TLV9001UIDBVR: 2 V/µs p.17 vs TLV9061IDBVR: 6.5 V/µs p.13); check full-power bandwidth SR / (2π·Vpeak).",
+    "HIGH INPUT BIAS CURRENT SHIFT: Typical Ib differs by 10x (TLV9001UIDBVR: 5 pA p.17 vs TLV9061IDBVR: 0.5 pA p.13); high-impedance sensor dividers (>100 kΩ) suffer severe Ib·R DC offset error when swapping from CMOS/JFET to bipolar inputs.",
+    "CAUTION QUIESCENT CURRENT SHIFT: Supply current per channel differs by 9x (TLV9001UIDBVR: 60 µA/ch p.18 vs TLV9061IDBVR: 538 µA/ch p.14); verify battery budget and total power dissipation across all channels."
+  ],
+  "engineering_verdict": "TLV9001UIDBVR (Texas Instruments, SOT-23-5) and TLV9061IDBVR (Texas Instruments, SOT-23-5) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to pinout mismatch on Pin 1 (IN_POS vs OUT), Pin 3 (IN_NEG vs IN_POS), Pin 4 (OUT vs IN_NEG). Specific pin conflicts: Pin 1 (IN_POS vs OUT), Pin 3 (IN_NEG vs IN_POS), Pin 4 (OUT vs IN_NEG). Signal-chain deltas: GBWP 1 MHz (p.17) vs 10 MHz (p.13), supply ceiling 5.5 V (p.14) vs 5.5 V (p.10), Vos 1.6 mV (p.17) vs 1.6 mV (p.13), Ib 10x gap (5 vs 0.5 pA), voltage noise 30 vs 16 nV/√Hz. Primary bench gotchas to watch: TLV9001UIDBVR \"Single-Letter 'U' Suffix Reverses SOT-23-5 Pinout (Matches LMV321IDBVR, Breaks TLV9001IDBVR PCBs)\" (p.7) and TLV9061IDBVR \"SOT-23-5 (DBV) Pinout Matches TLV9001/OPA333 DBV — Differs from SC70 (DCK) & U-Variants\" (p.5). BOM decision: Choose TLV9001UIDBVR when ultra-low supply current (60 µA/ch) is prioritized; choose TLV9061IDBVR when closed-loop signal bandwidth requires 10 MHz GBWP. Always verify Pin 1 orientation (TOP_VIEW p.7 vs TOP_VIEW p.5) and official datasheets on hardware prototypes prior to production.",
+  "generated_at": "2026-11-23"
+}

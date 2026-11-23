@@ -9,6 +9,7 @@ import {
   ChevronRight,
   ExternalLink,
   FileText,
+  GitCompareArrows,
   Info,
   ShieldCheck,
 } from 'lucide-react';
@@ -16,6 +17,7 @@ import {
   getAllAltHubs,
   getAllParts,
   getPartBySlug,
+  getRelatedGuidesForPart,
   getSiteConfig,
   getVsComparisonsForPart,
 } from '@/lib/data-loader';
@@ -27,12 +29,17 @@ import { DistributorLinks } from '@/components/DistributorLinks';
 import { LabGearAffiliate } from '@/components/LabGearAffiliate';
 import { AdSenseSlot } from '@/components/AdSenseSlot';
 import { JsonLd } from '@/components/JsonLd';
+import { TrackedOutboundLink } from '@/components/TrackedOutboundLink';
+import { RelatedGuidesToolsSection } from '@/app/en/_components/RelatedGuidesToolsSection';
 import { LdoThermalCalculator } from '@/components/calculators/LdoThermalCalculator';
 import { DcdcEfficiencyRippleCalculator } from '@/components/calculators/DcdcEfficiencyRippleCalculator';
 import { OpampGbwpSlewCalculator } from '@/components/calculators/OpampGbwpSlewCalculator';
 import {
   buildBreadcrumbJsonLd,
   buildDatasetJsonLd,
+  buildMetaDescription,
+  buildMetaTitle,
+  buildPageMetadata,
   buildTechArticleJsonLd,
   categoryLabel,
   fmtBool,
@@ -63,15 +70,27 @@ export async function generateMetadata({
   if (!part) {
     return { title: 'Part Not Found' };
   }
-  const title = `${part.opn} Pinout, Datasheet Specs & Alternatives (${part.package.code})`;
-  const description = `${part.opn} (${part.manufacturer}, ${part.package.code} ${part.package.pin_count}-pin) verified pinout diagram, datasheet-cited specifications, thermal limits, and pin-compatible alternatives.`;
-  return {
+  const title = buildMetaTitle(
+    [
+      `${part.opn} Pinout, Specs & Alts (${part.package.code})`,
+      `${part.opn} Pinout & Specs (${part.package.code})`,
+      `${part.opn} Pinout & Datasheet Specs`,
+      `${part.opn} Pinout`,
+    ],
+    siteConfig.site_name,
+    65,
+  );
+  const description = buildMetaDescription(
+    `${part.opn} (${part.manufacturer}, ${part.package.code} ${part.package.pin_count}-pin) verified pinout diagram, datasheet-cited specs, thermal limits, and alternatives.`,
+  );
+  return buildPageMetadata({
+    siteUrl: siteConfig.site_url,
+    siteName: siteConfig.site_name,
+    path: `/en/part/${part.slug}`,
     title,
     description,
-    alternates: {
-      canonical: `${siteConfig.site_url}/en/part/${part.slug}/`,
-    },
-  };
+    ogType: 'article',
+  });
 }
 
 interface SpecRow {
@@ -218,6 +237,7 @@ export default async function PartDetailPage({
 
   const siteConfig = getSiteConfig();
   const relatedVs = getVsComparisonsForPart(part.slug);
+  const relatedGuides = getRelatedGuidesForPart(part, 3);
   const altHub = getAllAltHubs().find((a) => a.target_slug === part.slug) ?? null;
   const specRows = buildSpecRows(part);
   const keyKpis = buildKeyKpis(part);
@@ -313,7 +333,7 @@ export default async function PartDetailPage({
       {/* ABOVE-THE-FOLD WORKBENCH: SVG PINOUT + KEY SPECS & ACTIONS */}
       <section aria-label="Pinout Diagram and Key Specifications" className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
         <div className="lg:col-span-6">
-          <PackagePinoutSvg opn={part.opn} pkg={part.package} />
+          <PackagePinoutSvg opn={part.opn} pkg={part.package} interactive />
         </div>
 
         <div className="lg:col-span-6 space-y-4">
@@ -338,29 +358,42 @@ export default async function PartDetailPage({
           </div>
 
           {/* Primary Action Bar */}
-          <div className="rounded-lg border border-slate-300 bg-white p-4 space-y-3">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          <div className="print:hidden rounded-lg border border-slate-300 bg-white p-4 space-y-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
               {altHub && (
                 <Link
                   href={`/en/alt/${altHub.slug}`}
-                  className="inline-flex items-center justify-center gap-1.5 rounded-md bg-slate-900 px-3.5 py-2.5 text-xs font-bold text-white hover:bg-slate-800 transition-colors"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-md bg-slate-900 px-3 py-2.5 text-xs font-bold text-white hover:bg-slate-800 transition-colors"
                 >
-                  View Ranked Alternatives ({altHub.candidates.length})
+                  Alternatives ({altHub.candidates.length})
                   <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </Link>
               )}
+              <Link
+                href={`/en/compare?a=${encodeURIComponent(part.slug)}`}
+                className="inline-flex items-center justify-center gap-1.5 rounded-md border border-sky-600 bg-sky-50 px-3 py-2.5 text-xs font-bold text-sky-950 hover:bg-sky-100 transition-colors"
+              >
+                <GitCompareArrows className="h-3.5 w-3.5" aria-hidden="true" />
+                Compare 2-OPN
+              </Link>
               <a
                 href="#calculator"
-                className="inline-flex items-center justify-center gap-1.5 rounded-md border border-emerald-600 bg-emerald-50 px-3.5 py-2.5 text-xs font-bold text-emerald-950 hover:bg-emerald-100 transition-colors"
+                className="inline-flex items-center justify-center gap-1.5 rounded-md border border-emerald-600 bg-emerald-50 px-3 py-2.5 text-xs font-bold text-emerald-950 hover:bg-emerald-100 transition-colors"
               >
-                Run Pre-Filled Calculator ↓
+                Run Calculator ↓
               </a>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1 border-t border-slate-100">
-              <a
+              <TrackedOutboundLink
                 href={part.datasheet.pdf_url}
-                target="_blank"
+                eventName="datasheet_pdf_click"
+                eventParams={{
+                  opn: part.opn,
+                  manufacturer: part.manufacturer,
+                  link_type: 'official_pdf',
+                  source_domain: part.datasheet.source_domain,
+                }}
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-between rounded-md border border-slate-300 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-800 hover:bg-white hover:border-slate-500 transition-colors"
               >
@@ -369,16 +402,22 @@ export default async function PartDetailPage({
                   Official Manufacturer PDF
                 </span>
                 <ExternalLink className="h-3.5 w-3.5 text-slate-400" aria-hidden="true" />
-              </a>
-              <a
+              </TrackedOutboundLink>
+              <TrackedOutboundLink
                 href={part.datasheet.product_page_url}
-                target="_blank"
+                eventName="datasheet_pdf_click"
+                eventParams={{
+                  opn: part.opn,
+                  manufacturer: part.manufacturer,
+                  link_type: 'product_page',
+                  source_domain: part.datasheet.source_domain,
+                }}
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-between rounded-md border border-slate-300 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-800 hover:bg-white hover:border-slate-500 transition-colors"
               >
                 <span>Manufacturer Product Page</span>
                 <ExternalLink className="h-3.5 w-3.5 text-slate-400" aria-hidden="true" />
-              </a>
+              </TrackedOutboundLink>
             </div>
           </div>
 
@@ -652,6 +691,14 @@ export default async function PartDetailPage({
           </ul>
         </section>
       </div>
+
+      {/* Reciprocal Contextual Internal Linking: Field Guides & Engineering Tools */}
+      <RelatedGuidesToolsSection
+        category={part.category}
+        guides={relatedGuides}
+        compareSlugA={part.slug}
+        calculatorOpn={part.opn}
+      />
 
       {/* Zero-Scraping Distributor Search Deeplinks */}
       <DistributorLinks siteConfig={siteConfig} opn={part.opn} />

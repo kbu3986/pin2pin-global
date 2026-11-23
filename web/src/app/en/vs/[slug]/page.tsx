@@ -6,6 +6,7 @@ import {
   ArrowRight,
   CheckCircle2,
   ChevronRight,
+  GitCompareArrows,
   ShieldAlert,
   XCircle,
 } from 'lucide-react';
@@ -13,19 +14,28 @@ import {
   getAllAltHubs,
   getAllVsComparisons,
   getPartBySlug,
+  getRelatedGuidesForVs,
   getSiteConfig,
   getVsComparisonBySlug,
 } from '@/lib/data-loader';
-import { PackagePinoutSvg, type DiffStatus } from '@/components/PackagePinoutSvg';
+import {
+  PackagePinoutSvg,
+  VsPinoutComparisonView,
+  type DiffStatus,
+} from '@/components/PackagePinoutSvg';
 import { DisclaimerStrip } from '@/components/DisclaimerStrip';
 import { ErrorReportButton } from '@/components/ErrorReportButton';
 import { DistributorLinks } from '@/components/DistributorLinks';
 import { LabGearAffiliate } from '@/components/LabGearAffiliate';
 import { AdSenseSlot } from '@/components/AdSenseSlot';
 import { JsonLd } from '@/components/JsonLd';
+import { RelatedGuidesToolsSection } from '@/app/en/_components/RelatedGuidesToolsSection';
 import {
   buildBreadcrumbJsonLd,
   buildDatasetJsonLd,
+  buildMetaDescription,
+  buildMetaTitle,
+  buildPageMetadata,
   buildTechArticleJsonLd,
   categoryLabel,
   getCompatibilityStyle,
@@ -47,13 +57,26 @@ export async function generateMetadata({
   const siteConfig = getSiteConfig();
   if (!vs) return { title: 'Comparison Not Found' };
 
-  return {
-    title: `${vs.part_a_opn} vs ${vs.part_b_opn} — Pinout Diff & Compatibility Comparison`,
-    description: `${vs.part_a_opn} vs ${vs.part_b_opn}: ${vs.compatibility_badge}. Side-by-side SVG pinout diff, parameter winner matrix, and swap risks verified from official datasheets.`,
-    alternates: {
-      canonical: `${siteConfig.site_url}/en/vs/${vs.slug}/`,
-    },
-  };
+  const title = buildMetaTitle(
+    [
+      `${vs.part_a_opn} vs ${vs.part_b_opn} Pinout Diff`,
+      `${vs.part_a_opn} vs ${vs.part_b_opn}`,
+    ],
+    siteConfig.site_name,
+    65,
+  );
+  const description = buildMetaDescription(
+    `${vs.part_a_opn} vs ${vs.part_b_opn}: ${vs.compatibility_badge}. Side-by-side SVG pinout diff, parameter winner matrix, and swap risks from official datasheets.`,
+  );
+
+  return buildPageMetadata({
+    siteUrl: siteConfig.site_url,
+    siteName: siteConfig.site_name,
+    path: `/en/vs/${vs.slug}`,
+    title,
+    description,
+    ogType: 'article',
+  });
 }
 
 export default async function VsComparisonPage({
@@ -68,9 +91,11 @@ export default async function VsComparisonPage({
   const siteConfig = getSiteConfig();
   const partA = getPartBySlug(vs.part_a_slug);
   const partB = getPartBySlug(vs.part_b_slug);
+  const relatedGuides = getRelatedGuidesForVs(vs, 3);
   const altSlugSet = new Set(getAllAltHubs().map((a) => a.target_slug));
   const style = getCompatibilityStyle(vs.compatibility_level);
   const pagePath = `/en/vs/${vs.slug}`;
+  const epDiffStatus: 'MATCH' | 'MISMATCH' = vs.exposed_pad_match ? 'MATCH' : 'MISMATCH';
 
   // Build synchronized Diff Highlights map for both SVG pinout diagrams
   const diffHighlights: Record<number, DiffStatus> = {};
@@ -85,7 +110,7 @@ export default async function VsComparisonPage({
   const jsonLd = [
     buildBreadcrumbJsonLd(siteConfig.site_url, [
       { name: 'Home', path: '/en' },
-      { name: 'Catalog', path: '/en/catalog' },
+      { name: '1:1 Comparisons', path: '/en/vs' },
       { name: `${vs.part_a_opn} vs ${vs.part_b_opn}`, path: pagePath },
     ]),
     buildTechArticleJsonLd({
@@ -122,8 +147,8 @@ export default async function VsComparisonPage({
           Home
         </Link>
         <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
-        <Link href="/en/catalog" className="hover:text-slate-900">
-          Catalog
+        <Link href="/en/vs" className="hover:text-slate-900">
+          1:1 Comparisons
         </Link>
         <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
         <span className="font-mono font-semibold text-slate-900">
@@ -142,11 +167,20 @@ export default async function VsComparisonPage({
             {vs.part_b_opn}
           </h1>
         </div>
-        <ErrorReportButton
-          siteConfig={siteConfig}
-          subject={`VS Diff: ${vs.part_a_opn} vs ${vs.part_b_opn}`}
-          pagePath={pagePath}
-        />
+        <div className="print:hidden flex flex-wrap items-center gap-2">
+          <Link
+            href={`/en/compare?a=${encodeURIComponent(vs.part_a_slug)}&b=${encodeURIComponent(vs.part_b_slug)}`}
+            className="inline-flex items-center gap-1.5 rounded-md border border-sky-600 bg-sky-50 px-3 py-1.5 text-xs font-semibold text-sky-950 hover:bg-sky-100 transition-colors"
+          >
+            <GitCompareArrows className="h-3.5 w-3.5" aria-hidden="true" />
+            Open in Freeform Comparator
+          </Link>
+          <ErrorReportButton
+            siteConfig={siteConfig}
+            subject={`VS Diff: ${vs.part_a_opn} vs ${vs.part_b_opn}`}
+            pagePath={pagePath}
+          />
+        </div>
       </header>
 
       {/* ABOVE-THE-FOLD COMPATIBILITY VERDICT BANNER */}
@@ -242,71 +276,87 @@ export default async function VsComparisonPage({
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <div className="flex items-center justify-between px-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                Part A ·{' '}
-                {partA ? (
-                  <Link
-                    href={`/en/part/${partA.slug}`}
-                    className="font-mono text-sky-700 hover:underline"
-                  >
-                    {partA.opn}
-                  </Link>
-                ) : (
-                  <span className="font-mono text-slate-900">{vs.part_a_opn}</span>
-                )}
-              </span>
-              {partA && (
-                <span className="text-xs text-slate-500">{partA.manufacturer}</span>
+        {partA && partB ? (
+          <VsPinoutComparisonView
+            partAOpn={partA.opn}
+            partAPkg={partA.package}
+            partBOpn={partB.opn}
+            partBPkg={partB.package}
+            exposedPadMatch={vs.exposed_pad_match}
+            diffHighlights={diffHighlights}
+            epDiffStatus={epDiffStatus}
+            partAHref={`/en/part/${partA.slug}`}
+            partBHref={`/en/part/${partB.slug}`}
+            partAManufacturer={partA.manufacturer}
+            partBManufacturer={partB.manufacturer}
+          />
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between px-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                  Part A ·{' '}
+                  {partA ? (
+                    <Link
+                      href={`/en/part/${partA.slug}`}
+                      className="font-mono text-sky-700 hover:underline"
+                    >
+                      {partA.opn}
+                    </Link>
+                  ) : (
+                    <span className="font-mono text-slate-900">{vs.part_a_opn}</span>
+                  )}
+                </span>
+                {partA && <span className="text-xs text-slate-500">{partA.manufacturer}</span>}
+              </div>
+              {partA ? (
+                <PackagePinoutSvg
+                  opn={partA.opn}
+                  pkg={partA.package}
+                  diffHighlights={diffHighlights}
+                  epDiffStatus={epDiffStatus}
+                  interactive
+                />
+              ) : (
+                <div className="rounded-lg border border-slate-300 bg-white p-6 text-xs text-slate-500">
+                  Full package data for {vs.part_a_opn} unavailable.
+                </div>
               )}
             </div>
-            {partA ? (
-              <PackagePinoutSvg
-                opn={partA.opn}
-                pkg={partA.package}
-                diffHighlights={diffHighlights}
-              />
-            ) : (
-              <div className="rounded-lg border border-slate-300 bg-white p-6 text-xs text-slate-500">
-                Full package data for {vs.part_a_opn} unavailable.
-              </div>
-            )}
-          </div>
 
-          <div className="space-y-2">
-            <div className="flex items-center justify-between px-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                Part B ·{' '}
-                {partB ? (
-                  <Link
-                    href={`/en/part/${partB.slug}`}
-                    className="font-mono text-sky-700 hover:underline"
-                  >
-                    {partB.opn}
-                  </Link>
-                ) : (
-                  <span className="font-mono text-slate-900">{vs.part_b_opn}</span>
-                )}
-              </span>
-              {partB && (
-                <span className="text-xs text-slate-500">{partB.manufacturer}</span>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between px-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                  Part B ·{' '}
+                  {partB ? (
+                    <Link
+                      href={`/en/part/${partB.slug}`}
+                      className="font-mono text-sky-700 hover:underline"
+                    >
+                      {partB.opn}
+                    </Link>
+                  ) : (
+                    <span className="font-mono text-slate-900">{vs.part_b_opn}</span>
+                  )}
+                </span>
+                {partB && <span className="text-xs text-slate-500">{partB.manufacturer}</span>}
+              </div>
+              {partB ? (
+                <PackagePinoutSvg
+                  opn={partB.opn}
+                  pkg={partB.package}
+                  diffHighlights={diffHighlights}
+                  epDiffStatus={epDiffStatus}
+                  interactive
+                />
+              ) : (
+                <div className="rounded-lg border border-slate-300 bg-white p-6 text-xs text-slate-500">
+                  Full package data for {vs.part_b_opn} unavailable.
+                </div>
               )}
             </div>
-            {partB ? (
-              <PackagePinoutSvg
-                opn={partB.opn}
-                pkg={partB.package}
-                diffHighlights={diffHighlights}
-              />
-            ) : (
-              <div className="rounded-lg border border-slate-300 bg-white p-6 text-xs text-slate-500">
-                Full package data for {vs.part_b_opn} unavailable.
-              </div>
-            )}
           </div>
-        </div>
+        )}
       </section>
 
       {/* Pin-by-Pin Diff Table */}
@@ -491,6 +541,14 @@ export default async function VsComparisonPage({
           </div>
         </section>
       </div>
+
+      {/* Reciprocal Contextual Internal Linking: Field Guides & Engineering Tools */}
+      <RelatedGuidesToolsSection
+        category={vs.category}
+        guides={relatedGuides}
+        compareSlugA={vs.part_a_slug}
+        compareSlugB={vs.part_b_slug}
+      />
 
       {/* Dual Distributor Search Links */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">

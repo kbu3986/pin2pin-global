@@ -55,7 +55,7 @@
       "part_a_value": "4.8 to 15 V (p.2)",
       "part_b_value": "4.3 to 26 V (p.4)",
       "winner": "B",
-      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -141,11 +141,16 @@
   "swap_risks": [
     "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (GND vs VIN), Pin 2 (VOUT vs GND), Pin 3 (VIN vs VOUT). Soldering LM2937IMP-3.3/NOPB onto a AMS1117-3.3 footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
     "CRITICAL SHORT-CIRCUIT HAZARD: Exposed thermal pad/tab net conflict (VOUT vs GND) — direct swap will short power rails.",
+    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs by 2.2x (AMS1117-3.3: 22 µF p.4 vs LM2937IMP-3.3/NOPB: 10 µF p.13); account for MLCC DC-bias derating.",
+    "CAUTION ESR STABILITY WINDOW: Both parts are ESR-constrained, but AMS1117-3.3 omits explicit numeric ESR bounds (See datasheet ESR curve vs 0.01–3 Ω (p.13)); verify the datasheet ESR-vs-Iout curve.",
     "HIGH INPUT VOLTAGE RATING DROP: AMS1117-3.3 is rated to only 15 V rec. (15 V abs max, p.2) vs LM2937IMP-3.3/NOPB at 26 V rec. (26 V abs max, p.4). Verify worst-case input transient spikes.",
     "HIGH LOAD CURRENT DERATING: LM2937IMP-3.3/NOPB supplies up to 400 mA (p.5) compared to AMS1117-3.3 at 1000 mA (p.1); confirm peak inrush and thermal dissipation margin.",
-    "CAUTION DROPOUT HEADROOM: Typical dropout differs by 600 mV (AMS1117-3.3: 1100 mV p.3 vs LM2937IMP-3.3/NOPB: 500 mV p.5); verify Vin,min - Vout >= Vdo at cold/hot corners.",
-    "CAUTION THERMAL MARGIN: Package θJA differs by 35% (AMS1117-3.3: 90 °C/W p.2 vs LM2937IMP-3.3/NOPB: 58.3 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max."
+    "CAUTION DROPOUT HEADROOM: Typical dropout differs (AMS1117-3.3: 1100 mV p.3 vs LM2937IMP-3.3/NOPB: 500 mV p.5); verify Vin,min - Vout >= Vdo across temperature and load corners.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: AMS1117-3.3 has a lower Vin,abs,max rating (15 V, p.2) than LM2937IMP-3.3/NOPB (26 V, p.4); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 15 V.",
+    "HIGH THERMAL MARGIN: Package θJA is 54% higher on AMS1117-3.3 (AMS1117-3.3: 90 °C/W p.2 vs LM2937IMP-3.3/NOPB: 58.3 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH MINIMUM SUPPLY FLOOR: AMS1117-3.3 requires Vin,min >= 4.8 V (p.2) vs 4.3 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (AMS1117-3.3: -40..125 °C Industrial (-40°C to +125°C TJ) vs LM2937IMP-3.3/NOPB: -40..85 °C Industrial SOT-223 (-40°C to +85°C TJ for LM2937IMP DCY)); LM2937IMP-3.3/NOPB hot limit only 85 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "AMS1117-3.3 (Advanced Monolithic Systems, SOT-223-3) and LM2937IMP-3.3/NOPB (Texas Instruments, SOT-223-3) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to pinout mismatch on Pin 1 (GND vs VIN), Pin 2 (VOUT vs GND), Pin 3 (VIN vs VOUT); exposed pad / thermal tab net mismatch. Key datasheet deltas: Iq is 5000 µA (p.3) vs 2000 µA (p.5), max output current is 1000 mA (p.1) vs 400 mA (p.5), recommended Vin,max is 15 V (p.2) vs 26 V (p.4), typical dropout is 1100 mV (p.3) vs 500 mV (p.5), and ceramic capacitor stability is ESR-constrained vs ESR-constrained. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.3), thermal margin (θJA 90 vs 58.3 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AMS1117-3.3 (Advanced Monolithic Systems, SOT-223-3) and LM2937IMP-3.3/NOPB (Texas Instruments, SOT-223-3) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to pinout mismatch on Pin 1 (GND vs VIN), Pin 2 (VOUT vs GND), Pin 3 (VIN vs VOUT); exposed pad / thermal tab net mismatch. Specific pin conflicts: Pin 1 (GND vs VIN), Pin 2 (VOUT vs GND), Pin 3 (VIN vs VOUT). Under a representative 5 V → 3.3 V rail at 150 mA (255 mW), estimated self-heating is ΔTj ≈ 22.9 °C on AMS1117-3.3 (θJA 90 °C/W) vs 14.9 °C on LM2937IMP-3.3/NOPB (θJA 58.3 °C/W), while quiescent draw spans a 2.5x ratio (5000 µA (p.3) vs 2000 µA (p.5)). Primary bench gotchas to watch: AMS1117-3.3 \"NOT Ceramic-Cap Stable — Requires 22 uF Solid Tantalum (No Numeric ESR Window Published)\" (p.4) and LM2937IMP-3.3/NOPB \"CRITICAL Pinout & Tab Reversal vs. 1117 Family — Installing on 1117 Pads Shorts VOUT to GND\" (p.3). BOM decision: Choose AMS1117-3.3 when load current exceeds 400 mA (up to 1000 mA); choose LM2937IMP-3.3/NOPB when battery sleep budget demands 2000 µA Iq or input rails climb above 15 V (rated to 26 V). Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

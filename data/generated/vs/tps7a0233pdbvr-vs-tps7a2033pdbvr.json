@@ -72,8 +72,8 @@
       "unit": "V",
       "part_a_value": "1.5 to 6 V (p.5)",
       "part_b_value": "1.6 to 6 V (p.5)",
-      "winner": "TIE",
-      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+      "winner": "A",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -158,8 +158,8 @@
   ],
   "swap_risks": [
     "HIGH LOAD CURRENT DERATING: TPS7A0233PDBVR supplies up to 200 mA (p.5) compared to TPS7A2033PDBVR at 300 mA (p.5); confirm peak inrush and thermal dissipation margin.",
-    "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (TPS7A0233PDBVR: 181.9 °C/W vs TPS7A2033PDBVR: 187.1 °C/W) and worst-case ambient temperature (-40..125 °C vs -40..125 °C)."
+    "CAUTION DROPOUT HEADROOM: Typical dropout differs (TPS7A0233PDBVR: 270 mV p.6 vs TPS7A2033PDBVR: 145 mV p.6); verify Vin,min - Vout >= Vdo across temperature and load corners."
   ],
-  "engineering_verdict": "TPS7A0233PDBVR (Texas Instruments, SOT-23-5) and TPS7A2033PDBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to Iout,max rating drops >20%. Key datasheet deltas: Iq is 0.025 µA (p.6) vs 6.5 µA (p.6), max output current is 200 mA (p.5) vs 300 mA (p.5), recommended Vin,max is 6 V (p.5) vs 6 V (p.5), typical dropout is 270 mV (p.6) vs 145 mV (p.6), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.4), thermal margin (θJA 181.9 vs 187.1 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "TPS7A0233PDBVR (Texas Instruments, SOT-23-5) and TPS7A2033PDBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because Iout,max rating drops >=20%; dropout voltage headroom differs (125 mV / 1.9x). Under a representative 5 V → 3.3 V rail at 150 mA (255 mW), estimated self-heating is ΔTj ≈ 46.4 °C on TPS7A0233PDBVR (θJA 181.9 °C/W) vs 47.7 °C on TPS7A2033PDBVR (θJA 187.1 °C/W), while quiescent draw spans a 260x ratio (0.025 µA (p.6) vs 6.5 µA (p.6)). Primary bench gotchas to watch: TPS7A0233PDBVR \"Strict 22 uF Maximum Output Capacitance Limit for Loop Stability\" (p.5) and TPS7A2033PDBVR \"Output Capacitor ESR Must Stay <= 100 mOhm (Avoid Tantalum/Electrolytic Caps)\" (p.5). BOM decision: Choose TPS7A0233PDBVR when battery sleep budget demands 0.025 µA Iq; choose TPS7A2033PDBVR when load current exceeds 200 mA (up to 300 mA) or low Vin-Vout headroom requires 145 mV dropout. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.4) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

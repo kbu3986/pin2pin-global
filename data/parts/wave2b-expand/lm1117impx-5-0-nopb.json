@@ -1,0 +1,209 @@
+{
+  "schema_version": "2.0.0",
+  "opn": "LM1117IMPX-5.0/NOPB",
+  "slug": "lm1117impx-5-0-nopb",
+  "family": "LM1117",
+  "manufacturer": "Texas Instruments",
+  "category": "ldo",
+  "sub_topology": "fixed-ldo",
+  "lifecycle_status": "Active",
+  "temp_grade": {
+    "ta_min_c": -40,
+    "ta_max_c": 125,
+    "grade_label": "Industrial (-40°C to +125°C TJ, LM1117I grade)"
+  },
+  "datasheet": {
+    "pdf_url": "https://www.ti.com/lit/ds/symlink/lm1117.pdf",
+    "product_page_url": "https://www.ti.com/product/LM1117",
+    "source_domain": "www.ti.com",
+    "revision": "SNOS412Q (January 2023)",
+    "verified_at": "2026-11-23",
+    "parse_source_mode": "DUAL_PATH_TEXT_VISION",
+    "page_count": 47
+  },
+  "package": {
+    "code": "SOT-223-3",
+    "mfg_package_code": "DCY",
+    "pin_count": 3,
+    "pinout_view": "TOP_VIEW",
+    "exposed_pad": {
+      "present": true,
+      "net": "VOUT",
+      "note": "SOT-223 thermal tab (Pin 4 in TI DCY notation) is internally connected to VOUT (Pin 2); NEVER connect tab to GND (p.3)."
+    },
+    "theta_ja_c_per_w": {
+      "value": 61.6,
+      "page": 4,
+      "condition": "DCY (SOT-223) JEDEC high-K PCB (Sec 7.4, p.4); degrades substantially on minimal copper pads",
+      "table_ref": "Section 7.4 Thermal Information"
+    },
+    "theta_jc_c_per_w": {
+      "value": 42.5,
+      "page": 4,
+      "condition": "RθJC(top) for DCY SOT-223 package",
+      "table_ref": "Section 7.4 Thermal Information"
+    },
+    "tj_max_c": {
+      "value": 125,
+      "page": 4,
+      "condition": "Recommended operating junction temperature max -40°C to +125°C for LM1117I (abs max TJ = 150°C, Sec 7.1 & 7.3)",
+      "table_ref": "Section 7.3 Recommended Operating Conditions"
+    },
+    "pd_max_mw": null,
+    "pinout": [
+      {
+        "pin": 1,
+        "name": "ADJ/GND",
+        "role": "GND",
+        "description": "Ground reference pin on fixed 5.0 V option (ADJ on adjustable variant, p.3)"
+      },
+      {
+        "pin": 2,
+        "name": "VOUT",
+        "role": "VOUT",
+        "description": "Regulated 5.0 V output, internally connected to SOT-223 thermal tab (Pin 4); requires >= 10 µF tantalum COUT (0.3-22 Ω ESR)"
+      },
+      {
+        "pin": 3,
+        "name": "VIN",
+        "role": "VIN",
+        "description": "Unregulated input supply (6.5 V to 15 V operating for 5.0 V option; 20 V absolute maximum)"
+      }
+    ],
+    "pinout_source_page": 3,
+    "pinout_vision_verified": true
+  },
+  "specs": {
+    "vin_abs_max_v": {
+      "value": 20,
+      "page": 4,
+      "condition": "Absolute Maximum Ratings VIN to GND = 20 V",
+      "table_ref": "Section 7.1 Absolute Maximum Ratings"
+    },
+    "vin_min_v": {
+      "value": 6.5,
+      "page": 7,
+      "condition": "LM1117I-5.0 minimum input voltage for guaranteed output regulation (6.5 V <= VIN <= 12 V / 15 V)",
+      "table_ref": "Section 7.6 LM1117I Electrical Characteristics"
+    },
+    "vin_max_v": {
+      "value": 15,
+      "page": 4,
+      "condition": "Recommended Operating Conditions maximum VIN to GND = 15 V",
+      "table_ref": "Section 7.3 Recommended Operating Conditions"
+    },
+    "vout_v": {
+      "value": 5.0,
+      "page": 7,
+      "condition": "Fixed 5.0 V industrial grade LM1117I-5.0 (LM1117IMPX-5.0/NOPB Active on p.25, marking N06B)",
+      "table_ref": "Section 7.6 LM1117I Electrical Characteristics"
+    },
+    "vout_fixed": true,
+    "vout_tolerance_pct": {
+      "value": 1,
+      "page": 7,
+      "condition": "LM1117I-5.0: 4.95 V to 5.05 V (±1%) at TJ = 25°C, IOUT = 10 mA, VIN = 7 V; widens to 4.80 V to 5.20 V (±4%) over -40°C to +125°C",
+      "table_ref": "Section 7.6 LM1117I Electrical Characteristics"
+    },
+    "iout_max_ma": {
+      "value": 800,
+      "page": 7,
+      "condition": "Rated continuous output current 800 mA (current limit 800 mA min / 1200 mA typ / 1500 mA max, p.8)",
+      "table_ref": "Section 7.6 LM1117I Electrical Characteristics"
+    },
+    "iq_typ_ua": {
+      "value": 5000,
+      "page": 8,
+      "condition": "LM1117I-5.0 quiescent current 5 mA typ at 25°C (15 mA max over -40°C to +125°C, VIN <= 15 V)",
+      "table_ref": "Section 7.6 LM1117I Electrical Characteristics (continued)"
+    },
+    "ishdn_typ_ua": null,
+    "dropout_typ_mv": {
+      "value": 1200,
+      "page": 8,
+      "condition": "LM1117I at IOUT = 800 mA, TJ = 25°C (1400 mV max over -40°C to +125°C; 1.1 V typ at 100 mA, 1.15 V typ at 500 mA)",
+      "table_ref": "Section 7.6 LM1117I Electrical Characteristics (continued)"
+    },
+    "psrr_db": {
+      "value": 75,
+      "page": 8,
+      "condition": "f = 120 Hz, VIN - VOUT = 3 V, VRIPPLE = 1 Vpp, TJ = 25°C (60 dB min over -40°C to +125°C)",
+      "table_ref": "Section 7.6 LM1117I Electrical Characteristics (continued)"
+    },
+    "output_noise_uvrms": {
+      "value": 150,
+      "page": 8,
+      "condition": "0.003% of 5.0 V VOUT = 150 µVRMS (10 Hz to 10 kHz, TJ = 25°C)",
+      "table_ref": "Section 7.6 LM1117I Electrical Characteristics (continued)"
+    },
+    "ceramic_cap_stable": false,
+    "min_cout_uf": {
+      "value": 10,
+      "page": 15,
+      "condition": "Minimum 10 µF solid tantalum output capacitor required for stability (Sec 9.2.2.1.1, p.15)",
+      "table_ref": "Section 9.2.2.1.1 Output Capacitor"
+    },
+    "esr_min_ohm": {
+      "value": 0.3,
+      "page": 15,
+      "condition": "Strict lower ESR floor of 0.3 Ω — standard low-ESR MLCCs (< 10 mΩ) cause loop oscillation unless series-damped",
+      "table_ref": "Section 9.2.2.1.1 Output Capacitor"
+    },
+    "esr_max_ohm": {
+      "value": 22,
+      "page": 15,
+      "condition": "Upper ESR ceiling of 22 Ω for stable operation across temperature",
+      "table_ref": "Section 9.2.2.1.1 Output Capacitor"
+    },
+    "en_active_high": null,
+    "reverse_current_protection": false
+  },
+  "design_gotchas": [
+    {
+      "title": "Fixed 5.0 V Rail — Requires >= 6.5 V VIN (NEVER Swap Into 3.3 V LM1117IMPX-3.3 Sockets)",
+      "severity": "CRITICAL",
+      "detail": "LM1117IMPX-5.0/NOPB (marking N06B) shares the identical SOT-223 package and pinout as LM1117IMPX-3.3/NOPB (marking N05B) but outputs 5.0 V and requires VIN >= 6.5 V to stay out of dropout (1.2 V typ / 1.4 V max at 800 mA). Populating it on a 3.3 V MCU rail causes immediate overvoltage damage.",
+      "page": 7
+    },
+    {
+      "title": "Strict 0.3–22 Ω Output Capacitor ESR Window — Unstable With Bare MLCC Ceramic Caps",
+      "severity": "CRITICAL",
+      "detail": "Like all bipolar/NPN-Darlington LM1117 variants, LM1117IMPX-5.0/NOPB requires >= 10 µF solid tantalum (or MLCC with 0.5–1 Ω series resistor) keeping ESR strictly inside 0.3 Ω to 22 Ω to prevent high-frequency loop oscillation.",
+      "page": 15
+    },
+    {
+      "title": "SOT-223 Thermal Tab Is Connected to VOUT (Pin 2) — Severe 12 V-to-5 V Thermal Derating",
+      "severity": "CRITICAL",
+      "detail": "Tab is internally tied to 5.0 V VOUT (never ground it). Stepping 12 V down to 5.0 V at just 300 mA dissipates 2.1 W, exceeding SOT-223's 61.6 °C/W high-K budget (ΔT = 129°C) at room temperature — use a buck converter for high-VIN / high-current 5 V rails.",
+      "page": 4
+    },
+    {
+      "title": "High 5 mA Typ (15 mA Max) Quiescent Current & No Reverse-Current Protection",
+      "severity": "WARNING",
+      "detail": "LM1117I-5.0 consumes 5 mA typ (up to 15 mA over -40°C to 125°C) even at zero load, making it unsuitable for battery-powered standby rails. Add a Schottky bypass diode from VOUT to VIN if COUT > 25 µF and VIN can short to ground.",
+      "page": 8
+    }
+  ],
+  "typical_use_cases": [
+    "Industrial 7 V–12 V to 5.0 V linear post-regulation for low-noise analog and sensor rails",
+    "Compact SOT-223 5.0 V rail generation in AC/DC power supplies and servo control boards",
+    "Legacy 5.0 V 800 mA point-of-load LDO where tantalum output capacitors are already populated",
+    "Wide-temperature (-40°C to +125°C) fixed 5 V auxiliary bias supplies below 250 mA continuous load"
+  ],
+  "engineering_summary": "The Texas Instruments LM1117IMPX-5.0/NOPB is an industrial-grade (-40°C to +125°C TJ) fixed 5.0 V, 800 mA low-dropout linear regulator in a 3-lead + VOUT-tab SOT-223 (DCY) package. Operating from 6.5 V to 15 V (20 V abs max) with 1.2 V typical dropout at 800 mA, ±1% initial accuracy (±4% over temperature), and 75 dB PSRR at 120 Hz, it serves as a rugged 5.0 V rail generator in mains-powered industrial systems. Designers must strictly enforce its 0.3–22 Ω output capacitor ESR window (minimum 10 µF tantalum), verify SOT-223 thermal dissipation (RθJA = 61.6 °C/W), and never confuse it with 3.3 V or ADJ SOT-223 variants.",
+  "audit": {
+    "confidence_score": 0.99,
+    "dual_path_verified": true,
+    "physics_checks_passed": true,
+    "auditor_passed": true,
+    "human_reviewed": false,
+    "needs_human_review": false,
+    "vision_pages_checked": [3, 4, 7, 8, 25],
+    "audit_notes": [
+      "Vision-verified DCY SOT-223 Top View on 300 DPI PNG page 3 (Figure 6-1 & Table 6-1): Pin 1 = ADJ/GND, Pin 2 = VOUT (Tab = VOUT), Pin 3 = VIN.",
+      "Verified Absolute Maximum Ratings (20 V VIN, 150°C TJ), Recommended Conditions (15 V max, -40 to 125°C TJ for LM1117I), and DCY Thermal Info (RθJA = 61.6 °C/W, RθJC(top) = 42.5 °C/W) on 300 DPI PNG page 4.",
+      "Verified Section 7.6 LM1117I-5.0 specs on 300 DPI PNG pages 7-8: VOUT = 5.0 V (±1% at 25°C, ±4% over temp), VIN min = 6.5 V, dropout = 1.2 V typ (1.4 V max) at 800 mA, IQ = 5 mA typ (15 mA max), PSRR = 75 dB, noise = 0.003% of 5 V = 150 µVRMS.",
+      "Ordering table PNG page 25 confirms LM1117IMPX-5.0/NOPB Active, Production, SOT-223 (DCY), 2000 LARGE T&R, -40 to 125°C, marking N06B."
+    ]
+  }
+}

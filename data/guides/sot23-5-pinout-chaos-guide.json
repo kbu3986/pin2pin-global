@@ -1,0 +1,238 @@
+{
+  "slug": "sot23-5-pinout-chaos-guide",
+  "title": "SOT-23-5 Pinout Chaos: 6 Conflicting Pinouts Across LDOs, Boost Converters, and Single Op-Amps",
+  "subtitle": "Datasheet-verified field guide to the six incompatible SOT-23-5 (DBV / TSOT-23-5) pinout topologies, SOT-23-3 suffix traps, exposed-pad DYD thermal cliffs, and PCB verification checklists.",
+  "category": "general",
+  "reading_time_min": 10,
+  "published_at": "2026-11-23",
+  "updated_at": "2026-11-23",
+  "author_role": "Senior Hardware & Power Integrity Engineer",
+  "summary": "The 5-pin SOT-23 (JEDEC MO-178 / TI DBV / TSOT-23-5) footprint is the most ubiquitous analog package on modern PCBs — yet hides at least six mutually destructive pinout permutations across LDOs, switching boost converters, single op-amps, and comparators. This 300 DPI Vision-verified field guide maps every conflict, contrasts SOT-23-5 with SOT-23-3 traps, exposes DBV thermal ceilings, and provides a seven-point ECO verification protocol.",
+  "key_takeaways": [
+    "Identical 2.9 mm x 1.6 mm SOT-23-5 (DBV) packages carry at least six electrically conflicting pinouts: NC-pin LDOs, BYPASS/NR/FB-pin LDOs, 5-pin HV boosts, always-on fixed boosts, TI DBV single op-amps/comparators, and LMV321/U-suffix permuted single op-amps.",
+    "Even within one single op-amp family, TI ships both pinouts inside the exact same DBV SOT-23-5 body (TLV9001IDBVR vs TLV9001UIDBVR), while LMV321IDBVR permutes Pins 1, 3, and 4 relative to TLV9001IDBVR, TLV9061IDBVR, OPA333AIDBVR, and comparator TLV3201AIDBVR.",
+    "On SOT-23-5 LDOs, grounding Pin 4 (NC) for thermal relief on TLV70233DBVR or TPS7A2433DBVR creates a fatal bandgap short if a PCB is later dual-sourced with Pin-4 BYPASS/NR LDOs (LP2985-33DBVR, CAT6219-330TD-GT3, TPS73633DBVR, or legacy-die TPS79333DBVR).",
+    "Non-exposed-pad SOT-23-5 thermal resistance (167.8 to 250 °C/W JEDEC) severely caps nameplate currents: 1 A TLV75733PDBVR (231.1 °C/W) dissipates an impossible ΔT = 393 °C at 5 V->3.3 V @ 1 A unless upgraded to exposed-pad DYD (60.3 °C/W EVM), and 18 V TPS7A2433DBVR caps near 51 mA at 12 V / 50 °C ambient."
+  ],
+  "related_parts": [
+    "tlv75733pdbvr",
+    "tps7a2433dbvr",
+    "ap2112k-3-3trg1",
+    "lp2985-33dbvr",
+    "tps79333dbvr",
+    "tps61040dbvr",
+    "tps613221adbvr",
+    "lmv321idbvr",
+    "tlv9001idbvr",
+    "opa333aidbvr",
+    "tlv3201aidbvr",
+    "ap7313-33srg-7"
+  ],
+  "related_vs": [
+    "ap2112k-3-3trg1-vs-lp2985-33dbvr",
+    "ap2112k-3-3trg1-vs-tlv75533pdbvr",
+    "lmv321idbvr-vs-tlv9001idbvr",
+    "lmv321idbvr-vs-opa333aidbvr",
+    "tlv3201aidbvr-vs-tlv9001idbvr",
+    "tps61040dbvr-vs-tps613221adbvr",
+    "ap7313-33sag-7-vs-ap7313-33srg-7",
+    "ap2112k-3-3trg1-vs-tps73633dbvr"
+  ],
+  "sections": [
+    {
+      "heading": "1. Why the Ubiquitous SOT-23-5 Footprint Causes Silent Prototype Destruction",
+      "body": [
+        "Walk past any embedded hardware bring-up bench and you will spot rows of identical 5-pin SOT-23 packages (JEDEC MO-178-AA, Texas Instruments DBV, Diodes Incorporated SOT25 / K, and low-profile TSOT-23-5 siblings). Every one of those parts measures roughly 2.9 mm by 1.6 mm across the plastic body with three leads on the left edge (Pins 1, 2, 3 from top-left or bottom-left depending on orientation, standardized Top View as 1=top-left, 2=mid-left, 3=bottom-left, 4=bottom-right, 5=top-right) and two leads on the right edge. Because pick-and-place feeders, CAD land patterns, and top markings of just three or four alphanumeric characters look virtually indistinguishable under a stereo microscope, engineers routinely treat SOT-23-5 footprints as commoditized sockets.",
+        "That assumption breaks hardware at scale. Across Pin2Pin Global's 300 DPI PNG Vision-verified catalog of 36 SOT-23-5, TSOT-23-5, and SOT-23-3 OPNs, the 5-pin SOT-23 outline carries at least six electrically conflicting pinout topologies spanning linear regulators, high-voltage boost converters, fixed synchronous boosts, single operational amplifiers, and high-speed comparators. Worse still, destructive pin collisions do not just occur when someone mixes an LDO reel with an op-amp reel on an SMT line — they occur inside the exact same component category, and occasionally inside the exact same manufacturer datasheet via a single ordering-code letter.",
+        "Notice the one subtle pattern that tricks engineers during continuity checks: Pin 2 is GND (or V-) across all six topologies! When a technician probes Pin 2 to board ground with a multimeter after rework and hears a reassuring beep, they often assume the footprint orientation and pinout match. In reality, Pins 1, 3, 4, and 5 rotate through VIN, VOUT, EN, SW, FB, BYPASS, IN+, IN-, and OUT in combinations that turn a routine BOM substitution into a forward-biased ESD clamp short, a floating bandgap reference, or a dead short between an op-amp output stage and its own noninverting input."
+      ],
+      "callout": {
+        "type": "CRITICAL",
+        "title": "Pin 2 = GND Across All Six Topologies Creates False Confidence",
+        "text": "Every verified SOT-23-5 LDO, boost converter, single op-amp, and single comparator in our dataset places GND or V- on Pin 2. Never trust a single-pin ground continuity check as proof of SOT-23-5 footprint compatibility — always verify all five pins against the exact OPN Top-View diagram."
+      },
+      "table": {
+        "headers": [
+          "Topology Class",
+          "Pin 1",
+          "Pin 2",
+          "Pin 3",
+          "Pin 4",
+          "Pin 5",
+          "Verified Representative OPNs"
+        ],
+        "rows": [
+          [
+            "1. LDO (Standard NC)",
+            "IN (VIN)",
+            "GND",
+            "EN",
+            "NC",
+            "OUT (VOUT)",
+            "TLV75733PDBVR, TPS7A2433DBVR, AP2112K-3.3TRG1, TPS7A0233PDBVR"
+          ],
+          [
+            "2. LDO (BYP / NR / FB)",
+            "IN (VIN)",
+            "GND",
+            "EN",
+            "BYP / NR / FB",
+            "OUT (VOUT)",
+            "LP2985-33DBVR, CAT6219-330TD-GT3, TPS73633DBVR, TPS79333DBVR*"
+          ],
+          [
+            "3. HV Non-Sync Boost",
+            "SW",
+            "GND",
+            "FB",
+            "EN / SHDN",
+            "VIN",
+            "TPS61040DBVR, TPS61041DBVR, LM27313XMF/NOPB, LM2733XMF/NOPB"
+          ],
+          [
+            "4. Always-On Fixed Boost",
+            "SW",
+            "GND",
+            "NC",
+            "VOUT",
+            "NC",
+            "TPS613221ADBVR (No EN pin; 3-pin DBZ A-suffix swaps SW/GND)"
+          ],
+          [
+            "5. TI DBV Op-Amp / Comp",
+            "OUT",
+            "V- / GND",
+            "IN+",
+            "IN-",
+            "V+ / VCC",
+            "TLV9001IDBVR, TLV9061IDBVR, OPA333AIDBVR, TLV3201AIDBVR (Comp)"
+          ],
+          [
+            "6. LMV321 / 'U' Op-Amp",
+            "IN+",
+            "GND / V-",
+            "IN-",
+            "OUT",
+            "VCC+ / V+",
+            "LMV321IDBVR, TLV9001UIDBVR (same DBV!), SC-70-5 DCK variants"
+          ]
+        ]
+      }
+    },
+    {
+      "heading": "2. Topologies 1 & 2: SOT-23-5 LDO Pin 4 (NC vs BYPASS/NR/FB) and Enable-Pin Traps",
+      "body": [
+        "Most hardware teams assume 5-pin SOT-23-5 LDOs are standardized because Pins 1, 2, 3, and 5 follow the classic industry convention: 1=IN, 2=GND, 3=EN (active high), 5=OUT. That alignment holds across dozens of verified 3.3 V LDOs — including Texas Instruments TLV75733PDBVR (1 A), TPS7A2433DBVR (18 V, 2 uA Iq), TLV75533PDBVR (500 mA), TPS7A0233PDBVR (25 nA Iq), TPS7A2033PDBVR (6.2 uVRMS ultra-low noise), TLV70233DBVR (300 mA), and Diodes Incorporated AP2112K-3.3TRG1 (600 mA), plus TSOT-23-5 siblings NCP114ASN330T1G and NCP500SN33T1G.",
+        "The first hidden landmine sits on Pin 4. Standard modern fixed LDOs leave Pin 4 as NC (No Internal Connection) — and datasheets like TLV70233DBVR (SLVSAG6D, p.3) and TPS7A2433DBVR (SBVS386E, p.3) even invite PCB designers to tie Pin 4 directly to the ground plane for modest thermal relief. Do NOT take that shortcut on any board that might ever require multi-sourcing! Low-noise LDOs such as LP2985-33DBVR (Pin 4 = BYPASS), CAT6219-330TD-GT3 (Pin 4 = BYP), AP2210K-3.3TRG1 (Pin 4 = BYP), and TPS73633DBVR (Pin 4 = NR) route Pin 4 directly into the internal bandgap reference node through a high-impedance bias path intended for a 10 nF noise-reduction capacitor to ground. Dropping any of those parts onto a PCB where Pin 4 is copper-poured to GND shorts the internal bandgap straight to ground, collapsing VOUT to 0 V or driving erratic regulation.",
+        "An even trickier specimen is TI's TPS79333DBVR (SLVS348N, Jan 2025). Vision audits of p.3, p.5–7, and p.28 revealed that non-M3 reels can ship EITHER Legacy Chip silicon (CSO:DLN, where Pin 4 connects to the bandgap via 250 kOhm for 33 uVRMS noise) OR New Chip silicon (CSO:RFB, where Pin 4 is true NC with 69 uVRMS noise and 120 Ohm active discharge). Grounding Pin 4 works on New Chip reels and kills Legacy Chip reels on the very same part number! Meanwhile, adjustable SOT-23-5 LDO variants such as TPS7A2401DBVR assign Pin 4 as FB (Feedback, 5.5 V abs max) — crossing fixed TPS7A2433DBVR onto an adjustable divider pad or vice versa breaks regulation immediately.",
+        "Even when Pin 4 is cleanly isolated as a DNP 0402 bypass pad to GND, three subtle Pin 3 (EN) and Pin 5 (OUT) traps block blind swaps across Topology 1 LDOs. First, EN voltage limits diverge drastically: TLV70233DBVR caps VEN at min(VIN + 0.3 V, 6.0 V) (forbidding pre-biasing EN from an always-on MCU before VIN arrives), TPS70933DBVR handles 30 V VIN yet clamps EN at 7.0 V abs max, whereas TLV75733PDBVR permits independent 6.0 V EN (with increased IEN and fEN <= 10 kHz when VEN > VIN, p.12–13) and TPS7A2433DBVR tolerates a full 20 V on EN (explicitly forbidding floating EN, p.3). Second, active output discharge varies by OPN letter: 'P' variants like TLV75733PDBVR (95 Ohm pulldown, p.6) and TPS7A0533PDBVR rapidly bleed VOUT when disabled, whereas non-P TLV70233DBVR and high-VIN TPS7A2433DBVR (Sec. 7.3.6, p.12 — its overshoot pulldown turns OFF in shutdown) leave VOUT floating high-Z, which can violate MCU power-on-reset sequencing. Third, TPS7A2433DBVR Section 8.1.8 (p.17) warns that large, fast VIN steps can trigger a brief few-hundred-microsecond shutdown unless input slew rate is limited."
+      ],
+      "callout": {
+        "type": "WARNING",
+        "title": "Never Hard-Tie SOT-23-5 LDO Pin 4 to GND on Multi-Sourced Boards",
+        "text": "Always route Pin 4 to an isolated DNP 0402 capacitor pad to GND rather than copper-pouring Pin 4 directly to the ground plane. That zero-cost layout rule keeps your PCB compatible with both Pin-4 NC LDOs (TLV757P, TPS7A24, AP2112K) and Pin-4 BYP/NR LDOs (LP2985, CAT6219, TPS736, legacy TPS793)."
+      }
+    },
+    {
+      "heading": "3. Topologies 3 & 4: SOT-23-5 Switching Boost Converters (SW on Pin 1, Opposite Rails)",
+      "body": [
+        "Move from linear regulators to switching step-up converters in the exact same SOT-23-5 DBV body and every pin except Pin 2 (GND) reshuffles violently. Non-synchronous high-voltage boost converters — verified in our catalog as TPS61040DBVR (400 mA Isw, 6 V VIN max, 30 V SW abs max), TPS61041DBVR (250 mA Isw), LM27313XMF/NOPB (1.25 A typ Isw, 14 V VIN, 30 V SW), and LM2733XMF/NOPB (1.5 A typ Isw, 14 V VIN, 40 V SW) — follow Topology 3: 1=SW, 2=GND, 3=FB (~1.23 V reference), 4=EN/SHDN, 5=VIN.",
+        "Compare Topology 3 directly against Topology 1 LDOs: VIN jumps from Pin 1 to Pin 5 (where the LDO expected VOUT!), EN jumps from Pin 3 to Pin 4 (where the LDO placed NC or BYPASS!), and the high-voltage switching inductor node SW sits on Pin 1. Even inside Topology 3, dangerous electrical cliffs separate pin-identical parts: TPS61040DBVR caps VIN at 6.0 V operating / 7.0 V abs max, so populating it onto a 12 V LM27313/LM2733 footprint vaporizes the controller instantly, while populating fixed-1.6 MHz PWM LM27313/LM2733 onto a PFM TPS61040 board without a mandatory feedforward capacitor Cf across upper feedback resistor R1 triggers severe loop oscillation and raises standby Iq by up to 75x (2.1 mA switching vs 28 uA).",
+        "Topology 4 introduces yet another SOT-23-5 boost layout: Texas Instruments' fixed 3.3 V synchronous boost TPS613221ADBVR (SLVSDY5E, p.3). Designed for always-on single-cell alkaline/NiMH batteries down to 0.9 V startup with 6.5 uA Iq, it eliminates the EN and FB pins entirely, mapping 1=SW, 2=GND, 3=NC, 4=VOUT, 5=NC. Here Pin 4 carries the live regulated 3.3 V output while Pin 5 is unconnected — completely incompatible with both Topology 3 boosts (which expect VIN on Pin 5 and EN on Pin 4) and Topology 1 LDOs (which expect VOUT on Pin 5). As an extra suffix trap in the same datasheet, the 3-pin SOT-23-3 DBZ option swaps SW and GND between non-A and A suffixes!"
+      ]
+    },
+    {
+      "heading": "4. Topologies 5 & 6: Single Op-Amp DBV vs LMV321/'U'-Suffix Permutations and Comparator Collisions",
+      "body": [
+        "Analog signal-chain designers face the single highest-probability SOT-23-5 pinout trap in electronics: two competing 5-pin single op-amp pinouts that both dominate modern BOMs. Vision verification confirms that TI's standard modern DBV single op-amps — TLV9001IDBVR (1 MHz RRIO, 60 uA Iq, 7 V abs max), TLV9061IDBVR (10 MHz RRIO, 538 uA Iq, 6 V abs max), and zero-drift chopper OPA333AIDBVR (350 kHz, 10 uV max Vos, 17 uA Iq, ±5 mA drive) — all use Topology 5: 1=OUT, 2=V-, 3=IN+, 4=IN-, 5=V+.",
+        "In stark contrast, legacy and budget single op-amps led by Texas Instruments LMV321IDBVR (SLOS263Y, p.3; 1 MHz RRO, 5.5 V zero-margin abs max, 15 nA bipolar Ib) — along with industry peers like MCP6001T-I/OT — use Topology 6: 1=IN+, 2=GND/V-, 3=IN-, 4=OUT, 5=VCC+. Notice that Pins 2 (V-) and 5 (V+) stay fixed while Pins 1, 3, and 4 cyclically permute! Populating an LMV321IDBVR onto a TLV9001IDBVR footprint connects the amplifier's noninverting input directly to the board's output load, forces the output driver into the feedback resistor network at Pin 4, and breaks closed-loop stability immediately.",
+        "Here is the trap that blindsides even veteran procurement teams: Texas Instruments manufactures BOTH Topology 5 and Topology 6 inside the exact same SOT-23-5 DBV package inside the TLV9001 datasheet (SBOS833R, p.7 Fig. 6-1 vs Fig. 6-2), distinguished solely by a single letter 'U' — TLV9001IDBVR (Topology 5: 1=OUT, 3=IN+, 4=IN-) versus TLV9001UIDBVR (Topology 6: 1=IN+, 3=IN-, 4=OUT)! Meanwhile, on TLV9061 (p.5) and OPA333 (p.3), shrinking from SOT-23-5 (DBV) to SC-70-5 (DCK: TLV9061IDCKR, OPA333AIDCKR) silently switches the pinout from Topology 5 to Topology 6. Never migrate a schematic symbol from SOT-23-5 to SC-70-5 without re-mapping Pins 1, 3, and 4.",
+        "Finally, watch the linear-vs-comparator collision inside Topology 5. High-speed push-pull comparator TLV3201AIDBVR (43 ns propagation delay, 40 uA Iq, 60 mA source / 48 mA sink, SBOS561C p.3) uses the exact same Topology 5 pinout (1=OUT, 2=GND, 3=IN+, 4=IN-, 5=VCC) as TLV9001IDBVR, TLV9061IDBVR, and OPA333AIDBVR! Dropping TLV3201AIDBVR onto a linear op-amp socket creates a violent uncompensated oscillator, while dropping it onto an open-drain comparator wired-AND bus creates destructive rail-to-rail shoot-through."
+      ],
+      "callout": {
+        "type": "CRITICAL",
+        "title": "One Letter ('U') or Package Shrink (DBV -> DCK) Permutes Pins 1, 3, and 4",
+        "text": "TLV9001IDBVR (1=OUT, 3=IN+, 4=IN-) and TLV9001UIDBVR (1=IN+, 3=IN-, 4=OUT) occupy identical SOT-23-5 DBV bodies yet are mutually incompatible. Likewise, shrinking TLV9061 or OPA333 from DBV to SC-70-5 (DCK) flips Topology 5 into Topology 6."
+      }
+    },
+    {
+      "heading": "5. Contrasting SOT-23-5 With SOT-23-3 LDO Chaos and Confronting SOT-23-5 Thermal Limits",
+      "body": [
+        "Engineers frustrated by SOT-23-5 pinout complexity occasionally retreat to 3-pin SOT-23-3 fixed LDOs — only to discover that 3-pin regulators lack even a shared Pin 2 = GND anchor. In our verified catalog, SOT-23-3 3.3 V LDOs split into three incompatible rail permutations: (A) classic XC6206 / MCP1700 style 1=GND, 2=VOUT, 3=VIN (verified on Diodes AP7313-33SRG-7 SOT23R and AP2210N-3.3TRG1), (B) standard Diodes SOT23 1=IN, 2=OUT, 3=GND (AP7313-33SAG-7 and AP7333-33SAG-7 — notice 'SA' vs 'SR' swaps VIN and GND inside one family!), and (C) TI's 1=OUT, 2=IN, 3=GND (LM3480IM3-3.3/NOPB). At least SOT-23-5 LDOs agree on Pins 1, 2, 3, and 5; SOT-23-3 agrees on nothing.",
+        "Once pinout compatibility is locked, thermal physics becomes the #1 killer of SOT-23-5 power stages. Standard 5-pin SOT-23 (DBV) packages lack an exposed bottom thermal pad, giving JEDEC RθJA values between 167.8 °C/W and 250 °C/W (and 235–250 °C/W on ultra-thin TSOT-23-5). Wave 2B Vision verification of two headline TI LDOs exposes how misleading front-page current ratings can be:",
+        "First, consider TLV75733PDBVR (SBVS322C, p.5): marketed as a '1 A Small-Size LDO', its standard non-pad DBV package exhibits RθJA = 231.1 °C/W JEDEC (100.8 °C/W on TI's heavily coppered EVM). Regulating 5.0 V down to 3.3 V at 1 A dissipates Pd = (5.0 - 3.3) * 1.0 = 1.70 W — yielding a theoretical ΔT = 393 °C on JEDEC (171 °C even on TI's EVM), triggering immediate thermal shutdown at 165 °C! On a standard DBV footprint at TA = 25 °C (100 °C rise to 125 °C continuous TJ max), sustained 5 V-to-3.3 V current is capped around 254 mA JEDEC (~153 mA at 65 °C enclosed ambient). Delivering a true 1 A from 5 V requires either a 3.8–4.0 V pre-regulated buck rail (0.5–0.7 W) or migrating to TI's thermally enhanced exposed-pad SOT-23-5 package TLV75733PDYDR (92.5 °C/W JEDEC / 60.3 °C/W EVM, with a GND thermal pad underneath — which itself requires a PCB footprint change!).",
+        "Second, consider 18 V, 200 mA TPS7A2433DBVR (SBVS386E, p.5; RθJA = 167.8 °C/W). At VIN = 18 V to VOUT = 3.3 V (14.7 V drop), full 200 mA load would burn 2.94 W (ΔT = 493 °C!). Even at TA = 50 °C with a 75 °C rise budget to 125 °C TJ (Pd,max = 447 mW), continuous load is strictly limited to ~51 mA at 12 V input and ~30 mA at 18 V input (dropping to ~16 mA at 18 V and 85 °C ambient). Always compute real steady-state TJ with Pin2Pin Global's LDO Thermal Margin Calculator rather than trusting front-page current headlines."
+      ],
+      "table": {
+        "headers": [
+          "SOT-23-5 / SOT-23-3 OPN",
+          "Pkg / EP",
+          "JEDEC RθJA",
+          "Nameplate Iout",
+          "Real Cont. Iout @ 50°C TA (TJ<=125°C)",
+          "Primary Pinout / Thermal Caveat"
+        ],
+        "rows": [
+          [
+            "TLV75733PDBVR",
+            "SOT-23-5 (DBV) / None",
+            "231.1 °C/W",
+            "1000 mA",
+            "~191 mA (5 V->3.3 V); ~649 mA (3.8 V->3.3 V)",
+            "Use DYD EP (60.3 °C/W EVM) for 1 A; 755 mA foldback"
+          ],
+          [
+            "TPS7A2433DBVR",
+            "SOT-23-5 (DBV) / None",
+            "167.8 °C/W",
+            "200 mA",
+            "~51 mA (12 V->3.3 V); ~30 mA (18 V->3.3 V)",
+            "Fast VIN-step brief shutdown (p.17); high-Z shutdown"
+          ],
+          [
+            "AP2112K-3.3TRG1",
+            "SOT-23-5 / None",
+            "184 °C/W",
+            "600 mA",
+            "~240 mA (5 V->3.3 V)",
+            "Pin 4 NC; 6.5 V abs max; verify EN pull-down"
+          ],
+          [
+            "LP2985-33DBVR",
+            "SOT-23-5 (DBV) / None",
+            "178.6 °C/W",
+            "150 mA",
+            "~150 mA (5 V->3.3 V); ~48 mA (12 V->3.3 V)",
+            "Pin 4 = BYPASS (DO NOT ground!); 16 V max VIN"
+          ],
+          [
+            "AP7313-33SRG-7",
+            "SOT-23-3 (SOT23R)",
+            "230 °C/W",
+            "150 mA",
+            "~150 mA (5 V->3.3 V)",
+            "1=GND, 2=OUT, 3=IN (swaps VIN/GND vs SA suffix!)"
+          ]
+        ]
+      }
+    },
+    {
+      "heading": "6. Seven-Point PCB Layout & ECO Verification Checklist for SOT-23-5 Designs",
+      "body": [
+        "Run these seven deterministic checks before freezing Gerber files or approving a SOT-23-5 / TSOT-23-5 alternate part:",
+        "1. Lock Exact Orderable Part Numbers (OPNs) in BOMs: Never specify 'TLV9001 SOT-23-5' or 'AP7313 SOT-23' on a BOM. Single letters ('U' on TLV9001UIDBVR, 'P' on TLV75733PDBVR, 'SR' vs 'SA' on AP7313) flip pinouts, active discharge, or exposed thermal pads.",
+        "2. Inspect Top-View Pin 1..5 Against Official 300 DPI Drawings: Confirm Pin 1 orientation dot/bar in the tape-and-reel quadrant drawing AND cross-check every pin against the six SOT-23-5 topology classes — never stop after confirming Pin 2 = GND.",
+        "3. Isolate Pin 4 on Every SOT-23-5 LDO Layout: Route Pin 4 to a dedicated DNP 0402 pad to GND so the PCB remains electrically safe for both NC LDOs (TLV757P, TPS7A24, AP2112K) and BYP/NR LDOs (LP2985, CAT6219, TPS736, legacy TPS793).",
+        "4. Audit EN Ceilings, Float Behavior, and Active Discharge: Verify whether EN tolerates VIN (TPS7A24 20 V, TLV757P 6 V) or clamps lower (TPS709 7 V, TLV702 VIN + 0.3 V), confirm no-float rules, and check whether shutdown actively discharges VOUT ('P' suffix) or floats high-Z.",
+        "5. Never Mix DBV and SC-70-5 (DCK) Single Op-Amp Symbols: Switching between DBV and DCK on TLV9061 or OPA333 permutes Pins 1, 3, and 4 — maintain separate schematic symbols for Topology 5 (1=OUT) and Topology 6 (1=IN+).",
+        "6. Separate Linear Op-Amps From Uncompensated Comparators: Tag TLV3201AIDBVR (Topology 5 push-pull comparator) explicitly in schematic silkscreen and BOM notes so it can never cross-populate a TLV9001/TLV9061/OPA333 linear socket.",
+        "7. Validate Real Thermal Margin & Pre-Screen BOMs Client-Side: Run worst-case enclosed ambient TA, max VIN, and real JEDEC RθJA through Pin2Pin Global's LDO Thermal Margin Calculator and screen multi-source CSVs locally in our Zero-Upload BOM Checker or Package Pinout Trap Matrix before ordering assembly."
+      ],
+      "callout": {
+        "type": "TIP",
+        "title": "Use Pin2Pin Global's Package Pinout Trap Matrix Before Approving Any SOT-23-5 ECO",
+        "text": "Our interactive Package Pinout Trap Matrix groups every verified SOT-23-5, TSOT-23-5, SOT-23-3, SOT-223-3, and SOT-23-6 OPN by exact pinout hash so buyers and engineers can spot Pin 1/3/4 swaps and Pin-4 BYP/NC traps in seconds."
+      }
+    }
+  ]
+}

@@ -1,20 +1,20 @@
 {
   "slug": "disclaimer",
   "title": "Engineering Disclaimer & Legal Terms",
-  "description": "Mandatory AS-IS engineering disclaimer, safety-critical exclusion (medical, automotive, aerospace), nominative trademark notice, and affiliate disclosure for Pin2Pin Global.",
-  "updated_at": "2026-11-22",
+  "description": "Mandatory AS-IS engineering disclaimer, safety-critical exclusion (medical, automotive, aerospace), nominative trademark notice, and Amazon/Coupang affiliate disclosure for Pin2Pin Global.",
+  "updated_at": "2026-11-23",
   "sections": [
     {
       "heading": "Engineering Reference Only — Provided AS-IS Without Warranty",
       "paragraphs": [
-        "All pinout diagrams, electrical specifications, cross-reference compatibility classifications, calculator outputs, and technical guides published on Pin2Pin Global (pin2pin.dev) are provided strictly for preliminary engineering reference on an \"AS-IS\" and \"AS-AVAILABLE\" basis without warranties of any kind, either express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, accuracy, completeness, or non-infringement.",
+        "All pinout diagrams, electrical specifications, cross-reference compatibility classifications, BOM screening outputs, calculator results, and technical guides published on Pin2Pin Global are provided strictly for preliminary engineering reference on an \"AS-IS\" and \"AS-AVAILABLE\" basis without warranties of any kind, either express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, accuracy, completeness, or non-infringement.",
         "Semiconductor manufacturers periodically publish datasheet revisions, errata, Product Change Notifications (PCNs), and End-of-Life (EOL) notices without prior notice to third-party reference databases. Pin2Pin Global, its maintainers, and its contributors assume zero liability for any direct, indirect, incidental, consequential, or special damages — including damaged prototypes, PCB re-spins, manufacturing scrap, field failures, lost revenue, or personal injury — arising out of or in connection with the use of, or reliance upon, any information or calculation on this site."
       ]
     },
     {
       "heading": "Mandatory Safety-Critical Systems Exclusion",
       "paragraphs": [
-        "Information, compatibility classifications, and engineering calculations on Pin2Pin Global are NOT approved, certified, or authorized for use in safety-critical, high-reliability, or life-dependent applications where component failure could result in personal injury, death, or severe environmental or property damage."
+        "Information, compatibility classifications, BOM reports, and engineering calculations on Pin2Pin Global are NOT approved, certified, or authorized for use in safety-critical, high-reliability, or life-dependent applications where component failure could result in personal injury, death, or severe environmental or property damage."
       ],
       "bullets": [
         "Medical & Life-Support Systems: Strictly excluded from IEC 60601 medical electrical equipment, implantable devices, patient-monitoring instruments, or life-support apparatus.",
@@ -27,7 +27,7 @@
       "heading": "Obligation to Verify Official Manufacturer Datasheets",
       "paragraphs": [
         "Even where Pin2Pin Global assigns a \"Level 1: Candidate Drop-In (Verify Datasheet Before Production)\" classification, that label indicates only that verified datasheet parameters meet our screening criteria as a candidate for engineering evaluation — it is never an absolute drop-in guarantee.",
-        "Before committing to PCB layout, schematic release, component substitution, or volume assembly, a qualified hardware engineer must independently verify pinout numbering, Top/Bottom view orientation, exposed thermal pad net connectivity, capacitor ESR stability margins, transient voltage ratings, thermal junction temperature rise (Tj), and part-marking codes against the latest official manufacturer datasheet and physical prototype bench testing."
+        "Before committing to PCB layout, schematic release, component substitution, or volume assembly, a qualified hardware engineer must independently verify pinout numbering, Top/Bottom view orientation, exposed thermal pad net connectivity, capacitor ESR stability margins, enable-pin voltage limits, transient voltage ratings, thermal junction temperature rise (Tj), and part-marking codes against the latest official manufacturer datasheet and physical prototype bench testing."
       ]
     },
     {
@@ -38,10 +38,11 @@
       ]
     },
     {
-      "heading": "Zero-Scraping Distributor Links & Affiliate Disclosure",
+      "heading": "Zero-Scraping Distributor Links & Affiliate Disclosure (Amazon & Coupang Partners)",
       "paragraphs": [
         "Outbound distributor buttons (DigiKey, Mouser, LCSC) are standard search-query deeplinks that open the distributor's public search page for the selected OPN. Pin2Pin Global does not scrape distributor websites or permanently cache distributor pricing or inventory data.",
-        "Pin2Pin Global participates in contextual equipment affiliate programs, including the Amazon Services LLC Associates Program (Associate ID: kbu3986-20). Links in our \"Bench Test Gear & Prototyping Kits\" modules recommend relevant lab instruments, SMD passive sample books, and breakout adapters; qualifying purchases may earn a small commission at no additional cost to you. Affiliate relationships never influence technical specifications, compatibility tiers, or component rankings."
+        "Pin2Pin Global participates in contextual lab-equipment affiliate programs, including the Amazon Services LLC Associates Program (Associate ID: kbu3986-20) and Coupang Partners (Partner ID: AF2200875). Links in our \"Bench Test Gear & Prototyping Kits\" modules recommend relevant lab instruments, SMD passive sample books, and breakout adapters; qualifying purchases may earn a small commission at no additional cost to you. Affiliate relationships never influence technical specifications, compatibility tiers, or component rankings.",
+        "Korean Fair Trade Commission (KFTC) Affiliate Disclosure: 이 사이트의 벤치 계측기 및 프로토타이핑 키트 추천 링크 중 일부는 쿠팡 파트너스(AF2200875) 활동의 일환으로 제공되며, 이에 따른 일정액의 수수료를 제공받습니다. (In accordance with Korean Fair Trade Commission endorsement guidelines, qualifying purchases through Coupang Partners links may generate a commission for Pin2Pin Global.)"
       ]
     }
   ]

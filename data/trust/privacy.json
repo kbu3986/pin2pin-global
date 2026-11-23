@@ -1,51 +1,52 @@
 {
   "slug": "privacy",
   "title": "Privacy Policy & Zero-Upload Architecture",
-  "description": "Privacy practices, browser-local zero-upload engineering tools, analytics, cookie usage, and Google AdSense disclosure for Pin2Pin Global.",
-  "updated_at": "2026-11-22",
+  "description": "Privacy practices, live browser-local zero-upload BOM checker and calculators, static hosting telemetry, Google AdSense cookies, and Amazon/Coupang affiliate disclosure for Pin2Pin Global.",
+  "updated_at": "2026-11-23",
   "sections": [
     {
-      "heading": "Zero-Upload Engineering Tool Philosophy",
+      "heading": "Zero-Upload Engineering Tool Philosophy (Live Client-Side Execution)",
       "paragraphs": [
-        "Hardware engineers routinely work on confidential schematics, proprietary power budgets, and pre-release Bills of Materials (BOMs). Pin2Pin Global is architected from the ground up as a static web application with browser-local computation.",
-        "All interactive calculators — including the LDO Thermal Margin Calculator, DC-DC Efficiency & Inductor Ripple Calculator, Op-Amp GBWP & Slew-Rate Checker, parametric catalog filters, and planned client-side BOM CSV screening utilities — execute entirely inside your local browser JavaScript runtime. Your design inputs, operating voltages, load currents, and BOM data are never uploaded to, logged by, or stored on Pin2Pin Global servers."
+        "Hardware engineers routinely work on confidential schematics, proprietary power budgets, and pre-release Bills of Materials (BOMs). Pin2Pin Global is architected from the ground up as a static web application with 100% browser-local computation.",
+        "All live interactive engineering tools — including the Zero-Upload Client-Side BOM Checker, Interactive Freeform Part-vs-Part Comparator, Package Pinout Trap Matrix, LDO Thermal Margin Calculator, DC-DC Efficiency & Inductor Ripple Calculator, Op-Amp GBWP & Slew-Rate Checker, and parametric catalog filters — execute entirely inside your local browser JavaScript runtime. Your design inputs, operating voltages, load currents, and uploaded BOM CSV files are never transmitted to, logged by, or stored on Pin2Pin Global servers."
       ],
       "bullets": [
-        "No user account or registration is required to browse part profiles, side-by-side comparisons, or run engineering calculators.",
-        "Calculator inputs stay strictly in ephemeral client-side browser memory and are cleared when you close or reload the tab.",
-        "No proprietary design files or CSV BOM tables are transmitted over the network."
+        "No user account or registration is required to browse part profiles, run side-by-side comparisons, screen BOM CSV files, or use engineering calculators.",
+        "BOM CSV files dropped into the live Zero-Upload BOM Checker are parsed strictly in local browser memory via client-side JavaScript and are cleared immediately when you close or reload the tab.",
+        "Zero proprietary design files, MPN lists, or BOM tables leave your device over the network."
       ]
     },
     {
-      "heading": "Information Collected Automatically (Analytics & Hosting Logs)",
+      "heading": "Information Collected Automatically (Static Hosting & Analytics)",
       "paragraphs": [
-        "To measure site reliability, understand which part comparisons and calculators are most useful, and detect broken links, Pin2Pin Global may collect standard, aggregated web telemetry through privacy-respecting hosting infrastructure (Cloudflare Pages) and analytics services such as Google Analytics 4 (GA4).",
-        "Typical aggregated telemetry includes page URLs visited, referring domain, approximate country-level region, device viewport/browser type, and anonymized interaction events (such as calculator usage or outbound link clicks). We do not sell personal data or build individualized cross-site engineering profiles."
+        "Pin2Pin Global is delivered via static web hosting infrastructure (including GitHub Pages static site delivery and standard CDN edge caching). Hosting providers may record standard, transient HTTP access logs (such as IP address, user-agent string, and requested URL) to maintain service reliability and prevent abuse.",
+        "To understand which part comparisons, field guides, and calculators are most useful and detect broken links, Pin2Pin Global uses Google Analytics 4 (GA4 Measurement ID: G-Q51M6YDXDR) to collect aggregated, non-sensitive interaction telemetry — including page URLs visited, referring domain, approximate country-level region, device viewport/browser type, and anonymized UI events (such as calculator usage, search selections, or outbound datasheet/distributor clicks). We never log BOM contents or calculator numerical inputs to analytics, and we never sell personal data."
       ]
     },
     {
       "heading": "Google AdSense & Third-Party Advertising Cookies",
       "paragraphs": [
-        "Once enabled following domain compliance review, Pin2Pin Global uses Google AdSense (Publisher ID: ca-pub-8587506565277191) to display clearly labeled advertisements that help fund ongoing datasheet verification and server infrastructure.",
-        "Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites on the internet. Google's use of advertising cookies enables it and its partners to serve ads to users based on their visit to pin2pin.dev and other sites."
+        "Pin2Pin Global uses Google AdSense (Publisher ID: ca-pub-8587506565277191) to display clearly separated, layout-stable advertisements that help fund ongoing datasheet verification and site maintenance.",
+        "Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites on the internet. Google's use of advertising cookies enables it and its partners to serve ads to users based on their visit to Pin2Pin Global and other sites."
       ],
       "bullets": [
         "You may opt out of personalized advertising at any time by visiting Google Ads Settings (https://adssettings.google.com) or the Network Advertising Initiative opt-out page (https://optout.networkadvertising.org).",
-        "You can block or delete cookies through your browser preferences without restricting access to any Pin2Pin Global part specs, SVG pinout diagrams, or calculators.",
-        "Users in the European Economic Area (EEA), UK, and California retain full rights under GDPR and CCPA to request information about or deletion of any personal correspondence submitted to us."
+        "You can block or delete cookies through your browser preferences without restricting access to any Pin2Pin Global part specs, SVG pinout diagrams, BOM checker, or calculators.",
+        "Users in the European Economic Area (EEA), UK, California, and South Korea retain full statutory privacy rights to inquire about or request deletion of any personal correspondence voluntarily submitted to us."
       ]
     },
     {
-      "heading": "Outbound Links, GitHub Issues & Affiliate Partners",
+      "heading": "Outbound Links, GitHub Issues & Affiliate Partners (Amazon & Coupang)",
       "paragraphs": [
-        "Pages on Pin2Pin Global contain outbound links to official semiconductor manufacturer websites, electronic component distributors (DigiKey, Mouser, LCSC search links), Amazon Associates lab equipment pages (tag: kbu3986-20), and our public GitHub issue tracker for error reporting. Clicking an outbound link takes you to an external website governed by that third party's own privacy policy and cookie practices.",
-        "If you voluntarily submit a pinout or specification error report via GitHub Issues or email engineering@pin2pin.dev, your GitHub username or email address is used strictly to investigate, verify, and respond to your technical report."
+        "Pages on Pin2Pin Global contain outbound links to official semiconductor manufacturer websites, electronic component distributors (DigiKey, Mouser, LCSC search deeplinks without scraping), contextual lab-gear affiliate partners — including the Amazon Services LLC Associates Program (Associate ID: kbu3986-20) and Coupang Partners (Partner ID: AF2200875) — and our public GitHub Issues tracker for error reporting. Clicking an outbound link takes you to an external website governed by that third party's own privacy policy and cookie practices.",
+        "Korean KFTC Disclosure: 쿠팡 파트너스(AF2200875) 제휴 링크 클릭 및 구매 시 쿠팡의 개인정보 처리방침 및 쿠키 정책이 적용되며, 이에 따른 일정액의 수수료를 제공받을 수 있습니다.",
+        "If you voluntarily submit a pinout or specification error report via GitHub Issues (https://github.com/kbu3986/pin2pin-global/issues) or secondary email (engineering@pin2pin.dev), your GitHub username or email address is used strictly to investigate, verify, and respond to your technical report."
       ]
     },
     {
       "heading": "Policy Updates & Privacy Contact",
       "paragraphs": [
-        "We may update this Privacy Policy periodically as new static features or compliance requirements take effect. The revision date at the top of this page always reflects the latest active version. For privacy questions or data deletion requests regarding direct email correspondence, contact engineering@pin2pin.dev."
+        "We may update this Privacy Policy periodically as new static features or compliance requirements take effect. The revision date at the top of this page always reflects the latest active version. For privacy questions or data deletion requests, please open a request via GitHub Issues (https://github.com/kbu3986/pin2pin-global/issues) or email engineering@pin2pin.dev."
       ]
     }
   ]

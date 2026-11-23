@@ -92,7 +92,7 @@
       "part_a_value": "opamp (push-pull)",
       "part_b_value": "opamp (push-pull)",
       "winner": "TIE",
-      "note": "Op-amps (compensated push-pull) and comparators (uncompensated open-collector) are NOT drop-in interchangeable."
+      "note": "Op-amps (internally compensated for linear feedback) and comparators (uncompensated open-loop switching) are NOT drop-in interchangeable."
     },
     {
       "metric": "Package & Channel Count",
@@ -107,8 +107,8 @@
       "unit": "V",
       "part_a_value": "3 to 30 V (p.5)",
       "part_b_value": "4.5 to 40 V (p.11)",
-      "winner": "B",
-      "note": "Confirm total supply span (V+ - V-) stays within recommended limits."
+      "winner": "CONTEXT",
+      "note": "A part wins only if its recommended Vs range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Supply (Vs,abs)",
@@ -172,7 +172,7 @@
       "part_a_value": "80 dB (p.10) · 40 nV/√Hz (p.10)",
       "part_b_value": "100 dB (p.15) · 37 nV/√Hz (p.16)",
       "winner": "B",
-      "note": "Higher CMRR rejects common-mode noise; lower voltage noise improves SNR."
+      "note": "Winner requires superiority on both CMRR (higher) and input voltage noise (lower); mixed tradeoffs stay CONTEXT."
     },
     {
       "metric": "Thermal Resistance (θJA) & Tj,max",
@@ -184,10 +184,15 @@
     }
   ],
   "swap_risks": [
-    "CRITICAL SUPPLY VOLTAGE RATING: LM358DR is limited to 30 V max (32 V abs max, p.4) whereas TL072IDR supports up to 40 V (42 V abs max, p.10). Installing a 5.5 V CMOS op-amp on a 12 V–24 V rail causes instant breakdown.",
+    "CRITICAL SUPPLY VOLTAGE RATING: LM358DR is limited to 30 V max (32 V abs max, p.4) whereas TL072IDR supports up to 40 V (42 V abs max, p.10). Installing a 5.5 V CMOS part on a 12 V–24 V rail causes instant breakdown.",
     "CAUTION BANDWIDTH & PHASE MARGIN: GBWP differs by 7.5x (LM358DR: 0.7 MHz p.10 vs TL072IDR: 5.25 MHz p.15); higher-bandwidth replacements can oscillate with capacitive loads or stray feedback capacitance without an isolation resistor.",
-    "CAUTION SLEW RATE DIFFERENCE: Slew rate differs by 66.7x (LM358DR: 0.3 V/µs p.10 vs TL072IDR: 20 V/µs p.16); check full-power bandwidth SR / (2π·Vpeak)."
+    "CAUTION SLEW RATE DIFFERENCE: Slew rate differs by 66.7x (LM358DR: 0.3 V/µs p.10 vs TL072IDR: 20 V/µs p.16); check full-power bandwidth SR / (2π·Vpeak).",
+    "HIGH INPUT BIAS CURRENT SHIFT: Typical Ib differs by 308x (LM358DR: 20000 pA p.10 vs TL072IDR: 65 pA p.15); high-impedance sensor dividers (>100 kΩ) suffer severe Ib·R DC offset error when swapping from CMOS/JFET to bipolar inputs.",
+    "CAUTION QUIESCENT CURRENT SHIFT: Supply current per channel differs by 4x (LM358DR: 350 µA/ch p.10 vs TL072IDR: 1400 µA/ch p.16); verify battery budget and total power dissipation across all channels.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: LM358DR has a lower Vs,abs,max rating (32 V, p.4) than TL072IDR (42 V, p.10); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 32 V.",
+    "HIGH MINIMUM SUPPLY FLOOR: TL072IDR requires Vs,min >= 4.5 V (p.11) vs 3 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (LM358DR: 0..70 °C Commercial (0°C to 70°C) vs TL072IDR: -40..85 °C Industrial (-40°C to 85°C)); LM358DR cold limit only 0 °C, LM358DR hot limit only 70 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "LM358DR (Texas Instruments, SOIC-8) and TL072IDR (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to supply voltage Vs,max drops >20%; GBWP differs >= 3x; slew rate differs >= 3x. Key datasheet deltas: device type is opamp (push-pull) vs opamp (push-pull), supply limit is 30 V (p.5) vs 40 V (p.11), max Vos is 7 mV (p.10) vs 6 mV (p.15), input bias current is 20000 pA (p.10) vs 65 pA (p.15), and Iq/ch is 350 µA (p.10) vs 1400 µA (p.16). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.5), thermal margin (θJA 124.7 vs 147.8 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "LM358DR (Texas Instruments, SOIC-8) and TL072IDR (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because supply voltage Vs,max drops >=20%; GBWP differs 7.5x; slew rate differs 66.7x. Signal-chain deltas: GBWP 0.7 MHz (p.10) vs 5.25 MHz (p.15), supply ceiling 30 V (p.5) vs 40 V (p.11), Vos 7 mV (p.10) vs 6 mV (p.15), Ib 308x gap (20000 vs 65 pA), voltage noise 40 vs 37 nV/√Hz. Primary bench gotchas to watch: LM358DR \"Non-Rail-to-Rail Upper Input and Output Headroom Ceiling\" (p.10) and TL072IDR \"Negative-Rail Input Headroom Limit and Legacy Phase Reversal Trap\" (p.11). BOM decision: Choose LM358DR when ultra-low supply current (350 µA/ch) is prioritized; choose TL072IDR when supply rails exceed 30 V (rated up to 40 V) or closed-loop signal bandwidth requires 5.25 MHz GBWP. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.5) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

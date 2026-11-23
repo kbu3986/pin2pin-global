@@ -73,7 +73,7 @@
       "part_a_value": "2.5 to 13.2 V (p.4)",
       "part_b_value": "2.5 to 13.2 V (p.4)",
       "winner": "TIE",
-      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -158,8 +158,9 @@
   ],
   "swap_risks": [
     "CRITICAL PACKAGE MISMATCH: AP2210K-3.3TRG1 uses SOT-23-5 (5-pin, K (SOT-23-5)) while AP2210N-3.3TRG1 uses SOT-23-3 (3-pin, N (SOT-23-3)); PCB footprint redesign is mandatory.",
-    "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (VIN vs GND), Pin 2 (GND vs VOUT), Pin 3 (EN vs VIN), Pin 4 (BYPASS vs NONE), Pin 5 (VOUT vs NONE). Soldering AP2210N-3.3TRG1 onto a AP2210K-3.3TRG1 footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board."
+    "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (VIN vs GND), Pin 2 (GND vs VOUT), Pin 3 (EN vs VIN), Pin 4 (BYPASS vs NONE), Pin 5 (VOUT vs NONE). Soldering AP2210N-3.3TRG1 onto a AP2210K-3.3TRG1 footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
+    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs by 2.2x (AP2210K-3.3TRG1: 2.2 µF p.23 vs AP2210N-3.3TRG1: 1 µF p.23); account for MLCC DC-bias derating."
   ],
-  "engineering_verdict": "AP2210K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and AP2210N-3.3TRG1 (Diodes Incorporated, SOT-23-3) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (VIN vs GND), Pin 2 (GND vs VOUT), Pin 3 (EN vs VIN), Pin 4 (BYPASS vs NONE), Pin 5 (VOUT vs NONE). Key datasheet deltas: Iq is 100 µA (p.11) vs 100 µA (p.11), max output current is 300 mA (p.1) vs 300 mA (p.1), recommended Vin,max is 13.2 V (p.4) vs 13.2 V (p.4), typical dropout is 250 mV (p.11) vs 250 mV (p.11), and ceramic capacitor stability is ESR-constrained vs ESR-constrained. Always validate pinout orientation (TOP_VIEW p.1 vs TOP_VIEW p.1), thermal margin (θJA 200 vs 200 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "AP2210K-3.3TRG1 (Diodes Incorporated, SOT-23-5) and AP2210N-3.3TRG1 (Diodes Incorporated, SOT-23-3) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (VIN vs GND), Pin 2 (GND vs VOUT), Pin 3 (EN vs VIN), Pin 4 (BYPASS vs NONE), Pin 5 (VOUT vs NONE). Specific pin conflicts: Pin 1 (VIN vs GND), Pin 2 (GND vs VOUT), Pin 3 (EN vs VIN), Pin 4 (BYPASS vs NONE). Under a representative 5 V → 3.3 V rail at 150 mA (255 mW), estimated self-heating is ΔTj ≈ 51 °C on AP2210K-3.3TRG1 (θJA 200 °C/W) vs 51 °C on AP2210N-3.3TRG1 (θJA 200 °C/W), while quiescent draw spans a 1x ratio (100 µA (p.11) vs 100 µA (p.11)). Primary bench gotchas to watch: AP2210K-3.3TRG1 \"Pin 4 Is Active BYP (Internal Reference), NOT NC — CBYP Must Not Exceed 100 pF\" (p.23) and AP2210N-3.3TRG1 \"SOT-23-3 Pinout (1=GND, 2=VOUT, 3=VIN) Reversed vs AP7333-SA, AP7313-SA, and LM3480\" (p.1). BOM decision: Choose AP2210K-3.3TRG1 when matching your existing Diodes Incorporated SOT-23-5 (K (SOT-23-5)) qualification and -40..85 °C grade; choose AP2210N-3.3TRG1 when matching your existing Diodes Incorporated SOT-23-3 (N (SOT-23-3)) qualification and -40..85 °C grade. Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.1) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

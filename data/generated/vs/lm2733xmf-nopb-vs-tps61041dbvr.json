@@ -80,8 +80,8 @@
       "unit": "V",
       "part_a_value": "2.7 to 14 V (p.4)",
       "part_b_value": "1.8 to 6 V (p.4)",
-      "winner": "A",
-      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+      "winner": "CONTEXT",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -97,7 +97,7 @@
       "part_a_value": "5 to 38 V (p.12/p.3) (Adj)",
       "part_b_value": "1.8 to 28 V (p.5/p.4) (Adj)",
       "winner": "CONTEXT",
-      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
     },
     {
       "metric": "Max Current (Iout or Isw Limit)",
@@ -105,7 +105,7 @@
       "part_a_value": "1000 mA (p.4) [Isw limit]",
       "part_b_value": "250 mA (p.5) [Isw limit]",
       "winner": "A",
-      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+      "note": "For boost/switch-limited converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
     },
     {
       "metric": "Quiescent Current (Iq, typ)",
@@ -157,10 +157,15 @@
     }
   ],
   "swap_risks": [
+    "CRITICAL SWITCH-VOLTAGE OVERSTRESS RISK: TPS61041DBVR is rated up to only 28 V output (p.4) vs LM2733XMF/NOPB up to 38 V (p.3); exceeding the internal switch BVdss ceiling destroys the SW MOSFET.",
+    "HIGH MINIMUM OUTPUT VOLTAGE FLOOR: LM2733XMF/NOPB cannot regulate below 5 V (p.12) vs TPS61041DBVR down to 1.8 V (p.5); verify your target rail sits above the higher Vout,min floor.",
     "HIGH SWITCHING FREQUENCY SHIFT: fsw differs by 38% (LM2733XMF/NOPB: 1600 kHz p.5 vs TPS61041DBVR: 1000 kHz p.4); re-evaluate inductor core loss, ripple current ΔIL, output capacitor ESR ripple, and EMI harmonics.",
     "HIGH INPUT VOLTAGE RANGE SHIFT: Recommended Vin,max differs (LM2733XMF/NOPB: 14 V p.4 vs TPS61041DBVR: 6 V p.4); verify line transients stay below Vin,abs,max.",
-    "CAUTION CURRENT RATING BASIS: LM2733XMF/NOPB specifies 1000 mA (switch current limit Isw, p.4) vs TPS61041DBVR 250 mA (switch current limit Isw, p.5). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling."
+    "CAUTION CURRENT RATING BASIS: LM2733XMF/NOPB specifies 1000 mA (switch current limit Isw, p.4) vs TPS61041DBVR 250 mA (switch current limit Isw, p.5). Remember boost/switch-limited Iout,max is strictly less than Isw due to duty-cycle and inductor ripple scaling.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: TPS61041DBVR has a lower Vin,abs,max rating (7 V, p.4) than LM2733XMF/NOPB (14.5 V, p.3); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 7 V.",
+    "HIGH MINIMUM SUPPLY FLOOR: LM2733XMF/NOPB requires Vin,min >= 2.7 V (p.4) vs 1.8 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (LM2733XMF/NOPB: -40..125 °C Industrial / Extended (-40°C to 125°C TJ) vs TPS61041DBVR: -40..85 °C Industrial (-40°C to 85°C TA, TJ max 125°C)); TPS61041DBVR hot limit only 85 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "LM2733XMF/NOPB (Texas Instruments, SOT-23-5) and TPS61041DBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to switching frequency differs >30%; Vin,max rating drops >20%; current rating or switch-limit basis differs. Key datasheet deltas: topology is boost (non-sync) vs boost (non-sync), switching frequency is 1600 kHz (p.5) vs 1000 kHz (p.4), rated current is 1000 mA (p.4) vs 250 mA (p.5), typical inductor is 10 µH (p.1) vs 10 µH (p.4), and Iq is 400 µA (p.4) vs 28 µA (p.5). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 210 vs 205.2 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "LM2733XMF/NOPB (Texas Instruments, SOT-23-5) and TPS61041DBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because adjustable Vout,max ceiling drops >=20% (28 V vs 38 V — switch-voltage overstress risk); minimum programmable Vout,min rises (1.8 V vs 5 V); switching frequency differs >30%. Power-stage deltas: boost (non-sync) vs boost (non-sync), switching frequency 1600 kHz (p.5) vs 1000 kHz (p.4) (1.6x ratio), typical inductor 10 µH (p.1) vs 10 µH (p.4), feedback Vref 1.23 V (p.4) vs 1.233 V (p.5), and package θJA 210 vs 205.2 °C/W. Primary bench gotchas to watch: LM2733XMF/NOPB \"Mandatory Feedforward Capacitor Cf Across R1 Prevents Loop Oscillation\" (p.13) and TPS61041DBVR \"Lower 250 mA Switch Limit (215 mA Min) & Higher 750 mOhm RDS(on) vs Pin-Identical TPS61040DBVR\" (p.5). BOM decision: Choose LM2733XMF/NOPB when bus voltage exceeds 6 V (rated to 14 V) or higher switch current capacity (1000 mA) is required; choose TPS61041DBVR when light-load battery standby needs 28 µA Iq. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

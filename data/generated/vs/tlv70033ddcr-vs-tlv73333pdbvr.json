@@ -73,7 +73,7 @@
       "part_a_value": "2 to 5.5 V (p.5)",
       "part_b_value": "1.4 to 5.5 V (p.5)",
       "winner": "B",
-      "note": "Wider operating Vin window supports broader rail & battery chemistry headroom."
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -157,9 +157,10 @@
     }
   ],
   "swap_risks": [
-    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs significantly (TLV70033DDCR: 1 µF p.13 vs TLV73333PDBVR: 0 µF p.16); account for MLCC DC-bias derating.",
-    "HIGH LOAD CURRENT DERATING: TLV70033DDCR supplies up to 200 mA (p.5) compared to TLV73333PDBVR at 300 mA (p.5); confirm peak inrush and thermal dissipation margin."
+    "CAUTION OUTPUT CAPACITANCE: Minimum Cout differs by 100x (TLV70033DDCR: 1 µF p.13 vs TLV73333PDBVR: 0 µF p.16); account for MLCC DC-bias derating.",
+    "HIGH LOAD CURRENT DERATING: TLV70033DDCR supplies up to 200 mA (p.5) compared to TLV73333PDBVR at 300 mA (p.5); confirm peak inrush and thermal dissipation margin.",
+    "HIGH MINIMUM SUPPLY FLOOR: TLV70033DDCR requires Vin,min >= 2 V (p.5) vs 1.4 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor."
   ],
-  "engineering_verdict": "TLV70033DDCR (Texas Instruments, SOT-23-5) and TLV73333PDBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required replacements: while the footprint is physically compatible, engineering review and passive/circuit adjustments are mandatory due to minimum output capacitance requirement differs >= 2.5x; Iout,max rating drops >20%. Key datasheet deltas: Iq is 31 µA (p.6) vs 34 µA (p.6), max output current is 200 mA (p.5) vs 300 mA (p.5), recommended Vin,max is 5.5 V (p.5) vs 5.5 V (p.5), typical dropout is 175 mV (p.6) vs 125 mV (p.6), and ceramic capacitor stability is supported vs supported. Always validate pinout orientation (TOP_VIEW p.4 vs TOP_VIEW p.4), thermal margin (θJA 235.9 vs 228.4 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "TLV70033DDCR (Texas Instruments, SOT-23-5) and TLV73333PDBVR (Texas Instruments, SOT-23-5) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because minimum output capacitance requirement differs 100x; Iout,max rating drops >=20%; Vin,min floor rises 0.6 V. Under a representative 5 V → 3.3 V rail at 150 mA (255 mW), estimated self-heating is ΔTj ≈ 60.2 °C on TLV70033DDCR (θJA 235.9 °C/W) vs 58.2 °C on TLV73333PDBVR (θJA 228.4 °C/W), while quiescent draw spans a 1.1x ratio (31 µA (p.6) vs 34 µA (p.6)). Primary bench gotchas to watch: TLV70033DDCR \"VEN Must Never Exceed VIN + 0.3 V (Sequencing Trap vs TPS7A02/TLV755P)\" (p.5) and TLV73333PDBVR \"Tight 3.6 V Absolute Maximum on VOUT & VEN <= VIN + 0.3 V Sequencing Limit\" (p.5). BOM decision: Choose TLV70033DDCR when matching your existing Texas Instruments SOT-23-5 (DDC (SOT-23-THIN-5)) qualification and -40..125 °C grade; choose TLV73333PDBVR when load current exceeds 200 mA (up to 300 mA). Always verify Pin 1 orientation (TOP_VIEW p.4 vs TOP_VIEW p.4) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

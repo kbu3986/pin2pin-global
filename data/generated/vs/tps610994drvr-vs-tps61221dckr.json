@@ -28,7 +28,7 @@
       "part_b_name": "FB",
       "part_b_role": "FB",
       "status": "CAUTION",
-      "note": "Output sense pin differs (VOUT/VOUT vs FB/FB): adjustable variant requires R1/R2 divider whereas fixed variant senses VOUT directly."
+      "note": "Output sense pin differs (VOUT/VOUT vs FB/FB): adjustable variant requires R1/R2 divider footprint whereas fixed variant senses VOUT directly."
     },
     {
       "pin": 3,
@@ -90,7 +90,7 @@
       "part_a_value": "0.7 to 5.5 V (p.4)",
       "part_b_value": "0.7 to 5.5 V (p.4)",
       "winner": "TIE",
-      "note": "Verify cold-start minimum startup voltage and bus surge ceiling."
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
     },
     {
       "metric": "Absolute Max Input Voltage",
@@ -106,7 +106,7 @@
       "part_a_value": "3.23 to 3.37 V (p.5) (Fixed)",
       "part_b_value": "3.2 to 3.41 V (p.4) (Fixed)",
       "winner": "CONTEXT",
-      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning."
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
     },
     {
       "metric": "Max Current (Iout or Isw Limit)",
@@ -114,7 +114,7 @@
       "part_a_value": "1000 mA (p.5) [Isw limit]",
       "part_b_value": "400 mA (p.4) [Isw limit]",
       "winner": "A",
-      "note": "For boost converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
+      "note": "For boost/switch-limited converters, usable Iout ≈ Isw × (Vin / Vout) × η minus half ripple ΔIL/2."
     },
     {
       "metric": "Quiescent Current (Iq, typ)",
@@ -170,9 +170,11 @@
     "CRITICAL PINOUT CONFLICT: Incompatible pin assignments on Pin 1 (GND vs VIN), Pin 3 (FB vs GND), Pin 4 (EN vs VOUT), Pin 6 (VIN vs EN). Soldering TPS61221DCKR onto a TPS610994DRVR footprint (or vice versa) without rerouting copper can short VIN/VOUT/GND and permanently damage the board.",
     "Exposed thermal pad/tab mismatch (WSON-6: GND vs SC-70-6: NONE); PCB land pattern & solder-mask change required.",
     "CAUTION INDUCTOR RETUNING: Typical inductor differs (TPS610994DRVR: 2.2 µH p.4 vs TPS61221DCKR: 4.7 µH p.13); check inductor Isat against peak switch current limit.",
-    "CAUTION CURRENT RATING BASIS: TPS610994DRVR specifies 1000 mA (switch current limit Isw, p.5) vs TPS61221DCKR 400 mA (switch current limit Isw, p.4). Remember boost Iout,max is strictly less than Isw due to duty-cycle scaling.",
-    "CAUTION THERMAL MARGIN: Package θJA differs by 69% (TPS610994DRVR: 71.7 °C/W p.4 vs TPS61221DCKR: 231.2 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max."
+    "CAUTION CURRENT RATING BASIS: TPS610994DRVR specifies 1000 mA (switch current limit Isw, p.5) vs TPS61221DCKR 400 mA (switch current limit Isw, p.4). Remember boost/switch-limited Iout,max is strictly less than Isw due to duty-cycle and inductor ripple scaling.",
+    "HIGH ABSOLUTE-MAX SURGE MARGIN: TPS610994DRVR has a lower Vin,abs,max rating (6 V, p.4) than TPS61221DCKR (7.5 V, p.3); verify hot-plug, inductive kickback, and TVS clamp peaks stay safely below 6 V.",
+    "HIGH THERMAL MARGIN: Package θJA is 222% higher on TPS61221DCKR (TPS610994DRVR: 71.7 °C/W p.4 vs TPS61221DCKR: 231.2 °C/W p.4); re-check Tj = Ta + Pd × θJA against Tj,max.",
+    "HIGH TEMPERATURE GRADE MISMATCH: Rated ambient range differs (TPS610994DRVR: -40..125 °C Industrial / Extended (-40°C to 125°C TJ) vs TPS61221DCKR: -40..85 °C Industrial (-40°C to 85°C TA, TJ max 125°C)); TPS61221DCKR hot limit only 85 °C — verify product ambient qualification before swapping."
   ],
-  "engineering_verdict": "TPS610994DRVR (Texas Instruments, WSON-6) and TPS61221DCKR (Texas Instruments, SC-70-6) are NOT pin-to-pin drop-in compatible (Level 3 PCB Layout Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (GND vs VIN), Pin 3 (FB vs GND), Pin 4 (EN vs VOUT), Pin 6 (VIN vs EN); exposed pad / thermal tab net mismatch. Key datasheet deltas: topology is boost (sync) vs boost (sync), switching frequency is 1116 kHz (p.16) vs 812 kHz (p.14), rated current is 1000 mA (p.5) vs 400 mA (p.4), typical inductor is 2.2 µH (p.4) vs 4.7 µH (p.13), and Iq is 1 µA (p.5) vs 5.5 µA (p.4). Always validate pinout orientation (TOP_VIEW p.3 vs TOP_VIEW p.3), thermal margin (θJA 71.7 vs 231.2 °C/W), and official manufacturer datasheets on hardware prototypes before production release.",
+  "engineering_verdict": "TPS610994DRVR (Texas Instruments, WSON-6) and TPS61221DCKR (Texas Instruments, SC-70-6) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to package/footprint mismatch; pinout mismatch on Pin 1 (GND vs VIN), Pin 3 (FB vs GND), Pin 4 (EN vs VOUT), Pin 6 (VIN vs EN); exposed pad / thermal tab net mismatch. Specific pin conflicts: Pin 1 (GND vs VIN), Pin 3 (FB vs GND), Pin 4 (EN vs VOUT), Pin 6 (VIN vs EN). Power-stage deltas: boost (sync) vs boost (sync), switching frequency 1116 kHz (p.16) vs 812 kHz (p.14) (1.4x ratio), typical inductor 2.2 µH (p.4) vs 4.7 µH (p.13), output mode fixed vs fixed, and package θJA 71.7 vs 231.2 °C/W. Primary bench gotchas to watch: TPS610994DRVR \"Pin 3 (FB) MUST Connect to GND on Fixed 3.3 V TPS610994 (Opposite of TPS61221)\" (p.3) and TPS61221DCKR \"Pin 2 (FB) MUST Be Tied Directly to VOUT on Fixed 3.3 V TPS61221\" (p.3). BOM decision: Choose TPS610994DRVR when higher switch current capacity (1000 mA) is required or light-load battery standby needs 1 µA Iq; choose TPS61221DCKR when matching your existing Texas Instruments SC-70-6 (DCK) qualification and -40..85 °C grade. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
   "generated_at": "2026-11-23"
 }

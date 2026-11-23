@@ -1,0 +1,175 @@
+{
+  "slug": "audio-precision-soic8-opamp-guide",
+  "title": "Audio & Precision Dual SOIC-8 Op-Amp Substitution Guide: NE5532 vs TL072 vs TL082 vs OPA2134 vs OPA2333",
+  "subtitle": "Datasheet-verified substitution rules covering BJT input bias and current noise, JFET phase reversal and SFAB/RFB silicon convergence, OPA2134 thermal self-heating, and OPA2333 chopper clock traps.",
+  "category": "opamp",
+  "reading_time_min": 10,
+  "published_at": "2026-11-23",
+  "updated_at": "2026-11-23",
+  "author_role": "Senior Analog & Mixed-Signal Verification Engineer",
+  "summary": "NE5532DR, TL072IDR, TL082IDR, OPA2134UA, and OPA2333AIDR all share the exact same 8-pin SOIC footprint — yet represent three fundamentally different amplifier architectures (bipolar, JFET, and zero-drift chopper CMOS) spanning 7 V to 42 V supplies, 5 to 37 nV/rtHz noise, and 17 uA to 4 mA quiescent current. This Vision-verified guide quantifies exact swap boundaries and failure modes.",
+  "key_takeaways": [
+    "All five dual SOIC-8 amplifiers share 1=OUT_A, 2=IN-_A, 3=IN+_A, 4=V-, 5=IN+_B, 6=IN-_B, 7=OUT_B, 8=V+, yet differ wildly in input stage physics: BJT (NE5532DR), JFET (TL072IDR, TL082IDR, OPA2134UA), and zero-drift chopper CMOS (OPA2333AIDR).",
+    "NE5532DR delivers ultra-low 5 nV/rtHz voltage noise for <5 kOhm audio sources, but its 200 nA typ (1000 nA max) bias, 0.7 pA/rtHz current noise (crossover RS* ~ 7.1 kOhm), ±0.6 V anti-parallel input clamp diodes, and TI Rev K limits (±18 V abs max, 5 V/us slew) block high-Z or comparator-like swaps.",
+    "Per TI Rev W (TL072) and Rev O (TL082, Sep 2025), non-H TL072IDR and TL082IDR reels ship mixed legacy SFAB (18 nV/rtHz, 3 MHz, phase reversal) and modern RFB silicon (37 nV/rtHz at 1 kHz, 5.25 MHz, 42 V abs max) — causing both families to converge electrically; specify H-suffix or OPA2134UA (8 nV/rtHz) for deterministic low-noise audio.",
+    "Upgrading to OPA2134UA imposes 240–300 mW idle self-heating (38–48 °C rise in 160 °C/W SOIC-8) and zero margin above 36 V (±18 V), while dropping 5.5 V OPA2333AIDR into ±15 V audio or >10 kHz circuits triggers instant overvoltage, 12.7 kHz slew limiting, ±5 mA drive clipping, or chopper current pulses."
+  ],
+  "related_parts": [
+    "ne5532dr",
+    "tl072idr",
+    "tl082idr",
+    "opa2134ua",
+    "opa2333aidr",
+    "tlv9062idr",
+    "tlv9002idr",
+    "mc33202dr2g",
+    "lm358dr",
+    "lm358dr2g"
+  ],
+  "related_vs": [
+    "opa2134ua-vs-tl072idr",
+    "mc33202dr2g-vs-ne5532dr",
+    "lm358dr-vs-ne5532dr",
+    "mc33202dr2g-vs-opa2333aidr",
+    "lm358dr-vs-opa2333aidr",
+    "tl072idr-vs-tlv9002idr",
+    "mc33202dr2g-vs-opa2134ua",
+    "mc33202dr2g-vs-tlv9062idr"
+  ],
+  "sections": [
+    {
+      "heading": "1. Five Iconic Dual SOIC-8 Amplifiers, One Identical Footprint, Three Incompatible Architectures",
+      "body": [
+        "Every dual operational amplifier in an 8-pin SOIC (JEDEC MS-012 / TI D / onsemi CASE 751) package uses the exact same pinout established half a century ago: 1=OUT_A, 2=IN-_A, 3=IN+_A, 4=V-, 5=IN+_B, 6=IN-_B, 7=OUT_B, 8=V+. That mechanical standardization tempts audio designers, test-equipment engineers, and sourcing teams into 'op-amp rolling' — swapping NE5532DR, TL072IDR, TL082IDR, OPA2134UA, and OPA2333AIDR (or low-voltage CMOS parts like TLV9062IDR) across the same PCB footprint to chase lower noise, lower DC offset, or lower BOM cost.",
+        "In practice, pin compatibility is only the first 10% of analog compatibility. These five Vision-verified OPNs span three completely distinct input-stage and compensation architectures: bipolar NPN differential (NE5532DR), P-channel JFET differential (TL072IDR, TL082IDR, OPA2134UA), and auto-calibrated zero-drift chopper CMOS (OPA2333AIDR). Their recommended minimum supplies range from 1.8 V up to 10 V (±5 V), their absolute maximum ceilings span 7.0 V to 42 V, their input bias currents span five orders of magnitude (5 pA to 200,000 pA), and their quiescent currents span more than 235x (17 uA/ch to 4,000 uA/ch).",
+        "The master comparison matrix below aggregates exact 300 DPI PNG Vision-verified parameters from the current official Texas Instruments datasheets (including TI's Dec 2025 NE5532 Rev K, Jul 2025 TL072 Rev W, Sep 2025 TL082 Rev O, Nov 2024 OPA2134 Rev B, and OPA2333 Rev E). Use it as your baseline before evaluating any audio or precision substitution."
+      ],
+      "table": {
+        "headers": [
+          "SOIC-8 OPN (Rev)",
+          "Input Stage",
+          "Vs Rec / Abs Max",
+          "en @ 1 kHz / Ib Typ",
+          "GBW / SR / Isc",
+          "Vos Max / Iq per ch",
+          "RθJA & Primary Swap Cliff"
+        ],
+        "rows": [
+          [
+            "NE5532DR (Rev K)",
+            "Bipolar NPN",
+            "10–30 V / 36 V",
+            "5 nV/rtHz / 200 nA",
+            "12 MHz / 5 V/us / 38 mA",
+            "4 mV / 3000 uA",
+            "97 °C/W; ±0.6 V input clamps, 0.7 pA/rtHz in"
+          ],
+          [
+            "TL072IDR (Rev W)",
+            "JFET (SFAB/RFB)",
+            "4.5–40 V* / 42 V",
+            "37 nV* / 65 pA",
+            "5.25 MHz / 20 V/us / N/S",
+            "6 mV / 1400 uA",
+            "147.8 °C/W; mixed SFAB/RFB die, (V-)+4 V CM"
+          ],
+          [
+            "TL082IDR (Rev O)",
+            "JFET (SFAB/RFB)",
+            "4.5–40 V* / 42 V",
+            "37 nV* / 65 pA",
+            "5.25 MHz / 20 V/us / N/S",
+            "6 mV / 1400 uA",
+            "147.8 °C/W; converges w/ TL072; 1.5 kV HBM"
+          ],
+          [
+            "OPA2134UA (Rev B)",
+            "SoundPlus FET",
+            "5–36 V / 36 V",
+            "8 nV/rtHz / 5 pA",
+            "8 MHz / 20 V/us / 36 mA",
+            "3.5 mV / 4000 uA",
+            "160 °C/W; 240–300 mW idle heat, 36 V zero margin"
+          ],
+          [
+            "OPA2333AIDR (Rev E)",
+            "Zero-Drift CMOS",
+            "1.8–5.5 V / 7 V",
+            "1.1 uVpp* / ±70 pA",
+            "0.35 MHz / 0.16 V/us / ±5 mA",
+            "0.01 mV / 17 uA",
+            "124 °C/W; 7 V max, chopper pulses, ±5 mA drive"
+          ]
+        ]
+      }
+    },
+    {
+      "heading": "2. Bipolar Audio Physics (NE5532DR): Input Bias, Current Noise Crossover, Clamp Diodes, and Rev K Changes",
+      "body": [
+        "Texas Instruments' NE5532DR remains the workhorse of pro-audio mixing consoles, microphone preamps, and 600 Ohm balanced line drivers for one compelling physical reason: its bipolar NPN differential input stage achieves an ultra-low 5 nV/rtHz input voltage noise density at 1 kHz (8 nV/rtHz at 30 Hz, SLOS075K p.4) paired with 38 mA short-circuit drive and 12 MHz GBWP at a fraction of the cost of precision FET audio amplifiers. Yet blindly substituting NE5532DR into a JFET TL072/TL082/OPA2134 circuit triggers four severe failure modes.",
+        "First, evaluate the total input-referred noise equation across source resistance RS: e_total = sqrt(e_n^2 + (i_n * R_S)^2 + 4*k*T*R_S). While NE5532DR wins on voltage noise (5 nV/rtHz), its bipolar base current creates a massive 0.7 pA/rtHz current noise at 1 kHz — rising to 2.7 pA/rtHz at 30 Hz (p.4)! Solving the noise crossover point R_S* = e_n / i_n gives 5 nV / 0.7 pA = 7.1 kOhm at 1 kHz (and just ~3.0 kOhm at 30 Hz). On a 50 kOhm guitar-pickup buffer, tone-stack potentiometer, or high-impedance sensor filter, NE5532DR's current noise alone generates 35 nV/rtHz at 1 kHz and 135 nV/rtHz at 30 Hz — turning it noisier than JFET OPA2134UA (8 nV/rtHz, negligible fA current noise) and even modern TL072/TL082 (10 fA/rtHz current noise).",
+        "Second, bipolar input bias current (200 nA typ, 800 nA max at 25 °C, up to 1,000 nA max over 0–70 °C, plus 30 kOhm minimum input resistance, p.4) produces huge DC offset shifts whenever source resistances are unbalanced or high-value. Across a 100 kOhm volume potentiometer, 200 nA–1,000 nA of bias current creates 20 mV to 100 mV of scratchy DC offset that clicks when turned and saturates downstream DC-coupled gain stages — whereas OPA2134UA (5 pA) creates just 0.5 uV.",
+        "Third, NEVER overlook Section 5.1 Footnote (4) (p.3): NE5532DR integrates internal anti-parallel protection diodes directly between IN+ and IN-. Whenever differential input voltage exceeds ~0.6 V, those diodes conduct heavily (abs max ±10 mA) and short the input nodes together. Dropping NE5532DR into peak detectors, fast slew-limited stages, analog switches, or comparator-like clippers built for JFET TL072/TL082 loads down upstream stages and causes severe distortion or input damage.",
+        "Fourth, audit TI's December 2025 Revision K datasheet changes (SLOS075K, p.3–4, p.11). TI revised NE5532DR absolute maximum supply voltage DOWN from ±22 V (44 V) to ±18 V (36 V), revised typical slew rate DOWN from 9 V/us to 5 V/us, lowered typical total ICC from 8 mA to 6 mA (3 mA/ch), and raised typical GBW from 10 MHz to 12 MHz. Legacy pro-audio consoles running ±18 V rails now sit at zero surge margin, and commercial NE5532DR remains restricted to 0 °C to 70 °C (specify SA5532DR for -40 °C to +85 °C) and a 10 V (±5 V) minimum supply with ±12 V min VICR at ±15 V."
+      ],
+      "callout": {
+        "type": "CRITICAL",
+        "title": "NE5532DR Noise Crossover (~7 kOhm) & Internal ±0.6 V Input Clamp Diodes",
+        "text": "Use NE5532DR only where source impedance stays below ~5 kOhm and differential input voltage never exceeds ±0.6 V. Above 10 kOhm source impedance, bipolar current noise (0.7–2.7 pA/rtHz) and 200–1000 nA bias current erase its 5 nV/rtHz voltage-noise advantage."
+      }
+    },
+    {
+      "heading": "3. JFET Trio Deep Dive: TL072IDR vs TL082IDR Silicon Convergence & OPA2134UA Thermal/Rail Walls",
+      "body": [
+        "For decades, textbooks taught a simple rule: TL072 is the low-noise audio-grade sibling of general-purpose TL082, both delivering ~18 nV/rtHz at 1 kHz, 3 MHz GBWP, and ~13 V/us slew rate on ±15 V rails. Our 300 DPI PNG Vision audits of TI's latest official revisions — TL072 Rev W (SLOS080W, July 2025) and Wave 2B TL082 Rev O (SLOS081O, September 2025) — reveal a major industry shift that invalidates that legacy rule on standard SOIC-8 reels.",
+        "Open Table 9-1 (Device Nomenclature) on p.28 of TL082 Rev O and Section 9.1.1 (p.34) of TL072 Rev W: for ANY non-H, non-M ordering code — specifically including standard TL072IDR and TL082IDR — TI explicitly states that production reels may contain EITHER legacy flow silicon (CSO: SFAB) OR modern flow silicon (CSO: RFB)! On legacy SFAB silicon, operating supply is 10–30 V (36 V abs max), GBWP is 3 MHz, 1 kHz noise is 18 nV/rtHz, and driving an input within ~3–4 V of VCC- triggers infamous JFET output phase reversal (the output suddenly slams to the positive rail during a negative overload). On modern RFB silicon (which powers all D-package headline tables), operating supply expands to 4.5–40 V (42 V abs max), GBWP climbs to 5.25 MHz, THD+N drops to 0.00012%, phase reversal is eliminated, AND ±10 mA input-to-rail ESD clamp diodes are added — BUT 1 kHz voltage noise rises more than 2x to 37 nV/rtHz (21 nV/rtHz at 10 kHz), and Rev O lowered TL082 HBM ESD to ±1500 V!",
+        "Two practical consequences follow immediately. First, in modern production, standard TL072IDR and TL082IDR have converged onto virtually identical D-package electrical and thermal tables (both 42 V abs max, 5.25 MHz, 20 V/us, 6 mV max Vos, 65 pA Ib, 1.4 mA/ch Iq, 37 nV/rtHz @ 1 kHz, 147.8 °C/W RθJA) — yet mixed SFAB/RFB reels forbid relying on 5 V single-supply operation (legacy SFAB needs >= 10 V!) or assuming 18 nV/rtHz noise. Always specify the H-suffix (TL072HIDR or TL082HIDR: deterministic RFB die, 4.5–40 V, 1 mV typ Vos, 937.5 uA/ch Iq, -40..125 °C) when you want modern silicon without reel lottery. Second, remember JFET negative common-mode headroom: recommended VI on both TL072IDR and TL082IDR stops at (VCC-) + 4 V (±11 V guaranteed at ±15 V, p.9/p.14). Neither part can sense signals near ground in a single-supply 5 V LM358DR or onsemi LM358DR2G socket.",
+        "When an audio design genuinely demands sub-10 nV/rtHz FET noise without NE5532's bias current, engineers reach for Texas Instruments' flagship SoundPlus OPA2134UA (SBOS058B, Nov 2024). It delivers 8 nV/rtHz voltage noise, 0.00008% THD+N, 5 pA typ Ib, 8 MHz GBWP, 20 V/us slew, 36 mA / -30 mA short-circuit drive, and complete phase-inversion immunity. Yet swapping OPA2134UA into a crowded TL072/TL082 board runs straight into three hard walls: (1) Quiescent power nearly triples to 4.0 mA/ch typ / 5.0 mA/ch max (8–10 mA total), burning 240–300 mW at ±15 V idle — which raises the 160 °C/W SOIC-8 junction 38 °C to 48 °C above ambient before driving a single 600 Ohm load! (2) Supply absolute maximum is 36 V (±18 V) — identical to recommended max (zero overvoltage margin vs 42 V on TL072/TL082). (3) Guaranteed common-mode input stops at (V-) + 2.5 V to (V+) - 3.5 V (leaving zero guaranteed CM window on a 5 V single supply!), and OPA2134UA carries MSL-3 (168-hour floor life) requiring baking if left unsealed."
+      ],
+      "callout": {
+        "type": "WARNING",
+        "title": "TL072IDR & TL082IDR Mixed-Die Lottery + OPA2134UA 48 °C Idle Self-Heating",
+        "text": "Non-H TL072IDR and TL082IDR reels mix legacy SFAB (18 nV/rtHz, 10 V min, phase reversal) and modern RFB (37 nV/rtHz, 4.5 V min, ±10 mA clamps). Upgrading to OPA2134UA guarantees 8 nV/rtHz and phase-inversion immunity, but adds 240–300 mW idle heat in SOIC-8 and removes supply headroom above ±18 V."
+      }
+    },
+    {
+      "heading": "4. Zero-Drift Precision (OPA2333AIDR) vs Low-Voltage CMOS/BJT Peers: Chopper Feedthrough & Rail Traps",
+      "body": [
+        "In precision instrumentation — Wheatstone bridges, strain gauges, thermocouples, RTDs, and low-side millivolt shunts — bipolar NE5532 (4 mV Vos, 200 nA Ib) and JFET TL072/TL082 (6 mV Vos, ±18 uV/°C drift) are orders of magnitude too inaccurate. Texas Instruments' OPA2333AIDR (SBOS351E, p.7) occupies the exact same SOIC-8 footprint and crushes DC error using an auto-calibrated zero-drift chopper architecture: 10 uV max input offset voltage (2 uV typ), 0.05 uV/°C max drift, 130 dB crossover-free RRIO CMRR, 1.1 uVpp 0.1–10 Hz noise with zero 1/f flicker, and just 17 uA/ch Iq from 1.8 V to 5.5 V.",
+        "However, OPA2333AIDR is strictly a low-frequency, low-voltage DC specialist — NEVER an audio or general-purpose substitute for TL072/NE5532/OPA2134, nor even a drop-in for fast 5 V RRIO op-amps like TLV9062IDR (10 MHz) or TLV9002IDR (1 MHz). Five physical constraints govern every OPA2333AIDR swap:",
+        "1. Hard 7.0 V Absolute Maximum Supply Ceiling: Operating max is 5.5 V (abs max 7.0 V, p.5). Installing OPA2333AIDR on a ±12 V, ±15 V, or 12 V single-supply board destroys the chip instantaneously. Also observe its strict ±1 mA signal input current absolute maximum — add series limiting resistors whenever sensor leads can exceed supply rails.",
+        "2. Slew-Rate & Bandwidth Audio Wall: At 0.35 MHz GBWP and 0.16 V/us slew rate (p.7), full-power bandwidth for a modest 2 Vpk (4 Vpp) sine wave is f_FPBW = SR / (2 * pi * Vpk) = 160,000 / (6.283 * 2) = 12.7 kHz! Even at unity gain on 5 V, OPA2333AIDR slew-clips upper audio harmonics, and at gain = 10x its -3 dB bandwidth collapses to 35 kHz.",
+        "3. Micropower ±5 mA Output Drive & 2 kOhm Open-Loop Ro: OPA2333AIDR delivers only ±5 mA short-circuit current (p.7) vs ±36–50 mA on OPA2134UA, NE5532DR, TLV9002IDR, and TLV9062IDR. Driving a 600 Ohm audio load or heavy SAR ADC charge kickback directly pulls the output stage out of linear regulation.",
+        "4. Chopper Clock Feedthrough & Pulsed ±70 pA Input Bias: Zero-drift auto-calibration switches internal nulling capacitors at high frequency, injecting ±70 pA typ (±200 pA max, ±150 pA typ over temp) pulsed switching current spikes into the input pins rather than quiet static CMOS bias. Unmatched high-value source resistors (>10–50 kOhm) convert those current pulses into DC offset errors and high-frequency intermodulation spurs — keep inverting and noninverting source impedances matched below 10 kOhm and place a small differential RC filter directly across pins 2–3 and 5–6.",
+        "5. Low-Voltage Audio/High-Speed Alternatives: If you need true 1.8–5.5 V RRIO operation with audio bandwidth and low noise on SOIC-8, select TLV9062IDR (10 MHz GBWP, 6.5 V/us, 10 nV/rtHz @ 10 kHz / 16 nV/rtHz @ 1 kHz, 0.5 pA Ib, ±50 mA Isc, 6.0 V abs max, 538 uA/ch) — NOT OPA2333AIDR. For 9–12 V single-supply RRIO with stiff 600 Ohm drive, evaluate onsemi MC33202DR2G (1.8–12 V / 13 V abs max, 2.2 MHz, 20 nV/rtHz, ±80 mA Isc), while watching its 80 nA bipolar Ib polarity reversal near VEE + 0.8 V and input clamp diodes."
+      ],
+      "callout": {
+        "type": "CRITICAL",
+        "title": "OPA2333AIDR Chopper Pulsed Bias, ±5 mA Drive & 7.0 V Abs Max Ceiling",
+        "text": "Reserve OPA2333AIDR strictly for <= 5.5 V, low-frequency (<1–5 kHz) precision DC conditioning with balanced <10 kOhm source impedances. For 3.3–5 V audio or wideband ADC buffering on SOIC-8, use TLV9062IDR (10 MHz, ±50 mA) or TLV9002IDR (1 MHz, 60 uA/ch)."
+      }
+    },
+    {
+      "heading": "5. Practical Dual SOIC-8 Swap Rules & Six-Step Bench Qualification Protocol",
+      "body": [
+        "Apply these deterministic substitution rules when cross-referencing audio and precision dual SOIC-8 sockets:",
+        "• Low-Z Pro Audio (<5 kOhm, ±12 V/±15 V, 600 Ohm load): NE5532DR is optimal (5 nV/rtHz). Upgrade to OPA2134UA only if high-Z sources (>10 kOhm), differential overload (>0.6 V), or 20 V/us slew demand a FET stage AND your board tolerates 240–300 mW idle dissipation and <= ±18 V rails.",
+        "• High-Z Audio / Instrumentation (±12 V/±15 V, >10 kOhm source): Prefer OPA2134UA (8 nV/rtHz, 5 pA) for low noise or deterministic TL072HIDR / TL082HIDR (37 nV/rtHz, 40 V rating) for cost-sensitive industrial rails. Treat non-H TL072IDR and TL082IDR as interchangeable on non-noise-critical ±15 V designs, while avoiding both below 10 V total supply due to legacy SFAB reel lots.",
+        "• Precision DC / Sensor Bridges (1.8–5.5 V, <1 kHz): Use OPA2333AIDR (10 uV max Vos, 0.05 uV/°C) with balanced <10 kOhm impedances, symmetric thermal copper routing (to prevent Seebeck thermocouple EMF across solder joints, p.23), and <= 5 mA output loads.",
+        "• General 12–30 V Low-Side Sensing (Non-Audio): Use TI LM358DR or onsemi LM358DR2G (0 V CM floor) — NOT TL072/TL082/NE5532/OPA2134! Note when second-sourcing LM358DR with onsemi LM358DR2G: standard LM358DR2G carries ONLY 250 V HBM ESD (specify LM358EDR2G for 2000 V HBM) and 212 °C/W RθJA.",
+        "Before releasing any dual SOIC-8 op-amp ECO to production, execute this six-step bench verification protocol:",
+        "1. Verify Supply Headroom & Startup Rails: Confirm worst-case rail transients stay safely below abs max (7 V OPA2333, 13 V MC33202, 36 V zero-margin OPA2134/NE5532 Rev K, 42 V TL072/TL082) and above minimum guaranteed supply (10 V NE5532 & legacy TL072/082).",
+        "2. Compute Total Noise & Bias Offset at Actual RS: Plug source impedance RS into sqrt(en^2 + (in*RS)^2 + 4kTRS) and verify Vos + Ib*RS meets DC error budgets.",
+        "3. Sweep Common-Mode Range & Overload Recovery: Drive inputs across full signal extremes to confirm zero JFET phase reversal (especially near VCC- + 4 V on TL072/082) and verify no input clamp conduction (>0.6 V differential on NE5532/MC33202).",
+        "4. Measure Package Surface Temperature Under Worst-Case Load: Check T_case with an IR camera or thermocouple on ±15 V OPA2134UA and NE5532DR driving 600 Ohm loads, verifying TJ = TA + (Pd_idle + Pd_load) * RθJA <= 125 °C.",
+        "5. Run Wideband FFT & Step-Response Stability Tests: Inspect 10 kHz–2 MHz FFT spectra for OPA2333 chopper clock spurs, confirm 100 mVpp step overshoot stays <15% into actual capacitive cable/ADC loads, and pre-check slew/GBWP margins in Pin2Pin Global's Op-Amp GBWP & Slew-Rate Checker.",
+        "6. Lock Exact OPN Suffixes on the AML: Specify H-suffix (TL072HIDR/TL082HIDR) to eliminate SFAB/RFB silicon lottery, SA5532DR for -40 °C industrial ranges, and OPA2134UA/2K5 tape-and-reel with MSL-3 moisture control."
+      ],
+      "callout": {
+        "type": "TIP",
+        "title": "Compare Any Two Verified SOIC-8 Op-Amps Side-by-Side Before Touching a Soldering Iron",
+        "text": "Launch Pin2Pin Global's Interactive Freeform Comparator to inspect pinout diffs, supply ceilings, noise floors, quiescent dissipation, and GBWP/slew trade-offs across NE5532DR, TL072IDR, TL082IDR, OPA2134UA, and OPA2333AIDR instantly."
+      }
+    }
+  ]
+}

@@ -1,0 +1,192 @@
+{
+  "schema_version": "2.0.0",
+  "slug": "tps54231dr-vs-tps54331dr",
+  "category": "dcdc",
+  "part_a_slug": "tps54231dr",
+  "part_b_slug": "tps54331dr",
+  "part_a_opn": "TPS54231DR",
+  "part_b_opn": "TPS54331DR",
+  "compatibility_level": "LEVEL_2_TUNING_REQUIRED",
+  "compatibility_badge": "Functional / Tuning Required (Check Passives & Ratings)",
+  "package_match": true,
+  "pinout_exact_match": true,
+  "exposed_pad_match": true,
+  "pin_diff": [
+    {
+      "pin": 1,
+      "part_a_name": "BOOT",
+      "part_a_role": "BOOT",
+      "part_b_name": "BOOT",
+      "part_b_role": "BOOT",
+      "status": "MATCH",
+      "note": "Identical pin assignment (BOOT / BOOT)."
+    },
+    {
+      "pin": 2,
+      "part_a_name": "VIN",
+      "part_a_role": "VIN",
+      "part_b_name": "VIN",
+      "part_b_role": "VIN",
+      "status": "MATCH",
+      "note": "Identical pin assignment (VIN / VIN)."
+    },
+    {
+      "pin": 3,
+      "part_a_name": "EN",
+      "part_a_role": "EN",
+      "part_b_name": "EN",
+      "part_b_role": "EN",
+      "status": "MATCH",
+      "note": "Identical pin assignment (EN / EN)."
+    },
+    {
+      "pin": 4,
+      "part_a_name": "SS",
+      "part_a_role": "SS",
+      "part_b_name": "SS",
+      "part_b_role": "SS",
+      "status": "MATCH",
+      "note": "Identical pin assignment (SS / SS)."
+    },
+    {
+      "pin": 5,
+      "part_a_name": "VSENSE",
+      "part_a_role": "FB",
+      "part_b_name": "VSENSE",
+      "part_b_role": "FB",
+      "status": "MATCH",
+      "note": "Identical pin assignment (VSENSE / FB)."
+    },
+    {
+      "pin": 6,
+      "part_a_name": "COMP",
+      "part_a_role": "COMP",
+      "part_b_name": "COMP",
+      "part_b_role": "COMP",
+      "status": "MATCH",
+      "note": "Identical pin assignment (COMP / COMP)."
+    },
+    {
+      "pin": 7,
+      "part_a_name": "GND",
+      "part_a_role": "GND",
+      "part_b_name": "GND",
+      "part_b_role": "GND",
+      "status": "MATCH",
+      "note": "Identical pin assignment (GND / GND)."
+    },
+    {
+      "pin": 8,
+      "part_a_name": "PH",
+      "part_a_role": "SW",
+      "part_b_name": "PH",
+      "part_b_role": "SW",
+      "status": "MATCH",
+      "note": "Identical pin assignment (PH / SW)."
+    }
+  ],
+  "parameter_matrix": [
+    {
+      "metric": "Topology & Rectification",
+      "unit": "—",
+      "part_a_value": "buck (Non-Sync Diode)",
+      "part_b_value": "buck (Non-Sync Diode)",
+      "winner": "TIE",
+      "note": "Synchronous rectification eliminates external Schottky diode loss and PCB area."
+    },
+    {
+      "metric": "Package & Exposed Pad",
+      "unit": "—",
+      "part_a_value": "SOIC-8 (D, EP: None, p.4)",
+      "part_b_value": "SOIC-8 (D, EP: None, p.3)",
+      "winner": "TIE",
+      "note": "Compact WSON/VSON/SOT-563 packages demand tight hot-loop layout and thermal vias."
+    },
+    {
+      "metric": "Input Voltage Range (Rec.)",
+      "unit": "V",
+      "part_a_value": "3.5 to 28 V (p.5)",
+      "part_b_value": "3.5 to 28 V (p.4)",
+      "winner": "TIE",
+      "note": "A part wins only if its operating Vin range strictly encompasses the counterpart on both ends."
+    },
+    {
+      "metric": "Absolute Max Input Voltage",
+      "unit": "V",
+      "part_a_value": "30 V (p.5)",
+      "part_b_value": "30 V (p.4)",
+      "winner": "TIE",
+      "note": "Provides transient overshoot margin above nominal DC supply bus."
+    },
+    {
+      "metric": "Output Voltage Range",
+      "unit": "V",
+      "part_a_value": "0.8 to 25.2 V (p.1/p.6) (Adj)",
+      "part_b_value": "0.8 to 25 V (p.1/p.21) (Adj)",
+      "winner": "TIE",
+      "note": "Fixed-output variants save divider BOM; adjustable parts allow arbitrary rail tuning up to switch BVdss limits."
+    },
+    {
+      "metric": "Max Current (Iout or Isw Limit)",
+      "unit": "mA",
+      "part_a_value": "2000 mA (p.1) [Iout max]",
+      "part_b_value": "3000 mA (p.1) [Iout max]",
+      "winner": "B",
+      "note": "Continuous DC output current rating; verify inductor Isat >= Iout + ΔIL/2 and thermal margin."
+    },
+    {
+      "metric": "Quiescent Current (Iq, typ)",
+      "unit": "µA",
+      "part_a_value": "75 µA (p.6)",
+      "part_b_value": "110 µA (p.5)",
+      "winner": "A",
+      "note": "Dominates light-load efficiency and standby battery runtime."
+    },
+    {
+      "metric": "Switching Frequency (fsw, typ)",
+      "unit": "kHz",
+      "part_a_value": "570 kHz (p.6)",
+      "part_b_value": "570 kHz (p.6)",
+      "winner": "CONTEXT",
+      "note": "Higher fsw shrinks inductor footprint; lower fsw reduces switching losses & high-band EMI."
+    },
+    {
+      "metric": "Peak Efficiency",
+      "unit": "%",
+      "part_a_value": "94 % (p.1)",
+      "part_b_value": "94 % (p.1)",
+      "winner": "TIE",
+      "note": "Check datasheet efficiency curve at your exact Vin/Vout/Iout operating point."
+    },
+    {
+      "metric": "Recommended Inductor (L, typ)",
+      "unit": "µH",
+      "part_a_value": "10 µH (p.14)",
+      "part_b_value": "6.8 µH (p.16)",
+      "winner": "CONTEXT",
+      "note": "Ensure inductor Isat exceeds worst-case peak switch current by >= 20–30%."
+    },
+    {
+      "metric": "Feedback Reference (Vref)",
+      "unit": "V",
+      "part_a_value": "0.8 V (p.6)",
+      "part_b_value": "0.8 V (p.5)",
+      "winner": "CONTEXT",
+      "note": "Any Vref discrepancy requires recalculating feedback divider R1/R2."
+    },
+    {
+      "metric": "Thermal Resistance (θJA) & Tj,max",
+      "unit": "°C/W · °C",
+      "part_a_value": "116.3 °C/W (p.5) · 150 °C",
+      "part_b_value": "116.3 °C/W (p.5) · 150 °C",
+      "winner": "TIE",
+      "note": "Lower θJA improves continuous load thermal headroom on compact 2-layer PCBs."
+    }
+  ],
+  "swap_risks": [
+    "CAUTION INDUCTOR RETUNING: Typical inductor differs (TPS54231DR: 10 µH p.14 vs TPS54331DR: 6.8 µH p.16); check inductor Isat against peak switch current limit.",
+    "CAUTION CURRENT RATING BASIS: TPS54231DR specifies 2000 mA (continuous Iout, p.1) vs TPS54331DR 3000 mA (continuous Iout, p.1). Verify continuous load current and peak inductor saturation margin (Isat >= Iout + ΔIL/2)."
+  ],
+  "engineering_verdict": "TPS54231DR (Texas Instruments, SOIC-8) and TPS54331DR (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because recommended inductor value differs >20%; current rating or switch-limit basis differs. Power-stage deltas: buck (non-sync) vs buck (non-sync), switching frequency 570 kHz (p.6) vs 570 kHz (p.6) (1x ratio), typical inductor 10 µH (p.14) vs 6.8 µH (p.16), feedback Vref 0.8 V (p.6) vs 0.8 V (p.5), and package θJA 116.3 vs 116.3 °C/W. Primary bench gotchas to watch: TPS54231DR \"EN Pin Abs Max Is Strictly 6.0 V — NEVER Tie Directly to 12 V or 24 V VIN\" (p.5) and TPS54331DR \"Non-Synchronous Architecture Requires External Schottky Catch Diode & External COMP Network\" (p.1). BOM decision: Choose TPS54231DR when matching your existing Texas Instruments SOIC-8 (D) qualification and -40..150 °C grade; choose TPS54331DR when higher load current capacity (3000 mA) is required. Always verify Pin 1 orientation (TOP_VIEW p.4 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
+  "generated_at": "2026-11-23"
+}
