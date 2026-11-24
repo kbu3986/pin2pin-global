@@ -1,9 +1,9 @@
 # Migration & Consolidation Record (2026-11-23)
 
-This record archives all configuration, automation prompts, operational history, and recovered features extracted from the overlapping Antigravity sidecar project **`pin2pin-health-and-issue-healer`** (`5853f3da-8aae-428c-9270-9179efeae047`) into the canonical **`pin2pin-global`** workspace (`c:\Users\kbu39\.gemini\antigravity\scratch\pin2pin-global`).
+This record archives all configuration, automation prompts, operational history, and recovered features extracted from the overlapping Antigravity sidecar project **`pin2pin-health-and-issue-healer`** (`5853f3da-8aae-428c-9270-9179efeae047`) into the canonical **`pin2pin-global`** workspace (`<WORKSPACE_ROOT>`).
 
 ## 1. Source Verification
-- Both Antigravity project entries (`pin2pin-global` and `pin2pin-health-and-issue-healer`, plus `pin2pin-daily-expansion-factory`) pointed to the **exact same single physical directory**: `C:\Users\kbu39\.gemini\antigravity\scratch\pin2pin-global`.
+- Both Antigravity project entries (`pin2pin-global` and `pin2pin-health-and-issue-healer`, plus `pin2pin-daily-expansion-factory`) pointed to the **exact same single physical directory**: `<WORKSPACE_ROOT>`.
 - No separate source repository or separate code directory existed outside `pin2pin-global`.
 
 ## 2. Extracted & Consolidated Assets

@@ -5,7 +5,7 @@ description: Standard operating procedure for Pin2Pin Global autonomous daily da
 
 # Pin2Pin Global — Autonomous Operations SOP
 
-Every scheduled agent operating on `c:\Users\kbu39\.gemini\antigravity\scratch\pin2pin-global` MUST follow these hard engineering, legal, and SEO rules without exception.
+Every scheduled agent operating on `<WORKSPACE_ROOT>` MUST follow these hard engineering, legal, and SEO rules without exception.
 
 ## 1. Non-Negotiable Quality & Compliance Guardrails (AUD-01..AUD-06)
 

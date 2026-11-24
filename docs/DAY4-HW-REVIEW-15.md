@@ -1,6 +1,6 @@
 # Day 4 High-Risk 15-Part Hardware Engineer Review Sheet
 
-> **목적**: Phase 1 파일럿 50종 중 핀아웃 쇼트·Tab 전위·ESR 발진·VREF 오차·Active-Low EN·비교기 오사용 위험이 가장 높은 **고위험 15종**을 선별해 병욱님이 공식 PDF 원문과 1:1 육안 대조(`human_reviewed: true` 승격)할 수 있도록 정리한 검수표입니다.
+> **목적**: Phase 1 파일럿 50종 중 핀아웃 쇼트·Tab 전위·ESR 발진·VREF 오차·Active-Low EN·비교기 오사용 위험이 가장 높은 **고위험 15종**을 선별해 HW 엔지니어(리뷰어)가 공식 PDF 원문과 1:1 육안 대조(`human_reviewed: true` 승격)할 수 있도록 정리한 검수표입니다.
 
 | # | OPN | 제조사 | 패키지 / View | Tab/EP Net | Vision 검증 핀아웃 (`1..N`) | 검증 PDF 페이지 | 핵심 실무 함정 (원문 대조 포인트) | 공식 PDF |
 | :---: | :--- | :--- | :--- | :--- | :--- | :---: | :--- | :--- |
