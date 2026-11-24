@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-23T23:24:06.183Z",
+  "checked_at": "2026-11-24T00:15:44.207Z",
   "summary": {
     "total_parts": 88,
     "total_vs_pairs": 203,
@@ -162,7 +162,7 @@
         "status": 200,
         "contentType": "application/pdf",
         "pdfVerified": true,
-        "contentLength": "422689",
+        "contentLength": null,
         "etag": null,
         "lastModified": null
       },
@@ -182,7 +182,7 @@
         "status": 200,
         "contentType": "application/pdf",
         "pdfVerified": true,
-        "contentLength": null,
+        "contentLength": "447212",
         "etag": null,
         "lastModified": null
       },
@@ -202,7 +202,7 @@
         "status": 200,
         "contentType": "application/pdf",
         "pdfVerified": true,
-        "contentLength": "1750668",
+        "contentLength": null,
         "etag": null,
         "lastModified": null
       },
@@ -212,7 +212,7 @@
         "status": 200,
         "contentType": "application/pdf",
         "pdfVerified": true,
-        "contentLength": "3664421",
+        "contentLength": null,
         "etag": null,
         "lastModified": null
       },
@@ -232,7 +232,7 @@
         "status": 200,
         "contentType": "application/pdf",
         "pdfVerified": true,
-        "contentLength": "523972",
+        "contentLength": null,
         "etag": null,
         "lastModified": null
       },
