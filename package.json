@@ -10,6 +10,7 @@
     "build:xref": "node pipeline/stage3_xref_engine.mjs",
     "qa:gate": "node pipeline/stage5_qa_gate.mjs",
     "health:check": "node pipeline/health_monitor.mjs",
+    "submit:indexnow": "node pipeline/submit_indexnow.mjs",
     "web:dev": "npm --prefix web run dev",
     "web:build": "npm --prefix web run build",
     "deploy:gh-pages": "powershell -ExecutionPolicy Bypass -File scripts/deploy-gh-pages.ps1"
