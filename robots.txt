@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kbu3986.github.io/pin2pin-global/sitemap.xml

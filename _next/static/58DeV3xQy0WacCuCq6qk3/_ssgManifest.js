@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002Fen\u002Falt\u002F[slug]","\u002Fen\u002Fguides\u002F[slug]","\u002Fen\u002Fpart\u002F[slug]","\u002Fen\u002Fvs\u002F[slug]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()

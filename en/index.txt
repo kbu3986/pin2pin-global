@@ -1,0 +1,851 @@
+1:"$Sreact.fragment"
+2:I[9766,[],""]
+3:I[8924,[],""]
+4:I[2619,["619","static/chunks/619-ba102abea3e3d0e4.js","763","static/chunks/app/en/(home)/page-9e6c05a026189de4.js"],""]
+23:I[7150,[],""]
+0:{"P":null,"b":"58DeV3xQy0WacCuCq6qk3","p":"/pin2pin-global","c":["","en",""],"i":false,"f":[[["",{"children":["en",{"children":["(home)",{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[null,["$","html",null,{"lang":"en","data-type":"software","data-radius":"sharp","data-ground":"sage","data-buttons":"pill","data-motion":"","suppressHydrationWarning":true,"children":[["$","head",null,{"children":[["$","meta",null,{"name":"theme-color","content":"#0f0f0f"}],["$","meta",null,{"name":"site-kind","content":"software"}],["$","meta",null,{"name":"page-type","content":"software"}],["$","link",null,{"rel":"icon","href":"/pin2pin-global/favicon.ico","sizes":"32x32 48x48"}],["$","link",null,{"rel":"icon","href":"/pin2pin-global/favicon.svg","type":"image/svg+xml"}],["$","link",null,{"rel":"apple-touch-icon","href":"/pin2pin-global/apple-touch-icon.png"}],["$","link",null,{"rel":"preconnect","href":"https://fonts.googleapis.com"}],["$","link",null,{"rel":"preconnect","href":"https://fonts.gstatic.com","crossOrigin":"anonymous"}],["$","link",null,{"href":"https://fonts.googleapis.com/css2?family=Epilogue:wght@400..700&family=JetBrains+Mono:wght@400..500&display=swap","rel":"stylesheet"}],[["$","script",null,{"async":true,"src":"https://www.googletagmanager.com/gtag/js?id=G-Q51M6YDXDR"}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config',\"G-Q51M6YDXDR\",{anonymize_ip:true});"}}]]]}],["$","body",null,{"children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","main",null,{"style":{"minHeight":"100vh","display":"flex","alignItems":"center","justifyContent":"center","backgroundColor":"#0f0f0f","color":"#ffffff","fontFamily":"\"Epilogue\", ui-sans-serif, system-ui, sans-serif","padding":"24px","margin":0,"boxSizing":"border-box"},"children":[["$","style",null,{"children":"html,body{margin:0;padding:0;background:#0f0f0f;color:#ffffff;}"}],["$","div",null,{"style":{"maxWidth":"448px","width":"100%","borderRadius":"8px","border":"1px solid rgba(255, 255, 255, 0.12)","backgroundColor":"#1a1a1a","padding":"28px","textAlign":"center"},"children":[["$","p",null,{"style":{"margin":"0 0 12px","fontFamily":"\"JetBrains Mono\", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace","fontSize":"12px","fontWeight":500,"letterSpacing":"0.1em","textTransform":"uppercase","color":"#dafa9c"},"children":"HTTP 404 · Route Not Found"}],["$","h1",null,{"style":{"margin":"0 0 12px","fontSize":"24px","lineHeight":1.2,"fontWeight":500,"letterSpacing":"-0.02em","color":"#ffffff"},"children":"Part or Comparison Not Found"}],["$","p",null,{"style":{"margin":"0 0 22px","fontSize":"13px","lineHeight":1.6,"color":"#8f8f8f"},"children":"The requested OPN datasheet or cross-reference URL is not in the current verified index. Use the parametric catalog to locate exact orderable part numbers."}],["$","div",null,{"style":{"display":"flex","flexWrap":"wrap","alignItems":"center","justifyContent":"center","gap":"10px"},"children":[["$","$L4",null,{"href":"/en/","style":{"display":"inline-flex","alignItems":"center","justifyContent":"center","borderRadius":"9999px","backgroundColor":"#dafa9c","color":"#0f0f0f","padding":"9px 18px","fontSize":"13px","fontWeight":500,"textDecoration":"none"},"children":"Go to Home (/en/)"}],["$","$L4",null,{"href":"/en/catalog/","style":{"display":"inline-flex","alignItems":"center","justifyContent":"center","borderRadius":"9999px","border":"1px solid rgba(255, 255, 255, 0.2)","backgroundColor":"transparent","color":"#ffffff","padding":"9px 18px","fontSize":"13px","fontWeight":500,"textDecoration":"none"},"children":"Browse Catalog"}]]}]]}]]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]]}]]}],{"children":["en",["$","$1","c",{"children":[null,[["$","script",null,{"async":true,"crossOrigin":"anonymous","src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8587506565277191"}],["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]]}],{"children":["(home)",["$","$1","c",{"children":[null,[[["$","link","/pin2pin-global/assets/system.css",{"rel":"stylesheet","href":"/pin2pin-global/assets/system.css","precedence":"tasteskill-kit"}],"$L5","$L6","$L7","$L8","$L9","$La","$Lb","$Lc","$Ld","$Le","$Lf","$L10","$L11"],"$L12",["$L13","$L14","$L15","$L16","$L17","$L18","$L19"],"$L1a","$L1b","$L1c","$L1d","$L1e","$L1f","$L20"]]}],{"children":["__PAGE__","$L21",{},null,false]},null,false]},null,false]},null,false],"$L22",false]],"m":"$undefined","G":["$23",[]],"s":false,"S":true}
+2d:I[3831,["619","static/chunks/619-ba102abea3e3d0e4.js","676","static/chunks/app/en/(home)/layout-858041d59cb8c798.js"],"HomeKitLoader"]
+3f:I[4431,[],"ViewportBoundary"]
+41:I[4431,[],"MetadataBoundary"]
+42:"$Sreact.suspense"
+5:["$","link","/pin2pin-global/assets/ui/cards.css",{"rel":"stylesheet","href":"/pin2pin-global/assets/ui/cards.css","precedence":"tasteskill-kit"}]
+6:["$","link","/pin2pin-global/assets/motion/motion.css",{"rel":"stylesheet","href":"/pin2pin-global/assets/motion/motion.css","precedence":"tasteskill-kit"}]
+7:["$","link","/pin2pin-global/assets/backgrounds/backgrounds.css",{"rel":"stylesheet","href":"/pin2pin-global/assets/backgrounds/backgrounds.css","precedence":"tasteskill-kit"}]
+8:["$","link","/pin2pin-global/assets/layout/layout.css",{"rel":"stylesheet","href":"/pin2pin-global/assets/layout/layout.css","precedence":"tasteskill-kit"}]
+9:["$","link","/pin2pin-global/assets/icons/icon.css",{"rel":"stylesheet","href":"/pin2pin-global/assets/icons/icon.css","precedence":"tasteskill-kit"}]
+a:["$","link","/pin2pin-global/assets/ui/base.css",{"rel":"stylesheet","href":"/pin2pin-global/assets/ui/base.css","precedence":"tasteskill-kit"}]
+b:["$","link","/pin2pin-global/assets/ui/window/fragment.css",{"rel":"stylesheet","href":"/pin2pin-global/assets/ui/window/fragment.css","precedence":"tasteskill-kit"}]
+c:["$","link","/pin2pin-global/assets/ui/diff-review/fragment.css",{"rel":"stylesheet","href":"/pin2pin-global/assets/ui/diff-review/fragment.css","precedence":"tasteskill-kit"}]
+d:["$","link","/pin2pin-global/assets/ui/terminal-run/fragment.css",{"rel":"stylesheet","href":"/pin2pin-global/assets/ui/terminal-run/fragment.css","precedence":"tasteskill-kit"}]
+e:["$","link","/pin2pin-global/assets/ui/search/fragment.css",{"rel":"stylesheet","href":"/pin2pin-global/assets/ui/search/fragment.css","precedence":"tasteskill-kit"}]
+f:["$","link","/pin2pin-global/assets/ui/toggles/fragment.css",{"rel":"stylesheet","href":"/pin2pin-global/assets/ui/toggles/fragment.css","precedence":"tasteskill-kit"}]
+10:["$","link","/pin2pin-global/assets/diagrams/diagram.css",{"rel":"stylesheet","href":"/pin2pin-global/assets/diagrams/diagram.css","precedence":"tasteskill-kit"}]
+11:["$","link","/pin2pin-global/assets/moments/iris-opens/moment.css",{"rel":"stylesheet","href":"/pin2pin-global/assets/moments/iris-opens/moment.css","precedence":"tasteskill-kit"}]
+24:T4ebc,
+:root {
+  --p-bg: #0f0f0f; --p-surface: #1a1a1a; --p-ink: #ffffff; --p-muted: #8f8f8f;
+  --p-accent: #dafa9c; --p-accent-ink: #0f0f0f; --p-action: #dafa9c; --p-action-ink: #0f0f0f;
+  --p-inv-bg: #ffffff; --p-inv-surface: #ececec; --p-inv-ink: #0f0f0f; --p-inv-muted: #5f5f5f;
+  --p-inv-accent: #0f0f0f; --p-inv-accent-ink: #ffffff; --p-inv-action: #0f0f0f; --p-inv-action-ink: #ffffff;
+  --font-display: "Epilogue", system-ui, sans-serif;
+  --font-text: "Epilogue", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --display-weight: 400;
+  --display-tracking: -0.035em;
+  --display-tracking-xl: -0.052em;
+  --ly-scale: 0.82;
+  --t-h2: clamp(28px, 1.15vw + 22.5px, 39px);
+  --g-noise-soft: linear-gradient(transparent, transparent);
+}
+
+/* Preserve layout-v4 one-screen geometry on sections styled by backgrounds.css */
+main > section.section:is(.bg-band, .bg-dots):not(.section--hero, .section--flush-top, .section--rule) {
+  display: block;
+  align-content: normal;
+  padding: var(--padt) 0 calc(var(--padb) + var(--bar));
+  height: calc(var(--h, 1) * 100svh);
+  min-height: 0;
+}
+@media (min-width: 640px) and (max-width: 1279px) {
+  main > section.section:is(.bg-band, .bg-dots):not(.section--hero, .section--flush-top, .section--rule) {
+    display: flex;
+    flex-direction: column;
+    align-content: normal;
+    height: auto;
+    min-height: calc(var(--h, 1) * 100svh);
+  }
+  #workbench .app.ui {
+    min-height: 460px;
+  }
+}
+@media (max-width: 639px) {
+  main > section.section:is(.bg-band, .bg-dots):not(.section--hero, .section--flush-top, .section--rule) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 1fr;
+    align-content: normal;
+    height: auto;
+    min-height: calc(var(--hm, var(--h, 1)) * 100lvh);
+  }
+}
+
+/* Keep primary Check BOM button identical across nav, hero, and footer */
+.hero--triptych .hero__cta .btn {
+  height: var(--btn-h);
+  padding-inline: var(--s-5);
+  font-size: var(--t-body);
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .hero--triptych .hero__cta .btn {
+    height: var(--btn-h);
+    font-size: var(--t-body);
+  }
+}
+@media (max-width: 1023px) {
+  .hero--triptych .hero__cta .btn {
+    height: var(--btn-h);
+    font-size: var(--t-body);
+  }
+}
+
+/* Nav cards & narrow 320px fit */
+.menu-card .panel { --p-h: 176px; }
+.menu-card__copy { display: grid; gap: 4px; }
+.menu-card__desc { font-size: 14px; line-height: 1.4; color: var(--muted); }
+@media (max-width: 374px) {
+  .nav__bar { gap: 6px; }
+  .nav__logo { font-size: 15px; gap: 5px; }
+  .nav__logo .mark--initial { width: 18px; height: 18px; font-size: 11px; }
+  .nav:not(.is-open) .nav__actions .btn { padding-inline: 10px; font-size: 13px; gap: 4px; }
+}
+
+/* Mini static UI previews inside nav-cards dropdown */
+.nav-mini {
+  width: 340px;
+  padding: 12px 14px;
+  border-radius: 6px;
+  background: #171717;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  font: 400 12px/1.45 var(--font-mono);
+  display: grid;
+  gap: 8px;
+}
+.nav-mini__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #a3a3a3;
+  font-size: 11px;
+}
+.nav-mini__head b { color: #dafa9c; font-weight: 500; }
+.nav-mini__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.nav-mini__tag {
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 500;
+}
+.nav-mini__tag--err { background: rgba(220, 38, 38, 0.2); color: #fca5a5; }
+.nav-mini__tag--warn { background: rgba(217, 119, 6, 0.22); color: #fcd34d; }
+.nav-mini__tag--ok { background: rgba(218, 250, 156, 0.18); color: #dafa9c; }
+
+/* Screen 1: Hero triptych collage pieces (higher specificity than layout.css .ly-collage .ly-piece) */
+.ly-collage { container-type: inline-size; }
+.ly-collage .ly-piece {
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.25), 0 22px 48px -22px rgb(0 0 0 / 0.55);
+}
+.ly-collage .ly-piece.pc-card {
+  background: #f6f6f2;
+  color: #0f0f0f;
+  padding: 3.2cqw 3.6cqw;
+  display: grid;
+  align-content: start;
+  gap: 1.4cqw;
+  font: 400 max(13px, 1.95cqw)/1.28 var(--font-text);
+  border: 1px solid rgba(15, 15, 15, 0.12);
+}
+.ly-collage .ly-piece.pc-card--dark {
+  background: #171717;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+.ly-collage .ly-piece.pc-card--sage {
+  background: #dce3d6;
+  color: #161b14;
+  border: 1px solid rgba(22, 27, 20, 0.16);
+}
+.ly-collage .ly-piece.pc-card--lime {
+  background: #dafa9c;
+  color: #0f0f0f;
+  border: 1px solid rgba(15, 15, 15, 0.16);
+}
+.ly-collage .ly-piece.pc-schem {
+  background: #161616;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  padding: 2.6cqw 10cqw 2.6cqw 3.4cqw;
+  display: grid;
+  align-content: center;
+  gap: 1.2cqw;
+}
+.pc-kicker {
+  font: 500 max(13px, 1.8cqw)/1.18 var(--font-mono);
+  color: #464642;
+  letter-spacing: -0.01em;
+}
+.ly-collage .ly-piece.pc-card--dark .pc-kicker,
+.ly-collage .ly-piece.pc-schem .pc-kicker { color: #c4c4be; }
+.ly-collage .ly-piece.pc-card--lime .pc-kicker { color: #242e16; }
+.pc-title {
+  font: 500 max(13px, 2.35cqw)/1.18 var(--font-display);
+  letter-spacing: -0.02em;
+}
+.pc-mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.pc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.4cqw;
+  padding-top: 1.2cqw;
+  border-top: 1px solid rgba(15, 15, 15, 0.12);
+  font-size: max(13px, 1.8cqw);
+}
+.ly-collage .ly-piece.pc-card--dark .pc-row { border-top-color: rgba(255, 255, 255, 0.14); }
+.pc-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3cqw 1cqw;
+  border-radius: 3px;
+  font: 600 max(13px, 1.65cqw)/1.18 var(--font-mono);
+  white-space: nowrap;
+}
+.pc-badge--bad { background: #fee2e2; color: #991b1b; }
+.pc-badge--warn { background: #fef3c7; color: #92400e; }
+.pc-badge--ok { background: #e3f5c0; color: #1f3309; }
+.ly-collage .ly-piece.pc-card--dark .pc-badge--bad { background: rgba(220, 38, 38, 0.24); color: #fecaca; }
+.ly-collage .ly-piece.pc-card--dark .pc-badge--ok { background: rgba(218, 250, 156, 0.2); color: #dafa9c; }
+.pc-anchor {
+  padding-right: 11cqw;
+  padding-bottom: 9cqw;
+}
+.pc-schem svg {
+  width: 100%;
+  height: auto;
+  max-height: 30cqw;
+}
+.pc-bar {
+  height: 1.1cqw;
+  min-height: 6px;
+  width: 100%;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+}
+.pc-bar > i {
+  display: block;
+  height: 100%;
+  background: #dafa9c;
+}
+.pc-bar--warn > i { background: #f59e0b; }
+
+@media (max-width: 639px) {
+  .pc-hide-sm { display: none !important; }
+  .ly-collage .ly-piece.pc-card {
+    padding: 8px 10px;
+    gap: 4px;
+    font-size: 13px;
+    line-height: 1.2;
+  }
+  .ly-collage .ly-piece.pc-anchor {
+    padding: 8px 10px;
+  }
+  .ly-collage .ly-piece.pc-schem {
+    padding: 8px 10px;
+    gap: 4px;
+  }
+  .pc-kicker { font-size: 13px; line-height: 1.15; }
+  .pc-title { font-size: 13px; line-height: 1.2; }
+  .pc-row { padding-top: 4px; font-size: 13px; gap: 6px; }
+  .pc-badge { padding: 1px 5px; font-size: 13px; }
+  .pc-schem svg { max-height: 98px; }
+}
+
+/* Screen 2: App-frame workbench (#workbench on bg-band) */
+#workbench .app.ui {
+  --fx-bg: #ffffff;
+  --fx-surface: #f4f5f2;
+  --fx-ink: #0f0f0f;
+  --fx-muted: #424740;
+  --u-muted: #424740;
+  --u-soft: #4a5048;
+  --fx-accent: #2c4a26;
+  --fx-accent-ink: #ffffff;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  margin-top: var(--s-6);
+  background: var(--u-bg);
+  border: 1px solid var(--u-border);
+  border-radius: var(--u-r);
+  box-shadow: var(--u-shadow);
+  min-height: 0;
+}
+#workbench .app > .app__pane {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+#workbench .app > .app__pane + .app__pane {
+  border-left: 1px solid var(--u-line);
+}
+#workbench .app > .app__pane > .ui-panel {
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+#workbench .ui-win__search:focus-within {
+  outline: 2px solid #0f0f0f;
+  outline-offset: 2px;
+}
+#workbench .ui-win__input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--u-ink);
+  font: 400 13px/16px var(--ui-font);
+}
+#workbench .ui-win__input:focus-visible {
+  outline: 2px solid #0f0f0f;
+  outline-offset: 1px;
+  border-radius: 2px;
+}
+#workbench .ui-win__input::placeholder { color: #4a5048; }
+#workbench .ui-win__nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 30px;
+  padding: 0 8px;
+  border-radius: 4px;
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--u-muted);
+  cursor: pointer;
+  text-align: left;
+}
+#workbench .ui-win__nav-btn:hover { background: var(--u-fill); color: var(--u-ink); }
+#workbench .ui-win__nav-btn.is-on { background: var(--u-fill-2); color: var(--u-ink); font-weight: 500; }
+#workbench .ui-win__nav-btn em { margin-left: auto; font-style: normal; font-size: 12px; color: var(--u-muted); }
+#workbench .ui-win__item {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#workbench .ui-win__item + .ui-win__item .ui-win__row {
+  box-shadow: inset 0 1px 0 var(--u-line);
+}
+#workbench .ui-win__row-btn {
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+  border: 0;
+  background: transparent;
+}
+#workbench .ui-win__row-btn:hover { background: color-mix(in oklab, var(--u-ink) 3%, var(--u-bg)); }
+#workbench .ui-win__row.is-sel {
+  background: color-mix(in oklab, var(--u-accent) 10%, var(--u-bg));
+  box-shadow: inset 2px 0 0 var(--u-accent);
+}
+@container ui-win (max-width: 419px) {
+  #workbench .ui-win__input { display: none; }
+}
+#workbench .ui-win__who { font-family: var(--ui-mono); font-size: 12.5px; }
+#workbench .ui-win__st--l3 {
+  color: #991b1b;
+  background: #fee2e2;
+  box-shadow: inset 0 0 0 1px rgba(153, 27, 27, 0.22);
+}
+#workbench .ui-win__st--l2 {
+  color: #92400e;
+  background: #fef3c7;
+  box-shadow: inset 0 0 0 1px rgba(146, 64, 14, 0.22);
+}
+#workbench .ui-win__st--l1 {
+  color: #166534;
+  background: #dcfce7;
+  box-shadow: inset 0 0 0 1px rgba(22, 101, 52, 0.22);
+}
+#workbench .ui-diff__by {
+  height: auto;
+  min-height: 24px;
+  flex-wrap: wrap;
+  row-gap: 6px;
+}
+#workbench .ui-diff__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+#workbench .ui-diff__open-link {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 4px;
+  background: #0f0f0f;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+#workbench .ui-diff__open-link:hover { background: #262626; }
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  #workbench .app.ui { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); }
+}
+@media (max-width: 1023px) {
+  #workbench .app.ui {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    min-height: 520px;
+  }
+  #workbench .app > .app__pane--list { max-height: 252px; }
+  #workbench .app > .app__pane--list::after { display: none; }
+  #workbench .ui-win__side { display: none; }
+  #workbench .ui-win__body { grid-template-columns: minmax(0, 1fr); }
+  #workbench .app > .app__pane + .app__pane { border-left: 0; border-top: 1px solid var(--u-line); }
+}
+@media (max-width: 639px) {
+  #workbench .app.ui {
+    grid-template-rows: minmax(0, 1fr);
+    min-height: 430px;
+  }
+  #workbench .app > .app__pane--list { display: none; }
+  #workbench .app > .app__pane + .app__pane { border-top: 0; }
+  #workbench .ui-diff__repo,
+  #workbench .ui-diff__slash,
+  #workbench .ui-diff__dir { display: none; }
+  #workbench .ui-diff__ln:nth-of-type(n + 10) { display: none; }
+}
+
+/* Screens 3 & 4: #tools (features-2x2 on dark card boxes + sage gradient-mesh panels) */
+#tools .section-head { margin-bottom: var(--s-5); }
+#tools .panel { --p-h: 268px; }
+@media (max-width: 1279px) {
+  #tools .panel { --p-h: 210px; }
+}
+@media (max-width: 639px) {
+  #tools { --padt: 80px; --padb: 40px; }
+  #tools .section-head { margin-bottom: 16px; }
+  #tools .card { --c-pad: 14px; padding: 14px; gap: 6px; }
+  #tools .panel { --p-h: 120px; }
+  #tools .panel:has(> .dg) { --p-h: 210px; min-height: 210px; }
+  #tools .ui-tg:nth-child(n + 3) { display: none; }
+  #tools .ui-search__row:nth-child(n + 3) { display: none; }
+}
+#tools .tools-dg-panel {
+  --ink: var(--ground-ink);
+  --muted: var(--ground-muted);
+  --accent: #1d3518;
+  --accent-ink: #ffffff;
+  --card: #ffffff;
+  --frag: #ffffff;
+}
+#tools .tools-dg-panel .dg {
+  --dg-pulse: #1f4d18;
+  --dg-line: rgba(38, 45, 36, 0.34);
+  --dg-border: rgba(38, 45, 36, 0.18);
+}
+#tools .tools-dg-panel .dg-node.is-ink,
+#tools .tools-dg-panel .dg-node--core-pill,
+#tools .tools-dg-panel .dg-node.is-hit {
+  background: var(--dg-node, #ffffff);
+  color: var(--dg-ink, #0f0f0f);
+  border: 1px solid var(--dg-border, rgba(38, 45, 36, 0.18));
+  border-radius: calc(var(--dg-r, 6px) + 2px);
+  box-shadow: var(--dg-shadow, 0 1px 2px rgba(0, 0, 0, 0.06));
+}
+#tools .tools-dg-panel .dg-node.is-ink .dg-label,
+#tools .tools-dg-panel .dg-node.is-ink .dg-ic,
+#tools .tools-dg-panel .dg-node--core-pill .dg-label,
+#tools .tools-dg-panel .dg-node--core-pill .dg-ic {
+  color: var(--dg-ink, #0f0f0f);
+}
+#tools .tools-dg-panel .dg-node--core-pill {
+  height: 32px;
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 500;
+}
+#tools .tools-dg-panel .dg-node--core-pill.is-hit {
+  border-color: var(--dg-border, rgba(38, 45, 36, 0.18));
+}
+#tools .tools-dg-panel .dg-node--core-pill::before,
+#tools .tools-dg-panel .dg-node--core-pill::after {
+  content: none;
+  display: none;
+}
+
+/* Screen 5: #families (tabs-tour) */
+#families .section-head { margin-bottom: 0; }
+#families .tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+}
+#families .tab {
+  white-space: nowrap;
+  padding-inline: 14px;
+}
+#families .tab[aria-selected="true"] {
+  background: var(--action);
+  color: var(--action-ink);
+  border-color: var(--action);
+}
+.families-frame {
+  --ratio: 0px;
+  min-height: 500px;
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 20px;
+}
+@media (min-width: 1280px) {
+  #families .families-frame { min-height: 640px; }
+  #families .families-sheet__list { align-content: stretch; grid-auto-rows: 1fr; }
+  #families .families-sheet__item { display: flex; }
+  #families .families-sheet__row { flex: 1 1 auto; padding: 14px 18px; }
+}
+.families-screen {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.families-sheet {
+  --fx-bg: #ffffff;
+  --fx-surface: #f7f7f4;
+  --fx-ink: #0f0f0f;
+  --fx-muted: #424740;
+  flex: 1 1 auto;
+  width: 100%;
+  background: #ffffff;
+  color: #0f0f0f;
+  border: 1px solid rgba(15, 15, 15, 0.12);
+  border-radius: var(--r-md);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.families-sheet__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 16px;
+  border-bottom: 1px solid rgba(15, 15, 15, 0.1);
+  background: #f7f7f4;
+  font: 500 13px/1.3 var(--font-mono);
+  color: #3f453d;
+}
+.families-sheet__list {
+  display: grid;
+  flex: 1 1 auto;
+  align-content: start;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.families-sheet__item {
+  border-bottom: 1px solid rgba(15, 15, 15, 0.08);
+}
+.families-sheet__item:last-child { border-bottom: 0; }
+.families-sheet__row {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1.3fr) auto auto;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  color: #0f0f0f;
+  transition: background-color 140ms var(--ease);
+}
+.families-sheet__row:hover { background: #f2f5ee; }
+.families-sheet__ic {
+  width: 18px;
+  height: 18px;
+  color: #3f453d;
+  flex: none;
+}
+.families-sheet__opn {
+  font: 500 13.5px/1.3 var(--font-mono);
+  color: #0f0f0f;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.families-sheet__pkg {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  border-radius: 3px;
+  background: #ecece6;
+  color: #262d24;
+  font: 500 12px/1.3 var(--font-mono);
+  white-space: nowrap;
+}
+.families-sheet__pkg--trap {
+  background: #fee2e2;
+  color: #991b1b;
+}
+.families-sheet__spec {
+  font: 400 13px/1.35 var(--font-mono);
+  color: #424740;
+  text-align: right;
+  white-space: nowrap;
+}
+@media (max-width: 639px) {
+  #families .tabs { gap: 6px; overflow-x: auto; }
+  #families .tab { min-height: 44px; padding-inline: 11px; font-size: 13px; }
+  .families-frame { min-height: 410px; padding: 12px; }
+  .families-sheet__item:nth-child(n + 7) { display: none; }
+  .families-sheet__row {
+    grid-template-columns: 16px minmax(0, 1fr) auto;
+    min-height: 48px;
+    padding: 10px 12px;
+    gap: 4px 8px;
+  }
+  .families-sheet__spec {
+    grid-column: 2 / -1;
+    text-align: left;
+    font-size: 13px;
+  }
+}
+
+/* Screen 6: #verify (iris-opens on ground-inverse) */
+#verify .section-head { margin-bottom: 0; }
+.verify-frame {
+  --ratio: 0px;
+  min-height: 488px;
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 20px;
+  background: var(--surface);
+}
+.verify-guides {
+  --fx-bg: #ffffff;
+  --fx-surface: #f7f7f5;
+  --fx-ink: #0f0f0f;
+  --fx-muted: #4a4a46;
+  width: 100%;
+  background: #ffffff;
+  color: #0f0f0f;
+  border: 1px solid rgba(15, 15, 15, 0.12);
+  border-radius: var(--r-md);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.verify-guides__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 16px;
+  border-bottom: 1px solid rgba(15, 15, 15, 0.1);
+  background: #f7f7f5;
+  font: 500 13px/1.3 var(--font-mono);
+  color: #42423e;
+}
+.verify-guides__list {
+  display: grid;
+  flex: 1 1 auto;
+  align-content: start;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.verify-guides__li {
+  border-bottom: 1px solid rgba(15, 15, 15, 0.08);
+}
+.verify-guides__li:last-child { border-bottom: 0; }
+.verify-guides__item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2px 14px;
+  align-items: center;
+  padding: 11px 16px;
+  transition: background-color 140ms var(--ease);
+}
+.verify-guides__item:hover { background: #f5f7f2; }
+.verify-guides__title {
+  font: 500 15px/1.35 var(--font-text);
+  color: #0f0f0f;
+}
+.verify-guides__cat {
+  grid-column: 1;
+  font: 400 13px/1.3 var(--font-mono);
+  color: #52524e;
+}
+.verify-guides__time {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  font: 500 13px/1.2 var(--font-mono);
+  color: #3f3f3c;
+  white-space: nowrap;
+}
+.verify-guides__foot {
+  padding: 12px 16px;
+  background: #f7f7f5;
+  border-top: 1px solid rgba(15, 15, 15, 0.08);
+}
+@media (max-width: 639px) {
+  .verify-frame { min-height: 400px; padding: 12px; }
+  .verify-guides__item { min-height: 52px; padding: 10px 14px; }
+  .verify-guides__foot { padding: 10px 14px; }
+}
+
+/* Screen 7: #faq visual compatibility matrix */
+.faq-matrix {
+  margin-top: var(--s-5);
+  width: 100%;
+  background: #171717;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--r-md);
+  padding: 14px;
+}
+.faq-matrix svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+@media (min-width: 1280px) {
+  #faq .faq > .faq__item {
+    padding-block: 26px;
+  }
+  #faq .faq-matrix {
+    min-height: 310px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* Screen 8: footer.closing (close-word + footer-columns, 14-char display name) */
+footer.closing > .wrap { row-gap: var(--s-6); }
+.close__word {
+  font-size: clamp(32px, 10.2vw, 152px);
+  line-height: 0.9;
+}
+.closing__links { gap: var(--s-5); }
+.closing__links > .grid { row-gap: var(--s-5); }
+.footer .nav__logo .mark--initial {
+  width: 22px;
+  height: 22px;
+  font-size: 13px;
+  margin-right: 0;
+}
+.footer__legal {
+  margin-top: 0;
+  padding-top: var(--s-4);
+  gap: var(--s-3) var(--s-5);
+}
+.footer__legal-links {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-4);
+}
+.footer__legal-links a { color: var(--ink); }
+.footer__legal-links a:hover { color: var(--action); }
+.footer__disclaimer {
+  flex: 1 0 100%;
+  width: 100%;
+  max-width: none;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+@media (max-width: 639px) {
+  footer.closing > .wrap { row-gap: var(--s-6); }
+  .close__word { font-size: clamp(32px, 10.2vw, 52px); }
+}
+12:["$","style",null,{"href":"pin2pin-home-styles","precedence":"tasteskill-page","children":"$24"}]
+13:["$","link","/pin2pin-global/assets/moments/moments.js",{"rel":"modulepreload","href":"/pin2pin-global/assets/moments/moments.js"}]
+14:["$","link","/pin2pin-global/assets/moments/lib.js",{"rel":"modulepreload","href":"/pin2pin-global/assets/moments/lib.js"}]
+15:["$","link","/pin2pin-global/assets/moments/iris-opens/moment.js",{"rel":"modulepreload","href":"/pin2pin-global/assets/moments/iris-opens/moment.js"}]
+16:["$","link","/pin2pin-global/assets/system.js",{"rel":"modulepreload","href":"/pin2pin-global/assets/system.js"}]
+17:["$","link","/pin2pin-global/assets/motion/motion.js",{"rel":"modulepreload","href":"/pin2pin-global/assets/motion/motion.js"}]
+18:["$","link","/pin2pin-global/assets/layout/layout.js",{"rel":"modulepreload","href":"/pin2pin-global/assets/layout/layout.js"}]
+19:["$","link","/pin2pin-global/assets/diagrams/mount.js",{"rel":"modulepreload","href":"/pin2pin-global/assets/diagrams/mount.js"}]
+1a:["$","script",null,{"dangerouslySetInnerHTML":{"__html":"document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)"}}]
+1b:["$","script",null,{"dangerouslySetInnerHTML":{"__html":"document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)"}}]
+1c:["$","script",null,{"src":"/pin2pin-global/assets/backgrounds/backgrounds.js"}]
+1d:["$","header",null,{"className":"nav","children":["$","div",null,{"className":"wrap nav__bar","children":[["$","a",null,{"className":"skip-link","href":"#top","children":"Skip to content"}],["$","a",null,{"className":"nav__logo","href":"#top","children":[["$","span",null,{"className":"mark mark--initial","aria-hidden":"true","children":"P"}],"Pin2Pin Global"]}],["$","nav",null,{"className":"nav__links","aria-label":"Main","children":[["$","div",null,{"className":"nav__item","children":[["$","$L4",null,{"className":"nav__link","href":"/en/tools/","prefetch":false,"children":["Tools",["$","svg",null,{"className":"chev","viewBox":"0 0 12 12","aria-hidden":"true","children":["$","path",null,{"d":"M3 4.5l3 3 3-3","fill":"none","stroke":"currentColor","strokeWidth":"1.5","strokeLinecap":"round","strokeLinejoin":"round"}]}]]}],["$","div",null,{"className":"nav__menu","children":["$","div",null,{"className":"wrap grid","children":[["$","$L4",null,{"className":"menu-card span-4","href":"/en/tools/bom-checker/","prefetch":false,"children":[["$","div",null,{"className":"panel","children":["$","div",null,{"className":"stage stage--fade-br","children":["$","div",null,{"className":"at-corner","style":{"--ax":"20px","--ay":"20px"},"children":["$","div",null,{"className":"nav-mini","aria-hidden":"true","children":[["$","div",null,{"className":"nav-mini__head","children":[["$","span",null,{"children":"bom-audit · local"}],["$","b",null,{"children":"0 B uploaded"}]]}],["$","div",null,{"className":"nav-mini__row","children":[["$","span",null,{"children":"CAT6219-330TD-GT3"}],["$","span",null,{"className":"nav-mini__tag nav-mini__tag--err","children":"EOL"}]]}],["$","div",null,{"className":"nav-mini__row","children":[["$","span",null,{"children":"AMS1117-3.3"}],["$","span",null,{"className":"nav-mini__tag nav-mini__tag--warn","children":"ESR trap"}]]}],["$","div",null,{"className":"nav-mini__row","children":[["$","span",null,{"children":"AP2112K-3.3TRG1"}],["$","span",null,{"className":"nav-mini__tag nav-mini__tag--ok","children":"Active"}]]}]]}]}]}]}],["$","div",null,{"className":"menu-card__copy","children":[["$","span",null,{"className":"t-card","children":"BOM Checker"}],["$","span",null,{"className":"menu-card__desc","children":"Audit KiCad and Altium CSVs in local memory"}]]}]]}],["$","$L4",null,{"className":"menu-card span-4","href":"/en/tools/compare/","prefetch":false,"children":[["$","div",null,{"className":"panel","children":["$","div",null,{"className":"stage stage--fade-br","children":["$","div",null,{"className":"at-corner","style":{"--ax":"20px","--ay":"20px"},"children":["$","div",null,{"className":"nav-mini","aria-hidden":"true","children":[["$","div",null,{"className":"nav-mini__head","children":[["$","span",null,{"children":"SOT-223-3 pin-diff"}],["$","b",null,{"children":"Level 3"}]]}],["$","div",null,{"className":"nav-mini__row","children":[["$","span",null,{"children":"Pin 1 · GND vs IN"}],["$","span",null,{"className":"nav-mini__tag nav-mini__tag--err","children":"Conflict"}]]}],["$","div",null,{"className":"nav-mini__row","children":[["$","span",null,{"children":"Pin 2 · VOUT vs GND"}],["$","span",null,{"className":"nav-mini__tag nav-mini__tag--err","children":"Conflict"}]]}],["$","div",null,{"className":"nav-mini__row","children":[["$","span",null,{"children":"Tab · VOUT vs GND"}],["$","span",null,{"className":"nav-mini__tag nav-mini__tag--err","children":"Short"}]]}]]}]}]}]}],["$","div",null,{"className":"menu-card__copy","children":[["$","span",null,{"className":"t-card","children":"Live Compare"}],["$","span",null,{"className":"menu-card__desc","children":"Diff any two OPNs pin by pin with thermal margins"}]]}]]}],["$","$L4",null,{"className":"menu-card span-4","href":"/en/tools/pinout-finder/","prefetch":false,"children":[["$","div",null,{"className":"panel","children":["$","div",null,{"className":"stage stage--fade-br","children":["$","div",null,{"className":"at-corner","style":{"--ax":"20px","--ay":"20px"},"children":["$","div",null,{"className":"nav-mini","aria-hidden":"true","children":[["$","div",null,{"className":"nav-mini__head","children":[["$","span",null,{"children":"SOT-23-5 · 5 pins"}],["$","b",null,{"children":"8 matches"}]]}],["$","div",null,{"className":"nav-mini__row","children":[["$","span",null,{"children":"AP2112K-3.3TRG1"}],["$","span",null,{"className":"nav-mini__tag nav-mini__tag--ok","children":"600 mA"}]]}],["$","div",null,{"className":"nav-mini__row","children":[["$","span",null,{"children":"TLV73333PDBVR"}],["$","span",null,{"className":"nav-mini__tag nav-mini__tag--ok","children":"300 mA"}]]}],["$","div",null,{"className":"nav-mini__row","children":[["$","span",null,{"children":"TPS61040DBVR"}],["$","span",null,{"className":"nav-mini__tag nav-mini__tag--warn","children":"Boost"}]]}]]}]}]}]}],["$","div",null,{"className":"menu-card__copy","children":["$L25","$L26"]}]]}]]}]}]]}],"$L27","$L28","$L29","$L2a"]}],"$L2b","$L2c"]}]}]
+1e:["$","main",null,{"id":"top","children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]}]
+1f:["$","footer",null,{"className":"footer closing","id":"contact","aria-labelledby":"close-h","children":["$","div",null,{"className":"wrap","children":[["$","div",null,{"className":"closing__cta close--word","children":[["$","div",null,{"className":"section-head section-head--split","children":[["$","div",null,{"children":[["$","h2",null,{"id":"close-h","children":"Check your BOM pinouts before layout"}],["$","p",null,{"className":"t-lead muted","children":[88," OPNs and ",203," pin-diffs audited locally in your browser."]}]]}],["$","$L4",null,{"className":"btn btn--primary","href":"/en/tools/bom-checker/","prefetch":false,"children":"Check BOM"}]]}],["$","p",null,{"className":"close__word","aria-hidden":"true","children":"Pin2Pin Global"}]]}],["$","div",null,{"className":"closing__links","children":[["$","div",null,{"className":"grid","children":[["$","div",null,{"className":"span-4 stack-4","children":[["$","a",null,{"className":"nav__logo","href":"#top","children":[["$","span",null,{"className":"mark mark--initial","aria-hidden":"true","children":"P"}],"Pin2Pin Global"]}],["$","p",null,{"className":"footer__lede","children":"OPN-exact pinouts from official PDFs."}]]}],["$","div",null,{"className":"span-2 footer__col","children":[["$","h3",null,{"children":"Database"}],["$","ul",null,{"children":[["$","li",null,{"children":["$","$L4",null,{"href":"/en/catalog/","prefetch":false,"children":"Parametric Catalog"}]}],["$","li",null,{"children":["$","$L4",null,{"href":"/en/packages/","prefetch":false,"children":"Package Directory"}]}],["$","li",null,{"children":["$","$L4",null,{"href":"/en/vs/","prefetch":false,"children":"1:1 Pin-Diffs"}]}],["$","li",null,{"children":["$","$L4",null,{"href":"/en/compare/","prefetch":false,"children":"Compare Hub"}]}]]}]]}],["$","div",null,{"className":"span-2 footer__col","children":[["$","h3",null,{"children":"Tools"}],["$","ul",null,{"children":[["$","li",null,{"children":["$","$L4",null,{"href":"/en/tools/bom-checker/","prefetch":false,"children":"BOM Checker"}]}],["$","li",null,{"children":["$","$L4",null,{"href":"/en/tools/compare/","prefetch":false,"children":"Live Compare"}]}],["$","li",null,{"children":["$","$L4",null,{"href":"/en/tools/pinout-finder/","prefetch":false,"children":"Pinout Finder"}]}],["$","li",null,{"children":["$","$L4",null,{"href":"/en/tools/","prefetch":false,"children":"All 7 Tools"}]}]]}]]}],["$","div",null,{"className":"span-2 footer__col","children":[["$","h3",null,{"children":"Guides"}],["$","ul",null,{"children":[["$","li",null,{"children":["$","$L4",null,{"href":"/en/guides/","prefetch":false,"children":"Field Guides"}]}],["$","li",null,{"children":["$","$L4",null,{"href":"/en/guides/sot23-5-pinout-chaos-guide/","prefetch":false,"children":"SOT-23-5 Pinout Guide"}]}],["$","li",null,{"children":["$","$L4",null,{"href":"/en/guides/ceramic-capacitor-esr-ldo-oscillation/","prefetch":false,"children":"MLCC ESR Stability"}]}],["$","li",null,{"children":["$","$L4",null,{"href":"/en/methodology/","prefetch":false,"children":"Audit Methodology"}]}]]}]]}],["$","div",null,{"className":"span-2 footer__col","children":[["$","h3",null,{"children":"Verification"}],["$","ul",null,{"children":[["$","li",null,{"children":["$","$L4",null,{"href":"/en/about/","prefetch":false,"children":"About Pin2Pin"}]}],["$","li",null,{"children":["$","$L4",null,{"href":"/en/disclaimer/","prefetch":false,"children":"Disclaimer"}]}],["$","li",null,{"children":["$","$L4",null,{"href":"/en/privacy/","prefetch":false,"children":"Privacy Policy"}]}],["$","li",null,{"children":["$","$L4",null,{"href":"/en/contact/","prefetch":false,"children":"Report Errata"}]}]]}]]}]]}],["$","div",null,{"className":"footer__legal","children":[["$","span",null,{"children":"© 2026 Pin2Pin Global"}],["$","span",null,{"className":"footer__legal-links","children":[["$","$L4",null,{"href":"/en/privacy/","prefetch":false,"children":"Privacy"}],["$","$L4",null,{"href":"/en/disclaimer/","prefetch":false,"children":"Disclaimer"}],["$","$L4",null,{"href":"/en/about/","prefetch":false,"children":"About"}],["$","$L4",null,{"href":"/en/contact/","prefetch":false,"children":"Contact"}]]}],["$","p",null,{"className":"footer__disclaimer","children":["Engineering Reference Only (AS-IS): Verify pinout, absolute maximum ratings, and thermal limits against the latest official manufacturer datasheet before PCB layout or production. Not approved for medical (IEC 60601), automotive (AEC-Q100), aerospace, or life-support safety-critical systems."," ","All manufacturer names and part numbers are trademarks of their respective owners and are used strictly for nominative engineering cross-reference identification."]}]]}]]}]]}]}]
+20:["$","$L2d",null,{"basePath":"/pin2pin-global"}]
+2e:T4f1,{"@context":"https://schema.org","@type":"Dataset","name":"Pin2Pin Global Verified Semiconductor Cross-Reference Database","description":"OPN-exact pinout configurations, absolute maximum ratings, thermal impedances, and compatibility diff matrices verified from official manufacturer PDF datasheets.","url":"https://kbu3986.github.io/pin2pin-global/en/","identifier":"https://kbu3986.github.io/pin2pin-global/en/","license":"https://kbu3986.github.io/pin2pin-global/en/disclaimer/","inLanguage":"en","keywords":["semiconductor cross reference","IC pinout diagram","LDO alternative","DC-DC buck boost replacement","Op-Amp pin compatible"],"dateModified":"2026-11-26","isAccessibleForFree":true,"variableMeasured":[{"@type":"PropertyValue","name":"Pin number and signal role"},{"@type":"PropertyValue","name":"Absolute maximum ratings"},{"@type":"PropertyValue","name":"Thermal resistance θJA (°C/W)"},{"@type":"PropertyValue","name":"Package code and exposed pad net"},{"@type":"PropertyValue","name":"Datasheet page citation"}],"creator":{"@type":"Organization","name":"Pin2Pin Global","url":"https://kbu3986.github.io/pin2pin-global","logo":{"@type":"ImageObject","url":"https://kbu3986.github.io/pin2pin-global/apple-touch-icon.png","width":180,"height":180}}}21:["$","$1","c",{"children":[[[["$","script","0",{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebSite\",\"@id\":\"https://kbu3986.github.io/pin2pin-global/en/#website\",\"url\":\"https://kbu3986.github.io/pin2pin-global/en/\",\"name\":\"Pin2Pin Global\",\"description\":\"Inspect 88 OPN-exact IC pinouts, 203 side-by-side diffs, and seven browser calculators sourced directly from official manufacturer PDFs.\",\"inLanguage\":\"en\",\"publisher\":{\"@id\":\"https://kbu3986.github.io/pin2pin-global/en/#organization\"},\"potentialAction\":{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https://kbu3986.github.io/pin2pin-global/en/catalog/?q={search_term_string}\"},\"query-input\":\"required name=search_term_string\"}},{\"@type\":\"Organization\",\"name\":\"Pin2Pin Global\",\"url\":\"https://kbu3986.github.io/pin2pin-global\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https://kbu3986.github.io/pin2pin-global/apple-touch-icon.png\",\"width\":180,\"height\":180},\"@id\":\"https://kbu3986.github.io/pin2pin-global/en/#organization\"}]}"}}],["$","script","1",{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://kbu3986.github.io/pin2pin-global/en/\"}]}"}}],["$","script","2",{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"$2e"}}]],["$","section",null,{"className":"hero hero--triptych","data-enter":true,"aria-labelledby":"hero-h","children":["$","div",null,{"className":"wrap","children":["$","div",null,{"className":"hero-text grid hero__grid","children":[["$","div",null,{"className":"span-3","children":[["$","h1",null,{"id":"hero-h","children":"Pinout database for PCB teams"}],["$","p",null,{"className":"hero__lead","children":[88," verified OPNs, ",203," pin-diffs, and ",7," browser tools from official PDFs."]}]]}],["$","div",null,{"className":"ly-collage span-6 start-4","role":"img","aria-label":"Three Pin2Pin Global views: an SOT-223-3 pinout conflict check, a local BOM CSV audit, and verified thermal bounds.","children":[["$","div",null,{"className":"ly-collage__set is-on","children":[["$","div",null,{"className":"ly-piece pc-card","style":{"left":"4%","top":"4%","width":"53%"},"children":["$L2f","$L30","$L31","$L32","$L33","$L34"]}],"$L35","$L36"]}],"$L37","$L38"]}],"$L39"]}]}]}],"$L3a","$L3b","$L3c","$L3d"],null,"$L3e"]}]
+22:["$","$1","h",{"children":[null,[["$","$L3f",null,{"children":"$L40"}],null],["$","$L41",null,{"children":["$","div",null,{"hidden":true,"children":["$","$42",null,{"fallback":null,"children":"$L43"}]}]}]]}]
+44:I[5677,["619","static/chunks/619-ba102abea3e3d0e4.js","763","static/chunks/app/en/(home)/page-9e6c05a026189de4.js"],"HomeWorkbench"]
+5d:I[4431,[],"OutletBoundary"]
+5f:I[5278,[],"AsyncMetadataOutlet"]
+25:["$","span",null,{"className":"t-card","children":"Pinout Finder"}]
+26:["$","span",null,{"className":"menu-card__desc","children":"Match a PCB footprint and pin roles to verified ICs"}]
+27:["$","div",null,{"className":"nav__item","children":["$","$L4",null,{"className":"nav__link","href":"/en/catalog/","prefetch":false,"children":"Catalog"}]}]
+28:["$","div",null,{"className":"nav__item","children":["$","$L4",null,{"className":"nav__link","href":"/en/tools/compare/","prefetch":false,"children":"Compare"}]}]
+29:["$","div",null,{"className":"nav__item","children":["$","$L4",null,{"className":"nav__link","href":"/en/packages/","prefetch":false,"children":"Packages"}]}]
+2a:["$","div",null,{"className":"nav__item","children":["$","$L4",null,{"className":"nav__link","href":"/en/guides/","prefetch":false,"children":"Guides"}]}]
+2b:["$","div",null,{"className":"nav__actions","children":["$","$L4",null,{"className":"btn btn--primary","href":"/en/tools/bom-checker/","prefetch":false,"children":"Check BOM"}]}]
+2c:["$","button",null,{"className":"nav__toggle","type":"button","aria-expanded":"false","aria-label":"Menu","children":["$","svg",null,{"width":"18","height":"18","viewBox":"0 0 18 18","aria-hidden":"true","children":["$","path",null,{"d":"M2 5h14M2 13h14","stroke":"currentColor","strokeWidth":"1.6","strokeLinecap":"round"}]}]}]
+2f:["$","span",null,{"className":"pc-kicker","children":"SOT-223-3 AUDIT"}]
+30:["$","strong",null,{"className":"pc-title","children":"AMS1117-3.3 vs AP7361C"}]
+31:["$","div",null,{"className":"pc-row","children":[["$","span",null,{"className":"pc-mono","children":"Pin 1 · GND/IN"}],["$","span",null,{"className":"pc-badge pc-badge--bad","children":"Conflict"}]]}]
+32:["$","div",null,{"className":"pc-row pc-hide-sm","children":[["$","span",null,{"className":"pc-mono","children":"Pin 2 · VOUT/GND"}],["$","span",null,{"className":"pc-badge pc-badge--bad","children":"Conflict"}]]}]
+33:["$","div",null,{"className":"pc-row pc-hide-sm","children":[["$","span",null,{"className":"pc-mono","children":"Pin 3 · VIN/OUT"}],["$","span",null,{"className":"pc-badge pc-badge--bad","children":"Conflict"}]]}]
+34:["$","div",null,{"className":"pc-row pc-hide-sm","children":[["$","span",null,{"className":"pc-mono","children":"Tab · VOUT/GND"}],["$","span",null,{"className":"pc-badge pc-badge--bad","children":"Short"}]]}]
+35:["$","div",null,{"className":"ly-piece pc-card pc-card--lime","style":{"left":"60%","top":"6%","width":"36%"},"children":[["$","span",null,{"className":"pc-kicker","children":"LEVEL 3"}],["$","strong",null,{"className":"pc-title","children":"Layout swap"}],["$","div",null,{"className":"pc-row","children":[["$","span",null,{"children":"Match"}],["$","b",null,{"className":"pc-mono","children":"0 / 3"}]]}],["$","div",null,{"className":"pc-row pc-hide-sm","children":[["$","span",null,{"children":"PDF"}],["$","b",null,{"className":"pc-mono","children":"p.1 · p.15"}]]}]]}]
+36:["$","div",null,{"className":"ly-piece pc-schem","style":{"left":"4%","top":"52%","width":"92%","height":"44%"},"children":[["$","span",null,{"className":"pc-kicker","children":"TOP VIEW · 300 DPI VISION VERIFIED"}],["$","svg",null,{"viewBox":"0 0 460 132","aria-hidden":"true","children":[["$","text",null,{"x":"16","y":"16","fill":"#dafa9c","fontSize":"11","fontFamily":"JetBrains Mono, monospace","fontWeight":"600","children":"AMS1117-3.3 (p.1)"}],["$","rect",null,{"x":"48","y":"24","width":"64","height":"14","rx":"2","fill":"#dc2626","opacity":"0.88"}],["$","text",null,{"x":"80","y":"34","textAnchor":"middle","fill":"#ffffff","fontSize":"9.5","fontFamily":"JetBrains Mono, monospace","children":"TAB: VOUT"}],["$","rect",null,{"x":"26","y":"38","width":"108","height":"46","rx":"3","fill":"#262626","stroke":"#737373","strokeWidth":"1.2"}],["$","circle",null,{"cx":"38","cy":"72","r":"3","fill":"#dafa9c"}],["$","rect",null,{"x":"40","y":"84","width":"14","height":"18","fill":"#a3a3a3"}],["$","rect",null,{"x":"73","y":"84","width":"14","height":"18","fill":"#a3a3a3"}],["$","rect",null,{"x":"106","y":"84","width":"14","height":"18","fill":"#a3a3a3"}],["$","text",null,{"x":"47","y":"116","textAnchor":"middle","fill":"#ffffff","fontSize":"10","fontFamily":"JetBrains Mono, monospace","children":"1:GND"}],["$","text",null,{"x":"80","y":"116","textAnchor":"middle","fill":"#ffffff","fontSize":"10","fontFamily":"JetBrains Mono, monospace","children":"2:OUT"}],["$","text",null,{"x":"113","y":"116","textAnchor":"middle","fill":"#ffffff","fontSize":"10","fontFamily":"JetBrains Mono, monospace","children":"3:VIN"}],["$","line",null,{"x1":"150","y1":"54","x2":"250","y2":"54","stroke":"#ef4444","strokeWidth":"1.5","strokeDasharray":"4 4"}],["$","line",null,{"x1":"150","y1":"74","x2":"250","y2":"74","stroke":"#ef4444","strokeWidth":"1.5","strokeDasharray":"4 4"}],["$","rect",null,{"x":"172","y":"47","width":"56","height":"32","rx":"3","fill":"#2b1212","stroke":"#ef4444","strokeWidth":"1"}],["$","text",null,{"x":"200","y":"61","textAnchor":"middle","fill":"#fecaca","fontSize":"9.5","fontFamily":"JetBrains Mono, monospace","fontWeight":"600","children":"3 PINS"}],["$","text",null,{"x":"200","y":"73","textAnchor":"middle","fill":"#fca5a5","fontSize":"9","fontFamily":"JetBrains Mono, monospace","children":"SWAPPED"}],["$","text",null,{"x":"266","y":"16","fill":"#ffffff","fontSize":"11","fontFamily":"JetBrains Mono, monospace","fontWeight":"600","children":"AP7361C-33E-13 (p.1)"}],["$","rect",null,{"x":"298","y":"24","width":"64","height":"14","rx":"2","fill":"#dc2626","opacity":"0.88"}],["$","text",null,{"x":"330","y":"34","textAnchor":"middle","fill":"#ffffff","fontSize":"9.5","fontFamily":"JetBrains Mono, monospace","children":"TAB: GND"}],["$","rect",null,{"x":"276","y":"38","width":"108","height":"46","rx":"3","fill":"#262626","stroke":"#737373","strokeWidth":"1.2"}],["$","circle",null,{"cx":"288","cy":"72","r":"3","fill":"#ffffff"}],["$","rect",null,{"x":"290","y":"84","width":"14","height":"18","fill":"#a3a3a3"}],["$","rect",null,{"x":"323","y":"84","width":"14","height":"18","fill":"#a3a3a3"}],["$","rect",null,{"x":"356","y":"84","width":"14","height":"18","fill":"#a3a3a3"}],["$","text",null,{"x":"297","y":"116","textAnchor":"middle","fill":"#fecaca","fontSize":"10","fontFamily":"JetBrains Mono, monospace","children":"1:IN"}],["$","text",null,{"x":"330","y":"116","textAnchor":"middle","fill":"#fecaca","fontSize":"10","fontFamily":"JetBrains Mono, monospace","children":"2:GND"}],["$","text",null,{"x":"363","y":"116","textAnchor":"middle","fill":"#fecaca","fontSize":"10","fontFamily":"JetBrains Mono, monospace","children":"3:OUT"}]]}]]}]
+37:["$","div",null,{"className":"ly-collage__set","aria-hidden":"true","children":[["$","div",null,{"className":"ly-piece pc-card pc-card--dark","style":{"left":"4%","top":"4%","width":"54%"},"children":[["$","span",null,{"className":"pc-kicker","children":"LOCAL BOM PARSER"}],["$","strong",null,{"className":"pc-title","children":"power_rev3.csv"}],["$","div",null,{"className":"pc-row","children":[["$","span",null,{"children":"Upload"}],["$","span",null,{"className":"pc-badge pc-badge--ok","children":"0 bytes"}]]}],["$","div",null,{"className":"pc-row pc-hide-sm","children":[["$","span",null,{"children":"CAD"}],["$","b",null,{"className":"pc-mono","children":"KiCad · Altium"}]]}]]}],["$","div",null,{"className":"ly-piece pc-card pc-card--sage","style":{"left":"61%","top":"6%","width":"35%"},"children":[["$","span",null,{"className":"pc-kicker","children":"AUDIT"}],["$","strong",null,{"className":"pc-title","children":"4 OPNs"}],["$","div",null,{"className":"pc-row","children":[["$","span",null,{"children":"Alerts"}],["$","b",null,{"className":"pc-mono","children":"1 EOL"}]]}],["$","div",null,{"className":"pc-row pc-hide-sm","children":[["$","span",null,{"children":"Drop-ins"}],["$","b",null,{"className":"pc-mono","children":"2 verified"}]]}]]}],["$","div",null,{"className":"ly-piece pc-card pc-anchor","style":{"left":"4%","top":"48%","width":"92%","height":"48%"},"children":[["$","span",null,{"className":"pc-kicker","children":"LOCAL BOM RISK REGISTER"}],["$","div",null,{"className":"pc-row","children":[["$","span",null,{"className":"pc-mono","children":"CAT6219-330TD-GT3 · TSOT-23-5"}],["$","span",null,{"className":"pc-badge pc-badge--bad","children":"EOL"}]]}],["$","div",null,{"className":"pc-row","children":[["$","span",null,{"className":"pc-mono","children":"AP2204K-3.3TRG1 · SOT-23-5"}],["$","span",null,{"className":"pc-badge pc-badge--warn","children":"NRND"}]]}],["$","div",null,{"className":"pc-row pc-hide-sm","children":[["$","span",null,{"className":"pc-mono","children":"AMS1117-3.3 · SOT-223-3"}],["$","span",null,{"className":"pc-badge pc-badge--warn","children":"22 uF Ta"}]]}],["$","div",null,{"className":"pc-row pc-hide-sm","children":[["$","span",null,{"className":"pc-mono","children":"TPS54302DDCR · SOT-23-6"}],["$","span",null,{"className":"pc-badge pc-badge--ok","children":"Active"}]]}]]}]]}]
+38:["$","div",null,{"className":"ly-collage__set","aria-hidden":"true","children":[["$","div",null,{"className":"ly-piece pc-card","style":{"left":"4%","top":"4%","width":"50%"},"children":[["$","span",null,{"className":"pc-kicker","children":"LDO THERMAL"}],["$","strong",null,{"className":"pc-title","children":"5.0 V to 3.3 V"}],["$","div",null,{"className":"pc-row","children":[["$","span",null,{"children":"Loss"}],["$","b",null,{"className":"pc-mono","children":"255 mW"}]]}],["$","div",null,{"className":"pc-row pc-hide-sm","children":[["$","span",null,{"children":"Temp rise"}],["$","b",null,{"className":"pc-mono","children":"+22.9 C"}]]}]]}],["$","div",null,{"className":"ly-piece pc-card pc-card--lime","style":{"left":"57%","top":"8%","width":"39%"},"children":[["$","span",null,{"className":"pc-kicker","children":"MLCC ESR"}],["$","strong",null,{"className":"pc-title","children":"Stability"}],["$","div",null,{"className":"pc-row","children":[["$","span",null,{"children":"AP7361C"}],["$","b",null,{"className":"pc-mono","children":"0-10 Ohm"}]]}],["$","div",null,{"className":"pc-row pc-hide-sm","children":[["$","span",null,{"children":"AMS1117"}],["$","b",null,{"className":"pc-mono","children":"Tantalum"}]]}]]}],["$","div",null,{"className":"ly-piece pc-card pc-card--dark pc-anchor","style":{"left":"4%","top":"48%","width":"92%","height":"48%"},"children":[["$","span",null,{"className":"pc-kicker","children":"DATASHEET BOUNDS · PAGE-CITED"}],["$","div",null,{"className":"pc-row","children":[["$","span",null,{"className":"pc-mono","children":"AMS1117-3.3 · 90 C/W · Tj 125 C"}],["$","span",null,{"className":"pc-mono","children":"p.2"}]]}],["$","div",null,{"className":"pc-bar pc-bar--warn","children":["$","i",null,{"style":{"width":"74%"}}]}],["$","div",null,{"className":"pc-row","children":[["$","span",null,{"className":"pc-mono","children":"AP7361C-33E-13 · 110 C/W · 340 mV"}],["$","span",null,{"className":"pc-mono","children":"p.5"}]]}],["$","div",null,{"className":"pc-bar pc-hide-sm","children":["$","i",null,{"style":{"width":"58%"}}]}],["$","div",null,{"className":"pc-row pc-hide-sm","children":[["$","span",null,{"className":"pc-mono","children":"TPS54302DDCR · 400 kHz · 28 V · 3 A"}],["$","span",null,{"className":"pc-mono","children":"p.4"}]]}]]}]]}]
+39:["$","div",null,{"className":"span-3 start-10 hero__cta","children":["$","$L4",null,{"className":"btn btn--primary","href":"/en/tools/bom-checker/","prefetch":false,"children":"Check BOM"}]}]
+3a:["$","section",null,{"className":"section bg-band bg-bleed","id":"workbench","aria-labelledby":"workbench-h","children":["$","div",null,{"className":"wrap","children":[["$","div",null,{"className":"grid","children":[["$","div",null,{"className":"span-5","children":["$","h2",null,{"id":"workbench-h","children":"Inspect every IC pinout before layout."}]}],["$","div",null,{"className":"span-6 start-7 stack-4","children":[["$","p",null,{"className":"muted","children":"Select any verified orderable part number on the left to review pin-role diffs, exposed thermal tab nets, and datasheet page citations side by side."}],["$","$L4",null,{"className":"link","href":"/en/catalog/","prefetch":false,"children":"Browse full catalog"}]]}]]}],["$","$L44",null,{"items":[{"slug":"ams1117-3-3","opn":"AMS1117-3.3","manufacturer":"Advanced Monolithic Systems","category":"ldo","packageCode":"SOT-223-3","pinCount":3,"ratingLabel":"3.3V · Vdo 1,100mV","statusLabel":"Pin trap","statusTone":"l3","avatarTone":"1","initials":"LD","diffDir":"sot-223-3/","diffFile":"ams1117-ap7361c.pin","addCount":"+3","delCount":"-3","hunkSig":"AMS1117-3.3 vs AP7361C-33E-13 (SOT-223-3)","threadTitle":"Audit Gate","threadMeta":"2026-11-22","threadMessage":"Level 3 layout change required. 3 pin role conflict(s) between AMS1117-3.3 and AP7361C-33E-13. Verify pinout before PCB layout.","primaryHref":"/en/vs/ams1117-3-3-vs-ap7361c-33e-13/","primaryLinkLabel":"Open full diff","partHref":"/en/part/ams1117-3-3/","lines":[{"oldNum":"1","newNum":"","kind":"del","text":"pin_1: GND (GND)  # AMS1117-3.3 p.1"},{"oldNum":"","newNum":"1","kind":"add","text":"pin_1: IN (VIN)  # AP7361C-33E-13 p.1"},{"oldNum":"2","newNum":"","kind":"del","text":"pin_2: VOUT (VOUT)  # AMS1117-3.3 p.1"},{"oldNum":"","newNum":"2","kind":"add","text":"pin_2: GND (GND)  # AP7361C-33E-13 p.1"},{"oldNum":"3","newNum":"","kind":"del","text":"pin_3: VIN (VIN)  # AMS1117-3.3 p.1"},{"oldNum":"","newNum":"3","kind":"add","text":"pin_3: OUT (VOUT)  # AP7361C-33E-13 p.1"},{"oldNum":"4","newNum":"4","kind":"target","text":"exposed_pad: VOUT != GND (THERMAL TAB SHORT HAZARD)"},{"oldNum":"5","newNum":"","kind":"del","text":"package_exposed_pad: SOT-223-3 (SOT-223, EP: VOUT, p.1)"},{"oldNum":"","newNum":"5","kind":"add","text":"package_exposed_pad: SOT-223-3 (SOT223 (E), EP: GND, p.1)"},{"oldNum":"6","newNum":"","kind":"del","text":"input_voltage_range_rec: 4.8 to 15 V (p.2)"},{"oldNum":"","newNum":"6","kind":"add","text":"input_voltage_range_rec: 2.2 to 6 V (p.4)"},{"oldNum":"7","newNum":"","kind":"del","text":"absolute_max_input_voltage: 15 V (p.2)"},{"oldNum":"","newNum":"7","kind":"add","text":"absolute_max_input_voltage: 6.5 V (p.4)"},{"oldNum":"8","newNum":"","kind":"del","text":"output_voltage_accuracy: 3.3 V ±1.5% (p.2)"},{"oldNum":"","newNum":"8","kind":"add","text":"output_voltage_accuracy: 3.3 V ±1% (p.5)"},{"oldNum":"9","newNum":"","kind":"del","text":"max_output_current_iout: 1000 mA (p.1)"},{"oldNum":"","newNum":"9","kind":"add","text":"max_output_current_iout: 1000 mA (p.4)"},{"oldNum":"10","newNum":"","kind":"del","text":"quiescent_current_iq_typ: 5000 µA (p.3)"},{"oldNum":"","newNum":"10","kind":"add","text":"quiescent_current_iq_typ: 60 µA (p.5)"},{"oldNum":"11","newNum":"","kind":"del","text":"dropout_voltage_vdo_typ: 1100 mV (p.3)"},{"oldNum":"","newNum":"11","kind":"add","text":"dropout_voltage_vdo_typ: 340 mV (p.5)"},{"oldNum":"12","newNum":"","kind":"del","text":"ceramic_cap_stability_min_cout: ESR-Sensitive · >=22 µF · See datasheet ESR curve"},{"oldNum":"","newNum":"12","kind":"add","text":"ceramic_cap_stability_min_cout: Ceramic OK · >=2.2 µF · 0–10 Ω (p.12)"},{"oldNum":"13","newNum":"","kind":"del","text":"psrr_typ: 72 dB (p.3)"},{"oldNum":"","newNum":"13","kind":"add","text":"psrr_typ: 75 dB (p.5)"},{"oldNum":"14","newNum":"","kind":"del","text":"output_noise_typ: 99 µVrms (p.3)"},{"oldNum":"","newNum":"14","kind":"add","text":"output_noise_typ: Not specified"},{"oldNum":"15","newNum":"","kind":"del","text":"thermal_resistance_ja: 90 °C/W (p.2)"},{"oldNum":"","newNum":"15","kind":"add","text":"thermal_resistance_ja: 110 °C/W (p.6)"},{"oldNum":"16","newNum":"","kind":"del","text":"max_junction_temp_tj_max: 125 °C (p.2)"},{"oldNum":"","newNum":"16","kind":"add","text":"max_junction_temp_tj_max: 150 °C (p.4)"},{"oldNum":"17","newNum":"17","kind":"ctx","text":"source_a: www.advanced-monolithic.com (DS1117 (RoHS Compliant))"},{"oldNum":"18","newNum":"18","kind":"ctx","text":"source_b: www.diodes.com (DS37274 Rev. 5 - 2 (October 2020))"},{"oldNum":"19","newNum":"19","kind":"ctx","text":"audit_mode: DUAL_PATH_TEXT_VISION (300 DPI)"}]},{"slug":"ap7361c-33e-13","opn":"AP7361C-33E-13","manufacturer":"Diodes Incorporated","category":"ldo","packageCode":"SOT-223-3","pinCount":3,"ratingLabel":"3.3V · Vdo 340mV","statusLabel":"Pin trap","statusTone":"l3","avatarTone":"3","initials":"LD","diffDir":"sot-223-3/","diffFile":"ams1117-ap7361c.pin","addCount":"+3","delCount":"-3","hunkSig":"AMS1117-3.3 vs AP7361C-33E-13 (SOT-223-3)","threadTitle":"Audit Gate","threadMeta":"2026-11-22","threadMessage":"Level 3 layout change required. 3 pin role conflict(s) between AMS1117-3.3 and AP7361C-33E-13. Verify pinout before PCB layout.","primaryHref":"/en/vs/ams1117-3-3-vs-ap7361c-33e-13/","primaryLinkLabel":"Open full diff","partHref":"/en/part/ap7361c-33e-13/","lines":[{"oldNum":"1","newNum":"","kind":"del","text":"pin_1: GND (GND)  # AMS1117-3.3 p.1"},{"oldNum":"","newNum":"1","kind":"add","text":"pin_1: IN (VIN)  # AP7361C-33E-13 p.1"},{"oldNum":"2","newNum":"","kind":"del","text":"pin_2: VOUT (VOUT)  # AMS1117-3.3 p.1"},{"oldNum":"","newNum":"2","kind":"add","text":"pin_2: GND (GND)  # AP7361C-33E-13 p.1"},{"oldNum":"3","newNum":"","kind":"del","text":"pin_3: VIN (VIN)  # AMS1117-3.3 p.1"},{"oldNum":"","newNum":"3","kind":"add","text":"pin_3: OUT (VOUT)  # AP7361C-33E-13 p.1"},{"oldNum":"4","newNum":"4","kind":"target","text":"exposed_pad: VOUT != GND (THERMAL TAB SHORT HAZARD)"},{"oldNum":"5","newNum":"","kind":"del","text":"package_exposed_pad: SOT-223-3 (SOT-223, EP: VOUT, p.1)"},{"oldNum":"","newNum":"5","kind":"add","text":"package_exposed_pad: SOT-223-3 (SOT223 (E), EP: GND, p.1)"},{"oldNum":"6","newNum":"","kind":"del","text":"input_voltage_range_rec: 4.8 to 15 V (p.2)"},{"oldNum":"","newNum":"6","kind":"add","text":"input_voltage_range_rec: 2.2 to 6 V (p.4)"},{"oldNum":"7","newNum":"","kind":"del","text":"absolute_max_input_voltage: 15 V (p.2)"},{"oldNum":"","newNum":"7","kind":"add","text":"absolute_max_input_voltage: 6.5 V (p.4)"},{"oldNum":"8","newNum":"","kind":"del","text":"output_voltage_accuracy: 3.3 V ±1.5% (p.2)"},{"oldNum":"","newNum":"8","kind":"add","text":"output_voltage_accuracy: 3.3 V ±1% (p.5)"},{"oldNum":"9","newNum":"","kind":"del","text":"max_output_current_iout: 1000 mA (p.1)"},{"oldNum":"","newNum":"9","kind":"add","text":"max_output_current_iout: 1000 mA (p.4)"},{"oldNum":"10","newNum":"","kind":"del","text":"quiescent_current_iq_typ: 5000 µA (p.3)"},{"oldNum":"","newNum":"10","kind":"add","text":"quiescent_current_iq_typ: 60 µA (p.5)"},{"oldNum":"11","newNum":"","kind":"del","text":"dropout_voltage_vdo_typ: 1100 mV (p.3)"},{"oldNum":"","newNum":"11","kind":"add","text":"dropout_voltage_vdo_typ: 340 mV (p.5)"},{"oldNum":"12","newNum":"","kind":"del","text":"ceramic_cap_stability_min_cout: ESR-Sensitive · >=22 µF · See datasheet ESR curve"},{"oldNum":"","newNum":"12","kind":"add","text":"ceramic_cap_stability_min_cout: Ceramic OK · >=2.2 µF · 0–10 Ω (p.12)"},{"oldNum":"13","newNum":"","kind":"del","text":"psrr_typ: 72 dB (p.3)"},{"oldNum":"","newNum":"13","kind":"add","text":"psrr_typ: 75 dB (p.5)"},{"oldNum":"14","newNum":"","kind":"del","text":"output_noise_typ: 99 µVrms (p.3)"},{"oldNum":"","newNum":"14","kind":"add","text":"output_noise_typ: Not specified"},{"oldNum":"15","newNum":"","kind":"del","text":"thermal_resistance_ja: 90 °C/W (p.2)"},{"oldNum":"","newNum":"15","kind":"add","text":"thermal_resistance_ja: 110 °C/W (p.6)"},{"oldNum":"16","newNum":"","kind":"del","text":"max_junction_temp_tj_max: 125 °C (p.2)"},{"oldNum":"","newNum":"16","kind":"add","text":"max_junction_temp_tj_max: 150 °C (p.4)"},{"oldNum":"17","newNum":"17","kind":"ctx","text":"source_a: www.advanced-monolithic.com (DS1117 (RoHS Compliant))"},{"oldNum":"18","newNum":"18","kind":"ctx","text":"source_b: www.diodes.com (DS37274 Rev. 5 - 2 (October 2020))"},{"oldNum":"19","newNum":"19","kind":"ctx","text":"audit_mode: DUAL_PATH_TEXT_VISION (300 DPI)"}]},{"slug":"cat6219-330td-gt3","opn":"CAT6219-330TD-GT3","manufacturer":"onsemi","category":"ldo","packageCode":"TSOT-23-5","pinCount":5,"ratingLabel":"3.3V · Vdo 300mV","statusLabel":"Tuning","statusTone":"l2","avatarTone":"5","initials":"LD","diffDir":"tsot-23-5/","diffFile":"ap2112k-cat6219.pin","addCount":"+1","delCount":"-1","hunkSig":"AP2112K-3.3TRG1 vs CAT6219-330TD-GT3 (TSOT-23-5)","threadTitle":"Audit Gate","threadMeta":"2026-11-22","threadMessage":"Level 2 tuning required. Pin roles align between AP2112K-3.3TRG1 and CAT6219-330TD-GT3, but passive or thermal margins differ.","primaryHref":"/en/vs/ap2112k-3-3trg1-vs-cat6219-330td-gt3/","primaryLinkLabel":"Open full diff","partHref":"/en/part/cat6219-330td-gt3/","lines":[{"oldNum":"1","newNum":"1","kind":"ctx","text":"pin_1: VIN == VIN (MATCH)"},{"oldNum":"2","newNum":"2","kind":"ctx","text":"pin_2: GND == GND (MATCH)"},{"oldNum":"3","newNum":"3","kind":"ctx","text":"pin_3: EN == EN (MATCH)"},{"oldNum":"4","newNum":"4","kind":"ctx","text":"pin_4: NC == BYP (CAUTION)"},{"oldNum":"5","newNum":"5","kind":"ctx","text":"pin_5: VOUT == VOUT (MATCH)"},{"oldNum":"6","newNum":"6","kind":"target","text":"exposed_pad: NONE == NONE (verified net match)"},{"oldNum":"7","newNum":"","kind":"del","text":"package_exposed_pad: SOT-23-5 (K (SOT25), EP: None, p.1)"},{"oldNum":"","newNum":"7","kind":"add","text":"package_exposed_pad: TSOT-23-5 (CASE 419AE (TD), EP: None, p.2)"},{"oldNum":"8","newNum":"","kind":"del","text":"input_voltage_range_rec: 2.5 to 6 V (p.3)"},{"oldNum":"","newNum":"8","kind":"add","text":"input_voltage_range_rec: 2.3 to 5.5 V (p.3)"},{"oldNum":"9","newNum":"9","kind":"ctx","text":"absolute_max_input_voltage: 6.5 V (p.3)"},{"oldNum":"10","newNum":"","kind":"del","text":"output_voltage_accuracy: 3.3 V ±1.5% (p.8)"},{"oldNum":"","newNum":"10","kind":"add","text":"output_voltage_accuracy: 3.3 V ±1% (p.4)"},{"oldNum":"11","newNum":"","kind":"del","text":"max_output_current_iout: 600 mA (p.8)"},{"oldNum":"","newNum":"11","kind":"add","text":"max_output_current_iout: 500 mA (p.4)"},{"oldNum":"12","newNum":"","kind":"del","text":"quiescent_current_iq_typ: 55 µA (p.8)"},{"oldNum":"","newNum":"12","kind":"add","text":"quiescent_current_iq_typ: 55 µA (p.4)"},{"oldNum":"13","newNum":"","kind":"del","text":"dropout_voltage_vdo_typ: 250 mV (p.8)"},{"oldNum":"","newNum":"13","kind":"add","text":"dropout_voltage_vdo_typ: 300 mV (p.4)"},{"oldNum":"14","newNum":"","kind":"del","text":"ceramic_cap_stability_min_cout: Ceramic OK · >=1 µF · Low-ESR MLCC compatible"},{"oldNum":"","newNum":"14","kind":"add","text":"ceramic_cap_stability_min_cout: Ceramic OK · >=2.2 µF · 0.005–0.5 Ω (p.4)"},{"oldNum":"15","newNum":"","kind":"del","text":"psrr_typ: 65 dB (p.8)"},{"oldNum":"","newNum":"15","kind":"add","text":"psrr_typ: 64 dB (p.4)"},{"oldNum":"16","newNum":"","kind":"del","text":"output_noise_typ: 50 µVrms (p.8)"},{"oldNum":"","newNum":"16","kind":"add","text":"output_noise_typ: 45 µVrms (p.4)"},{"oldNum":"17","newNum":"","kind":"del","text":"thermal_resistance_ja: 184 °C/W (p.3)"},{"oldNum":"","newNum":"17","kind":"add","text":"thermal_resistance_ja: 235 °C/W (p.3)"},{"oldNum":"18","newNum":"","kind":"del","text":"max_junction_temp_tj_max: 150 °C (p.3)"},{"oldNum":"","newNum":"18","kind":"add","text":"max_junction_temp_tj_max: 125 °C (p.3)"},{"oldNum":"19","newNum":"19","kind":"ctx","text":"source_a: www.diodes.com (DS39724 Rev. 2 - 2 (June 2017))"},{"oldNum":"20","newNum":"20","kind":"ctx","text":"source_b: www.onsemi.com (Rev. 14 (September 2019))"},{"oldNum":"21","newNum":"21","kind":"ctx","text":"audit_mode: DUAL_PATH_TEXT_VISION (300 DPI)"}]},{"slug":"ap2112k-3-3trg1","opn":"AP2112K-3.3TRG1","manufacturer":"Diodes Incorporated","category":"ldo","packageCode":"SOT-23-5","pinCount":5,"ratingLabel":"3.3V · Vdo 250mV","statusLabel":"Tuning","statusTone":"l2","avatarTone":"4","initials":"LD","diffDir":"sot-23-5/","diffFile":"ap2112k-ap2210k.pin","addCount":"+1","delCount":"-1","hunkSig":"AP2112K-3.3TRG1 vs AP2210K-3.3TRG1 (SOT-23-5)","threadTitle":"Audit Gate","threadMeta":"2026-11-22","threadMessage":"Level 2 tuning required. Pin roles align between AP2112K-3.3TRG1 and AP2210K-3.3TRG1, but passive or thermal margins differ.","primaryHref":"/en/vs/ap2112k-3-3trg1-vs-ap2210k-3-3trg1/","primaryLinkLabel":"Open full diff","partHref":"/en/part/ap2112k-3-3trg1/","lines":[{"oldNum":"1","newNum":"1","kind":"ctx","text":"pin_1: VIN == VIN (MATCH)"},{"oldNum":"2","newNum":"2","kind":"ctx","text":"pin_2: GND == GND (MATCH)"},{"oldNum":"3","newNum":"3","kind":"ctx","text":"pin_3: EN == EN (MATCH)"},{"oldNum":"4","newNum":"4","kind":"ctx","text":"pin_4: NC == BYP (CAUTION)"},{"oldNum":"5","newNum":"5","kind":"ctx","text":"pin_5: VOUT == VOUT (MATCH)"},{"oldNum":"6","newNum":"6","kind":"target","text":"exposed_pad: NONE == NONE (verified net match)"},{"oldNum":"7","newNum":"","kind":"del","text":"package_exposed_pad: SOT-23-5 (K (SOT25), EP: None, p.1)"},{"oldNum":"","newNum":"7","kind":"add","text":"package_exposed_pad: SOT-23-5 (K (SOT-23-5), EP: None, p.1)"},{"oldNum":"8","newNum":"","kind":"del","text":"input_voltage_range_rec: 2.5 to 6 V (p.3)"},{"oldNum":"","newNum":"8","kind":"add","text":"input_voltage_range_rec: 2.5 to 13.2 V (p.4)"},{"oldNum":"9","newNum":"","kind":"del","text":"absolute_max_input_voltage: 6.5 V (p.3)"},{"oldNum":"","newNum":"9","kind":"add","text":"absolute_max_input_voltage: 15 V (p.4)"},{"oldNum":"10","newNum":"","kind":"del","text":"output_voltage_accuracy: 3.3 V ±1.5% (p.8)"},{"oldNum":"","newNum":"10","kind":"add","text":"output_voltage_accuracy: 3.3 V ±1% (p.11)"},{"oldNum":"11","newNum":"","kind":"del","text":"max_output_current_iout: 600 mA (p.8)"},{"oldNum":"","newNum":"11","kind":"add","text":"max_output_current_iout: 300 mA (p.1)"},{"oldNum":"12","newNum":"","kind":"del","text":"quiescent_current_iq_typ: 55 µA (p.8)"},{"oldNum":"","newNum":"12","kind":"add","text":"quiescent_current_iq_typ: 100 µA (p.11)"},{"oldNum":"13","newNum":"","kind":"del","text":"dropout_voltage_vdo_typ: 250 mV (p.8)"},{"oldNum":"","newNum":"13","kind":"add","text":"dropout_voltage_vdo_typ: 250 mV (p.11)"},{"oldNum":"14","newNum":"","kind":"del","text":"ceramic_cap_stability_min_cout: Ceramic OK · >=1 µF · Low-ESR MLCC compatible"},{"oldNum":"","newNum":"14","kind":"add","text":"ceramic_cap_stability_min_cout: ESR-Sensitive · >=2.2 µF · 0.025–15 Ω (p.22)"},{"oldNum":"15","newNum":"","kind":"del","text":"psrr_typ: 65 dB (p.8)"},{"oldNum":"","newNum":"15","kind":"add","text":"psrr_typ: 75 dB (p.11)"},{"oldNum":"16","newNum":"","kind":"del","text":"output_noise_typ: 50 µVrms (p.8)"},{"oldNum":"","newNum":"16","kind":"add","text":"output_noise_typ: Not specified"},{"oldNum":"17","newNum":"","kind":"del","text":"thermal_resistance_ja: 184 °C/W (p.3)"},{"oldNum":"","newNum":"17","kind":"add","text":"thermal_resistance_ja: 200 °C/W (p.4)"},{"oldNum":"18","newNum":"","kind":"del","text":"max_junction_temp_tj_max: 150 °C (p.3)"},{"oldNum":"","newNum":"18","kind":"add","text":"max_junction_temp_tj_max: 150 °C (p.4)"},{"oldNum":"19","newNum":"19","kind":"ctx","text":"source_a: www.diodes.com (DS39724 Rev. 2 - 2 (June 2017))"},{"oldNum":"20","newNum":"20","kind":"ctx","text":"source_b: www.diodes.com (DS37517 Rev. 4 - 2 (March 2021))"},{"oldNum":"21","newNum":"21","kind":"ctx","text":"audit_mode: DUAL_PATH_TEXT_VISION (300 DPI)"}]},{"slug":"ap2204k-3-3trg1","opn":"AP2204K-3.3TRG1","manufacturer":"Diodes Incorporated","category":"ldo","packageCode":"SOT-23-5","pinCount":5,"ratingLabel":"3.3V · Vdo 360mV","statusLabel":"Tuning","statusTone":"l2","avatarTone":"2","initials":"LD","diffDir":"sot-23-5/","diffFile":"ap2204k-lp2985.pin","addCount":"+1","delCount":"-1","hunkSig":"AP2204K-3.3TRG1 vs LP2985-33DBVR (SOT-23-5)","threadTitle":"Audit Gate","threadMeta":"2026-11-22","threadMessage":"Level 2 tuning required. Pin roles align between AP2204K-3.3TRG1 and LP2985-33DBVR, but passive or thermal margins differ.","primaryHref":"/en/vs/ap2204k-3-3trg1-vs-lp2985-33dbvr/","primaryLinkLabel":"Open full diff","partHref":"/en/part/ap2204k-3-3trg1/","lines":[{"oldNum":"1","newNum":"1","kind":"ctx","text":"pin_1: VIN == VIN (MATCH)"},{"oldNum":"2","newNum":"2","kind":"ctx","text":"pin_2: GND == GND (MATCH)"},{"oldNum":"3","newNum":"3","kind":"ctx","text":"pin_3: EN == ON/OFF (MATCH)"},{"oldNum":"4","newNum":"4","kind":"ctx","text":"pin_4: ADJ/NC == BYPASS (CAUTION)"},{"oldNum":"5","newNum":"5","kind":"ctx","text":"pin_5: VOUT == VOUT (MATCH)"},{"oldNum":"6","newNum":"6","kind":"target","text":"exposed_pad: NONE == NONE (verified net match)"},{"oldNum":"7","newNum":"","kind":"del","text":"package_exposed_pad: SOT-23-5 (K (SOT-23-5), EP: None, p.1)"},{"oldNum":"","newNum":"7","kind":"add","text":"package_exposed_pad: SOT-23-5 (DBV, EP: None, p.3)"},{"oldNum":"8","newNum":"","kind":"del","text":"input_voltage_range_rec: 2.6 to 24 V (p.4)"},{"oldNum":"","newNum":"8","kind":"add","text":"input_voltage_range_rec: 2.5 to 16 V (p.4)"},{"oldNum":"9","newNum":"","kind":"del","text":"absolute_max_input_voltage: 38 V (p.4)"},{"oldNum":"","newNum":"9","kind":"add","text":"absolute_max_input_voltage: 16 V (p.4)"},{"oldNum":"10","newNum":"","kind":"del","text":"output_voltage_accuracy: 3.3 V ±2% (p.5)"},{"oldNum":"","newNum":"10","kind":"add","text":"output_voltage_accuracy: 3.3 V ±1.5% (p.5)"},{"oldNum":"11","newNum":"","kind":"del","text":"max_output_current_iout: 150 mA (p.5)"},{"oldNum":"","newNum":"11","kind":"add","text":"max_output_current_iout: 150 mA (p.4)"},{"oldNum":"12","newNum":"","kind":"del","text":"quiescent_current_iq_typ: 20 µA (p.5)"},{"oldNum":"","newNum":"12","kind":"add","text":"quiescent_current_iq_typ: 69 µA (p.6)"},{"oldNum":"13","newNum":"","kind":"del","text":"dropout_voltage_vdo_typ: 360 mV (p.5)"},{"oldNum":"","newNum":"13","kind":"add","text":"dropout_voltage_vdo_typ: 180 mV (p.6)"},{"oldNum":"14","newNum":"","kind":"del","text":"ceramic_cap_stability_min_cout: Ceramic OK · >=2.2 µF · Low-ESR MLCC compatible"},{"oldNum":"","newNum":"14","kind":"add","text":"ceramic_cap_stability_min_cout: Ceramic OK · >=2.2 µF · 0–1 Ω (p.4)"},{"oldNum":"15","newNum":"","kind":"del","text":"psrr_typ: 60 dB (p.5)"},{"oldNum":"","newNum":"15","kind":"add","text":"psrr_typ: 78 dB (p.7)"},{"oldNum":"16","newNum":"","kind":"del","text":"output_noise_typ: 30 µVrms (p.5)"},{"oldNum":"","newNum":"16","kind":"add","text":"output_noise_typ: 30 µVrms (p.7)"},{"oldNum":"17","newNum":"","kind":"del","text":"thermal_resistance_ja: 250 °C/W (p.4)"},{"oldNum":"","newNum":"17","kind":"add","text":"thermal_resistance_ja: 178.6 °C/W (p.5)"},{"oldNum":"18","newNum":"","kind":"del","text":"max_junction_temp_tj_max: 150 °C (p.4)"},{"oldNum":"","newNum":"18","kind":"add","text":"max_junction_temp_tj_max: 125 °C (p.4)"},{"oldNum":"19","newNum":"19","kind":"ctx","text":"source_a: www.diodes.com (DS37168 Rev. 6 - 3 (June 2022))"},{"oldNum":"20","newNum":"20","kind":"ctx","text":"source_b: www.ti.com (SLVS522S (May 2025))"},{"oldNum":"21","newNum":"21","kind":"ctx","text":"audit_mode: DUAL_PATH_TEXT_VISION (300 DPI)"}]},{"slug":"tps54302ddcr","opn":"TPS54302DDCR","manufacturer":"Texas Instruments","category":"dcdc","packageCode":"SOT-23-6","pinCount":6,"ratingLabel":"BUCK · 400 kHz","statusLabel":"Tuning","statusTone":"l2","avatarTone":"1","initials":"DC","diffDir":"sot-23-6/","diffFile":"ap62200-tps5430.pin","addCount":"+1","delCount":"-1","hunkSig":"AP62200WU-7 vs TPS54302DDCR (SOT-23-6)","threadTitle":"Audit Gate","threadMeta":"2026-11-22","threadMessage":"Level 2 tuning required. Pin roles align between AP62200WU-7 and TPS54302DDCR, but passive or thermal margins differ.","primaryHref":"/en/vs/ap62200wu-7-vs-tps54302ddcr/","primaryLinkLabel":"Open full diff","partHref":"/en/part/tps54302ddcr/","lines":[{"oldNum":"1","newNum":"1","kind":"ctx","text":"pin_1: GND == GND (MATCH)"},{"oldNum":"2","newNum":"2","kind":"ctx","text":"pin_2: SW == SW (MATCH)"},{"oldNum":"3","newNum":"3","kind":"ctx","text":"pin_3: VIN == VIN (MATCH)"},{"oldNum":"4","newNum":"4","kind":"ctx","text":"pin_4: FB == FB (CAUTION)"},{"oldNum":"5","newNum":"5","kind":"ctx","text":"pin_5: EN == EN (MATCH)"},{"oldNum":"6","newNum":"6","kind":"ctx","text":"pin_6: BST == BOOT (MATCH)"},{"oldNum":"7","newNum":"7","kind":"target","text":"exposed_pad: NONE == NONE (verified net match)"},{"oldNum":"8","newNum":"8","kind":"ctx","text":"topology_rectification: buck (Synchronous)"},{"oldNum":"9","newNum":"","kind":"del","text":"package_exposed_pad: TSOT-23-6 (TSOT26, EP: None, p.1)"},{"oldNum":"","newNum":"9","kind":"add","text":"package_exposed_pad: SOT-23-6 (DDC, EP: None, p.3)"},{"oldNum":"10","newNum":"","kind":"del","text":"input_voltage_range_rec: 4.2 to 18 V (p.4)"},{"oldNum":"","newNum":"10","kind":"add","text":"input_voltage_range_rec: 4.5 to 28 V (p.4)"},{"oldNum":"11","newNum":"","kind":"del","text":"absolute_max_input_voltage: 20 V (p.4)"},{"oldNum":"","newNum":"11","kind":"add","text":"absolute_max_input_voltage: 30 V (p.4)"},{"oldNum":"12","newNum":"","kind":"del","text":"output_voltage_range: 0.8 to 7 V (p.1) (Adj)"},{"oldNum":"","newNum":"12","kind":"add","text":"output_voltage_range: 0.596 to 28 V (p.5/p.12) (Adj)"},{"oldNum":"13","newNum":"","kind":"del","text":"max_current_iout_or_isw_limit: 2000 mA (p.1) [Iout max]"},{"oldNum":"","newNum":"13","kind":"add","text":"max_current_iout_or_isw_limit: 3000 mA (p.1) [Iout max]"},{"oldNum":"14","newNum":"","kind":"del","text":"quiescent_current_iq_typ: 135 µA (p.5)"},{"oldNum":"","newNum":"14","kind":"add","text":"quiescent_current_iq_typ: 45 µA (p.5)"},{"oldNum":"15","newNum":"","kind":"del","text":"switching_frequency_fsw_typ: 750 kHz (p.5)"},{"oldNum":"","newNum":"15","kind":"add","text":"switching_frequency_fsw_typ: 400 kHz (p.5)"},{"oldNum":"16","newNum":"","kind":"del","text":"peak_efficiency: 94 % (p.2)"},{"oldNum":"","newNum":"16","kind":"add","text":"peak_efficiency: 95 % (p.1)"},{"oldNum":"17","newNum":"","kind":"del","text":"recommended_inductor_l_typ: 3.3 µH (p.17)"},{"oldNum":"","newNum":"17","kind":"add","text":"recommended_inductor_l_typ: 10 µH (p.18)"},{"oldNum":"18","newNum":"","kind":"del","text":"feedback_reference_vref: 0.8 V (p.5)"},{"oldNum":"","newNum":"18","kind":"add","text":"feedback_reference_vref: 0.596 V (p.5)"},{"oldNum":"19","newNum":"","kind":"del","text":"thermal_resistance_ja_tj_max: 70 °C/W (p.4) · 125 °C"},{"oldNum":"","newNum":"19","kind":"add","text":"thermal_resistance_ja_tj_max: 118.9 °C/W (p.4) · 125 °C"},{"oldNum":"20","newNum":"20","kind":"ctx","text":"source_a: www.diodes.com (DS41957 Rev. 7 - 2 (Jul 2025))"},{"oldNum":"21","newNum":"21","kind":"ctx","text":"source_b: www.ti.com (SLVSDG6C (Mar 2026))"},{"oldNum":"22","newNum":"22","kind":"ctx","text":"audit_mode: DUAL_PATH_TEXT_VISION (300 DPI)"}]},{"slug":"lm358dr","opn":"LM358DR","manufacturer":"Texas Instruments","category":"opamp","packageCode":"SOIC-8","pinCount":8,"ratingLabel":"0.7 MHz · 0.3 V/µs","statusLabel":"Pin trap","statusTone":"l3","avatarTone":"3","initials":"OA","diffDir":"soic-8/","diffFile":"lm358dr-lm393dr.pin","addCount":"+2","delCount":"-2","hunkSig":"LM358DR vs LM393DR (SOIC-8)","threadTitle":"Audit Gate","threadMeta":"2026-11-22","threadMessage":"Level 3 layout change required. 2 pin role conflict(s) between LM358DR and LM393DR. Verify pinout before PCB layout.","primaryHref":"/en/vs/lm358dr-vs-lm393dr/","primaryLinkLabel":"Open full diff","partHref":"/en/part/lm358dr/","lines":[{"oldNum":"1","newNum":"","kind":"del","text":"pin_1: OUT1 (OUT_A)  # LM358DR p.3"},{"oldNum":"","newNum":"1","kind":"add","text":"pin_1: 1OUT (OUT_A)  # LM393DR p.3"},{"oldNum":"2","newNum":"2","kind":"ctx","text":"pin_2: IN1- == 1IN- (MATCH)"},{"oldNum":"3","newNum":"3","kind":"ctx","text":"pin_3: IN1+ == 1IN+ (MATCH)"},{"oldNum":"4","newNum":"4","kind":"ctx","text":"pin_4: V- == GND (MATCH)"},{"oldNum":"5","newNum":"5","kind":"ctx","text":"pin_5: IN2+ == 2IN+ (MATCH)"},{"oldNum":"6","newNum":"6","kind":"ctx","text":"pin_6: IN2- == 2IN- (MATCH)"},{"oldNum":"7","newNum":"","kind":"del","text":"pin_7: OUT2 (OUT_B)  # LM358DR p.3"},{"oldNum":"","newNum":"7","kind":"add","text":"pin_7: 2OUT (OUT_B)  # LM393DR p.3"},{"oldNum":"8","newNum":"8","kind":"ctx","text":"pin_8: V+ == VCC (MATCH)"},{"oldNum":"9","newNum":"9","kind":"target","text":"exposed_pad: NONE == NONE (verified net match)"},{"oldNum":"10","newNum":"","kind":"del","text":"device_kind_output_stage: opamp (push-pull)"},{"oldNum":"","newNum":"10","kind":"add","text":"device_kind_output_stage: comparator (open-collector)"},{"oldNum":"11","newNum":"11","kind":"ctx","text":"package_channel_count: SOIC-8 · 2 ch (D, p.3)"},{"oldNum":"12","newNum":"","kind":"del","text":"supply_voltage_range_rec: 3 to 30 V (p.5)"},{"oldNum":"","newNum":"12","kind":"add","text":"supply_voltage_range_rec: 2 to 30 V (p.4)"},{"oldNum":"13","newNum":"","kind":"del","text":"absolute_max_supply_vs_abs: 32 V (p.4)"},{"oldNum":"","newNum":"13","kind":"add","text":"absolute_max_supply_vs_abs: 36 V (p.4)"},{"oldNum":"14","newNum":"","kind":"del","text":"gain_bandwidth_product_gbwp: 0.7 MHz (p.10)"},{"oldNum":"","newNum":"14","kind":"add","text":"gain_bandwidth_product_gbwp: N/A (Comparator)"},{"oldNum":"15","newNum":"","kind":"del","text":"slew_rate_propagation_delay: SR: 0.3 V/µs (p.10)"},{"oldNum":"","newNum":"15","kind":"add","text":"slew_rate_propagation_delay: tpd: 1300 ns (p.10)"},{"oldNum":"16","newNum":"","kind":"del","text":"input_offset_voltage_vos_max: 7 mV (p.10)"},{"oldNum":"","newNum":"16","kind":"add","text":"input_offset_voltage_vos_max: 5 mV (p.8)"},{"oldNum":"17","newNum":"","kind":"del","text":"input_bias_current_ib_typ: 20000 pA (p.10)"},{"oldNum":"","newNum":"17","kind":"add","text":"input_bias_current_ib_typ: 25000 pA (p.8)"},{"oldNum":"18","newNum":"","kind":"del","text":"quiescent_current_ch_iq: 350 µA/ch (p.10)"},{"oldNum":"","newNum":"18","kind":"add","text":"quiescent_current_ch_iq: 225 µA/ch (p.8)"},{"oldNum":"19","newNum":"19","kind":"ctx","text":"rail_to_rail_input_output: IN: No · OUT: No"},{"oldNum":"20","newNum":"","kind":"del","text":"cmrr_typ_input_noise: 80 dB (p.10) · 40 nV/√Hz (p.10)"},{"oldNum":"","newNum":"20","kind":"add","text":"cmrr_typ_input_noise: Not specified · Not specified"},{"oldNum":"21","newNum":"","kind":"del","text":"thermal_resistance_ja_tj_max: 124.7 °C/W (p.5) · 150 °C"},{"oldNum":"","newNum":"21","kind":"add","text":"thermal_resistance_ja_tj_max: 148.5 °C/W (p.5) · 150 °C"},{"oldNum":"22","newNum":"22","kind":"ctx","text":"source_a: www.ti.com (SLOS068AB (Rev. October 2024))"},{"oldNum":"23","newNum":"23","kind":"ctx","text":"source_b: www.ti.com (SLCS005AH (Rev. April 2025))"},{"oldNum":"24","newNum":"24","kind":"ctx","text":"audit_mode: DUAL_PATH_TEXT_VISION (300 DPI)"}]},{"slug":"tlv73333pdbvr","opn":"TLV73333PDBVR","manufacturer":"Texas Instruments","category":"ldo","packageCode":"SOT-23-5","pinCount":5,"ratingLabel":"3.3V · Vdo 125mV","statusLabel":"Tuning","statusTone":"l2","avatarTone":"5","initials":"LD","diffDir":"sot-23-5/","diffFile":"ap2112k-tlv7333.pin","addCount":"+1","delCount":"-1","hunkSig":"AP2112K-3.3TRG1 vs TLV73333PDBVR (SOT-23-5)","threadTitle":"Audit Gate","threadMeta":"2026-11-22","threadMessage":"Level 2 tuning required. Pin roles align between AP2112K-3.3TRG1 and TLV73333PDBVR, but passive or thermal margins differ.","primaryHref":"/en/vs/ap2112k-3-3trg1-vs-tlv73333pdbvr/","primaryLinkLabel":"Open full diff","partHref":"/en/part/tlv73333pdbvr/","lines":[{"oldNum":"1","newNum":"1","kind":"ctx","text":"pin_1: VIN == IN (MATCH)"},{"oldNum":"2","newNum":"2","kind":"ctx","text":"pin_2: GND == GND (MATCH)"},{"oldNum":"3","newNum":"3","kind":"ctx","text":"pin_3: EN == EN (MATCH)"},{"oldNum":"4","newNum":"4","kind":"ctx","text":"pin_4: NC == NC (MATCH)"},{"oldNum":"5","newNum":"5","kind":"ctx","text":"pin_5: VOUT == OUT (MATCH)"},{"oldNum":"6","newNum":"6","kind":"target","text":"exposed_pad: NONE == NONE (verified net match)"},{"oldNum":"7","newNum":"","kind":"del","text":"package_exposed_pad: SOT-23-5 (K (SOT25), EP: None, p.1)"},{"oldNum":"","newNum":"7","kind":"add","text":"package_exposed_pad: SOT-23-5 (DBV (SOT-23-5), EP: None, p.4)"},{"oldNum":"8","newNum":"","kind":"del","text":"input_voltage_range_rec: 2.5 to 6 V (p.3)"},{"oldNum":"","newNum":"8","kind":"add","text":"input_voltage_range_rec: 1.4 to 5.5 V (p.5)"},{"oldNum":"9","newNum":"","kind":"del","text":"absolute_max_input_voltage: 6.5 V (p.3)"},{"oldNum":"","newNum":"9","kind":"add","text":"absolute_max_input_voltage: 6 V (p.5)"},{"oldNum":"10","newNum":"","kind":"del","text":"output_voltage_accuracy: 3.3 V ±1.5% (p.8)"},{"oldNum":"","newNum":"10","kind":"add","text":"output_voltage_accuracy: 3.3 V ±1.4% (p.6)"},{"oldNum":"11","newNum":"","kind":"del","text":"max_output_current_iout: 600 mA (p.8)"},{"oldNum":"","newNum":"11","kind":"add","text":"max_output_current_iout: 300 mA (p.5)"},{"oldNum":"12","newNum":"","kind":"del","text":"quiescent_current_iq_typ: 55 µA (p.8)"},{"oldNum":"","newNum":"12","kind":"add","text":"quiescent_current_iq_typ: 34 µA (p.6)"},{"oldNum":"13","newNum":"","kind":"del","text":"dropout_voltage_vdo_typ: 250 mV (p.8)"},{"oldNum":"","newNum":"13","kind":"add","text":"dropout_voltage_vdo_typ: 125 mV (p.6)"},{"oldNum":"14","newNum":"","kind":"del","text":"ceramic_cap_stability_min_cout: Ceramic OK · >=1 µF · Low-ESR MLCC compatible"},{"oldNum":"","newNum":"14","kind":"add","text":"ceramic_cap_stability_min_cout: Ceramic OK · >=0 µF · Low-ESR MLCC compatible"},{"oldNum":"15","newNum":"","kind":"del","text":"psrr_typ: 65 dB (p.8)"},{"oldNum":"","newNum":"15","kind":"add","text":"psrr_typ: 68 dB (p.6)"},{"oldNum":"16","newNum":"","kind":"del","text":"output_noise_typ: 50 µVrms (p.8)"},{"oldNum":"","newNum":"16","kind":"add","text":"output_noise_typ: 120 µVrms (p.6)"},{"oldNum":"17","newNum":"","kind":"del","text":"thermal_resistance_ja: 184 °C/W (p.3)"},{"oldNum":"","newNum":"17","kind":"add","text":"thermal_resistance_ja: 228.4 °C/W (p.5)"},{"oldNum":"18","newNum":"","kind":"del","text":"max_junction_temp_tj_max: 150 °C (p.3)"},{"oldNum":"","newNum":"18","kind":"add","text":"max_junction_temp_tj_max: 150 °C (p.5)"},{"oldNum":"19","newNum":"19","kind":"ctx","text":"source_a: www.diodes.com (DS39724 Rev. 2 - 2 (June 2017))"},{"oldNum":"20","newNum":"20","kind":"ctx","text":"source_b: www.ti.com (SBVS235C (October 2014 – Revised July 2019))"},{"oldNum":"21","newNum":"21","kind":"ctx","text":"audit_mode: DUAL_PATH_TEXT_VISION (300 DPI)"}]},{"slug":"ap62200wu-7","opn":"AP62200WU-7","manufacturer":"Diodes Incorporated","category":"dcdc","packageCode":"TSOT-23-6","pinCount":6,"ratingLabel":"BUCK · 750 kHz","statusLabel":"Pin trap","statusTone":"l3","avatarTone":"4","initials":"DC","diffDir":"tsot-23-6/","diffFile":"ap62200-ap63203.pin","addCount":"+4","delCount":"-4","hunkSig":"AP62200WU-7 vs AP63203WU-7 (TSOT-23-6)","threadTitle":"Audit Gate","threadMeta":"2026-11-22","threadMessage":"Level 3 layout change required. 4 pin role conflict(s) between AP62200WU-7 and AP63203WU-7. Verify pinout before PCB layout.","primaryHref":"/en/vs/ap62200wu-7-vs-ap63203wu-7/","primaryLinkLabel":"Open full diff","partHref":"/en/part/ap62200wu-7/","lines":[{"oldNum":"1","newNum":"","kind":"del","text":"pin_1: GND (GND)  # AP62200WU-7 p.1"},{"oldNum":"","newNum":"1","kind":"add","text":"pin_1: FB (FB)  # AP63203WU-7 p.1"},{"oldNum":"2","newNum":"","kind":"del","text":"pin_2: SW (SW)  # AP62200WU-7 p.1"},{"oldNum":"","newNum":"2","kind":"add","text":"pin_2: EN (EN)  # AP63203WU-7 p.1"},{"oldNum":"3","newNum":"3","kind":"ctx","text":"pin_3: VIN == VIN (MATCH)"},{"oldNum":"4","newNum":"","kind":"del","text":"pin_4: FB (FB)  # AP62200WU-7 p.1"},{"oldNum":"","newNum":"4","kind":"add","text":"pin_4: GND (GND)  # AP63203WU-7 p.1"},{"oldNum":"5","newNum":"","kind":"del","text":"pin_5: EN (EN)  # AP62200WU-7 p.1"},{"oldNum":"","newNum":"5","kind":"add","text":"pin_5: SW (SW)  # AP63203WU-7 p.1"},{"oldNum":"6","newNum":"6","kind":"ctx","text":"pin_6: BST == BST (MATCH)"},{"oldNum":"7","newNum":"7","kind":"target","text":"exposed_pad: NONE == NONE (verified net match)"},{"oldNum":"8","newNum":"8","kind":"ctx","text":"topology_rectification: buck (Synchronous)"},{"oldNum":"9","newNum":"9","kind":"ctx","text":"package_exposed_pad: TSOT-23-6 (TSOT26, EP: None, p.1)"},{"oldNum":"10","newNum":"","kind":"del","text":"input_voltage_range_rec: 4.2 to 18 V (p.4)"},{"oldNum":"","newNum":"10","kind":"add","text":"input_voltage_range_rec: 3.8 to 32 V (p.4)"},{"oldNum":"11","newNum":"","kind":"del","text":"absolute_max_input_voltage: 20 V (p.4)"},{"oldNum":"","newNum":"11","kind":"add","text":"absolute_max_input_voltage: 35 V (p.4)"},{"oldNum":"12","newNum":"","kind":"del","text":"output_voltage_range: 0.8 to 7 V (p.1) (Adj)"},{"oldNum":"","newNum":"12","kind":"add","text":"output_voltage_range: 3.27 to 3.33 V (p.5) (Fixed)"},{"oldNum":"13","newNum":"13","kind":"ctx","text":"max_current_iout_or_isw_limit: 2000 mA (p.1) [Iout max]"},{"oldNum":"14","newNum":"","kind":"del","text":"quiescent_current_iq_typ: 135 µA (p.5)"},{"oldNum":"","newNum":"14","kind":"add","text":"quiescent_current_iq_typ: 22 µA (p.5)"},{"oldNum":"15","newNum":"","kind":"del","text":"switching_frequency_fsw_typ: 750 kHz (p.5)"},{"oldNum":"","newNum":"15","kind":"add","text":"switching_frequency_fsw_typ: 1100 kHz (p.5)"},{"oldNum":"16","newNum":"","kind":"del","text":"peak_efficiency: 94 % (p.2)"},{"oldNum":"","newNum":"16","kind":"add","text":"peak_efficiency: 92 % (p.2)"},{"oldNum":"17","newNum":"","kind":"del","text":"recommended_inductor_l_typ: 3.3 µH (p.17)"},{"oldNum":"","newNum":"17","kind":"add","text":"recommended_inductor_l_typ: 3.9 µH (p.13)"},{"oldNum":"18","newNum":"","kind":"del","text":"feedback_reference_vref: 0.8 V (p.5)"},{"oldNum":"","newNum":"18","kind":"add","text":"feedback_reference_vref: N/A (Fixed)"},{"oldNum":"19","newNum":"","kind":"del","text":"thermal_resistance_ja_tj_max: 70 °C/W (p.4) · 125 °C"},{"oldNum":"","newNum":"19","kind":"add","text":"thermal_resistance_ja_tj_max: 89 °C/W (p.4) · 125 °C"},{"oldNum":"20","newNum":"20","kind":"ctx","text":"source_a: www.diodes.com (DS41957 Rev. 7 - 2 (Jul 2025))"},{"oldNum":"21","newNum":"21","kind":"ctx","text":"source_b: www.diodes.com (DS41326 Rev. 3 - 2 (Nov 2024))"},{"oldNum":"22","newNum":"22","kind":"ctx","text":"audit_mode: DUAL_PATH_TEXT_VISION (300 DPI)"}]},{"slug":"ap2210n-3-3trg1","opn":"AP2210N-3.3TRG1","manufacturer":"Diodes Incorporated","category":"ldo","packageCode":"SOT-23-3","pinCount":3,"ratingLabel":"3.3V · Vdo 250mV","statusLabel":"Pin trap","statusTone":"l3","avatarTone":"2","initials":"LD","diffDir":"sot-23-3/","diffFile":"ap2210n-ap7313.pin","addCount":"+2","delCount":"-2","hunkSig":"AP2210N-3.3TRG1 vs AP7313-33SAG-7 (SOT-23-3)","threadTitle":"Audit Gate","threadMeta":"2026-11-22","threadMessage":"Level 3 layout change required. 2 pin role conflict(s) between AP2210N-3.3TRG1 and AP7313-33SAG-7. Verify pinout before PCB layout.","primaryHref":"/en/vs/ap2210n-3-3trg1-vs-ap7313-33sag-7/","primaryLinkLabel":"Open full diff","partHref":"/en/part/ap2210n-3-3trg1/","lines":[{"oldNum":"1","newNum":"","kind":"del","text":"pin_1: GND (GND)  # AP2210N-3.3TRG1 p.1"},{"oldNum":"","newNum":"1","kind":"add","text":"pin_1: IN (VIN)  # AP7313-33SAG-7 p.2"},{"oldNum":"2","newNum":"2","kind":"ctx","text":"pin_2: VOUT == OUT (MATCH)"},{"oldNum":"3","newNum":"","kind":"del","text":"pin_3: VIN (VIN)  # AP2210N-3.3TRG1 p.1"},{"oldNum":"","newNum":"3","kind":"add","text":"pin_3: GND (GND)  # AP7313-33SAG-7 p.2"},{"oldNum":"4","newNum":"4","kind":"target","text":"exposed_pad: NONE == NONE (verified net match)"},{"oldNum":"5","newNum":"","kind":"del","text":"package_exposed_pad: SOT-23-3 (N (SOT-23-3), EP: None, p.1)"},{"oldNum":"","newNum":"5","kind":"add","text":"package_exposed_pad: SOT-23-3 (SA (SOT23), EP: None, p.2)"},{"oldNum":"6","newNum":"","kind":"del","text":"input_voltage_range_rec: 2.5 to 13.2 V (p.4)"},{"oldNum":"","newNum":"6","kind":"add","text":"input_voltage_range_rec: 2 to 6 V (p.4)"},{"oldNum":"7","newNum":"","kind":"del","text":"absolute_max_input_voltage: 15 V (p.4)"},{"oldNum":"","newNum":"7","kind":"add","text":"absolute_max_input_voltage: 7 V (p.4)"},{"oldNum":"8","newNum":"","kind":"del","text":"output_voltage_accuracy: 3.3 V ±1% (p.11)"},{"oldNum":"","newNum":"8","kind":"add","text":"output_voltage_accuracy: 3.3 V ±2% (p.5)"},{"oldNum":"9","newNum":"","kind":"del","text":"max_output_current_iout: 300 mA (p.1)"},{"oldNum":"","newNum":"9","kind":"add","text":"max_output_current_iout: 150 mA (p.4)"},{"oldNum":"10","newNum":"","kind":"del","text":"quiescent_current_iq_typ: 100 µA (p.11)"},{"oldNum":"","newNum":"10","kind":"add","text":"quiescent_current_iq_typ: 55 µA (p.5)"},{"oldNum":"11","newNum":"","kind":"del","text":"dropout_voltage_vdo_typ: 250 mV (p.11)"},{"oldNum":"","newNum":"11","kind":"add","text":"dropout_voltage_vdo_typ: 150 mV (p.5)"},{"oldNum":"12","newNum":"","kind":"del","text":"ceramic_cap_stability_min_cout: ESR-Sensitive · >=1 µF · 0.025–15 Ω (p.22)"},{"oldNum":"","newNum":"12","kind":"add","text":"ceramic_cap_stability_min_cout: Ceramic OK · >=1 µF · 0.01–0.2 Ω (p.10)"},{"oldNum":"13","newNum":"","kind":"del","text":"psrr_typ: 75 dB (p.11)"},{"oldNum":"","newNum":"13","kind":"add","text":"psrr_typ: 65 dB (p.5)"},{"oldNum":"14","newNum":"14","kind":"ctx","text":"output_noise_typ: Not specified"},{"oldNum":"15","newNum":"","kind":"del","text":"thermal_resistance_ja: 200 °C/W (p.4)"},{"oldNum":"","newNum":"15","kind":"add","text":"thermal_resistance_ja: 207 °C/W (p.5)"},{"oldNum":"16","newNum":"16","kind":"ctx","text":"max_junction_temp_tj_max: 150 °C (p.4)"},{"oldNum":"17","newNum":"17","kind":"ctx","text":"source_a: www.diodes.com (DS37517 Rev. 4 - 2 (March 2021))"},{"oldNum":"18","newNum":"18","kind":"ctx","text":"source_b: www.diodes.com (Rev. 2 (November 2009))"},{"oldNum":"19","newNum":"19","kind":"ctx","text":"audit_mode: DUAL_PATH_TEXT_VISION (300 DPI)"}]},{"slug":"lm27313xmf-nopb","opn":"LM27313XMF/NOPB","manufacturer":"Texas Instruments","category":"dcdc","packageCode":"SOT-23-5","pinCount":5,"ratingLabel":"BOOST · 1,600 kHz","statusLabel":"Tuning","statusTone":"l2","avatarTone":"1","initials":"DC","diffDir":"sot-23-5/","diffFile":"lm27313-lm2733x.pin","addCount":"+1","delCount":"-1","hunkSig":"LM27313XMF/NOPB vs LM2733XMF/NOPB (SOT-23-5)","threadTitle":"Audit Gate","threadMeta":"2026-11-22","threadMessage":"Level 2 tuning required. Pin roles align between LM27313XMF/NOPB and LM2733XMF/NOPB, but passive or thermal margins differ.","primaryHref":"/en/vs/lm27313xmf-nopb-vs-lm2733xmf-nopb/","primaryLinkLabel":"Open full diff","partHref":"/en/part/lm27313xmf-nopb/","lines":[{"oldNum":"1","newNum":"1","kind":"ctx","text":"pin_1: SW == SW (MATCH)"},{"oldNum":"2","newNum":"2","kind":"ctx","text":"pin_2: GND == GND (MATCH)"},{"oldNum":"3","newNum":"3","kind":"ctx","text":"pin_3: FB == FB (MATCH)"},{"oldNum":"4","newNum":"4","kind":"ctx","text":"pin_4: SHDN == SHDN (MATCH)"},{"oldNum":"5","newNum":"5","kind":"ctx","text":"pin_5: VIN == VIN (MATCH)"},{"oldNum":"6","newNum":"6","kind":"target","text":"exposed_pad: NONE == NONE (verified net match)"},{"oldNum":"7","newNum":"7","kind":"ctx","text":"topology_rectification: boost (Non-Sync Diode)"},{"oldNum":"8","newNum":"8","kind":"ctx","text":"package_exposed_pad: SOT-23-5 (DBV, EP: None, p.3)"},{"oldNum":"9","newNum":"9","kind":"ctx","text":"input_voltage_range_rec: 2.7 to 14 V (p.4)"},{"oldNum":"10","newNum":"10","kind":"ctx","text":"absolute_max_input_voltage: 14.5 V (p.3)"},{"oldNum":"11","newNum":"","kind":"del","text":"output_voltage_range: 5 to 28 V (p.1) (Adj)"},{"oldNum":"","newNum":"11","kind":"add","text":"output_voltage_range: 5 to 38 V (p.12/p.3) (Adj)"},{"oldNum":"12","newNum":"","kind":"del","text":"max_current_iout_or_isw_limit: 800 mA (p.5) [Isw limit]"},{"oldNum":"","newNum":"12","kind":"add","text":"max_current_iout_or_isw_limit: 1000 mA (p.4) [Isw limit]"},{"oldNum":"13","newNum":"","kind":"del","text":"quiescent_current_iq_typ: 400 µA (p.5)"},{"oldNum":"","newNum":"13","kind":"add","text":"quiescent_current_iq_typ: 400 µA (p.4)"},{"oldNum":"14","newNum":"14","kind":"ctx","text":"switching_frequency_fsw_typ: 1600 kHz (p.5)"},{"oldNum":"15","newNum":"","kind":"del","text":"peak_efficiency: 91 % (p.7)"},{"oldNum":"","newNum":"15","kind":"add","text":"peak_efficiency: 89 % (p.1)"},{"oldNum":"16","newNum":"16","kind":"ctx","text":"recommended_inductor_l_typ: 10 µH (p.1)"},{"oldNum":"17","newNum":"","kind":"del","text":"feedback_reference_vref: 1.23 V (p.5)"},{"oldNum":"","newNum":"17","kind":"add","text":"feedback_reference_vref: 1.23 V (p.4)"},{"oldNum":"18","newNum":"","kind":"del","text":"thermal_resistance_ja_tj_max: 166.3 °C/W (p.4) · 125 °C"},{"oldNum":"","newNum":"18","kind":"add","text":"thermal_resistance_ja_tj_max: 210 °C/W (p.4) · 125 °C"},{"oldNum":"19","newNum":"19","kind":"ctx","text":"source_a: www.ti.com (SNVS487E (Jan 2015))"},{"oldNum":"20","newNum":"20","kind":"ctx","text":"source_b: www.ti.com (SNVS209G (May 2019))"},{"oldNum":"21","newNum":"21","kind":"ctx","text":"audit_mode: DUAL_PATH_TEXT_VISION (300 DPI)"}]},{"slug":"ap7333-33sag-7","opn":"AP7333-33SAG-7","manufacturer":"Diodes Incorporated","category":"ldo","packageCode":"SOT-23-3","pinCount":3,"ratingLabel":"3.3V · Vdo 300mV","statusLabel":"Pin trap","statusTone":"l3","avatarTone":"3","initials":"LD","diffDir":"sot-23-3/","diffFile":"ap2210n-ap7333.pin","addCount":"+2","delCount":"-2","hunkSig":"AP2210N-3.3TRG1 vs AP7333-33SAG-7 (SOT-23-3)","threadTitle":"Audit Gate","threadMeta":"2026-11-22","threadMessage":"Level 3 layout change required. 2 pin role conflict(s) between AP2210N-3.3TRG1 and AP7333-33SAG-7. Verify pinout before PCB layout.","primaryHref":"/en/vs/ap2210n-3-3trg1-vs-ap7333-33sag-7/","primaryLinkLabel":"Open full diff","partHref":"/en/part/ap7333-33sag-7/","lines":[{"oldNum":"1","newNum":"","kind":"del","text":"pin_1: GND (GND)  # AP2210N-3.3TRG1 p.1"},{"oldNum":"","newNum":"1","kind":"add","text":"pin_1: IN (VIN)  # AP7333-33SAG-7 p.2"},{"oldNum":"2","newNum":"2","kind":"ctx","text":"pin_2: VOUT == OUT (MATCH)"},{"oldNum":"3","newNum":"","kind":"del","text":"pin_3: VIN (VIN)  # AP2210N-3.3TRG1 p.1"},{"oldNum":"","newNum":"3","kind":"add","text":"pin_3: GND (GND)  # AP7333-33SAG-7 p.2"},{"oldNum":"4","newNum":"4","kind":"target","text":"exposed_pad: NONE == NONE (verified net match)"},{"oldNum":"5","newNum":"","kind":"del","text":"package_exposed_pad: SOT-23-3 (N (SOT-23-3), EP: None, p.1)"},{"oldNum":"","newNum":"5","kind":"add","text":"package_exposed_pad: SOT-23-3 (SA (SOT23), EP: None, p.2)"},{"oldNum":"6","newNum":"","kind":"del","text":"input_voltage_range_rec: 2.5 to 13.2 V (p.4)"},{"oldNum":"","newNum":"6","kind":"add","text":"input_voltage_range_rec: 2 to 6 V (p.4)"},{"oldNum":"7","newNum":"","kind":"del","text":"absolute_max_input_voltage: 15 V (p.4)"},{"oldNum":"","newNum":"7","kind":"add","text":"absolute_max_input_voltage: 7 V (p.4)"},{"oldNum":"8","newNum":"","kind":"del","text":"output_voltage_accuracy: 3.3 V ±1% (p.11)"},{"oldNum":"","newNum":"8","kind":"add","text":"output_voltage_accuracy: 3.3 V ±2% (p.5)"},{"oldNum":"9","newNum":"","kind":"del","text":"max_output_current_iout: 300 mA (p.1)"},{"oldNum":"","newNum":"9","kind":"add","text":"max_output_current_iout: 300 mA (p.4)"},{"oldNum":"10","newNum":"","kind":"del","text":"quiescent_current_iq_typ: 100 µA (p.11)"},{"oldNum":"","newNum":"10","kind":"add","text":"quiescent_current_iq_typ: 55 µA (p.5)"},{"oldNum":"11","newNum":"","kind":"del","text":"dropout_voltage_vdo_typ: 250 mV (p.11)"},{"oldNum":"","newNum":"11","kind":"add","text":"dropout_voltage_vdo_typ: 300 mV (p.5)"},{"oldNum":"12","newNum":"","kind":"del","text":"ceramic_cap_stability_min_cout: ESR-Sensitive · >=1 µF · 0.025–15 Ω (p.22)"},{"oldNum":"","newNum":"12","kind":"add","text":"ceramic_cap_stability_min_cout: Ceramic OK · >=1 µF · 0.01–0.2 Ω (p.9)"},{"oldNum":"13","newNum":"","kind":"del","text":"psrr_typ: 75 dB (p.11)"},{"oldNum":"","newNum":"13","kind":"add","text":"psrr_typ: 65 dB (p.5)"},{"oldNum":"14","newNum":"14","kind":"ctx","text":"output_noise_typ: Not specified"},{"oldNum":"15","newNum":"","kind":"del","text":"thermal_resistance_ja: 200 °C/W (p.4)"},{"oldNum":"","newNum":"15","kind":"add","text":"thermal_resistance_ja: 207 °C/W (p.5)"},{"oldNum":"16","newNum":"16","kind":"ctx","text":"max_junction_temp_tj_max: 150 °C (p.4)"},{"oldNum":"17","newNum":"17","kind":"ctx","text":"source_a: www.diodes.com (DS37517 Rev. 4 - 2 (March 2021))"},{"oldNum":"18","newNum":"18","kind":"ctx","text":"source_b: www.diodes.com (Rev. 2 (November 2009))"},{"oldNum":"19","newNum":"19","kind":"ctx","text":"audit_mode: DUAL_PATH_TEXT_VISION (300 DPI)"}]}],"totalParts":88,"categoryCounts":{"all":12,"ldo":8,"dcdc":3,"opamp":1,"traps":6}}]]}]}]
+3b:["$","section",null,{"className":"section g2","id":"tools","aria-labelledby":"tools-h","children":["$","div",null,{"className":"wrap","children":[["$","div",null,{"className":"group","children":[["$","div",null,{"className":"section-head","children":["$","h2",null,{"id":"tools-h","children":["7 browser pinout tools."," ",["$","span",null,{"className":"muted","children":"Zero server uploads."}]]}]}],["$","div",null,{"className":"grid","children":[["$","article",null,{"className":"card card--row span-6","children":[["$","h3",null,{"children":"Audit BOM pinouts locally"}],["$","p",null,{"children":"Audit KiCad, Altium, and JLCPCB CSVs for EOL and ESR risks locally."}],["$","$L4",null,{"className":"card__link","href":"/en/tools/bom-checker/","prefetch":false,"children":["Open BOM Checker",["$","svg",null,{"viewBox":"0 0 16 16","fill":"none","stroke":"currentColor","strokeWidth":"1.6","aria-hidden":"true","children":["$","path",null,{"d":"M3 8h10M9 4l4 4-4 4","strokeLinecap":"round","strokeLinejoin":"round"}]}]]}],["$","div",null,{"className":"panel panel--flush","data-fx":"gradient-mesh","data-fx-seed":"11","data-fx-params":"{\"drift\":0}","children":["$","div",null,{"className":"stage stage--fade-b","children":["$","div",null,{"className":"at-rise fit","style":{"--fit-max":"440px","--ax":"max(20px, 50% - 220px)","--ay":"20px","--ay-sm":"12px"},"children":["$","div",null,{"className":"ui ui-panel ui-term","data-ui":"terminal-run","data-ui-loop":"","children":[["$","div",null,{"className":"ui-term__head","children":[["$","span",null,{"className":"ui-dots","aria-hidden":"true","children":[["$","i",null,{}],["$","i",null,{}],["$","i",null,{}]]}],["$","span",null,{"className":"ui-term__title","children":"pin2pin/bom-audit"}],["$","span",null,{"className":"ui-meta","children":"local"}],["$","span",null,{"className":"ui-spacer"}],["$","span",null,{"className":"ui-chip ui-chip--plain ui-term__branch","children":"0B upload"}]]}],["$","div",null,{"className":"ui-term__screen","data-term-screen":"","children":["$","div",null,{"className":"ui-term__track","data-term-track":"","children":[["$","div",null,{"className":"ui-term__ln ui-term__cmd","children":[["$","span",null,{"className":"ui-term__cwd","children":["~/",["$","span",null,{"className":"ui-term__up","children":"pcb/"}],"bom"]}],["$","span",null,{"className":"ui-term__sig","children":"$$"}],["$","span",null,{"className":"ui-term__typed","data-term-cmd":"","children":"bom-audit power_rev3.csv"}]]}],["$","div",null,{"className":"ui-term__ln ui-term__meter","data-term-out":"","data-term-meter":"","children":[["$","span",null,{"className":"ui-term__bar","style":{"--p":1},"children":["$","i",null,{}]}],["$","span",null,{"className":"ui-term__count","data-term-count":"","children":"4 of 4 OPNs"}]]}],["$","div",null,{"className":"ui-term__ln ui-term__log","data-term-out":"","data-term-step":"","children":[["$","svg",null,{"className":"ui-term__tick","viewBox":"0 0 16 16","aria-hidden":"true","children":["$","path",null,{"d":"m3.5 8.4 2.8 2.8 6.2-6.4"}]}],["$","span",null,{"className":"ui-term__path","children":"AMS1117-3.3 (SOT-223-3)"}],["$","span",null,{"className":"ui-term__n","children":"ESR trap"}],["$","span",null,{"className":"ui-term__t","children":"p.4"}]]}],["$","div",null,{"className":"ui-term__ln ui-term__log","data-term-out":"","data-term-step":"","children":[["$","svg",null,{"className":"ui-term__tick","viewBox":"0 0 16 16","aria-hidden":"true","children":["$","path",null,{"d":"m3.5 8.4 2.8 2.8 6.2-6.4"}]}],["$","span",null,{"className":"ui-term__path","children":"AP2112K-3.3TRG1 (SOT-23-5)"}],["$","span",null,{"className":"ui-term__n","children":"Active"}],["$","span",null,{"className":"ui-term__t","children":"p.1"}]]}],["$","div",null,{"className":"ui-term__ln ui-term__log","data-term-out":"","data-term-step":"","children":[["$","svg",null,{"className":"ui-term__tick","viewBox":"0 0 16 16","aria-hidden":"true","children":["$","path",null,{"d":"m3.5 8.4 2.8 2.8 6.2-6.4"}]}],["$","span",null,{"className":"ui-term__path","children":"LM358DR (SOIC-8)"}],["$","span",null,{"className":"ui-term__n","children":"Active"}],["$","span",null,{"className":"ui-term__t","children":"p.5"}]]}],["$","div",null,{"className":"ui-term__ln ui-term__log","data-term-out":"","data-term-step":"","children":[["$","svg",null,{"className":"ui-term__tick","viewBox":"0 0 16 16","aria-hidden":"true","children":["$","path",null,{"d":"m3.5 8.4 2.8 2.8 6.2-6.4"}]}],["$","span",null,{"className":"ui-term__path","children":"TPS54302DDCR (SOT-23-6)"}],["$","span",null,{"className":"ui-term__n","children":"Active"}],["$","span",null,{"className":"ui-term__t","children":"p.4"}]]}],["$","div",null,{"className":"ui-term__ln ui-term__gap","data-term-out":"","aria-hidden":"true"}],"$L45","$L46","$L47"]}]}]]}]}]}]}]]}],"$L48"]}]]}],"$L49"]}]}]
+3c:["$","section",null,{"className":"section bg-dots","id":"families","aria-labelledby":"families-h","children":["$","div",null,{"className":"wrap","children":["$","div",null,{"className":"grid","children":[["$","div",null,{"className":"span-5 stack-6","children":[["$","div",null,{"className":"section-head","children":[["$","h2",null,{"id":"families-h","children":"Verified semiconductor families and pinout traps"}],["$","p",null,{"className":"muted","children":"Every orderable part number maps to one JEDEC package and pinout view."}]]}],["$","div",null,{"className":"tabs","role":"tablist","aria-label":"Verified component families","children":[["$","button","ldo",{"type":"button","role":"tab","id":"btn-ldo","className":"tab","aria-selected":"true","aria-controls":"tab-ldo screen-ldo","tabIndex":0,"children":"LDO"}],["$","button","dcdc",{"type":"button","role":"tab","id":"btn-dcdc","className":"tab","aria-selected":"false","aria-controls":"tab-dcdc screen-dcdc","tabIndex":-1,"children":"DC-DC"}],["$","button","opamp",{"type":"button","role":"tab","id":"btn-opamp","className":"tab","aria-selected":"false","aria-controls":"tab-opamp screen-opamp","tabIndex":-1,"children":"Op-Amps"}],["$","button","traps",{"type":"button","role":"tab","id":"btn-traps","className":"tab","aria-selected":"false","aria-controls":"tab-traps screen-traps","tabIndex":-1,"children":"Pin traps"}]]}],[["$","div","ldo",{"role":"tabpanel","id":"tab-ldo","aria-labelledby":"btn-ldo","className":"stack-4","hidden":false,"children":[["$","p",null,{"className":"t-body","children":"38 fixed and adjustable linear regulators across SOT-223-3, SOT-23-3, SOT-23-5, SOT-89-3, TSOT-23-5. Every entry records MLCC ESR stability windows, exposed tab nets, and page-cited dropout limits."}],["$","$L4",null,{"className":"link","href":"/en/catalog/?category=ldo","prefetch":false,"children":"Browse LDO catalog"}]]}],["$","div","dcdc",{"role":"tabpanel","id":"tab-dcdc","aria-labelledby":"btn-dcdc","className":"stack-4","hidden":true,"children":[["$","p",null,{"className":"t-body","children":"26 buck, boost, and buck-boost switchers across SC-70-6, SOIC-8, SOIC-8E, SOT-23-5, SOT-23-6 and 6 more. Specs distinguish switch-current limits (Isw) from continuous load current, switching frequency, and Vref."}],["$","$L4",null,{"className":"link","href":"/en/catalog/?category=dcdc","prefetch":false,"children":"Browse DC-DC catalog"}]]}],["$","div","opamp",{"role":"tabpanel","id":"tab-opamp","aria-labelledby":"btn-opamp","className":"stack-4","hidden":true,"children":[["$","p",null,{"className":"t-body","children":"24 single and dual op-amps and comparators across SOIC-8, SOT-23-5. Audited for rail-to-rail swing, GBWP, slew rate, and SOT-23-5 U-pinout reversals."}],["$","$L4",null,{"className":"link","href":"/en/catalog/?category=opamp","prefetch":false,"children":"Browse Op-Amp catalog"}]]}],["$","div","traps",{"role":"tabpanel","id":"tab-traps","aria-labelledby":"btn-traps","className":"stack-4","hidden":true,"children":[["$","p",null,{"className":"t-body","children":"8 same-package Level 3 pinout conflicts where identical JEDEC footprints swap VIN, VOUT, GND, or thermal tab nets. Inspect each diff before substituting second-source parts."}],["$","$L4",null,{"className":"link","href":"/en/packages/","prefetch":false,"children":"Inspect package directory"}]]}]]]}],["$","div",null,{"className":"frame frame--split frame--lit span-6 start-7 families-frame","children":[["$","div","ldo",{"id":"screen-ldo","className":"families-screen","hidden":false,"children":["$","div",null,{"className":"ui ui-panel families-sheet","children":[["$","div",null,{"className":"families-sheet__head","children":[["$","span",null,{"children":"Verified LDO Regulators"}],["$","span",null,{"children":"38 OPNs"}]]}],["$","ul",null,{"className":"families-sheet__list","children":[["$","li","/en/part/ams1117-3-3/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/ams1117-3-3/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],"$L4a","$L4b","$L4c"]}]}],"$L4d","$L4e","$L4f","$L50","$L51","$L52","$L53"]}]]}]}],"$L54","$L55","$L56"]}]]}]}]}]
+3d:[["$","section",null,{"className":"section ground-inverse","id":"verify","data-moment":"iris-opens","data-moment-opts":"{\"from\":\"base\"}","aria-labelledby":"verify-h","children":["$","div",null,{"className":"wrap","children":["$","div",null,{"className":"grid","children":[["$","div",null,{"className":"span-5 split-col","children":[["$","div",null,{"className":"section-head","children":[["$","h2",null,{"id":"verify-h","children":["Dual-path pinout verification."," ",["$","span",null,{"className":"muted","children":"Zero distributor scraping."}]]}],["$","p",null,{"children":"Pinout drawings, absolute maximum ratings, and thermal resistance tables are checked against 300 DPI page renders from official manufacturer PDFs before schema validation."}]]}],["$","ul",null,{"className":"rows rows--spec","children":[["$","li",null,{"children":[["$","span",null,{"className":"rows__name","children":"Primary source"}],["$","span",null,{"className":"rows__value","children":"Official manufacturer PDFs"}]]}],["$","li",null,{"children":[["$","span",null,{"className":"rows__name","children":"Package isolation"}],["$","span",null,{"className":"rows__value","children":"Family 1:N OPN (1:1 map)"}]]}],["$","li",null,{"children":[["$","span",null,{"className":"rows__name","children":"Latest PDF audit"}],["$","span",null,{"className":"rows__value","children":"2026-11-26"}]]}]]}],["$","div",null,{"className":"split-col__end","children":["$","$L4",null,{"className":"link","href":"/en/methodology/","prefetch":false,"children":"Read audit methodology"}]}]]}],["$","div",null,{"className":"frame frame--split span-6 start-7 verify-frame","children":["$","div",null,{"className":"ui ui-panel verify-guides","children":[["$","div",null,{"className":"verify-guides__head","children":[["$","span",null,{"children":"Hardware Field Guides"}],["$","span",null,{"children":[11," playbooks"]}]]}],["$","ul",null,{"className":"verify-guides__list","children":[["$","li","audio-precision-soic8-opamp-guide",{"className":"verify-guides__li","children":["$","$L4",null,{"href":"/en/guides/audio-precision-soic8-opamp-guide/","prefetch":false,"className":"verify-guides__item","children":[["$","span",null,{"className":"verify-guides__title","children":"Audio & Precision Dual SOIC-8 Op-Amp Substitution Guide: NE5532 vs TL072 vs TL082 vs OPA2134 vs OPA2333"}],["$","span",null,{"className":"verify-guides__cat","children":"Op-Amp / Comparator"}],["$","span",null,{"className":"verify-guides__time","children":[10," min"]}]]}]}],["$","li","bom-second-sourcing-eol-nrnd-playbook",{"className":"verify-guides__li","children":["$","$L4",null,{"href":"/en/guides/bom-second-sourcing-eol-nrnd-playbook/","prefetch":false,"className":"verify-guides__item","children":[["$","span",null,{"className":"verify-guides__title","children":"BOM Second-Sourcing & EOL/NRND Power IC Migration Playbook: From Legacy LDOs & Bucks to Active Drop-In Candidates"}],["$","span",null,{"className":"verify-guides__cat","children":"Hardware Design"}],["$","span",null,{"className":"verify-guides__time","children":[13," min"]}]]}]}],["$","li","boost-buck-layout-inductor-selection",{"className":"verify-guides__li","children":["$","$L4",null,{"href":"/en/guides/boost-buck-layout-inductor-selection/","prefetch":false,"className":"verify-guides__item","children":[["$","span",null,{"className":"verify-guides__title","children":"Buck, Boost, and Buck-Boost PCB Layout & Inductor Selection: Mastering Hot Loops, Switch Limits, and Vref Swaps"}],["$","span",null,{"className":"verify-guides__cat","children":"DC-DC Converter"}],["$","span",null,{"className":"verify-guides__time","children":[10," min"]}]]}]}],["$","li","ceramic-capacitor-esr-ldo-oscillation",{"className":"verify-guides__li","children":["$","$L4",null,{"href":"/en/guides/ceramic-capacitor-esr-ldo-oscillation/","prefetch":false,"className":"verify-guides__item","children":[["$","span",null,{"className":"verify-guides__title","children":"Ceramic Capacitor ESR and LDO Loop Oscillation: Why Low-ESR MLCCs Destabilize Classic Regulators"}],["$","span",null,{"className":"verify-guides__cat","children":"LDO Regulator"}],["$","span",null,{"className":"verify-guides__time","children":[10," min"]}]]}]}],["$","li","comparator-vs-opamp-output-stage-traps",{"className":"verify-guides__li","children":["$","$L4",null,{"href":"/en/guides/comparator-vs-opamp-output-stage-traps/","prefetch":false,"className":"verify-guides__item","children":["$L57","$L58","$L59"]}]}],"$L5a"]}],"$L5b"]}]}]]}]}]}],"$L5c"]
+3e:["$","$L5d",null,{"children":["$L5e",["$","$L5f",null,{"promise":"$@60"}]]}]
+45:["$","div",null,{"className":"ui-term__ln ui-term__sum","data-term-out":"","children":[["$","span",null,{"className":"ui-term__key","children":"OPNs"}],["$","span",null,{"className":"ui-term__val","children":"4 matched"}],["$","span",null,{"className":"ui-term__dim","children":"(1 ESR alert)"}]]}]
+46:["$","div",null,{"className":"ui-term__ln ui-term__done","data-term-out":"","data-term-done":"","children":[["$","span",null,{"className":"ui-term__ok","children":["$","svg",null,{"viewBox":"0 0 16 16","aria-hidden":"true","children":["$","path",null,{"d":"m4.5 8.3 2.4 2.4 4.6-5"}]}]}],["$","b",null,{"children":"Done"}],["$","span",null,{"className":"ui-term__dim","children":"in 14ms · browser memory"}]]}]
+47:["$","div",null,{"className":"ui-term__ln ui-term__cmd","data-term-next":"","children":[["$","span",null,{"className":"ui-term__cwd","children":["~/",["$","span",null,{"className":"ui-term__up","children":"pcb/"}],"bom"]}],["$","span",null,{"className":"ui-term__sig","children":"$$"}],["$","span",null,{"className":"ui-term__typed"}],["$","i",null,{"className":"ui-term__caret","aria-hidden":"true"}]]}]
+48:["$","article",null,{"className":"card card--row span-6","children":[["$","h3",null,{"children":"Compare 2 OPNs pin by pin"}],["$","p",null,{"children":"Diff pin roles, thermal tabs, and datasheet ratings side by side."}],["$","$L4",null,{"className":"card__link","href":"/en/tools/compare/","prefetch":false,"children":["Launch Live Compare","$3b:props:children:props:children:0:props:children:1:props:children:0:props:children:2:props:children:1"]}],["$","div",null,{"className":"panel panel--flush","data-fx":"gradient-mesh","data-fx-seed":"23","data-fx-params":"{\"drift\":0}","children":["$","div",null,{"className":"stage","children":["$","div",null,{"className":"at-rise fit to-edge","style":{"--fit-max":"400px","--ax":"max(20px, 50% - 200px)","--ay":"22px","--ay-sm":"10px"},"children":["$","div",null,{"className":"ui ui-panel ui-search","data-ui":"search","data-ui-still":"","children":[["$","div",null,{"className":"ui-search__field","children":[["$","svg",null,{"className":"ui-icon","viewBox":"0 0 16 16","aria-hidden":"true","children":[["$","circle",null,{"cx":"7","cy":"7","r":"4.5"}],["$","path",null,{"d":"m10.5 10.5 3 3"}]]}],["$","span",null,{"className":"ui-search__q","children":[["$","span",null,{"data-search-q":"","children":"SOT-23-5 AP2112K"}],["$","i",null,{"className":"ui-search__caret"}]]}],["$","kbd",null,{"className":"ui-search__kbd","children":"Ctrl K"}]]}],["$","div",null,{"className":"ui-search__group","children":"Verified SOT-23-5 matches"}],["$","ul",null,{"className":"ui-search__list","data-search-list":"","children":[["$","li",null,{"className":"ui-search__row is-sel","children":[["$","span",null,{"className":"ui-search__ico","children":["$","svg",null,{"className":"ui-icon","viewBox":"0 0 16 16","aria-hidden":"true","children":[["$","rect",null,{"x":"4","y":"4","width":"8","height":"8","rx":"1"}],["$","path",null,{"d":"M2 6h2M2 10h2M12 6h2M12 10h2"}]]}]}],["$","span",null,{"className":"ui-search__t","children":[["$","b",null,{"children":"AP2112K-3.3TRG1"}]," · 600 mA LDO"]}],["$","span",null,{"className":"ui-search__m","children":"Active"}]]}],["$","li",null,{"className":"ui-search__row","children":[["$","span",null,{"className":"ui-search__ico","children":["$","svg",null,{"className":"ui-icon","viewBox":"0 0 16 16","aria-hidden":"true","children":[["$","rect",null,{"x":"4","y":"4","width":"8","height":"8","rx":"1"}],["$","path",null,{"d":"M2 6h2M2 10h2M12 6h2M12 10h2"}]]}]}],["$","span",null,{"className":"ui-search__t","children":[["$","b",null,{"children":"TLV73333PDBVR"}]," · 300 mA cap-free"]}],["$","span",null,{"className":"ui-search__m","children":"L1 Alt"}]]}],["$","li",null,{"className":"ui-search__row","children":[["$","span",null,{"className":"ui-search__ico","children":["$","svg",null,{"className":"ui-icon","viewBox":"0 0 16 16","aria-hidden":"true","children":[["$","rect",null,{"x":"4","y":"4","width":"8","height":"8","rx":"1"}],["$","path",null,{"d":"M2 6h2M2 10h2M12 6h2M12 10h2"}]]}]}],["$","span",null,{"className":"ui-search__t","children":[["$","b",null,{"children":"AP2210K-3.3TRG1"}]," · 300 mA low-noise"]}],["$","span",null,{"className":"ui-search__m","children":"L2 Alt"}]]}]]}]]}]}]}]}]]}]
+49:["$","div",null,{"className":"grid","children":[["$","article",null,{"className":"card card--row span-6","children":[["$","h3",null,{"children":"Check 7 thermal and ripple calculators"}],["$","p",null,{"children":"Compute LDO Tj rise, buck ripple, E96 dividers, and op-amp GBWP."}],["$","$L4",null,{"className":"card__link","href":"/en/tools/","prefetch":false,"children":["Explore all 7 tools","$3b:props:children:props:children:0:props:children:1:props:children:0:props:children:2:props:children:1"]}],["$","div",null,{"className":"panel panel--flush","data-fx":"gradient-mesh","data-fx-seed":"37","data-fx-params":"{\"drift\":0}","children":["$","div",null,{"className":"stage","children":["$","div",null,{"className":"at-right to-edge","style":{"--ax":"24px","--ay":"18px","--ay-sm":"10px"},"children":["$","div",null,{"className":"ui ui-panel ui-toggles","data-ui":"toggles","data-ui-still":"","children":[["$","div",null,{"className":"ui-head","children":[["$","svg",null,{"className":"ui-icon ui-toggles__ico","viewBox":"0 0 16 16","aria-hidden":"true","children":[["$","path",null,{"d":"M8 1.8 13 4v3.6c0 3-2.1 5.4-5 6.6-2.9-1.2-5-3.6-5-6.6V4z"}],["$","path",null,{"d":"m5.8 8 1.6 1.6 3-3.2"}]]}],["$","div",null,{"className":"ui-title","children":"Local browser calculators"}],["$","span",null,{"className":"ui-spacer"}],["$","div",null,{"className":"ui-meta","data-tg-count":"","children":"4 of 4 active"}]]}],["$","ul",null,{"className":"ui-toggles__list","children":[["$","li",null,{"className":"ui-tg","children":[["$","span",null,{"className":"ui-tg__text","children":[["$","span",null,{"className":"ui-tg__label","children":"LDO Tj thermal margin"}],["$","span",null,{"className":"ui-tg__sub","children":"Pd = (Vin - Vout) * Iout · θJA p.2"}]]}],["$","button",null,{"className":"ui-switch is-on","type":"button","role":"switch","aria-checked":"true","aria-label":"LDO Tj thermal margin","tabIndex":-1,"children":["$","i",null,{}]}]]}],["$","li",null,{"className":"ui-tg","children":[["$","span",null,{"className":"ui-tg__text","children":[["$","span",null,{"className":"ui-tg__label","children":"DC-DC inductor ripple"}],["$","span",null,{"className":"ui-tg__sub","children":"Duty cycle, ΔIL, and Isw peak limit"}]]}],["$","button",null,{"className":"ui-switch is-on","type":"button","role":"switch","aria-checked":"true","aria-label":"DC-DC inductor ripple","tabIndex":-1,"children":["$","i",null,{}]}]]}],["$","li",null,{"className":"ui-tg","children":[["$","span",null,{"className":"ui-tg__text","children":[["$","span",null,{"className":"ui-tg__label","children":"E96 feedback divider"}],["$","span",null,{"className":"ui-tg__sub","children":"1% R1/R2 pairs with Vref tolerance"}]]}],["$","button",null,{"className":"ui-switch is-on","type":"button","role":"switch","aria-checked":"true","aria-label":"E96 feedback divider","tabIndex":-1,"children":["$","i",null,{}]}]]}],["$","li",null,{"className":"ui-tg","children":[["$","span",null,{"className":"ui-tg__text","children":[["$","span",null,{"className":"ui-tg__label","children":"Op-Amp GBWP & slew check"}],["$","span",null,{"className":"ui-tg__sub","children":"Closed-loop bandwidth and pull-up rise"}]]}],["$","button",null,{"className":"ui-switch is-on","type":"button","role":"switch","aria-checked":"true","aria-label":"Op-Amp GBWP and slew check","tabIndex":-1,"children":["$","i",null,{}]}]]}]]}]]}]}]}]}]]}],["$","article",null,{"className":"card card--row span-6","children":[["$","h3",null,{"children":"Trace every pinout spec to PDF pages"}],["$","p",null,{"children":"Verify pinouts with 300 DPI PDF renders and Zod physics checks."}],["$","$L4",null,{"className":"card__link","href":"/en/methodology/","prefetch":false,"children":["Read audit pipeline","$3b:props:children:props:children:0:props:children:1:props:children:0:props:children:2:props:children:1"]}],["$","div",null,{"className":"panel panel--flush tools-dg-panel","data-fx":"gradient-mesh","data-fx-seed":"49","data-fx-params":"{\"drift\":0}","children":["$","div",null,{"className":"dg","data-icon-base":"/pin2pin-global/assets/icons/","data-diagram":"{\"layout\":\"lanes\",\"curve\":\"curve\",\"ground\":\"none\",\"alt\":\"Official manufacturer PDFs pass through dual-path extraction into 300 DPI pinout vision, Zod physics bounds checks, and 1:1 OPN package locking before publishing to the verified database.\",\"input\":{\"label\":\"Official PDFs\",\"meta\":\"1st-party\"},\"core\":{\"label\":\"Dual-Path\"},\"lanes\":[{\"label\":\"Pinout Vision\",\"meta\":\"300 DPI\",\"done\":true},{\"label\":\"Zod Physics\",\"meta\":\"Vabs >= Vrec\",\"done\":true},{\"label\":\"Package Lock\",\"meta\":\"1:1 OPN\",\"done\":true}],\"output\":{\"label\":\"Verified DB\",\"meta\":\"88 OPNs\",\"done\":true}}"}]}]]}]]}]
+4a:["$","span",null,{"className":"families-sheet__opn","children":"AMS1117-3.3"}]
+4b:["$","span",null,{"className":"families-sheet__pkg","children":"SOT-223-3"}]
+4c:["$","span",null,{"className":"families-sheet__spec","children":"1.0 A · 3.3 V · 1.1 Vdo"}]
+4d:["$","li","/en/part/ap2112k-3-3trg1/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/ap2112k-3-3trg1/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"AP2112K-3.3TRG1"}],["$","span",null,{"className":"families-sheet__pkg","children":"SOT-23-5"}],["$","span",null,{"className":"families-sheet__spec","children":"600 mA · 3.3 V · 250 mV"}]]}]}]
+4e:["$","li","/en/part/ap2127k-3-3trg1/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/ap2127k-3-3trg1/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"AP2127K-3.3TRG1"}],["$","span",null,{"className":"families-sheet__pkg","children":"SOT-23-5"}],["$","span",null,{"className":"families-sheet__spec","children":"300 mA · 3.3 V · 170 mV"}]]}]}]
+4f:["$","li","/en/part/ap2204k-3-3trg1/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/ap2204k-3-3trg1/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"AP2204K-3.3TRG1"}],["$","span",null,{"className":"families-sheet__pkg","children":"SOT-23-5"}],["$","span",null,{"className":"families-sheet__spec","children":"150 mA · 3.3 V · 360 mV"}]]}]}]
+50:["$","li","/en/part/ap2210k-3-3trg1/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/ap2210k-3-3trg1/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"AP2210K-3.3TRG1"}],["$","span",null,{"className":"families-sheet__pkg","children":"SOT-23-5"}],["$","span",null,{"className":"families-sheet__spec","children":"300 mA · 3.3 V · 250 mV"}]]}]}]
+51:["$","li","/en/part/ap2210n-3-3trg1/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/ap2210n-3-3trg1/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"AP2210N-3.3TRG1"}],["$","span",null,{"className":"families-sheet__pkg","children":"SOT-23-3"}],["$","span",null,{"className":"families-sheet__spec","children":"300 mA · 3.3 V · 250 mV"}]]}]}]
+52:["$","li","/en/part/ap7313-33sag-7/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/ap7313-33sag-7/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"AP7313-33SAG-7"}],["$","span",null,{"className":"families-sheet__pkg","children":"SOT-23-3"}],["$","span",null,{"className":"families-sheet__spec","children":"150 mA · 3.3 V · 150 mV"}]]}]}]
+53:["$","li","/en/part/ap7313-33srg-7/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/ap7313-33srg-7/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"AP7313-33SRG-7"}],["$","span",null,{"className":"families-sheet__pkg","children":"SOT-23-3"}],["$","span",null,{"className":"families-sheet__spec","children":"150 mA · 3.3 V · 150 mV"}]]}]}]
+54:["$","div","dcdc",{"id":"screen-dcdc","className":"families-screen","hidden":true,"children":["$","div",null,{"className":"ui ui-panel families-sheet","children":[["$","div",null,{"className":"families-sheet__head","children":[["$","span",null,{"children":"Verified DC-DC Converters"}],["$","span",null,{"children":"26 OPNs"}]]}],["$","ul",null,{"className":"families-sheet__list","children":[["$","li","/en/part/ap62200wu-7/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/ap62200wu-7/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"AP62200WU-7"}],["$","span",null,{"className":"families-sheet__pkg","children":"TSOT-23-6"}],["$","span",null,{"className":"families-sheet__spec","children":"2.0 A · 750 kHz"}]]}]}],["$","li","/en/part/ap62300wu-7/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/ap62300wu-7/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"AP62300WU-7"}],["$","span",null,{"className":"families-sheet__pkg","children":"TSOT-23-6"}],["$","span",null,{"className":"families-sheet__spec","children":"3.0 A · 750 kHz"}]]}]}],["$","li","/en/part/ap63203wu-7/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/ap63203wu-7/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"AP63203WU-7"}],["$","span",null,{"className":"families-sheet__pkg","children":"TSOT-23-6"}],["$","span",null,{"className":"families-sheet__spec","children":"2.0 A · 1100 kHz"}]]}]}],["$","li","/en/part/ap63205wu-7/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/ap63205wu-7/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"AP63205WU-7"}],["$","span",null,{"className":"families-sheet__pkg","children":"TSOT-23-6"}],["$","span",null,{"className":"families-sheet__spec","children":"2.0 A · 1100 kHz"}]]}]}],["$","li","/en/part/ap63300wu-7/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/ap63300wu-7/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"AP63300WU-7"}],["$","span",null,{"className":"families-sheet__pkg","children":"TSOT-23-6"}],["$","span",null,{"className":"families-sheet__spec","children":"3.0 A · 500 kHz"}]]}]}],["$","li","/en/part/lm2596sx-5-0-nopb/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/lm2596sx-5-0-nopb/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":["$L61","$L62"]}],"$L63","$L64","$L65"]}]}],"$L66","$L67"]}]]}]}]
+55:["$","div","opamp",{"id":"screen-opamp","className":"families-screen","hidden":true,"children":["$","div",null,{"className":"ui ui-panel families-sheet","children":[["$","div",null,{"className":"families-sheet__head","children":[["$","span",null,{"children":"Verified Op-Amps & Comparators"}],["$","span",null,{"children":"24 OPNs"}]]}],["$","ul",null,{"className":"families-sheet__list","children":[["$","li","/en/part/lm2903dr/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/lm2903dr/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"LM2903DR"}],["$","span",null,{"className":"families-sheet__pkg","children":"SOIC-8"}],["$","span",null,{"className":"families-sheet__spec","children":"Comp · tpd 1,300ns"}]]}]}],["$","li","/en/part/lm2904dr/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/lm2904dr/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"LM2904DR"}],["$","span",null,{"className":"families-sheet__pkg","children":"SOIC-8"}],["$","span",null,{"className":"families-sheet__spec","children":"0.7 MHz · 0.3 V/µs"}]]}]}],["$","li","/en/part/lm358dr/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/lm358dr/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"LM358DR"}],["$","span",null,{"className":"families-sheet__pkg","children":"SOIC-8"}],["$","span",null,{"className":"families-sheet__spec","children":"0.7 MHz · 0.3 V/µs"}]]}]}],["$","li","/en/part/lm358dr2g/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/lm358dr2g/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"LM358DR2G"}],["$","span",null,{"className":"families-sheet__pkg","children":"SOIC-8"}],["$","span",null,{"className":"families-sheet__spec","children":"1 MHz · 0.6 V/µs"}]]}]}],["$","li","/en/part/lm393dr/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/lm393dr/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"LM393DR"}],["$","span",null,{"className":"families-sheet__pkg","children":"SOIC-8"}],["$","span",null,{"className":"families-sheet__spec","children":"Comp · tpd 1,300ns"}]]}]}],["$","li","/en/part/lm393dr2g/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/lm393dr2g/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],"$L68"]}],"$L69","$L6a","$L6b"]}]}],"$L6c","$L6d"]}]]}]}]
+56:["$","div","traps",{"id":"screen-traps","className":"families-screen","hidden":true,"children":["$","div",null,{"className":"ui ui-panel families-sheet","children":[["$","div",null,{"className":"families-sheet__head","children":[["$","span",null,{"children":"Same-Package Pinout Traps"}],["$","span",null,{"children":"Level 3 conflicts"}]]}],["$","ul",null,{"className":"families-sheet__list","children":[["$","li","/en/vs/ams1117-3-3-vs-ap7361c-33e-13/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/vs/ams1117-3-3-vs-ap7361c-33e-13/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"AMS1117-3.3 vs AP7361C-33E-13"}],["$","span",null,{"className":"families-sheet__pkg families-sheet__pkg--trap","children":"SOT-223-3"}],["$","span",null,{"className":"families-sheet__spec","children":"3 pin conflicts"}]]}]}],["$","li","/en/vs/ams1117-3-3-vs-lm1117impx-5-0-nopb/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/vs/ams1117-3-3-vs-lm1117impx-5-0-nopb/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"AMS1117-3.3 vs LM1117IMPX-5.0/NOPB"}],["$","span",null,{"className":"families-sheet__pkg families-sheet__pkg--trap","children":"SOT-223-3"}],["$","span",null,{"className":"families-sheet__spec","children":"0 pin conflicts"}]]}]}],["$","li","/en/vs/ams1117-3-3-vs-lm1117impx-adj-nopb/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/vs/ams1117-3-3-vs-lm1117impx-adj-nopb/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"AMS1117-3.3 vs LM1117IMPX-ADJ/NOPB"}],["$","span",null,{"className":"families-sheet__pkg families-sheet__pkg--trap","children":"SOT-223-3"}],["$","span",null,{"className":"families-sheet__spec","children":"1 pin conflict"}]]}]}],["$","li","/en/vs/ams1117-3-3-vs-lm2937imp-3-3-nopb/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/vs/ams1117-3-3-vs-lm2937imp-3-3-nopb/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"AMS1117-3.3 vs LM2937IMP-3.3/NOPB"}],["$","span",null,{"className":"families-sheet__pkg families-sheet__pkg--trap","children":"SOT-223-3"}],["$","span",null,{"className":"families-sheet__spec","children":"3 pin conflicts"}]]}]}],["$","li","/en/vs/ap2210n-3-3trg1-vs-ap7313-33sag-7/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/vs/ap2210n-3-3trg1-vs-ap7313-33sag-7/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"AP2210N-3.3TRG1 vs AP7313-33SAG-7"}],"$L6e","$L6f"]}]}],"$L70","$L71","$L72"]}]]}]}]
+57:["$","span",null,{"className":"verify-guides__title","children":"Comparator Output Stages & Op-Amp Misuse Traps: Push-Pull, Open-Collector Pull-Ups, Hysteresis, and SOT-23-5 U-Pinouts"}]
+58:["$","span",null,{"className":"verify-guides__cat","children":"Op-Amp / Comparator"}]
+59:["$","span",null,{"className":"verify-guides__time","children":[12," min"]}]
+5a:["$","li","dcdc-vref-en-polarity-traps",{"className":"verify-guides__li","children":["$","$L4",null,{"href":"/en/guides/dcdc-vref-en-polarity-traps/","prefetch":false,"className":"verify-guides__item","children":[["$","span",null,{"className":"verify-guides__title","children":"DC-DC Converter Pinout, VREF, and Enable Polarity Traps: Surviving 6-Pin Buck and Boost Swaps"}],["$","span",null,{"className":"verify-guides__cat","children":"DC-DC Converter"}],["$","span",null,{"className":"verify-guides__time","children":[9," min"]}]]}]}]
+5b:["$","div",null,{"className":"verify-guides__foot","children":["$","$L4",null,{"className":"link","href":"/en/guides/","prefetch":false,"children":["Browse all ",11," field guides"]}]}]
+5c:["$","section",null,{"className":"section","id":"faq","aria-labelledby":"faq-h","children":["$","div",null,{"className":"wrap","children":["$","div",null,{"className":"grid","children":[["$","div",null,{"className":"span-5 stack-4","children":[["$","h2",null,{"id":"faq-h","children":"Pin2Pin database engineering questions"}],["$","p",null,{"className":"muted","children":"BOM security, compatibility levels, and datasheet verification scope."}],["$","$L4",null,{"className":"link","href":"/en/contact/","prefetch":false,"children":"Report datasheet errata"}],["$","div",null,{"className":"ui ui-panel faq-matrix","children":["$","svg",null,{"viewBox":"0 0 420 228","role":"img","aria-label":"Compatibility grading matrix: Level 1 drop-in matches package, pins, and thermal tab; Level 2 requires passive or thermal tuning; Level 3 indicates a pin conflict requiring PCB changes; thermal and ESR bounds verify safe margin.","children":[["$","text",null,{"x":"12","y":"20","fill":"#a3a3a3","fontSize":"10.5","fontFamily":"JetBrains Mono, monospace","fontWeight":"600","children":"PIN2PIN COMPATIBILITY GRADING MATRIX"}],["$","line",null,{"x1":"12","y1":"30","x2":"408","y2":"30","stroke":"#2e2e2e","strokeWidth":"1"}],["$","rect",null,{"x":"12","y":"42","width":"396","height":"36","rx":"3","fill":"#1e2418","stroke":"#41522b","strokeWidth":"1"}],["$","circle",null,{"cx":"28","cy":"60","r":"5","fill":"#dafa9c"}],["$","text",null,{"x":"42","y":"57","fill":"#dafa9c","fontSize":"11","fontFamily":"JetBrains Mono, monospace","fontWeight":"600","children":"LEVEL 1: CANDIDATE DROP-IN"}],["$","text",null,{"x":"42","y":"71","fill":"#d4d4d4","fontSize":"10","fontFamily":"JetBrains Mono, monospace","children":"JEDEC pkg match · All pin roles align · Tab net safe"}],["$","rect",null,{"x":"12","y":"88","width":"396","height":"36","rx":"3","fill":"#262014","stroke":"#5c471b","strokeWidth":"1"}],["$","circle",null,{"cx":"28","cy":"106","r":"5","fill":"#fbbf24"}],["$","text",null,{"x":"42","y":"103","fill":"#fcd34d","fontSize":"11","fontFamily":"JetBrains Mono, monospace","fontWeight":"600","children":"LEVEL 2: TUNING REQUIRED"}],["$","text",null,{"x":"42","y":"117","fill":"#d4d4d4","fontSize":"10","fontFamily":"JetBrains Mono, monospace","children":"Pins align · Check MLCC ESR, Vref divider, or θJA"}],["$","rect",null,{"x":"12","y":"134","width":"396","height":"36","rx":"3","fill":"#291616","stroke":"#6b2525","strokeWidth":"1"}],["$","circle",null,{"cx":"28","cy":"152","r":"5","fill":"#f87171"}],["$","text",null,{"x":"42","y":"149","fill":"#fca5a5","fontSize":"11","fontFamily":"JetBrains Mono, monospace","fontWeight":"600","children":"LEVEL 3: LAYOUT CHANGE"}],["$","text",null,{"x":"42","y":"163","fill":"#d4d4d4","fontSize":"10","fontFamily":"JetBrains Mono, monospace","children":"Same footprint · Swapped VIN/GND/VOUT or thermal tab"}],["$","rect",null,{"x":"12","y":"180","width":"396","height":"36","rx":"3","fill":"#1d1d1d","stroke":"#3b3b3b","strokeWidth":"1"}],["$","rect",null,{"x":"23","y":"193","width":"10","height":"10","rx":"1.5","fill":"none","stroke":"#dafa9c","strokeWidth":"1.4"}],["$","text",null,{"x":"42","y":"195","fill":"#ffffff","fontSize":"11","fontFamily":"JetBrains Mono, monospace","fontWeight":"600","children":"PHYSICS GATE: THERMAL & ESR BOUNDS"}],["$","text",null,{"x":"42","y":"209","fill":"#b8b8b8","fontSize":"10","fontFamily":"JetBrains Mono, monospace","children":"Vabs >= Vrec · θJA derating · MLCC ESR window cited"}]]}]}]]}],["$","div",null,{"className":"span-6 start-7","children":["$","div",null,{"className":"faq","children":[["$","div",null,{"className":"faq__item","children":[["$","h3",null,{"children":"Does the Pin2Pin BOM checker upload files?"}],["$","p",null,{"children":"No. CSV parsing, OPN lookup, and alternate matching execute in browser memory with zero server uploads."}]]}],["$","div",null,{"className":"faq__item","children":[["$","h3",null,{"children":"What do Level 1, Level 2, and Level 3 pinout grades mean?"}],["$","p",null,{"children":"Level 1 matches package and pin roles as a candidate drop-in. Level 2 needs passive or thermal tuning. Level 3 flags pin conflicts requiring PCB changes."}]]}],["$","div",null,{"className":"faq__item","children":[["$","h3",null,{"children":"Which semiconductor families are in the database?"}],["$","p",null,{"children":"Verified LDO regulators, buck and boost DC-DC converters, op-amps, and comparators from official PDFs. Large 1,000-page MCUs stay out of scope."}]]}],["$","div",null,{"className":"faq__item","children":[["$","h3",null,{"children":"How do I report a pinout or datasheet error?"}],"$L73"]}]]}]}]]}]}]}]
+61:["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}]
+62:["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]
+63:["$","span",null,{"className":"families-sheet__opn","children":"LM2596SX-5.0/NOPB"}]
+64:["$","span",null,{"className":"families-sheet__pkg","children":"TO-263-5"}]
+65:["$","span",null,{"className":"families-sheet__spec","children":"3.0 A · 150 kHz"}]
+66:["$","li","/en/part/lm27313xmf-nopb/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/lm27313xmf-nopb/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"LM27313XMF/NOPB"}],["$","span",null,{"className":"families-sheet__pkg","children":"SOT-23-5"}],["$","span",null,{"className":"families-sheet__spec","children":"800 mA · 1600 kHz"}]]}]}]
+67:["$","li","/en/part/lm2733xmf-nopb/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/lm2733xmf-nopb/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"LM2733XMF/NOPB"}],["$","span",null,{"className":"families-sheet__pkg","children":"SOT-23-5"}],["$","span",null,{"className":"families-sheet__spec","children":"1.0 A · 1600 kHz"}]]}]}]
+68:["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]
+69:["$","span",null,{"className":"families-sheet__opn","children":"LM393DR2G"}]
+6a:["$","span",null,{"className":"families-sheet__pkg","children":"SOIC-8"}]
+6b:["$","span",null,{"className":"families-sheet__spec","children":"Comp · tpd 1,300ns"}]
+6c:["$","li","/en/part/lmv321idbvr/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/lmv321idbvr/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"LMV321IDBVR"}],["$","span",null,{"className":"families-sheet__pkg","children":"SOT-23-5"}],["$","span",null,{"className":"families-sheet__spec","children":"1 MHz · 1 V/µs"}]]}]}]
+6d:["$","li","/en/part/lmv331idbvr/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/part/lmv331idbvr/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"LMV331IDBVR"}],["$","span",null,{"className":"families-sheet__pkg","children":"SOT-23-5"}],["$","span",null,{"className":"families-sheet__spec","children":"Comp · tpd 300ns"}]]}]}]
+6e:["$","span",null,{"className":"families-sheet__pkg families-sheet__pkg--trap","children":"SOT-23-3"}]
+6f:["$","span",null,{"className":"families-sheet__spec","children":"2 pin conflicts"}]
+70:["$","li","/en/vs/ap2210n-3-3trg1-vs-ap7333-33sag-7/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/vs/ap2210n-3-3trg1-vs-ap7333-33sag-7/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"AP2210N-3.3TRG1 vs AP7333-33SAG-7"}],["$","span",null,{"className":"families-sheet__pkg families-sheet__pkg--trap","children":"SOT-23-3"}],["$","span",null,{"className":"families-sheet__spec","children":"2 pin conflicts"}]]}]}]
+71:["$","li","/en/vs/ap2210n-3-3trg1-vs-lm3480im3-3-3-nopb/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/vs/ap2210n-3-3trg1-vs-lm3480im3-3-3-nopb/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"AP2210N-3.3TRG1 vs LM3480IM3-3.3/NOPB"}],["$","span",null,{"className":"families-sheet__pkg families-sheet__pkg--trap","children":"SOT-23-3"}],["$","span",null,{"className":"families-sheet__spec","children":"3 pin conflicts"}]]}]}]
+72:["$","li","/en/vs/ap62200wu-7-vs-ap63203wu-7/",{"className":"families-sheet__item","children":["$","$L4",null,{"href":"/en/vs/ap62200wu-7-vs-ap63203wu-7/","prefetch":false,"className":"families-sheet__row","children":[["$","svg",null,{"className":"families-sheet__ic","viewBox":"0 0 20 20","fill":"none","stroke":"currentColor","strokeWidth":"1.5","aria-hidden":"true","children":[["$","rect",null,{"x":"5","y":"5","width":"10","height":"10","rx":"1.5"}],["$","path",null,{"d":"M2 8h3M2 12h3M15 8h3M15 12h3M8 2v3M12 2v3M8 15v3M12 15v3","strokeLinecap":"round"}]]}],["$","span",null,{"className":"families-sheet__opn","children":"AP62200WU-7 vs AP63203WU-7"}],["$","span",null,{"className":"families-sheet__pkg families-sheet__pkg--trap","children":"TSOT-23-6"}],["$","span",null,{"className":"families-sheet__spec","children":"4 pin conflicts"}]]}]}]
+73:["$","p",null,{"children":["Submit the official PDF URL, revision, and page number via"," ",["$","$L4",null,{"href":"/en/contact/","prefetch":false,"children":"error reporting"}],", and review our"," ",["$","$L4",null,{"href":"/en/disclaimer/","prefetch":false,"children":"engineering disclaimer"}],"."]}]
+40:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+5e:null
+60:{"metadata":[["$","title","0",{"children":"Pin2Pin Global: Semiconductor pinout and cross-reference database"}],["$","meta","1",{"name":"description","content":"Inspect 88 OPN-exact IC pinouts, 203 side-by-side diffs, and seven browser calculators sourced directly from official manufacturer PDFs."}],["$","link","2",{"rel":"canonical","href":"https://kbu3986.github.io/pin2pin-global/en/"}],["$","meta","3",{"property":"og:title","content":"Pin2Pin Global: Semiconductor pinout and cross-reference database"}],["$","meta","4",{"property":"og:description","content":"Inspect 88 OPN-exact IC pinouts, 203 side-by-side diffs, and seven browser calculators sourced directly from official manufacturer PDFs."}],["$","meta","5",{"property":"og:url","content":"https://kbu3986.github.io/pin2pin-global/en/"}],["$","meta","6",{"property":"og:site_name","content":"Pin2Pin Global"}],["$","meta","7",{"property":"og:locale","content":"en_US"}],["$","meta","8",{"property":"og:image","content":"https://kbu3986.github.io/pin2pin-global/og-image.png"}],["$","meta","9",{"property":"og:image:width","content":"1200"}],["$","meta","10",{"property":"og:image:height","content":"630"}],["$","meta","11",{"property":"og:image:alt","content":"Pin2Pin Global — datasheet-verified pinout and cross-reference database"}],["$","meta","12",{"property":"og:type","content":"website"}],["$","meta","13",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","14",{"name":"twitter:title","content":"Pin2Pin Global: Semiconductor pinout and cross-reference database"}],["$","meta","15",{"name":"twitter:description","content":"Inspect 88 OPN-exact IC pinouts, 203 side-by-side diffs, and seven browser calculators sourced directly from official manufacturer PDFs."}],["$","meta","16",{"name":"twitter:image","content":"https://kbu3986.github.io/pin2pin-global/og-image.png"}]],"error":null,"digest":"$undefined"}
+43:"$60:metadata"
