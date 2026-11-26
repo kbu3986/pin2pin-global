@@ -188,5 +188,5 @@
     "DATASHEET REVISION CHECK (AUD-04): Verify latest official manufacturer datasheets (SLCS005AH (Rev. April 2025) vs Rev. 35 (November 2026)) for part-marking codes, transient load response, and qualification status before production release."
   ],
   "engineering_verdict": "LM393DR (Texas Instruments, SOIC-8) and LM393DR2G (onsemi, SOIC-8) qualify as Level 1 Candidate Drop-In peers: all 8 pins share identical electrical roles, exposed-pad nets match (no EP), and thermal/voltage/temperature-grade margins remain aligned. Signal-chain deltas: propagation delay 1300 ns (p.10) vs 1300 ns (p.3), supply ceiling 30 V (p.4) vs 36 V (p.1), Vos 5 mV (p.8) vs 5 mV (p.3), Ib 1x gap (25000 vs 20000 pA). Primary bench gotchas to watch: LM393DR \"Classic LM358DR / LMV358IDR Identical SOIC-8 Pinout Trap (Missing Pull-Up & Oscillation)\" (p.3) and LM393DR2G \"Identical SOIC-8 Pinout Trap vs Push-Pull LM358DR2G / LM358DR Op-Amps\" (p.1). BOM decision: Choose LM393DR when matching your existing Texas Instruments SOIC-8 (D) qualification and 0..70 °C grade; choose LM393DR2G when supply rails exceed 30 V (rated up to 36 V). Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.1) and official datasheets on hardware prototypes prior to production.",
-  "generated_at": "2026-11-23"
+  "generated_at": "2026-11-26"
 }

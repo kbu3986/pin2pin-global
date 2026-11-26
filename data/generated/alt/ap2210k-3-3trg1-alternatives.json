@@ -181,5 +181,5 @@
     "Check worst-case junction temperature Tj = Ta + (Vin,max - 3.3 V) × Iout × θJA stays >= 15 °C below Tj,max (150 °C).",
     "Validate input transient headroom against Vin,max (13.2 V rec / 15 V abs) and Pin 4 (NC vs BYPASS) PCB net connectivity."
   ],
-  "generated_at": "2026-11-23"
+  "generated_at": "2026-11-26"
 }

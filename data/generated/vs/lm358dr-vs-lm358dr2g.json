@@ -188,5 +188,5 @@
     "BENCH VERIFICATION: Confirm thermal dissipation margin using θJA (LM358DR: 124.7 °C/W vs LM358DR2G: 212 °C/W) and worst-case ambient temperature (0..70 °C vs 0..70 °C)."
   ],
   "engineering_verdict": "LM358DR (Texas Instruments, SOIC-8) and LM358DR2G (onsemi, SOIC-8) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because θJA worsens 70% (thermal derating verification required). Signal-chain deltas: GBWP 0.7 MHz (p.10) vs 1 MHz (p.6), supply ceiling 30 V (p.5) vs 30 V (p.4), Vos 7 mV (p.10) vs 7 mV (p.4), Ib 2x gap (20000 vs 45000 pA). Primary bench gotchas to watch: LM358DR \"Non-Rail-to-Rail Upper Input and Output Headroom Ceiling\" (p.10) and LM358DR2G \"CRITICAL ESD Trap: Standard onsemi LM358DR2G Is Rated ONLY 250 V HBM / 100 V MM (p.3)!\" (p.3). BOM decision: Choose LM358DR when matching your existing Texas Instruments SOIC-8 (D) qualification and 0..70 °C grade; choose LM358DR2G when matching your existing onsemi SOIC-8 (CASE 751 (D)) qualification and 0..70 °C grade. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.1) and official datasheets on hardware prototypes prior to production.",
-  "generated_at": "2026-11-23"
+  "generated_at": "2026-11-26"
 }

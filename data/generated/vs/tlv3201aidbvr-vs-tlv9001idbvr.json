@@ -161,5 +161,5 @@
     "HIGH MINIMUM SUPPLY FLOOR: TLV3201AIDBVR requires Vs,min >= 2.7 V (p.4) vs 1.8 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor."
   ],
   "engineering_verdict": "TLV3201AIDBVR (Texas Instruments, SOT-23-5) and TLV9001IDBVR (Texas Instruments, SOT-23-5) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to device kind mismatch (comparator/push-pull vs opamp/push-pull) — circuit redesign required. Specific pin conflicts: Pin 1 (OUT vs OUT). Signal-chain deltas: comparator (push-pull) vs opamp (push-pull), supply ceiling 5.5 V (p.4) vs 5.5 V (p.14), Vos 3 mV (p.5) vs 1.6 mV (p.17), Ib 5x gap (1 vs 5 pA). Primary bench gotchas to watch: TLV3201AIDBVR \"Push-Pull Output — Do NOT Wired-AND or Pull Up to a Different Logic Rail\" (p.5) and TLV9001IDBVR \"Critical SOT-23-5 Suffix Trap: TLV9001IDBVR vs TLV9001UIDBVR Pinout Swap\" (p.7). BOM decision: Choose TLV3201AIDBVR when the circuit is an open-loop threshold/window comparator (push-pull output); choose TLV9001IDBVR when the circuit is a linear closed-loop amplifier, buffer, or active filter. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.7) and official datasheets on hardware prototypes prior to production.",
-  "generated_at": "2026-11-23"
+  "generated_at": "2026-11-26"
 }

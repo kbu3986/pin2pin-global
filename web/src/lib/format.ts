@@ -667,6 +667,6 @@ export function lifecycleBadgeClass(status: string | null | undefined): string {
     case 'Active':
       return 'bg-emerald-50 text-emerald-900 border-emerald-300';
     default:
-      return 'bg-slate-100 text-slate-700 border-slate-300';
+      return 'bg-[#f2f2ee] text-[#3f3f3c] border-[#d6d6ce]';
   }
 }

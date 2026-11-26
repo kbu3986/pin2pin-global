@@ -148,5 +148,5 @@
     "HIGH MINIMUM SUPPLY FLOOR: LM1117IMPX-5.0/NOPB requires Vin,min >= 6.5 V (p.7) vs 4.8 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor."
   ],
   "engineering_verdict": "AMS1117-3.3 (Advanced Monolithic Systems, SOT-223-3) and LM1117IMPX-5.0/NOPB (Texas Instruments, SOT-223-3) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to fixed LDO output voltage rail mismatch (3.3 V vs 5 V). Under a representative 5 V → 3.3 V rail at 150 mA (255 mW), estimated self-heating is ΔTj ≈ 22.9 °C on AMS1117-3.3 (θJA 90 °C/W) vs 15.7 °C on LM1117IMPX-5.0/NOPB (θJA 61.6 °C/W), while quiescent draw spans a 1x ratio (5000 µA (p.3) vs 5000 µA (p.8)). Primary bench gotchas to watch: AMS1117-3.3 \"NOT Ceramic-Cap Stable — Requires 22 uF Solid Tantalum (No Numeric ESR Window Published)\" (p.4) and LM1117IMPX-5.0/NOPB \"Fixed 5.0 V Rail — Requires >= 6.5 V VIN (NEVER Swap Into 3.3 V LM1117IMPX-3.3 Sockets)\" (p.7). BOM decision: Choose AMS1117-3.3 when load current exceeds 800 mA (up to 1000 mA); choose LM1117IMPX-5.0/NOPB when lower package θJA (61.6 °C/W) is needed for thermal margin. Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.3) and official datasheets on hardware prototypes prior to production.",
-  "generated_at": "2026-11-23"
+  "generated_at": "2026-11-26"
 }

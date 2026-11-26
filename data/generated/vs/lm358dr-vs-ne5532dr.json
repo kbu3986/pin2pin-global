@@ -192,5 +192,5 @@
     "HIGH MINIMUM SUPPLY FLOOR: NE5532DR requires Vs,min >= 10 V (p.3) vs 3 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor."
   ],
   "engineering_verdict": "LM358DR (Texas Instruments, SOIC-8) and NE5532DR (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because GBWP differs 17.1x; slew rate differs 16.7x; input bias current Ib differs 10x (CMOS vs bipolar input stage). Signal-chain deltas: GBWP 0.7 MHz (p.10) vs 12 MHz (p.4), supply ceiling 30 V (p.5) vs 30 V (p.3), Vos 7 mV (p.10) vs 4 mV (p.4), Ib 10x gap (20000 vs 200000 pA), voltage noise 40 vs 5 nV/√Hz. Primary bench gotchas to watch: LM358DR \"Non-Rail-to-Rail Upper Input and Output Headroom Ceiling\" (p.10) and NE5532DR \"Internal Back-to-Back Input Clamp Diodes Conduct Above ~0.6 V Differential Input\" (p.3). BOM decision: Choose LM358DR when ultra-low supply current (350 µA/ch) is prioritized; choose NE5532DR when closed-loop signal bandwidth requires 12 MHz GBWP. Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.2) and official datasheets on hardware prototypes prior to production.",
-  "generated_at": "2026-11-23"
+  "generated_at": "2026-11-26"
 }

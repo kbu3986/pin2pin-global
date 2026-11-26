@@ -191,5 +191,5 @@
     "HIGH MINIMUM SUPPLY FLOOR: NE5532DR requires Vs,min >= 10 V (p.3) vs 3 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor."
   ],
   "engineering_verdict": "LM358DR2G (onsemi, SOIC-8) and NE5532DR (Texas Instruments, SOIC-8) are Level 2 Functional / Tuning Required alternatives: the PCB land pattern is compatible, but passive retuning or rating derating is mandatory because GBWP differs 12x; slew rate differs 8.3x; quiescent supply current Iq/ch differs 8.6x. Signal-chain deltas: GBWP 1 MHz (p.6) vs 12 MHz (p.4), supply ceiling 30 V (p.4) vs 30 V (p.3), Vos 7 mV (p.4) vs 4 mV (p.4), Ib 4x gap (45000 vs 200000 pA). Primary bench gotchas to watch: LM358DR2G \"CRITICAL ESD Trap: Standard onsemi LM358DR2G Is Rated ONLY 250 V HBM / 100 V MM (p.3)!\" (p.3) and NE5532DR \"Internal Back-to-Back Input Clamp Diodes Conduct Above ~0.6 V Differential Input\" (p.3). BOM decision: Choose LM358DR2G when ultra-low supply current (350 µA/ch) is prioritized; choose NE5532DR when closed-loop signal bandwidth requires 12 MHz GBWP. Always verify Pin 1 orientation (TOP_VIEW p.1 vs TOP_VIEW p.2) and official datasheets on hardware prototypes prior to production.",
-  "generated_at": "2026-11-23"
+  "generated_at": "2026-11-26"
 }

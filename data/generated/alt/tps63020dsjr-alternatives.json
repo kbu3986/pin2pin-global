@@ -139,5 +139,5 @@
     "Check feedback reference Vref (0.5 V) and recalculate R1/R2 divider plus feedforward cap before power-up.",
     "Audit hot-loop ceramic input/output capacitance placement and thermal dissipation at worst-case Vin and ambient temperature."
   ],
-  "generated_at": "2026-11-23"
+  "generated_at": "2026-11-26"
 }

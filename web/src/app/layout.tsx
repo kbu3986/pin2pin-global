@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import './globals.css';
 import { getSiteConfig } from '@/lib/data-loader';
 import { ogImageUrl } from '@/lib/format';
 
@@ -57,15 +56,26 @@ export default function RootLayout({
       : '';
 
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      data-type="software"
+      data-radius="sharp"
+      data-ground="sage"
+      data-buttons="pill"
+      data-motion=""
+      suppressHydrationWarning
+    >
       <head>
+        <meta name="theme-color" content="#0f0f0f" />
+        <meta name="site-kind" content="software" />
+        <meta name="page-type" content="software" />
         <link rel="icon" href={`${basePath}/favicon.ico`} sizes="32x32 48x48" />
         <link rel="icon" href={`${basePath}/favicon.svg`} type="image/svg+xml" />
         <link rel="apple-touch-icon" href={`${basePath}/apple-touch-icon.png`} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400..700&family=JetBrains+Mono:wght@400..500&display=swap"
           rel="stylesheet"
         />
         {/* AdSense Auto Ads is intentionally NOT loaded here: it lives in app/en/layout.tsx so that
@@ -84,9 +94,7 @@ export default function RootLayout({
           </>
         )}
       </head>
-      <body className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

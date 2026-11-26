@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import './globals.css';
 import { getSiteConfig } from '@/lib/data-loader';
 
 const siteConfig = getSiteConfig();
@@ -24,12 +25,12 @@ export const metadata: Metadata = {
 
 export default function RootRedirectPage() {
   return (
-    <main className="min-h-screen flex items-center justify-center bg-slate-950 text-slate-100 p-6">
+    <main className="min-h-screen flex items-center justify-center bg-[#0f0f0f] text-white font-sans p-6">
       <noscript>
-        <p className="text-xs text-slate-200">
+        <p className="text-xs text-white/80">
           JavaScript is disabled.{' '}
-          <a href={redirectTarget} className="underline text-emerald-300">
-            Continue to {siteConfig.site_name} (/en)
+          <a href={redirectTarget} className="underline text-[#dafa9c]">
+            Continue to {siteConfig.site_name} (/en/)
           </a>
         </p>
       </noscript>
@@ -38,20 +39,30 @@ export default function RootRedirectPage() {
           __html: `window.location.replace(${JSON.stringify(redirectTarget)});`,
         }}
       />
-      <div className="max-w-md rounded-lg border border-slate-800 bg-slate-900 p-6 text-center space-y-4">
-        <p className="font-mono text-xs uppercase tracking-widest text-emerald-400">
-          {siteConfig.site_name}
-        </p>
-        <h1 className="text-lg font-bold text-white">Redirecting to /en Workbench…</h1>
-        <p className="text-xs text-slate-300">
+      <div className="max-w-md rounded-[8px] border border-white/12 bg-[#1a1a1a] p-7 text-center space-y-4">
+        <div className="inline-flex items-center gap-2">
+          <span
+            className="inline-flex h-6 w-6 items-center justify-center rounded-[4px] bg-white text-[#0f0f0f] font-semibold text-xs leading-none"
+            aria-hidden="true"
+          >
+            P
+          </span>
+          <span className="font-mono text-xs uppercase tracking-widest text-[#dafa9c]">
+            {siteConfig.site_name}
+          </span>
+        </div>
+        <h1 className="text-xl font-medium tracking-[-0.02em] text-white">
+          Redirecting to /en/ Workbench…
+        </h1>
+        <p className="text-xs text-[#8f8f8f] leading-relaxed">
           If your browser does not redirect automatically, continue to the English datasheet
           cross-reference hub.
         </p>
         <Link
           href="/en/"
-          className="inline-flex items-center justify-center rounded-md bg-emerald-600 px-4 py-2 text-xs font-semibold text-white hover:bg-emerald-500"
+          className="inline-flex items-center justify-center rounded-full bg-[#dafa9c] px-5 py-2.5 text-xs font-medium text-[#0f0f0f] hover:bg-[#e7fdbc] transition-colors"
         >
-          Open Pin2Pin Global (/en)
+          Open {siteConfig.site_name} (/en/)
         </Link>
       </div>
     </main>

@@ -31,35 +31,35 @@ function TypeBadge({ type }: { type: CommandSearchItemType }) {
   switch (type) {
     case 'part':
       return (
-        <span className="inline-flex items-center gap-1 rounded bg-slate-900 px-1.5 py-0.5 font-mono text-[11px] font-bold uppercase text-white">
+        <span className="inline-flex items-center gap-1 rounded-[4px] border border-[#0f0f0f] bg-[#0f0f0f] px-1.5 py-0.5 font-mono text-[11px] font-medium uppercase text-white">
           <Cpu className="h-3 w-3" aria-hidden="true" />
           OPN
         </span>
       );
     case 'tool':
       return (
-        <span className="inline-flex items-center gap-1 rounded bg-emerald-700 px-1.5 py-0.5 font-mono text-[11px] font-bold uppercase text-white">
+        <span className="inline-flex items-center gap-1 rounded-[4px] border border-[#b8dc72] bg-[#dafa9c] px-1.5 py-0.5 font-mono text-[11px] font-medium uppercase text-[#0f0f0f]">
           <Wrench className="h-3 w-3" aria-hidden="true" />
           Tool
         </span>
       );
     case 'guide':
       return (
-        <span className="inline-flex items-center gap-1 rounded bg-sky-700 px-1.5 py-0.5 font-mono text-[11px] font-bold uppercase text-white">
+        <span className="inline-flex items-center gap-1 rounded-[4px] border border-[#d6d6ce] bg-[#f2f2ee] px-1.5 py-0.5 font-mono text-[11px] font-medium uppercase text-[#0f0f0f]">
           <BookOpen className="h-3 w-3" aria-hidden="true" />
           Guide
         </span>
       );
     case 'vs':
       return (
-        <span className="inline-flex items-center gap-1 rounded bg-violet-700 px-1.5 py-0.5 font-mono text-[11px] font-bold uppercase text-white">
+        <span className="inline-flex items-center gap-1 rounded-[4px] border border-[#dafa9c]/30 bg-[#1a1a1a] px-1.5 py-0.5 font-mono text-[11px] font-medium uppercase text-[#dafa9c]">
           <ArrowLeftRight className="h-3 w-3" aria-hidden="true" />
           Diff
         </span>
       );
     default:
       return (
-        <span className="inline-flex items-center gap-1 rounded bg-slate-200 px-1.5 py-0.5 font-mono text-[11px] font-bold uppercase text-slate-800">
+        <span className="inline-flex items-center gap-1 rounded-[4px] border border-[#d6d6ce] bg-[#ecece7] px-1.5 py-0.5 font-mono text-[11px] font-medium uppercase text-[#3f3f3c]">
           <Compass className="h-3 w-3" aria-hidden="true" />
           Page
         </span>
@@ -196,7 +196,7 @@ export function CommandPalette({ items }: { items: CommandSearchItem[] }) {
   return (
     <div
       data-no-print="true"
-      className="print:hidden fixed inset-0 z-50 flex items-start justify-center bg-slate-950/70 p-4 pt-[10vh] backdrop-blur-xs"
+      className="print:hidden fixed inset-0 z-50 flex items-start justify-center bg-[#0f0f0f]/75 p-4 pt-[10vh] backdrop-blur-xs"
       role="dialog"
       aria-modal="true"
       aria-label="Global OPN, Tool and Guide Command Palette"
@@ -204,9 +204,9 @@ export function CommandPalette({ items }: { items: CommandSearchItem[] }) {
         if (e.target === e.currentTarget) closeModal();
       }}
     >
-      <div className="w-full max-w-2xl overflow-hidden rounded-xl border border-slate-300 bg-white shadow-2xl">
-        <div className="flex items-center gap-2.5 border-b border-slate-200 bg-slate-50 px-4 py-3">
-          <Search className="h-4 w-4 text-slate-600 shrink-0" aria-hidden="true" />
+      <div className="w-full max-w-2xl overflow-hidden rounded-[8px] border border-[#2c2c2c] bg-white shadow-2xl">
+        <div className="flex items-center gap-2.5 border-b border-white/12 bg-[#0f0f0f] px-4 py-3 text-white">
+          <Search className="h-4 w-4 text-[#dafa9c] shrink-0" aria-hidden="true" />
           <input
             ref={inputRef}
             type="search"
@@ -217,13 +217,13 @@ export function CommandPalette({ items }: { items: CommandSearchItem[] }) {
             aria-label="Search OPNs, package codes, engineering tools, and guides"
             aria-autocomplete="list"
             aria-controls="command-palette-results"
-            className="w-full bg-transparent font-mono text-sm text-slate-950 placeholder:font-sans placeholder:text-slate-500 focus:outline-none"
+            className="w-full bg-transparent font-mono text-sm text-white placeholder:font-sans placeholder:text-[#8f8f8f] focus:outline-none"
           />
           <button
             type="button"
             onClick={closeModal}
             aria-label="Close command palette"
-            className="rounded-md border border-slate-300 bg-white p-1 text-slate-600 hover:bg-slate-100 hover:text-slate-900 cursor-pointer"
+            className="rounded-[4px] border border-white/15 bg-[#1a1a1a] p-1 text-white/80 hover:border-white/30 hover:text-white cursor-pointer"
           >
             <X className="h-4 w-4" aria-hidden="true" />
           </button>
@@ -233,13 +233,15 @@ export function CommandPalette({ items }: { items: CommandSearchItem[] }) {
           id="command-palette-results"
           ref={listRef}
           role="listbox"
-          className="max-h-[60vh] overflow-y-auto divide-y divide-slate-100"
+          className="max-h-[60vh] overflow-y-auto divide-y divide-[#ecece6] bg-white"
         >
           {results.length === 0 ? (
-            <li className="px-4 py-8 text-center text-xs text-slate-600">
-              No matches for <span className="font-mono font-bold text-slate-900">&ldquo;{query}&rdquo;</span>.
+            <li className="px-4 py-8 text-center text-xs text-[#5f5f5f]">
+              No matches for{' '}
+              <span className="font-mono font-semibold text-[#0f0f0f]">&ldquo;{query}&rdquo;</span>.
               Try an OPN prefix (e.g. <span className="font-mono">AP2112K</span>,{' '}
-              <span className="font-mono">DBVR</span>, <span className="font-mono">LM358</span>) or tool name.
+              <span className="font-mono">DBVR</span>, <span className="font-mono">LM358</span>) or
+              tool name.
             </li>
           ) : (
             results.map((item, idx) => {
@@ -251,8 +253,10 @@ export function CommandPalette({ items }: { items: CommandSearchItem[] }) {
                   aria-selected={active}
                   onMouseEnter={() => setActiveIndex(idx)}
                   onClick={() => selectItem(item, idx + 1)}
-                  className={`flex items-center justify-between gap-3 px-4 py-2.5 cursor-pointer transition-colors ${
-                    active ? 'bg-sky-50' : 'hover:bg-slate-50'
+                  className={`flex items-center justify-between gap-3 px-4 py-2.5 cursor-pointer transition-colors border-l-2 ${
+                    active
+                      ? 'border-l-[#0f0f0f] bg-[#f4f8e8]'
+                      : 'border-l-transparent hover:bg-[#f7f7f5]'
                   }`}
                 >
                   <div className="min-w-0 flex items-center gap-2.5">
@@ -260,24 +264,28 @@ export function CommandPalette({ items }: { items: CommandSearchItem[] }) {
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
                         <span
-                          className={`truncate text-sm font-bold ${
+                          className={`truncate text-sm font-semibold text-[#0f0f0f] ${
                             item.type === 'part' || item.type === 'vs' ? 'font-mono' : ''
-                          } ${active ? 'text-sky-900' : 'text-slate-950'}`}
+                          }`}
                         >
                           {item.label}
                         </span>
                         {item.lifecycle && item.lifecycle !== 'Active' && (
                           <span
-                            className={`rounded border px-1.5 py-0.5 font-mono text-[11px] font-bold uppercase ${lifecycleBadgeClass(item.lifecycle)}`}
+                            className={`rounded-[4px] border px-1.5 py-0.5 font-mono text-[11px] font-medium uppercase ${lifecycleBadgeClass(item.lifecycle)}`}
                           >
                             {item.lifecycle}
                           </span>
                         )}
                       </div>
-                      <p className="truncate text-xs text-slate-600">{item.sublabel}</p>
+                      <p className="truncate text-xs text-[#5f5f5f]">{item.sublabel}</p>
                     </div>
                   </div>
-                  <span className="hidden sm:inline shrink-0 font-mono text-[11px] text-slate-500">
+                  <span
+                    className={`hidden sm:inline shrink-0 font-mono text-[11px] ${
+                      active ? 'text-[#0f0f0f] font-medium' : 'text-[#5f5f5f]'
+                    }`}
+                  >
                     ↵ Open
                   </span>
                 </li>
@@ -286,7 +294,7 @@ export function CommandPalette({ items }: { items: CommandSearchItem[] }) {
           )}
         </ul>
 
-        <div className="flex flex-wrap items-center justify-between gap-2 border-t border-slate-200 bg-slate-50 px-4 py-2 text-[11px] text-slate-600 font-mono">
+        <div className="flex flex-wrap items-center justify-between gap-2 border-t border-[#e2e2dc] bg-[#f7f7f5] px-4 py-2 text-[11px] text-[#5f5f5f] font-mono">
           <span>↑↓ Navigate · ↵ Open · Esc Close</span>
           <span>Hyphen-insensitive OPN &amp; mfg package code search</span>
         </div>

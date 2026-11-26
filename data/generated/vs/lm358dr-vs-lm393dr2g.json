@@ -189,5 +189,5 @@
     "HIGH MINIMUM SUPPLY FLOOR: LM358DR requires Vs,min >= 3 V (p.5) vs 2 V on the counterpart; confirm low-battery / brown-out operation still clears the higher floor."
   ],
   "engineering_verdict": "LM358DR (Texas Instruments, SOIC-8) and LM393DR2G (onsemi, SOIC-8) are NOT drop-in interchangeable (Level 3 PCB Layout / Circuit Change Required) due to device kind mismatch (opamp/push-pull vs comparator/open-collector) — circuit redesign required. Specific pin conflicts: Pin 1 (OUT_A vs OUT_A), Pin 7 (OUT_B vs OUT_B). Signal-chain deltas: opamp (push-pull) vs comparator (open-collector), supply ceiling 30 V (p.5) vs 36 V (p.1), Vos 7 mV (p.10) vs 5 mV (p.3), Ib 1x gap (20000 vs 20000 pA). Primary bench gotchas to watch: LM358DR \"Non-Rail-to-Rail Upper Input and Output Headroom Ceiling\" (p.10) and LM393DR2G \"Identical SOIC-8 Pinout Trap vs Push-Pull LM358DR2G / LM358DR Op-Amps\" (p.1). BOM decision: Choose LM358DR when the circuit is a linear closed-loop amplifier, buffer, or active filter; choose LM393DR2G when the circuit is an open-loop threshold/window comparator (open-collector output) or supply rails exceed 30 V (rated up to 36 V). Always verify Pin 1 orientation (TOP_VIEW p.3 vs TOP_VIEW p.1) and official datasheets on hardware prototypes prior to production.",
-  "generated_at": "2026-11-23"
+  "generated_at": "2026-11-26"
 }

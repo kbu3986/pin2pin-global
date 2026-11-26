@@ -153,5 +153,5 @@
     "Verify input common-mode headroom (Non-RR-In), output swing (Non-RR-Out), and Vos (7 mV max) against signal chain budget.",
     "Check closed-loop bandwidth (GBWP / Acl), full-power slew rate (SR / 2π·Vpeak), and capacitive-load phase margin on the bench."
   ],
-  "generated_at": "2026-11-23"
+  "generated_at": "2026-11-26"
 }
